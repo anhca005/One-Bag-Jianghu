@@ -1,0 +1,22 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Java server (sẽ có)
+server/**/target/
+server/**/build/
+server/**/.gradle/
+*.class
+*.log
+
+# Secrets
+.env
+*.env.local
+
+# Claude Code (tạm thời chưa đưa lên repo)
+CLAUDE.md
+.claude/
