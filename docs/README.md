@@ -11,6 +11,7 @@
 | [design/glossary.md](design/glossary.md) | Bảng thuật ngữ võ hiệp (chuẩn dùng trong game và code) |
 | [design/combat.md](design/combat.md) | Hệ thống chiến đấu: tick, nội lực, tuyệt kỹ, trạng thái, công thức |
 | [design/items.md](design/items.md) | Loại vật phẩm, độ hiếm, hệ binh khí, môn phái, vật phẩm mẫu |
+| [design/balance.md](design/balance.md) | Quy tắc cân bằng (ngân sách theo ô, kinh tế nội lực), cách đo, kết quả các đợt |
 | **tech/** | |
 | [tech/architecture.md](tech/architecture.md) | Kiến trúc Unity + Java WebSocket, giao thức, cấu trúc thư mục |
 | **art/** | |

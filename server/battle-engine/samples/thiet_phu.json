@@ -1,0 +1,12 @@
+{
+  "name": "Thiết Phủ Bang (Rìu + Cầm)",
+  "hp": 1200, "cols": 5, "rows": 4,
+  "items": [
+    { "id": "khai_son_phu",   "x": 0, "y": 0 },
+    { "id": "khai_son_phu",   "x": 0, "y": 2 },
+    { "id": "bich_thuy_cam",  "x": 2, "y": 0 },
+    { "id": "boi_nguyen_dan", "x": 4, "y": 0 },
+    { "id": "tuy_tien_ho_lo", "x": 2, "y": 3 },
+    { "id": "o_tam_y",        "x": 3, "y": 2 }
+  ]
+}

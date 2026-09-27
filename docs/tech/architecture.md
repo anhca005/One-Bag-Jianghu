@@ -37,9 +37,9 @@ Art/             ← sprite, khung độ hiếm
 Scenes/
 ```
 
-## Server Java (chưa tạo)
+## Server Java (`server/`, xem [server/README.md](../../server/README.md))
 
-- Java 21, Netty (hoặc Spring Boot WebSocket), Maven/Gradle đa module.
+- Java 17 (quyết định #7), Maven đa module + Maven Wrapper. Netty hoặc Spring Boot WebSocket cho gateway (chưa chọn).
 - Module:
 
 | Module | Việc |
@@ -53,7 +53,7 @@ Scenes/
 | `arena` | Ghost, ghép trận, mùa giải |
 | `leaderboard` | Bảng xếp hạng (Redis ZSET) |
 | `config` | Nạp dữ liệu JSON (xuất từ Sheets) |
-| **`battle-engine`** | Java thuần, không phụ thuộc framework, có unit test |
+| **`battle-engine`** ✅ đã có | Java thuần, không phụ thuộc framework, có unit test |
 
 ## Giao thức
 - Gói tin định nghĩa bằng file `.proto` dùng chung, sinh code cho cả C# và Java.

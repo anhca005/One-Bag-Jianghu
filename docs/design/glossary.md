@@ -46,7 +46,7 @@
 | Nội Lực | `qi` | Tài nguyên chiến đấu, tối đa 100 |
 | Phổ Công | `basic` | Đòn thường, thường cộng nội lực |
 | Tuyệt Kỹ | `ultimate` | Đòn mạnh, tiêu hao nội lực |
-| Hóa Kình | `parry` | Tự tiêu 60 nội lực để hóa giải Tuyệt Kỹ của đối thủ, đối thủ bị Định Thân |
+| Hóa Kình | `parry` | Tự tiêu 60 nội lực (giảm được bằng vật phẩm) để hóa giải Tuyệt Kỹ của đối thủ, đối thủ bị Định Thân 1 giây |
 | Tốc Xuất Chiêu | `cooldown` | Thời gian giữa hai lần kích hoạt |
 | Lực Đạo | `attack` | Sát thương gốc của binh khí |
 | Cương Khí | `shield` | Lớp máu ảo, bị trừ trước khí huyết |
@@ -59,15 +59,16 @@
 
 | Tên | Mã | Hiệu ứng |
 |---|---|---|
-| Liệt Hỏa | `burn` | Mỗi giây mất máu bằng số tầng, sau đó số tầng giảm 10% |
-| Kịch Độc | `poison` | Mỗi giây mất máu bằng số tầng, bỏ qua Cương Khí |
-| Xuất Huyết | `bleed` | Mất máu mỗi lần kích hoạt một binh khí |
+| Liệt Hỏa | `burn` | Tích điểm; đủ 50 thì bộc phát sát thương lớn (Cương Khí đỡ được) rồi reset |
+| Kịch Độc | `poison` | Tích điểm; đủ 50 thì bộc phát xuyên Cương Khí rồi reset |
+| Xuất Huyết | `bleed` | Tích điểm; đủ 50 thì bộc phát xuyên Cương Khí + % khí huyết tối đa rồi reset |
 | Nội Thương | `internal_injury` | Giảm khí huyết tối đa |
 | Trì Trệ | `slow` | Tốc xuất chiêu còn 50% |
 | Điểm Huyệt | `seal` | Dừng hẳn thời gian hồi của một món |
 | Định Thân | `stun` | Dừng mọi món |
 | Khinh Công | `haste` | Tốc xuất chiêu x2 |
 | Vận Khí | `charge` | Đẩy thanh hồi chiêu lên ngay |
+| Bộc Phát | `burst` | Trạng thái tích điểm đạt ngưỡng, gây sát thương một lần rồi reset |
 | Điều Tức | `regen` | Hồi máu mỗi giây |
 | Liệu Thương | `heal` | Hồi máu một lần |
 | Kiệt Lực | `exhaustion` | Trận quá 45 giây thì cả hai bên mất máu tăng dần |
