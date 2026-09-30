@@ -1,0 +1,12 @@
+{
+  "name": "OneBagJianghu.Game",
+  "rootNamespace": "OneBagJianghu",
+  "references": [
+    "OneBagJianghu.Engine",
+    "OneBagJianghu.Economy",
+    "Unity.Newtonsoft.Json",
+    "UnityEngine.UI",
+    "Unity.InputSystem"
+  ],
+  "autoReferenced": true
+}

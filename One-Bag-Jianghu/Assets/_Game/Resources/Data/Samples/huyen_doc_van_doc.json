@@ -1,0 +1,69 @@
+{
+  "name": "Huyền Độc Môn - Vạn Độc (Ám Khí + Trảo)",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "items": [
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

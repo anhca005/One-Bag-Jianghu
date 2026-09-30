@@ -7,7 +7,7 @@ public final class TriggerDef {
     public TriggerSource from = TriggerSource.ANY;
     /** HP_BELOW: fraction of max HP (0.4 = 40%). */
     public double hpBelow;
-    /** STATUS_APPLIED: only this status; null = any. */
+    /** STATUS_APPLIED, BURST, or BURST_TAKEN: only this status; null = any. */
     public StatusType status;
     /** 0 = unlimited. */
     public int maxUses;

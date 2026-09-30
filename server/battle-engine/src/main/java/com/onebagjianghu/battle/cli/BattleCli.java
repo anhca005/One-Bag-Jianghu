@@ -3,6 +3,8 @@ package com.onebagjianghu.battle.cli;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.onebagjianghu.battle.data.DataException;
 import com.onebagjianghu.battle.data.ItemCatalog;
+import com.onebagjianghu.battle.data.SectCatalog;
+import com.onebagjianghu.battle.sim.BattleConfig;
 import com.onebagjianghu.battle.sim.BattleResult;
 import com.onebagjianghu.battle.sim.BattleSimulator;
 import com.onebagjianghu.battle.sim.Loadout;
@@ -27,7 +29,8 @@ import java.util.stream.Stream;
  *   battle A.json B.json [--seed N] [--verbose] [--json out.json]   one battle, print the log
  *   battle A.json B.json --runs N                                   N seeds, print win rates
  *   battle --matrix DIR [--runs N]                                  every loadout in DIR vs every other
- *   common: [--items items.json]   (default: bundled data/items.json)
+ *   battle --dump-config out.json                                   write BattleConfig defaults as JSON
+ *   common: [--items items.json] [--sects sects.json] [--battle-config config.json]
  * </pre>
  */
 public final class BattleCli {
@@ -49,20 +52,30 @@ public final class BattleCli {
         boolean verbose = false;
         String json = null;
         String items = null;
+        String sectsFile = null;
         String matrix = null;
+        String battleConfig = null;
         for (int i = 0; i < args.length; i++) {
             switch (args[i]) {
                 case "--seed" -> seed = Long.parseLong(value(args, ++i, "--seed"));
                 case "--runs" -> runs = Integer.parseInt(value(args, ++i, "--runs"));
                 case "--json" -> json = value(args, ++i, "--json");
                 case "--items" -> items = value(args, ++i, "--items");
+                case "--sects" -> sectsFile = value(args, ++i, "--sects");
                 case "--matrix" -> matrix = value(args, ++i, "--matrix");
+                case "--battle-config" -> battleConfig = value(args, ++i, "--battle-config");
+                case "--dump-config" -> {
+                    writeJson(BattleConfig.defaults(), Path.of(value(args, ++i, "--dump-config")));
+                    return;
+                }
                 case "--verbose", "-v" -> verbose = true;
                 default -> files.add(args[i]);
             }
         }
         ItemCatalog catalog = items == null ? ItemCatalog.loadDefault() : ItemCatalog.load(Path.of(items));
-        BattleSimulator sim = new BattleSimulator(catalog);
+        SectCatalog sects = sectsFile == null ? SectCatalog.loadDefault() : SectCatalog.load(Path.of(sectsFile));
+        BattleConfig config = battleConfig == null ? BattleConfig.defaults() : BattleConfig.loadOverride(Path.of(battleConfig));
+        BattleSimulator sim = new BattleSimulator(catalog, sects, config);
 
         if (matrix != null) {
             matrix(sim, Path.of(matrix), runs > 1 ? runs : 200);
@@ -163,9 +176,9 @@ public final class BattleCli {
         return new Stats(runs, winA, winB, draw, total);
     }
 
-    private static void writeJson(BattleResult r, Path path) {
+    private static void writeJson(Object value, Path path) {
         try {
-            ItemCatalog.mapper().writer(SerializationFeature.INDENT_OUTPUT).writeValue(path.toFile(), r);
+            ItemCatalog.mapper().writer(SerializationFeature.INDENT_OUTPUT).writeValue(path.toFile(), value);
         } catch (IOException e) {
             throw new DataException("Không ghi được " + path, e);
         }

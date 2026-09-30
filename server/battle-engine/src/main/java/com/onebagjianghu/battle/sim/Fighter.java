@@ -3,17 +3,23 @@ package com.onebagjianghu.battle.sim;
 import com.onebagjianghu.battle.data.DataException;
 import com.onebagjianghu.battle.data.ItemCatalog;
 import com.onebagjianghu.battle.data.ItemDef;
+import com.onebagjianghu.battle.data.SectCatalog;
+import com.onebagjianghu.battle.data.SectDef;
 import com.onebagjianghu.battle.grid.BagGrid;
 import com.onebagjianghu.battle.grid.Rect;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /** Mutable per-battle state of one side (Hiệp Khách + Bao Phục). */
 final class Fighter {
     final int side;
     final String name;
     final List<ItemInstance> items = new ArrayList<>();
+    int cols;
+    int rows;
     Fighter enemy;
 
     int maxHp;
@@ -27,6 +33,8 @@ final class Fighter {
     int bleed;
     int regen;
     int stunUntil;
+    /** Hero-target BUFF_STACK counts, separate for every source item and trigger. */
+    final Map<String, Integer> buffStacks = new HashMap<>();
 
     private Fighter(int side, String name, int hp) {
         this.side = side;
@@ -35,11 +43,17 @@ final class Fighter {
         this.hp = hp;
     }
 
-    static Fighter create(int side, Loadout loadout, ItemCatalog catalog, BattleConfig cfg) {
+    static Fighter create(int side, Loadout loadout, ItemCatalog catalog, SectCatalog sects, BattleConfig cfg) {
         if (loadout.hp <= 0) {
             throw new DataException("Loadout " + loadout.name + ": hp must be > 0");
         }
+        if (loadout.tamPhapLevel < 1 || loadout.tamPhapLevel > SectCatalog.MAX_LEVEL) {
+            throw new DataException("Loadout " + loadout.name + ": tamPhapLevel must be 1.." + SectCatalog.MAX_LEVEL);
+        }
+        SectDef sect = loadout.sect == null ? null : sects.get(loadout.sect);
         Fighter f = new Fighter(side, loadout.name, loadout.hp);
+        f.cols = loadout.cols;
+        f.rows = loadout.rows;
         List<Rect> rects = new ArrayList<>();
         List<ItemDef> defs = new ArrayList<>();
         for (Loadout.PlacedItem p : loadout.items) {
@@ -47,6 +61,7 @@ final class Fighter {
             if (p.tier < 1 || p.tier > cfg.tierMultiplierPermille.length) {
                 throw new DataException("Loadout " + loadout.name + ": " + p.id + " has invalid tier " + p.tier);
             }
+            if (p.rarity == null) throw new DataException("Loadout " + loadout.name + ": " + p.id + " has invalid rarity null");
             defs.add(def);
             rects.add(new Rect(p.x, p.y, def.width(), def.height()));
         }
@@ -56,7 +71,12 @@ final class Fighter {
         }
         for (int i = 0; i < defs.size(); i++) {
             int tier = loadout.items.get(i).tier;
-            f.items.add(new ItemInstance(side * 100 + i, defs.get(i), f, tier, rects.get(i), cfg.tierMultiplier(tier)));
+            ItemDef def = defs.get(i).atTier(tier);
+            if (sect != null) {
+                def = sect.applyTo(def, loadout.tamPhapLevel);
+            }
+            var rarity = loadout.items.get(i).rarity;
+            f.items.add(new ItemInstance(side * 100 + i, def, f, tier, rarity, rects.get(i), cfg.tierMultiplier(tier), cfg.rarityMultiplier(rarity)));
         }
         List<List<Integer>> adjacency = BagGrid.adjacency(rects);
         for (int i = 0; i < f.items.size(); i++) {

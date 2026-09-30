@@ -20,3 +20,7 @@ server/**/.gradle/
 # Claude Code (tạm thời chưa đưa lên repo)
 CLAUDE.md
 .claude/
+
+# File xuất tự động (tạo lại bằng tools/sheets/export_xlsx.py)
+exports/
+__pycache__/

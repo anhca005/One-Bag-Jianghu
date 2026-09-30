@@ -1,0 +1,309 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dab70598ca688549bc997ead8cc63b5, type: 3}
+  m_Name: ItemIconLibrary
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Bag.ItemIconLibrary
+  entries:
+  - ItemId: am_duong_ngoc
+    Sprite: {fileID: 21300000, guid: 11bf03e5898363640838cb6acb410fb3, type: 3}
+  - ItemId: bach_luyen_chan_kinh
+    Sprite: {fileID: 21300000, guid: ff3ceaf8bc1fb164e972158f5212d314, type: 3}
+  - ItemId: bach_ngoc_boi
+    Sprite: {fileID: 21300000, guid: 900fb557a06f7dd46978f2e5432bd617, type: 3}
+  - ItemId: bang_tam_giap
+    Sprite: {fileID: 21300000, guid: 497657d36b217e542b7b3f2997d24d92, type: 3}
+  - ItemId: boi_nguyen_dan
+    Sprite: {fileID: 21300000, guid: 8e89a30eb713b9b41bcfb7d3a0fd9a5a, type: 3}
+  - ItemId: chu_sa_ho_lo
+    Sprite: {fileID: 21300000, guid: 49486436cfbbc6543871bad854e6e982, type: 3}
+  - ItemId: cuong_hoa_dan
+    Sprite: {fileID: 21300000, guid: 81d5ae23a402db349921a7a46a26fafb, type: 3}
+  - ItemId: cuu_chuyen_hoan_hon_dan
+    Sprite: {fileID: 21300000, guid: e42fae6e4fab31246bdcb1829022c8bd, type: 3}
+  - ItemId: da_ho_y
+    Sprite: {fileID: 21300000, guid: 74df4a5402e1eba44b5e73645186f3aa, type: 3}
+  - ItemId: da_minh_chau
+    Sprite: {fileID: 21300000, guid: 9502e878ec7094947b4e7060c1204f0b, type: 3}
+  - ItemId: duong_sinh_quyet
+    Sprite: {fileID: 21300000, guid: 17db726ab11ee9f42b14cee463b25296, type: 3}
+  - ItemId: giai_doc_dan
+    Sprite: {fileID: 21300000, guid: 458e50a6eb8e0e24dbf2339528bc3f37, type: 3}
+  - ItemId: han_bang_chau
+    Sprite: {fileID: 21300000, guid: e8d94edca4bc322488b343874aa9cfe4, type: 3}
+  - ItemId: ho_mach_dan
+    Sprite: {fileID: 21300000, guid: 64b87957e09435a478f00e2c72b816f9, type: 3}
+  - ItemId: hoi_thien_dan
+    Sprite: {fileID: 21300000, guid: ceb263071e037274abb70f274509df52, type: 3}
+  - ItemId: huyet_ngoc_thach
+    Sprite: {fileID: 21300000, guid: 5847e73e3396f2d40af74600dca14902, type: 3}
+  - ItemId: kiem_tong_tam_yeu
+    Sprite: {fileID: 21300000, guid: 8f381b613c0c8fd459d6e316637ba23c, type: 3}
+  - ItemId: kim_sang_duoc
+    Sprite: {fileID: 21300000, guid: d65d531595f698c4f9a495a85b34e6de, type: 3}
+  - ItemId: kim_tuyen_y
+    Sprite: {fileID: 21300000, guid: 6fabd130855981a49838ee339c15483b, type: 3}
+  - ItemId: liet_hoa_tam_kinh
+    Sprite: {fileID: 21300000, guid: 41eb4a9ced14d0348b3ad7a72dc02986, type: 3}
+  - ItemId: long_lan_giap
+    Sprite: {fileID: 21300000, guid: 024c29ef67fb2a94faa8d36b2e724c29, type: 3}
+  - ItemId: ngung_than_dan
+    Sprite: {fileID: 21300000, guid: 33d249b1da3aa6d43af552c3e65f4f98, type: 3}
+  - ItemId: nho_sam_y
+    Sprite: {fileID: 21300000, guid: 318439ca6f7448144a81a280802ae8a3, type: 3}
+  - ItemId: o_tam_y
+    Sprite: {fileID: 21300000, guid: 574754ba7e4ae16408a273990cb78d91, type: 3}
+  - ItemId: o_thiet_giap
+    Sprite: {fileID: 21300000, guid: 4845517f8f119e54ba48c706e791a996, type: 3}
+  - ItemId: phi_yen_quyet
+    Sprite: {fileID: 21300000, guid: 3ea1f465a9827f143a83c90821a3b437, type: 3}
+  - ItemId: phuc_ma_giap
+    Sprite: {fileID: 21300000, guid: 537b1971bf1974443bbf0f6fdb684799, type: 3}
+  - ItemId: quy_nguyen_quyet
+    Sprite: {fileID: 21300000, guid: f9affe346d3ac5341a0e07061aaea407, type: 3}
+  - ItemId: thai_thanh_tam_kinh
+    Sprite: {fileID: 21300000, guid: 9ae581853fa8b654290cf2127b3c0211, type: 3}
+  - ItemId: thanh_dong_ho_tam_kinh
+    Sprite: {fileID: 21300000, guid: a629c79d179d6ce47a42f87b8569e3eb, type: 3}
+  - ItemId: thanh_tam_dan
+    Sprite: {fileID: 21300000, guid: 1bd2ccb0c79d62a4f804497dcb354144, type: 3}
+  - ItemId: thien_dia_vo_cuc_cong
+    Sprite: {fileID: 21300000, guid: 196db893dd0b82543b55cc068ac50677, type: 3}
+  - ItemId: thien_tam_chuoi
+    Sprite: {fileID: 21300000, guid: dd9d6b8c4316bd14b99baa59403b9fca, type: 3}
+  - ItemId: thiet_giap_y
+    Sprite: {fileID: 21300000, guid: 0134870ce56477b4da32a8a31044439d, type: 3}
+  - ItemId: thuan_duong_cong
+    Sprite: {fileID: 21300000, guid: 0c931e65ed8363a45b30324dd528b7a9, type: 3}
+  - ItemId: ti_khang_dan
+    Sprite: {fileID: 21300000, guid: 951475f7179174c4fb0971fd09baadde, type: 3}
+  - ItemId: tram_huong_lo
+    Sprite: {fileID: 21300000, guid: d96de0f6dec87a34299672c3b813f65c, type: 3}
+  - ItemId: tu_kim_bat
+    Sprite: {fileID: 21300000, guid: eda4c6ddd56cdff4bb580ec880a50fee, type: 3}
+  - ItemId: tue_nguyet_bao_y
+    Sprite: {fileID: 21300000, guid: b16aa9704c2f3bf4096a78e611e924a8, type: 3}
+  - ItemId: tuy_tien_ho_lo
+    Sprite: {fileID: 21300000, guid: 25745558a6170534e861e8cfcd372bf7, type: 3}
+  - ItemId: u_minh_bi_luc
+    Sprite: {fileID: 21300000, guid: 91ec15da20ea1cd4b8c447eca75e12db, type: 3}
+  - ItemId: van_doc_dinh
+    Sprite: {fileID: 21300000, guid: 784d9ea27f9ba0a4098b084543bf2b84, type: 3}
+  - ItemId: van_khi_dan
+    Sprite: {fileID: 21300000, guid: d41311657519c0e41b45dfe00c169cde, type: 3}
+  - ItemId: vo_niem_kinh
+    Sprite: {fileID: 21300000, guid: fd19fda9810b5f94180e072cc8a1d01c, type: 3}
+  - ItemId: binh_hon_tinh_thach
+    Sprite: {fileID: 21300000, guid: 6b25eb93bd8c38f4c910d847c8a4e796, type: 3}
+  - ItemId: chi_ton_ngoc_tuy
+    Sprite: {fileID: 21300000, guid: f3a30ef889d754f4ca1116215a13d79a, type: 3}
+  - ItemId: chu_sa_thao
+    Sprite: {fileID: 21300000, guid: fbce70324688d7a4ab91879c67a7c9a0, type: 3}
+  - ItemId: con_lon_tuyet_lien
+    Sprite: {fileID: 21300000, guid: 10f26f86246ad074f971d057eccab57d, type: 3}
+  - ItemId: cuu_chuyen_dan_sa
+    Sprite: {fileID: 21300000, guid: 6e5f15e17e7d68343b6ca4cb8cb3c975, type: 3}
+  - ItemId: cuu_u_tam_ti
+    Sprite: {fileID: 21300000, guid: ca48db2fa306cb44a9c01562715890ba, type: 3}
+  - ItemId: han_thiet
+    Sprite: {fileID: 21300000, guid: a841b0ac82c2d4f4ab58cb29e3801335, type: 3}
+  - ItemId: hoang_tuyen_chi
+    Sprite: {fileID: 21300000, guid: 4d556f92cf6459d46bd5bca8ec0c62d1, type: 3}
+  - ItemId: huyen_giap_hon_thach
+    Sprite: {fileID: 21300000, guid: 41fc8f00cb0103c45b672005b5f0790d, type: 3}
+  - ItemId: mac_truc_tran
+    Sprite: {fileID: 21300000, guid: 6f5d8fdd2bdd01d48bed6293196a8c16, type: 3}
+  - ItemId: o_kim_ti
+    Sprite: {fileID: 21300000, guid: 8eae58d7aba1d0a4f9f10975d45c2699, type: 3}
+  - ItemId: o_thiet
+    Sprite: {fileID: 21300000, guid: fedd2849cb0acf2469a916f9da308344, type: 3}
+  - ItemId: tam_to_co_quyen
+    Sprite: {fileID: 21300000, guid: 0ee8fb8ca1291bf488c01020c7dc24fd, type: 3}
+  - ItemId: thanh_dong_ti
+    Sprite: {fileID: 21300000, guid: a0490a81dc9c3be4d85e16123e24f371, type: 3}
+  - ItemId: thien_ngoai_van_thiet
+    Sprite: {fileID: 21300000, guid: ee2034700c05b4143b642e0d7173f399, type: 3}
+  - ItemId: tu_linh_chi
+    Sprite: {fileID: 21300000, guid: 556f0fc1954f6c14bb635c4497bb37ac, type: 3}
+  - ItemId: van_dao_tam_tinh
+    Sprite: {fileID: 21300000, guid: a08e5d1b72ad70b46adcbeda80258b60, type: 3}
+  - ItemId: status_bleed
+    Sprite: {fileID: 21300000, guid: 6072ac38eb40a38499b17b0e6a17ab98, type: 3}
+  - ItemId: status_burn
+    Sprite: {fileID: 21300000, guid: dae337be97204a84087f73a79d34993f, type: 3}
+  - ItemId: status_charge
+    Sprite: {fileID: 21300000, guid: b97abcc9763654d40a9f16bce6a88e4c, type: 3}
+  - ItemId: status_haste
+    Sprite: {fileID: 21300000, guid: d53c93cbd17646a49a374974f384ce47, type: 3}
+  - ItemId: status_heal
+    Sprite: {fileID: 21300000, guid: deacaa8751cb09c40a1ccab308255058, type: 3}
+  - ItemId: status_internal_injury
+    Sprite: {fileID: 21300000, guid: be54122d41ae1054ea994f478e51be6d, type: 3}
+  - ItemId: status_poison
+    Sprite: {fileID: 21300000, guid: e0984ed785df81c4b83469285b77ce04, type: 3}
+  - ItemId: status_regen
+    Sprite: {fileID: 21300000, guid: 1e78eb874529d0d4cbcf5d341a1e3f18, type: 3}
+  - ItemId: status_seal
+    Sprite: {fileID: 21300000, guid: 287bb5e20a96eba47a0067bb590fc81b, type: 3}
+  - ItemId: status_slow
+    Sprite: {fileID: 21300000, guid: 9f16c3ee92605ed41a046af5159d6b0e, type: 3}
+  - ItemId: status_stun
+    Sprite: {fileID: 21300000, guid: 89fae2733f47b1c409d7b2c37ba18b17, type: 3}
+  - ItemId: badge_new
+    Sprite: {fileID: 21300000, guid: 232bbb9609638364fb0a8a43aebd7236, type: 3}
+  - ItemId: bg_battle
+    Sprite: {fileID: 21300000, guid: e85939fe4cdb4864584878abc9be3001, type: 3}
+  - ItemId: bg_home
+    Sprite: {fileID: 21300000, guid: f5bd7468af7824c438c1cd902a527f17, type: 3}
+  - ItemId: bg_loading
+    Sprite: {fileID: 21300000, guid: 05b35b54bf9fb834b91a6e84bf6ac639, type: 3}
+  - ItemId: bg_login
+    Sprite: {fileID: 21300000, guid: 5ad8666f490bc4d448f77559d09a9537, type: 3}
+  - ItemId: button_primary
+    Sprite: {fileID: 21300000, guid: c2316411b99606246a7373c89ebfe327, type: 3}
+  - ItemId: button_secondary
+    Sprite: {fileID: 21300000, guid: b2bd71f18a2d046469d33924e43f7382, type: 3}
+  - ItemId: enemy_portrait_1
+    Sprite: {fileID: 21300000, guid: 1b7c9b0bafda58147abdd123a833c5eb, type: 3}
+  - ItemId: enemy_portrait_2
+    Sprite: {fileID: 21300000, guid: 6f612a0b29f2ae442a31f9eec049a011, type: 3}
+  - ItemId: enemy_portrait_3
+    Sprite: {fileID: 21300000, guid: 7d18b778f60b2a244980a2c6e9f46c21, type: 3}
+  - ItemId: frame_panel
+    Sprite: {fileID: 21300000, guid: 3be63a224e45d044394378ba7bfde027, type: 3}
+  - ItemId: frame_tooltip
+    Sprite: {fileID: 21300000, guid: 6298306093f45ae4683be23b57149de8, type: 3}
+  - ItemId: hero_idle
+    Sprite: {fileID: 21300000, guid: dd301b46a2d38484983eb40f62748ead, type: 3}
+  - ItemId: hero_portrait
+    Sprite: {fileID: 21300000, guid: c8b081e2b181f064492447342953406d, type: 3}
+  - ItemId: hero_portrait_frame
+    Sprite: {fileID: 21300000, guid: 8920975505502d441b87311262a6bc4a, type: 3}
+  - ItemId: icon_lock
+    Sprite: {fileID: 21300000, guid: 0fd3a0125f92f0f49b0705e0bfa27e01, type: 3}
+  - ItemId: plaque_label
+    Sprite: {fileID: 21300000, guid: 2dfb90c938918f947933b060f6cd4671, type: 3}
+  - ItemId: progress_bar
+    Sprite: {fileID: 21300000, guid: a3f7e032eb53b234d9f329946ae42cf5, type: 3}
+  - ItemId: seal_title
+    Sprite: {fileID: 21300000, guid: 537cb4ab41b2e384b859eca8523e64e8, type: 3}
+  - ItemId: axe_basic
+    Sprite: {fileID: 21300000, guid: 986983a97a7700045bdac3fd037d920d, type: 3}
+  - ItemId: axe_ultimate
+    Sprite: {fileID: 21300000, guid: 9823f0108b95065428ddaf5380f03604, type: 3}
+  - ItemId: blade_basic
+    Sprite: {fileID: 21300000, guid: 8e3349889a87f254c99b619a194d3de2, type: 3}
+  - ItemId: blade_ultimate
+    Sprite: {fileID: 21300000, guid: 9c173734a93835e4d8b524f47445d72b, type: 3}
+  - ItemId: bow_basic
+    Sprite: {fileID: 21300000, guid: 8e7c2bdfbb5cd8545bf8d834f8264ba6, type: 3}
+  - ItemId: bow_ultimate
+    Sprite: {fileID: 21300000, guid: 6fbe9a75925b7d54799a3232f169d893, type: 3}
+  - ItemId: brush_basic
+    Sprite: {fileID: 21300000, guid: 484213c048c9a0b47afef48df2d50e7d, type: 3}
+  - ItemId: brush_ultimate
+    Sprite: {fileID: 21300000, guid: f0d68892956caf2438a11482b8fbf733, type: 3}
+  - ItemId: burst_bleed
+    Sprite: {fileID: 21300000, guid: 8d665901cb7436247b34f120570d5153, type: 3}
+  - ItemId: burst_burn
+    Sprite: {fileID: 21300000, guid: 83429c21e3ac232478cd3471dcc63253, type: 3}
+  - ItemId: burst_poison
+    Sprite: {fileID: 21300000, guid: c41ccb9d9c3ea334aa6d9335bc2ea8eb, type: 3}
+  - ItemId: claw_basic
+    Sprite: {fileID: 21300000, guid: fca0660d4ed24a643830d77990b5bade, type: 3}
+  - ItemId: claw_ultimate
+    Sprite: {fileID: 21300000, guid: b4c1fa6ab4d634c4cac766a5c4b416b0, type: 3}
+  - ItemId: dual_basic
+    Sprite: {fileID: 21300000, guid: 2036077dab65c9c46a5638c9c3dd0091, type: 3}
+  - ItemId: dual_ultimate
+    Sprite: {fileID: 21300000, guid: f0cfc0f15cf44774a8ae2be133403c62, type: 3}
+  - ItemId: fan_basic
+    Sprite: {fileID: 21300000, guid: e370c47aa1678fd4383a84ac484091b5, type: 3}
+  - ItemId: fan_ultimate
+    Sprite: {fileID: 21300000, guid: c6b32fabb31d6d04eb3d70b838300c70, type: 3}
+  - ItemId: fist_basic
+    Sprite: {fileID: 21300000, guid: e614c45017a48534797a1af89aad3baa, type: 3}
+  - ItemId: fist_ultimate
+    Sprite: {fileID: 21300000, guid: 3681462dbbb6d2d48b8c545aaa0e7958, type: 3}
+  - ItemId: flute_basic
+    Sprite: {fileID: 21300000, guid: 41fab3a593c6fdb4cb550364b10fa26d, type: 3}
+  - ItemId: flute_ultimate
+    Sprite: {fileID: 21300000, guid: 3381c247610a9bd4b96f01208ed897fb, type: 3}
+  - ItemId: hammer_basic
+    Sprite: {fileID: 21300000, guid: b5004358ec9273f49aad6b6566249cd3, type: 3}
+  - ItemId: hammer_ultimate
+    Sprite: {fileID: 21300000, guid: de8149c1f920a8f47a51aa8231927b11, type: 3}
+  - ItemId: hidden_basic
+    Sprite: {fileID: 21300000, guid: 42fb0fd524635934788d4dad79a7a154, type: 3}
+  - ItemId: hidden_ultimate
+    Sprite: {fileID: 21300000, guid: 524ebbd3b30afc14786e1e8abf63a935, type: 3}
+  - ItemId: hit
+    Sprite: {fileID: 21300000, guid: 300c7631475a4824084af0c4e029a866, type: 3}
+  - ItemId: palm_basic
+    Sprite: {fileID: 21300000, guid: ba4b3241e0c162346b0ae9b4e833776d, type: 3}
+  - ItemId: palm_ultimate
+    Sprite: {fileID: 21300000, guid: eb0ca516362adc447a1f2f50cd6e5be8, type: 3}
+  - ItemId: parry
+    Sprite: {fileID: 21300000, guid: 703219ef43053f1408a640e081f9f725, type: 3}
+  - ItemId: spear_basic
+    Sprite: {fileID: 21300000, guid: 974f7a87acad294499bafea093de82f1, type: 3}
+  - ItemId: spear_ultimate
+    Sprite: {fileID: 21300000, guid: 4644b0840940d7440bec13317c83ad99, type: 3}
+  - ItemId: staff_basic
+    Sprite: {fileID: 21300000, guid: 0d187585ab5bb7445bcf7352e506644c, type: 3}
+  - ItemId: staff_ultimate
+    Sprite: {fileID: 21300000, guid: 24549289bb5ad1b459312ab6b9a1028e, type: 3}
+  - ItemId: sword_basic
+    Sprite: {fileID: 21300000, guid: 4b67e248b1176f44c8f7618847c148d3, type: 3}
+  - ItemId: sword_ultimate
+    Sprite: {fileID: 21300000, guid: 416f23a7c3ead034db845ff31beb1bd0, type: 3}
+  - ItemId: whip_basic
+    Sprite: {fileID: 21300000, guid: 678d1e5072d42ff46ba084d4a9993a3e, type: 3}
+  - ItemId: whip_ultimate
+    Sprite: {fileID: 21300000, guid: 01e3afe14f269d64caf403eb4ff14efe, type: 3}
+  - ItemId: zither_basic
+    Sprite: {fileID: 21300000, guid: a16333da6144aee46a8a42deee704723, type: 3}
+  - ItemId: zither_ultimate
+    Sprite: {fileID: 21300000, guid: 8df8f57532e66d64dbba9c4e11bf3cd5, type: 3}
+  - ItemId: bang_phach_thuong
+    Sprite: {fileID: 21300000, guid: 125ef8d65ec63f847b6953015d0ee8fa, type: 3}
+  - ItemId: bich_thuy_cam
+    Sprite: {fileID: 21300000, guid: d1bb0eeb2c16cf64c888f93a27015169, type: 3}
+  - ItemId: chan_nhac_chuy
+    Sprite: {fileID: 21300000, guid: 0930e166ac03c4d4b8304854884f9d73, type: 3}
+  - ItemId: han_ngoc_tieu
+    Sprite: {fileID: 21300000, guid: f7be31127c5223b4c8c6c2f88eba373a, type: 3}
+  - ItemId: khai_son_phu
+    Sprite: {fileID: 21300000, guid: 9123c1b995f960943a7514d1c4359caa, type: 3}
+  - ItemId: liet_diem_dao
+    Sprite: {fileID: 21300000, guid: 0860324d51be54246b67be20476189b8, type: 3}
+  - ItemId: ngoc_cot_phien
+    Sprite: {fileID: 21300000, guid: a666db4ac5ff637429a711ee4fac8d72, type: 3}
+  - ItemId: phan_quan_but
+    Sprite: {fileID: 21300000, guid: 35ae54d5ba5c3d840b642ae86be428b3, type: 3}
+  - ItemId: phuc_ho_con
+    Sprite: {fileID: 21300000, guid: 7c8784b9a0b8a8d4abe7e61ca3f8f3ba, type: 3}
+  - ItemId: thanh_dang_tien
+    Sprite: {fileID: 21300000, guid: 54dc17d2d59c9564dad71c4b9b02b253, type: 3}
+  - ItemId: thanh_phong_kiem
+    Sprite: {fileID: 21300000, guid: 76557f0bfd507cb4d99fb956665154d0, type: 3}
+  - ItemId: that_tinh_tieu
+    Sprite: {fileID: 21300000, guid: 4bb9f95d7f5ef3e4ca84becc78d4b15d, type: 3}
+  - ItemId: thiet_cot_quyen_sao
+    Sprite: {fileID: 21300000, guid: 6f9a567bc9ce7464bb8c5102bf217a00, type: 3}
+  - ItemId: truy_hon_cung
+    Sprite: {fileID: 21300000, guid: d7a3b02d096c4c84da93201234460ba6, type: 3}
+  - ItemId: tu_kim_trao
+    Sprite: {fileID: 21300000, guid: 9a522308d578b344ab9904a9b2199c8d, type: 3}
+  - ItemId: tu_mau_song_dao
+    Sprite: {fileID: 21300000, guid: 94ac1af42b9716f4bbc1026d52954ba2, type: 3}
+  - ItemId: xich_sa_chuong
+    Sprite: {fileID: 21300000, guid: 83711fcf74ada204ebba405f683ba734, type: 3}

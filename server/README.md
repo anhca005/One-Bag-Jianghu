@@ -2,6 +2,20 @@
 
 Maven đa module, Java 17. Dùng Maven Wrapper nên không cần cài Maven (lần đầu chạy sẽ tự tải về `~/.m2`).
 
+## Items v2
+
+Kỳ Trân và Công Pháp có thể dùng `cooldown` + `active`; `cooldown: 0` vẫn là nội tại.
+Các trường hiệu ứng mới là `stat`, `maxStacks`, `minQiAfter`; Đột Phá có thể nối thêm `active`.
+Trigger mới: `damaged`, `healed`, `controlled`, `crit_taken`, `enemy_ultimate`, `qi_empty`,
+`shield_broken`, `burst_taken`; nguồn mới: `enemy`. Op mới: `buff_stack`, `cleanse`,
+`lifesteal`, `raise_max_hp`.
+
+Không có lượt gọi RNG mới cố định: mỗi nhát `damage` (kể cả `hits`) vẫn gọi đúng một lần Hội Tâm,
+và target ngẫu nhiên vẫn dùng lượt RNG hiện có. Các cơ chế mới chỉ thêm lượt RNG nếu dữ liệu của chính
+chúng chọn target ngẫu nhiên. Vì vậy catalog cũ không đổi thứ tự RNG.
+
+Chuẩn hóa catalog Items v2: `py tools/items/convert_items_v2.py`.
+
 | Module | Trạng thái | Nội dung |
 |---|---|---|
 | `battle-engine` | 🟨 đang làm | Mô phỏng trận tất định, Java thuần, không phụ thuộc framework |
@@ -53,3 +67,17 @@ BattleResult r = new BattleSimulator(catalog).run(loadoutA, loadoutB, seed);
 ```
 
 Cơ chế chi tiết: [docs/design/combat.md](../docs/design/combat.md). Cách viết vật phẩm: [docs/design/items.md](../docs/design/items.md).
+
+## Chạy game server
+
+Từ thư mục `server/`, chạy WebSocket game server (mặc định `ws://localhost:8765/ws`):
+
+```bash
+./mvnw -q -pl game-server -am exec:java
+```
+
+Có thể đổi cổng và thư mục đội hình mẫu:
+
+```bash
+./mvnw -q -pl game-server -am exec:java -Dexec.args="--port 9000 --samples battle-engine/samples"
+```

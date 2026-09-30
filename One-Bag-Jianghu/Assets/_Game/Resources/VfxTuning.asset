@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e75b873aa884c37861af80bbc240831, type: 3}
+  m_Name: VfxTuning
+  m_EditorClassIdentifier: 
+  entries:
+  - key: hit
+    rotation: 0
+    scale: 3
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: parry
+    rotation: 0
+    scale: 1.9958165
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: burst_burn
+    rotation: 0
+    scale: 2.000499
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: burst_poison
+    rotation: 0
+    scale: 2.000499
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: burst_bleed
+    rotation: 0
+    scale: 1.9958165
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: bow_ultimate
+    rotation: -29.786694
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: whip_ultimate
+    rotation: 15.368543
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: spear_ultimate
+    rotation: 26.205826
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: fan_ultimate
+    rotation: -35.205322
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: zither_ultimate
+    rotation: 148.42603
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: brush_ultimate
+    rotation: 146.01772
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: claw_ultimate
+    rotation: -21.3577
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: hidden_ultimate
+    rotation: 20.185104
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: brush_basic
+    rotation: 18.378925
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0
+  - key: axe_basic
+    rotation: -30.990854
+    scale: 1
+    offset: {x: 0, y: 0}
+    flipX: 0
+    flipY: 0

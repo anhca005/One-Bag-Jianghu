@@ -50,6 +50,7 @@ final class LogFormatter {
             case TRIGGER -> switch (e.kind) {
                 case "ULTIMATE" -> who + " " + item(e) + " tung TUYỆT KỸ" + state(e);
                 case "PASSIVE" -> who + " " + item(e) + " kích hoạt";
+                case "ACTIVE" -> who + " " + item(e) + " kích hoạt hồi chiêu" + state(e);
                 default -> verbose ? who + " " + item(e) + " ra Phổ Công" : null;
             };
             case DAMAGE -> "   → " + who + " nhận " + e.value + " sát thương"
@@ -76,8 +77,11 @@ final class LogFormatter {
                     + (e.absorbed != null && e.absorbed > 0 ? " (Cương Khí đỡ " + e.absorbed + ")" : "") + state(e);
             case PARRY -> who + " HÓA KÌNH! Hóa giải Tuyệt Kỹ của " + item(e) + state(e);
             case CHARGE -> "   " + who + " " + item(e) + String.format(Locale.ROOT, " Vận Khí %.1fs", e.value / 1000.0);
-            case BUFF -> "   " + who + " " + item(e) + " +" + e.value + ("CRIT".equals(e.kind) ? "‰ Hội Tâm" : " Lực Đạo");
-            case MAX_HP -> "   " + who + " bị Nội Thương, khí huyết tối đa " + signed(e.value) + state(e);
+            case BUFF -> "   " + who + " " + item(e) + " +" + e.value
+                    + ("CRIT".equals(e.kind) ? "‰ Hội Tâm" : "DMG_REDUCE".equals(e.kind) ? "‰ Hộ Thân" : " Lực Đạo")
+                    + (e.total != null ? " (Tụ Kình " + e.total + ")" : "");
+            case MAX_HP -> "   " + who + ("RAISE".equals(e.kind) ? " Cố Bản, " : " bị Nội Thương, ")
+                    + "khí huyết tối đa " + signed(e.value) + state(e);
             case DMG_REDUCE -> "   " + who + " Hộ Thân " + (e.value / 10.0) + "%";
             case PARRY_COST -> "   " + who + " Hóa Kình chỉ còn tốn " + e.value + " nội lực";
             case END -> e.side < 0 ? "=== HÒA ===" : "=== " + who + " THẮNG ===";

@@ -1,0 +1,106 @@
+[
+  {
+    "id": "kim_cang", "name": "Kim Cang Tự", "tamPhap": "Kim Cang Thiết Cốt Quyết",
+    "weaponClasses": ["fist", "staff"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "attackPct": 0.05 },
+      { "level": 6, "cooldownPct": 0.05, "crit": 0.05, "ultimateCost": -5 },
+      {
+        "level": 9, "attackPct": 0.05, "cooldownPct": 0.05,
+        "ultimate": [ { "op": "apply", "status": "stun", "duration": 0.5 } ],
+        "triggers": [ { "on": "crit", "from": "self", "effects": [ { "op": "shield", "value": 12 } ] } ]
+      }
+    ]
+  },
+  {
+    "id": "thai_thanh", "name": "Thái Thanh Quán", "tamPhap": "Thái Thanh Kiếm Ý",
+    "weaponClasses": ["sword", "fan"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "crit": 0.05 },
+      {
+        "level": 6, "cooldownPct": 0.05,
+        "triggers": [ { "on": "crit", "from": "self", "effects": [ { "op": "gain_qi", "value": 4 } ] } ]
+      },
+      {
+        "level": 9, "attackPct": 0.05, "ultimateCost": -5,
+        "ultimate": [ { "op": "damage", "pct": 0.3 } ]
+      }
+    ]
+  },
+  {
+    "id": "liet_diem", "name": "Liệt Diễm Đường", "tamPhap": "Liệt Diễm Tâm Hỏa Quyết",
+    "weaponClasses": ["blade", "palm", "dual"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "crit": 0.04 },
+      { "level": 6, "cooldownPct": 0.05, "crit": 0.05 },
+      {
+        "level": 9, "attackPct": 0.05, "cooldownPct": 0.05,
+        "triggers": [ { "on": "burst", "from": "self", "status": "burn", "effects": [ { "op": "charge", "duration": 1.5 } ] } ]
+      }
+    ]
+  },
+  {
+    "id": "huyen_doc", "name": "Huyền Độc Môn", "tamPhap": "Vạn Độc Huyền Kinh",
+    "weaponClasses": ["hidden", "claw"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "attackPct": 0.05, "crit": 0.05 },
+      {
+        "level": 6, "attackPct": 0.05, "cooldownPct": 0.05,
+        "triggers": [ { "on": "burst", "from": "self", "status": "poison", "effects": [ { "op": "drain_qi", "value": 6 } ] } ]
+      },
+      {
+        "level": 9, "attackPct": 0.05, "cooldownPct": 0.05,
+        "triggers": [ { "on": "burst", "from": "self", "status": "bleed", "effects": [ { "op": "heal", "value": 60 } ] } ]
+      }
+    ]
+  },
+  {
+    "id": "han_son", "name": "Hàn Sơn Phái", "tamPhap": "Hàn Sơn Băng Tâm Quyết",
+    "weaponClasses": ["flute", "spear", "brush", "bow"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "attackPct": 0.05, "cooldownPct": 0.03 },
+      { "level": 6, "attackPct": 0.05, "cooldownPct": 0.05, "basic": [ { "op": "drain_qi", "value": 3 } ] },
+      {
+        "level": 9, "attackPct": 0.05, "cooldownPct": 0.05,
+        "triggers": [ { "on": "hit", "from": "self", "effects": [ { "op": "apply", "status": "slow", "duration": 0.8, "target": "enemy_random_weapon" } ] } ]
+      }
+    ]
+  },
+  {
+    "id": "thiet_phu", "name": "Thiết Phủ Bang", "tamPhap": "Khai Sơn Bá Khí",
+    "weaponClasses": ["axe", "hammer"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "cooldownPct": 0.05 },
+      {
+        "level": 6, "crit": 0.05,
+        "ultimate": [ { "op": "shield_break", "value": 30 } ]
+      },
+      {
+        "level": 9, "attackPct": 0.05, "ultimateCost": -5,
+        "ultimate": [ { "op": "shield_break", "value": 50 } ]
+      }
+    ]
+  },
+  {
+    "id": "bich_thuy", "name": "Bích Thủy Am", "tamPhap": "Bích Thủy Thanh Âm",
+    "weaponClasses": ["whip", "zither"],
+    "levels": [
+      { "level": 1, "attackPct": 0.10 },
+      { "level": 3, "cooldownPct": 0.05 },
+      {
+        "level": 6, "attackPct": 0.05,
+        "basic": [ { "op": "apply", "status": "regen", "stacks": 1 } ]
+      },
+      {
+        "level": 9, "attackPct": 0.05, "cooldownPct": 0.05,
+        "triggers": [ { "on": "hp_below", "hpBelow": 0.4, "maxUses": 1, "effects": [ { "op": "heal", "value": 150 } ] } ]
+      }
+    ]
+  }
+]

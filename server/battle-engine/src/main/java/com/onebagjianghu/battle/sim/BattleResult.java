@@ -4,7 +4,8 @@ import java.util.List;
 
 /**
  * @param winner 0 or 1; -1 = draw
- * @param items  uid → item id per side, so a replay can map events to bag slots
+ * @param bags   [cols, rows] of each side's bag
+ * @param items  uid → item id and bag position per side, so a replay can draw both bags
  */
 public record BattleResult(
         long seed,
@@ -12,10 +13,11 @@ public record BattleResult(
         int durationMs,
         String[] names,
         int[] finalHp,
+        int[][] bags,
         List<ItemRef> items,
         List<BattleEvent> events) {
 
-    public record ItemRef(int uid, int side, int index, String id) {
+    public record ItemRef(int uid, int side, int index, String id, int x, int y, int w, int h, int tier) {
     }
 
     public boolean isDraw() {

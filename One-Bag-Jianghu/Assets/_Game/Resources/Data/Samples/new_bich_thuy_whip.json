@@ -1,0 +1,51 @@
+{
+  "name": "Bích Thủy Am (Thanh Đằng Tiên + Cung Cầm)",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "items": [
+    {
+      "id": "thanh_dang_tien",
+      "x": 0,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 1,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 1,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "truy_hon_cung",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bich_thuy_cam",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    }
+  ]
+}

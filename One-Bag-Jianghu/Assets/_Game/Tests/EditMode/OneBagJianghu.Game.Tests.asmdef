@@ -1,0 +1,23 @@
+{
+  "name": "OneBagJianghu.Game.Tests",
+  "rootNamespace": "OneBagJianghu.Tests",
+  "references": [
+    "OneBagJianghu.Engine",
+    "OneBagJianghu.Economy",
+    "OneBagJianghu.Game",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "overrideReferences": true,
+  "precompiledReferences": [
+    "nunit.framework.dll",
+    "Newtonsoft.Json.dll"
+  ],
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
+  "autoReferenced": false
+}

@@ -1,14 +1,17 @@
 package com.onebagjianghu.battle.sim;
 
 import com.onebagjianghu.battle.data.DataException;
+import com.onebagjianghu.battle.data.EffectDef;
 import com.onebagjianghu.battle.data.EffectOp;
 import com.onebagjianghu.battle.data.ItemCatalog;
 import com.onebagjianghu.battle.data.ItemDef;
 import com.onebagjianghu.battle.data.ItemType;
+import com.onebagjianghu.battle.data.Rarity;
 import com.onebagjianghu.battle.data.StatusType;
 import com.onebagjianghu.battle.data.Target;
 import com.onebagjianghu.battle.data.TriggerEvent;
 import com.onebagjianghu.battle.data.TriggerSource;
+import com.onebagjianghu.battle.data.UnlockDef;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
@@ -21,6 +24,7 @@ import static com.onebagjianghu.battle.sim.TestItems.hpBelow;
 import static com.onebagjianghu.battle.sim.TestItems.on;
 import static com.onebagjianghu.battle.sim.TestItems.op;
 import static com.onebagjianghu.battle.sim.TestItems.passive;
+import static com.onebagjianghu.battle.sim.TestItems.selfDamage;
 import static com.onebagjianghu.battle.sim.TestItems.stacks;
 import static com.onebagjianghu.battle.sim.TestItems.timed;
 import static com.onebagjianghu.battle.sim.TestItems.weapon;
@@ -93,6 +97,18 @@ class BattleSimulatorTest {
         assertEquals(30, hit.absorbed);
         assertEquals(1000, hit.hp);
         assertEquals(20, hit.shield);
+    }
+
+    @Test
+    void shieldGainIsCappedAtCurrentMaxHpAndReportsActualGain() {
+        ItemDef armor = passive("armor", ItemType.ARMOR, on(TriggerEvent.BATTLE_START,
+                op(EffectOp.SHIELD, 800), op(EffectOp.SHIELD, 500), op(EffectOp.SHIELD, 100)));
+        BattleResult r = fight(List.of(armor),
+                new Loadout("a", 1000, 5, 4).add("armor", 0, 0), dummy(1000));
+
+        List<BattleEvent> shields = events(r, EventType.SHIELD, 0);
+        assertEquals(List.of(800, 200, 0), shields.stream().map(e -> e.value).toList());
+        assertEquals(List.of(800, 1000, 1000), shields.stream().map(e -> e.shield).toList());
     }
 
     @Test
@@ -177,6 +193,92 @@ class BattleSimulatorTest {
         List<BattleEvent> hits = events(r, EventType.DAMAGE, 1);
         assertEquals(1000 + BattleConfig.defaults().parryStunMs + 1000, hits.get(0).t);
         assertEquals(100, hits.get(0).value);
+    }
+
+    @Test
+    void shieldBreakStripsShieldBeforeTheHit() {
+        ItemDef armor = passive("armor", ItemType.ARMOR, on(TriggerEvent.BATTLE_START, op(EffectOp.SHIELD, 100)));
+        ItemDef axe = weapon("axe", 50, 1.0, op(EffectOp.SHIELD_BREAK, 80), damage(1.0));
+        BattleResult r = fight(List.of(armor, axe),
+                new Loadout("a", 100, 5, 4).add("axe", 0, 0),
+                new Loadout("b", 1000, 5, 4).add("armor", 0, 0));
+
+        BattleEvent hit = first(r, e -> e.type == EventType.DAMAGE && e.side == 1);
+        assertEquals(20, hit.absorbed); // 100 shield - 80 broken
+        assertEquals(970, hit.hp);
+    }
+
+    @Test
+    void multiHitDamageLandsEveryHit() {
+        EffectDef triple = damage(0.5);
+        triple.hits = 3;
+        ItemDef sword = weapon("sword", 40, 1.0, triple);
+        BattleResult r = fight(List.of(sword), new Loadout("a", 100, 5, 4).add("sword", 0, 0), dummy(1000));
+
+        List<Integer> hits = events(r, EventType.DAMAGE, 1).stream().filter(e -> e.t == 1000).map(e -> e.value).toList();
+        assertEquals(List.of(20, 20, 20), hits);
+    }
+
+    @Test
+    void regenHealsOncePerSecond() {
+        ItemDef monk = passive("monk", ItemType.MANUAL, on(TriggerEvent.BATTLE_START,
+                selfDamage(50), stacks(StatusType.REGEN, 5)));
+        BattleResult r = fight(List.of(monk), new Loadout("a", 100, 5, 4).add("monk", 0, 0), dummy(1000));
+
+        List<BattleEvent> heals = events(r, EventType.HEAL, 0);
+        assertEquals(1000, heals.get(0).t);
+        assertEquals(5, heals.get(0).value);
+        assertEquals(2000, heals.get(1).t);
+        assertEquals(60, heals.get(1).hp);
+    }
+
+    @Test
+    void slowHalvesAndChargeAdvancesCooldown() {
+        ItemDef slowed = withTriggers(weapon("slowed", 1, 1.0),
+                on(TriggerEvent.BATTLE_START, timed(StatusType.SLOW, 10, Target.SELF_ITEM)));
+        BattleResult slow = fight(List.of(slowed), new Loadout("a", 100, 5, 4).add("slowed", 0, 0), dummy(1000));
+        assertEquals(2000, events(slow, EventType.DAMAGE, 1).get(0).t);
+
+        EffectDef charge = new EffectDef();
+        charge.op = EffectOp.CHARGE;
+        charge.duration = 0.5;
+        ItemDef charged = withTriggers(weapon("charged", 1, 1.0), on(TriggerEvent.BATTLE_START, charge));
+        BattleResult fast = fight(List.of(charged), new Loadout("a", 100, 5, 4).add("charged", 0, 0), dummy(1000));
+        assertEquals(500, events(fast, EventType.DAMAGE, 1).get(0).t);
+    }
+
+    @Test
+    void parryCostAndDamageReductionHaveLimits() {
+        BattleConfig cfg = BattleConfig.defaults();
+        ItemDef blade = withTriggers(
+                withUltimate(weapon("blade", 100, 1.0), 30, damage(5.0)),
+                on(TriggerEvent.BATTLE_START, op(EffectOp.GAIN_QI, 30)));
+        EffectDef bigReduce = new EffectDef();
+        bigReduce.op = EffectOp.DMG_REDUCE;
+        bigReduce.pct = 1.0;
+        ItemDef manual = passive("manual", ItemType.MANUAL, on(TriggerEvent.BATTLE_START,
+                op(EffectOp.GAIN_QI, 30), op(EffectOp.PARRY_DISCOUNT, 100), bigReduce, bigReduce));
+        BattleResult r = fight(List.of(blade, manual),
+                new Loadout("a", 1000, 5, 4).add("blade", 0, 0),
+                new Loadout("b", 1000, 5, 4).add("manual", 0, 0));
+
+        assertEquals(30 - cfg.minParryCost, first(r, e -> e.type == EventType.PARRY).qi);
+        assertEquals(cfg.maxDmgReducePermille, events(r, EventType.DMG_REDUCE, 1).get(1).value);
+        BattleEvent hit = first(r, e -> e.type == EventType.DAMAGE && e.side == 1);
+        assertEquals(100 * (1000 - cfg.maxDmgReducePermille) / 1000, hit.value);
+    }
+
+    @Test
+    void fighterAtZeroCannotBeHealedInTheSameTickAndLogNeverShowsNegativeHp() {
+        ItemDef sword = weapon("sword", 100, 1.0);
+        ItemDef herb = weapon("herb", 1, 1.0, op(EffectOp.HEAL, 200));
+        for (long seed = 1; seed <= 10; seed++) {
+            BattleResult r = new BattleSimulator(ItemCatalog.of(List.of(sword, herb))).run(
+                    new Loadout("a", 1000, 5, 4).add("sword", 0, 0),
+                    new Loadout("b", 60, 5, 4).add("herb", 0, 0), seed);
+            assertEquals(0, r.winner(), "seed " + seed);
+            assertTrue(r.events().stream().allMatch(e -> e.hp == null || e.hp >= 0), "seed " + seed);
+        }
     }
 
     @Test
@@ -266,6 +368,23 @@ class BattleSimulatorTest {
     }
 
     @Test
+    void rarityScalesAttackShieldHealAndStacksButNotQiOrDuration() {
+        ItemDef item = weapon("rare", 100, 1.0,
+                op(EffectOp.SHIELD, 20), selfDamage(100), op(EffectOp.HEAL, 20),
+                stacks(StatusType.POISON, 10), op(EffectOp.GAIN_QI, 7),
+                timed(StatusType.HASTE, 2, Target.SELF_ITEM), damage(1.0));
+        Loadout a = new Loadout("a", 1000, 5, 4).add("rare", 0, 0);
+        a.items.get(0).rarity = Rarity.SUPREME;
+        BattleResult r = fight(List.of(item), a, dummy(10000));
+        assertEquals(134, first(r, e -> e.type == EventType.DAMAGE && e.side == 1).value);
+        assertEquals(26, first(r, e -> e.type == EventType.SHIELD).value);
+        assertEquals(26, first(r, e -> e.type == EventType.HEAL).value);
+        assertEquals(13, first(r, e -> e.type == EventType.STATUS && "POISON".equals(e.kind)).value);
+        assertEquals(7, first(r, e -> e.type == EventType.QI).value);
+        assertEquals(2000, first(r, e -> e.type == EventType.STATUS && "HASTE".equals(e.kind)).value);
+    }
+
+    @Test
     void rejectsOverlappingItems() {
         ItemDef sword = TestItems.size(weapon("sword", 10, 1.0), 1, 3);
         Loadout bad = new Loadout("bad", 100, 5, 4).add("sword", 0, 0).add("sword", 0, 2);
@@ -286,5 +405,53 @@ class BattleSimulatorTest {
                 assertEquals(EventType.END, r.events().get(r.events().size() - 1).type);
             }
         }
+    }
+
+    @Test
+    void unlocksApplyFromTheirTier() {
+        UnlockDef qi = new UnlockDef();
+        qi.tier = 3;
+        qi.basic = List.of(op(EffectOp.GAIN_QI, 5));
+        ItemDef sword = weapon("sword", 10, 1.0);
+        sword.unlocks = List.of(qi);
+
+        BattleResult t2 = fight(List.of(sword), new Loadout("a", 100, 5, 4).add("sword", 0, 0, 2), dummy(100000));
+        BattleResult t3 = fight(List.of(sword), new Loadout("a", 100, 5, 4).add("sword", 0, 0, 3), dummy(100000));
+        assertTrue(events(t2, EventType.QI, 0).isEmpty());
+        BattleEvent firstQi = events(t3, EventType.QI, 0).get(0);
+        assertEquals(1000, firstQi.t);
+        // Qi does not scale with tier, so the unlock gives exactly its listed value.
+        assertEquals(5, firstQi.qi);
+    }
+
+    @Test
+    void tamPhapBuffsOnlyItsWeaponClasses() {
+        ItemDef sword = weapon("sword", 100, 1.0);
+        sword.weaponClass = "sword";
+        ItemDef axe = weapon("axe", 100, 1.0);
+        axe.weaponClass = "axe";
+        com.onebagjianghu.battle.data.SectDef sect = new com.onebagjianghu.battle.data.SectDef();
+        sect.id = "s";
+        sect.name = "S";
+        sect.tamPhap = "T";
+        sect.weaponClasses = List.of("sword");
+        com.onebagjianghu.battle.data.TamPhapLevelDef l1 = new com.onebagjianghu.battle.data.TamPhapLevelDef();
+        l1.level = 1;
+        l1.attackPct = 0.5;
+        sect.levels = List.of(l1);
+        BattleSimulator sim = new BattleSimulator(ItemCatalog.of(List.of(sword, axe)),
+                com.onebagjianghu.battle.data.SectCatalog.of(List.of(sect)), BattleConfig.defaults());
+
+        Loadout a = new Loadout("a", 100, 5, 4).add("sword", 0, 0).add("axe", 1, 0);
+        a.sect = "s";
+        BattleResult r = sim.run(a, dummy(100000), 42);
+        BattleEvent swordHit = first(r, e -> e.type == EventType.DAMAGE && e.item != null && e.item == 0 && !Boolean.TRUE.equals(e.crit));
+        BattleEvent axeHit = first(r, e -> e.type == EventType.DAMAGE && e.item != null && e.item == 1 && !Boolean.TRUE.equals(e.crit));
+        assertEquals(150, swordHit.value);
+        assertEquals(100, axeHit.value);
+
+        Loadout bad = new Loadout("b", 100, 5, 4).add("sword", 0, 0);
+        bad.sect = "nope";
+        assertThrows(DataException.class, () -> sim.run(bad, dummy(100), 1));
     }
 }

@@ -1,0 +1,14 @@
+{
+  "name": "OneBagJianghu.Editor",
+  "rootNamespace": "OneBagJianghu.EditorTools",
+  "references": [
+    "OneBagJianghu.Game",
+    "OneBagJianghu.Engine",
+    "UnityEngine.UI",
+    "Unity.InputSystem"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": false
+}

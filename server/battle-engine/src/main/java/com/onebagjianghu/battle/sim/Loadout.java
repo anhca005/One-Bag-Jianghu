@@ -2,6 +2,7 @@ package com.onebagjianghu.battle.sim;
 
 import com.onebagjianghu.battle.data.DataException;
 import com.onebagjianghu.battle.data.ItemCatalog;
+import com.onebagjianghu.battle.data.Rarity;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -15,6 +16,10 @@ public final class Loadout {
     public int hp;
     public int cols = 5;
     public int rows = 4;
+    /** Môn phái của Hiệp Khách (id trong sects.json); null = không có Tâm Pháp. */
+    public String sect;
+    /** Cấp Tâm Pháp (1..9). */
+    public int tamPhapLevel = 1;
     public List<PlacedItem> items = new ArrayList<>();
 
     public static final class PlacedItem {
@@ -23,6 +28,7 @@ public final class Loadout {
         public int y;
         /** Trọng (1..9). */
         public int tier = 1;
+        public Rarity rarity = Rarity.COMMON;
 
         public PlacedItem() {
         }

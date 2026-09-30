@@ -12,6 +12,7 @@
 
     <modules>
         <module>battle-engine</module>
+        <module>game-server</module>
     </modules>
 
     <properties>

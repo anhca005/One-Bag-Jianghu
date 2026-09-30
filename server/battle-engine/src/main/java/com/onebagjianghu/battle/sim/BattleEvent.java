@@ -63,7 +63,8 @@ public final class BattleEvent {
     }
 
     BattleEvent state(Fighter f) {
-        this.hp = f.hp;
+        // Overkill is not shown: the simulation may go below 0 inside a tick, the log never does.
+        this.hp = Math.max(0, f.hp);
         this.maxHp = f.maxHp;
         this.shield = f.shield;
         this.qi = f.qi;

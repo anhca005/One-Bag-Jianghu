@@ -77,6 +77,13 @@ final class TestItems {
         return e;
     }
 
+    static EffectDef selfDamage(int value) {
+        EffectDef e = op(EffectOp.DAMAGE, value);
+        e.target = Target.SELF;
+        e.ignoreShield = true;
+        return e;
+    }
+
     static EffectDef stacks(StatusType status, int stacks) {
         EffectDef e = new EffectDef();
         e.op = EffectOp.APPLY;

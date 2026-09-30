@@ -1,0 +1,9 @@
+{
+  "name": "OneBagJianghu.Economy",
+  "rootNamespace": "OneBagJianghu.Economy",
+  "references": [
+    "OneBagJianghu.Engine",
+    "Unity.Newtonsoft.Json"
+  ],
+  "autoReferenced": true
+}

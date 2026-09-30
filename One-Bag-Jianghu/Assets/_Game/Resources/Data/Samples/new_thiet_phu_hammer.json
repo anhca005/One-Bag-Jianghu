@@ -1,0 +1,51 @@
+{
+  "name": "Thiết Phủ Bang (Chấn Nhạc Chùy + Khai Sơn Phủ)",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thiet_phu",
+  "items": [
+    {
+      "id": "chan_nhac_chuy",
+      "x": 0,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "khai_son_phu",
+      "x": 0,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tu_mau_song_dao",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 0,
+      "rarity": "common"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ]
+}

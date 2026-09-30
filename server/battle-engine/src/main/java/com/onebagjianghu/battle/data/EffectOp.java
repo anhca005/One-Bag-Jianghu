@@ -23,7 +23,15 @@ public enum EffectOp {
     CHARGE(Target.SELF_ITEM),
     ADD_ATTACK(Target.SELF_ITEM),
     /** Cộng {@code pct} tỉ lệ Hội Tâm. */
-    ADD_CRIT(Target.SELF_ITEM);
+    ADD_CRIT(Target.SELF_ITEM),
+    /** Tụ Kình: add one capped stack, keyed by source item and trigger; attack uses value, crit/dmg_reduce use pct. */
+    BUFF_STACK(null),
+    /** Tẩy Trừ: without status clears own timed control; with burn/poison/bleed removes value points (0 = all). */
+    CLEANSE(Target.SELF),
+    /** Hút Huyết: heal pct of actual shield + HP damage from the preceding DAMAGE in this effect list. */
+    LIFESTEAL(Target.SELF),
+    /** Cố Bản: raise maximum and current Khí Huyết by scaled value. */
+    RAISE_MAX_HP(Target.SELF);
 
     /** Null for APPLY: depends on the status. */
     public final Target defaultTarget;

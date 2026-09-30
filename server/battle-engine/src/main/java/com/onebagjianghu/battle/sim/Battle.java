@@ -2,6 +2,7 @@ package com.onebagjianghu.battle.sim;
 
 import com.onebagjianghu.battle.data.EffectDef;
 import com.onebagjianghu.battle.data.ItemCatalog;
+import com.onebagjianghu.battle.data.SectCatalog;
 import com.onebagjianghu.battle.data.StatusType;
 import com.onebagjianghu.battle.data.Target;
 import com.onebagjianghu.battle.data.TriggerDef;
@@ -24,15 +25,15 @@ final class Battle {
     private int winner = -1;
 
     /** source = item owning the effect; eventSource = item that raised the triggering event. */
-    private record Ctx(Fighter owner, ItemInstance source, ItemInstance eventSource, int depth) {
+    private record Ctx(Fighter owner, ItemInstance source, ItemInstance eventSource, int depth, String stackKey) {
     }
 
-    Battle(BattleConfig cfg, ItemCatalog catalog, Loadout a, Loadout b, long seed) {
+    Battle(BattleConfig cfg, ItemCatalog catalog, SectCatalog sects, Loadout a, Loadout b, long seed) {
         this.cfg = cfg;
         this.seed = seed;
         this.rng = new Rng(seed);
-        fighters[0] = Fighter.create(0, a, catalog, cfg);
-        fighters[1] = Fighter.create(1, b, catalog, cfg);
+        fighters[0] = Fighter.create(0, a, catalog, sects, cfg);
+        fighters[1] = Fighter.create(1, b, catalog, sects, cfg);
         fighters[0].enemy = fighters[1];
         fighters[1].enemy = fighters[0];
     }
@@ -41,9 +42,11 @@ final class Battle {
         for (Fighter f : fighters) {
             emit(ev(EventType.START, f).state(f));
         }
-        for (Fighter f : fighters) {
-            fire(TriggerEvent.BATTLE_START, f, null, null, 0);
-        }
+        // Same seeded coin flip as inside a tick: start-of-battle effects that touch shared
+        // resources (e.g. drain_qi vs gain_qi) must not always favour side 0.
+        int startFirst = rng.nextInt(2);
+        fire(TriggerEvent.BATTLE_START, fighters[startFirst], null, null, 0);
+        fire(TriggerEvent.BATTLE_START, fighters[1 - startFirst], null, null, 0);
         checkDeath();
 
         int tick = 0;
@@ -84,12 +87,14 @@ final class Battle {
         for (Fighter f : fighters) {
             for (int i = 0; i < f.items.size(); i++) {
                 ItemInstance it = f.items.get(i);
-                refs.add(new BattleResult.ItemRef(it.uid, f.side, i, it.def.id));
+                refs.add(new BattleResult.ItemRef(it.uid, f.side, i, it.def.id,
+                        it.rect.x(), it.rect.y(), it.rect.w(), it.rect.h(), it.tier));
             }
         }
         return new BattleResult(seed, winner, now,
                 new String[] {fighters[0].name, fighters[1].name},
                 new int[] {Math.max(0, fighters[0].hp), Math.max(0, fighters[1].hp)},
+                new int[][] {{fighters[0].cols, fighters[0].rows}, {fighters[1].cols, fighters[1].rows}},
                 List.copyOf(refs), List.copyOf(events));
     }
 
@@ -127,7 +132,7 @@ final class Battle {
     /** Once per second: Điều Tức heals, build-up meters fade if configured. */
     private void secondTick(Fighter f) {
         if (f.regen > 0 && f.hp > 0) {
-            heal(f, f.regen);
+            heal(f, f.regen, null, 0);
         }
         for (StatusType s : BUILD_UP) {
             int decay = cfg.burst(s).decayPerSecond;
@@ -135,7 +140,7 @@ final class Battle {
             if (decay > 0 && meter > 0) {
                 int next = Math.max(0, meter - decay);
                 setMeter(f, s, next);
-                emit(ev(EventType.STATUS, f).kind(s.name()).value(next - meter).total(next));
+                emit(ev(EventType.STATUS, f).kind(s.name()).value(next - meter).total(next).state(f));
             }
         }
     }
@@ -171,15 +176,17 @@ final class Battle {
     private void activate(ItemInstance it) {
         Fighter self = it.owner;
         Fighter enemy = self.enemy;
-        Ctx ctx = new Ctx(self, it, it, 0);
+        Ctx ctx = new Ctx(self, it, it, 0, "active");
         UltimateDef ult = it.def.ultimate;
         if (ult != null && self.qi >= ult.cost) {
-            self.qi -= ult.cost;
+            spendQi(self, ult.cost, it, 0);
             emit(ev(EventType.TRIGGER, self).item(it.uid).kind("ULTIMATE").state(self));
             int parryCost = Math.max(cfg.minParryCost, cfg.parryCost - enemy.parryDiscount);
-            if (enemy.qi >= parryCost) {
+            boolean parried = enemy.qi >= parryCost;
+            fire(TriggerEvent.ENEMY_ULTIMATE, enemy, it, null, 0);
+            if (parried) {
                 // Hóa Kình: the ultimate is cancelled, its qi is still spent.
-                enemy.qi -= parryCost;
+                spendQi(enemy, parryCost, it, 0);
                 self.stunUntil = Math.max(self.stunUntil, now + cfg.parryStunMs);
                 emit(ev(EventType.PARRY, enemy).item(it.uid).value(cfg.parryStunMs).state(enemy));
                 emit(ev(EventType.STATUS, self).kind(StatusType.STUN.name()).value(cfg.parryStunMs).state(self));
@@ -187,11 +194,12 @@ final class Battle {
                 fire(TriggerEvent.PARRIED, self, it, null, 0);
                 return;
             }
-            execAll(ult.effects, ctx);
+            execAll(ult.effects, ctx, true);
             fire(TriggerEvent.ULTIMATE, self, it, null, 0);
         } else {
-            emit(ev(EventType.TRIGGER, self).item(it.uid).kind("BASIC").state(self));
-            execAll(it.def.basic, ctx);
+            boolean nonWeaponActive = !it.isWeapon();
+            emit(ev(EventType.TRIGGER, self).item(it.uid).kind(nonWeaponActive ? "ACTIVE" : "BASIC").state(self));
+            execAll(nonWeaponActive ? it.def.active : it.def.basic, ctx, false);
         }
     }
 
@@ -203,7 +211,7 @@ final class Battle {
                 TriggerDef t = triggers.get(i);
                 if (t.on != event) continue;
                 if (!sourceMatches(t.from, it, eventSource)) continue;
-                if ((event == TriggerEvent.STATUS_APPLIED || event == TriggerEvent.BURST)
+                if ((event == TriggerEvent.STATUS_APPLIED || event == TriggerEvent.BURST || event == TriggerEvent.BURST_TAKEN)
                         && t.status != null && t.status != status) continue;
                 // A fighter already at 0 HP this tick cannot be saved by a pill.
                 if (event == TriggerEvent.HP_BELOW && (side.hp <= 0
@@ -211,7 +219,7 @@ final class Battle {
                 if (t.maxUses > 0 && it.triggerUses[i] >= t.maxUses) continue;
                 it.triggerUses[i]++;
                 emit(ev(EventType.TRIGGER, side).item(it.uid).kind("PASSIVE").state(side));
-                execAll(t.effects, new Ctx(side, it, eventSource, depth + 1));
+                execAll(t.effects, new Ctx(side, it, eventSource, depth + 1, "trigger:" + i), false);
             }
         }
     }
@@ -219,36 +227,53 @@ final class Battle {
     private static boolean sourceMatches(TriggerSource from, ItemInstance listener, ItemInstance eventSource) {
         if (eventSource == null || from == TriggerSource.ANY) return true;
         if (from == TriggerSource.SELF) return eventSource == listener;
-        return listener.adjacent.contains(eventSource);
+        if (from == TriggerSource.ENEMY) return eventSource.owner != listener.owner;
+        return eventSource.owner == listener.owner && listener.adjacent.contains(eventSource);
     }
 
     // ---- effects ----
 
     private void execAll(List<EffectDef> effects, Ctx ctx) {
-        for (EffectDef e : effects) {
-            exec(e, ctx);
+        execAll(effects, ctx, false);
+    }
+
+    private void execAll(List<EffectDef> effects, Ctx ctx, boolean ultimate) {
+        int precedingDamage = 0;
+        for (int i = 0; i < effects.size(); i++) {
+            EffectDef e = effects.get(i);
+            if (ultimate && e.minQiAfter != null && ctx.owner.qi < e.minQiAfter) continue;
+            if (e.op == com.onebagjianghu.battle.data.EffectOp.DAMAGE) {
+                precedingDamage = damage(e, ctx, fighterOf(e.resolvedTarget(), ctx));
+            } else if (e.op == com.onebagjianghu.battle.data.EffectOp.LIFESTEAL) {
+                heal(fighterOf(e.resolvedTarget(), ctx), precedingDamage * e.pctPermille() / 1000, ctx.source, ctx.depth);
+            } else {
+                exec(e, ctx, i);
+            }
         }
     }
 
-    private void exec(EffectDef e, Ctx ctx) {
+    private void exec(EffectDef e, Ctx ctx, int effectIndex) {
         Target target = e.resolvedTarget();
         switch (e.op) {
-            case DAMAGE -> damage(e, ctx, fighterOf(target, ctx));
-            case GAIN_QI -> changeQi(fighterOf(target, ctx), e.value);
-            case DRAIN_QI -> changeQi(fighterOf(target, ctx), -e.value);
+            case DAMAGE, LIFESTEAL -> throw new IllegalStateException("handled by effect list");
+            case GAIN_QI -> changeQi(fighterOf(target, ctx), e.value, ctx.source, ctx.depth);
+            case DRAIN_QI -> changeQi(fighterOf(target, ctx), -e.value, ctx.source, ctx.depth);
             case SHIELD -> {
                 Fighter f = fighterOf(target, ctx);
-                int v = scale(e.value, ctx);
+                int cap = (int) ((long) f.maxHp * cfg.shieldCapPermille / 1000);
+                int v = Math.max(0, Math.min(scale(e.value, ctx), cap - f.shield));
                 f.shield += v;
                 emit(ev(EventType.SHIELD, f).value(v).state(f));
             }
-            case HEAL -> heal(fighterOf(target, ctx), scale(e.value, ctx));
+            case HEAL -> heal(fighterOf(target, ctx), scale(e.value, ctx), ctx.source, ctx.depth);
             case SHIELD_BREAK -> {
                 Fighter f = fighterOf(target, ctx);
                 int v = Math.min(f.shield, scale(e.value, ctx));
                 if (v > 0) {
+                    int before = f.shield;
                     f.shield -= v;
                     emit(ev(EventType.SHIELD, f).item(ctx.source.uid).value(-v).state(f));
+                    if (before > 0 && f.shield == 0) fire(TriggerEvent.SHIELD_BROKEN, ctx.owner, ctx.source, null, ctx.depth);
                 }
             }
             case DMG_REDUCE -> {
@@ -288,20 +313,75 @@ final class Battle {
                     emit(ev(EventType.BUFF, it.owner).item(it.uid).kind("CRIT").value(e.pctPermille()));
                 }
             }
+            case BUFF_STACK -> buffStack(e, ctx, target, effectIndex);
+            case CLEANSE -> cleanse(e, ctx);
+            case RAISE_MAX_HP -> {
+                Fighter f = fighterOf(target, ctx);
+                int v = scale(e.value, ctx);
+                f.maxHp += v;
+                f.hp += v;
+                emit(ev(EventType.MAX_HP, f).item(ctx.source.uid).kind("RAISE").value(v).state(f));
+            }
         }
     }
 
-    private void damage(EffectDef e, Ctx ctx, Fighter target) {
+    private int damage(EffectDef e, Ctx ctx, Fighter target) {
         ItemInstance src = ctx.source;
+        int dealt = 0;
         for (int h = 0; h < e.hits; h++) {
             int base = e.value > 0 ? scale(e.value, ctx) : src.attack * e.pctPermille() / 1000;
             boolean crit = rng.chance(src.critPermille);
             if (crit) base *= 2;
             int amount = base * (1000 - target.dmgReducePermille) / 1000;
-            loseHp(target, amount, e.ignoreShield, EventType.DAMAGE, null, src, crit, ctx.depth);
+            dealt += loseHp(target, amount, e.ignoreShield, EventType.DAMAGE, null, src, crit, ctx.depth);
             fire(TriggerEvent.HIT, ctx.owner, src, null, ctx.depth);
             if (crit) fire(TriggerEvent.CRIT, ctx.owner, src, null, ctx.depth);
         }
+        return dealt;
+    }
+
+    private void buffStack(EffectDef e, Ctx ctx, Target target, int effectIndex) {
+        String key = ctx.source.uid + ":" + ctx.stackKey;
+        if ("dmg_reduce".equals(e.stat)) {
+            Fighter f = fighterOf(target, ctx);
+            int count = f.buffStacks.getOrDefault(key, 0);
+            if (count >= e.maxStacks) return;
+            f.buffStacks.put(key, count + 1);
+            f.dmgReducePermille = Math.min(cfg.maxDmgReducePermille, f.dmgReducePermille + e.pctPermille());
+            emit(ev(EventType.BUFF, f).item(ctx.source.uid).kind("DMG_REDUCE").value(e.pctPermille()).total(count + 1).state(f));
+            return;
+        }
+        for (ItemInstance it : itemsOf(target, ctx)) {
+            int count = it.buffStacks.getOrDefault(key, 0);
+            if (count >= e.maxStacks) continue;
+            it.buffStacks.put(key, count + 1);
+            int value;
+            if ("attack".equals(e.stat)) {
+                value = scale(e.value, ctx);
+                it.attack += value;
+            } else {
+                value = e.pctPermille();
+                it.critPermille += value;
+            }
+            emit(ev(EventType.BUFF, it.owner).item(it.uid).kind(e.stat.toUpperCase()).value(value).total(count + 1));
+        }
+    }
+
+    private void cleanse(EffectDef e, Ctx ctx) {
+        Fighter f = ctx.owner;
+        if (e.status == null) {
+            f.stunUntil = Math.min(f.stunUntil, now - 1);
+            for (ItemInstance it : f.items) {
+                it.slowUntil = Math.min(it.slowUntil, now - 1);
+                it.sealUntil = Math.min(it.sealUntil, now - 1);
+            }
+            emit(ev(EventType.STATUS, f).item(ctx.source.uid).kind("CLEANSE_CONTROL").value(0).state(f));
+            return;
+        }
+        int before = meter(f, e.status);
+        int removed = e.value == 0 ? before : Math.min(before, e.value);
+        setMeter(f, e.status, before - removed);
+        emit(ev(EventType.STATUS, f).item(ctx.source.uid).kind("CLEANSE_" + e.status.name()).value(-removed).total(before - removed).state(f));
     }
 
     private void apply(EffectDef e, Ctx ctx, Target target) {
@@ -329,7 +409,7 @@ final class Battle {
             case REGEN -> {
                 Fighter f = fighterOf(target, ctx);
                 int stacks = scale(e.stacks, ctx);
-                f.regen += stacks;
+                f.regen = Math.min(f.regen + stacks, cfg.maxRegen);
                 emit(ev(EventType.STATUS, f).kind(s.name()).value(stacks).total(f.regen).state(f));
                 applied = true;
             }
@@ -338,6 +418,7 @@ final class Battle {
                 f.stunUntil = Math.max(f.stunUntil, now + e.durationMs());
                 emit(ev(EventType.STATUS, f).kind(s.name()).value(e.durationMs()).state(f));
                 applied = true;
+                if (f != ctx.owner) fire(TriggerEvent.CONTROLLED, f, ctx.source, s, ctx.depth);
             }
             case SLOW, SEAL, HASTE -> {
                 for (ItemInstance it : itemsOf(target, ctx)) {
@@ -349,6 +430,9 @@ final class Battle {
                     }
                     emit(ev(EventType.STATUS, it.owner).item(it.uid).kind(s.name()).value(e.durationMs()));
                     applied = true;
+                    if ((s == StatusType.SLOW || s == StatusType.SEAL) && it.owner != ctx.owner) {
+                        fire(TriggerEvent.CONTROLLED, it.owner, ctx.source, s, ctx.depth);
+                    }
                 }
             }
         }
@@ -359,8 +443,10 @@ final class Battle {
 
     // ---- state changes ----
 
-    private void loseHp(Fighter f, int amount, boolean ignoreShield, EventType type, String kind,
+    private int loseHp(Fighter f, int amount, boolean ignoreShield, EventType type, String kind,
                         ItemInstance src, boolean crit, int depth) {
+        int hpBefore = Math.max(0, f.hp);
+        int shieldBefore = f.shield;
         int absorbed = ignoreShield ? 0 : Math.min(f.shield, amount);
         f.shield -= absorbed;
         int rest = amount - absorbed;
@@ -370,24 +456,47 @@ final class Battle {
         if (src != null) ev.item(src.uid);
         if (crit) ev.crit(true);
         emit(ev.state(f));
+        if (shieldBefore > 0 && f.shield == 0 && src != null) {
+            fire(TriggerEvent.SHIELD_BROKEN, src.owner, src, null, depth);
+        }
         if (rest > 0) {
             fire(TriggerEvent.HP_BELOW, f, null, null, depth);
+            if (src != null && src.owner != f && (type == EventType.BURST || (type == EventType.DAMAGE && src.isWeapon()))) {
+                fire(TriggerEvent.DAMAGED, f, src, kind == null ? null : StatusType.valueOf(kind), depth);
+            }
         }
+        if (crit && src != null && src.owner != f) fire(TriggerEvent.CRIT_TAKEN, f, src, null, depth);
+        if (type == EventType.BURST && src != null && src.owner != f) {
+            fire(TriggerEvent.BURST_TAKEN, f, src, StatusType.valueOf(kind), depth);
+        }
+        return absorbed + Math.min(rest, hpBefore);
     }
 
-    private void heal(Fighter f, int amount) {
+    private void heal(Fighter f, int amount, ItemInstance src, int depth) {
+        // Same rule as pills and Điều Tức: a fighter at 0 HP cannot be healed back within the tick.
+        if (f.hp <= 0) return;
         int actual = Math.min(amount, f.maxHp - f.hp);
         if (actual <= 0) return;
         f.hp += actual;
         emit(ev(EventType.HEAL, f).value(actual).state(f));
+        fire(TriggerEvent.HEALED, f, src, null, depth);
     }
 
-    private void changeQi(Fighter f, int delta) {
+    private void changeQi(Fighter f, int delta, ItemInstance src, int depth) {
+        int before = f.qi;
         int next = Math.max(0, Math.min(cfg.maxQi, f.qi + delta));
         if (next == f.qi) return;
         int actual = next - f.qi;
         f.qi = next;
         emit(ev(EventType.QI, f).value(actual).state(f));
+        if (before > 0 && next == 0) fire(TriggerEvent.QI_EMPTY, f, src, null, depth);
+    }
+
+    /** Pays an existing combat cost without adding a new log event (parity contract). */
+    private void spendQi(Fighter f, int amount, ItemInstance src, int depth) {
+        int before = f.qi;
+        f.qi = Math.max(0, f.qi - amount);
+        if (before > 0 && f.qi == 0) fire(TriggerEvent.QI_EMPTY, f, src, null, depth);
     }
 
     private void checkDeath() {
@@ -446,7 +555,8 @@ final class Battle {
     // ---- helpers ----
 
     private int scale(int value, Ctx ctx) {
-        return value * cfg.tierMultiplier(ctx.source.tier) / 1000;
+        // Parity contract: apply tier, truncate, then rarity, truncate.
+        return value * cfg.tierMultiplier(ctx.source.tier) / 1000 * cfg.rarityMultiplier(ctx.source.rarity) / 1000;
     }
 
     private BattleEvent ev(EventType type, Fighter f) {

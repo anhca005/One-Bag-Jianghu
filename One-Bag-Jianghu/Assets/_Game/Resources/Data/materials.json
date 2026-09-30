@@ -1,0 +1,19 @@
+[
+ {"id":"han_thiet","name":"Hàn Thiết","itemType":"weapon","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Khoáng rèn Binh Khí sơ cấp."},
+ {"id":"o_thiet","name":"Ô Thiết","itemType":"weapon","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Khoáng rèn Binh Khí trung cấp."},
+ {"id":"thien_ngoai_van_thiet","name":"Thiên Ngoại Vẫn Thiết","itemType":"weapon","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Khoáng rèn Binh Khí cao cấp."},
+ {"id":"binh_hon_tinh_thach","name":"Binh Hồn Tinh Thạch","itemType":"weapon","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Binh Khí."},
+ {"id":"thanh_dong_ti","name":"Thanh Đồng Ti","itemType":"armor","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Hộ Cụ sơ cấp."},
+ {"id":"o_kim_ti","name":"Ô Kim Ti","itemType":"armor","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Hộ Cụ trung cấp."},
+ {"id":"cuu_u_tam_ti","name":"Cửu U Tàm Ti","itemType":"armor","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Hộ Cụ cao cấp."},
+ {"id":"huyen_giap_hon_thach","name":"Huyền Giáp Hồn Thạch","itemType":"armor","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Hộ Cụ."},
+ {"id":"hoang_tuyen_chi","name":"Hoàng Tuyền Chỉ","itemType":"manual","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp sơ cấp."},
+ {"id":"mac_truc_tran","name":"Mặc Trúc Trản","itemType":"manual","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp trung cấp."},
+ {"id":"tam_to_co_quyen","name":"Tằm Tơ Cổ Quyển","itemType":"manual","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp cao cấp."},
+ {"id":"van_dao_tam_tinh","name":"Vấn Đạo Tâm Tinh","itemType":"manual","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Công Pháp."},
+ {"id":"chu_sa_thao","name":"Chu Sa Thảo","itemType":"pill_relic","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Đan Dược/Kỳ Trân sơ cấp."},
+ {"id":"tu_linh_chi","name":"Tử Linh Chi","itemType":"pill_relic","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Đan Dược/Kỳ Trân trung cấp."},
+ {"id":"con_lon_tuyet_lien","name":"Côn Lôn Tuyết Liên","itemType":"pill_relic","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Đan Dược/Kỳ Trân cao cấp."},
+ {"id":"cuu_chuyen_dan_sa","name":"Cửu Chuyển Đan Sa","itemType":"pill_relic","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Đan Dược/Kỳ Trân."},
+ {"id":"chi_ton_ngoc_tuy","name":"Chí Tôn Ngọc Tủy","itemType":"universal","band":"pvp","tier":0,"isCatalyst":true,"pvpOnly":true,"description":"Nguyên liệu PvP để Hợp Thành phẩm Chí Tôn."}
+]
