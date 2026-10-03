@@ -89,8 +89,12 @@ public final class MessageHandler {
         }
         JsonNode supplied = payload.get("loadout");
         if (supplied == null || !supplied.isObject()) throw new IllegalArgumentException("loadout is required");
+        if (supplied.has("hp")) {
+            throw new DataException("Loadout " + supplied.path("name").asText("?")
+                    + ": \"hp\" was removed (decision #35); use \"level\"");
+        }
         ObjectNode normalized = ((ObjectNode) supplied).deepCopy();
-        normalized.put("hp", 1200);
+        normalized.put("level", 1);
         normalized.put("cols", 5);
         normalized.put("rows", 4);
         if (!normalized.has("tamPhapLevel") || normalized.get("tamPhapLevel").isNull()) {

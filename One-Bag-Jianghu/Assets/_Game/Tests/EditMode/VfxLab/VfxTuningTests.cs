@@ -7,12 +7,17 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
     public sealed class VfxTuningTests
     {
         private VfxTuning tuning;
-
         [SetUp]
-        public void SetUp() { tuning = ScriptableObject.CreateInstance<VfxTuning>(); }
+        public void SetUp()
+        {
+            tuning = ScriptableObject.CreateInstance<VfxTuning>();
+        }
 
         [TearDown]
-        public void TearDown() { Object.DestroyImmediate(tuning); }
+        public void TearDown()
+        {
+            Object.DestroyImmediate(tuning);
+        }
 
         [Test]
         public void MissingKeyIsIdentity()
@@ -28,7 +33,12 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         [Test]
         public void MirroringNegatesHorizontalValues()
         {
-            var entry = new VfxTuning.Entry { rotation = 20f, scale = 2f, offset = new Vector2(12f, 7f) };
+            var entry = new VfxTuning.Entry
+            {
+                rotation = 20f,
+                scale = 2f,
+                offset = new Vector2(12f, 7f)
+            };
             VfxTransform result = VfxTuning.Compose(entry, true);
             Assert.That(result.LocalScale, Is.EqualTo(new Vector3(-2f, 2f, 1f)));
             Assert.That(result.Rotation, Is.EqualTo(-20f));
@@ -38,7 +48,13 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         [Test]
         public void FlipXAndMirrorMakePositiveScaleX()
         {
-            VfxTransform result = VfxTuning.Compose(new VfxTuning.Entry { scale = 1f, flipX = true }, true);
+            VfxTransform result =
+VfxTuning.Compose(new VfxTuning.Entry
+{
+    scale = 1f,
+    flipX = true
+},
+true);
             Assert.That(result.LocalScale.x, Is.EqualTo(1f));
         }
 

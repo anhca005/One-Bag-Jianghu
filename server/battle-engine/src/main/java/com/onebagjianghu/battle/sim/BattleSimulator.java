@@ -26,4 +26,11 @@ public final class BattleSimulator {
     public BattleResult run(Loadout a, Loadout b, long seed) {
         return new Battle(config, catalog, sects, a, b, seed).run();
     }
+
+    public FighterStats fighterStats(Loadout loadout) {
+        Fighter f = Fighter.create(0, loadout, catalog, sects, config);
+        return new FighterStats(f.maxHp, f.dmgReducePermille, f.cooldownReductionPermille);
+    }
+
+    public record FighterStats(int maxHp, int dmgReducePermille, int cooldownReductionPermille) { }
 }

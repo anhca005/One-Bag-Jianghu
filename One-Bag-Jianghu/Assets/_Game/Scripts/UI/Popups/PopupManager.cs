@@ -15,11 +15,14 @@ namespace OneBagJianghu.UI.Popups
         private static PopupManager instance;
         private readonly Dictionary<Type, BasePopup> cache = new Dictionary<Type, BasePopup>();
         private readonly PopupStack stack = new PopupStack();
-        [SerializeField] private Canvas canvas;
-        [SerializeField] private Canvas backdropCanvas;
-        [SerializeField] private GameObject backdrop;
-        [SerializeField] private Button backdropButton;
-
+        [SerializeField]
+        private Canvas canvas;
+        [SerializeField]
+        private Canvas backdropCanvas;
+        [SerializeField]
+        private GameObject backdrop;
+        [SerializeField]
+        private Button backdropButton;
         /// <summary>Gets the topmost open popup, or null.</summary>
         public static BasePopup Top => instance == null ? null : instance.stack.Top;
 
@@ -45,10 +48,11 @@ namespace OneBagJianghu.UI.Popups
         }
 
         /// <summary>Shows or reconfigures the cached popup of type T.</summary>
-        /// <typeparam name="T">Concrete popup component type.</typeparam>
-        /// <param name="data">Optional setup data.</param>
+        /// <typeparam name = "T">Concrete popup component type.</typeparam>
+        /// <param name = "data">Optional setup data.</param>
         /// <returns>The shown popup, or null when its prefab is missing.</returns>
-        public static T Show<T>(object data = null) where T : BasePopup
+        public static T Show<T>(object data = null)
+            where T : BasePopup
         {
             if (instance == null)
             {
@@ -60,8 +64,9 @@ namespace OneBagJianghu.UI.Popups
         }
 
         /// <summary>Closes the open popup of type T with animation.</summary>
-        /// <typeparam name="T">Concrete popup component type.</typeparam>
-        public static void Close<T>() where T : BasePopup
+        /// <typeparam name = "T">Concrete popup component type.</typeparam>
+        public static void Close<T>()
+            where T : BasePopup
         {
             if (instance != null && instance.cache.TryGetValue(typeof(T), out BasePopup popup) && popup.IsShowing)
             {
@@ -98,10 +103,24 @@ namespace OneBagJianghu.UI.Popups
             instance.RefreshStack();
         }
 
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
+        /// <summary>Clears cached popup instances so a full data wipe cannot retain profile-derived references.</summary>
+        public static void ClearCacheAfterDataWipe()
+        {
+            if (instance == null)
+                return;
+            CloseAll();
+            foreach (BasePopup popup in instance.cache.Values)
+                if (popup != null)
+                    Destroy(popup.gameObject);
+            instance.cache.Clear();
+        }
+#endif
         /// <summary>Reports whether the cached popup of type T is open.</summary>
-        /// <typeparam name="T">Concrete popup component type.</typeparam>
+        /// <typeparam name = "T">Concrete popup component type.</typeparam>
         /// <returns>True when that popup is showing.</returns>
-        public static bool IsOpen<T>() where T : BasePopup
+        public static bool IsOpen<T>()
+            where T : BasePopup
         {
             return instance != null && instance.cache.TryGetValue(typeof(T), out BasePopup popup) && popup.IsShowing;
         }
@@ -122,7 +141,8 @@ namespace OneBagJianghu.UI.Popups
             Top?.OnBackPressed();
         }
 
-        private T ShowInternal<T>(object data) where T : BasePopup
+        private T ShowInternal<T>(object data)
+            where T : BasePopup
         {
             Type type = typeof(T);
             if (!cache.TryGetValue(type, out BasePopup popup))

@@ -17,12 +17,10 @@ namespace OneBagJianghu.Tests.Bag
                 ItemId = "test_item",
                 Sprite = sprite
             });
-
             Assert.That(library.TryGet("test_item", out Sprite found), Is.True);
             Assert.That(found, Is.SameAs(sprite));
             Assert.That(library.TryGet("unknown", out Sprite missing), Is.False);
             Assert.That(missing, Is.Null);
-
             Object.DestroyImmediate(sprite);
             Object.DestroyImmediate(texture);
             Object.DestroyImmediate(library);
@@ -33,10 +31,26 @@ namespace OneBagJianghu.Tests.Bag
         {
             ItemIconLibrary library = ItemIconLibrary.Load();
             Assert.That(library, Is.Not.Null);
-            string[] codes = { "burn", "poison", "bleed", "internal_injury", "slow", "seal", "stun", "haste", "charge", "regen", "heal" };
+            string[] codes =
+            {
+                "burn",
+                "poison",
+                "bleed",
+                "internal_injury",
+                "slow",
+                "seal",
+                "stun",
+                "haste",
+                "charge",
+                "regen",
+                "heal"
+            };
             foreach (string code in codes)
             {
-                Assert.That(library.TryGet("status_" + code, out Sprite sprite), Is.True, code);
+                Assert.That(library.TryGet("status_" + code,
+out Sprite sprite),
+Is.True,
+code);
                 Assert.That(sprite, Is.Not.Null, code);
             }
         }

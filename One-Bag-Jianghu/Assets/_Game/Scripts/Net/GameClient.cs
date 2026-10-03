@@ -10,23 +10,28 @@ namespace OneBagJianghu.Net
     {
         private readonly object gate = new object();
         private readonly IGameTransport transport;
-        private readonly Dictionary<long, TaskCompletionSource<Envelope>> pending = new Dictionary<long, TaskCompletionSource<Envelope>>();
+        private readonly Dictionary<long,
+TaskCompletionSource<Envelope>> pending = new Dictionary<long,
+TaskCompletionSource<Envelope>>();
         private readonly SemaphoreSlim sendGate = new SemaphoreSlim(1, 1);
         private CancellationTokenSource lifetime;
         private long nextId;
         private bool disconnectedRaised;
-
         public GameClient(IGameTransport transport = null)
         {
             this.transport = transport ?? new WebSocketTransport();
         }
 
-        public TimeSpan RequestTimeout { get; set; } = TimeSpan.FromSeconds(15);
+        public TimeSpan RequestTimeout
+        {
+            get;
+            set;
+        } = TimeSpan.FromSeconds(15);
         public bool IsConnected => transport.IsConnected;
+
         public event Action Connected;
         public event Action Disconnected;
         public event Action<Envelope> ServerMessage;
-
         public async Task ConnectAsync(string url, CancellationToken cancellationToken = default)
         {
             if (!Uri.TryCreate(url, UriKind.Absolute, out Uri uri))
@@ -78,7 +83,8 @@ namespace OneBagJianghu.Net
                 await sendGate.WaitAsync().ConfigureAwait(false);
                 try
                 {
-                    await transport.SendTextAsync(ProtocolJson.Serialize(request), CancellationToken.None).ConfigureAwait(false);
+                    await transport.SendTextAsync(ProtocolJson.Serialize(request),
+CancellationToken.None).ConfigureAwait(false);
                 }
                 finally
                 {
@@ -89,7 +95,9 @@ namespace OneBagJianghu.Net
                 Task finished = await Task.WhenAny(completion.Task, delay).ConfigureAwait(false);
                 if (finished != completion.Task)
                 {
-                    throw new TimeoutException("The server did not reply within " + RequestTimeout.TotalSeconds + " seconds.");
+                    throw new TimeoutException("The server did not reply within "
++ RequestTimeout.TotalSeconds
++ " seconds.");
                 }
 
                 return await completion.Task.ConfigureAwait(false);

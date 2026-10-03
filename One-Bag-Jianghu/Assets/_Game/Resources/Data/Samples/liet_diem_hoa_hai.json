@@ -1,63 +1,76 @@
 {
-  "name": "Liệt Diễm Đường - Hỏa Hải (Tứ Đao)",
-  "hp": 1200,
+  "name": "Liệt Diễm Đường - Hỏa Hải Song Đao",
   "cols": 5,
   "rows": 4,
   "sect": "liet_diem",
+  "tamPhapLevel": 1,
   "items": [
     {
-      "id": "liet_diem_dao",
+      "id": "tu_mau_song_dao",
       "x": 0,
       "y": 0,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
-      "id": "liet_diem_dao",
-      "x": 1,
-      "y": 0,
-      "rarity": "rare"
+      "id": "liet_hoa_tam_kinh",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
     },
     {
-      "id": "liet_diem_dao",
-      "x": 2,
-      "y": 0,
-      "rarity": "rare"
-    },
-    {
-      "id": "liet_diem_dao",
-      "x": 3,
-      "y": 0,
-      "rarity": "rare"
-    },
-    {
-      "id": "boi_nguyen_dan",
+      "id": "cuong_hoa_dan",
       "x": 0,
       "y": 3,
       "rarity": "uncommon"
     },
     {
-      "id": "tuy_tien_ho_lo",
+      "id": "chu_sa_ho_lo",
       "x": 1,
-      "y": 3,
+      "y": 2,
       "rarity": "epic"
     },
     {
-      "id": "thai_thanh_tam_kinh",
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
       "x": 2,
       "y": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
       "rarity": "rare"
     },
     {
-      "id": "thiet_cot_quyen_sao",
-      "x": 4,
-      "y": 0,
-      "rarity": "common"
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
     },
     {
-      "id": "thiet_cot_quyen_sao",
+      "id": "tuy_tien_ho_lo",
       "x": 4,
       "y": 2,
-      "rarity": "common"
+      "rarity": "rare"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
     }
-  ]
+  ],
+  "level": 1
 }

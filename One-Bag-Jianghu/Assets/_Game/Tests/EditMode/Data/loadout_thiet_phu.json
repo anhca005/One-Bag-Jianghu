@@ -1,6 +1,6 @@
 {
   "name": "Thiết Phủ Bang (Rìu + Cầm)",
-  "hp": 1200, "cols": 5, "rows": 4,
+  "level": 1, "cols": 5, "rows": 4,
   "items": [
     { "id": "khai_son_phu",   "x": 0, "y": 0 },
     { "id": "khai_son_phu",   "x": 0, "y": 2 },

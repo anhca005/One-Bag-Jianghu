@@ -86,13 +86,16 @@ namespace OneBagJianghu.EditorTools.Building
                 Image tooltipPanel = UiBuild.Image(tooltipRoot.transform, "Paper", UiBuild.Paper);
                 UiBuild.ApplyUiSprite(tooltipPanel, "frame_tooltip", Image.Type.Sliced);
                 RectTransform tooltipRect = tooltipPanel.rectTransform; tooltipRect.anchorMin = tooltipRect.anchorMax = Vector2.zero;
-                tooltipRect.pivot = new Vector2(0f, 1f); tooltipRect.sizeDelta = new Vector2(360f, 80f);
-                VerticalLayoutGroup tooltipLayout = tooltipPanel.gameObject.AddComponent<VerticalLayoutGroup>();
-                tooltipLayout.padding = new RectOffset(18, 18, 14, 14); tooltipLayout.childControlHeight = true; tooltipLayout.childControlWidth = true;
-                ContentSizeFitter tooltipFitter = tooltipPanel.gameObject.AddComponent<ContentSizeFitter>(); tooltipFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                Text tooltipText = UiBuild.Text(tooltipPanel.transform, "Description", string.Empty, 16, TextAnchor.UpperLeft);
+                tooltipRect.pivot = new Vector2(0f, 1f); tooltipRect.sizeDelta = new Vector2(440f, 420f);
+                RectTransform tooltipViewport = UiBuild.Image(tooltipPanel.transform, "Viewport", Color.clear).rectTransform; tooltipViewport.anchorMin=Vector2.zero;tooltipViewport.anchorMax=Vector2.one;tooltipViewport.offsetMin=new Vector2(ItemTooltip.HorizontalInset,ItemTooltip.BottomInset);tooltipViewport.offsetMax=new Vector2(-ItemTooltip.HorizontalInset,-ItemTooltip.TopInset);tooltipViewport.gameObject.AddComponent<RectMask2D>();
+                RectTransform tooltipContent = UiBuild.Rect(tooltipViewport, "Content"); tooltipContent.anchorMin = new Vector2(0f, 1f); tooltipContent.anchorMax = new Vector2(1f, 1f); tooltipContent.pivot = new Vector2(.5f, 1f); tooltipContent.sizeDelta = Vector2.zero;
+                VerticalLayoutGroup tooltipLayout = tooltipContent.gameObject.AddComponent<VerticalLayoutGroup>(); tooltipLayout.childControlHeight = true; tooltipLayout.childControlWidth = true; tooltipLayout.childForceExpandHeight = false; tooltipLayout.childForceExpandWidth = true;
+                ContentSizeFitter tooltipFitter = tooltipContent.gameObject.AddComponent<ContentSizeFitter>(); tooltipFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                ScrollRect tooltipScroll = tooltipPanel.gameObject.AddComponent<ScrollRect>(); tooltipScroll.viewport = tooltipViewport; tooltipScroll.content = tooltipContent; tooltipScroll.horizontal = false; tooltipScroll.vertical = true; tooltipScroll.movementType = ScrollRect.MovementType.Clamped;
+                Text tooltipText = UiBuild.Text(tooltipContent, "Description", string.Empty, 18, TextAnchor.UpperLeft);
                 tooltipText.color = UiBuild.Ink; tooltipText.supportRichText = true; tooltipText.horizontalOverflow = HorizontalWrapMode.Wrap; tooltipText.verticalOverflow = VerticalWrapMode.Overflow;
-                LayoutElement tooltipTextLayout = tooltipText.gameObject.AddComponent<LayoutElement>(); tooltipTextLayout.preferredWidth = 324f;
+                tooltipText.resizeTextForBestFit = false; tooltipText.resizeTextMinSize = 16; tooltipText.resizeTextMaxSize = 18;
+                tooltipText.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 ItemTooltip tooltip = tooltipRoot.GetComponent<ItemTooltip>(); UiBuild.Set(tooltip, "overlayCanvas", tooltipCanvas); UiBuild.Set(tooltip, "panel", tooltipRect); UiBuild.Set(tooltip, "descriptionText", tooltipText);
                 UiButton save = AddButton(panel, "Save Button", "Lưu Bao Phục", true, new Vector2(0.38f, 0.045f));
                 UiButton close = AddButton(panel, "Close Button", "Đóng", false, new Vector2(0.62f, 0.045f));
@@ -108,13 +111,14 @@ namespace OneBagJianghu.EditorTools.Building
                 Image seal = UiBuild.Image(panel, "Title Seal", Color.clear);
                 UiBuild.Anchors(seal.rectTransform, new Vector2(0.39f, 0.61f), new Vector2(0.61f, 0.95f));
                 seal.preserveAspect = true; seal.raycastTarget = false; UiBuild.ApplyUiSprite(seal, "seal_title");
-                Text result = AddText(panel, "Result Text", "Thắng", 58, new Vector2(0.08f, 0.65f), new Vector2(0.92f, 0.9f));
+                Text result = AddText(panel, "Result Text", "Thắng", 58, new Vector2(0.05f, 0.64f), new Vector2(0.95f, 0.91f));
                 Text winner = AddText(panel, "Winner", "Người thắng", 26, new Vector2(0.08f, 0.52f), new Vector2(0.92f, 0.65f));
-                Text rewards = AddText(panel, "Rewards", "", 22, new Vector2(0.08f, 0.39f), new Vector2(0.92f, 0.52f));
-                UiButton home = AddButton(panel, "Home Button", "Về Sảnh", false, new Vector2(0.5f, 0.3f));
-                UiButton again = AddButton(panel, "Play Again Button", "Đánh Tiếp", true, new Vector2(0.5f, 0.13f));
+                Text rewards = AddText(panel, "Rewards", "", 22, new Vector2(0.08f, 0.42f), new Vector2(0.92f, 0.54f));
+                Text reason = AddText(panel, "Disabled Reason", "", 18, new Vector2(0.08f, 0.34f), new Vector2(0.92f, 0.42f)); reason.color = UiBuild.Vermilion;
+                UiButton home = AddButton(panel, "Home Button", "Về trấn", false, new Vector2(0.5f, 0.3f));
+                UiButton again = AddButton(panel, "Play Again Button", "Đấu tiếp", true, new Vector2(0.5f, 0.13f));
                 UiBuild.Set(popup, "resultText", result); UiBuild.Set(popup, "winnerText", winner); UiBuild.Set(popup, "rewardText", rewards);
-                UiBuild.Set(popup, "homeButton", home); UiBuild.Set(popup, "playAgainButton", again);
+                UiBuild.Set(popup, "homeButton", home); UiBuild.Set(popup, "playAgainButton", again); UiBuild.Set(popup, "disabledReason", reason);
             });
         }
 
@@ -142,7 +146,9 @@ namespace OneBagJianghu.EditorTools.Building
 
         private static Text AddText(Transform parent, string name, string value, int size, Vector2 min, Vector2 max, TextAnchor alignment = TextAnchor.MiddleCenter)
         {
-            Text text = UiBuild.Text(parent, name, value, size, alignment);
+            UiFontRole role = name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0 || name == "Result Text"
+                ? UiFontRole.Display : UiFontRole.Body;
+            Text text = UiBuild.Text(parent, name, value, size, alignment, role);
             UiBuild.Anchors(text.rectTransform, min, max);
             return text;
         }

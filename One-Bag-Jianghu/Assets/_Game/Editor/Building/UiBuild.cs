@@ -7,6 +7,13 @@ namespace OneBagJianghu.EditorTools.Building
 {
     public static class UiBuild
     {
+        public enum LabelFitPreset
+        {
+            OrnateButton,
+            Plaque,
+            InkBox
+        }
+
         public static readonly Color Paper = UiKit.Paper;
         public static readonly Color Ink = UiKit.Ink;
         public static readonly Color Gold = UiKit.Gold;
@@ -55,14 +62,16 @@ namespace OneBagJianghu.EditorTools.Building
             return image;
         }
 
-        public static Text Text(Transform parent, string name, string value, int size, TextAnchor alignment = TextAnchor.MiddleCenter)
+        public static Text Text(Transform parent, string name, string value, int size, TextAnchor alignment = TextAnchor.MiddleCenter, UiFontRole role = UiFontRole.Body)
         {
             RectTransform rect = Rect(parent, name);
             rect.gameObject.AddComponent<CanvasRenderer>();
             Text text = rect.gameObject.AddComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            UiFonts.Apply(text, role);
             text.text = value;
             text.fontSize = size;
+            text.lineSpacing = role == UiFontRole.Display ? 1.05f : 1.1f;
+            text.verticalOverflow = VerticalWrapMode.Overflow;
             text.color = Ink;
             text.alignment = alignment;
             return text;
@@ -76,13 +85,56 @@ namespace OneBagJianghu.EditorTools.Building
             outline.effectDistance = new Vector2(2f, -2f);
             Button button = image.gameObject.AddComponent<Button>();
             button.targetGraphic = image;
-            Text text = Text(image.transform, "Label", label, 24);
+            Text text = Text(image.transform, "Label", label, 24, TextAnchor.MiddleCenter, UiFontRole.Title);
             text.color = primary ? Paper : Ink;
-            Stretch(text.rectTransform, 12f);
+            FitLabel(text, LabelFitPreset.OrnateButton);
             UiButton uiButton = image.gameObject.AddComponent<UiButton>();
             Set(uiButton, "button", button);
             Set(uiButton, "label", text);
             return button;
+        }
+
+        // Normalized horizontal padding keeps ornament clearance proportional as controls resize.
+        // Vertical values are pixels because the generated controls have a narrow, stable height range.
+        /// <summary>Share of the sliced ornament border the label must stay clear of (the inner part is plain bar).</summary>
+        public const float OrnateBorderClearance = 0.8f;
+
+        public static void FitLabel(Text text, LabelFitPreset preset, int minimumSize = 14)
+        {
+            int authoredSize = text.fontSize;
+            float left;
+            float right;
+            float vertical;
+            switch (preset)
+            {
+                case LabelFitPreset.OrnateButton: left = right = 0.27f; vertical = 9f; break;
+                case LabelFitPreset.Plaque: left = right = 0.16f; vertical = 8f; break;
+                case LabelFitPreset.InkBox: left = 0.18f; right = 0.14f; vertical = 7f; break;
+                default: left = right = 0f; vertical = 0f; break;
+            }
+
+            RectTransform rect = text.rectTransform;
+            // Ornate button art is 9-sliced: its cloud scrolls keep a fixed pixel width whatever the
+            // button width, so the label must clear the slice border in pixels, not a percentage.
+            UnityEngine.UI.Image frame = preset == LabelFitPreset.OrnateButton && rect.parent != null ? rect.parent.GetComponent<UnityEngine.UI.Image>() : null;
+            if (frame != null && frame.type == UnityEngine.UI.Image.Type.Sliced && frame.sprite != null && frame.hasBorder)
+            {
+                float scale = 1f / (frame.pixelsPerUnit * frame.pixelsPerUnitMultiplier);
+                rect.anchorMin = new Vector2(0f, 0f);
+                rect.anchorMax = new Vector2(1f, 1f);
+                rect.offsetMin = new Vector2(frame.sprite.border.x * scale * OrnateBorderClearance, vertical);
+                rect.offsetMax = new Vector2(-frame.sprite.border.z * scale * OrnateBorderClearance, -vertical);
+            }
+            else
+            {
+                rect.anchorMin = new Vector2(left, 0f);
+                rect.anchorMax = new Vector2(1f - right, 1f);
+                rect.offsetMin = new Vector2(0f, vertical);
+                rect.offsetMax = new Vector2(0f, -vertical);
+            }
+            SingleLineFit fit = text.GetComponent<SingleLineFit>();
+            if (fit == null) fit = text.gameObject.AddComponent<SingleLineFit>();
+            fit.Configure(authoredSize, Mathf.Min(minimumSize, authoredSize));
         }
 
         public static Canvas Canvas(Transform parent, string name, int sortingOrder)

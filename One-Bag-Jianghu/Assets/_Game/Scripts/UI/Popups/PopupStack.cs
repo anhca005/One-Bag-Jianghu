@@ -6,7 +6,6 @@ namespace OneBagJianghu.UI.Popups
     {
         public const int BaseSortingOrder = 100;
         private readonly List<BasePopup> items = new List<BasePopup>();
-
         public int Count => items.Count;
         public BasePopup Top => items.Count == 0 ? null : items[items.Count - 1];
         public IReadOnlyList<BasePopup> Items => items;

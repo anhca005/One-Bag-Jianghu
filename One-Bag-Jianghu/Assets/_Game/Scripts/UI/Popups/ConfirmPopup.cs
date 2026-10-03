@@ -7,24 +7,53 @@ namespace OneBagJianghu.UI.Popups
 {
     public sealed class ConfirmPopupData
     {
-        public ConfirmPopupData(string title, string message, string confirmLabel, string cancelLabel, Action<bool> callback = null)
-        { Title = title; Message = message; ConfirmLabel = confirmLabel; CancelLabel = cancelLabel; Callback = callback; }
-        public string Title { get; }
-        public string Message { get; }
-        public string ConfirmLabel { get; }
-        public string CancelLabel { get; }
-        public Action<bool> Callback { get; }
+        public ConfirmPopupData(string title,
+string message,
+string confirmLabel,
+string cancelLabel,
+Action<bool> callback = null)
+        {
+            Title = title;
+            Message = message;
+            ConfirmLabel = confirmLabel;
+            CancelLabel = cancelLabel;
+            Callback = callback;
+        }
+
+        public string Title
+        {
+            get;
+        }
+        public string Message
+        {
+            get;
+        }
+        public string ConfirmLabel
+        {
+            get;
+        }
+        public string CancelLabel
+        {
+            get;
+        }
+        public Action<bool> Callback
+        {
+            get;
+        }
     }
 
     public sealed class ConfirmPopup : BasePopup<ConfirmPopupData>
     {
-        [SerializeField] private Text titleText;
-        [SerializeField] private Text messageText;
-        [SerializeField] private UiButton confirmButton;
-        [SerializeField] private UiButton cancelButton;
+        [SerializeField]
+        private Text titleText;
+        [SerializeField]
+        private Text messageText;
+        [SerializeField]
+        private UiButton confirmButton;
+        [SerializeField]
+        private UiButton cancelButton;
         private Action<bool> callback;
         private bool answered;
-
         protected override void Awake()
         {
             base.Awake();
@@ -45,12 +74,14 @@ namespace OneBagJianghu.UI.Popups
 
         protected override void OnHidden()
         {
-            if (!answered) callback?.Invoke(false);
+            if (!answered)
+                callback?.Invoke(false);
         }
 
         private void Answer(bool value)
         {
-            if (answered) return;
+            if (answered)
+                return;
             answered = true;
             callback?.Invoke(value);
             CloseWithResult(value);

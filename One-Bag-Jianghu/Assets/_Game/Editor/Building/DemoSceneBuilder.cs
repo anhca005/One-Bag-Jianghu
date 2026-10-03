@@ -50,7 +50,7 @@ namespace OneBagJianghu.EditorTools.Building
             var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single); SceneBuild.CreateMainCamera(); SceneBuild.CreateEventSystem();
             BagDemoBootstrap bootstrap = new GameObject("BagDemoBootstrap", typeof(BagDemoBootstrap)).GetComponent<BagDemoBootstrap>();
             Canvas canvas = UiBuild.Canvas(null, "Canvas", 0); Image background = UiBuild.Image(canvas.transform, "Background", UiBuild.Paper); UiBuild.Stretch(background.rectTransform);
-            Text title = UiBuild.Text(canvas.transform, "Header", "BAG DEMO", 38); Place(title.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(50f, -90f), new Vector2(-50f, -20f));
+            Text title = UiBuild.Text(canvas.transform, "Header", "BAG DEMO", 38, TextAnchor.MiddleCenter, UiFontRole.Title); Place(title.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(50f, -90f), new Vector2(-50f, -20f));
             BagLoadoutPanel panel = UiBuild.InstantiateLinked<BagLoadoutPanel>(BagPrefab, canvas.transform); Place((RectTransform)panel.transform, Vector2.zero, Vector2.one, new Vector2(20f, 90f), new Vector2(-20f, -100f));
             RectTransform footer = UiBuild.Rect(canvas.transform, "Footer"); Place(footer, Vector2.zero, new Vector2(1f, 0f), new Vector2(50f, 18f), new Vector2(-50f, 82f)); HorizontalLayoutGroup layout = footer.gameObject.AddComponent<HorizontalLayoutGroup>(); layout.spacing = 14f; layout.childControlWidth = false;
             Button save = Button(footer, "Save", "Save", 150f), load = Button(footer, "Load", "Load", 150f), clear = Button(footer, "Clear", "Clear", 150f);
@@ -75,7 +75,7 @@ namespace OneBagJianghu.EditorTools.Building
             VfxLabBootstrap bootstrap = new GameObject("VfxLabBootstrap", typeof(VfxLabBootstrap)).GetComponent<VfxLabBootstrap>();
             Canvas canvas = UiBuild.Canvas(null, "Canvas", 0); Image background = UiBuild.Image(canvas.transform, "Background", ReplayStyle.Paper); UiBuild.Stretch(background.rectTransform);
             Image catalog = UiBuild.Image(background.transform, "Catalog", ReplayStyle.Panel); Place(catalog.rectTransform, Vector2.zero, new Vector2(0f, 1f), new Vector2(22f, 158f), new Vector2(468f, -22f));
-            Text title = UiBuild.Text(catalog.transform, "Title", "VFX LAB", 34, TextAnchor.MiddleLeft); Place(title.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(18f, -64f), new Vector2(-150f, -12f));
+            Text title = UiBuild.Text(catalog.transform, "Title", "VFX LAB", 34, TextAnchor.MiddleLeft, UiFontRole.Title); Place(title.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(18f, -64f), new Vector2(-150f, -12f));
             Text count = UiBuild.Text(catalog.transform, "Count", "0/39 có hình", 18, TextAnchor.MiddleRight); Place(count.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(250f, -64f), new Vector2(-18f, -12f));
             Image viewport = UiBuild.Image(catalog.transform, "Viewport", new Color(1f, 1f, 1f, .12f)); Place(viewport.rectTransform, Vector2.zero, Vector2.one, new Vector2(12f, 12f), new Vector2(-12f, -72f)); viewport.gameObject.AddComponent<RectMask2D>();
             RectTransform content = UiBuild.Rect(viewport.transform, "Rows"); content.anchorMin = new Vector2(0f, 1f); content.anchorMax = Vector2.one; content.pivot = new Vector2(.5f, 1f); content.offsetMin = content.offsetMax = Vector2.zero;
@@ -83,7 +83,7 @@ namespace OneBagJianghu.EditorTools.Building
             ScrollRect scroll = viewport.gameObject.AddComponent<ScrollRect>(); scroll.viewport = viewport.rectTransform; scroll.content = content; scroll.horizontal = false;
 
             Image stage = UiBuild.Image(background.transform, "Stage", new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g, ReplayStyle.Ink.b, .035f)); Place(stage.rectTransform, Vector2.zero, Vector2.one, new Vector2(486f, 426f), new Vector2(-22f, -22f));
-            Text stageLabel = UiBuild.Text(stage.transform, "Current VFX", "VFX", 30); Place(stageLabel.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(12f, -92f), new Vector2(-12f, -12f));
+            Text stageLabel = UiBuild.Text(stage.transform, "Current VFX", "VFX", 30, TextAnchor.MiddleCenter, UiFontRole.Title); Place(stageLabel.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(12f, -92f), new Vector2(-12f, -12f));
             FighterPanelView leftPanel = UiBuild.InstantiateLinked<FighterPanelView>(FighterPrefab, stage.transform), rightPanel = UiBuild.InstantiateLinked<FighterPanelView>(FighterPrefab, stage.transform);
             Place((RectTransform)leftPanel.transform, new Vector2(0f, .1f), new Vector2(0f, .78f), new Vector2(40f, 0f), new Vector2(330f, 0f)); Place((RectTransform)rightPanel.transform, new Vector2(1f, .1f), new Vector2(1f, .78f), new Vector2(-330f, 0f), new Vector2(-40f, 0f));
             RectTransform layerRect = UiBuild.Rect(stage.transform, "Replay VFX Layer"); UiBuild.Stretch(layerRect); ReplayVfxLayer layer = layerRect.gameObject.AddComponent<ReplayVfxLayer>(); Set(layer, "effectPrefab", AssetDatabase.LoadAssetAtPath<GameObject>(EffectPrefab).GetComponent<Image>());
@@ -93,7 +93,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image raw = UiBuild.Image(sizeBox, "Raw sprite", Color.white); UiBuild.Stretch(raw.rectTransform); raw.preserveAspect = true; raw.raycastTarget = false;
             Text metrics = UiBuild.Text(inspector.transform, "Metrics", "Metrics", 20, TextAnchor.MiddleLeft); Place(metrics.rectTransform, Vector2.zero, Vector2.one, new Vector2(230f, 8f), new Vector2(-520f, -8f));
             RectTransform tuning = UiBuild.Rect(inspector.transform, "Tuning"); Place(tuning, new Vector2(1f, 0f), Vector2.one, new Vector2(-500f, 8f), new Vector2(-8f, -8f));
-            Text tuningTitle = UiBuild.Text(tuning, "Title", "TUNING", 22, TextAnchor.UpperLeft); Place(tuningTitle.rectTransform, new Vector2(0f, 1f), Vector2.one, Vector2.zero, new Vector2(-300f, -30f));
+            Text tuningTitle = UiBuild.Text(tuning, "Title", "TUNING", 22, TextAnchor.UpperLeft, UiFontRole.Title); Place(tuningTitle.rectTransform, new Vector2(0f, 1f), Vector2.one, Vector2.zero, new Vector2(-300f, -30f));
             Slider rotation = Slider(tuning, "Rotation", -180f, 180f, 45f, out Text rotationValue), scale = Slider(tuning, "Scale", .2f, 4f, 82f, out Text scaleValue), offsetX = Slider(tuning, "Offset X", -200f, 200f, 119f, out Text offsetXValue), offsetY = Slider(tuning, "Offset Y", -200f, 200f, 156f, out Text offsetYValue);
             Toggle flipX = Toggle(tuning, "Flip X", 0f), flipY = Toggle(tuning, "Flip Y", 110f); Button reset = ButtonAt(tuning, "Reset", "Reset", 220f, 90f), save = ButtonAt(tuning, "Save", "Save", 320f, 90f); Text unsaved = UiBuild.Text(tuning, "Unsaved", "", 16, TextAnchor.MiddleLeft); Place(unsaved.rectTransform, Vector2.zero, new Vector2(1f, 0f), new Vector2(410f, 8f), new Vector2(0f, 42f));
 

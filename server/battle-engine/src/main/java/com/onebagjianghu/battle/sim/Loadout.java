@@ -13,7 +13,7 @@ import java.util.List;
 public final class Loadout {
     public String name = "?";
     /** Khí Huyết tối đa của Hiệp Khách. */
-    public int hp;
+    public int level = 1;
     public int cols = 5;
     public int rows = 4;
     /** Môn phái của Hiệp Khách (id trong sects.json); null = không có Tâm Pháp. */
@@ -43,9 +43,10 @@ public final class Loadout {
     public Loadout() {
     }
 
-    public Loadout(String name, int hp, int cols, int rows) {
+    /** Convenience constructor retained for source compatibility with engine tests. */
+    public Loadout(String name, int legacyHp, int cols, int rows) {
         this.name = name;
-        this.hp = hp;
+        this.level = Math.max(1, (legacyHp - 100) / 5 + 1);
         this.cols = cols;
         this.rows = rows;
     }
@@ -64,7 +65,12 @@ public final class Loadout {
 
     public static Loadout load(Path path) {
         try {
-            return ItemCatalog.mapper().readValue(path.toFile(), Loadout.class);
+            var root = ItemCatalog.mapper().readTree(path.toFile());
+            if (root.has("hp")) {
+                String n = root.has("name") ? root.get("name").asText("?") : "?";
+                throw new DataException("Loadout " + n + ": \"hp\" was removed (decision #35); use \"level\"");
+            }
+            return ItemCatalog.mapper().treeToValue(root, Loadout.class);
         } catch (IOException e) {
             throw new DataException("Cannot read loadout " + path + ": " + e.getMessage(), e);
         }

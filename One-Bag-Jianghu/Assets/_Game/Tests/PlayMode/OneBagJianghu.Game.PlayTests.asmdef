@@ -10,7 +10,8 @@
   ],
   "optionalUnityReferences": [],
   "precompiledReferences": [
-    "nunit.framework.dll"
+    "nunit.framework.dll",
+    "Newtonsoft.Json.dll"
   ],
   "overrideReferences": true,
   "defineConstraints": [

@@ -11,18 +11,19 @@ namespace OneBagJianghu.EditorTools
         {
             string projectRoot = Directory.GetParent(Application.dataPath)?.FullName;
             string sourceFolder = Path.GetFullPath(Path.Combine(projectRoot ?? string.Empty,
-                "../server/battle-engine/src/main/resources/data"));
+"../server/battle-engine/src/main/resources/data"));
             if (!Directory.Exists(sourceFolder))
             {
                 Debug.LogError("Server data folder was not found: " + sourceFolder);
                 return;
             }
+
             string targetFolder = Path.Combine(Application.dataPath, "_Game/Resources/Data");
             Directory.CreateDirectory(targetFolder);
             SyncFile(sourceFolder, targetFolder, "items.json");
             SyncFile(sourceFolder, targetFolder, "sects.json");
             string samplesSource = Path.GetFullPath(Path.Combine(projectRoot ?? string.Empty,
-                "../server/battle-engine/samples"));
+"../server/battle-engine/samples"));
             string samplesTarget = Path.Combine(targetFolder, "Samples");
             if (Directory.Exists(samplesSource))
             {
@@ -44,6 +45,7 @@ namespace OneBagJianghu.EditorTools
                 Debug.LogError("Server data file was not found: " + source);
                 return;
             }
+
             byte[] sourceBytes = File.ReadAllBytes(source);
             bool changed = !File.Exists(target) || !BytesEqual(sourceBytes, File.ReadAllBytes(target));
             if (changed)
@@ -60,6 +62,7 @@ namespace OneBagJianghu.EditorTools
                 if (left[i] != right[i])
                     return false;
             }
+
             return true;
         }
     }

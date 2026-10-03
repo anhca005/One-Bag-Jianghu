@@ -25,6 +25,25 @@ class ItemsV2MechanicsTest {
     }
 
     @Test
+    void statusAppliedEffectsDoNotFireStatusAppliedAgain() {
+        ItemDef listener = passive("listener", ItemType.PILL,
+                on(TriggerEvent.STATUS_APPLIED, stacks(StatusType.POISON, 7)));
+        ItemDef poisoner = withTriggers(weapon("poisoner", 100, 1),
+                from(on(TriggerEvent.HIT, stacks(StatusType.POISON, 5)), TriggerSource.SELF));
+        BattleResult r = fight(List.of(listener, poisoner),
+                new Loadout("a", 100, 5, 4).add("listener", 0, 0).add("poisoner", 1, 0),
+                new Loadout("b", 10, 5, 4));
+
+        List<BattleEvent> poisonEvents = r.events().stream()
+                .filter(e -> e.type == EventType.STATUS && "POISON".equals(e.kind)).toList();
+        assertEquals(List.of(5, 7), poisonEvents.stream().map(e -> e.value).toList());
+        assertEquals(12, poisonEvents.get(1).total);
+        assertEquals(1, r.events().stream()
+                .filter(e -> e.type == EventType.TRIGGER && Integer.valueOf(0).equals(e.item)
+                        && "PASSIVE".equals(e.kind)).count());
+    }
+
+    @Test
     void relicCooldownUsesSlowAndHasteLikeWeapon() {
         ItemDef relic = active("relic", 1, op(EffectOp.GAIN_QI, 1));
         ItemDef slow = passive("slow", ItemType.ARMOR,
@@ -78,7 +97,7 @@ class ItemsV2MechanicsTest {
         EffectDef steal = new EffectDef();
         steal.op = EffectOp.LIFESTEAL;
         steal.pct = .5;
-        ItemDef sword = weapon("sword", 40, 1, damage(1), steal);
+        ItemDef sword = weapon("sword", 15, 1, damage(1), steal);
         ItemDef listener = passive("listener", ItemType.PILL, on(TriggerEvent.HEALED, op(EffectOp.GAIN_QI, 3)));
         ItemDef wound = passive("wound", ItemType.ARMOR, on(TriggerEvent.BATTLE_START, selfDamage(30)));
         BattleResult r = fight(List.of(sword, listener, wound),
@@ -119,7 +138,7 @@ class ItemsV2MechanicsTest {
     void hitsRollCritAndFireHitAndCritPerHit() {
         EffectDef triple = damage(1);
         triple.hits = 3;
-        ItemDef sword = weapon("sword", 10, 1, triple);
+        ItemDef sword = weapon("sword", 20, 1, triple);
         sword.crit = 1;
         sword = withTriggers(sword, from(on(TriggerEvent.HIT, op(EffectOp.GAIN_QI, 1)), TriggerSource.SELF),
                 from(on(TriggerEvent.CRIT, op(EffectOp.GAIN_QI, 1)), TriggerSource.SELF));

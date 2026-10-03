@@ -66,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: efdae721ef1233e459b84a605b8c7a21, type: 3}
     m_FontSize: 21
     m_FontStyle: 0
     m_BestFit: 0
@@ -76,8 +76,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.1
   m_Text: "B\u1EA1c \u2022 Danh V\u1ECDng"
 --- !u!1 &1267628613604062686
 GameObject:
@@ -145,7 +145,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: efdae721ef1233e459b84a605b8c7a21, type: 3}
     m_FontSize: 18
     m_FontStyle: 0
     m_BestFit: 0
@@ -155,8 +155,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.1
   m_Text: 
 --- !u!1 &1588587333026168103
 GameObject:
@@ -224,7 +224,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 0edfc4644c6678f4e80570bb70668767, type: 3}
     m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
@@ -234,8 +234,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.05
   m_Text: "Th\u01B0\u01A1ng H\u1ED9i"
 --- !u!1 &1620645472650198244
 GameObject:
@@ -488,7 +488,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: efdae721ef1233e459b84a605b8c7a21, type: 3}
     m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
@@ -498,8 +498,8 @@ MonoBehaviour:
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1.1
   m_Text: "Xem tr\u01B0\u1EDBc"
 --- !u!1 &5155490193957348755
 GameObject:
@@ -768,6 +768,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "Th\u01B0\u01A1ng H\u1ED9i"
       objectReference: {fileID: 0}
+    - target: {fileID: 8754293964787207250, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 22
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -883,11 +887,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138167588544832560, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
-      value: input
+      value: "Nguy\xEAn li\u1EC7u b\u1ECF ra"
       objectReference: {fileID: 0}
     - target: {fileID: 7127028664788619313, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Text
-      value: input
+      value: "Nguy\xEAn li\u1EC7u b\u1ECF ra"
       objectReference: {fileID: 0}
     - target: {fileID: 8871249755045663889, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Name
@@ -1265,6 +1269,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "X\xE1c nh\u1EADn \u0111\u1ED5i"
       objectReference: {fileID: 0}
+    - target: {fileID: 8754293964787207250, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1297,6 +1305,10 @@ PrefabInstance:
     - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Text
       value: "Ti\u1EC7m Danh V\u1ECDng"
+      objectReference: {fileID: 0}
+    - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x
@@ -1414,6 +1426,10 @@ PrefabInstance:
     - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Text
       value: "\u0110\u1ED5i nguy\xEAn li\u1EC7u"
+      objectReference: {fileID: 0}
+    - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x
@@ -1614,11 +1630,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4138167588544832560, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Options.m_Options.Array.data[0].m_Text
-      value: target
+      value: "Nguy\xEAn li\u1EC7u nh\u1EADn"
       objectReference: {fileID: 0}
     - target: {fileID: 7127028664788619313, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Text
-      value: target
+      value: "Nguy\xEAn li\u1EC7u nh\u1EADn"
       objectReference: {fileID: 0}
     - target: {fileID: 8871249755045663889, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
       propertyPath: m_Name
@@ -1741,6 +1757,10 @@ PrefabInstance:
       propertyPath: m_Text
       value: "L\xE0m m\u1EDBi"
       objectReference: {fileID: 0}
+    - target: {fileID: 8754293964787207250, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1773,6 +1793,10 @@ PrefabInstance:
     - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Text
       value: "\u0110\xF3ng"
+      objectReference: {fileID: 0}
+    - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x

@@ -6,9 +6,10 @@ namespace OneBagJianghu.UI.Popups
 {
     public sealed class SettingsPopup : BasePopup
     {
-        [SerializeField] private Toggle fullscreenToggle;
-        [SerializeField] private UiButton closeButton;
-
+        [SerializeField]
+        private Toggle fullscreenToggle;
+        [SerializeField]
+        private UiButton closeButton;
         protected override void Awake()
         {
             base.Awake();

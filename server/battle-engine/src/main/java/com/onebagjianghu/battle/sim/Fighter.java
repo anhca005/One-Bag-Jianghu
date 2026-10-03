@@ -27,6 +27,7 @@ final class Fighter {
     int shield;
     int qi;
     int dmgReducePermille;
+    int cooldownReductionPermille;
     int parryDiscount;
     int burn;
     int poison;
@@ -36,22 +37,20 @@ final class Fighter {
     /** Hero-target BUFF_STACK counts, separate for every source item and trigger. */
     final Map<String, Integer> buffStacks = new HashMap<>();
 
-    private Fighter(int side, String name, int hp) {
+    private Fighter(int side, String name) {
         this.side = side;
         this.name = name;
-        this.maxHp = hp;
-        this.hp = hp;
     }
 
     static Fighter create(int side, Loadout loadout, ItemCatalog catalog, SectCatalog sects, BattleConfig cfg) {
-        if (loadout.hp <= 0) {
-            throw new DataException("Loadout " + loadout.name + ": hp must be > 0");
+        if (loadout.level < 1) {
+            throw new DataException("Loadout " + loadout.name + ": level must be >= 1");
         }
         if (loadout.tamPhapLevel < 1 || loadout.tamPhapLevel > SectCatalog.MAX_LEVEL) {
             throw new DataException("Loadout " + loadout.name + ": tamPhapLevel must be 1.." + SectCatalog.MAX_LEVEL);
         }
         SectDef sect = loadout.sect == null ? null : sects.get(loadout.sect);
-        Fighter f = new Fighter(side, loadout.name, loadout.hp);
+        Fighter f = new Fighter(side, loadout.name);
         f.cols = loadout.cols;
         f.rows = loadout.rows;
         List<Rect> rects = new ArrayList<>();
@@ -77,6 +76,20 @@ final class Fighter {
             }
             var rarity = loadout.items.get(i).rarity;
             f.items.add(new ItemInstance(side * 100 + i, def, f, tier, rarity, rects.get(i), cfg.tierMultiplier(tier), cfg.rarityMultiplier(rarity)));
+        }
+        long hpBonus = 0, dmgReduce = 0, cooldownReduction = 0;
+        for (ItemInstance item : f.items) {
+            hpBonus += item.hpBonus;
+            dmgReduce += item.baseDmgReducePermille;
+            cooldownReduction += item.cooldownReductionPermille;
+        }
+        f.maxHp = Math.toIntExact((long) cfg.baseHp + (long) cfg.hpPerLevel * (loadout.level - 1) + hpBonus);
+        f.hp = f.maxHp;
+        f.dmgReducePermille = (int) Math.min(cfg.maxDmgReducePermille, dmgReduce);
+        f.cooldownReductionPermille = (int) Math.min(cfg.maxCooldownReducePermille, cooldownReduction);
+        for (ItemInstance item : f.items) {
+            if (item.cooldownMs > 0) item.cooldownMs = Math.max(cfg.tickMs,
+                    item.cooldownMs * (1000 - f.cooldownReductionPermille) / 1000);
         }
         List<List<Integer>> adjacency = BagGrid.adjacency(rects);
         for (int i = 0; i < f.items.size(); i++) {

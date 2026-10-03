@@ -1,51 +1,58 @@
 {
-  "name": "Thiết Phủ Bang (Chấn Nhạc Chùy + Khai Sơn Phủ)",
-  "hp": 1200,
+  "name": "Thi\u1ebft Ph\u1ee7 Bang - Ch\u1ea5n Nh\u1ea1c Ch\u00f9y Phong",
   "cols": 5,
   "rows": 4,
   "sect": "thiet_phu",
+  "tamPhapLevel": 1,
+  "level": 1,
   "items": [
     {
       "id": "chan_nhac_chuy",
       "x": 0,
       "y": 0,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
       "id": "khai_son_phu",
       "x": 0,
       "y": 2,
-      "rarity": "rare"
-    },
-    {
-      "id": "o_tam_y",
-      "x": 2,
-      "y": 0,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "tu_mau_song_dao",
-      "x": 2,
-      "y": 2,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
       "id": "thiet_cot_quyen_sao",
-      "x": 4,
+      "x": 2,
       "y": 0,
-      "rarity": "common"
+      "rarity": "rare"
     },
     {
-      "id": "boi_nguyen_dan",
-      "x": 4,
+      "id": "bach_luyen_chan_kinh",
+      "x": 2,
       "y": 2,
-      "rarity": "uncommon"
+      "rarity": "epic"
+    },
+    {
+      "id": "o_thiet_giap",
+      "x": 3,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
     },
     {
       "id": "tuy_tien_ho_lo",
       "x": 4,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
       "y": 3,
-      "rarity": "epic"
+      "rarity": "uncommon"
     }
   ]
 }

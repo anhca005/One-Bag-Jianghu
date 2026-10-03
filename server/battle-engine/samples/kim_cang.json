@@ -1,9 +1,9 @@
 {
-  "name": "Kim Cang Tự (Quyền + Côn)",
-  "hp": 1200,
+  "name": "Kim Cang Tự - Hộ Thể Côn Quyền",
   "cols": 5,
   "rows": 4,
   "sect": "kim_cang",
+  "tamPhapLevel": 1,
   "items": [
     {
       "id": "phuc_ho_con",
@@ -12,40 +12,71 @@
       "rarity": "epic"
     },
     {
-      "id": "phuc_ho_con",
+      "id": "thiet_cot_quyen_sao",
       "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_luyen_chan_kinh",
+      "x": 2,
       "y": 0,
       "rarity": "epic"
     },
     {
-      "id": "thiet_cot_quyen_sao",
-      "x": 2,
-      "y": 0,
-      "rarity": "common"
-    },
-    {
-      "id": "thiet_cot_quyen_sao",
+      "id": "tu_kim_bat",
       "x": 2,
       "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "cuu_chuyen_hoan_hon_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 3,
+      "y": 1,
       "rarity": "common"
     },
     {
-      "id": "o_tam_y",
+      "id": "boi_nguyen_dan",
       "x": 3,
-      "y": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 1,
       "rarity": "uncommon"
     },
     {
       "id": "tuy_tien_ho_lo",
-      "x": 3,
-      "y": 2,
-      "rarity": "epic"
-    },
-    {
-      "id": "boi_nguyen_dan",
       "x": 4,
       "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 4,
+      "y": 3,
       "rarity": "uncommon"
     }
-  ]
+  ],
+  "level": 1
 }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -65,6 +66,18 @@ class ItemCatalogTest {
     }
 
     @Test
+    void rejectsUnknownWeaponClassAndWeaponClassOnNonWeapon() {
+        String unknown = error("""
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"dagger","rarity":"common",
+                  "attack":5,"cooldown":1,"size":[1,2]}]""");
+        assertTrue(unknown.contains("weaponClass must be one of"));
+        assertTrue(unknown.contains("sword"));
+        assertTrue(error("""
+                [{"id":"x","name":"X","type":"armor","weaponClass":"sword","rarity":"common"}]""")
+                .contains("weaponClass is only valid for weapons"));
+    }
+
+    @Test
     void rejectsNegativeOrMeaninglessNumbers() {
         assertTrue(error("""
                 [{"id":"x","name":"X","type":"weapon","rarity":"common","attack":-5,"cooldown":1,"size":[1,2]}]""")
@@ -114,7 +127,7 @@ class ItemCatalogTest {
     }
 
     private static final String UNLOCK_WEAPON = """
-            [{"id":"x","name":"X","type":"weapon","rarity":"rare","size":[1,3],"attack":50,"cooldown":3,"crit":0.1,
+            [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"rare","size":[1,3],"attack":50,"cooldown":3,"crit":0.1,
               "basic":[{"op":"damage"}],
               "unlocks":[
                 {"tier":3,"crit":0.05,"cooldown":-0.5,"basic":[{"op":"gain_qi","value":4}]},
@@ -155,19 +168,44 @@ class ItemCatalogTest {
     @Test
     void rejectsBadUnlocks() {
         assertTrue(error("""
-                [{"id":"x","name":"X","type":"weapon","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
                   "unlocks":[{"tier":4,"attack":1}]}]""").contains("tier must be one of"));
         assertTrue(error("""
-                [{"id":"x","name":"X","type":"weapon","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
                   "unlocks":[{"tier":6,"attack":1},{"tier":3,"attack":1}]}]""").contains("sorted"));
         assertTrue(error("""
-                [{"id":"x","name":"X","type":"weapon","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
                   "unlocks":[{"tier":3,"cooldown":-1}]}]""").contains("at tier 3: weapon needs cooldown > 0"));
         assertTrue(error("""
-                [{"id":"x","name":"X","type":"weapon","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
                   "unlocks":[{"tier":3,"ultimate":[{"op":"damage"}]}]}]""").contains("at tier 3: ultimate.cost must be > 0"));
         assertTrue(error("""
-                [{"id":"x","name":"X","type":"weapon","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
+                [{"id":"x","name":"X","type":"weapon","weaponClass":"sword","rarity":"common","size":[1,2],"attack":5,"cooldown":1,
                   "unlocks":[{"tier":9,"basic":[{"op":"heal","value":0}]}]}]""").contains("at tier 9: basic[0]"));
+    }
+
+    @Test
+    void parsesOptionalStatsAndRejectsInvalidStats() {
+        ItemDef missing = parse("[{\"id\":\"x\",\"name\":\"X\",\"type\":\"armor\"}]").get("x");
+        assertEquals(0, missing.stats.hp);
+        assertEquals(0, missing.stats.dmgReducePermille());
+        assertEquals(0, missing.stats.cooldownReductionPermille());
+
+        ItemDef stats = parse("[{\"id\":\"x\",\"name\":\"X\",\"type\":\"armor\","
+                + "\"stats\":{\"hp\":120,\"dmgReduce\":0.0504,\"cooldownReduction\":0.1005}}]").get("x");
+        assertEquals(120, stats.stats.hp);
+        assertEquals(50, stats.stats.dmgReducePermille());
+        assertEquals(101, stats.stats.cooldownReductionPermille());
+
+        assertTrue(error("[{\"id\":\"x\",\"name\":\"X\",\"type\":\"armor\",\"stats\":{\"mystery\":1}}]")
+                .contains("mystery"));
+        assertTrue(error("[{\"id\":\"x\",\"name\":\"X\",\"type\":\"armor\",\"stats\":{\"hp\":1.5}}]")
+                .contains("hp"));
+        for (String bad : List.of("{\"hp\":-1}", "{\"dmgReduce\":-0.1}",
+                "{\"dmgReduce\":1.1}", "{\"cooldownReduction\":-0.1}",
+                "{\"cooldownReduction\":1.1}")) {
+            String message = error("[{\"id\":\"stat_item\",\"name\":\"X\",\"type\":\"armor\",\"stats\":" + bad + "}]");
+            assertTrue(message.contains("stat_item"));
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace OneBagJianghu.Net
     public sealed class WebSocketTransport : IGameTransport
     {
         private readonly ClientWebSocket socket = new ClientWebSocket();
-
         public bool IsConnected => socket.State == WebSocketState.Open;
 
         public Task ConnectAsync(Uri uri, CancellationToken cancellationToken)
@@ -33,7 +32,8 @@ namespace OneBagJianghu.Net
                 while (true)
                 {
                     var segment = new ArraySegment<byte>(buffer);
-                    WebSocketReceiveResult result = await socket.ReceiveAsync(segment, cancellationToken).ConfigureAwait(false);
+                    WebSocketReceiveResult result = await socket.ReceiveAsync(segment,
+cancellationToken).ConfigureAwait(false);
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
                         return null;
@@ -62,7 +62,9 @@ namespace OneBagJianghu.Net
         {
             if (socket.State == WebSocketState.Open || socket.State == WebSocketState.CloseReceived)
             {
-                await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "Client disconnect", cancellationToken).ConfigureAwait(false);
+                await socket.CloseAsync(WebSocketCloseStatus.NormalClosure,
+"Client disconnect",
+cancellationToken).ConfigureAwait(false);
             }
         }
 

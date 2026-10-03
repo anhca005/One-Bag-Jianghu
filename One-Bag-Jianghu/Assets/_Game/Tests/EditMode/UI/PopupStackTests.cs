@@ -13,8 +13,16 @@ namespace OneBagJianghu.Tests.UI
         [Test]
         public void PushMovesExistingPopupToTop()
         {
-            GameObject firstObject = new GameObject("First", typeof(RectTransform), typeof(CanvasGroup), typeof(PopupStackTestPopup));
-            GameObject secondObject = new GameObject("Second", typeof(RectTransform), typeof(CanvasGroup), typeof(PopupStackTestPopup));
+            GameObject firstObject =
+new GameObject("First",
+typeof(RectTransform),
+typeof(CanvasGroup),
+typeof(PopupStackTestPopup));
+            GameObject secondObject =
+new GameObject("Second",
+typeof(RectTransform),
+typeof(CanvasGroup),
+typeof(PopupStackTestPopup));
             try
             {
                 PopupStackTestPopup first = firstObject.GetComponent<PopupStackTestPopup>();
@@ -36,7 +44,11 @@ namespace OneBagJianghu.Tests.UI
         [Test]
         public void RemoveAndClearUpdateTop()
         {
-            GameObject popupObject = new GameObject("Popup", typeof(RectTransform), typeof(CanvasGroup), typeof(PopupStackTestPopup));
+            GameObject popupObject =
+new GameObject("Popup",
+typeof(RectTransform),
+typeof(CanvasGroup),
+typeof(PopupStackTestPopup));
             try
             {
                 PopupStackTestPopup popup = popupObject.GetComponent<PopupStackTestPopup>();
@@ -60,7 +72,8 @@ namespace OneBagJianghu.Tests.UI
         public void SortingOrdersUseTwoSlotsPerLevel(int index, int popupOrder, int backdropOrder)
         {
             Assert.That(PopupStack.PopupSortingOrder(index), Is.EqualTo(popupOrder));
-            Assert.That(PopupStack.BackdropSortingOrder(index), Is.EqualTo(backdropOrder));
+            Assert.That(PopupStack.BackdropSortingOrder(index),
+Is.EqualTo(backdropOrder));
         }
     }
 }

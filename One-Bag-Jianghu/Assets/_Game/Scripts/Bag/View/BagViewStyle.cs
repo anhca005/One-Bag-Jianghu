@@ -1,4 +1,5 @@
 using UnityEngine;
+using OneBagJianghu.Economy;
 
 namespace OneBagJianghu.Bag.View
 {
@@ -12,7 +13,6 @@ namespace OneBagJianghu.Bag.View
         public static readonly Color Gold = Hex("#C9A45C");
         public static readonly Color Valid = new Color(0.20f, 0.65f, 0.30f, 0.42f);
         public static readonly Color Invalid = new Color(0.78f, 0.18f, 0.16f, 0.42f);
-
         public static Color Rarity(string rarity)
         {
             return rarity switch
@@ -31,6 +31,28 @@ namespace OneBagJianghu.Bag.View
             Color color = Rarity(rarity);
             color.a = 0.35f;
             return color;
+        }
+
+        public static string RarityName(string rarity) => RarityRules.Index(rarity) switch
+        {
+            1 => "Lương",
+            2 => "Tinh",
+            3 => "Tuyệt",
+            4 => "Thần Binh",
+            5 => "Chí Tôn",
+            _ => "Phàm"
+        };
+        public static string RarityRichText(string rarity) => "<color=#"
++ ColorUtility.ToHtmlStringRGB(RarityText(rarity))
++ ">"
++ RarityName(rarity)
++ "</color>";
+        // Frames use the brighter palette; copy printed on pale paper needs substantially
+        // darker ink, especially the common grey and legendary gold.
+        public static Color RarityText(string rarity)
+        {
+            Color color = Rarity(rarity);
+            return Color.Lerp(color, Ink, rarity == "common" ? .78f : .48f);
         }
 
         private static Color Hex(string value)

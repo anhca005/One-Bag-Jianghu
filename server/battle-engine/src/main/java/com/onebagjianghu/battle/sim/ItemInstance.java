@@ -25,7 +25,10 @@ final class ItemInstance {
 
     int attack;
     int critPermille;
-    final int cooldownMs;
+    int cooldownMs;
+    final int hpBonus;
+    final int baseDmgReducePermille;
+    final int cooldownReductionPermille;
     int progressMs;
     int hasteUntil;
     int slowUntil;
@@ -43,6 +46,13 @@ final class ItemInstance {
         this.attack = def.attack * tierMultiplier / 1000 * rarityMultiplier / 1000;
         this.critPermille = def.critPermille();
         this.cooldownMs = def.cooldownMs();
+        this.hpBonus = scale(def.stats.hp, tierMultiplier, rarityMultiplier);
+        this.baseDmgReducePermille = scale(def.stats.dmgReducePermille(), tierMultiplier, rarityMultiplier);
+        this.cooldownReductionPermille = scale(def.stats.cooldownReductionPermille(), tierMultiplier, rarityMultiplier);
+    }
+
+    private static int scale(int value, int tierMultiplier, int rarityMultiplier) {
+        return value * tierMultiplier / 1000 * rarityMultiplier / 1000;
     }
 
     boolean isActive() {

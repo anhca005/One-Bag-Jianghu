@@ -89,6 +89,8 @@ public final class BattleCli {
         if (runs > 1) {
             Breakdown ba = new Breakdown(catalog);
             Breakdown bb = new Breakdown(catalog);
+            ba.fighterStats(sim.fighterStats(a));
+            bb.fighterStats(sim.fighterStats(b));
             Stats s = stats(sim, a, b, runs, r -> {
                 ba.add(r, 0);
                 bb.add(r, 1);

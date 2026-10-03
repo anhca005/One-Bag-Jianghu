@@ -7,17 +7,38 @@ namespace OneBagJianghu.Bag
 {
     public sealed class SectInfo
     {
-        public string Id { get; }
-        public string Name { get; }
-        public string TamPhap { get; }
-        public IReadOnlyList<string> WeaponClasses { get; }
+        public string Id
+        {
+            get;
+        }
+        public string Name
+        {
+            get;
+        }
+        public string TamPhap
+        {
+            get;
+        }
+        public IReadOnlyList<string> WeaponClasses
+        {
+            get;
+        }
+        public string LevelOneEffect
+        {
+            get;
+        }
 
-        public SectInfo(string id, string name, string tamPhap, IReadOnlyList<string> weaponClasses)
+        public SectInfo(string id,
+string name,
+string tamPhap,
+IReadOnlyList<string> weaponClasses,
+string levelOneEffect = "")
         {
             Id = id;
             Name = name;
             TamPhap = tamPhap;
             WeaponClasses = weaponClasses;
+            LevelOneEffect = levelOneEffect;
         }
 
         public bool Buffs(string weaponClass)
@@ -29,6 +50,7 @@ namespace OneBagJianghu.Bag
                 if (string.Equals(WeaponClasses[i], weaponClass, StringComparison.Ordinal))
                     return true;
             }
+
             return false;
         }
     }
@@ -37,7 +59,6 @@ namespace OneBagJianghu.Bag
     {
         private readonly List<SectInfo> all;
         private readonly Dictionary<string, SectInfo> byId;
-
         private SectCatalog(List<SectInfo> sects)
         {
             all = sects;
@@ -55,14 +76,27 @@ namespace OneBagJianghu.Bag
 
         public static SectCatalog Parse(string json)
         {
-            List<SectDto> data = JsonConvert.DeserializeObject<List<SectDto>>(json)
-                ?? throw new FormatException("Sect catalog JSON is null.");
+            List<SectDto> data =
+                JsonConvert
+                    .DeserializeObject<List<SectDto>>(json)
+                    ?? throw new FormatException("Sect catalog JSON is null.");
             var sects = new List<SectInfo>(data.Count);
             foreach (SectDto dto in data)
             {
-                sects.Add(new SectInfo(dto.Id, dto.Name, dto.TamPhap,
-                    dto.WeaponClasses ?? Array.Empty<string>()));
+                SectLevelDto first = dto.Levels == null ? null : Array.Find(dto.Levels, value => value.Level == 1);
+                string effect =
+                    first == null
+                    ? "Không có hiệu ứng"
+                    : first.AttackPct > 0
+                    ? $"Tăng {first.AttackPct * 100:0}% Lực Đạo"
+                    : "Mở hiệu ứng Tâm Pháp";
+                sects.Add(new SectInfo(dto.Id,
+dto.Name,
+dto.TamPhap,
+dto.WeaponClasses ?? Array.Empty<string>(),
+effect));
             }
+
             return new SectCatalog(sects);
         }
 
@@ -84,10 +118,24 @@ namespace OneBagJianghu.Bag
 
         private sealed class SectDto
         {
-            [JsonProperty("id")] public string Id;
-            [JsonProperty("name")] public string Name;
-            [JsonProperty("tamPhap")] public string TamPhap;
-            [JsonProperty("weaponClasses")] public string[] WeaponClasses;
+            [JsonProperty("id")]
+            public string Id;
+            [JsonProperty("name")]
+            public string Name;
+            [JsonProperty("tamPhap")]
+            public string TamPhap;
+            [JsonProperty("weaponClasses")]
+            public string[] WeaponClasses;
+            [JsonProperty("levels")]
+            public SectLevelDto[] Levels;
+        }
+
+        private sealed class SectLevelDto
+        {
+            [JsonProperty("level")]
+            public int Level;
+            [JsonProperty("attackPct")]
+            public float AttackPct;
         }
     }
 }

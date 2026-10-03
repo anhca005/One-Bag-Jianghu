@@ -15,14 +15,17 @@ namespace OneBagJianghu.Core
         private readonly double readyTimeoutSeconds;
         private double startedAt;
         private double waitingStartedAt;
-
         public SceneTransition(double minimumVisibleSeconds = 0.6d, double readyTimeoutSeconds = 5d)
         {
             this.minimumVisibleSeconds = minimumVisibleSeconds;
             this.readyTimeoutSeconds = readyTimeoutSeconds;
         }
 
-        public SceneTransitionState State { get; private set; } = SceneTransitionState.Idle;
+        public SceneTransitionState State
+        {
+            get;
+            private set;
+        } = SceneTransitionState.Idle;
         public bool IsRunning => State != SceneTransitionState.Idle;
 
         public bool Begin(double now)
@@ -60,6 +63,7 @@ namespace OneBagJianghu.Core
                     {
                         State = SceneTransitionState.FadingOut;
                     }
+
                     break;
                 case SceneTransitionState.FadingOut when fadeComplete:
                     State = SceneTransitionState.Idle;

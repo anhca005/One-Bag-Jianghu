@@ -6,12 +6,16 @@ namespace OneBagJianghu.UI.Popups
 {
     public sealed class BagPopup : BasePopup
     {
-        [SerializeField] private RectTransform bagHost;
-        [SerializeField] private BagLoadoutPanel bagPanel;
-        [SerializeField] private UiButton saveButton;
-        [SerializeField] private UiButton closeButton;
-        [SerializeField] private ItemTooltip itemTooltip;
-
+        [SerializeField]
+        private RectTransform bagHost;
+        [SerializeField]
+        private BagLoadoutPanel bagPanel;
+        [SerializeField]
+        private UiButton saveButton;
+        [SerializeField]
+        private UiButton closeButton;
+        [SerializeField]
+        private ItemTooltip itemTooltip;
         public RectTransform BagHost => bagHost;
 
         protected override void Awake()
@@ -29,8 +33,16 @@ namespace OneBagJianghu.UI.Popups
             bagPanel.SetTooltip(itemTooltip);
             bagPanel.Bind(session.Profile);
         }
-        protected override void OnShown() { itemTooltip.EnsureAbove(GetComponent<Canvas>()); }
-        protected override void OnHidden() { itemTooltip.Hide(); }
+
+        protected override void OnShown()
+        {
+            itemTooltip.EnsureAbove(GetComponent<Canvas>());
+        }
+
+        protected override void OnHidden()
+        {
+            itemTooltip.Hide();
+        }
 
         private void Save()
         {
@@ -40,6 +52,7 @@ namespace OneBagJianghu.UI.Popups
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", error));
                 return;
             }
+
             session.SaveProfile();
             Close();
         }

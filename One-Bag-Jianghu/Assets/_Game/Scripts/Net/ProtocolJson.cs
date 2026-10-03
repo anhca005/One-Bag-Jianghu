@@ -7,7 +7,6 @@ namespace OneBagJianghu.Net
     public static class ProtocolJson
     {
         private static readonly JsonSerializer Serializer = JsonSerializer.CreateDefault();
-
         public static Envelope Build(string type, long id, object payload)
         {
             if (string.IsNullOrWhiteSpace(type))

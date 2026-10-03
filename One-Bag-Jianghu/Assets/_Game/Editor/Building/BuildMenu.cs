@@ -14,6 +14,7 @@ namespace OneBagJianghu.EditorTools.Building
             GameControllerPrefabBuilder.Build,
             BagPrefabBuilder.Build,
             ReplayPrefabBuilder.Build,
+            PvePrefabBuilder.Build,
             PopupPrefabBuilder.Build,
             EconomyPopupPrefabBuilder.Build,
             LoginHomeSceneBuilder.Build,
@@ -49,7 +50,7 @@ namespace OneBagJianghu.EditorTools.Building
         public static void BuildAllMissing() => BuildAll(false);
 
         [MenuItem("One Bag Jianghu/Build/Build All Missing (Overwrite)")]
-        public static void BuildAllOverwrite() => BuildAll(true);
+        public static void BuildAllOverwrite() { PvePrefabBuilder.RebuildArtLibrary(); BuildAll(true); }
 
         private static void BuildAll(bool overwrite)
         {

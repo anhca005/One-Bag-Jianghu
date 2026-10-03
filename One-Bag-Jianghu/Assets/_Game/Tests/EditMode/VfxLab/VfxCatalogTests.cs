@@ -13,7 +13,9 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         {
             var keys = new HashSet<string>();
             foreach (VfxCatalogEntry entry in VfxCatalog.Entries)
+            {
                 Assert.That(keys.Add(entry.Key), Is.True, "Duplicate VFX key: " + entry.Key);
+            }
 
             Assert.That(keys.Count, Is.EqualTo(39));
         }
@@ -25,9 +27,14 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
             var keys = CatalogKeys();
             foreach (ItemInfo item in items.All)
             {
-                if (item.Type != "weapon") continue;
-                Assert.That(keys, Does.Contain(item.WeaponClass + "_basic"), item.WeaponClass);
-                Assert.That(keys, Does.Contain(item.WeaponClass + "_ultimate"), item.WeaponClass);
+                if (item.Type != "weapon")
+                    continue;
+                Assert.That(keys,
+Does.Contain(item.WeaponClass + "_basic"),
+item.WeaponClass);
+                Assert.That(keys,
+Does.Contain(item.WeaponClass + "_ultimate"),
+item.WeaponClass);
             }
         }
 
@@ -36,13 +43,16 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         {
             foreach (VfxCatalogEntry entry in VfxCatalog.Entries)
             {
-                if (entry.Group == VfxCatalogGroup.Common) continue;
+                if (entry.Group == VfxCatalogGroup.Common)
+                    continue;
                 string weaponClass = entry.Key.Substring(0, entry.Key.LastIndexOf('_'));
                 var item = new ItemInfo("test", "Test", "weapon", weaponClass, null, "common", 1, 1);
-                var battleEvent = new BattleEvent { Type = BattleEventType.Trigger, Kind = entry.EventKind };
-
+                var battleEvent = new BattleEvent
+                {
+                    Type = BattleEventType.Trigger,
+                    Kind = entry.EventKind
+                };
                 ReplayVfx resolved = VfxResolver.Resolve(battleEvent, item);
-
                 Assert.That(resolved.Kind, Is.EqualTo(ReplayVfxKind.Travel));
                 Assert.That(entry.Key, Is.EqualTo(resolved.SpriteKey));
             }
@@ -53,9 +63,12 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         [TestCase("BLEED", "burst_bleed")]
         public void BurstEntriesMatchResolver(string kind, string expectedKey)
         {
-            var battleEvent = new BattleEvent { Type = BattleEventType.Burst, Kind = kind };
+            var battleEvent = new BattleEvent
+            {
+                Type = BattleEventType.Burst,
+                Kind = kind
+            };
             ReplayVfx resolved = VfxResolver.Resolve(battleEvent, null);
-
             Assert.That(resolved.SpriteKey, Is.EqualTo(expectedKey));
             Assert.That(CatalogKeys(), Does.Contain(resolved.SpriteKey));
         }
@@ -63,7 +76,11 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         private static HashSet<string> CatalogKeys()
         {
             var keys = new HashSet<string>();
-            foreach (VfxCatalogEntry entry in VfxCatalog.Entries) keys.Add(entry.Key);
+            foreach (VfxCatalogEntry entry in VfxCatalog.Entries)
+            {
+                keys.Add(entry.Key);
+            }
+
             return keys;
         }
     }

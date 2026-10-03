@@ -6,7 +6,11 @@ namespace OneBagJianghu.UI.Loading
 {
     public sealed class LoadingPanel : MonoBehaviour
     {
-        public static bool IsVisible { get; private set; }
+        public static bool IsVisible
+        {
+            get;
+            private set;
+        }
 
         private static readonly string[] Tips =
         {
@@ -18,14 +22,18 @@ namespace OneBagJianghu.UI.Loading
             "Trang bị cùng môn phái sẽ phát huy sở trường của hiệp khách.",
             "Quan sát nhật ký giao đấu để hoàn thiện đội hình."
         };
-
-        [SerializeField] private Canvas canvas;
-        [SerializeField] private CanvasGroup group;
-        [SerializeField] private GameObject panelRoot;
-        [SerializeField] private Slider progress;
-        [SerializeField] private Text percentage;
-        [SerializeField] private Text tip;
-
+        [SerializeField]
+        private Canvas canvas;
+        [SerializeField]
+        private CanvasGroup group;
+        [SerializeField]
+        private GameObject panelRoot;
+        [SerializeField]
+        private Slider progress;
+        [SerializeField]
+        private Text percentage;
+        [SerializeField]
+        private Text tip;
         private void Awake()
         {
             group.alpha = 0f;

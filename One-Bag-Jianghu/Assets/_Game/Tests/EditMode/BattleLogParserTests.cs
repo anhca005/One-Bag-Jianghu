@@ -12,7 +12,6 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Parse_ReadsSampleCountsAndWinner()
         {
             BattleLog log = LoadSample();
-
             Assert.That(log.Items, Has.Count.EqualTo(16));
             Assert.That(log.Events, Has.Count.EqualTo(491));
             Assert.That(log.Winner, Is.EqualTo(1));
@@ -25,7 +24,6 @@ namespace OneBagJianghu.Tests.Battle.Replay
             BattleLog log = LoadSample();
             BattleEvent start = log.Events[0];
             BattleEvent firstDamage = FindFirst(log, BattleEventType.Damage);
-
             Assert.That(start.Item, Is.Null);
             Assert.That(start.Value, Is.Null);
             Assert.That(start.Hp, Is.EqualTo(1200));
@@ -38,12 +36,11 @@ namespace OneBagJianghu.Tests.Battle.Replay
         [Test]
         public void Parse_MapsUnknownEventTypeWithoutFailing()
         {
-            const string json = "{\"seed\":1,\"winner\":-1,\"durationMs\":0," +
-                                "\"names\":[\"A\",\"B\"],\"finalHp\":[1,1],\"items\":[]," +
-                                "\"events\":[{\"t\":0,\"type\":\"NEW_SERVER_EVENT\",\"side\":0}]}";
-
+            const string json =
+"{\"seed\":1,\"winner\":-1,\"durationMs\":0," +
+"\"names\":[\"A\",\"B\"],\"finalHp\":[1,1],\"items\":[]," +
+"\"events\":[{\"t\":0,\"type\":\"NEW_SERVER_EVENT\",\"side\":0}]}";
             BattleLog log = BattleLogParser.Parse(json);
-
             Assert.That(log.Events[0].Type, Is.EqualTo(BattleEventType.Unknown));
             Assert.That(log.Events[0].RawType, Is.EqualTo("NEW_SERVER_EVENT"));
         }
@@ -51,7 +48,9 @@ namespace OneBagJianghu.Tests.Battle.Replay
         [Test]
         public void Parse_ThrowsClearExceptionForMalformedJson()
         {
-            FormatException exception = Assert.Throws<FormatException>(() => BattleLogParser.Parse("{bad json"));
+            FormatException exception =
+Assert.Throws<FormatException>(() =>
+BattleLogParser.Parse("{bad json"));
             StringAssert.Contains("Malformed battle log JSON", exception.Message);
         }
 
@@ -59,7 +58,6 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Parse_ReadsReplayBagAndPlacementFields()
         {
             BattleLog log = Load("replay_sample.json");
-
             Assert.That(log.Events, Has.Count.EqualTo(331));
             Assert.That(log.Bags[0], Is.EqualTo(new[] { 5, 4 }));
             Assert.That(log.Bags[1], Is.EqualTo(new[] { 5, 4 }));
@@ -74,7 +72,6 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Parse_OldSampleDefaultsBagsAndLeavesPlacementAbsent()
         {
             BattleLog log = Load("sample_battle.json");
-
             Assert.That(log.Bags[0], Is.EqualTo(new[] { 5, 4 }));
             Assert.That(log.Bags[1], Is.EqualTo(new[] { 5, 4 }));
             Assert.That(log.Items[0].X, Is.Null);
@@ -85,8 +82,10 @@ namespace OneBagJianghu.Tests.Battle.Replay
         {
             for (int i = 0; i < log.Events.Count; i++)
             {
-                if (log.Events[i].Type == type) return log.Events[i];
+                if (log.Events[i].Type == type)
+                    return log.Events[i];
             }
+
             Assert.Fail("No event of type " + type + " was found.");
             return null;
         }

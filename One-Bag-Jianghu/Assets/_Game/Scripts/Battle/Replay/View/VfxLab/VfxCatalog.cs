@@ -11,7 +11,11 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
 
     public sealed class VfxCatalogEntry
     {
-        public VfxCatalogEntry(string key, ReplayVfxKind kind, string label, VfxCatalogGroup group, string eventKind)
+        public VfxCatalogEntry(string key,
+ReplayVfxKind kind,
+string label,
+VfxCatalogGroup group,
+string eventKind)
         {
             Key = key;
             Kind = kind;
@@ -31,18 +35,45 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
     {
         private static readonly string[] WeaponClasses =
         {
-            "fist", "staff", "sword", "blade", "hidden", "claw", "axe", "brush", "flute",
-            "zither", "palm", "fan", "spear", "hammer", "whip", "dual", "bow"
+            "fist",
+            "staff",
+            "sword",
+            "blade",
+            "hidden",
+            "claw",
+            "axe",
+            "brush",
+            "flute",
+            "zither",
+            "palm",
+            "fan",
+            "spear",
+            "hammer",
+            "whip",
+            "dual",
+            "bow"
         };
-
         private static readonly string[] WeaponNames =
         {
-            "Quyền Sáo", "Côn", "Kiếm", "Đao", "Ám Khí", "Trảo", "Rìu", "Bút", "Tiêu (sáo)",
-            "Cầm", "Chưởng", "Phiến", "Thương", "Chùy", "Tiên", "Song Đao", "Cung"
+            "Quyền Sáo",
+            "Côn",
+            "Kiếm",
+            "Đao",
+            "Ám Khí",
+            "Trảo",
+            "Rìu",
+            "Bút",
+            "Tiêu (sáo)",
+            "Cầm",
+            "Chưởng",
+            "Phiến",
+            "Thương",
+            "Chùy",
+            "Tiên",
+            "Song Đao",
+            "Cung"
         };
-
         private static readonly IReadOnlyList<VfxCatalogEntry> entries = Build();
-
         public static IReadOnlyList<VfxCatalogEntry> Entries => entries;
 
         private static IReadOnlyList<VfxCatalogEntry> Build()
@@ -60,20 +91,35 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
 
         private static VfxCatalogEntry Common(BattleEventType type, string eventKind, string label)
         {
-            ReplayVfx resolved = VfxResolver.Resolve(new BattleEvent { Type = type, Kind = eventKind }, null);
-            return new VfxCatalogEntry(resolved.SpriteKey, resolved.Kind, label, VfxCatalogGroup.Common, eventKind);
+            ReplayVfx resolved =
+VfxResolver.Resolve(new BattleEvent
+{
+    Type = type,
+    Kind = eventKind
+},
+null);
+            return new VfxCatalogEntry(resolved.SpriteKey,
+resolved.Kind,
+label,
+VfxCatalogGroup.Common,
+eventKind);
         }
 
-        private static void AddWeapons(List<VfxCatalogEntry> result, string eventKind, string suffix, VfxCatalogGroup group)
+        private static void AddWeapons(List<VfxCatalogEntry> result,
+string eventKind,
+string suffix,
+VfxCatalogGroup group)
         {
             for (int i = 0; i < WeaponClasses.Length; i++)
             {
-                result.Add(new VfxCatalogEntry(
-                    VfxResolver.ResolveWeaponKey(WeaponClasses[i], eventKind),
-                    ReplayVfxKind.Travel,
-                    WeaponNames[i] + " — " + suffix,
-                    group,
-                    eventKind));
+                result.Add(new VfxCatalogEntry(VfxResolver.ResolveWeaponKey(WeaponClasses[i],
+eventKind),
+ReplayVfxKind.Travel,
+WeaponNames[i] +
+" — " +
+suffix,
+group,
+eventKind));
             }
         }
     }

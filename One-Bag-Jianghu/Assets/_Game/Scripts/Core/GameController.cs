@@ -7,14 +7,22 @@ namespace OneBagJianghu.Core
 {
     public sealed class GameController : MonoBehaviour
     {
-        public static GameController Instance { get; private set; }
+        public static GameController Instance
+        {
+            get;
+            private set;
+        }
 
-        [SerializeField] private GameSession session;
-        [SerializeField] private SceneFlow flow;
-        [SerializeField] private PopupManager popups;
-        [SerializeField] private LoadingPanel loading;
-        [SerializeField] private NetworkService network;
-
+        [SerializeField]
+        private GameSession session;
+        [SerializeField]
+        private SceneFlow flow;
+        [SerializeField]
+        private PopupManager popups;
+        [SerializeField]
+        private LoadingPanel loading;
+        [SerializeField]
+        private NetworkService network;
         public GameSession Session => session;
         public SceneFlow Flow => flow;
         public PopupManager Popups => popups;
@@ -40,7 +48,8 @@ namespace OneBagJianghu.Core
 
         private void OnDestroy()
         {
-            if (Instance == this) Instance = null;
+            if (Instance == this)
+                Instance = null;
         }
     }
 }

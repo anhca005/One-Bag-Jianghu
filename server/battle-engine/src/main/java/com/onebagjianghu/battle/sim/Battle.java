@@ -25,7 +25,8 @@ final class Battle {
     private int winner = -1;
 
     /** source = item owning the effect; eventSource = item that raised the triggering event. */
-    private record Ctx(Fighter owner, ItemInstance source, ItemInstance eventSource, int depth, String stackKey) {
+    private record Ctx(Fighter owner, ItemInstance source, ItemInstance eventSource, int depth, String stackKey,
+                       boolean suppressStatusApplied) {
     }
 
     Battle(BattleConfig cfg, ItemCatalog catalog, SectCatalog sects, Loadout a, Loadout b, long seed) {
@@ -176,7 +177,7 @@ final class Battle {
     private void activate(ItemInstance it) {
         Fighter self = it.owner;
         Fighter enemy = self.enemy;
-        Ctx ctx = new Ctx(self, it, it, 0, "active");
+        Ctx ctx = new Ctx(self, it, it, 0, "active", false);
         UltimateDef ult = it.def.ultimate;
         if (ult != null && self.qi >= ult.cost) {
             spendQi(self, ult.cost, it, 0);
@@ -219,7 +220,8 @@ final class Battle {
                 if (t.maxUses > 0 && it.triggerUses[i] >= t.maxUses) continue;
                 it.triggerUses[i]++;
                 emit(ev(EventType.TRIGGER, side).item(it.uid).kind("PASSIVE").state(side));
-                execAll(t.effects, new Ctx(side, it, eventSource, depth + 1, "trigger:" + i), false);
+                execAll(t.effects, new Ctx(side, it, eventSource, depth + 1, "trigger:" + i,
+                        event == TriggerEvent.STATUS_APPLIED), false);
             }
         }
     }
@@ -397,7 +399,9 @@ final class Battle {
                 // Overflow past the threshold is discarded: the meter resets to 0.
                 setMeter(f, s, bursts ? 0 : meter);
                 emit(ev(EventType.STATUS, f).kind(s.name()).value(points).total(bursts ? b.threshold : meter).state(f));
-                fire(TriggerEvent.STATUS_APPLIED, ctx.owner, ctx.source, s, ctx.depth);
+                if (!ctx.suppressStatusApplied) {
+                    fire(TriggerEvent.STATUS_APPLIED, ctx.owner, ctx.source, s, ctx.depth);
+                }
                 if (bursts) {
                     int dmg = b.damage + (int) ((long) f.maxHp * b.maxHpPermille / 1000);
                     loseHp(f, dmg, b.ignoreShield, EventType.BURST, s.name(), ctx.source, false, ctx.depth);
@@ -437,7 +441,9 @@ final class Battle {
             }
         }
         if (applied) {
-            fire(TriggerEvent.STATUS_APPLIED, ctx.owner, ctx.source, s, ctx.depth);
+            if (!ctx.suppressStatusApplied) {
+                fire(TriggerEvent.STATUS_APPLIED, ctx.owner, ctx.source, s, ctx.depth);
+            }
         }
     }
 

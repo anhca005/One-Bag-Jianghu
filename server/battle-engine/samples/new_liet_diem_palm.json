@@ -1,57 +1,82 @@
 {
-  "name": "Liệt Diễm Đường (Xích Sa Chưởng + Liệt Diễm Đao)",
-  "hp": 1200,
+  "name": "Liệt Diễm Đường - Xích Sa Chưởng Kình",
   "cols": 5,
   "rows": 4,
   "sect": "liet_diem",
+  "tamPhapLevel": 1,
   "items": [
     {
-      "id": "liet_diem_dao",
+      "id": "xich_sa_chuong",
       "x": 0,
       "y": 0,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
-      "id": "boi_nguyen_dan",
+      "id": "xich_sa_chuong",
       "x": 0,
-      "y": 3,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "xich_sa_chuong",
-      "x": 1,
-      "y": 0,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "xich_sa_chuong",
-      "x": 1,
-      "y": 2,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "xich_sa_chuong",
-      "x": 2,
-      "y": 0,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "tuy_tien_ho_lo",
-      "x": 2,
       "y": 2,
       "rarity": "epic"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 1,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "cuong_hoa_dan",
+      "x": 2,
+      "y": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
     },
     {
       "id": "o_tam_y",
       "x": 3,
       "y": 0,
-      "rarity": "uncommon"
+      "rarity": "rare"
     },
     {
-      "id": "tu_mau_song_dao",
+      "id": "tuy_tien_ho_lo",
       "x": 3,
       "y": 2,
       "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 4,
+      "y": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 3,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
     }
-  ]
+  ],
+  "level": 1
 }

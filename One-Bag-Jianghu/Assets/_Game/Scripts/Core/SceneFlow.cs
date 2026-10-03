@@ -9,11 +9,13 @@ namespace OneBagJianghu.Core
     public sealed class SceneFlow : MonoBehaviour
     {
         private static SceneFlow instance;
-        [SerializeField] private LoadingPanel loadingPanel;
+        [SerializeField]
+        private LoadingPanel loadingPanel;
         private SceneTransition transition;
         private bool ready;
-
-        public static bool IsTransitioning => instance != null && instance.transition != null && instance.transition.IsRunning;
+        public static bool IsTransitioning => instance != null
+&& instance.transition != null
+&& instance.transition.IsRunning;
 
         public void Initialize()
         {
@@ -49,7 +51,6 @@ namespace OneBagJianghu.Core
             transition.Begin(Time.unscaledTimeAsDouble);
             yield return loadingPanel.Show();
             transition.Update(Time.unscaledTimeAsDouble, 0f, false, true);
-
             AsyncOperation operation = SceneManager.LoadSceneAsync(GameScenePaths.GetName(target));
             if (operation == null)
             {
@@ -67,7 +68,6 @@ namespace OneBagJianghu.Core
             }
 
             Debug.Log($"[Scene] Loaded: {from} -> {to}");
-
             loadingPanel.SetProgress(1f);
             transition.Update(Time.unscaledTimeAsDouble, 1f, ready, false);
             while (transition.State == SceneTransitionState.WaitingReady)

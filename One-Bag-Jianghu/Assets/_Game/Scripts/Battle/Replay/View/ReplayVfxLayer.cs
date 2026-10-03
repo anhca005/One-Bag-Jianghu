@@ -7,7 +7,8 @@ namespace OneBagJianghu.Battle.Replay.View
 {
     public sealed class ReplayVfxLayer : MonoBehaviour
     {
-        [SerializeField] private Image effectPrefab;
+        [SerializeField]
+        private Image effectPrefab;
         private const int InitialPoolSize = 24;
         private readonly List<Effect> effects = new List<Effect>(InitialPoolSize);
         private RectTransform layerRect;
@@ -15,7 +16,6 @@ namespace OneBagJianghu.Battle.Replay.View
         private Sprite fallbackCircle;
         private Sprite fallbackRounded;
         private VfxTuning tuning;
-
         public void Initialize()
         {
             layerRect = (RectTransform)transform;
@@ -29,7 +29,12 @@ namespace OneBagJianghu.Battle.Replay.View
             }
         }
 
-        public void Present(ReplayVfx vfx, BattleEvent battleEvent, RectTransform source, RectTransform target, Color fallbackColor, int nowMs)
+        public void Present(ReplayVfx vfx,
+BattleEvent battleEvent,
+RectTransform source,
+RectTransform target,
+Color fallbackColor,
+int nowMs)
         {
             if (vfx.Kind == ReplayVfxKind.None || target == null)
             {
@@ -39,18 +44,31 @@ namespace OneBagJianghu.Battle.Replay.View
             Effect effect = Acquire();
             effect.Kind = vfx.Kind;
             // Impacts wait for the travelling stroke fired in the same tick to arrive.
-            effect.StartMs = vfx.Kind == ReplayVfxKind.Hit ? nowMs + ReplayStyle.VfxBasicDurationMs : nowMs;
+            effect.StartMs =
+vfx.Kind == ReplayVfxKind.Hit ?
+nowMs +
+ReplayStyle.VfxBasicDurationMs :
+nowMs;
             effect.DurationMs = GetDuration(vfx.Kind, battleEvent.Kind);
             // Only travelling strokes leave from the item; impacts, bursts and parries play on the fighter.
-            effect.Start = vfx.Kind == ReplayVfxKind.Travel && source != null ? Center(source) : Center(target);
+            effect.Start =
+vfx.Kind == ReplayVfxKind.Travel &&
+source != null ?
+Center(source) :
+Center(target);
             effect.End = Center(target);
             effect.Mirror = vfx.Kind == ReplayVfxKind.Travel && battleEvent.Side == 1;
             effect.Image.sprite = ResolveSprite(vfx.SpriteKey, vfx.Kind, out bool hasArt);
             effect.Image.color = hasArt ? Color.white : ResolveColor(vfx.Kind, fallbackColor);
             effect.Image.preserveAspect = hasArt || vfx.Kind != ReplayVfxKind.Travel;
-            effect.Transform = hasArt && tuning.TryGet(vfx.SpriteKey, out VfxTuning.Entry entry)
-                ? VfxTuning.Compose(entry, effect.Mirror)
-                : VfxTuning.Compose(null, effect.Mirror);
+            effect.Transform =
+hasArt &&
+tuning.TryGet(vfx.SpriteKey,
+out VfxTuning.Entry entry) ?
+VfxTuning.Compose(entry,
+effect.Mirror) :
+VfxTuning.Compose(null,
+effect.Mirror);
             effect.Rect.sizeDelta = GetSize(vfx.Kind, battleEvent.Kind);
             effect.Rect.anchoredPosition = effect.Start + effect.Transform.Offset;
             effect.Rect.localScale = effect.Transform.LocalScale;
@@ -107,7 +125,11 @@ namespace OneBagJianghu.Battle.Replay.View
             if (effect.Kind == ReplayVfxKind.Travel)
             {
                 float eased = 1f - ((1f - progress) * (1f - progress));
-                effect.Rect.anchoredPosition = Vector2.LerpUnclamped(effect.Start, effect.End, eased) + effect.Transform.Offset;
+                effect.Rect.anchoredPosition =
+Vector2.LerpUnclamped(effect.Start,
+effect.End,
+eased) +
+effect.Transform.Offset;
             }
             else
             {
@@ -118,8 +140,10 @@ namespace OneBagJianghu.Battle.Replay.View
             Color color = effect.Image.color;
             color.a = alpha;
             effect.Image.color = color;
-            effect.Rect.localScale = new Vector3(effect.Transform.LocalScale.x * scale,
-                effect.Transform.LocalScale.y * scale, 1f);
+            effect.Rect.localScale =
+new Vector3(effect.Transform.LocalScale.x * scale,
+effect.Transform.LocalScale.y * scale,
+1f);
             effect.Rect.localEulerAngles = new Vector3(0f, 0f, effect.Transform.Rotation);
         }
 
@@ -157,6 +181,7 @@ namespace OneBagJianghu.Battle.Replay.View
                 // Compatibility for the temporary VfxLab bootstrap; production replay uses the prefab reference.
                 image = ReplayUi.Image(transform, "Replay VFX", Color.white);
             }
+
             image.raycastTarget = false;
             image.gameObject.SetActive(false);
             var effect = new Effect(image);
@@ -206,7 +231,11 @@ namespace OneBagJianghu.Battle.Replay.View
         {
             if (kind == ReplayVfxKind.Travel)
             {
-                return string.Equals(eventKind, "ULTIMATE", System.StringComparison.OrdinalIgnoreCase) ? ReplayStyle.VfxUltimateDurationMs : ReplayStyle.VfxBasicDurationMs;
+                return string.Equals(eventKind,
+"ULTIMATE",
+System.StringComparison.OrdinalIgnoreCase) ?
+ReplayStyle.VfxUltimateDurationMs :
+ReplayStyle.VfxBasicDurationMs;
             }
 
             if (kind == ReplayVfxKind.Burst)
@@ -226,7 +255,11 @@ namespace OneBagJianghu.Battle.Replay.View
         {
             if (kind == ReplayVfxKind.Travel)
             {
-                return string.Equals(eventKind, "ULTIMATE", System.StringComparison.OrdinalIgnoreCase) ? ReplayStyle.VfxUltimateSize : ReplayStyle.VfxBasicSize;
+                return string.Equals(eventKind,
+"ULTIMATE",
+System.StringComparison.OrdinalIgnoreCase) ?
+ReplayStyle.VfxUltimateSize :
+ReplayStyle.VfxBasicSize;
             }
 
             if (kind == ReplayVfxKind.Burst)
@@ -262,7 +295,16 @@ namespace OneBagJianghu.Battle.Replay.View
             }
 
             texture.Apply(false, true);
-            return Sprite.Create(texture, new Rect(0f, 0f, size, size), new Vector2(.5f, .5f), 100f, 0, SpriteMeshType.FullRect);
+            return Sprite.Create(texture,
+new Rect(0f,
+0f,
+size,
+size),
+new Vector2(.5f,
+.5f),
+100f,
+0,
+SpriteMeshType.FullRect);
         }
 
         private sealed class Effect

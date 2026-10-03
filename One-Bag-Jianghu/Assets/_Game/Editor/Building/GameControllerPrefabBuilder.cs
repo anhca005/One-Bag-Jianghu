@@ -2,6 +2,7 @@ using OneBagJianghu.Core;
 using OneBagJianghu.Net;
 using OneBagJianghu.UI.Loading;
 using OneBagJianghu.UI.Popups;
+using OneBagJianghu.UI.Common;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -49,8 +50,8 @@ namespace OneBagJianghu.EditorTools.Building
                 fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
                 fitter.aspectRatio = 1.5f;
             }
-            Text title = UiBuild.Text(background.transform, "Title", "Nhất Nang Giang Hồ", 60);
-            UiBuild.Anchors(title.rectTransform, new Vector2(0.2f, 0.62f), new Vector2(0.8f, 0.76f));
+            Text title = UiBuild.Text(background.transform, "Title", "Nhất Nang Giang Hồ", 60, TextAnchor.MiddleCenter, UiFontRole.Display);
+            UiBuild.Anchors(title.rectTransform, new Vector2(0.16f, 0.61f), new Vector2(0.84f, 0.77f));
             Slider progress = UiBuild.InstantiateLinked<Slider>(CommonUiPrefabBuilder.Folder + "/Slider.prefab", background.transform);
             progress.name = "Progress Bar";
             progress.interactable = false;

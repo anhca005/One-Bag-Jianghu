@@ -11,10 +11,13 @@ namespace OneBagJianghu.UI.Common
         public static readonly Color Ink = BagViewStyle.Ink;
         public static readonly Color Gold = BagViewStyle.Gold;
         public static readonly Color Vermilion = Hex("#B8322A");
-
         public static Canvas CreateCanvas(Transform parent, string name, int sortingOrder = 0)
         {
-            var go = new GameObject(name, typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            var go = new GameObject(name,
+typeof(RectTransform),
+typeof(Canvas),
+typeof(CanvasScaler),
+typeof(GraphicRaycaster));
             go.transform.SetParent(parent, false);
             Canvas canvas = go.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -35,14 +38,21 @@ namespace OneBagJianghu.UI.Common
             return image;
         }
 
-        public static Text Text(Transform parent, string name, string value, int size, TextAnchor alignment = TextAnchor.MiddleCenter)
+        public static Text Text(Transform parent,
+string name,
+string value,
+int size,
+TextAnchor alignment = TextAnchor.MiddleCenter,
+UiFontRole role = UiFontRole.Body)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             go.transform.SetParent(parent, false);
             Text text = go.GetComponent<Text>();
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+            UiFonts.Apply(text, role);
             text.text = value;
             text.fontSize = size;
+            text.lineSpacing = role == UiFontRole.Display ? 1.05f : 1.1f;
+            text.verticalOverflow = VerticalWrapMode.Overflow;
             text.color = Ink;
             text.alignment = alignment;
             return text;
@@ -58,9 +68,11 @@ namespace OneBagJianghu.UI.Common
             Button button = image.gameObject.AddComponent<Button>();
             button.targetGraphic = image;
             button.onClick.AddListener(action);
-            Text text = Text(image.transform, "Text", label, 24);
+            Text text = Text(image.transform, "Text", label, 24, TextAnchor.MiddleCenter, UiFontRole.Title);
             Stretch(text.rectTransform);
             text.color = primary ? Paper : Ink;
+            SingleLineFit fit = text.gameObject.AddComponent<SingleLineFit>();
+            fit.Configure(24, 14);
             return button;
         }
 
@@ -89,6 +101,7 @@ namespace OneBagJianghu.UI.Common
             Dropdown dropdown = image.gameObject.AddComponent<Dropdown>();
             Text caption = Text(image.transform, "Label", string.Empty, 23, TextAnchor.MiddleLeft);
             Stretch(caption.rectTransform, 18f);
+            caption.gameObject.AddComponent<SingleLineFit>().Configure(23, 14);
             Image templateImage = Panel(image.transform, "Template", Paper);
             RectTransform template = templateImage.rectTransform;
             template.anchorMin = new Vector2(0f, 0f);
@@ -100,7 +113,10 @@ namespace OneBagJianghu.UI.Common
             Image viewportImage = Panel(template, "Viewport", Color.clear);
             viewportImage.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             Stretch(viewportImage.rectTransform);
-            var contentObject = new GameObject("Content", typeof(RectTransform), typeof(VerticalLayoutGroup), typeof(ContentSizeFitter));
+            var contentObject = new GameObject("Content",
+typeof(RectTransform),
+typeof(VerticalLayoutGroup),
+typeof(ContentSizeFitter));
             contentObject.transform.SetParent(viewportImage.transform, false);
             RectTransform content = contentObject.GetComponent<RectTransform>();
             content.anchorMin = new Vector2(0f, 1f);
@@ -152,6 +168,48 @@ namespace OneBagJianghu.UI.Common
         {
             ColorUtility.TryParseHtmlString(value, out Color color);
             return color;
+        }
+    }
+
+    public static class CurrencyArt
+    {
+        public static bool Apply(Text label, string key, string childName = "Currency Icon", float anchorX = 0f)
+        {
+            if (label == null)
+                return false;
+            Sprite sprite = null;
+            OneBagJianghu.Pve.PveArtLibrary pve = OneBagJianghu.Pve.PveArtLibrary.Load();
+            OneBagJianghu.Bag.ItemIconLibrary items = OneBagJianghu.Bag.ItemIconLibrary.Load();
+            if (pve != null)
+                pve.TryGet(key, out sprite);
+            if (sprite == null && items != null)
+                items.TryGet(key, out sprite);
+            Transform layoutIcon = label.transform.parent != null
+&& label.transform.parent.GetComponent<HorizontalLayoutGroup>() != null ? label.transform.parent.Find("Icon") : null;
+            Transform existing = layoutIcon != null ? layoutIcon : label.transform.Find(childName);
+            Image image;
+            if (existing == null)
+            {
+                var child = new GameObject(childName, typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+                child.transform.SetParent(label.transform, false);
+                image = child.GetComponent<Image>();
+                image.raycastTarget = false;
+                image.preserveAspect = true;
+            }
+            else
+                image = existing.GetComponent<Image>();
+            image.sprite = sprite;
+            image.gameObject.SetActive(sprite != null);
+            if (layoutIcon == null)
+            {
+                RectTransform rect = image.rectTransform;
+                rect.anchorMin = rect.anchorMax = new Vector2(anchorX, .5f);
+                rect.pivot = new Vector2(0f, .5f);
+                rect.anchoredPosition = new Vector2(4f, 0f);
+                rect.sizeDelta = new Vector2(26f, 26f);
+            }
+
+            return sprite != null;
         }
     }
 }

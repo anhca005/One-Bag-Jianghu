@@ -24,7 +24,7 @@ namespace OneBagJianghu.EditorTools.Building
             Canvas canvas=UiBuild.Canvas(null,"Canvas",0); Image bg=UiBuild.Image(canvas.transform,"Background",UiBuild.Paper);UiBuild.Stretch(bg.rectTransform);
             if (UiBuild.ApplyUiSprite(bg,"bg_battle")) { AspectRatioFitter fit=bg.gameObject.AddComponent<AspectRatioFitter>();fit.aspectMode=AspectRatioFitter.AspectMode.EnvelopeParent;fit.aspectRatio=1.5f; }
             ReplayScreen replay=UiBuild.InstantiateLinked<ReplayScreen>(ReplayPrefabBuilder.Folder+"/ReplayScreen.prefab",canvas.transform); replay.name="Replay";UiBuild.Stretch((RectTransform)replay.transform);replay.gameObject.SetActive(false);
-            UiBuild.Set(controller,"replayRoot",replay.gameObject);UiBuild.Set(controller,"replayScreen",replay);
+            UiBuild.Set(controller,"replayRoot",replay.gameObject);UiBuild.Set(controller,"replayScreen",replay);UiBuild.Set(controller,"battleBackground",bg);
             EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
         }
     }

@@ -1,51 +1,76 @@
 {
-  "name": "Bích Thủy Am (Thanh Đằng Tiên + Cung Cầm)",
-  "hp": 1200,
+  "name": "Bích Thủy Am - Thanh Đằng Trường Tiên",
   "cols": 5,
   "rows": 4,
   "sect": "bich_thuy",
+  "tamPhapLevel": 1,
   "items": [
     {
       "id": "thanh_dang_tien",
       "x": 0,
       "y": 0,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "boi_nguyen_dan",
-      "x": 0,
-      "y": 3,
-      "rarity": "uncommon"
+      "rarity": "epic"
     },
     {
       "id": "thanh_dang_tien",
       "x": 1,
       "y": 0,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "tuy_tien_ho_lo",
-      "x": 1,
-      "y": 3,
       "rarity": "epic"
     },
     {
-      "id": "truy_hon_cung",
+      "id": "kim_sang_duoc",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "duong_sinh_quyet",
       "x": 2,
       "y": 0,
       "rarity": "epic"
     },
     {
-      "id": "o_tam_y",
-      "x": 3,
-      "y": 0,
-      "rarity": "uncommon"
+      "id": "tram_huong_lo",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 2,
+      "y": 3,
+      "rarity": "rare"
     },
     {
       "id": "bich_thuy_cam",
       "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tue_nguyet_bao_y",
+      "x": 3,
       "y": 2,
       "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 4,
+      "y": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
     }
-  ]
+  ],
+  "level": 1
 }

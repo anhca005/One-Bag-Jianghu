@@ -10,75 +10,209 @@ namespace OneBagJianghu.Tests.Economy
         private sealed class Items : IUpgradeItemCatalog
         {
             public string GetItemType(string itemId) => "weapon";
-            public IReadOnlyList<int> GetUnlockTiers(string itemId) => new[] { 3, 6, 9 };
+            public IReadOnlyList<int> GetUnlockTiers(string itemId) => new[]
+            {
+                3,
+                6,
+                9
+            };
         }
-        private static MaterialCatalog Materials() => MaterialCatalog.Parse("[" +
-            "{\"id\":\"m1\",\"name\":\"M1\",\"itemType\":\"weapon\",\"band\":\"t1\",\"tier\":1,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-            "{\"id\":\"m2\",\"name\":\"M2\",\"itemType\":\"weapon\",\"band\":\"t2\",\"tier\":2,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-            "{\"id\":\"m3\",\"name\":\"M3\",\"itemType\":\"weapon\",\"band\":\"t3\",\"tier\":3,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-            "{\"id\":\"cat\",\"name\":\"Cat\",\"itemType\":\"weapon\",\"band\":\"cat\",\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":false,\"description\":\"\"}," +
-            "{\"id\":\"chi_ton_ngoc_tuy\",\"name\":\"Ngọc\",\"itemType\":\"universal\",\"band\":\"pvp\",\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":true,\"description\":\"\"}]");
+
+        private static MaterialCatalog Materials() =>
+MaterialCatalog.Parse("[" +
+"{\"id\":\"m1\",\"name\":\"M1\",\"itemType\":\"weapon\",\"band\":\"t1\"," +
+"\"tier\":1,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+"{\"id\":\"m2\",\"name\":\"M2\",\"itemType\":\"weapon\",\"band\":\"t2\"," +
+"\"tier\":2,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+"{\"id\":\"m3\",\"name\":\"M3\",\"itemType\":\"weapon\",\"band\":\"t3\"," +
+"\"tier\":3,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+"{\"id\":\"cat\",\"name\":\"Cat\",\"itemType\":\"weapon\",\"band\":\"cat\"," +
+"\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":false,\"description\":\"\"}," +
+"{\"id\":\"chi_ton_ngoc_tuy\",\"name\":\"Ngọc\",\"itemType\":\"universal\"," +
+"\"band\":\"pvp\",\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":true," +
+"\"description\":\"\"}]");
         private static UpgradeCatalog Upgrades()
         {
             var catalog = new UpgradeCatalog();
             foreach (string rarity in RarityRules.Ordered)
             {
                 var steps = new List<UpgradeStep>();
-                for (int tier = 1; tier <= 8; tier++) steps.Add(new UpgradeStep { FromTier = tier, MaterialTier = tier < 3 ? 1 : tier < 6 ? 2 : 3, MaterialCount = tier, CatalystCount = tier == 2 ? 1 : 0, Silver = tier * 100 });
+                for (int tier = 1; tier <= 8; tier++)
+                {
+                    steps.Add(new UpgradeStep
+                    {
+                        FromTier =
+tier,
+                        MaterialTier =
+tier < 3 ?
+1 :
+tier < 6 ?
+2 :
+3,
+                        MaterialCount =
+tier,
+                        CatalystCount =
+tier == 2 ?
+1 :
+0,
+                        Silver =
+tier * 100
+                    });
+                }
+
                 catalog.Steps[rarity] = steps;
             }
+
             return catalog;
         }
-        private static MergeCatalog Merges() => MergeCatalog.Parse("{\"steps\":[{\"fromRarity\":\"common\",\"toRarity\":\"uncommon\",\"silver\":500,\"extraMaterials\":{}},{\"fromRarity\":\"uncommon\",\"toRarity\":\"rare\",\"silver\":1500,\"extraMaterials\":{}},{\"fromRarity\":\"rare\",\"toRarity\":\"epic\",\"silver\":4000,\"extraMaterials\":{}},{\"fromRarity\":\"epic\",\"toRarity\":\"legendary\",\"silver\":10000,\"extraMaterials\":{}},{\"fromRarity\":\"legendary\",\"toRarity\":\"supreme\",\"silver\":25000,\"extraMaterials\":{\"chi_ton_ngoc_tuy\":5}}]}");
+
+        private static MergeCatalog Merges() =>
+MergeCatalog.Parse("{\"steps\":[{\"fromRarity\":\"common\",\"toRarity\":\"uncommon\",\"silver\":500," +
+"\"extraMaterials\":{}},{\"fromRarity\":\"uncommon\",\"toRarity\":\"rare\"," +
+"\"silver\":1500,\"extraMaterials\":{}},{\"fromRarity\":\"rare\"," +
+"\"toRarity\":\"epic\",\"silver\":4000,\"extraMaterials\":{}}," +
+"{\"fromRarity\":\"epic\",\"toRarity\":\"legendary\",\"silver\":10000," +
+"\"extraMaterials\":{}},{\"fromRarity\":\"legendary\",\"toRarity\":\"supreme\"," +
+"\"silver\":25000,\"extraMaterials\":{\"chi_ton_ngoc_tuy\":5}}]}");
         private static PlayerProfile Rich()
         {
-            var profile = new PlayerProfile(); profile.Currencies["bac"] = 100000;
-            foreach (string id in new[] { "m1", "m2", "m3", "cat", "chi_ton_ngoc_tuy" }) profile.Materials[id] = 1000;
+            var profile = new PlayerProfile();
+            profile.Currencies["bac"] = 100000;
+            foreach (string id in new[]
+            {
+                "m1",
+                "m2",
+                "m3",
+                "cat",
+                "chi_ton_ngoc_tuy"
+            }
+
+            )
+            {
+                profile.Materials[id] = 1000;
+            }
+
             return profile;
         }
 
-        [Test] public void UpgradeIsAtomicAndStopsAtNine()
+        [Test]
+        public void UpgradeIsAtomicAndStopsAtNine()
         {
-            PlayerProfile profile = Rich(); OwnedItem item = profile.AddItem("sword", 2, uid: "a");
-            var service = new UpgradeService(Upgrades(), Materials(), new Items()); UpgradePreview preview = service.Preview(profile, "a");
-            Assert.IsTrue(preview.Success); Assert.IsTrue(preview.UnlocksBreakthrough); Assert.IsTrue(service.Apply(profile, "a").Success); Assert.AreEqual(3, item.Tier);
-            item.Tier = 9; Assert.IsFalse(service.Apply(profile, "a").Success); Assert.AreEqual(9, item.Tier);
+            PlayerProfile profile = Rich();
+            OwnedItem item = profile.AddItem("sword", 2, uid: "a");
+            var service = new UpgradeService(Upgrades(), Materials(), new Items());
+            UpgradePreview preview = service.Preview(profile, "a");
+            Assert.IsTrue(preview.Success);
+            Assert.IsTrue(preview.UnlocksBreakthrough);
+            Assert.IsTrue(service.Apply(profile, "a").Success);
+            Assert.AreEqual(3, item.Tier);
+            item.Tier = 9;
+            Assert.IsFalse(service.Apply(profile, "a").Success);
+            Assert.AreEqual(9, item.Tier);
         }
-        [Test] public void MergeValidatesFormulaAndRemovesLoadout()
+
+        [Test]
+        public void MergeValidatesFormulaAndRemovesLoadout()
         {
-            PlayerProfile profile = Rich(); profile.AddItem("sword", 4, uid: "a"); profile.AddItem("sword", 8, uid: "b"); profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
-            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items()); MergePreview preview = service.Preview(profile, "a", "b");
-            Assert.AreEqual(4, preview.OutputTier); Assert.IsTrue(service.Apply(profile, "a", "b").Success); Assert.IsNull(profile.FindItem("a")); Assert.IsNull(profile.FindItem("b")); Assert.IsEmpty(profile.Loadout); Assert.AreEqual("uncommon", profile.Items[0].Rarity);
-        }
-        [Test] public void MergeRejectsEveryStructuralMismatch()
-        {
-            PlayerProfile profile = Rich(); profile.AddItem("sword", 3, uid: "a"); profile.AddItem("axe", 3, uid: "b");
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 4, uid: "a");
+            profile.AddItem("sword", 8, uid: "b");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
             var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
-            Assert.IsFalse(service.Preview(profile, "a", "a").Success); Assert.IsFalse(service.Preview(profile, "a", "b").Success);
-            profile.RequireItem("b").ItemId = "sword"; profile.RequireItem("b").Rarity = "rare"; Assert.IsFalse(service.Preview(profile, "a", "b").Success);
-            profile.RequireItem("b").Rarity = "common"; profile.RequireItem("b").Tier = 2; Assert.IsFalse(service.Preview(profile, "a", "b").Success);
-            profile.RequireItem("a").Rarity = profile.RequireItem("b").Rarity = "supreme"; profile.RequireItem("b").Tier = 3; Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            MergePreview preview = service.Preview(profile, "a", "b");
+            Assert.AreEqual(4, preview.OutputTier);
+            Assert.IsTrue(service.Apply(profile, "a", "b").Success);
+            Assert.IsNull(profile.FindItem("a"));
+            Assert.IsNull(profile.FindItem("b"));
+            Assert.IsEmpty(profile.Loadout);
+            Assert.AreEqual("uncommon", profile.Items[0].Rarity);
         }
-        [Test] public void LegendaryMergeRequiresFivePvpJadeAndRefundNeverNegative()
+
+        [Test]
+        public void MergeRejectsEveryStructuralMismatch()
         {
-            PlayerProfile profile = Rich(); profile.AddItem("sword", 3, uid: "a", rarity: "legendary"); profile.AddItem("sword", 3, uid: "b", rarity: "legendary"); profile.Materials["chi_ton_ngoc_tuy"] = 4;
-            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items()); Assert.IsFalse(service.Preview(profile, "a", "b").Success);
-            profile.Materials["chi_ton_ngoc_tuy"] = 5; MergePreview preview = service.Preview(profile, "a", "b"); Assert.IsTrue(preview.Success); foreach (int value in preview.RefundMaterials.Values) Assert.GreaterOrEqual(value, 0);
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "a");
+            profile.AddItem("axe", 3, uid: "b");
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+            Assert.IsFalse(service.Preview(profile, "a", "a").Success);
+            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            profile.RequireItem("b").ItemId = "sword";
+            profile.RequireItem("b").Rarity = "rare";
+            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            profile.RequireItem("b").Rarity = "common";
+            profile.RequireItem("b").Tier = 2;
+            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            profile.RequireItem("a").Rarity = profile.RequireItem("b").Rarity = "supreme";
+            profile.RequireItem("b").Tier = 3;
+            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
         }
-        [Test] public void SellRemovesEquippedCopy()
+
+        [Test]
+        public void LegendaryMergeRequiresFivePvpJadeAndRefundNeverNegative()
         {
-            PlayerProfile profile = Rich(); profile.AddItem("sword", 3, uid: "a"); profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
-            Assert.IsTrue(new SellService(Upgrades(), Materials(), new Items()).Apply(profile, "a").Success); Assert.IsNull(profile.FindItem("a")); Assert.IsEmpty(profile.Loadout);
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "a", rarity: "legendary");
+            profile.AddItem("sword", 3, uid: "b", rarity: "legendary");
+            profile.Materials["chi_ton_ngoc_tuy"] = 4;
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            profile.Materials["chi_ton_ngoc_tuy"] = 5;
+            MergePreview preview = service.Preview(profile, "a", "b");
+            Assert.IsTrue(preview.Success);
+            foreach (int value in preview.RefundMaterials.Values)
+            {
+                Assert.GreaterOrEqual(value, 0);
+            }
         }
-        [Test] public void RewardIsDeterministic()
+
+        [Test]
+        public void SellRemovesEquippedCopy()
         {
-            RewardCatalog rules = RewardCatalog.Parse("{\"win\":{\"silver\":1,\"materialTier\":1,\"materialCount\":1},\"loss\":{\"silver\":0,\"materialTier\":1,\"materialCount\":1},\"firstClear\":{\"silver\":2,\"materialTier\":1,\"materialCount\":1}}");
-            BattleReward a = new RewardService(rules, Materials()).Grant(new PlayerProfile(), true, false, 42); BattleReward b = new RewardService(rules, Materials()).Grant(new PlayerProfile(), true, false, 42); CollectionAssert.AreEquivalent(a.Materials, b.Materials);
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "a");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
+            Assert.IsTrue(new SellService(Upgrades(),
+Materials(),
+new Items()).Apply(profile,
+"a").Success);
+            Assert.IsNull(profile.FindItem("a"));
+            Assert.IsEmpty(profile.Loadout);
         }
-        [Test] public void VersionOneMigratesAndLoadoutRarityCanBeRepresented()
+
+        [Test]
+        public void RewardIsDeterministic()
         {
-            PlayerProfile profile = PlayerProfile.FromJson("{\"version\":1,\"heroName\":\"A\",\"heroLevel\":1,\"heroExp\":0,\"sectId\":null,\"tamPhapLevel\":1,\"currencies\":{},\"materials\":{},\"items\":[{\"uid\":\"a\",\"itemId\":\"sword\",\"tier\":1,\"acquiredAt\":\"x\"}],\"loadout\":[]}");
-            Assert.AreEqual(PlayerProfile.CurrentVersion, profile.Version); Assert.AreEqual("common", profile.Items[0].Rarity); Assert.AreEqual("common", JObject.Parse("{\"rarity\":\"common\"}").Value<string>("rarity"));
+            RewardCatalog rules =
+RewardCatalog.Parse("{\"win\":{\"silver\":1,\"materialTier\":1,\"materialCount\":1}," +
+"\"loss\":{\"silver\":0,\"materialTier\":1,\"materialCount\":1}," +
+"\"firstClear\":{\"silver\":2,\"materialTier\":1,\"materialCount\":1}}");
+            BattleReward a =
+new RewardService(rules,
+Materials()).Grant(new PlayerProfile(),
+true,
+false,
+42);
+            BattleReward b =
+new RewardService(rules,
+Materials()).Grant(new PlayerProfile(),
+true,
+false,
+42);
+            CollectionAssert.AreEquivalent(a.Materials, b.Materials);
+        }
+
+        [Test]
+        public void VersionOneMigratesAndLoadoutRarityCanBeRepresented()
+        {
+            PlayerProfile profile =
+PlayerProfile.FromJson("{\"version\":1,\"heroName\":\"A\",\"heroLevel\":1,\"heroExp\":0,\"sectId\":null," +
+"\"tamPhapLevel\":1,\"currencies\":{},\"materials\":{},\"items\":[{\"uid\":\"a\"," +
+"\"itemId\":\"sword\",\"tier\":1,\"acquiredAt\":\"x\"}],\"loadout\":[]}");
+            Assert.AreEqual(PlayerProfile.CurrentVersion, profile.Version);
+            Assert.AreEqual("common", profile.Items[0].Rarity);
+            Assert.AreEqual("common",
+JObject.Parse("{\"rarity\":\"common\"}").Value<string>("rarity"));
         }
     }
 }

@@ -4,6 +4,7 @@ import com.onebagjianghu.battle.data.ItemCatalog;
 import com.onebagjianghu.battle.sim.BattleEvent;
 import com.onebagjianghu.battle.sim.BattleResult;
 import com.onebagjianghu.battle.sim.EventType;
+import com.onebagjianghu.battle.sim.BattleSimulator;
 
 import java.io.PrintStream;
 import java.util.HashMap;
@@ -22,9 +23,14 @@ final class Breakdown {
     private long shield;
     private long exhaustionTaken;
     private int battles;
+    private BattleSimulator.FighterStats fighterStats;
 
     Breakdown(ItemCatalog catalog) {
         this.catalog = catalog;
+    }
+
+    void fighterStats(BattleSimulator.FighterStats fighterStats) {
+        this.fighterStats = fighterStats;
     }
 
     /** Accumulates what {@code side} dealt / gained in this battle. */
@@ -50,6 +56,11 @@ final class Breakdown {
     }
 
     void print(PrintStream out, String title) {
+        if (fighterStats != null) {
+            out.printf(Locale.ROOT, "%s — maxHp %d · Hộ Thân %d‰ · Giảm Hồi Chiêu %d‰%n",
+                    title, fighterStats.maxHp(), fighterStats.dmgReducePermille(),
+                    fighterStats.cooldownReductionPermille());
+        }
         long total = damage.values().stream().mapToLong(Long::longValue).sum();
         out.printf(Locale.ROOT, "%s — sát thương gây ra TB %.0f/trận%n", title, (double) total / battles);
         damage.entrySet().stream()

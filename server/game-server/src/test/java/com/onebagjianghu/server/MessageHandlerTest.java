@@ -50,13 +50,14 @@ class MessageHandlerTest {
     }
     @Test void battleReturnsRequesterFirstAndForcesServerStats() {
         ready(); ObjectNode loadout = valid.deepCopy();
-        loadout.put("name", "Requester").put("hp", 999999).put("cols", 50).put("rows", 40); loadout.remove("tamPhapLevel");
+        loadout.put("name", "Requester").put("level", 999999).put("cols", 50).put("rows", 40); loadout.remove("tamPhapLevel");
         Envelope response = handler.handle(request("battle_request", battlePayload(loadout)), session);
         assertEquals("battle_result", response.type()); JsonNode result = response.payload().get("result");
         assertEquals("Requester", result.get("names").get(0).asText());
         assertEquals(5, result.get("bags").get(0).get(0).asInt()); assertEquals(4, result.get("bags").get(0).get(1).asInt());
         JsonNode events = result.get("events"); assertEquals("END", events.get(events.size() - 1).get("type").asText());
-        assertTrue(events.findValues("maxHp").stream().anyMatch(n -> n.asInt() == 1200));
+        // The client's level 999999 would give ~5M Khí Huyết; the server forces level 1 (base 100 + item stats).
+        assertTrue(events.findValues("maxHp").stream().allMatch(n -> n.asInt() < 2000));
     }
     @Test void unknownTypeIsBadRequest() { ready(); assertError(handler.handle(request("wat", mapper.createObjectNode()), session), "bad_request"); }
     private void ready() { handler.handle(request("hello", mapper.createObjectNode()), session); }

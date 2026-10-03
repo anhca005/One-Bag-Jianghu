@@ -18,19 +18,30 @@ namespace OneBagJianghu.Net
 
     public sealed class OpponentInfo
     {
-        public string Name { get; set; }
-        public string Sect { get; set; }
+        public string Name
+        {
+            get;
+            set;
+        }
+        public string Sect
+        {
+            get;
+            set;
+        }
     }
 
     public sealed class NetworkService : MonoBehaviour
     {
         private readonly ConcurrentQueue<Action> dispatch = new ConcurrentQueue<Action>();
         private GameClient client;
+        public NetworkState State
+        {
+            get;
+            private set;
+        } = NetworkState.Offline;
 
-        public NetworkState State { get; private set; } = NetworkState.Offline;
         public event Action<NetworkState> StateChanged;
         public event Action<Envelope> ServerMessage;
-
         public async Task ConnectAsync(TimeSpan? timeout = null)
         {
             if (State != NetworkState.Offline)
@@ -50,11 +61,12 @@ namespace OneBagJianghu.Net
                 try
                 {
                     await client.ConnectAsync(ServerConfig.GetUrl(), source.Token);
-                    Envelope hello = await client.SendAsync("hello", new
-                    {
-                        clientVersion = "0.1.0",
-                        heroName = GameBootstrap.Session.HeroName
-                    });
+                    Envelope hello = await client.SendAsync("hello",
+new
+{
+    clientVersion = "0.1.0",
+    heroName = GameBootstrap.Session.HeroName
+});
                     if (hello.Type != "hello_ok")
                     {
                         throw new InvalidOperationException(GetServerError(hello));
@@ -72,7 +84,11 @@ namespace OneBagJianghu.Net
             }
         }
 
-        public async void RequestBattle(string mode, string loadoutJson, Action<BattleLog, OpponentInfo> onResult, Action<string> onError)
+        public async void RequestBattle(string mode,
+string loadoutJson,
+Action<BattleLog,
+OpponentInfo> onResult,
+Action<string> onError)
         {
             if (State != NetworkState.Online || client == null)
             {
@@ -91,7 +107,11 @@ namespace OneBagJianghu.Net
                 if (reply.Type == "error")
                 {
                     string message = reply.Payload?["message"]?.Value<string>();
-                    dispatch.Enqueue(() => onError?.Invoke(string.IsNullOrWhiteSpace(message) ? "Máy chủ từ chối trận đấu." : message));
+                    dispatch.Enqueue(()
+                        => onError
+                        ?.Invoke(string.IsNullOrWhiteSpace(message)
+                        ? "Máy chủ từ chối trận đấu."
+                        : message));
                     return;
                 }
 

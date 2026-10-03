@@ -1,0 +1,76 @@
+{
+  "name": "Huyền Độc Môn - Huyết Thú Cuồng Trảo",
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "u_minh_quy_trao",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 0,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 3,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 3,
+      "y": 1,
+      "rarity": "epic"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 3,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 4,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 4,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ],
+  "level": 1
+}

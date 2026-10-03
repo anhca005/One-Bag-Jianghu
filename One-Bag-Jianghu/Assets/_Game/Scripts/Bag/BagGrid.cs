@@ -5,12 +5,33 @@ namespace OneBagJianghu.Bag
 {
     public sealed class PlacedItem
     {
-        public int InstanceId { get; }
-        public string OwnedUid { get; }
-        public ItemInfo Item { get; }
-        public int X { get; internal set; }
-        public int Y { get; internal set; }
-        public int Tier { get; internal set; }
+        public int InstanceId
+        {
+            get;
+        }
+        public string OwnedUid
+        {
+            get;
+        }
+        public ItemInfo Item
+        {
+            get;
+        }
+        public int X
+        {
+            get;
+            internal set;
+        }
+        public int Y
+        {
+            get;
+            internal set;
+        }
+        public int Tier
+        {
+            get;
+            internal set;
+        }
         public GridRect Rect => new GridRect(X, Y, Item.Width, Item.Height);
 
         internal PlacedItem(int instanceId, ItemInfo item, int x, int y, int tier, string ownedUid)
@@ -28,13 +49,22 @@ namespace OneBagJianghu.Bag
     {
         private readonly List<PlacedItem> items = new List<PlacedItem>();
         private int nextInstanceId = 1;
-
-        public int Cols { get; }
-        public int Rows { get; }
+        public int Cols
+        {
+            get;
+        }
+        public int Rows
+        {
+            get;
+        }
         public IReadOnlyList<PlacedItem> Items => items;
-        public int UsedCells { get; private set; }
-        public event Action Changed;
+        public int UsedCells
+        {
+            get;
+            private set;
+        }
 
+        public event Action Changed;
         public BagGrid(int cols, int rows)
         {
             if (cols < 1 || rows < 1)
@@ -55,6 +85,7 @@ namespace OneBagJianghu.Bag
                 if (placed.InstanceId != ignoreInstanceId && candidate.Overlaps(placed.Rect))
                     return false;
             }
+
             return true;
         }
 
@@ -103,6 +134,7 @@ namespace OneBagJianghu.Bag
                 if (x >= rect.X && x < rect.X + rect.W && y >= rect.Y && y < rect.Y + rect.H)
                     return placed;
             }
+
             return null;
         }
 
@@ -117,6 +149,7 @@ namespace OneBagJianghu.Bag
                 if (placed.InstanceId != instanceId && source.Rect.IsAdjacent(placed.Rect))
                     result.Add(placed);
             }
+
             return result;
         }
 

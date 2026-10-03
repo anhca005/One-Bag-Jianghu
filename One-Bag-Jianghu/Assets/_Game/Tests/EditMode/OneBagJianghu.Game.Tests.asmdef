@@ -5,6 +5,7 @@
     "OneBagJianghu.Engine",
     "OneBagJianghu.Economy",
     "OneBagJianghu.Game",
+    "OneBagJianghu.Editor",
     "UnityEngine.TestRunner",
     "UnityEditor.TestRunner"
   ],

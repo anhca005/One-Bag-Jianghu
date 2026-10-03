@@ -19,6 +19,7 @@ public final class ItemDef {
     public double cooldown;
     /** Hội Tâm chance, fraction. */
     public double crit;
+    public ItemStats stats = new ItemStats();
     public List<EffectDef> basic = List.of();
     /** Relic/manual active effects fired on cooldown; empty for weapons and passive items. */
     public List<EffectDef> active = List.of();
@@ -83,6 +84,7 @@ public final class ItemDef {
         r.attack = attack;
         r.cooldown = cooldown;
         r.crit = crit;
+        r.stats = stats;
         return r;
     }
 

@@ -10,13 +10,34 @@ namespace OneBagJianghu.Battle.Replay
         }
 
         public int DurationMs { get; }
-        public int TimeMs { get; private set; }
-        public bool IsPlaying { get; private set; }
-        public float Speed { get; private set; } = 1f;
+        public int TimeMs
+        {
+            get;
+            private set;
+        }
+        public bool IsPlaying
+        {
+            get;
+            private set;
+        }
+        public float Speed
+        {
+            get;
+            private set;
+        } = 1f;
 
         public void Play() => IsPlaying = TimeMs < DurationMs;
         public void Pause() => IsPlaying = false;
-        public void Toggle() { if (IsPlaying) Pause(); else Play(); }
+        public void Toggle()
+        {
+            if (IsPlaying)
+            {
+                Pause();
+            }
+            else
+                Play();
+        }
+
         public void SetSpeed(float speed)
         {
             if (speed != 1f && speed != 2f && speed != 4f)
@@ -27,13 +48,17 @@ namespace OneBagJianghu.Battle.Replay
         public void Seek(int timeMs)
         {
             TimeMs = Math.Max(0, Math.Min(DurationMs, timeMs));
-            if (TimeMs >= DurationMs) IsPlaying = false;
+            if (TimeMs >= DurationMs)
+            {
+                IsPlaying = false;
+            }
         }
 
         public int Advance(float unscaledDeltaSeconds)
         {
             int previous = TimeMs;
-            if (!IsPlaying || unscaledDeltaSeconds <= 0f) return previous;
+            if (!IsPlaying || unscaledDeltaSeconds <= 0f)
+                return previous;
             Seek(TimeMs + (int)Math.Round(unscaledDeltaSeconds * 1000f * Speed));
             return previous;
         }

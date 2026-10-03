@@ -129,7 +129,9 @@ class BattleSimulatorTest {
         assertEquals(poisonBurst, bursts.get(0).value);
         assertEquals(0, bursts.get(0).absorbed, "poison ignores Cương Khí");
         assertEquals(1000 - poisonBurst, bursts.get(0).hp);
-        assertTrue(r.events().stream().noneMatch(e -> e.type == EventType.DOT && e.side == 1),
+        // Kiệt Lực also emits DOT; only the window before it shows the meter stays silent.
+        int exhaustion = BattleConfig.defaults().exhaustionStartMs;
+        assertTrue(r.events().stream().noneMatch(e -> e.type == EventType.DOT && e.side == 1 && e.t < exhaustion),
                 "no damage before the threshold");
     }
 
@@ -222,14 +224,14 @@ class BattleSimulatorTest {
     @Test
     void regenHealsOncePerSecond() {
         ItemDef monk = passive("monk", ItemType.MANUAL, on(TriggerEvent.BATTLE_START,
-                selfDamage(50), stacks(StatusType.REGEN, 5)));
+                selfDamage(50), stacks(StatusType.REGEN, 3)));
         BattleResult r = fight(List.of(monk), new Loadout("a", 100, 5, 4).add("monk", 0, 0), dummy(1000));
 
         List<BattleEvent> heals = events(r, EventType.HEAL, 0);
         assertEquals(1000, heals.get(0).t);
-        assertEquals(5, heals.get(0).value);
+        assertEquals(3, heals.get(0).value);
         assertEquals(2000, heals.get(1).t);
-        assertEquals(60, heals.get(1).hp);
+        assertEquals(56, heals.get(1).hp);
     }
 
     @Test
@@ -364,7 +366,7 @@ class BattleSimulatorTest {
     void higherTierScalesAttack() {
         ItemDef sword = weapon("sword", 100, 1.0);
         BattleResult r = fight(List.of(sword), new Loadout("a", 100, 5, 4).add("sword", 0, 0, 3), dummy(10_000));
-        assertEquals(140, events(r, EventType.DAMAGE, 1).get(0).value);
+        assertEquals(110, events(r, EventType.DAMAGE, 1).get(0).value);
     }
 
     @Test
@@ -376,10 +378,10 @@ class BattleSimulatorTest {
         Loadout a = new Loadout("a", 1000, 5, 4).add("rare", 0, 0);
         a.items.get(0).rarity = Rarity.SUPREME;
         BattleResult r = fight(List.of(item), a, dummy(10000));
-        assertEquals(134, first(r, e -> e.type == EventType.DAMAGE && e.side == 1).value);
-        assertEquals(26, first(r, e -> e.type == EventType.SHIELD).value);
-        assertEquals(26, first(r, e -> e.type == EventType.HEAL).value);
-        assertEquals(13, first(r, e -> e.type == EventType.STATUS && "POISON".equals(e.kind)).value);
+        assertEquals(160, first(r, e -> e.type == EventType.DAMAGE && e.side == 1).value);
+        assertEquals(32, first(r, e -> e.type == EventType.SHIELD).value);
+        assertEquals(32, first(r, e -> e.type == EventType.HEAL).value);
+        assertEquals(16, first(r, e -> e.type == EventType.STATUS && "POISON".equals(e.kind)).value);
         assertEquals(7, first(r, e -> e.type == EventType.QI).value);
         assertEquals(2000, first(r, e -> e.type == EventType.STATUS && "HASTE".equals(e.kind)).value);
     }

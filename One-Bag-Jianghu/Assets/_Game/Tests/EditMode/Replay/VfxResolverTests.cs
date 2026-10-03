@@ -12,9 +12,7 @@ namespace OneBagJianghu.Tests.Battle.Replay
         {
             BattleEvent battleEvent = Event(BattleEventType.Trigger, triggerKind);
             ItemInfo item = Item("weapon", "sword");
-
             ReplayVfx result = VfxResolver.Resolve(battleEvent, item);
-
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.Travel));
             Assert.That(result.SpriteKey, Is.EqualTo(expectedKey));
         }
@@ -24,8 +22,11 @@ namespace OneBagJianghu.Tests.Battle.Replay
         [TestCase("manual")]
         public void Resolve_NonWeaponTriggerReturnsNone(string itemType)
         {
-            ReplayVfx result = VfxResolver.Resolve(Event(BattleEventType.Trigger, "BASIC"), Item(itemType, null));
-
+            ReplayVfx result =
+VfxResolver.Resolve(Event(BattleEventType.Trigger,
+"BASIC"),
+Item(itemType,
+null));
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.None));
             Assert.That(result.SpriteKey, Is.Null);
         }
@@ -33,8 +34,11 @@ namespace OneBagJianghu.Tests.Battle.Replay
         [Test]
         public void Resolve_UnknownWeaponClassUsesNamingContract()
         {
-            ReplayVfx result = VfxResolver.Resolve(Event(BattleEventType.Trigger, "ULTIMATE"), Item("weapon", "Spear"));
-
+            ReplayVfx result =
+VfxResolver.Resolve(Event(BattleEventType.Trigger,
+"ULTIMATE"),
+Item("weapon",
+"Spear"));
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.Travel));
             Assert.That(result.SpriteKey, Is.EqualTo("spear_ultimate"));
         }
@@ -42,10 +46,12 @@ namespace OneBagJianghu.Tests.Battle.Replay
         [TestCase(BattleEventType.Burst, "BURN", ReplayVfxKind.Burst, "burst_burn")]
         [TestCase(BattleEventType.Parry, null, ReplayVfxKind.Parry, "parry")]
         [TestCase(BattleEventType.Damage, null, ReplayVfxKind.Hit, "hit")]
-        public void Resolve_CenteredEventReturnsExpectedEffect(BattleEventType type, string eventKind, ReplayVfxKind expectedKind, string expectedKey)
+        public void Resolve_CenteredEventReturnsExpectedEffect(BattleEventType type,
+string eventKind,
+ReplayVfxKind expectedKind,
+string expectedKey)
         {
             ReplayVfx result = VfxResolver.Resolve(Event(type, eventKind), null);
-
             Assert.That(result.Kind, Is.EqualTo(expectedKind));
             Assert.That(result.SpriteKey, Is.EqualTo(expectedKey));
         }
@@ -54,13 +60,16 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Resolve_UnsupportedEventReturnsNone()
         {
             ReplayVfx result = VfxResolver.Resolve(Event(BattleEventType.Heal, null), null);
-
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.None));
         }
 
         private static BattleEvent Event(BattleEventType type, string kind)
         {
-            return new BattleEvent { Type = type, Kind = kind };
+            return new BattleEvent
+            {
+                Type = type,
+                Kind = kind
+            };
         }
 
         private static ItemInfo Item(string type, string weaponClass)

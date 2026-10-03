@@ -1,0 +1,151 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4468903d5e29f245949aac5e3dfea35, type: 3}
+  m_Name: PveArtLibrary
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Pve.PveArtLibrary
+  entries:
+  - Key: bach_ho_cuong_mong
+    Sprite: {fileID: 21300000, guid: 9b3421b4576806c4c888789ff290b68b, type: 3}
+  - Key: bang_phach_co_cot
+    Sprite: {fileID: 21300000, guid: c0517a79ff6012a41a3ef3694dcc8e79, type: 3}
+  - Key: bang_tam_linh_chau
+    Sprite: {fileID: 21300000, guid: 6601be63f070a3d4e8a625ea1ed9a7ce, type: 3}
+  - Key: bg_battle_hoi_1
+    Sprite: {fileID: 21300000, guid: 455ef6fe0d2ef99408fd38820128299f, type: 3}
+  - Key: bg_battle_hoi_2
+    Sprite: {fileID: 21300000, guid: c9b728f252e8a4040baeeab4d0a2b808, type: 3}
+  - Key: bg_battle_hoi_3
+    Sprite: {fileID: 21300000, guid: 0f87efa010951da45a30da0508be1e34, type: 3}
+  - Key: boss_bui_chen
+    Sprite: {fileID: 21300000, guid: 77b0f46e54a137c47a0c6fb037b9287f, type: 3}
+  - Key: boss_da_sat_thien
+    Sprite: {fileID: 21300000, guid: 4fc53d86debfca3418e379242fb69b0e, type: 3}
+  - Key: boss_hac_doc_nuong_tu
+    Sprite: {fileID: 21300000, guid: 298049b7621a29f41b84cceaef3db2ba, type: 3}
+  - Key: frame_dialogue
+    Sprite: {fileID: 21300000, guid: 6f208d7149545ce4786519349d4ead1c, type: 3}
+  - Key: frame_stage_card
+    Sprite: {fileID: 21300000, guid: e11dbae9a45ac774d9fa6873f8c80325, type: 3}
+  - Key: hac_sat_hung_dam
+    Sprite: {fileID: 21300000, guid: fb3c681deeccaf2408440388d858c9a1, type: 3}
+  - Key: heo_rung_bap_giap
+    Sprite: {fileID: 21300000, guid: 1d8e07e50b806b5459a13b9e7a615865, type: 3}
+  - Key: hoa_diem_xa_cot
+    Sprite: {fileID: 21300000, guid: d18e1caac48a40749809f074afcbc7e6, type: 3}
+  - Key: icon_bac
+    Sprite: {fileID: 21300000, guid: 3f06612b88fb9704caa1a60fbd6ae6c7, type: 3}
+  - Key: icon_danh_vong
+    Sprite: {fileID: 21300000, guid: eafcd49de8efd9544862e62e768d3872, type: 3}
+  - Key: icon_nguyen_bao
+    Sprite: {fileID: 21300000, guid: c5e850086a145724f81700879e6de0b0, type: 3}
+  - Key: icon_stamina
+    Sprite: {fileID: 21300000, guid: 7e0a523668cb7484096fd3629254e413, type: 3}
+  - Key: icon_star
+    Sprite: {fileID: 21300000, guid: d66fb8fba0ada864f94bb684e8c3d4ec, type: 3}
+  - Key: icon_star_empty
+    Sprite: {fileID: 21300000, guid: cfac3eaa91fe5a940a1b266abd0d4c24, type: 3}
+  - Key: kich_doc_chu_nga
+    Sprite: {fileID: 21300000, guid: 3c6523a65d988e744aa051f56ad1b6d6, type: 3}
+  - Key: man_xa_doc_tui
+    Sprite: {fileID: 21300000, guid: b49a8b265a10c7c428c2c543b870fc0d, type: 3}
+  - Key: map_hoi_1
+    Sprite: {fileID: 21300000, guid: 9cc203f5728fb31418d329a800634a41, type: 3}
+  - Key: map_hoi_2
+    Sprite: {fileID: 21300000, guid: e1f88c746e5dbc04a872e424f7e0484b, type: 3}
+  - Key: map_hoi_3
+    Sprite: {fileID: 21300000, guid: 8a217a579c252e64fbd76d0a58495183, type: 3}
+  - Key: monster_bach_ho
+    Sprite: {fileID: 21300000, guid: 434b4743e78771f439ea7c2168ef8b39, type: 3}
+  - Key: monster_bang_quy
+    Sprite: {fileID: 21300000, guid: 3c5f8bb13282c2d45b502a923924b708, type: 3}
+  - Key: monster_gau_den
+    Sprite: {fileID: 21300000, guid: 56de4ac0c574c804789cb31f2e83187e, type: 3}
+  - Key: monster_heo_rung
+    Sprite: {fileID: 21300000, guid: 8dcd951ef29f4424082b0d8923ec53ae, type: 3}
+  - Key: monster_ngan_lang
+    Sprite: {fileID: 21300000, guid: 1b264e43820304f4a94424ebb3cdde99, type: 3}
+  - Key: monster_soi_xam
+    Sprite: {fileID: 21300000, guid: 3e58d780a22e8cc448f414636a4f4fa6, type: 3}
+  - Key: monster_tri_chu
+    Sprite: {fileID: 21300000, guid: 86a6ac51d55bbea409ea66a8dac2a57a, type: 3}
+  - Key: monster_xich_xa
+    Sprite: {fileID: 21300000, guid: dc9f7b4149af74d4cb85392b8b8189b9, type: 3}
+  - Key: node_boss
+    Sprite: {fileID: 21300000, guid: 455d0fb174052824380eddd7ab503d3c, type: 3}
+  - Key: node_boss_hoi_1
+    Sprite: {fileID: 21300000, guid: a77ce31ea967452498db49d308b36dca, type: 3}
+  - Key: node_boss_hoi_2
+    Sprite: {fileID: 21300000, guid: 50021f08374a31f4494589ec924b98e1, type: 3}
+  - Key: node_boss_hoi_3
+    Sprite: {fileID: 21300000, guid: b60307de4443a5a4cbdc115d26566e17, type: 3}
+  - Key: node_elite
+    Sprite: {fileID: 21300000, guid: 37f624dd98a32d3459a9780df029f83b, type: 3}
+  - Key: node_hoi_1
+    Sprite: {fileID: 21300000, guid: 47d6e0b37f9cd294e9c180d2254772ae, type: 3}
+  - Key: node_hoi_2
+    Sprite: {fileID: 21300000, guid: 0c6d3f239a3dddc41bef3ea37c31511b, type: 3}
+  - Key: node_hoi_3
+    Sprite: {fileID: 21300000, guid: 09acc01d48ac76a498b9e9641dcc21a6, type: 3}
+  - Key: node_stage
+    Sprite: {fileID: 21300000, guid: b96ecbfc59ba32347823685b215b581b, type: 3}
+  - Key: npc_lao_tieu_phu
+    Sprite: {fileID: 21300000, guid: 130838c4597ab094cbda648a1a1b225c, type: 3}
+  - Key: npc_phong_loi
+    Sprite: {fileID: 21300000, guid: 222b426bffa06a64e9c55785127dff15, type: 3}
+  - Key: npc_tieu_linh_nhi
+    Sprite: {fileID: 21300000, guid: df8a8b8ce23482d48ae3cca2b9235b37, type: 3}
+  - Key: soi_nanh_canh
+    Sprite: {fileID: 21300000, guid: d90a2bf53778df64683ba1041cbb282e, type: 3}
+  - Key: thien_nien_quy_giap
+    Sprite: {fileID: 21300000, guid: 7388befa02c86844696ff5045871f454, type: 3}
+  - Key: tuyet_lang_bach_bi
+    Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
+  - Key: u_minh_quy_trao
+    Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - Key: badge_new
+    Sprite: {fileID: 21300000, guid: 232bbb9609638364fb0a8a43aebd7236, type: 3}
+  - Key: bg_battle
+    Sprite: {fileID: 21300000, guid: e85939fe4cdb4864584878abc9be3001, type: 3}
+  - Key: bg_home
+    Sprite: {fileID: 21300000, guid: f5bd7468af7824c438c1cd902a527f17, type: 3}
+  - Key: bg_loading
+    Sprite: {fileID: 21300000, guid: 05b35b54bf9fb834b91a6e84bf6ac639, type: 3}
+  - Key: bg_login
+    Sprite: {fileID: 21300000, guid: 5ad8666f490bc4d448f77559d09a9537, type: 3}
+  - Key: button_primary
+    Sprite: {fileID: 21300000, guid: c2316411b99606246a7373c89ebfe327, type: 3}
+  - Key: button_secondary
+    Sprite: {fileID: 21300000, guid: b2bd71f18a2d046469d33924e43f7382, type: 3}
+  - Key: enemy_portrait_1
+    Sprite: {fileID: 21300000, guid: 1b7c9b0bafda58147abdd123a833c5eb, type: 3}
+  - Key: enemy_portrait_2
+    Sprite: {fileID: 21300000, guid: 6f612a0b29f2ae442a31f9eec049a011, type: 3}
+  - Key: enemy_portrait_3
+    Sprite: {fileID: 21300000, guid: 7d18b778f60b2a244980a2c6e9f46c21, type: 3}
+  - Key: frame_panel
+    Sprite: {fileID: 21300000, guid: 3be63a224e45d044394378ba7bfde027, type: 3}
+  - Key: frame_tooltip
+    Sprite: {fileID: 21300000, guid: 6298306093f45ae4683be23b57149de8, type: 3}
+  - Key: hero_idle
+    Sprite: {fileID: 21300000, guid: dd301b46a2d38484983eb40f62748ead, type: 3}
+  - Key: hero_portrait
+    Sprite: {fileID: 21300000, guid: c8b081e2b181f064492447342953406d, type: 3}
+  - Key: hero_portrait_frame
+    Sprite: {fileID: 21300000, guid: 8920975505502d441b87311262a6bc4a, type: 3}
+  - Key: icon_lock
+    Sprite: {fileID: 21300000, guid: 0fd3a0125f92f0f49b0705e0bfa27e01, type: 3}
+  - Key: plaque_label
+    Sprite: {fileID: 21300000, guid: 2dfb90c938918f947933b060f6cd4671, type: 3}
+  - Key: progress_bar
+    Sprite: {fileID: 21300000, guid: a3f7e032eb53b234d9f329946ae42cf5, type: 3}
+  - Key: seal_title
+    Sprite: {fileID: 21300000, guid: 537cb4ab41b2e384b859eca8523e64e8, type: 3}

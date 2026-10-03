@@ -1,57 +1,58 @@
 {
-  "name": "Thiết Phủ - Liệt Diễm Hợp Bích (Rìu + Đao)",
-  "hp": 1200,
+  "name": "Thiết Phủ Bang - Thiết Phủ Liệt Diễm",
   "cols": 5,
   "rows": 4,
   "sect": "thiet_phu",
+  "tamPhapLevel": 1,
   "items": [
     {
       "id": "khai_son_phu",
       "x": 0,
       "y": 0,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
       "id": "khai_son_phu",
       "x": 0,
       "y": 2,
-      "rarity": "rare"
-    },
-    {
-      "id": "liet_diem_dao",
-      "x": 2,
-      "y": 0,
-      "rarity": "rare"
-    },
-    {
-      "id": "tuy_tien_ho_lo",
-      "x": 2,
-      "y": 3,
       "rarity": "epic"
     },
     {
       "id": "liet_diem_dao",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 2,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_thiet_giap",
       "x": 3,
       "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 2,
       "rarity": "rare"
     },
     {
       "id": "boi_nguyen_dan",
-      "x": 3,
+      "x": 4,
       "y": 3,
       "rarity": "uncommon"
-    },
-    {
-      "id": "thiet_cot_quyen_sao",
-      "x": 4,
-      "y": 0,
-      "rarity": "common"
-    },
-    {
-      "id": "thiet_cot_quyen_sao",
-      "x": 4,
-      "y": 2,
-      "rarity": "common"
     }
-  ]
+  ],
+  "level": 1
 }

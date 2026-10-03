@@ -1,9 +1,9 @@
 {
-  "name": "Kim Cang - Thiết Phủ Hợp Bích (Côn + Rìu)",
-  "hp": 1200,
+  "name": "Kim Cang Tự - Kim Cang Thiết Phủ",
   "cols": 5,
   "rows": 4,
   "sect": "kim_cang",
+  "tamPhapLevel": 1,
   "items": [
     {
       "id": "phuc_ho_con",
@@ -15,43 +15,38 @@
       "id": "khai_son_phu",
       "x": 1,
       "y": 0,
-      "rarity": "rare"
+      "rarity": "epic"
     },
     {
-      "id": "o_tam_y",
+      "id": "thiet_cot_quyen_sao",
       "x": 1,
       "y": 2,
-      "rarity": "uncommon"
-    },
-    {
-      "id": "thiet_cot_quyen_sao",
-      "x": 3,
-      "y": 0,
-      "rarity": "common"
-    },
-    {
-      "id": "thiet_cot_quyen_sao",
-      "x": 3,
-      "y": 2,
-      "rarity": "common"
-    },
-    {
-      "id": "phan_quan_but",
-      "x": 4,
-      "y": 0,
       "rarity": "rare"
     },
     {
-      "id": "tuy_tien_ho_lo",
-      "x": 4,
+      "id": "bach_luyen_chan_kinh",
+      "x": 2,
       "y": 2,
       "rarity": "epic"
     },
     {
-      "id": "boi_nguyen_dan",
-      "x": 4,
-      "y": 3,
-      "rarity": "uncommon"
+      "id": "thiet_giap_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tu_kim_bat",
+      "x": 3,
+      "y": 1,
+      "rarity": "epic"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
     }
-  ]
+  ],
+  "level": 1
 }

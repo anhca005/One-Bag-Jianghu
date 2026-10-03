@@ -24,6 +24,10 @@ public final class ItemCatalog {
     public static final String DEFAULT_RESOURCE = "/data/items.json";
     /** Binh khí không có loại 1x1. */
     public static final int MIN_WEAPON_CELLS = 2;
+    /** Add newly introduced weapon classes here when the game data gains one. */
+    public static final Set<String> WEAPON_CLASSES = Set.of(
+            "axe", "blade", "bow", "brush", "claw", "dual", "fan", "fist", "flute",
+            "hammer", "hidden", "palm", "spear", "staff", "sword", "whip", "zither");
     /** Trọng at which Đột Phá may unlock new effects. */
     public static final List<Integer> UNLOCK_TIERS = List.of(3, 6, 9);
     /** Events raised by a specific item, the only ones where a trigger's {@code from} filter means anything. */
@@ -48,6 +52,8 @@ public final class ItemCatalog {
         return JsonMapper.builder()
                 .enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS)
                 .enable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES)
+                // Reject 0.02 in an int field instead of silently truncating it to 0 (C# Newtonsoft already fails).
+                .disable(DeserializationFeature.ACCEPT_FLOAT_AS_INT)
                 .build();
     }
 
@@ -141,8 +147,18 @@ public final class ItemCatalog {
         if (def.cooldown < 0) errors.add("cooldown must be >= 0");
         if (def.attack < 0) errors.add("attack must be >= 0");
         if (def.crit < 0 || def.crit > 1) errors.add("crit must be in [0, 1]");
+        if (def.stats == null) def.stats = new ItemStats();
+        if (def.stats.hp < 0) errors.add("stats.hp must be >= 0");
+        if (def.stats.dmgReduce < 0 || def.stats.dmgReduce > 1) errors.add("stats.dmgReduce must be in [0, 1]");
+        if (def.stats.cooldownReduction < 0 || def.stats.cooldownReduction > 1) errors.add("stats.cooldownReduction must be in [0, 1]");
         if (def.type == ItemType.WEAPON && !def.isActive()) errors.add("weapon needs cooldown > 0");
         if (def.type == ItemType.WEAPON && def.attack <= 0) errors.add("weapon needs attack > 0");
+        if (def.type == ItemType.WEAPON && (def.weaponClass == null || !WEAPON_CLASSES.contains(def.weaponClass))) {
+            errors.add("weaponClass must be one of " + WEAPON_CLASSES);
+        }
+        if (def.type != null && def.type != ItemType.WEAPON && def.weaponClass != null) {
+            errors.add("weaponClass is only valid for weapons");
+        }
         if (def.type == ItemType.WEAPON && def.size != null && def.size.length == 2
                 && def.size[0] * def.size[1] < MIN_WEAPON_CELLS) {
             errors.add("weapon must occupy at least " + MIN_WEAPON_CELLS + " cells");

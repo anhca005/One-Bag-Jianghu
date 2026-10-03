@@ -20,26 +20,29 @@ public final class BattleConfig {
     /** Kiệt Lực bắt đầu sau mốc này. */
     public int exhaustionStartMs = 45_000;
     /** Sát thương Kiệt Lực giây thứ n = n × step. */
-    public int exhaustionStep = 20;
+    public int exhaustionStep = 5;
     /** Hết giờ thì hòa. */
     public int maxDurationMs = 120_000;
     public int maxTriggerDepth = 8;
     /** Điều Tức tối đa (khí huyết hồi mỗi giây); phần cộng vượt mức bị bỏ. */
-    public int maxRegen = 30;
+    public int maxRegen = 3;
     /** Cương Khí cap as permille of the fighter's current max HP. */
     public int shieldCapPermille = 1000;
     /** Hộ Thân tối đa. */
     public int maxDmgReducePermille = 800;
+    public int maxCooldownReducePermille = 400;
+    public int baseHp = 100;
+    public int hpPerLevel = 5;
     /** Hệ số theo Trọng 1..9 (lợi ích giảm dần), áp lên Lực Đạo, value, stacks. */
-    public int[] tierMultiplierPermille = {1000, 1200, 1400, 1550, 1700, 1800, 1900, 1950, 2000};
-    public int[] rarityMultiplierPermille = {1000, 1060, 1120, 1190, 1260, 1340};
+    public int[] tierMultiplierPermille = {1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400};
+    public int[] rarityMultiplierPermille = {1000, 1100, 1210, 1330, 1460, 1600};
 
     /** Liệt Hỏa: Cương Khí đỡ được. */
-    public Burst burn = new Burst(50, 300, 0, false, 0);
+    public Burst burn = new Burst(50, 80, 0, false, 0);
     /** Kịch Độc: xuyên Cương Khí. */
-    public Burst poison = new Burst(50, 240, 0, true, 0);
+    public Burst poison = new Burst(50, 32, 0, true, 0);
     /** Xuất Huyết: xuyên Cương Khí, cộng thêm 10% khí huyết tối đa. */
-    public Burst bleed = new Burst(50, 150, 100, true, 0);
+    public Burst bleed = new Burst(50, 20, 35, true, 0);
 
     /**
      * Build-up status: points accumulate with no effect until {@code threshold},

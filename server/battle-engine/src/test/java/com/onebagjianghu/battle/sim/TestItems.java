@@ -25,6 +25,7 @@ final class TestItems {
         d.id = id;
         d.name = id;
         d.type = ItemType.WEAPON;
+        d.weaponClass = "sword";
         d.rarity = Rarity.COMMON;
         d.size = new int[] {1, 2};
         d.attack = attack;

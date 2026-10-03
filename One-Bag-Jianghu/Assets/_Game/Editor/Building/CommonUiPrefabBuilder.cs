@@ -1,6 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.UI.Common;
 
 namespace OneBagJianghu.EditorTools.Building
 {
@@ -13,13 +14,14 @@ namespace OneBagJianghu.EditorTools.Building
 
         public static void Build(bool overwrite)
         {
+            EnsureFontRegistry();
             UiBuild.EnsureFolder(Folder);
             BuildButton("Button_Primary", true, overwrite);
             BuildButton("Button_Secondary", false, overwrite);
             BuildPanel(overwrite);
             BuildTooltip(overwrite);
-            BuildText("Text_Title", "Tiêu đề", 42, overwrite);
-            BuildText("Text_Body", "Nội dung", 24, overwrite);
+            BuildText("Text_Title", "Tiêu đề", 42, UiFontRole.Title, overwrite);
+            BuildText("Text_Body", "Nội dung", 24, UiFontRole.Body, overwrite);
             BuildInput(overwrite);
             BuildToggle(overwrite);
             BuildSlider(overwrite);
@@ -34,7 +36,8 @@ namespace OneBagJianghu.EditorTools.Building
             {
                 root.AddComponent<CanvasRenderer>(); Image background = root.AddComponent<Image>(); background.color = UiBuild.Paper; UiBuild.ApplyUiSprite(background, "frame_tooltip", Image.Type.Sliced);
                 Outline outline = root.AddComponent<Outline>(); outline.effectColor = UiBuild.Ink; outline.effectDistance = new Vector2(2, -2);
-                Dropdown dropdown = root.AddComponent<Dropdown>(); Text caption = UiBuild.Text(root.transform, "Label", "Chọn", 20, TextAnchor.MiddleLeft); UiBuild.Stretch(caption.rectTransform, 14);
+                Dropdown dropdown = root.AddComponent<Dropdown>(); Text caption = UiBuild.Text(root.transform, "Label", "Chọn", 20, TextAnchor.MiddleLeft); UiBuild.FitLabel(caption, UiBuild.LabelFitPreset.InkBox);
+                Text arrow = UiBuild.Text(root.transform, "Arrow", "▼", 17); arrow.raycastTarget = false; arrow.rectTransform.anchorMin = new Vector2(.86f, 0f); arrow.rectTransform.anchorMax = Vector2.one; arrow.rectTransform.offsetMin = new Vector2(0f, 7f); arrow.rectTransform.offsetMax = new Vector2(-10f, -7f);
                 Image templateImage = UiBuild.Image(root.transform, "Template", UiBuild.Paper); RectTransform template = templateImage.rectTransform; template.anchorMin = new Vector2(0, 0); template.anchorMax = new Vector2(1, 0); template.pivot = new Vector2(.5f, 1); template.sizeDelta = new Vector2(0, 240);
                 ScrollRect scroll = templateImage.gameObject.AddComponent<ScrollRect>(); Image viewport = UiBuild.Image(template, "Viewport", Color.clear); UiBuild.Stretch(viewport.rectTransform, 4); viewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
                 RectTransform content = UiBuild.Rect(viewport.transform, "Content"); content.anchorMin = new Vector2(0, 1); content.anchorMax = Vector2.one; content.pivot = new Vector2(.5f, 1); content.sizeDelta = new Vector2(0, 40);
@@ -88,19 +91,40 @@ namespace OneBagJianghu.EditorTools.Building
             });
         }
 
-        private static void BuildText(string name, string value, int size, bool overwrite)
+        private static void BuildText(string name, string value, int size, UiFontRole role, bool overwrite)
         {
             Save(name, overwrite, root =>
             {
                 root.AddComponent<CanvasRenderer>();
                 Text text = root.AddComponent<Text>();
-                text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                UiFonts.Apply(text, role);
                 text.text = value;
                 text.fontSize = size;
                 text.color = UiBuild.Ink;
                 text.alignment = TextAnchor.MiddleCenter;
                 return root;
             });
+        }
+
+        private static void EnsureFontRegistry()
+        {
+            const string resources = "Assets/_Game/Resources";
+            const string path = resources + "/UiFonts.asset";
+            UiBuild.EnsureFolder(resources);
+            UiFontRegistry registry = AssetDatabase.LoadAssetAtPath<UiFontRegistry>(path);
+            if (registry == null)
+            {
+                registry = ScriptableObject.CreateInstance<UiFontRegistry>();
+                AssetDatabase.CreateAsset(registry, path);
+            }
+
+            registry.display = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Charm-Bold.ttf");
+            registry.title = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/AlegreyaSC-Bold.ttf");
+            registry.body = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Regular.ttf");
+            registry.emphasis = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Bold.ttf");
+            EditorUtility.SetDirty(registry);
+            AssetDatabase.SaveAssets();
+            UiFonts.Reload();
         }
 
         private static void BuildInput(bool overwrite)
@@ -110,11 +134,12 @@ namespace OneBagJianghu.EditorTools.Building
                 root.AddComponent<CanvasRenderer>();
                 Image image = root.AddComponent<Image>();
                 image.color = Color.white;
+                UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
                 InputField input = root.AddComponent<InputField>();
                 Text value = UiBuild.Text(root.transform, "Text", string.Empty, 24, TextAnchor.MiddleLeft);
                 Text placeholder = UiBuild.Text(root.transform, "Placeholder", "Nhập nội dung", 24, TextAnchor.MiddleLeft);
-                UiBuild.Stretch(value.rectTransform, 16f);
-                UiBuild.Stretch(placeholder.rectTransform, 16f);
+                UiBuild.FitLabel(value, UiBuild.LabelFitPreset.InkBox);
+                UiBuild.FitLabel(placeholder, UiBuild.LabelFitPreset.InkBox);
                 placeholder.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.45f);
                 input.targetGraphic = image;
                 input.textComponent = value;

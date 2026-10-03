@@ -5,65 +5,126 @@ using Newtonsoft.Json.Linq;
 
 namespace OneBagJianghu.Economy
 {
+    public sealed class PveStageProgress
+    {
+        [JsonProperty("cleared")]
+        public bool Cleared;
+        [JsonProperty("bestStars")]
+        public int BestStars;
+    }
+
+    public sealed class PveProfileState
+    {
+        [JsonProperty("stages")]
+        public Dictionary<string,
+PveStageProgress> Stages = new Dictionary<string,
+PveStageProgress>(StringComparer.Ordinal);
+        [JsonProperty("stamina")]
+        public int Stamina = -1;
+        [JsonProperty("lastStaminaRegenUtc")]
+        public string LastStaminaRegenUtc = string.Empty;
+        [JsonProperty("dailyFirstClears")]
+        public List<string> DailyFirstClears = new List<string>();
+        [JsonProperty("dailyFirstClearDate")]
+        public string DailyFirstClearDate = string.Empty;
+    }
+
     public sealed class OwnedItem
     {
-        [JsonProperty("uid")] public string Uid = string.Empty;
-        [JsonProperty("itemId")] public string ItemId = string.Empty;
-        [JsonProperty("tier")] public int Tier = 1;
-        [JsonProperty("rarity")] public string Rarity = "common";
-        [JsonProperty("acquiredAt")] public string AcquiredAt = string.Empty;
+        [JsonProperty("uid")]
+        public string Uid = string.Empty;
+        [JsonProperty("itemId")]
+        public string ItemId = string.Empty;
+        [JsonProperty("tier")]
+        public int Tier = 1;
+        [JsonProperty("rarity")]
+        public string Rarity = "common";
+        [JsonProperty("acquiredAt")]
+        public string AcquiredAt = string.Empty;
     }
 
     public sealed class LoadoutPlacement
     {
-        [JsonProperty("uid")] public string Uid = string.Empty;
-        [JsonProperty("x")] public int X;
-        [JsonProperty("y")] public int Y;
+        [JsonProperty("uid")]
+        public string Uid = string.Empty;
+        [JsonProperty("x")]
+        public int X;
+        [JsonProperty("y")]
+        public int Y;
     }
 
     public sealed class ShopSlotState
     {
-        [JsonProperty("kind")] public string Kind = string.Empty;
-        [JsonProperty("contentId")] public string ContentId = string.Empty;
-        [JsonProperty("rarity")] public string Rarity = string.Empty;
-        [JsonProperty("quantity")] public int Quantity = 1;
-        [JsonProperty("price")] public long Price;
-        [JsonProperty("bought")] public bool Bought;
+        [JsonProperty("kind")]
+        public string Kind = string.Empty;
+        [JsonProperty("contentId")]
+        public string ContentId = string.Empty;
+        [JsonProperty("rarity")]
+        public string Rarity = string.Empty;
+        [JsonProperty("quantity")]
+        public int Quantity = 1;
+        [JsonProperty("price")]
+        public long Price;
+        [JsonProperty("bought")]
+        public bool Bought;
     }
 
     public sealed class ShopState
     {
-        [JsonProperty("slots")] public List<ShopSlotState> Slots = new List<ShopSlotState>();
-        [JsonProperty("lastFreeRefreshUtc")] public string LastFreeRefreshUtc = string.Empty;
-        [JsonProperty("paidRefreshesToday")] public int PaidRefreshesToday;
-        [JsonProperty("dayKey")] public string DayKey = string.Empty;
-        [JsonProperty("weekKey")] public string WeekKey = string.Empty;
-        [JsonProperty("reputationPurchases")] public Dictionary<string, int> ReputationPurchases = new Dictionary<string, int>(StringComparer.Ordinal);
-        [JsonProperty("generation")] public int Generation;
+        [JsonProperty("slots")]
+        public List<ShopSlotState> Slots = new List<ShopSlotState>();
+        [JsonProperty("lastFreeRefreshUtc")]
+        public string LastFreeRefreshUtc = string.Empty;
+        [JsonProperty("paidRefreshesToday")]
+        public int PaidRefreshesToday;
+        [JsonProperty("dayKey")]
+        public string DayKey = string.Empty;
+        [JsonProperty("weekKey")]
+        public string WeekKey = string.Empty;
+        [JsonProperty("reputationPurchases")]
+        public Dictionary<string, int> ReputationPurchases = new Dictionary<string, int>(StringComparer.Ordinal);
+        [JsonProperty("generation")]
+        public int Generation;
     }
 
     public sealed class PlayerProfile
     {
-        public const int CurrentVersion = 4;
-
-        [JsonProperty("version")] public int Version = CurrentVersion;
-        [JsonProperty("heroName")] public string HeroName = string.Empty;
-        [JsonProperty("heroLevel")] public int HeroLevel = 1;
-        [JsonProperty("heroExp")] public long HeroExp;
-        [JsonProperty("sectId")] public string SectId;
-        [JsonProperty("tamPhapLevel")] public int TamPhapLevel = 1;
-        [JsonProperty("currencies")] public Dictionary<string, long> Currencies =
-            new Dictionary<string, long>(StringComparer.Ordinal);
-        [JsonProperty("materials")] public Dictionary<string, int> Materials =
-            new Dictionary<string, int>(StringComparer.Ordinal);
-        [JsonProperty("items")] public List<OwnedItem> Items = new List<OwnedItem>();
-        [JsonProperty("loadout")] public List<LoadoutPlacement> Loadout = new List<LoadoutPlacement>();
-        [JsonProperty("firstClears")] public List<string> FirstClears = new List<string>();
-        [JsonProperty("shop")] public ShopState Shop = new ShopState();
-        [JsonProperty("storage")] public StorageState Storage = new StorageState();
-
-        public OwnedItem AddItem(string itemId, int tier, string acquiredAt = null, string uid = null,
-            string rarity = "common")
+        public const int CurrentVersion = 6;
+        [JsonProperty("version")]
+        public int Version = CurrentVersion;
+        [JsonProperty("heroName")]
+        public string HeroName = string.Empty;
+        [JsonProperty("heroLevel")]
+        public int HeroLevel = 1;
+        [JsonProperty("heroExp")]
+        public long HeroExp;
+        [JsonProperty("sectId")]
+        public string SectId;
+        [JsonProperty("tamPhapLevel")]
+        public int TamPhapLevel = 1;
+        [JsonProperty("sectPromptShown")]
+        public bool SectPromptShown;
+        [JsonProperty("currencies")]
+        public Dictionary<string, long> Currencies = new Dictionary<string, long>(StringComparer.Ordinal);
+        [JsonProperty("materials")]
+        public Dictionary<string, int> Materials = new Dictionary<string, int>(StringComparer.Ordinal);
+        [JsonProperty("items")]
+        public List<OwnedItem> Items = new List<OwnedItem>();
+        [JsonProperty("loadout")]
+        public List<LoadoutPlacement> Loadout = new List<LoadoutPlacement>();
+        [JsonProperty("firstClears")]
+        public List<string> FirstClears = new List<string>();
+        [JsonProperty("shop")]
+        public ShopState Shop = new ShopState();
+        [JsonProperty("storage")]
+        public StorageState Storage = new StorageState();
+        [JsonProperty("pve")]
+        public PveProfileState Pve = new PveProfileState();
+        public OwnedItem AddItem(string itemId,
+int tier,
+string acquiredAt = null,
+string uid = null,
+string rarity = "common")
         {
             if (string.IsNullOrWhiteSpace(itemId))
                 throw new ArgumentException("Item id must not be empty.", nameof(itemId));
@@ -113,12 +174,16 @@ namespace OneBagJianghu.Economy
             if (amount <= 0)
                 throw new ArgumentOutOfRangeException(nameof(amount), "Currency amount must be positive.");
             Currencies.TryGetValue(id, out long current);
-            checked { Currencies[id] = current + amount; }
+            checked
+            {
+                Currencies[id] = current + amount;
+            }
         }
 
         public bool TrySpend(IReadOnlyDictionary<string, long> costs, out string error)
         {
-            if (!CanAfford(costs, Currencies, "currency", out error)) return false;
+            if (!CanAfford(costs, Currencies, "currency", out error))
+                return false;
             foreach (KeyValuePair<string, long> cost in costs)
                 Currencies[cost.Key] -= cost.Value;
             return true;
@@ -126,7 +191,8 @@ namespace OneBagJianghu.Economy
 
         public OwnedItem FindItem(string uid)
         {
-            if (uid == null) return null;
+            if (uid == null)
+                return null;
             return Items.Find(item => string.Equals(item.Uid, uid, StringComparison.Ordinal));
         }
 
@@ -141,8 +207,10 @@ namespace OneBagJianghu.Economy
         {
             if (Version != CurrentVersion)
                 throw new FormatException($"Unsupported profile version {Version}; expected {CurrentVersion}.");
-            if (HeroLevel < 1) throw new FormatException("Profile heroLevel must be at least 1.");
-            if (HeroExp < 0) throw new FormatException("Profile heroExp must not be negative.");
+            if (HeroLevel < 1)
+                throw new FormatException("Profile heroLevel must be at least 1.");
+            if (HeroExp < 0)
+                throw new FormatException("Profile heroExp must not be negative.");
             if (TamPhapLevel < 1 || TamPhapLevel > 9)
                 throw new FormatException("Profile tamPhapLevel must be from 1 to 9.");
             Currencies ??= new Dictionary<string, long>(StringComparer.Ordinal);
@@ -152,19 +220,33 @@ namespace OneBagJianghu.Economy
             FirstClears ??= new List<string>();
             Shop ??= new ShopState();
             Storage ??= new StorageState();
+            Pve ??= new PveProfileState();
+            Pve.Stages ??= new Dictionary<string, PveStageProgress>(StringComparer.Ordinal);
+            Pve.DailyFirstClears ??= new List<string>();
+            if (Pve.Stamina < -1)
+                throw new FormatException("Profile PvE stamina must be -1 or non-negative.");
+            foreach (KeyValuePair<string, PveStageProgress> value in Pve.Stages)
+                if (string.IsNullOrWhiteSpace(value.Key)
+|| value.Value == null
+|| value.Value.BestStars < 0
+|| value.Value.BestStars > 3)
+                    throw new FormatException("Profile contains invalid PvE stage progress.");
             Storage.Items ??= new List<StorageItemPlacement>();
             Storage.MaterialStacks ??= new List<MaterialStack>();
             Storage.Overflow ??= new List<string>();
-            if (Storage.Cols < 1 || Storage.Rows < 1) throw new FormatException("Profile storage dimensions must be positive.");
+            if (Storage.Cols < 1 || Storage.Rows < 1)
+                throw new FormatException("Profile storage dimensions must be positive.");
             Shop.Slots ??= new List<ShopSlotState>();
             Shop.ReputationPurchases ??= new Dictionary<string, int>(StringComparer.Ordinal);
-            if (Shop.PaidRefreshesToday < 0 || Shop.Generation < 0) throw new FormatException("Profile shop counters must not be negative.");
+            if (Shop.PaidRefreshesToday < 0 || Shop.Generation < 0)
+                throw new FormatException("Profile shop counters must not be negative.");
             var uids = new HashSet<string>(StringComparer.Ordinal);
             foreach (OwnedItem item in Items)
             {
                 if (item == null || string.IsNullOrWhiteSpace(item.Uid))
                     throw new FormatException("Profile contains an item with no uid.");
-                if (!uids.Add(item.Uid)) throw new FormatException($"Duplicate owned item uid '{item.Uid}'.");
+                if (!uids.Add(item.Uid))
+                    throw new FormatException($"Duplicate owned item uid '{item.Uid}'.");
                 if (string.IsNullOrWhiteSpace(item.ItemId))
                     throw new FormatException($"Owned item '{item.Uid}' has no itemId.");
                 if (item.Tier < 1 || item.Tier > 9)
@@ -172,6 +254,7 @@ namespace OneBagJianghu.Economy
                 if (!RarityRules.IsValid(item.Rarity))
                     throw new FormatException($"Owned item '{item.Uid}' has invalid rarity '{item.Rarity}'.");
             }
+
             foreach (KeyValuePair<string, long> value in Currencies)
                 if (string.IsNullOrWhiteSpace(value.Key) || value.Value < 0)
                     throw new FormatException("Profile currencies must have non-empty ids and non-negative values.");
@@ -186,20 +269,30 @@ namespace OneBagJianghu.Economy
                 if (!placed.Add(placement.Uid))
                     throw new FormatException($"Loadout contains owned item uid '{placement.Uid}' more than once.");
             }
+
             var storageUids = new HashSet<string>(StringComparer.Ordinal);
             foreach (StorageItemPlacement placement in Storage.Items)
             {
                 if (placement == null || !uids.Contains(placement.Uid))
                     throw new FormatException($"Storage references unknown owned item uid '{placement?.Uid}'.");
                 if (!storageUids.Add(placement.Uid) || placed.Contains(placement.Uid))
-                    throw new FormatException($"Owned item uid '{placement.Uid}' occurs in storage/loadout more than once.");
+                    throw new FormatException(
+                        $"Owned item uid '{placement.Uid}' occurs in storage/loadout more than once.");
             }
+
             foreach (MaterialStack stack in Storage.MaterialStacks)
-                if (stack == null || string.IsNullOrWhiteSpace(stack.MaterialId) || stack.Count < 1 || stack.Count > StorageGrid.MaxStack)
+                if (stack == null
+|| string.IsNullOrWhiteSpace(stack.MaterialId)
+|| stack.Count < 1
+|| stack.Count > StorageGrid.MaxStack)
                     throw new FormatException("Storage contains an invalid material stack.");
             var stackedTotals = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (MaterialStack stack in Storage.MaterialStacks)
-            { stackedTotals.TryGetValue(stack.MaterialId, out int count); stackedTotals[stack.MaterialId] = checked(count + stack.Count); }
+            {
+                stackedTotals.TryGetValue(stack.MaterialId, out int count);
+                stackedTotals[stack.MaterialId] = checked(count + stack.Count);
+            }
+
             foreach (KeyValuePair<string, int> value in Materials)
                 if (!stackedTotals.TryGetValue(value.Key, out int count) || count != value.Value)
                     throw new FormatException($"Material total '{value.Key}' is not synchronized with storage stacks.");
@@ -213,7 +306,8 @@ namespace OneBagJianghu.Economy
 
         public static PlayerProfile FromJson(string json, IStorageItemCatalog catalog = null)
         {
-            if (string.IsNullOrWhiteSpace(json)) throw new FormatException("Profile JSON is empty.");
+            if (string.IsNullOrWhiteSpace(json))
+                throw new FormatException("Profile JSON is empty.");
             try
             {
                 JObject root = JObject.Parse(json);
@@ -221,24 +315,45 @@ namespace OneBagJianghu.Economy
                 if (version == 1)
                 {
                     if (root["items"] is JArray items)
-                        foreach (JToken item in items) item["rarity"] = "common";
+                        foreach (JToken item in items)
+                            item["rarity"] = "common";
                     version = 2;
                 }
+
                 if (version == 2)
                 {
                     root["shop"] = JObject.FromObject(new ShopState());
                     version = 3;
                 }
+
                 if (version == 3)
                 {
                     root["storage"] = JObject.FromObject(new StorageState());
-                    root["version"] = CurrentVersion;
+                    version = 4;
                 }
-                else if (version != CurrentVersion)
-                    throw new FormatException($"Unsupported profile version {version}; expected 1, 2, 3 or {CurrentVersion}.");
-                var settings = new JsonSerializerSettings { MissingMemberHandling = MissingMemberHandling.Error };
-                PlayerProfile profile = JsonConvert.DeserializeObject<PlayerProfile>(root.ToString(), settings)
-                    ?? throw new FormatException("Profile JSON is null.");
+
+                if (version == 4)
+                {
+                    root["pve"] = JObject.FromObject(new PveProfileState());
+                    version = 5;
+                }
+
+                if (version == 5)
+                {
+                    root["sectPromptShown"] = false;
+                    version = 6;
+                }
+
+                if (version != CurrentVersion)
+                    throw new FormatException(
+                        $"Unsupported profile version {version}; expected 1 through {CurrentVersion}.");
+                root["version"] = version;
+                var settings = new JsonSerializerSettings
+                {
+                    MissingMemberHandling = MissingMemberHandling.Error
+                };
+                PlayerProfile profile = JsonConvert.DeserializeObject<PlayerProfile>(root.ToString(),
+settings) ?? throw new FormatException("Profile JSON is null.");
                 profile.EnsureStorage(catalog ?? UnitSizeCatalog.Instance);
                 profile.Validate();
                 return profile;
@@ -252,47 +367,69 @@ namespace OneBagJianghu.Economy
         public void EnsureStorage(IStorageItemCatalog catalog)
         {
             Materials ??= new Dictionary<string, int>(StringComparer.Ordinal);
-            Items ??= new List<OwnedItem>(); Loadout ??= new List<LoadoutPlacement>(); Storage ??= new StorageState();
-            Storage.Items ??= new List<StorageItemPlacement>(); Storage.MaterialStacks ??= new List<MaterialStack>(); Storage.Overflow ??= new List<string>();
+            Items ??= new List<OwnedItem>();
+            Loadout ??= new List<LoadoutPlacement>();
+            Storage ??= new StorageState();
+            Storage.Items ??= new List<StorageItemPlacement>();
+            Storage.MaterialStacks ??= new List<MaterialStack>();
+            Storage.Overflow ??= new List<string>();
             var grid = new StorageGrid(this, catalog);
             var inLoadout = new HashSet<string>(StringComparer.Ordinal);
-            foreach (LoadoutPlacement placement in Loadout) inLoadout.Add(placement.Uid);
+            foreach (LoadoutPlacement placement in Loadout)
+                inLoadout.Add(placement.Uid);
             foreach (OwnedItem item in Items)
             {
-                if (inLoadout.Contains(item.Uid) || Storage.Items.Exists(p => p.Uid == item.Uid)) continue;
-                if (!grid.TryPlaceItem(item) && !Storage.Overflow.Contains("item:" + item.Uid)) Storage.Overflow.Add("item:" + item.Uid);
+                if (inLoadout.Contains(item.Uid) || Storage.Items.Exists(p => p.Uid == item.Uid))
+                    continue;
+                if (!grid.TryPlaceItem(item) && !Storage.Overflow.Contains("item:" + item.Uid))
+                    Storage.Overflow.Add("item:" + item.Uid);
             }
+
             if (Storage.MaterialStacks.Count == 0 && Materials.Count > 0)
             {
                 var old = new Dictionary<string, int>(Materials, StringComparer.Ordinal);
                 Materials.Clear();
                 foreach (KeyValuePair<string, int> value in old)
-                    if (!grid.TryAddMaterial(value.Key, value.Value)) Storage.Overflow.Add("material:" + value.Key + ":" + value.Value);
+                    if (!grid.TryAddMaterial(value.Key, value.Value))
+                        Storage.Overflow.Add("material:" + value.Key + ":" + value.Value);
             }
-            grid.SyncMaterials();
+
+            grid.MergeStacks();
         }
 
         private sealed class UnitSizeCatalog : IStorageItemCatalog
         {
             public static readonly UnitSizeCatalog Instance = new UnitSizeCatalog();
-            public void GetItemSize(string itemId, out int width, out int height) { width = height = 1; }
+            public void GetItemSize(string itemId, out int width, out int height)
+            {
+                width = height = 1;
+            }
         }
 
         private static void ValidateResource(string id, int amount, string label)
         {
-            if (string.IsNullOrWhiteSpace(id)) throw new ArgumentException(label + " id must not be empty.", nameof(id));
-            if (amount <= 0) throw new ArgumentOutOfRangeException(nameof(amount), label + " amount must be positive.");
+            if (string.IsNullOrWhiteSpace(id))
+                throw new ArgumentException(label + " id must not be empty.", nameof(id));
+            if (amount <= 0)
+                throw new ArgumentOutOfRangeException(nameof(amount), label + " amount must be positive.");
         }
 
-        private static bool CanAfford<T>(IReadOnlyDictionary<string, T> costs,
-            IReadOnlyDictionary<string, T> balances, string label, out string error) where T : struct, IComparable<T>
+        private static bool CanAfford<T>(IReadOnlyDictionary<string,
+T> costs,
+IReadOnlyDictionary<string,
+T> balances,
+string label,
+out string error)
+            where T : struct, IComparable<T>
         {
-            if (costs == null) throw new ArgumentNullException(nameof(costs));
+            if (costs == null)
+                throw new ArgumentNullException(nameof(costs));
             T zero = default;
             foreach (KeyValuePair<string, T> cost in costs)
             {
                 if (string.IsNullOrWhiteSpace(cost.Key) || cost.Value.CompareTo(zero) < 0)
-                    throw new ArgumentException($"Every {label} cost must have a non-empty id and non-negative amount.", nameof(costs));
+                    throw new ArgumentException($"Every {label} cost must have a non-empty id and non-negative amount.",
+nameof(costs));
                 balances.TryGetValue(cost.Key, out T balance);
                 if (balance.CompareTo(cost.Value) < 0)
                 {
@@ -300,6 +437,7 @@ namespace OneBagJianghu.Economy
                     return false;
                 }
             }
+
             error = string.Empty;
             return true;
         }

@@ -11,16 +11,18 @@ namespace OneBagJianghu.Battle.Replay.View
         public sealed class Entry
         {
             public string key;
-            [Range(-180f, 180f)] public float rotation;
-            [Range(.2f, 4f)] public float scale = 1f;
+            [Range(-180f, 180f)]
+            public float rotation;
+            [Range(.2f, 4f)]
+            public float scale = 1f;
             public Vector2 offset;
             public bool flipX;
             public bool flipY;
         }
 
-        [SerializeField] private List<Entry> entries = new List<Entry>();
+        [SerializeField]
+        private List<Entry> entries = new List<Entry>();
         private static VfxTuning cached;
-
         public static VfxTuning Load()
         {
             if (cached == null)
@@ -53,8 +55,12 @@ namespace OneBagJianghu.Battle.Replay.View
 
         public Entry GetOrCreate(string key)
         {
-            if (TryGet(key, out Entry entry)) return entry;
-            entry = new Entry { key = key };
+            if (TryGet(key, out Entry entry))
+                return entry;
+            entry = new Entry
+            {
+                key = key
+            };
             entries.Add(entry);
             return entry;
         }
@@ -62,14 +68,24 @@ namespace OneBagJianghu.Battle.Replay.View
         public void Reset(string key)
         {
             for (int i = entries.Count - 1; i >= 0; i--)
-                if (string.Equals(entries[i].key, key, StringComparison.Ordinal)) entries.RemoveAt(i);
+            {
+                if (string.Equals(entries[i].key, key, StringComparison.Ordinal))
+                {
+                    entries.RemoveAt(i);
+                }
+            }
         }
 
         public static bool IsIdentity(Entry entry)
         {
             return entry == null ||
-                (Mathf.Approximately(entry.rotation, 0f) && Mathf.Approximately(entry.scale, 1f) &&
-                 entry.offset == Vector2.zero && !entry.flipX && !entry.flipY);
+(Mathf.Approximately(entry.rotation,
+0f) &&
+Mathf.Approximately(entry.scale,
+1f) &&
+entry.offset == Vector2.zero &&
+!entry.flipX &&
+!entry.flipY);
         }
 
         public static VfxTransform Compose(Entry entry, bool mirrored)

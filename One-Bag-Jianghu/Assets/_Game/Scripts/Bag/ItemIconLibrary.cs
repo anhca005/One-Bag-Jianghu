@@ -14,8 +14,8 @@ namespace OneBagJianghu.Bag
             public Sprite Sprite;
         }
 
-        [SerializeField] private List<Entry> entries = new List<Entry>();
-
+        [SerializeField]
+        private List<Entry> entries = new List<Entry>();
         public List<Entry> Entries => entries;
 
         public static ItemIconLibrary Load()
@@ -37,6 +37,7 @@ namespace OneBagJianghu.Bag
                     }
                 }
             }
+
             sprite = null;
             return false;
         }

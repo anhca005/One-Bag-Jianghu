@@ -14,7 +14,10 @@ public enum TriggerEvent {
     PARRIED,
     /** Own HP dropped below {@code hpBelow}. */
     HP_BELOW,
-    /** Own side applied a status (optionally filtered by {@code status}). */
+    /**
+     * Own side applied a status (optionally filtered by {@code status}). Effects executed by this
+     * trigger may apply statuses, but those applications do not raise STATUS_APPLIED again.
+     */
     STATUS_APPLIED,
     /** A status applied by own side reached its threshold and burst (optionally filtered by {@code status}). */
     BURST,

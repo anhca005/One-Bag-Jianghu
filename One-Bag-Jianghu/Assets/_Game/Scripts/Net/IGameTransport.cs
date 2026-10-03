@@ -6,7 +6,11 @@ namespace OneBagJianghu.Net
 {
     public interface IGameTransport : IDisposable
     {
-        bool IsConnected { get; }
+        bool IsConnected
+        {
+            get;
+        }
+
         Task ConnectAsync(Uri uri, CancellationToken cancellationToken);
         Task SendTextAsync(string text, CancellationToken cancellationToken);
         Task<string> ReceiveTextAsync(CancellationToken cancellationToken);
