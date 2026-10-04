@@ -1,0 +1,157 @@
+{
+  "name": "shop_smart s29",
+  "cols": 5,
+  "rows": 4,
+  "level": 22,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "kim_sang_duoc",
+      "x": 3,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 4,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 0,
+      "y": 1,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 1,
+      "y": 1,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 2,
+      "y": 1,
+      "tier": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 3,
+      "y": 1,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 4,
+      "y": 1,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "kim_sang_duoc",
+      "x": 0,
+      "y": 2,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 1,
+      "y": 2,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 2,
+      "y": 2,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 3,
+      "y": 2,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 4,
+      "y": 2,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 0,
+      "y": 3,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 1,
+      "y": 3,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 2,
+      "y": 3,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 3,
+      "y": 3,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 4,
+      "y": 3,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "tier": 1,
+      "rarity": "rare",
+      "x": 0,
+      "y": 3
+    }
+  ]
+}

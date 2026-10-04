@@ -15,16 +15,16 @@ namespace OneBagJianghu.Tests.Replay
             log.Items.Add(new BattleItemRef { Uid = 100, Side = 1 });
             log.Items.Add(new BattleItemRef { Uid = 101, Side = 1, Rarity = "supreme" });
             BattleLogRarityMapper.Apply(log,
-new List<string> { "common",
-"legendary" },
-new List<string> { "rare",
-"epic" });
+                new List<string> { "common",
+                "legendary" },
+                new List<string> { "rare",
+                "epic" });
             Assert.That(log.Items[0].Rarity, Is.EqualTo("common"));
             Assert.That(log.Items[1].Rarity, Is.EqualTo("legendary"));
             Assert.That(log.Items[2].Rarity, Is.EqualTo("rare"));
             Assert.That(log.Items[3].Rarity,
-Is.EqualTo("supreme"),
-"Server rarity must win when present.");
+                Is.EqualTo("supreme"),
+                "Server rarity must win when present.");
         }
     }
 }

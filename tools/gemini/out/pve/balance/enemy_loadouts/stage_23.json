@@ -1,0 +1,38 @@
+{
+  "name": "Ải 23: Tuyết Lĩnh Ngân Lang",
+  "hp": 1700,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "soi_nanh_canh",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    }
+  ]
+}

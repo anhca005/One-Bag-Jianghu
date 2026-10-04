@@ -1,0 +1,45 @@
+{
+  "name": "Kim Cang Cương Khí",
+  "hp": 1350,
+  "cols": 5,
+  "rows": 4,
+  "sect": "kim_cang",
+  "items": [
+    {
+      "id": "phuc_ho_con",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "o_thiet_giap",
+      "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 3,
+      "y": 0,
+      "rarity": "common"
+    },
+    {
+      "id": "tram_huong_lo",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "ho_mach_dan",
+      "x": 3,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 1,
+      "y": 2,
+      "rarity": "rare"
+    }
+  ]
+}

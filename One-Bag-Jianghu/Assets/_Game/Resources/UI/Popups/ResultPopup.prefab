@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4221628164263803623}
   - component: {fileID: 5154654635456420841}
   - component: {fileID: 2111503167453900029}
+  - component: {fileID: 7219123311281830724}
   m_Layer: 0
   m_Name: ResultPopup
   m_TagString: Untagged
@@ -114,6 +115,19 @@ MonoBehaviour:
   homeButton: {fileID: 2392329079996624156}
   playAgainButton: {fileID: 2448512191384185233}
   disabledReason: {fileID: 6061678835705368513}
+--- !u!114 &7219123311281830724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1116760366968478969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b801632946408b1468073d9cd0bcd0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Audio.UiSfx
+  cue: 1
 --- !u!1 &2133271552993765658
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,6 +535,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 24
       objectReference: {fileID: 0}
+    - target: {fileID: 1168793677721913333, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -714,6 +732,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427100909598966331, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9218925419710371629, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Name
       value: Panel
@@ -757,6 +779,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8962987244154012831}
     m_Modifications:
+    - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2145533071607749656, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Name
       value: Play Again Button

@@ -19,19 +19,19 @@ namespace OneBagJianghu.Pve
 
     public sealed class PveRewardService
     {
-        private readonly RewardCatalog repeatCatalog;
-        private readonly MaterialCatalog materials;
         private readonly ItemCatalog items;
-        public PveRewardService(RewardCatalog repeatCatalog, MaterialCatalog materials, ItemCatalog items)
+        private readonly int repeatRewardPercent;
+        public PveRewardService(ItemCatalog items, int repeatRewardPercent)
         {
-            this.repeatCatalog = repeatCatalog;
-            this.materials = materials;
+            if (repeatRewardPercent < 0 || repeatRewardPercent > 100)
+                throw new ArgumentOutOfRangeException(nameof(repeatRewardPercent));
             this.items = items;
+            this.repeatRewardPercent = repeatRewardPercent;
         }
 
         public PveRewardResult Grant(PlayerProfile profile, PveStage stage, bool firstClear, int seed)
         {
-            PveRewardResult plan = firstClear ? First(stage) : Repeat(profile, seed);
+            PveRewardResult plan = firstClear ? First(stage) : Repeat(stage, seed);
             plan.OldLevel = profile.HeroLevel;
             if (!string.IsNullOrEmpty(plan.Error))
                 return plan;
@@ -63,23 +63,37 @@ namespace OneBagJianghu.Pve
             return result;
         }
 
-        private PveRewardResult Repeat(PlayerProfile profile, int seed)
+        private PveRewardResult Repeat(PveStage stage, int seed)
         {
-            PlayerProfile trial = PlayerProfile.FromJson(profile.ToJson(), items);
-            BattleReward reward = new RewardService(repeatCatalog, materials, items).Grant(trial, true, false, seed);
-            if (!reward.Success)
-                return new PveRewardResult
-                {
-                    Error = reward.Error
-                };
+            PveFirstClearReward reward = stage.Rewards.FirstClear;
             var result = new PveRewardResult
             {
-                Silver = reward.Silver,
-                HeroExp = reward.HeroExp
+                Silver = RepeatAmount(reward.Silver),
+                HeroExp = RepeatAmount(reward.HeroExp)
             };
-            foreach (KeyValuePair<string, int> value in reward.Materials)
-                result.Materials[value.Key] = value.Value;
+            uint state = unchecked((uint)seed) ^ 0xA5A5DE40u;
+            var materialIds = new List<string>((reward.Materials ?? new Dictionary<string, int>()).Keys);
+            materialIds.Sort(StringComparer.Ordinal);
+            foreach (string materialId in materialIds)
+            {
+                state = unchecked(state * 1664525u + 1013904223u);
+                long scaled = reward.Materials[materialId] * (long)repeatRewardPercent;
+                int count = (int)(scaled / 100);
+                if ((state >> 16) % 100 < scaled % 100)
+                    count++;
+                if (count > 0)
+                    result.Materials[materialId] = count;
+            }
+
             return result;
+        }
+
+        private long RepeatAmount(long firstClearAmount)
+        {
+            if (firstClearAmount <= 0 || repeatRewardPercent == 0)
+                return 0;
+            decimal exact = firstClearAmount * (decimal)repeatRewardPercent / 100m;
+            return Math.Max(1, (long)Math.Round(exact, MidpointRounding.AwayFromZero));
         }
 
         private static void RollDrops(PveRewardResult result, PveStage stage, int seed)

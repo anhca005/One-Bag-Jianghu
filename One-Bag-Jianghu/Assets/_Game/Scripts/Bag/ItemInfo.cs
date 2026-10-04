@@ -44,15 +44,15 @@ namespace OneBagJianghu.Bag
         }
 
         public ItemInfo(string id,
-string name,
-string type,
-string weaponClass,
-string sect,
-string rarity,
-int width,
-int height,
-float cooldownSeconds = 0f,
-bool hasActive = false)
+            string name,
+            string type,
+            string weaponClass,
+            string sect,
+            string rarity,
+            int width,
+            int height,
+            float cooldownSeconds = 0f,
+            bool hasActive = false)
         {
             Id = id;
             Name = name;

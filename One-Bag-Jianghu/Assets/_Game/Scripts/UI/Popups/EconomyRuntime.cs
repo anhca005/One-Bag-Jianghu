@@ -12,8 +12,8 @@ namespace OneBagJianghu.UI.Popups
     {
         private readonly ItemCatalog catalog = ItemCatalog.LoadFromResources();
         private readonly Dictionary<string,
-List<int>> unlocks = new Dictionary<string,
-List<int>>(StringComparer.Ordinal);
+            List<int>> unlocks = new Dictionary<string,
+            List<int>>(StringComparer.Ordinal);
         private readonly List<string> allItemIds = new List<string>();
         public EconomyRuntime(bool excludeMonsterItems = false)
         {
@@ -38,13 +38,13 @@ List<int>>(StringComparer.Ordinal);
 
         public string GetItemType(string itemId) => catalog.Get(itemId).Type;
         public IReadOnlyList<int> GetUnlockTiers(string itemId) => unlocks.TryGetValue(itemId,
-out List<int> value) ? value : Array.Empty<int>();
+            out List<int> value) ? value : Array.Empty<int>();
         public ItemInfo Get(string itemId) => catalog.Get(itemId);
         public void GetItemSize(string itemId,
-out int width,
-out int height) => catalog.GetItemSize(itemId,
-out width,
-out height);
+            out int width,
+            out int height) => catalog.GetItemSize(itemId,
+            out width,
+            out height);
         public IReadOnlyList<ItemInfo> All => catalog.All;
         public IReadOnlyList<string> AllItemIds => allItemIds;
 

@@ -128,13 +128,43 @@ namespace OneBagJianghu.EditorTools.Building
             Image map = UiBuild.Image(panel, "Chapter Painting", UiBuild.Paper); Anchor(map.rectTransform, .02f, .08f, .70f, .88f); map.preserveAspect = true; RectTransform nodes = UiBuild.Rect(map.transform, "Stage Nodes"); UiBuild.Stretch(nodes);
             Image header = UiBuild.Image(panel, "Header", UiBuild.Vermilion); Anchor(header.rectTransform, .02f, .90f, .98f, .985f); Text title = UiBuild.Text(header.transform, "Chapter Title", "Hồi 1", 36, TextAnchor.MiddleCenter, UiFontRole.Display); Anchor(title.rectTransform, .03f, .02f, .68f, .98f);
             Image staminaIcon = Icon(header.transform, "Stamina Icon", .70f, .18f, .735f, .82f); Text stamina = UiBuild.Text(header.transform, "Stamina", "Thể Lực: 60", 24, TextAnchor.MiddleRight); Anchor(stamina.rectTransform, .73f, .05f, .97f, .95f);
-            Image detail = UiBuild.Image(panel, "Stage Detail", UiBuild.Paper); Anchor(detail.rectTransform, .72f, .08f, .98f, .88f); Text name = T(detail.transform, "Name", "Tên ải", 30, .06f, .85f, .94f, .96f);
-            Image portrait = UiBuild.Image(detail.transform, "Enemy Portrait", new Color(.2f, .2f, .2f, .2f)); Anchor(portrait.rectTransform, .22f, .57f, .78f, .83f); portrait.preserveAspect = true;
-            Text enemy = T(detail.transform, "Enemy", "Địch", 20, .05f, .48f, .95f, .57f); Text desc = T(detail.transform, "Description", "Mô tả", 19, .07f, .34f, .93f, .48f); Text power = T(detail.transform, "Power", "Chiến lực đề nghị", 18, .06f, .27f, .94f, .34f);
-            Image rewardIcon = Icon(detail.transform, "Reward Currency Icon", .05f, .205f, .12f, .255f); Text rewards = T(detail.transform, "Rewards", "Phần thưởng", 18, .12f, .19f, .94f, .27f); Text cost = T(detail.transform, "Cost", "Thể Lực", 18, .06f, .13f, .94f, .19f); Text reason = T(detail.transform, "Disabled Reason", "", 16, .06f, .03f, .94f, .09f); reason.color = UiBuild.Vermilion;
-            UiButton prev = Btn(panel, "Previous", "‹ Hồi trước", false, new Vector2(.08f, .035f), new Vector2(220, 58)); UiButton next = Btn(panel, "Next", "Hồi sau ›", false, new Vector2(.61f, .035f), new Vector2(220, 58)); UiButton challenge = Btn(detail.transform, "Challenge", "Khiêu chiến", true, new Vector2(.5f, .10f), new Vector2(260, 62)); UiButton close = Btn(panel, "Close", "Đóng", false, new Vector2(.92f, .035f), new Vector2(180, 58));
+            // frame_stage_card.png is 2:3. Paper is x .22-.78 and y .135-.785 (bottom-origin, measured on the PNG);
+            // the lower plank is y .062-.113. The card rect is fitted to the art's aspect inside its area, so
+            // anchors below land on the painted paper whatever the screen size.
+            RectTransform detailArea = UiBuild.Rect(panel, "Stage Detail Area");
+            Anchor(detailArea, .712f, .105f, .985f, .895f);
+            Image detail = UiBuild.Image(detailArea, "Stage Detail", UiBuild.Paper);
+            detail.preserveAspect = true;
+            UiBuild.Stretch(detail.rectTransform);
+            AspectRatioFitter detailFit = detail.gameObject.AddComponent<AspectRatioFitter>();
+            detailFit.aspectMode = AspectRatioFitter.AspectMode.FitInParent;
+            detailFit.aspectRatio = 2f / 3f;
+            Text name = T(detail.transform, "Name", "Tên ải", 28, .24f, .715f, .76f, .775f);
+            name.gameObject.AddComponent<SingleLineFit>().Configure(28, 12);
+            Image portrait = UiBuild.Image(detail.transform, "Enemy Portrait", new Color(.2f, .2f, .2f, .2f)); Anchor(portrait.rectTransform, .34f, .555f, .66f, .71f); portrait.preserveAspect = true;
+            Text enemy = T(detail.transform, "Enemy", "Địch", 20, .24f, .51f, .76f, .55f); Text desc = T(detail.transform, "Description", "Mô tả", 18, .24f, .375f, .76f, .505f); desc.resizeTextForBestFit = true; desc.resizeTextMinSize = 13; desc.resizeTextMaxSize = 18; Image powerIcon = Icon(detail.transform, "Recommended Level Icon", .24f, .33f, .28f, .362f); Text power = T(detail.transform, "Power", "Chiến lực đề nghị", 17, .29f, .328f, .76f, .366f);
+            enemy.gameObject.AddComponent<SingleLineFit>().Configure(20, 11);
+            UiBuild.FitLabel(power, UiBuild.LabelFitPreset.None);
+            Text playerPower = T(detail.transform, "Player Power", "Lực Chiến của bạn", 17,
+                .24f, .292f, .76f, .328f);
+            UiBuild.FitLabel(playerPower, UiBuild.LabelFitPreset.None);
+            Text powerWarning = T(detail.transform, "Power Warning", "", 14, .24f, .262f, .76f, .292f);
+            powerWarning.color = UiBuild.Vermilion;
+            UiBuild.FitLabel(powerWarning, UiBuild.LabelFitPreset.None);
+            Image rewardIcon = Icon(detail.transform, "Reward Currency Icon", .24f, .222f, .28f, .254f);
+            Text rewards = T(detail.transform, "Rewards", "Phần thưởng", 17, .29f, .218f, .76f, .258f);
+            Text cost = T(detail.transform, "Cost", "Thể Lực", 16, .24f, .182f, .76f, .216f);
+            Text reason = T(detail.transform, "Disabled Reason", "", 14, .24f, .148f, .76f, .18f);
+            reason.color = UiBuild.Vermilion;
+            // The paper column is narrow; long reward/cost/reason lines shrink instead of spilling onto the wood.
+            UiBuild.FitLabel(rewards, UiBuild.LabelFitPreset.None, 11);
+            UiBuild.FitLabel(cost, UiBuild.LabelFitPreset.None, 11);
+            UiBuild.FitLabel(reason, UiBuild.LabelFitPreset.None, 10);
+            UiButton prev = Btn(panel, "Previous", "‹ Hồi trước", false, new Vector2(.08f, .035f), new Vector2(220, 58)); UiButton next = Btn(panel, "Next", "Hồi sau ›", false, new Vector2(.61f, .035f), new Vector2(220, 58)); UiButton challenge = Btn(detail.transform, "Challenge", "Khiêu chiến", true, new Vector2(.5f, .087f), new Vector2(230, 48)); UiButton close = Btn(panel, "Close", "Đóng", false, new Vector2(.92f, .035f), new Vector2(180, 58));
             PveStageNode template = UiBuild.InstantiateLinked<PveStageNode>(PrefabFolder + "/PveStageNode.prefab", panel); template.name = "Stage Node Prefab"; template.gameObject.SetActive(false);
-            Set(popup, map, header, detail, staminaIcon, rewardIcon, title, stamina, name, desc, enemy, power, rewards, cost, reason, portrait, nodes, template, prev, next, challenge, close);
+            Set(popup, map, header, detail, staminaIcon, powerIcon, rewardIcon, title, stamina, name, desc,
+                enemy, power, playerPower, powerWarning, rewards, cost, reason, portrait, nodes, template, prev,
+                next, challenge, close);
             PveCatalog mapCatalog = PveCatalog.Load(); var mapPrefabs = new GameObject[mapCatalog.Chapters.Count];
             for (int i = 0; i < mapPrefabs.Length; i++) mapPrefabs[i] = AssetDatabase.LoadAssetAtPath<GameObject>(MapPrefabFolder + "/Map_" + mapCatalog.Chapters[i].Id + ".prefab"); SetObjectArray(popup, "mapPrefabs", mapPrefabs);
             root.SetActive(false); PrefabUtility.SaveAsPrefabAsset(root, path); UnityEngine.Object.DestroyImmediate(root);
@@ -159,6 +189,36 @@ namespace OneBagJianghu.EditorTools.Building
         private static UiButton Btn(Transform parent, string name, string label, bool primary, Vector2 anchor, Vector2 size) { UiButton button = UiBuild.InstantiateLinked<UiButton>(CommonUiPrefabBuilder.Folder + "/Button_" + (primary ? "Primary" : "Secondary") + ".prefab", parent); button.name = name; button.SetLabel(label); RectTransform rect = (RectTransform)button.transform; rect.anchorMin = rect.anchorMax = anchor; rect.sizeDelta = size; return button; }
         private static Text T(Transform parent, string name, string value, int size, float x1, float y1, float x2, float y2) { UiFontRole role = name == "Name" || name == "Speaker" ? UiFontRole.Display : UiFontRole.Body; Text text = UiBuild.Text(parent, name, value, size, TextAnchor.MiddleCenter, role); Anchor(text.rectTransform, x1, y1, x2, y2); return text; }
         private static void Anchor(RectTransform rect, float x1, float y1, float x2, float y2) { rect.anchorMin = new Vector2(x1, y1); rect.anchorMax = new Vector2(x2, y2); rect.offsetMin = rect.offsetMax = Vector2.zero; }
-        private static void Set(StageMapPopup popup, Image map, Image header, Image detail, Image staminaIcon, Image rewardIcon, Text chapter, Text stamina, Text name, Text desc, Text enemy, Text power, Text rewards, Text cost, Text reason, Image portrait, RectTransform nodes, PveStageNode template, UiButton prev, UiButton next, UiButton challenge, UiButton close) { UiBuild.Set(popup, "mapBackground", map); UiBuild.Set(popup, "header", header); UiBuild.Set(popup, "detailFrame", detail); UiBuild.Set(popup, "staminaIcon", staminaIcon); UiBuild.Set(popup, "rewardCurrencyIcon", rewardIcon); UiBuild.Set(popup, "chapterText", chapter); UiBuild.Set(popup, "staminaText", stamina); UiBuild.Set(popup, "stageName", name); UiBuild.Set(popup, "descriptionText", desc); UiBuild.Set(popup, "enemyText", enemy); UiBuild.Set(popup, "powerText", power); UiBuild.Set(popup, "rewardsText", rewards); UiBuild.Set(popup, "costText", cost); UiBuild.Set(popup, "disabledReason", reason); UiBuild.Set(popup, "enemyPortrait", portrait); UiBuild.Set(popup, "nodeLayer", nodes); UiBuild.Set(popup, "nodePrefab", template); UiBuild.Set(popup, "previousButton", prev); UiBuild.Set(popup, "nextButton", next); UiBuild.Set(popup, "challengeButton", challenge); UiBuild.Set(popup, "closeButton", close); }
+        private static void Set(StageMapPopup popup, Image map, Image header, Image detail, Image staminaIcon,
+            Image powerIcon, Image rewardIcon, Text chapter, Text stamina, Text name, Text desc, Text enemy,
+            Text power, Text playerPower, Text powerWarning, Text rewards, Text cost, Text reason, Image portrait,
+            RectTransform nodes, PveStageNode template, UiButton prev, UiButton next, UiButton challenge,
+            UiButton close)
+        {
+            UiBuild.Set(popup, "mapBackground", map);
+            UiBuild.Set(popup, "header", header);
+            UiBuild.Set(popup, "detailFrame", detail);
+            UiBuild.Set(popup, "staminaIcon", staminaIcon);
+            UiBuild.Set(popup, "recommendedLevelIcon", powerIcon);
+            UiBuild.Set(popup, "rewardCurrencyIcon", rewardIcon);
+            UiBuild.Set(popup, "chapterText", chapter);
+            UiBuild.Set(popup, "staminaText", stamina);
+            UiBuild.Set(popup, "stageName", name);
+            UiBuild.Set(popup, "descriptionText", desc);
+            UiBuild.Set(popup, "enemyText", enemy);
+            UiBuild.Set(popup, "powerText", power);
+            UiBuild.Set(popup, "playerPowerText", playerPower);
+            UiBuild.Set(popup, "powerWarningText", powerWarning);
+            UiBuild.Set(popup, "rewardsText", rewards);
+            UiBuild.Set(popup, "costText", cost);
+            UiBuild.Set(popup, "disabledReason", reason);
+            UiBuild.Set(popup, "enemyPortrait", portrait);
+            UiBuild.Set(popup, "nodeLayer", nodes);
+            UiBuild.Set(popup, "nodePrefab", template);
+            UiBuild.Set(popup, "previousButton", prev);
+            UiBuild.Set(popup, "nextButton", next);
+            UiBuild.Set(popup, "challengeButton", challenge);
+            UiBuild.Set(popup, "closeButton", close);
+        }
     }
 }

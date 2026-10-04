@@ -4,6 +4,7 @@ using OneBagJianghu.Bag.View;
 using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.UI.Common;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.Battle.Replay.View
 {
@@ -58,16 +59,16 @@ namespace OneBagJianghu.Battle.Replay.View
         [SerializeField]
         private RectTransform expandedLogContent;
         private readonly Dictionary<int,
-ReplayItemView> itemViews =
-new Dictionary<int,
-ReplayItemView>();
+            ReplayItemView> itemViews =
+            new Dictionary<int,
+            ReplayItemView>();
         private readonly Dictionary<int, ItemInfo> itemInfos = new Dictionary<int, ItemInfo>();
         private readonly Dictionary<int, Color> itemColors = new Dictionary<int, Color>();
         private readonly Dictionary<int, string> itemNames = new Dictionary<int, string>();
         private readonly Dictionary<int,
-ItemCooldownTrack> cooldownTracks =
-new Dictionary<int,
-ItemCooldownTrack>();
+            ItemCooldownTrack> cooldownTracks =
+            new Dictionary<int,
+            ItemCooldownTrack>();
         private readonly List<BattleEvent> eventBuffer = new List<BattleEvent>(32);
         private readonly Queue<Text> logRows = new Queue<Text>(30);
         private readonly Queue<string> collapsedLines = new Queue<string>(3);
@@ -75,6 +76,7 @@ ItemCooldownTrack>();
         private BattleLog log;
         private BattleTimeline timeline;
         private ReplayClock clock;
+        private BattleSfxPlayback sfxPlayback;
         private FighterPanelView[] fighters;
         private bool settingSlider;
         private bool completionRaised;
@@ -105,11 +107,17 @@ ItemCooldownTrack>();
             playLabel.text = clock.IsPlaying ? "Tạm dừng" : "Phát";
         }
 
-        public void Initialize(BattleLog battleLog, ItemCatalog catalog)
+        public void Initialize(BattleLog battleLog, ItemCatalog catalog, bool bossStage = false)
         {
             log = battleLog;
             timeline = new BattleTimeline(log);
             clock = new ReplayClock(log.DurationMs);
+            var sfxResolver = new BattleSfxResolver(log,
+                SfxData.LoadMap(),
+                SfxData.LoadCatalog(),
+                0,
+                bossStage);
+            sfxPlayback = new BattleSfxPlayback(timeline, sfxResolver);
             fighters = new[]
             {
                 leftFighter,
@@ -166,8 +174,8 @@ ItemCooldownTrack>();
                 float cellX = side == 0 ? item.X.Value : 5 - item.X.Value - width;
                 rect.anchoredPosition = new Vector2(cellX * pitch, -item.Y.Value * pitch);
                 rect.sizeDelta =
-new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
-(item.H ?? 1) * pitch - ReplayStyle.CellGap);
+                    new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
+                    (item.H ?? 1) * pitch - ReplayStyle.CellGap);
                 view.Initialize(item.Uid, item.Id, itemName, item.Tier ?? 1, rarity);
                 itemViews[item.Uid] = view;
             }
@@ -181,6 +189,10 @@ new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
             int now = clock.TimeMs;
             if (now != previous)
             {
+                sfxPlayback.PlayAdvancedWindow(previous,
+                    now,
+                    clock.Speed,
+                    PlaySfx);
                 eventBuffer.Clear();
                 timeline.CollectEvents(previous, now, eventBuffer);
                 for (int i = 0; i < eventBuffer.Count; i++)
@@ -225,6 +237,11 @@ new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
             UpdateFloating();
         }
 
+        private static void PlaySfx(string key)
+        {
+            AudioManager.Instance?.Play(key);
+        }
+
         private void BuildArena(ItemCatalog catalog)
         {
             RectTransform arena = ReplayUi.Rect(transform, "Arena");
@@ -262,13 +279,13 @@ new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
             int rows = log.Bags[side][1];
             float pitch = ReplayStyle.CellSize + ReplayStyle.CellGap;
             Image bag =
-ReplayUi.Image(parent,
-"Bag " +
-side,
-new Color(ReplayStyle.Ink.r,
-ReplayStyle.Ink.g,
-ReplayStyle.Ink.b,
-.09f));
+                ReplayUi.Image(parent,
+                "Bag " +
+                side,
+                new Color(ReplayStyle.Ink.r,
+                ReplayStyle.Ink.g,
+                ReplayStyle.Ink.b,
+                .09f));
             LayoutElement layout = bag.gameObject.AddComponent<LayoutElement>();
             layout.preferredWidth = cols * pitch;
             layout.preferredHeight = rows * pitch;
@@ -277,12 +294,12 @@ ReplayStyle.Ink.b,
                 for (int x = 0; x < cols; x++)
                 {
                     Image cell =
-ReplayUi.Image(bag.transform,
-"Cell",
-new Color(ReplayStyle.Paper.r,
-ReplayStyle.Paper.g,
-ReplayStyle.Paper.b,
-.55f));
+                        ReplayUi.Image(bag.transform,
+                        "Cell",
+                        new Color(ReplayStyle.Paper.r,
+                        ReplayStyle.Paper.g,
+                        ReplayStyle.Paper.b,
+                        .55f));
                     RectTransform rect = cell.rectTransform;
                     rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);
                     rect.pivot = new Vector2(0f, 1f);
@@ -317,8 +334,8 @@ ReplayStyle.Paper.b,
                 rect.pivot = new Vector2(0f, 1f);
                 rect.anchoredPosition = new Vector2(item.X.Value * pitch, -item.Y.Value * pitch);
                 rect.sizeDelta =
-new Vector2(width * pitch - ReplayStyle.CellGap,
-height * pitch - ReplayStyle.CellGap);
+                    new Vector2(width * pitch - ReplayStyle.CellGap,
+                    height * pitch - ReplayStyle.CellGap);
                 ReplayItemView view = rect.gameObject.AddComponent<ReplayItemView>();
                 view.Initialize(item.Uid, item.Id, name, item.Tier ?? 1, rarity);
                 itemViews[item.Uid] = view;
@@ -349,12 +366,12 @@ height * pitch - ReplayStyle.CellGap);
             ReplayUi.Button(controls, "x4", () => clock.SetSpeed(4f), 70f);
             ReplayUi.Button(controls, "Chơi lại", Restart, 130f);
             Image sliderImage =
-ReplayUi.Image(controls,
-"Timeline",
-new Color(ReplayStyle.Ink.r,
-ReplayStyle.Ink.g,
-ReplayStyle.Ink.b,
-.18f));
+                ReplayUi.Image(controls,
+                "Timeline",
+                new Color(ReplayStyle.Ink.r,
+                ReplayStyle.Ink.g,
+                ReplayStyle.Ink.b,
+                .18f));
             sliderImage.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;
             scrub = sliderImage.gameObject.AddComponent<Slider>();
             scrub.minValue = 0f;
@@ -368,12 +385,12 @@ ReplayStyle.Ink.b,
             timeLabel = ReplayUi.Text(controls, "Time", "0.0s", ReplayStyle.BodyFont);
             timeLabel.gameObject.AddComponent<LayoutElement>().preferredWidth = 115f;
             Image viewport =
-ReplayUi.Image(bottom.transform,
-"Event Log Viewport",
-new Color(0f,
-0f,
-0f,
-.035f));
+                ReplayUi.Image(bottom.transform,
+                "Event Log Viewport",
+                new Color(0f,
+                0f,
+                0f,
+                .035f));
             RectTransform viewportRect = viewport.rectTransform;
             viewportRect.anchorMin = Vector2.zero;
             viewportRect.anchorMax = new Vector2(1f, .7f);
@@ -395,12 +412,12 @@ new Color(0f,
             scroll.vertical = true;
             scroll.movementType = ScrollRect.MovementType.Clamped;
             banner =
-ReplayUi.Text(transform,
-"End Banner",
-"",
-56,
-TextAnchor.MiddleCenter,
-UiFontRole.Display);
+                ReplayUi.Text(transform,
+                "End Banner",
+                "",
+                56,
+                TextAnchor.MiddleCenter,
+                UiFontRole.Display);
             banner.color = ReplayStyle.Gold;
             banner.gameObject.SetActive(false);
             RectTransform bannerRect = banner.rectTransform;
@@ -512,21 +529,21 @@ UiFontRole.Display);
             if (timeMs >= log.DurationMs)
             {
                 banner.text =
-log.Winner < 0 ?
-"Hòa" :
-(log.Winner == 0 ?
-"Thắng — " :
-"Bại — ") +
-log.Names[log.Winner];
+                    log.Winner < 0 ?
+                    "Hòa" :
+                    (log.Winner == 0 ?
+                    "Thắng — " :
+                    "Bại — ") +
+                    log.Names[log.Winner];
             }
         }
 
         private void PresentEvent(BattleEvent battleEvent)
         {
             if (battleEvent.Type == BattleEventType.Trigger &&
-battleEvent.Item.HasValue &&
-itemViews.TryGetValue(battleEvent.Item.Value,
-out ReplayItemView fired))
+                battleEvent.Item.HasValue &&
+                itemViews.TryGetValue(battleEvent.Item.Value,
+                out ReplayItemView fired))
             {
                 fired.Flash(battleEvent.Kind == "ULTIMATE");
             }
@@ -536,34 +553,34 @@ out ReplayItemView fired))
             if (battleEvent.Type == BattleEventType.Damage || battleEvent.Type == BattleEventType.Burst)
             {
                 Color color =
-battleEvent.Type == BattleEventType.Burst ?
-ReplayStyle.Status(battleEvent.Kind) :
-ReplayStyle.Hp;
+                    battleEvent.Type == BattleEventType.Burst ?
+                    ReplayStyle.Status(battleEvent.Kind) :
+                    ReplayStyle.Hp;
                 SpawnFloating(battleEvent.Side,
-"-" +
-(battleEvent.Value ?? 0) +
-(battleEvent.Crit == true ?
-"!" :
-""),
-color,
-battleEvent.Crit == true ||
-battleEvent.Type == BattleEventType.Burst ?
-38 :
-29);
+                    "-" +
+                    (battleEvent.Value ?? 0) +
+                    (battleEvent.Crit == true ?
+                    "!" :
+                    ""),
+                    color,
+                    battleEvent.Crit == true ||
+                    battleEvent.Type == BattleEventType.Burst ?
+                    38 :
+                    29);
                 if (battleEvent.Absorbed.GetValueOrDefault() > 0)
                 {
                     SpawnFloating(battleEvent.Side,
-"Hấp thụ " + battleEvent.Absorbed.Value,
-Color.gray,
-20);
+                        "Hấp thụ " + battleEvent.Absorbed.Value,
+                        Color.gray,
+                        20);
                 }
             }
             else if (battleEvent.Type == BattleEventType.Heal)
             {
                 SpawnFloating(battleEvent.Side,
-"+" + (battleEvent.Value ?? 0),
-ReplayStyle.Heal,
-30);
+                    "+" + (battleEvent.Value ?? 0),
+                    ReplayStyle.Heal,
+                    30);
             }
             else if (battleEvent.Type == BattleEventType.Parry)
             {
@@ -595,9 +612,9 @@ ReplayStyle.Heal,
             }
 
             int targetSide =
-vfx.Kind == ReplayVfxKind.Travel ?
-1 - battleEvent.Side :
-battleEvent.Side;
+                vfx.Kind == ReplayVfxKind.Travel ?
+                1 - battleEvent.Side :
+                battleEvent.Side;
             RectTransform source = itemView == null ? null : (RectTransform)itemView.transform;
             RectTransform target = fighters[targetSide].VfxTarget;
             if (vfx.Kind == ReplayVfxKind.Burst)
@@ -611,8 +628,8 @@ battleEvent.Side;
         private void ApplyItemStatus(BattleEvent battleEvent, int now)
         {
             if (battleEvent.Type != BattleEventType.Status ||
-!battleEvent.Item.HasValue ||
-!battleEvent.Value.HasValue)
+                !battleEvent.Item.HasValue ||
+                !battleEvent.Value.HasValue)
                 return;
             if (battleEvent.Kind != "SEAL" && battleEvent.Kind != "SLOW" && battleEvent.Kind != "HASTE")
                 return;
@@ -624,11 +641,11 @@ battleEvent.Side;
         }
 
         private string ItemName(int uid) =>
-itemNames.TryGetValue(uid,
-out string value) ?
-value :
-"Vật phẩm " +
-uid;
+            itemNames.TryGetValue(uid,
+            out string value) ?
+            value :
+            "Vật phẩm " +
+            uid;
         private void AddLog(string line)
         {
             if (logRows.Count == 30)

@@ -1,0 +1,31 @@
+{
+  "name": "Ải 7: Thiết Bì Trư Thú",
+  "hp": 1150,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 3,
+      "y": 0,
+      "tier": 2,
+      "rarity": "uncommon"
+    }
+  ]
+}

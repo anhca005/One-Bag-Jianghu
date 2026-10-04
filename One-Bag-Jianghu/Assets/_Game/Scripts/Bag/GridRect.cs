@@ -29,13 +29,13 @@ namespace OneBagJianghu.Bag
 
         public bool FitsIn(int cols, int rows) => X >= 0 && Y >= 0 && X + W <= cols && Y + H <= rows;
         public bool Overlaps(GridRect other) => X < other.X
-+ other.W
-&& other.X < X
-+ W
-&& Y < other.Y
-+ other.H
-&& other.Y < Y
-+ H;
+            + other.W
+            && other.X < X
+            + W
+            && Y < other.Y
+            + other.H
+            && other.Y < Y
+            + H;
         public bool IsAdjacent(GridRect other)
         {
             bool horizontal = (X + W == other.X || other.X + other.W == X) && Y < other.Y + other.H && other.Y < Y + H;

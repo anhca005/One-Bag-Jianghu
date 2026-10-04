@@ -10,6 +10,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Pve;
 using OneBagJianghu.UI.Pve;
+using OneBagJianghu.UI.Common;
+using OneBagJianghu.Audio;
+using OneBagJianghu.Onboarding;
 
 namespace OneBagJianghu.UI.Gameplay
 {
@@ -53,6 +56,8 @@ namespace OneBagJianghu.UI.Gameplay
                 }
 
                 ApplyBattleBackground(pveStage.Chapter.Theme.BattleBackground);
+                if (pveStage.Id == "hoi_1_01")
+                    OnboardingRuntime.Publish("first_battle_started");
             }
 
             Debug
@@ -77,16 +82,16 @@ namespace OneBagJianghu.UI.Gameplay
             if (GameBootstrap.Network.State == NetworkState.Online)
             {
                 GameBootstrap.Network.RequestBattle(session.SelectedMode == GameMode.Pvp ? "pvp" : "pve",
-session.CurrentLoadoutJson,
-HandleBattleResult,
-HandleBattleError);
+                    session.CurrentLoadoutJson,
+                    HandleBattleResult,
+                    HandleBattleError);
                 return;
             }
 
             try
             {
                 LocalBattleOutput output = LocalBattleService.RunBattle(session.CurrentLoadoutJson,
-session.SelectedMode);
+                    session.SelectedMode);
                 HandleBattleResult(BattleLogParser.Parse(output.Result.ToString()), output.Opponent);
             }
             catch (OneBagJianghu.Engine.DataException exception)
@@ -105,8 +110,8 @@ session.SelectedMode);
             opponentName = string.IsNullOrWhiteSpace(opponent?.Name) ? "Đối thủ" : opponent.Name;
             if (log.Names.Count > 1)
                 log.Names[1] = string.IsNullOrWhiteSpace(opponent?.Sect) ? opponentName : opponentName
-+ " • "
-+ opponent.Sect;
+                    + " • "
+                    + opponent.Sect;
             ApplyKnownRarities(log);
             PlayBattle(log);
         }
@@ -168,11 +173,18 @@ session.SelectedMode);
                     $"[Battle] Start resolved mode={GameBootstrap.Session.SelectedMode}, seed={log.Seed}, " +
                     $"player={log.Names[0]}({playerItems} items), opponent={log.Names[1]}({opponentItems} items)");
             replayRoot.SetActive(true);
-            replayScreen.Initialize(log, OneBagJianghu.Bag.ItemCatalog.LoadFromResources());
+            bool bossStage = GameBootstrap.Session.SelectedMode == GameMode.Pve && pveStage.Kind == "boss";
+            string musicKey = GameBootstrap.Session.SelectedMode == GameMode.Pvp
+                ? MusicKeys.Pvp
+                : MusicKeys.ForStage(bossStage);
+            AudioManager.EnsureExists().PlayMusic(musicKey);
+            replayScreen.Initialize(log,
+                OneBagJianghu.Bag.ItemCatalog.LoadFromResources(),
+                bossStage);
             ApplyPvePortraits();
             string mode = GameBootstrap.Session.SelectedMode == GameMode.Pvp ? "Luận Kiếm Đài" : pveStage.Chapter.Title
-+ " · "
-+ pveStage.Name;
+                + " · "
+                + pveStage.Name;
             replayScreen.SetStageLabel(mode);
             replayScreen.Completed -= ShowResult;
             replayScreen.Completed += ShowResult;
@@ -182,16 +194,17 @@ session.SelectedMode);
         }
 
         private void ConfirmExit() => PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Thoát trận",
-"Rời trận và trở về Sảnh?",
-"Thoát",
-"Ở lại",
-yes =>
+            "Rời trận và trở về Sảnh?",
+            "Thoát",
+            "Ở lại",
+            yes =>
         {
             if (yes)
                 SceneFlow.Go(GameScene.Home);
         }));
         private void ShowResult(int winner)
         {
+            AudioManager.Instance?.PlaySting(MusicKeys.ForResult(winner == 0));
             string result = winner < 0 ? "Hòa" : winner == 0 ? "Thắng" : "Bại";
             string winnerName = winner == 0 ? GameBootstrap.Session.HeroName : winner > 0 ? opponentName : string.Empty;
             string rewardText = string.Empty;
@@ -266,18 +279,24 @@ yes =>
 
                 if (!profile.Pve.DailyFirstClears.Contains(pveStage.Id))
                     profile.Pve.DailyFirstClears.Add(pveStage.Id);
-                PveRewardResult reward = new PveRewardService(EconomyRuntime.Load("rewards",
-RewardCatalog.Parse),
-GameSession.LoadMaterialCatalog(),
-ItemCatalog.LoadFromResources()).Grant(profile,
-pveStage,
-first,
-unchecked((int)battleSeed));
+                PveRewardResult reward = new PveRewardService(ItemCatalog.LoadFromResources(),
+                    PveCatalog.Load().RepeatRewardPercent).Grant(profile,
+                    pveStage,
+                    first,
+                    unchecked((int)battleSeed));
+                AudioManager.Instance?.Play("star_rating");
+                if (reward.Success)
+                    AudioManager.Instance?.Play("reward");
+                if (reward.NewLevel > reward.OldLevel)
+                    AudioManager.Instance?.Play("level_up");
+                if (first)
+                    AudioManager.Instance?.Play("node_unlock");
                 rewardText = reward.Success
-                    ? $"{new string ('★', stars)}  Thưởng: {reward.Silver:N0} Bạc · {reward.HeroExp} EXP"
+                    ? $"{new string ('★', stars)}  Thưởng: {UiFormat.Number(reward.Silver)} Bạc · "
+                        + $"{reward.HeroExp} EXP"
                         + (reward.NewLevel > reward.OldLevel ? $"\nLên cấp! Cấp {reward.NewLevel}" : string.Empty)
                     : "Thưởng chưa nhận: "
-+ reward.Error;
+                        + reward.Error;
                 Debug
                     .Log(
                         $"[Pve] Clear stage={pveStage.Id}, stars={stars}, first={first}, " +
@@ -303,6 +322,10 @@ unchecked((int)battleSeed));
                 popup.Closed -= HandleResultClosed;
                 popup.Closed += HandleResultClosed;
             }
+
+            // Published after the result popup is up, so the tutorial can point at its buttons.
+            if (won && pveStage?.Id == "hoi_1_01")
+                OnboardingRuntime.Publish("first_battle_won");
         }
 
         private void ApplyBattleBackground(string key)
@@ -357,6 +380,7 @@ unchecked((int)battleSeed));
         private void HandleResultClosed(BasePopup popup)
         {
             popup.Closed -= HandleResultClosed;
+            OnboardingRuntime.Publish("result_closed");
             if (!(popup.Result is ResultPopupChoice choice))
                 return;
             if (GameBootstrap.Session.SelectedMode != GameMode.Pve)
@@ -381,9 +405,9 @@ unchecked((int)battleSeed));
         }
 
         private static void Message(string title,
-string body) => PopupManager.Show<MessagePopup>(new MessagePopupData(title,
-body,
-"Đóng"));
+            string body) => PopupManager.Show<MessagePopup>(new MessagePopupData(title,
+            body,
+            "Đóng"));
         private static void MessageAndReturnHome(string title, string body)
         {
             MessagePopup popup = PopupManager.Show<MessagePopup>(new MessagePopupData(title, body, "Về Sảnh"));

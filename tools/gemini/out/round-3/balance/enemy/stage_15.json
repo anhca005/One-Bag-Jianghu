@@ -1,0 +1,45 @@
+{
+  "name": "Vạn Hoa Nghịch Đồ",
+  "sect": "bich_thuy",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 4,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 2,
+      "y": 1,
+      "tier": 2,
+      "rarity": "epic"
+    }
+  ],
+  "level": 15,
+  "cols": 5,
+  "rows": 4
+}

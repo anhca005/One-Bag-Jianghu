@@ -1,0 +1,32 @@
+Ải   Tên Ải                   Loại     Kẻ Địch                    Cấp Địch   Tỷ Lệ Thắng    Mục Tiêu   Đạt?
+---------------------------------------------------------------------------------------------------------
+01   Trấn Khẩu Sơn Đạo        normal   Thảo Khấu Tiên Phong       1           90.0%         80-90%     ĐẠT
+02   Phong Diệp Bến Đò        normal   Thủy Phỉ Thám Tử           2           86.5%         80-90%     ĐẠT
+03   Hòe Thụ Thôn Ngoại       normal   Hoang Dã Sói Xám           3           89.0%         80-90%     ĐẠT
+04   Thanh Khê Trà Thất       normal   Liệt Diệm Bang Chúng       4           86.0%         80-90%     ĐẠT
+05   Phong Ba Đình            elite    Phong Lôi Khoái Đao Phon   5           63.0%         60-70%     ĐẠT
+06   Ngô Đồng Cổ Hạng         normal   Ám Hạng Thích Khách        6           88.0%         80-90%     ĐẠT
+07   Thủy Tạ Nguy Kiều        normal   Liệt Diệm Bang Tinh Anh    7           83.0%         80-90%     ĐẠT
+08   Phong Hỏa Cổ Đài         normal   Liệt Diệm Bang Hương Chủ   8           84.0%         80-90%     ĐẠT
+09   Ba Hổ Trại Tiền Doanh    normal   Ba Hổ Tiên Phong Vệ        9           84.5%         80-90%     ĐẠT
+10   Thủy Hỏa Phân Tranh Bế   boss     Nộ Ba Hổ Bùi Chấn          11          59.5%         50-60%     ĐẠT
+11   Man Uyên Nhập Khẩu       normal   Vạn Độc Môn Đồ             11          88.0%         80-90%     ĐẠT
+12   Ô Đầm Nhai               normal   Huyền Độc Môn Đồ           12          90.0%         80-90%     ĐẠT
+13   Hủ Cốt Thung             normal   Kịch Độc Tri Chu           13          89.0%         80-90%     ĐẠT
+14   Xà Khẩu Hiệp             normal   Man Cương Vu Đao           14          83.5%         80-90%     ĐẠT
+15   U Cốc Dược Đàn           elite    Vạn Hoa Nghịch Đồ          15          61.5%         60-70%     ĐẠT
+16   Mê Vụ Đàm                normal   Hắc Sát Độc Hùng           16          85.0%         80-90%     ĐẠT
+17   Lam Hoa Trạch            normal   U Minh Ám Sát Thí Tử       17          84.0%         80-90%     ĐẠT
+18   Độc Long Khê             normal   Huyền Độc Trưởng Lão       18          84.5%         80-90%     ĐẠT
+19   Vạn Xà Quật              normal   Xích Luyện Xà Tinh         19          84.0%         80-90%     ĐẠT
+20   Thần Bí Cổ Đàn           boss     Hắc Độc Nương Tử           21          59.0%         50-60%     ĐẠT
+21   Tuyết Dốc Băng Khẩu      normal   Hàn Phong Tuần Tuyết Giả   21          88.0%         80-90%     ĐẠT
+22   Phong Nhận Trầm Khê      normal   Hàn Sơn Kiếm Sĩ            22          80.0%         80-90%     ĐẠT
+23   Tuyết Lĩnh Hàn Phong     normal   Tuyết Lĩnh Ngân Lang       23          80.0%         80-90%     ĐẠT
+24   Băng Hà Cổ Nhai          normal   Kim Cang Hộ Giới Tăng      24          85.0%         80-90%     ĐẠT
+25   Phong Vân Băng Đài       elite    Hàn Sơn Đại Đệ Tử          25          61.5%         60-70%     ĐẠT
+26   Bạch Hổ Tuyệt Hạp        normal   Băng Nguyên Bạch Hổ        26          85.0%         80-90%     ĐẠT
+27   Hàn Tinh Thạch Thất      normal   U Minh Chấp Pháp Sứ        27          88.5%         80-90%     ĐẠT
+28   Phong Ma Cổ Đạo          normal   Vạn Niên Băng Quy          28          88.0%         80-90%     ĐẠT
+29   Vọng Nguyệt Băng Đỉnh    normal   U Minh Tuyệt Mệnh Kiếm V   29          87.5%         80-90%     ĐẠT
+30   Phong Thiền Băng Đài     boss     U Minh Tả Sứ Dạ Sát Thiê   30          57.0%         50-60%     ĐẠT

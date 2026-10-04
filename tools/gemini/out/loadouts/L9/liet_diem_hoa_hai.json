@@ -1,0 +1,55 @@
+﻿{
+    "name":  "Liá»‡t Diá»…m ÄÆ°á»ng - Há»a Háº£i (Tá»© Äao)",
+    "hp":  1200,
+    "cols":  5,
+    "rows":  4,
+    "sect":  "liet_diem",
+    "items":  [
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  0,
+                      "y":  0
+                  },
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  1,
+                      "y":  0
+                  },
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  2,
+                      "y":  0
+                  },
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  3,
+                      "y":  0
+                  },
+                  {
+                      "id":  "boi_nguyen_dan",
+                      "x":  0,
+                      "y":  3
+                  },
+                  {
+                      "id":  "tuy_tien_ho_lo",
+                      "x":  1,
+                      "y":  3
+                  },
+                  {
+                      "id":  "thai_thanh_tam_kinh",
+                      "x":  2,
+                      "y":  3
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  4,
+                      "y":  0
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  4,
+                      "y":  2
+                  }
+              ],
+    "tamPhapLevel":  9
+}

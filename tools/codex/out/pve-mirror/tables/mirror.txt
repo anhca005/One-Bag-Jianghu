@@ -1,0 +1,65 @@
+Ải 01 normal cấp 1: 100.0% -> sửa 54.0%; chọn 54.0% · 42.2s
+Ải 02 normal cấp 2: 97.0% -> sửa 45.0%; chọn 97.0% · 43.2s
+Ải 03 normal cấp 3: 96.0% -> sửa 57.0%; chọn 57.0% · 48.7s
+Ải 04 normal cấp 5: 98.0% -> sửa 52.0%; chọn 98.0% · 29.5s
+Ải 05 elite cấp 6: 14.0% -> sửa 80.0%; chọn 80.0% · 30.6s
+Ải 06 normal cấp 7: 81.0%; chọn 81.0% · 38.0s
+Ải 07 normal cấp 8: 94.0% -> sửa 45.0%; chọn 94.0% · 27.7s
+Ải 08 normal cấp 9: 98.0% -> sửa 44.0%; chọn 98.0% · 52.4s
+Ải 09 normal cấp 10: 100.0% -> sửa 50.0%; chọn 100.0% · 51.3s
+Ải 10 boss cấp 11: 43.0%; chọn 43.0% · 54.0s
+Đã lưu hết Hồi 1: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-mirror\chapters.json
+Ải 11 normal cấp 12: 82.0%; chọn 82.0% · 16.7s
+Ải 12 normal cấp 13: 73.0%; chọn 73.0% · 19.1s
+Ải 13 normal cấp 13: 66.0%; chọn 66.0% · 17.6s
+Ải 14 normal cấp 14: 70.0%; chọn 70.0% · 15.1s
+Ải 15 elite cấp 15: 38.0% -> sửa 38.0%; chọn 38.0% · 16.1s
+Ải 16 normal cấp 15: 72.0%; chọn 72.0% · 21.3s
+Ải 17 normal cấp 16: 69.0%; chọn 69.0% · 27.5s
+Ải 18 normal cấp 17: 68.0%; chọn 68.0% · 27.6s
+Ải 19 normal cấp 17: 78.0%; chọn 78.0% · 33.0s
+Ải 20 boss cấp 18: 44.0%; chọn 44.0% · 16.7s
+Đã lưu hết Hồi 2: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-mirror\chapters.json
+Ải 21 normal cấp 18: 85.0%; chọn 85.0% · 26.4s
+Ải 22 normal cấp 19: 71.0%; chọn 71.0% · 31.8s
+Ải 23 normal cấp 19: 85.0%; chọn 85.0% · 23.4s
+Ải 24 normal cấp 20: 90.0% -> sửa 50.0%; chọn 90.0% · 27.0s
+Ải 25 elite cấp 20: 63.0%; chọn 63.0% · 47.0s
+Ải 26 normal cấp 21: 52.0% -> sửa 88.0%; chọn 88.0% · 54.0s
+Ải 27 normal cấp 21: 53.0% -> sửa 99.0%; chọn 53.0% · 32.9s
+Ải 28 normal cấp 22: 100.0% -> sửa 43.0%; chọn 100.0% · 29.5s
+Ải 29 normal cấp 22: 100.0% -> sửa 41.0%; chọn 100.0% · 34.0s
+Ải 30 boss cấp 23: 33.0% -> sửa 46.0%; chọn 46.0% · 30.9s
+Đã lưu hết Hồi 3: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-mirror\chapters.json
+
+FINAL_TABLE
+{"stage": 1, "kind": "normal", "playerLevel": 1, "playerItems": 2, "playerWeapons": 1, "enemyItems": 2, "enemyWeapons": 1, "adjustment": "hiệu chỉnh bỏ 0: không", "noShop": 54.0, "shopSmart": 100.0, "seconds": 42.2, "status": "ngoai_dai"}
+{"stage": 2, "kind": "normal", "playerLevel": 2, "playerItems": 3, "playerWeapons": 1, "enemyItems": 2, "enemyWeapons": 1, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 97.0, "shopSmart": 100.0, "seconds": 43.2, "status": "ngoai_dai"}
+{"stage": 3, "kind": "normal", "playerLevel": 3, "playerItems": 4, "playerWeapons": 1, "enemyItems": 4, "enemyWeapons": 1, "adjustment": "hiệu chỉnh bỏ 0: không", "noShop": 57.0, "shopSmart": 100.0, "seconds": 48.7, "status": "ngoai_dai"}
+{"stage": 4, "kind": "normal", "playerLevel": 5, "playerItems": 5, "playerWeapons": 2, "enemyItems": 4, "enemyWeapons": 2, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 98.0, "shopSmart": 100.0, "seconds": 29.5, "status": "ngoai_dai"}
+{"stage": 5, "kind": "elite", "playerLevel": 6, "playerItems": 6, "playerWeapons": 2, "enemyItems": 5, "enemyWeapons": 2, "adjustment": "hiệu chỉnh hạ phẩm 3: thai_thanh_tam_kinh; bỏ 1: boi_nguyen_dan", "noShop": 80.0, "shopSmart": 100.0, "seconds": 30.6, "status": "ngoai_dai"}
+{"stage": 6, "kind": "normal", "playerLevel": 7, "playerItems": 7, "playerWeapons": 2, "enemyItems": 6, "enemyWeapons": 2, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 81.0, "shopSmart": 100.0, "seconds": 38.0, "status": "trong_dai"}
+{"stage": 7, "kind": "normal", "playerLevel": 8, "playerItems": 8, "playerWeapons": 3, "enemyItems": 7, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 94.0, "shopSmart": 100.0, "seconds": 27.7, "status": "ngoai_dai"}
+{"stage": 8, "kind": "normal", "playerLevel": 9, "playerItems": 8, "playerWeapons": 2, "enemyItems": 7, "enemyWeapons": 2, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 98.0, "shopSmart": 100.0, "seconds": 52.4, "status": "ngoai_dai"}
+{"stage": 9, "kind": "normal", "playerLevel": 10, "playerItems": 9, "playerWeapons": 2, "enemyItems": 8, "enemyWeapons": 2, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 100.0, "shopSmart": 100.0, "seconds": 51.3, "status": "ngoai_dai"}
+{"stage": 10, "kind": "boss", "playerLevel": 11, "playerItems": 10, "playerWeapons": 2, "enemyItems": 10, "enemyWeapons": 2, "adjustment": "bản sao chính xác", "noShop": 43.0, "shopSmart": 99.0, "seconds": 54.0, "status": "trong_dai"}
+{"stage": 11, "kind": "normal", "playerLevel": 12, "playerItems": 10, "playerWeapons": 3, "enemyItems": 9, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 82.0, "shopSmart": 100.0, "seconds": 16.7, "status": "trong_dai"}
+{"stage": 12, "kind": "normal", "playerLevel": 13, "playerItems": 11, "playerWeapons": 3, "enemyItems": 10, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 73.0, "shopSmart": 100.0, "seconds": 19.1, "status": "trong_dai"}
+{"stage": 13, "kind": "normal", "playerLevel": 13, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 66.0, "shopSmart": 66.0, "seconds": 17.6, "status": "trong_dai"}
+{"stage": 14, "kind": "normal", "playerLevel": 14, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 70.0, "shopSmart": 100.0, "seconds": 15.1, "status": "trong_dai"}
+{"stage": 15, "kind": "elite", "playerLevel": 15, "playerItems": 12, "playerWeapons": 3, "enemyItems": 12, "enemyWeapons": 3, "adjustment": "hạ phẩm 2: u_minh_bi_luc, liet_hoa_tam_kinh", "noShop": 38.0, "shopSmart": 94.0, "seconds": 16.1, "status": "ngoai_dai"}
+{"stage": 16, "kind": "normal", "playerLevel": 15, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: boi_nguyen_dan", "noShop": 72.0, "shopSmart": 100.0, "seconds": 21.3, "status": "trong_dai"}
+{"stage": 17, "kind": "normal", "playerLevel": 16, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: thai_thanh_tam_kinh", "noShop": 69.0, "shopSmart": 69.0, "seconds": 27.5, "status": "trong_dai"}
+{"stage": 18, "kind": "normal", "playerLevel": 17, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: tuy_tien_ho_lo", "noShop": 68.0, "shopSmart": 68.0, "seconds": 27.6, "status": "trong_dai"}
+{"stage": 19, "kind": "normal", "playerLevel": 17, "playerItems": 13, "playerWeapons": 3, "enemyItems": 12, "enemyWeapons": 3, "adjustment": "bỏ 1: thai_thanh_tam_kinh", "noShop": 78.0, "shopSmart": 78.0, "seconds": 33.0, "status": "trong_dai"}
+{"stage": 20, "kind": "boss", "playerLevel": 18, "playerItems": 10, "playerWeapons": 4, "enemyItems": 10, "enemyWeapons": 4, "adjustment": "bản sao chính xác", "noShop": 44.0, "shopSmart": 44.0, "seconds": 16.7, "status": "trong_dai"}
+{"stage": 21, "kind": "normal", "playerLevel": 18, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: giai_doc_dan", "noShop": 85.0, "shopSmart": 85.0, "seconds": 26.4, "status": "trong_dai"}
+{"stage": 22, "kind": "normal", "playerLevel": 19, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: giai_doc_dan", "noShop": 71.0, "shopSmart": 71.0, "seconds": 31.8, "status": "trong_dai"}
+{"stage": 23, "kind": "normal", "playerLevel": 19, "playerItems": 13, "playerWeapons": 3, "enemyItems": 12, "enemyWeapons": 3, "adjustment": "bỏ 1: giai_doc_dan", "noShop": 85.0, "shopSmart": 85.0, "seconds": 23.4, "status": "trong_dai"}
+{"stage": 24, "kind": "normal", "playerLevel": 20, "playerItems": 15, "playerWeapons": 3, "enemyItems": 14, "enemyWeapons": 3, "adjustment": "bỏ 1: tuy_tien_ho_lo", "noShop": 90.0, "shopSmart": 90.0, "seconds": 27.0, "status": "ngoai_dai"}
+{"stage": 25, "kind": "elite", "playerLevel": 20, "playerItems": 13, "playerWeapons": 2, "enemyItems": 13, "enemyWeapons": 2, "adjustment": "hạ phẩm 2: tuyet_lang_bach_bi, phuc_ma_giap", "noShop": 63.0, "shopSmart": 63.0, "seconds": 47.0, "status": "trong_dai"}
+{"stage": 26, "kind": "normal", "playerLevel": 21, "playerItems": 13, "playerWeapons": 2, "enemyItems": 11, "enemyWeapons": 2, "adjustment": "hiệu chỉnh bỏ 2: giai_doc_dan, kim_sang_duoc", "noShop": 88.0, "shopSmart": 88.0, "seconds": 54.0, "status": "ngoai_dai"}
+{"stage": 27, "kind": "normal", "playerLevel": 21, "playerItems": 12, "playerWeapons": 3, "enemyItems": 11, "enemyWeapons": 3, "adjustment": "bỏ 1: hac_sat_hung_dam", "noShop": 53.0, "shopSmart": 53.0, "seconds": 32.9, "status": "ngoai_dai"}
+{"stage": 28, "kind": "normal", "playerLevel": 22, "playerItems": 11, "playerWeapons": 3, "enemyItems": 10, "enemyWeapons": 3, "adjustment": "bỏ 1: hac_sat_hung_dam", "noShop": 100.0, "shopSmart": 100.0, "seconds": 29.5, "status": "ngoai_dai"}
+{"stage": 29, "kind": "normal", "playerLevel": 22, "playerItems": 8, "playerWeapons": 3, "enemyItems": 7, "enemyWeapons": 3, "adjustment": "bỏ 1: hac_sat_hung_dam", "noShop": 100.0, "shopSmart": 100.0, "seconds": 34.0, "status": "ngoai_dai"}
+{"stage": 30, "kind": "boss", "playerLevel": 23, "playerItems": 8, "playerWeapons": 3, "enemyItems": 8, "enemyWeapons": 3, "adjustment": "hiệu chỉnh hạ phẩm 1: kiem_tong_tam_yeu", "noShop": 46.0, "shopSmart": 46.0, "seconds": 30.9, "status": "trong_dai"}

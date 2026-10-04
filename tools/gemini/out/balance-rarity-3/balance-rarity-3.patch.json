@@ -1,0 +1,7 @@
+{
+  "o_thiet_giap.triggers.shield": 300,
+  "ho_mach_dan.triggers.shield": 200,
+  "tu_mau_song_dao.attack": 27,
+  "tu_mau_song_dao.cooldown": 2.2,
+  "tu_kim_trao.attack": 7
+}

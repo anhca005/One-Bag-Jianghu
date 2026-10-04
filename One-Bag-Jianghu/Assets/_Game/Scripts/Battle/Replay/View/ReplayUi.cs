@@ -17,10 +17,10 @@ namespace OneBagJianghu.Battle.Replay.View
         public static Image Image(Transform parent, string name, Color color)
         {
             var go =
-new GameObject(name,
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Image));
+                new GameObject(name,
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image));
             go.transform.SetParent(parent, false);
             Image image = go.GetComponent<Image>();
             image.color = color;
@@ -28,19 +28,19 @@ typeof(Image));
         }
 
         public static Text Text(Transform parent,
-string name,
-string value,
-int size,
-TextAnchor alignment =
-TextAnchor.MiddleCenter,
-UiFontRole role =
-UiFontRole.Body)
+            string name,
+            string value,
+            int size,
+            TextAnchor alignment =
+            TextAnchor.MiddleCenter,
+            UiFontRole role =
+            UiFontRole.Body)
         {
             var go =
-new GameObject(name,
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Text));
+                new GameObject(name,
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Text));
             go.transform.SetParent(parent, false);
             Text text = go.GetComponent<Text>();
             UiFonts.Apply(text, role);
@@ -53,17 +53,17 @@ typeof(Text));
         }
 
         public static Button Button(Transform parent,
-string label,
-UnityAction action,
-float width = 120f)
+            string label,
+            UnityAction action,
+            float width = 120f)
         {
             Image image =
-Image(parent,
-label,
-new Color(ReplayStyle.Ink.r,
-ReplayStyle.Ink.g,
-ReplayStyle.Ink.b,
-.14f));
+                Image(parent,
+                label,
+                new Color(ReplayStyle.Ink.r,
+                ReplayStyle.Ink.g,
+                ReplayStyle.Ink.b,
+                .14f));
             image.gameObject.AddComponent<LayoutElement>().preferredWidth = width;
             Button button = image.gameObject.AddComponent<Button>();
             button.targetGraphic = image;

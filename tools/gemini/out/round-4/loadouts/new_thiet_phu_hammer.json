@@ -1,0 +1,52 @@
+{
+  "name": "Thiết Phủ Bang - Chấn Nhạc Chùy Phong",
+  "cols": 5,
+  "rows": 4,
+  "sect": "thiet_phu",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "chan_nhac_chuy",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "khai_son_phu",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "khai_son_phu",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_thiet_giap",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 4,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ],
+  "level": 1
+}

@@ -59,8 +59,8 @@ namespace OneBagJianghu.Battle.Replay
     public static class BattleLogRarityMapper
     {
         public static void Apply(BattleLog log,
-IReadOnlyList<string> player,
-IReadOnlyList<string> enemy = null)
+            IReadOnlyList<string> player,
+            IReadOnlyList<string> enemy = null)
         {
             if (log == null)
                 return;

@@ -1,0 +1,53 @@
+{
+  "name": "Nộ Ba Hổ Bùi Chấn",
+  "sect": "liet_diem",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "cuong_hoa_dan",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 1,
+      "y": 1,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "uncommon"
+    }
+  ],
+  "level": 16,
+  "characterId": "bui_chen",
+  "cols": 5,
+  "rows": 4
+}

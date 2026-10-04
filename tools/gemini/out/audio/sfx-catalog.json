@@ -1,0 +1,792 @@
+[
+  {
+    "key": "atk_sword",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Light steel straight sword slash, fast thin metallic whoosh with a faint ring. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_blade",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Heavy curved saber swing, thick whoosh with a rough metal edge. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_dual",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Two quick blade slashes in rapid succession, crossing whooshes, light metal scrape. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_spear",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Spear thrust, sharp forward air stab with wooden shaft creak and red tassel flutter. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_staff",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Long wooden staff spin and swing, deep hollow whoosh, bamboo knock at the end. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_axe",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.7,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Heavy iron axe chop, slow powerful whoosh with weight, metal head wobble. Dry, close, no music. 0.7s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_hammer",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.7,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Massive iron mace swung hard, very low heavy whoosh, chain rattle. Dry, close, no music. 0.7s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_fist",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Fast martial arts punch, cloth sleeve snap and a short air burst, leather knuckle guard. Dry, close, no music. 0.4s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_palm",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Open palm strike pushing internal energy, soft deep air pulse, wind push, robe flutter. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_claw",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Tiger claw swipe, three sharp scratching tearing whooshes, metal claw tips. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_whip",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Leather whip crack, quick swish then a sharp snap. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_fan",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Iron folding fan snapping open with a flick, paper and steel ribs, quick airy swipe. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_brush",
+    "group": "battle_weapon",
+    "priority": "C",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Iron calligraphy brush jab, short pointed stab of air with a tiny metallic tick. Dry, close, no music. 0.4s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_zither",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Single aggressive guqin bass string snap and resonant acoustic twang, harsh percussive release, no melody. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_flute",
+    "group": "battle_weapon",
+    "priority": "C",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Sharp breathy overblown bamboo flute staccato burst, non-melodic acoustic sound effect, fast decay. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_hidden",
+    "group": "battle_weapon",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Small throwing darts flicked, two or three tiny fast whistling whizzes. Dry, close, no music. 0.4s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_bow",
+    "group": "battle_weapon",
+    "priority": "B",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Bow string release twang and an arrow zipping away. Dry, close, no music. 0.6s",
+    "event": "Trigger"
+  },
+  {
+    "key": "use_pill",
+    "group": "battle_nonweapon",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Cracking a herbal medicine pill casing, quick swallow breath with faint medicinal hum. Dry, close, no music. 0.4s",
+    "event": "Trigger"
+  },
+  {
+    "key": "use_manual",
+    "group": "battle_nonweapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Ancient parchment page flutter, sudden rush of internal breathing energy. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "use_relic",
+    "group": "battle_nonweapon",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Mystic jade talisman resonance, gentle spiritual chime with natural overtone. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "use_armor",
+    "group": "battle_nonweapon",
+    "priority": "B",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Iron scale armor shifts and tightens, solid leather buckle snap with faint metallic ring. Dry, close, no music. 0.4s",
+    "event": "Trigger"
+  },
+  {
+    "key": "atk_monster",
+    "group": "battle_pve",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Feral beast aggressive bite and vicious claw swipe, savage snarl whoosh. Dry, close, no music. 0.5s",
+    "event": "Trigger"
+  },
+  {
+    "key": "boss_intro",
+    "group": "battle_pve",
+    "priority": "B",
+    "durationSec": 1.2,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Heavy ceremonial bronze war gong struck with authority, ominous deep atmospheric rumble. Dry, no music. 1.2s",
+    "event": "Start"
+  },
+  {
+    "key": "hit_metal",
+    "group": "battle_hit",
+    "priority": "A",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Blade hit on padded cloth armor, short meaty thud with a light metal tick. Dry, close, no music. 0.3s",
+    "event": "Damage"
+  },
+  {
+    "key": "hit_blunt",
+    "group": "battle_hit",
+    "priority": "A",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Blunt martial arts impact on body, deep punchy thud on cloth. Dry, close, no music. 0.3s",
+    "event": "Damage"
+  },
+  {
+    "key": "hit_crit",
+    "group": "battle_hit",
+    "priority": "A",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Powerful critical strike impact, sharp crack followed by a heavy thump, brief metallic ring. Dry, close, no music. 0.5s",
+    "event": "Damage"
+  },
+  {
+    "key": "parry",
+    "group": "battle_hit",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Two steel blades clash and deflect, bright metallic clang with short ring. Dry, close, no music. 0.4s",
+    "event": "Parry"
+  },
+  {
+    "key": "shield_gain",
+    "group": "battle_hit",
+    "priority": "A",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Protective internal energy barrier forming, soft whoosh rising into a low bronze hum. Dry, close, no music. 0.5s",
+    "event": "Shield"
+  },
+  {
+    "key": "shield_hit",
+    "group": "battle_hit",
+    "priority": "B",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Strike absorbed by an energy barrier, muffled thump with a dull bronze bell undertone. Dry, close, no music. 0.3s",
+    "event": "Damage"
+  },
+  {
+    "key": "dmg_reduce",
+    "group": "battle_hit",
+    "priority": "C",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Iron skin hardening, low stone grind and a firm thump. Dry, close, no music. 0.4s",
+    "event": "DmgReduce"
+  },
+  {
+    "key": "ultimate",
+    "group": "battle_skill",
+    "priority": "A",
+    "durationSec": 0.8,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Martial arts ultimate technique unleashed, deep drum hit, rising wind gust, sharp release burst. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "charge",
+    "group": "battle_skill",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Energy gathering, short rising breathy swell with a faint chime at the peak. Dry, close, no music. 0.5s",
+    "event": "Charge"
+  },
+  {
+    "key": "qi_gain",
+    "group": "battle_skill",
+    "priority": "C",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Soft inhale of internal energy, gentle airy rise, tiny jade chime. Dry, close, no music. 0.4s",
+    "event": "Qi"
+  },
+  {
+    "key": "heal",
+    "group": "battle_skill",
+    "priority": "A",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Gentle healing, soft water trickle and a warm rising chime. Dry, close, no music. 0.6s",
+    "event": "Heal"
+  },
+  {
+    "key": "buff",
+    "group": "battle_skill",
+    "priority": "B",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Power up, quick rising whoosh with a bright gong tap. Dry, close, no music. 0.5s",
+    "event": "Buff"
+  },
+  {
+    "key": "max_hp",
+    "group": "battle_skill",
+    "priority": "C",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Internal injury, dull inward thump with a low groan of strain. Dry, close, no music. 0.5s",
+    "event": "MaxHp"
+  },
+  {
+    "key": "burn_apply",
+    "group": "battle_status",
+    "priority": "A",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Flames catching on cloth, quick whoosh of fire ignition. Dry, close, no music. 0.5s",
+    "event": "Status"
+  },
+  {
+    "key": "burn_tick",
+    "group": "battle_status",
+    "priority": "B",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Short fire crackle and sizzle. Dry, close, no music. 0.3s",
+    "event": "Burst"
+  },
+  {
+    "key": "poison_apply",
+    "group": "battle_status",
+    "priority": "A",
+    "durationSec": 0.5,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Poison spreading, wet bubbling hiss, sickly. Dry, close, no music. 0.5s",
+    "event": "Status"
+  },
+  {
+    "key": "poison_tick",
+    "group": "battle_status",
+    "priority": "B",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Short acidic sizzle and bubble pop. Dry, close, no music. 0.3s",
+    "event": "Burst"
+  },
+  {
+    "key": "bleed_apply",
+    "group": "battle_status",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Deep cutting slice through cloth and flesh, wet tear. Dry, close, no music. 0.4s",
+    "event": "Status"
+  },
+  {
+    "key": "bleed_tick",
+    "group": "battle_status",
+    "priority": "B",
+    "durationSec": 0.3,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Small wet drip and faint cut sting. Dry, close, no music. 0.3s",
+    "event": "Burst"
+  },
+  {
+    "key": "stun",
+    "group": "battle_status",
+    "priority": "A",
+    "durationSec": 0.6,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Dazed stun, blunt knock then a short ringing bell tone wobbling. Dry, close, no music. 0.6s",
+    "event": "Status"
+  },
+  {
+    "key": "exhaustion",
+    "group": "battle_status",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Exhaustion sets in, heavy tired breath and a low ominous gong fade. Dry, close, no music. 0.8s",
+    "event": "Dot"
+  },
+  {
+    "key": "battle_start",
+    "group": "battle_flow",
+    "priority": "A",
+    "durationSec": 1,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Battle begins, single large war drum hit followed by a short gong. Dry, no music. 1.0s",
+    "event": "Start"
+  },
+  {
+    "key": "win",
+    "group": "battle_flow",
+    "priority": "A",
+    "durationSec": 1.4,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Victory, triumphant gong strike with a bright cymbal shimmer. Dry, no music. 1.4s",
+    "event": "End"
+  },
+  {
+    "key": "lose",
+    "group": "battle_flow",
+    "priority": "A",
+    "durationSec": 1.4,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Defeat, low muffled gong and a fading wind gust. Dry, no music. 1.4s",
+    "event": "End"
+  },
+  {
+    "key": "ko",
+    "group": "battle_flow",
+    "priority": "B",
+    "durationSec": 0.7,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Fighter falls, body collapse on wooden floor with cloth rustle. Dry, close, no music. 0.7s",
+    "event": "End"
+  },
+  {
+    "key": "ult_sword_wind",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Master sword flurry, three lightning-fast metallic slashes blending into howling wind vortex. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_blade_fire",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Raging saber cleave, fierce roaring fire whoosh detonating on impact with flaming embers. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_staff_tiger",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Heavy temple staff earth shatter, massive wooden smash accompanied by low guttural tiger roar overtone. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_axe_quake",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Colossal iron battleaxe slammed down, catastrophic stone cracking tremor and booming metal smash. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_zither_wave",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Sweeping zither glissando, surging resonant aquatic wave cresting with soothing jade tones, no melody. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_flute_frost",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Piercing overblown jade flute scream, howling subzero blizzard gust with brittle ice shattering, no melody. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_palm_sand",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Explosive double palm strike, ferocious desert sandstorm blast with searing heat whoosh. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_hammer_thunder",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Thunderous war mace downward slam, ear-splitting metallic thunderclap and heavy acoustic shockwave. Dry, close, no music. 0.8s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_bow_soul",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.7,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Full draw bow release, hypersonic whistling arrow piercing through air with sonic snap. Dry, close, no music. 0.7s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ult_claw_ghost",
+    "group": "battle_ultimate_sig",
+    "priority": "B",
+    "durationSec": 0.7,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Phantom spectral claw rip, three ghostly whistling lacerations through chilling eerie air. Dry, close, no music. 0.7s",
+    "event": "Trigger"
+  },
+  {
+    "key": "ui_click",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.15,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Soft wooden UI click, small tap on lacquered wood. Dry, close, no music. 0.15s",
+    "event": "UiClick"
+  },
+  {
+    "key": "ui_hover",
+    "group": "ui",
+    "priority": "C",
+    "durationSec": 0.1,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Very soft paper brush tick, subtle. Dry, close, no music. 0.1s",
+    "event": "UiHover"
+  },
+  {
+    "key": "ui_open",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Paper scroll unrolling quickly, crisp parchment rustle. Dry, close, no music. 0.4s",
+    "event": "UiOpen"
+  },
+  {
+    "key": "ui_close",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.3,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Paper scroll rolling up quickly, short rustle. Dry, close, no music. 0.3s",
+    "event": "UiClose"
+  },
+  {
+    "key": "ui_error",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.2,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Dull wooden block knock, low and short, negative feedback. Dry, close, no music. 0.2s",
+    "event": "UiError"
+  },
+  {
+    "key": "item_pick",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.25,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Picking up an object from a cloth bag, short leather and cloth rustle. Dry, close, no music. 0.25s",
+    "event": "ItemPick"
+  },
+  {
+    "key": "item_drop",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.2,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Placing an object on a wooden shelf, solid soft clack. Dry, close, no music. 0.2s",
+    "event": "ItemDrop"
+  },
+  {
+    "key": "item_drop_bad",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.25,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Object slides back, quick soft scrape. Dry, close, no music. 0.25s",
+    "event": "ItemDropBad"
+  },
+  {
+    "key": "coin",
+    "group": "ui",
+    "priority": "A",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "A few ancient copper coins dropping into a pouch, jingling. Dry, close, no music. 0.4s",
+    "event": "Coin"
+  },
+  {
+    "key": "upgrade",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Blacksmith hammer strikes hot metal on anvil, one ringing hit with sizzle. Dry, close, no music. 0.8s",
+    "event": "Upgrade"
+  },
+  {
+    "key": "merge",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.7,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Two fine jade pieces fuse, bright chime rising with clear acoustic overtone. Dry, close, no music. 0.7s",
+    "event": "Merge"
+  },
+  {
+    "key": "level_up",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 1,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Level up, ceremonial bronze bell resonance and a deep soft gong. Dry, no music. 1.0s",
+    "event": "LevelUp"
+  },
+  {
+    "key": "reward",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.8,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Reward reveal, sparkle of small bells with a coin jingle. Dry, no music. 0.8s",
+    "event": "Reward"
+  },
+  {
+    "key": "stage_select",
+    "group": "ui",
+    "priority": "C",
+    "durationSec": 0.3,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Ink brush stroke on paper, quick swish. Dry, close, no music. 0.3s",
+    "event": "StageSelect"
+  },
+  {
+    "key": "dialogue_next",
+    "group": "ui",
+    "priority": "C",
+    "durationSec": 0.25,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Turning a page of an old book, soft paper flip. Dry, close, no music. 0.25s",
+    "event": "DialogueNext"
+  },
+  {
+    "key": "node_unlock",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.6,
+    "variants": 1,
+    "loop": false,
+    "prompt": "Ink wash stroke blooming on map, accompanied by gentle clear bronze chime. Dry, close, no music. 0.6s",
+    "event": "NodeUnlock"
+  },
+  {
+    "key": "star_rating",
+    "group": "ui",
+    "priority": "B",
+    "durationSec": 0.4,
+    "variants": 2,
+    "loop": false,
+    "prompt": "Sharp wooden stamp hitting official seal with crisp golden metallic clink. Dry, close, no music. 0.4s",
+    "event": "StarRating"
+  },
+  {
+    "key": "amb_home",
+    "group": "ambience",
+    "priority": "C",
+    "durationSec": 20,
+    "variants": 1,
+    "loop": true,
+    "prompt": "Quiet ancient Chinese town morning, distant birds, light wind, faint market murmur, soft wooden wind chimes. Seamless loop. 20s",
+    "event": "Ambience"
+  },
+  {
+    "key": "amb_map_hoi_1",
+    "group": "ambience",
+    "priority": "C",
+    "durationSec": 20,
+    "variants": 1,
+    "loop": true,
+    "prompt": "Autumn forest by a stream, rustling maple leaves, flowing water, light wind. Seamless loop. 20s",
+    "event": "Ambience"
+  },
+  {
+    "key": "amb_map_hoi_2",
+    "group": "ambience",
+    "priority": "C",
+    "durationSec": 20,
+    "variants": 1,
+    "loop": true,
+    "prompt": "Misty poison swamp, bubbling mud, insects, distant frogs, damp eerie air. Seamless loop. 20s",
+    "event": "Ambience"
+  },
+  {
+    "key": "amb_map_hoi_3",
+    "group": "ambience",
+    "priority": "C",
+    "durationSec": 20,
+    "variants": 1,
+    "loop": true,
+    "prompt": "Snowy mountain peak, cold howling wind, occasional ice creak. Seamless loop. 20s",
+    "event": "Ambience"
+  }
+]

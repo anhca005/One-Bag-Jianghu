@@ -8,6 +8,9 @@ using UnityEngine.UI;
 using OneBagJianghu.UI.Pve;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.Economy;
+using OneBagJianghu.Pve;
+using OneBagJianghu.Onboarding;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.UI.Home
 {
@@ -26,6 +29,8 @@ namespace OneBagJianghu.UI.Home
         [SerializeField]
         private Text levelText;
         [SerializeField]
+        private Text powerText;
+        [SerializeField]
         private Text staminaText;
         [SerializeField]
         private Text silverText;
@@ -33,6 +38,10 @@ namespace OneBagJianghu.UI.Home
         private Text premiumText;
         [SerializeField]
         private Text reputationText;
+        [SerializeField]
+        private ItemTooltip staminaTooltip;
+        [SerializeField]
+        private HoverTooltipTarget staminaTooltipTarget;
         [SerializeField]
         private Button settingsButton;
         [SerializeField]
@@ -49,8 +58,13 @@ namespace OneBagJianghu.UI.Home
         private HomeHotspot shopHotspot;
         [SerializeField]
         private HomeHotspot sectHotspot;
+        [SerializeField]
+        private HomeHotspot encyclopediaHotspot;
         private int displayedLevel = -1;
         private long displayedExp = -1;
+        private StaminaConfig staminaConfig;
+        private StaminaService staminaService;
+        private float nextStaminaRefresh;
         private void Awake()
         {
             pveHotspot.OnClick.AddListener(StartPve);
@@ -60,38 +74,25 @@ namespace OneBagJianghu.UI.Home
             codexHotspot.OnClick.AddListener(OpenComingSoon);
             shopHotspot.OnClick.AddListener(OpenShop);
             sectHotspot.OnClick.AddListener(OpenSect);
+            encyclopediaHotspot.OnClick.AddListener(OpenEncyclopedia);
             settingsButton.onClick.AddListener(OpenSettings);
         }
 
         private void Start()
         {
+            AudioManager.EnsureExists();
             GameSession session = GameBootstrap.Session;
-            session.Profile.Currencies.TryGetValue("bac", out long silver);
-            session.Profile.Currencies.TryGetValue("nguyen_bao", out long premium);
-            session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
-            bool staminaArt = CurrencyArt.Apply(staminaText,
-"icon_stamina"), silverArt = CurrencyArt.Apply(silverText,
-"icon_bac"), premiumArt = CurrencyArt.Apply(premiumText,
-"icon_nguyen_bao"), reputationArt = CurrencyArt.Apply(reputationText,
-"icon_danh_vong");
-            if (staminaText != null)
-                staminaText.text = "       Thể Lực " + session.Profile.Pve.Stamina.ToString("N0");
-            if (silverText != null)
-                silverText.text = "       Bạc " + silver.ToString("N0");
-            if (premiumText != null)
-                premiumText.text = "       Nguyên Bảo " + premium.ToString("N0");
-            if (reputationText != null)
-                reputationText.text = "       Danh Vọng " + reputation.ToString("N0");
-            if (staminaText != null)
-                staminaText.text = staminaText.text.TrimStart();
-            if (silverText != null)
-                silverText.text = silverText.text.TrimStart();
-            if (premiumText != null)
-                premiumText.text = premiumText.text.TrimStart();
-            if (reputationText != null)
-                reputationText.text = reputationText.text.TrimStart();
+            // Coming back to the stage map after a battle: the map popup plays its chapter music, skip Home's.
+            if (string.IsNullOrEmpty(session.PendingPveMapStageId))
+                AudioManager.Instance.PlayMusic(MusicKeys.Home);
+            staminaConfig = StaminaConfig.Load();
+            staminaService = new StaminaService(staminaConfig);
+            staminaTooltipTarget?.Initialize(staminaTooltip, BuildStaminaTooltip);
+            RefreshStamina();
+            RefreshCurrencies();
             heroName.text = session.HeroName;
             RefreshProgress();
+            RefreshPower();
             RefreshBattleAvailability();
             SceneFlow.NotifyReady();
             if (!string.IsNullOrEmpty(session.PendingPveMapStageId))
@@ -102,22 +103,27 @@ namespace OneBagJianghu.UI.Home
             }
 
             if (session.HeroLevel >= LevelService.SectUnlockLevel
-&& string.IsNullOrWhiteSpace(session.SectId)
-&& !session.Profile.SectPromptShown)
+                && string.IsNullOrWhiteSpace(session.SectId)
+                && !session.Profile.SectPromptShown)
             {
                 session.Profile.SectPromptShown = true;
                 session.SaveProfile();
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Mở khóa Môn Phái",
-"Bạn đã đạt cấp 10. Hãy đến điểm Môn Phái trên trang chủ để gia nhập.",
-"Đã hiểu"));
+                    "Bạn đã đạt cấp 10. Hãy đến điểm Môn Phái trên trang chủ để gia nhập.",
+                    "Đã hiểu"));
             }
         }
 
         private void Update()
         {
+            if (Time.unscaledTime >= nextStaminaRefresh)
+            {
+                nextStaminaRefresh = Time.unscaledTime + 1f;
+                RefreshStamina();
+            }
             if (GameBootstrap.Session != null
-&& (displayedLevel != GameBootstrap.Session.HeroLevel
-|| displayedExp != GameBootstrap.Session.Profile.HeroExp))
+                && (displayedLevel != GameBootstrap.Session.HeroLevel
+                || displayedExp != GameBootstrap.Session.Profile.HeroExp))
                 RefreshProgress();
             Keyboard keyboard = Keyboard.current;
             if (keyboard == null || PopupManager.Top != null)
@@ -145,6 +151,7 @@ namespace OneBagJianghu.UI.Home
             codexHotspot.OnClick.RemoveListener(OpenComingSoon);
             shopHotspot.OnClick.RemoveListener(OpenShop);
             sectHotspot.OnClick.RemoveListener(OpenSect);
+            encyclopediaHotspot.OnClick.RemoveListener(OpenEncyclopedia);
             settingsButton.onClick.RemoveListener(OpenSettings);
         }
 
@@ -160,6 +167,7 @@ namespace OneBagJianghu.UI.Home
             if (!ValidateBattleLoadout())
                 return;
             PopupManager.Show<StageMapPopup>();
+            OnboardingRuntime.Publish("stage_map_opened");
         }
 
         private void StartPvp() => TryStartGame(GameMode.Pvp);
@@ -192,7 +200,7 @@ namespace OneBagJianghu.UI.Home
             => PopupManager.Show<MessagePopup>(new MessagePopupData("Không thể xuất chiêu",
 
             warning,
-"Đóng"));
+                "Đóng"));
         private void RefreshProgress()
         {
             GameSession session = GameBootstrap.Session;
@@ -201,14 +209,23 @@ namespace OneBagJianghu.UI.Home
             LevelService levels = new LevelService(LevelConfig.Load());
             displayedLevel = session.HeroLevel;
             displayedExp = session.Profile.HeroExp;
-            levelText.text = $"Cấp {displayedLevel}";
+            levelText.text = displayedLevel.ToString();
             expBar.value = levels.Progress(session.Profile);
             if (expText != null)
                 expText.text =
                     displayedLevel >= levels.MaxLevel
-                    ? "EXP Tối đa"
-                    : $"EXP {displayedExp:N0}/{levels.ExpToNext(displayedLevel):N0}";
+                    ? $"Cấp {displayedLevel} · EXP Tối đa"
+                    : $"Cấp {displayedLevel} · EXP {UiFormat.Number(displayedExp)}/"
+                        + UiFormat.Number(levels.ExpToNext(displayedLevel));
             sectHotspot.SetAvailableForLevel(displayedLevel);
+            RefreshPower();
+        }
+
+        private void RefreshPower()
+        {
+            GameSession session = GameBootstrap.Session;
+            if (powerText != null && session?.Profile != null)
+                powerText.text = "Lực Chiến " + UiFormat.Number(session.PlayerPower());
         }
 
         public void OpenSect()
@@ -216,19 +233,29 @@ namespace OneBagJianghu.UI.Home
             PlayerProfile profile = GameBootstrap.Session.Profile;
             if (profile.HeroLevel < LevelService.SectUnlockLevel)
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Môn Phái",
-"Đạt cấp 10 để gia nhập môn phái",
-"Đóng"));
+                    "Đạt cấp 10 để gia nhập môn phái",
+                    "Đóng"));
             else if (!string.IsNullOrWhiteSpace(profile.SectId))
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Môn Phái",
-"Bạn đã gia nhập môn phái. Lựa chọn hiện tại là vĩnh viễn.",
-"Đóng"));
+                    "Bạn đã gia nhập môn phái. Lựa chọn hiện tại là vĩnh viễn.",
+                    "Đóng"));
             else
                 PopupManager.Show<SectSelectPopup>();
         }
 
         private static void OpenSettings() => PopupManager.Show<SettingsPopup>();
-        private static void OpenStorage() => PopupManager.Show<StoragePopup>();
-        private static void OpenShop() => PopupManager.Show<ShopPopup>();
+        private static void OpenEncyclopedia() => PopupManager.Show<EncyclopediaPopup>();
+        private void OpenStorage()
+        {
+            WatchCurrencyPopup(PopupManager.Show<StoragePopup>());
+            OnboardingRuntime.Publish("storage_opened");
+        }
+
+        private void OpenShop()
+        {
+            WatchCurrencyPopup(PopupManager.Show<ShopPopup>());
+            OnboardingRuntime.Publish("shop_opened");
+        }
         private static IEnumerator OpenSettingsNextFrame()
         {
             yield return null;
@@ -239,6 +266,7 @@ namespace OneBagJianghu.UI.Home
         private void OpenBag()
         {
             BagPopup popup = PopupManager.Show<BagPopup>();
+            OnboardingRuntime.Publish("bag_opened");
             if (popup != null)
                 popup.Closed += HandleBagClosed;
         }
@@ -246,9 +274,84 @@ namespace OneBagJianghu.UI.Home
         private void HandleBagClosed(BasePopup popup)
         {
             popup.Closed -= HandleBagClosed;
+            OnboardingRuntime.Publish("bag_closed");
             if (this == null)
                 return; // Home was unloaded while the bag was still open.
             RefreshBattleAvailability();
+            RefreshPower();
+        }
+
+        private void WatchCurrencyPopup(BasePopup popup)
+        {
+            if (popup != null)
+                popup.Closed += HandleCurrencyPopupClosed;
+        }
+
+        private void HandleCurrencyPopupClosed(BasePopup popup)
+        {
+            popup.Closed -= HandleCurrencyPopupClosed;
+            if (this == null)
+                return;
+            RefreshCurrencies();
+        }
+
+        private void RefreshCurrencies()
+        {
+            GameSession session = GameBootstrap.Session;
+            if (session == null || session.Profile == null)
+                return;
+            session.Profile.Currencies.TryGetValue("bac", out long silver);
+            session.Profile.Currencies.TryGetValue("nguyen_bao", out long premium);
+            session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
+            int staminaMax = staminaConfig != null ? staminaConfig.Max : StaminaConfig.Load().Max;
+            SetCurrency(staminaText, "icon_stamina",
+                UiFormat.Number(session.Profile.Pve.Stamina) + "/" + UiFormat.Number(staminaMax));
+            SetCurrency(silverText, "icon_bac", UiFormat.Number(silver));
+            SetCurrency(premiumText, "icon_nguyen_bao", UiFormat.Number(premium));
+            SetCurrency(reputationText, "icon_danh_vong", UiFormat.Number(reputation));
+        }
+
+        private void RefreshStamina()
+        {
+            GameSession session = GameBootstrap.Session;
+            if (session?.Profile == null || staminaService == null)
+                return;
+            int previous = session.Profile.Pve.Stamina;
+            int current = staminaService.Refresh(session.Profile.Pve, DateTimeOffset.UtcNow);
+            SetCurrency(staminaText, "icon_stamina",
+                UiFormat.Number(current) + "/" + UiFormat.Number(staminaConfig.Max));
+            if (current != previous)
+                session.SaveProfile();
+        }
+
+        private string BuildStaminaTooltip()
+        {
+            if (staminaService == null || GameBootstrap.Session?.Profile == null)
+                return string.Empty;
+            PveProfileState state = GameBootstrap.Session.Profile.Pve;
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            int minutesPerPoint = Math.Max(1, (int)Math.Round(1d / staminaConfig.RegenPerMinute));
+            string header = $"Thể Lực: {state.Stamina}/{staminaConfig.Max}";
+            string rate = $"Hồi 1 điểm mỗi {minutesPerPoint} phút";
+            if (state.Stamina >= staminaConfig.Max)
+                return header + "\n" + rate + "\nĐã đầy";
+            string next = StaminaService.FormatDuration(staminaService.SecondsToNext(state, now));
+            string full = StaminaService.FormatDuration(staminaService.SecondsToFull(state, now));
+            return header + "\n" + rate + "\n+1 sau " + next + "\nĐầy sau " + full;
+        }
+
+        private static void SetCurrency(Text label, string iconKey, string value)
+        {
+            if (label == null)
+                return;
+            Transform iconTransform = label.transform.parent.Find("Icon");
+            Image icon = iconTransform != null ? iconTransform.GetComponent<Image>() : null;
+            if (icon != null)
+            {
+                icon.sprite = CurrencyArt.TryGetSprite(iconKey, out Sprite sprite) ? sprite : null;
+                icon.gameObject.SetActive(icon.sprite != null);
+            }
+            label.text = value;
         }
     }
 }

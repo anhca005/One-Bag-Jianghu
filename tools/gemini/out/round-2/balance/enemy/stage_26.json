@@ -1,0 +1,38 @@
+{
+  "name": "Ải 26: Băng Nguyên Bạch Hổ",
+  "hp": 4140,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "bach_ho_cuong_mong",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 0,
+      "y": 1,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    }
+  ]
+}

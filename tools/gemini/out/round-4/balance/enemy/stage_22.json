@@ -1,0 +1,38 @@
+{
+  "name": "Hàn Sơn Kiếm Sĩ",
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "han_ngoc_tieu",
+      "x": 0,
+      "y": 0,
+      "tier": 7,
+      "rarity": "supreme"
+    },
+    {
+      "id": "thanh_phong_kiem",
+      "x": 1,
+      "y": 0,
+      "tier": 7,
+      "rarity": "legendary"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 7,
+      "rarity": "legendary"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 4,
+      "y": 0,
+      "tier": 7,
+      "rarity": "legendary"
+    }
+  ],
+  "level": 26,
+  "cols": 5,
+  "rows": 4
+}

@@ -1,0 +1,31 @@
+{
+  "name": "Ải 14: Man Cương Vu Đao",
+  "hp": 1670,
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "thanh_dang_tien",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "kim_tuyen_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

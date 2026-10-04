@@ -1,0 +1,35 @@
+{
+  "rows": [
+    {
+      "item": "bang_phach_thuong",
+      "actualPct": 63.0,
+      "predictedPct": 29.1
+    },
+    {
+      "item": "tu_mau_song_dao",
+      "actualPct": 60.0,
+      "predictedPct": 31.1
+    },
+    {
+      "item": "chan_nhac_chuy",
+      "actualPct": 60.0,
+      "predictedPct": 28.8
+    },
+    {
+      "item": "khai_son_phu",
+      "actualPct": 47.0,
+      "predictedPct": 27.6
+    },
+    {
+      "item": "liet_diem_dao",
+      "actualPct": 23.0,
+      "predictedPct": 27.9
+    },
+    {
+      "item": "none",
+      "actualPct": 0.0,
+      "predictedPct": 17.0
+    }
+  ],
+  "spearman": 0.8407
+}

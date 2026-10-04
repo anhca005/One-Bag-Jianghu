@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5280781403592818531}
   - component: {fileID: 779686400209420757}
   - component: {fileID: 7616328898703294709}
+  - component: {fileID: 1823525700757472158}
+  - component: {fileID: 1254559098231183264}
   m_Layer: 0
   m_Name: Button_Primary
   m_TagString: Untagged
@@ -78,7 +80,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 6
+  m_PixelsPerUnitMultiplier: 8.890683
 --- !u!114 &5280781403592818531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +154,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.UiButton
   button: {fileID: 779686400209420757}
   label: {fileID: 8754293964787207250}
+--- !u!114 &1823525700757472158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145533071607749656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b801632946408b1468073d9cd0bcd0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Audio.UiSfx
+  cue: 0
+--- !u!114 &1254559098231183264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145533071607749656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
+  preferredMultiplier: 6
 --- !u!1 &6452953596328213718
 GameObject:
   m_ObjectHideFlags: 0

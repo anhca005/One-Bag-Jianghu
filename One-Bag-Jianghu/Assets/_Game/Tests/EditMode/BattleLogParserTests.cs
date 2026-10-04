@@ -37,9 +37,9 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Parse_MapsUnknownEventTypeWithoutFailing()
         {
             const string json =
-"{\"seed\":1,\"winner\":-1,\"durationMs\":0," +
-"\"names\":[\"A\",\"B\"],\"finalHp\":[1,1],\"items\":[]," +
-"\"events\":[{\"t\":0,\"type\":\"NEW_SERVER_EVENT\",\"side\":0}]}";
+                "{\"seed\":1,\"winner\":-1,\"durationMs\":0," +
+                "\"names\":[\"A\",\"B\"],\"finalHp\":[1,1],\"items\":[]," +
+                "\"events\":[{\"t\":0,\"type\":\"NEW_SERVER_EVENT\",\"side\":0}]}";
             BattleLog log = BattleLogParser.Parse(json);
             Assert.That(log.Events[0].Type, Is.EqualTo(BattleEventType.Unknown));
             Assert.That(log.Events[0].RawType, Is.EqualTo("NEW_SERVER_EVENT"));
@@ -49,8 +49,8 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Parse_ThrowsClearExceptionForMalformedJson()
         {
             FormatException exception =
-Assert.Throws<FormatException>(() =>
-BattleLogParser.Parse("{bad json"));
+                Assert.Throws<FormatException>(() =>
+                BattleLogParser.Parse("{bad json"));
             StringAssert.Contains("Malformed battle log JSON", exception.Message);
         }
 

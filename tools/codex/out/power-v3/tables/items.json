@@ -1,0 +1,263 @@
+{
+  "top10": [
+    {
+      "id": "tu_kim_trao",
+      "name": "Tử Kim Trảo",
+      "type": "weapon",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 148
+    },
+    {
+      "id": "soi_nanh_canh",
+      "name": "Sói Nanh Bộc Phá",
+      "type": "weapon",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 136
+    },
+    {
+      "id": "u_minh_quy_trao",
+      "name": "U Minh Quỷ Trảo",
+      "type": "weapon",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 83
+    },
+    {
+      "id": "tu_mau_song_dao",
+      "name": "Tử Mẫu Song Đao",
+      "type": "weapon",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 75
+    },
+    {
+      "id": "bang_phach_thuong",
+      "name": "Băng Phách Thương",
+      "type": "weapon",
+      "size": [
+        1,
+        4
+      ],
+      "lc": 67
+    },
+    {
+      "id": "chan_nhac_chuy",
+      "name": "Chấn Nhạc Chùy",
+      "type": "weapon",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 66
+    },
+    {
+      "id": "liet_diem_dao",
+      "name": "Liệt Diễm Đao",
+      "type": "weapon",
+      "size": [
+        1,
+        3
+      ],
+      "lc": 63
+    },
+    {
+      "id": "khai_son_phu",
+      "name": "Khai Sơn Phủ",
+      "type": "weapon",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 62
+    },
+    {
+      "id": "truy_hon_cung",
+      "name": "Truy Hồn Cung",
+      "type": "weapon",
+      "size": [
+        1,
+        3
+      ],
+      "lc": 56
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "name": "Kịch Độc Chu Ngà",
+      "type": "weapon",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 56
+    }
+  ],
+  "bottom10": [
+    {
+      "id": "o_tam_y",
+      "name": "Ô Tàm Y",
+      "type": "armor",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 0
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "name": "Bồi Nguyên Đan",
+      "type": "pill",
+      "size": [
+        1,
+        1
+      ],
+      "lc": 0
+    },
+    {
+      "id": "thiet_giap_y",
+      "name": "Thiết Giáp Y",
+      "type": "armor",
+      "size": [
+        2,
+        1
+      ],
+      "lc": 0
+    },
+    {
+      "id": "o_thiet_giap",
+      "name": "Ô Thiết Giáp",
+      "type": "armor",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 0
+    },
+    {
+      "id": "kim_tuyen_y",
+      "name": "Kim Tuyến Y",
+      "type": "armor",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 0
+    },
+    {
+      "id": "da_ho_y",
+      "name": "Dạ Hổ Y",
+      "type": "armor",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 0
+    },
+    {
+      "id": "nho_sam_y",
+      "name": "Nho Sam Y",
+      "type": "armor",
+      "size": [
+        2,
+        1
+      ],
+      "lc": 0
+    },
+    {
+      "id": "bang_tam_giap",
+      "name": "Băng Tâm Giáp",
+      "type": "armor",
+      "size": [
+        2,
+        1
+      ],
+      "lc": 0
+    },
+    {
+      "id": "tue_nguyet_bao_y",
+      "name": "Tuế Nguyệt Bào Y",
+      "type": "armor",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 0
+    },
+    {
+      "id": "phuc_ma_giap",
+      "name": "Phục Ma Giáp",
+      "type": "armor",
+      "size": [
+        2,
+        2
+      ],
+      "lc": 0
+    }
+  ],
+  "typeMedians": {
+    "armor": 0,
+    "manual": 17,
+    "pill": 0,
+    "relic": 0,
+    "weapon": 55
+  },
+  "outliers": [
+    {
+      "id": "tu_kim_trao",
+      "name": "Tử Kim Trảo",
+      "type": "weapon",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 148,
+      "groupMedian": 47.0,
+      "abovePct": 214.9
+    },
+    {
+      "id": "thuan_duong_cong",
+      "name": "Thuần Dương Công",
+      "type": "manual",
+      "size": [
+        1,
+        1
+      ],
+      "lc": 50,
+      "groupMedian": 22.0,
+      "abovePct": 127.3
+    },
+    {
+      "id": "soi_nanh_canh",
+      "name": "Sói Nanh Bộc Phá",
+      "type": "weapon",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 136,
+      "groupMedian": 47.0,
+      "abovePct": 189.4
+    },
+    {
+      "id": "hoa_diem_xa_cot",
+      "name": "Hỏa Diệm Xà Cốt",
+      "type": "manual",
+      "size": [
+        1,
+        2
+      ],
+      "lc": 29,
+      "groupMedian": 15.0,
+      "abovePct": 93.3
+    }
+  ]
+}

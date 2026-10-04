@@ -1,0 +1,75 @@
+{
+  "name": "Bích Thủy Hồi Xuân",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "items": [
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 2,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 3,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tue_nguyet_bao_y",
+      "x": 4,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 4,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_minh_chau",
+      "x": 1,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "quy_nguyen_quyet",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 1,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 3,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ]
+}

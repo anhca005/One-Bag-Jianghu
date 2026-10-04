@@ -30,8 +30,8 @@ namespace OneBagJianghu.Tests.Play
             profile.Loadout.Clear();
             profile.EnsureStorage(catalog);
             OwnedItem item =
-profile.Items.Find(value =>
-profile.Storage.Items.Exists(p => p.Uid == value.Uid));
+                profile.Items.Find(value =>
+                profile.Storage.Items.Exists(p => p.Uid == value.Uid));
             if (item == null)
             {
                 item = profile.Items.Find(value => !profile.Loadout.Exists(p => p.Uid == value.Uid));
@@ -48,8 +48,8 @@ profile.Storage.Items.Exists(p => p.Uid == value.Uid));
             ItemTrayView tray = GetField<ItemTrayView>(panel, "trayView");
             List<ItemView> storageViews = GetField<List<ItemView>>(tray, "itemViews");
             Assert.AreEqual(profile.Storage.Items.Count,
-storageViews.Count,
-"The storage grid did not show one item view per stored owned item.");
+                storageViews.Count,
+                "The storage grid did not show one item view per stored owned item.");
             ItemView hovered = storageViews.Find(view => view != null && view.Item.Id == item.ItemId);
             Assert.IsNotNull(hovered);
             var pointer = new PointerEventData(EventSystem.current)
@@ -62,7 +62,7 @@ storageViews.Count,
             Assert.IsTrue(tooltip.IsVisible);
             Assert.That(tooltip.Text, Does.Contain(catalog.Get(item.ItemId).Name));
             Assert.Greater(tooltip.OverlayCanvas.sortingOrder,
-popup.GetComponent<Canvas>().sortingOrder);
+                popup.GetComponent<Canvas>().sortingOrder);
             ExecuteEvents.Execute(hovered.gameObject, pointer, ExecuteEvents.pointerExitHandler);
             Assert.IsFalse(tooltip.IsVisible);
             ExecuteEvents.Execute(hovered.gameObject, pointer, ExecuteEvents.pointerEnterHandler);
@@ -70,38 +70,38 @@ popup.GetComponent<Canvas>().sortingOrder);
             ExecuteEvents.Execute(hovered.gameObject, pointer, ExecuteEvents.beginDragHandler);
             Assert.IsFalse(tooltip.IsVisible);
             Assert.IsTrue(panel.TryMoveStorageToBag(item.Uid, 0, 0));
-            GetField<UiButton>(popup, "saveButton").onClick.Invoke();
+            GetField<UiButton>(popup, "closeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-!PopupManager.IsOpen<BagPopup>(),
-"BagPopup did not close after save.");
+                !PopupManager.IsOpen<BagPopup>(),
+                "BagPopup did not close after save.");
             Assert.IsNotNull(profile.Loadout.Find(p => p.Uid == item.Uid));
             Assert.IsNull(profile.Storage.Items.Find(p => p.Uid == item.Uid));
             GetField<HomeHotspot>(home, "bagHotspot").OnClick.Invoke();
             yield return WaitUntil(() => PopupManager.IsOpen<BagPopup>(),
-"BagPopup did not reopen.");
+                "BagPopup did not reopen.");
             popup = PopupManager.Top as BagPopup;
             panel = GetField<BagLoadoutPanel>(popup, "bagPanel");
             StorageGrid freeGrid = new StorageGrid(profile, catalog);
             catalog.GetItemSize(item.ItemId, out int width, out int height);
             Assert.IsTrue(FindFree(freeGrid,
-width,
-height,
-out int storageX,
-out int storageY));
+                width,
+                height,
+                out int storageX,
+                out int storageY));
             Assert.IsTrue(panel.TryMoveBagToStorage(item.Uid, storageX, storageY));
-            GetField<UiButton>(popup, "saveButton").onClick.Invoke();
+            GetField<UiButton>(popup, "closeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-!PopupManager.IsOpen<BagPopup>(),
-"BagPopup did not close after reverse save.");
+                !PopupManager.IsOpen<BagPopup>(),
+                "BagPopup did not close after reverse save.");
             Assert.IsNull(profile.Loadout.Find(p => p.Uid == item.Uid));
             Assert.IsNotNull(profile.Storage.Items.Find(p => p.Uid == item.Uid));
         }
 
         private static bool FindFree(StorageGrid grid,
-int width,
-int height,
-out int resultX,
-out int resultY)
+            int width,
+            int height,
+            out int resultX,
+            out int resultY)
         {
             for (int y = 0; y <= 20 - height; y++)
             {
@@ -130,10 +130,10 @@ out int resultY)
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             OwnedItem weapon =
-profile.Items.Find(value =>
-string.Equals(catalog.Get(value.ItemId).Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase));
+                profile.Items.Find(value =>
+                string.Equals(catalog.Get(value.ItemId).Type,
+                "weapon",
+                StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(weapon);
             profile.Loadout.RemoveAll(p => p.Uid == weapon.Uid);
             if (profile.Storage.Items.Find(p => p.Uid == weapon.Uid) == null)
@@ -143,8 +143,8 @@ StringComparison.OrdinalIgnoreCase));
 
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StoragePopup>(),
-"StoragePopup did not open.");
+                PopupManager.IsOpen<StoragePopup>(),
+                "StoragePopup did not open.");
             StoragePopup popup = PopupManager.Top as StoragePopup;
             foreach (GameObject row in GetField<List<GameObject>>(popup, "rows"))
             {

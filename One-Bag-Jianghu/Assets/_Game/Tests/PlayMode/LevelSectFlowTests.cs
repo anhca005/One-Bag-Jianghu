@@ -22,8 +22,8 @@ namespace OneBagJianghu.Tests.Play
         {
 #if UNITY_EDITOR
             yield return EditorSceneManager.LoadSceneAsyncInPlayMode(
-"Assets/_Game/Scenes/HomeScene.unity",
-new LoadSceneParameters(LoadSceneMode.Single));
+                "Assets/_Game/Scenes/HomeScene.unity",
+                new LoadSceneParameters(LoadSceneMode.Single));
 #else
             yield return SceneManager.LoadSceneAsync("HomeScene");
 #endif
@@ -57,8 +57,8 @@ new LoadSceneParameters(LoadSceneMode.Single));
             Assert.That(profile.SectId, Is.Not.Empty);
             Assert.That(profile.TamPhapLevel, Is.EqualTo(1));
             JObject nextBattle =
-JObject.Parse(GameSession.BuildEngineLoadoutJson(profile,
-ItemCatalog.LoadFromResources()));
+                JObject.Parse(GameSession.BuildEngineLoadoutJson(profile,
+                ItemCatalog.LoadFromResources()));
             Assert.That(nextBattle.Value<string>("sect"), Is.EqualTo(profile.SectId));
         }
     }

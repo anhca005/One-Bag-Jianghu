@@ -1,0 +1,75 @@
+{
+  "name": "Liệt Hỏa Thiêu Thân",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "liet_diem",
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "xich_sa_chuong",
+      "x": 2,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "cuong_hoa_dan",
+      "x": 1,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 3,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 3,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ]
+}

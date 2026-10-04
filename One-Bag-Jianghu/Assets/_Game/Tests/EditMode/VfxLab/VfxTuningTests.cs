@@ -49,12 +49,12 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
         public void FlipXAndMirrorMakePositiveScaleX()
         {
             VfxTransform result =
-VfxTuning.Compose(new VfxTuning.Entry
-{
-    scale = 1f,
-    flipX = true
-},
-true);
+                VfxTuning.Compose(new VfxTuning.Entry
+                {
+                    scale = 1f,
+                    flipX = true
+                },
+                    true);
             Assert.That(result.LocalScale.x, Is.EqualTo(1f));
         }
 

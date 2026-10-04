@@ -1,0 +1,52 @@
+{
+  "name": "Băng Nguyên Bạch Hổ",
+  "sect": null,
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "bach_ho_cuong_mong",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "supreme"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 0,
+      "y": 1,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 1,
+      "y": 1,
+      "tier": 4,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 0,
+      "y": 2,
+      "tier": 4,
+      "rarity": "common"
+    }
+  ],
+  "level": 26,
+  "cols": 5,
+  "rows": 4
+}

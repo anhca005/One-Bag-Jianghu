@@ -8,6 +8,7 @@ using OneBagJianghu.Economy;
 using OneBagJianghu.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.UI.Popups
 {
@@ -116,14 +117,15 @@ namespace OneBagJianghu.UI.Popups
                     icons.TryGet(item.ItemId, out sprite);
                 float alpha = filter == "Tất cả" || filter == TypeName(info.Type) ? 1f : .25f;
                 view.Bind(this,
-item.Uid,
-false,
-info.Name,
-"T"
-+ item.Tier,
-sprite,
-BagViewStyle.Rarity(item.Rarity),
-alpha);
+                    item.Uid,
+                    false,
+                    info.Name,
+                    "T"
+                    + item.Tier,
+                    sprite,
+                    BagViewStyle.Rarity(item.Rarity),
+                    alpha,
+                    item.Rarity);
                 SetRect((RectTransform)view.transform, placement.X, placement.Y, info.Width, info.Height);
             }
 
@@ -136,23 +138,23 @@ alpha);
                 if (icons != null)
                     icons.TryGet(stack.MaterialId, out materialSprite);
                 view.Bind(this,
-Key(stack),
-true,
-MaterialName(stack.MaterialId),
-"×"
-+ stack.Count,
-materialSprite,
-new Color(.58f,
-.43f,
-.18f),
-filter == "Tất cả" ? 1f : .25f);
+                    Key(stack),
+                    true,
+                    MaterialName(stack.MaterialId),
+                    "×"
+                    + stack.Count,
+                    materialSprite,
+                    new Color(.58f,
+                    .43f,
+                    .18f),
+                    filter == "Tất cả" ? 1f : .25f);
                 SetRect((RectTransform)view.transform, stack.X, stack.Y, 1, 1);
             }
 
             profile.Currencies.TryGetValue("bac", out long silver);
             profile.Currencies.TryGetValue("danh_vong", out long reputation);
-            currencyText.text = $"       Bạc {silver:N0}";
-            reputationText.text = $"       Danh Vọng {reputation:N0}";
+            currencyText.text = $"       Bạc {UiFormat.Number(silver)}";
+            reputationText.text = $"       Danh Vọng {UiFormat.Number(reputation)}";
             headerText.text = $"Tàng Bảo Các  {grid.UsedCells}/{profile.Storage.Cols * profile.Storage.Rows}";
             currencyText.text = currencyText.text.TrimStart();
             reputationText.text = reputationText.text.TrimStart();
@@ -267,9 +269,9 @@ filter == "Tất cả" ? 1f : .25f);
             string currentPower = FormatPower(selected.Rarity, selected.Tier);
             string nextPower = preview.NextTier > 0 ? FormatPower(selected.Rarity, preview.NextTier) : currentPower;
             detailText.text = ItemDescriber.Describe(selected.ItemId,
-selected.Rarity,
-selected.Tier)
-+ $"\nKích thước: {info.Width}×{info.Height}";
+                selected.Rarity,
+                selected.Tier)
+                + $"\nKích thước: {info.Width}×{info.Height}";
             costText.text = BuildUpgradeCost(preview);
             upgradeButton.GetComponent<Button>().interactable = preview.Success;
             mergeButton.GetComponent<Button>().interactable = true;
@@ -287,7 +289,7 @@ selected.Tier)
             bool silverEnough = silver >= preview.Silver;
             if (!silverEnough)
                 text.Append("<color=#B8322A>");
-            text.Append("Bạc ").Append(silver.ToString("N0")).Append('/').Append(preview.Silver.ToString("N0"));
+            text.Append("Bạc ").Append(UiFormat.Number(silver)).Append('/').Append(UiFormat.Number(preview.Silver));
             if (!silverEnough)
                 text.Append("</color>");
             foreach (KeyValuePair<string, int> cost in preview.Materials)
@@ -300,12 +302,9 @@ selected.Tier)
                     .Append(MaterialName(cost
                     .Key))
                     .Append(' ')
-                    .Append(owned
-                    .ToString("N0"))
+                    .Append(UiFormat.Number(owned))
                     .Append('/')
-                    .Append(cost
-                    .Value
-                    .ToString("N0"));
+                    .Append(UiFormat.Number(cost.Value));
                 if (owned < cost.Value)
                     text.Append("</color>");
             }
@@ -320,9 +319,9 @@ selected.Tier)
         private bool ToCell(Vector2 point, Camera camera, int width, int height, out int x, out int y)
         {
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(gridContent,
-point,
-camera,
-out Vector2 localPoint))
+                point,
+                camera,
+                out Vector2 localPoint))
             {
                 x = y = -1;
                 return false;
@@ -419,8 +418,9 @@ out Vector2 localPoint))
             int fromTier = item.Tier;
             UpgradePreview preview = upgrade.Preview(GameBootstrap.Session.Profile, item.Uid);
             Complete(upgrade.Apply(GameBootstrap.Session.Profile,
-item.Uid),
-$"upgrade item={item.ItemId}, rarity={item.Rarity}, Trọng={fromTier}->{preview.NextTier}, cost={preview.Silver}");
+                item.Uid),
+                $"upgrade item={item.ItemId}, rarity={item.Rarity}, "
+                + $"Trọng={fromTier}->{preview.NextTier}, cost={preview.Silver}");
         }
 
         private void BeginMerge()
@@ -429,6 +429,7 @@ $"upgrade item={item.ItemId}, rarity={item.Rarity}, Trọng={fromTier}->{preview
                 return;
             if (merge.Candidates(GameBootstrap.Session.Profile, selected.Uid).Count == 0)
             {
+                AudioManager.Instance?.Play("ui_error");
                 costText.text = "Không có bản sao hợp lệ để Hợp Thành.";
                 Debug.LogWarning($"[Storage] merge item={selected.ItemId}, result=failed, reason=no valid candidate");
                 return;
@@ -456,12 +457,12 @@ $"upgrade item={item.ItemId}, rarity={item.Rarity}, Trọng={fromTier}->{preview
 
             mergeSourceUid = null;
             PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Hợp Thành",
-"Dùng bản sao "
-+ candidate.Tier
-+ " Trọng?",
-"Hợp Thành",
-"Hủy",
-yes =>
+                "Dùng bản sao "
+                + candidate.Tier
+                + " Trọng?",
+                "Hợp Thành",
+                "Hủy",
+                yes =>
             {
                 if (yes)
                 {
@@ -485,15 +486,15 @@ yes =>
                 return;
             SellPreview preview = sell.Preview(GameBootstrap.Session.Profile, selected.Uid);
             PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Bán vật phẩm",
-$"Nhận {preview.Silver:N0} Bạc?",
-"Bán",
-"Hủy",
-yes =>
+                $"Nhận {UiFormat.Number(preview.Silver)} Bạc?",
+                "Bán",
+                "Hủy",
+                yes =>
             {
                 if (yes)
                     Complete(sell.Apply(GameBootstrap.Session.Profile,
-selected.Uid),
-$"sell item={selected.ItemId}, price={preview.Silver}");
+                        selected.Uid),
+                        $"sell item={selected.ItemId}, price={preview.Silver}");
             }));
         }
 
@@ -501,11 +502,18 @@ $"sell item={selected.ItemId}, price={preview.Silver}");
         {
             if (!result.Success)
             {
+                AudioManager.Instance?.Play("ui_error");
                 costText.text = result.Error;
                 Debug.LogWarning($"[Storage] {action}, result=failed, reason={result.Error}");
                 return;
             }
 
+            if (action.StartsWith("upgrade", StringComparison.Ordinal))
+                AudioManager.Instance?.Play("upgrade");
+            else if (action.StartsWith("merge", StringComparison.Ordinal))
+                AudioManager.Instance?.Play("merge");
+            else if (action.StartsWith("sell", StringComparison.Ordinal))
+                AudioManager.Instance?.Play("coin");
             Debug.Log($"[Storage] {action}, result=success");
             selected = null;
             selectedStack = null;
@@ -552,8 +560,8 @@ $"sell item={selected.ItemId}, price={preview.Silver}");
         private static string Key(MaterialStack stack) => stack.MaterialId + "@" + stack.X + "," + stack.Y;
         private static string Short(string value) => value.Length <= 15 ? value : value.Substring(0, 14) + "…";
         private static string FormatPower(string rarity,
-int tier) => (RarityRules.PowerPermille(rarity,
-tier) / 10f).ToString("0.#");
+            int tier) => (RarityRules.PowerPermille(rarity,
+            tier) / 10f).ToString("0.#");
         private static void SetRect(RectTransform rect, int x, int y, int width, int height)
         {
             rect.anchorMin = rect.anchorMax = new Vector2(0f, 1f);

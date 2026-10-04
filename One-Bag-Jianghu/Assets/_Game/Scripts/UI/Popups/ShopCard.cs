@@ -15,11 +15,15 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private Image iconImage;
         [SerializeField]
+        private Image rarityBadge;
+        [SerializeField]
         private Text placeholderText;
         [SerializeField]
         private Text nameText;
         [SerializeField]
         private Text detailText;
+        [SerializeField]
+        private Text statText;
         [SerializeField]
         private Text typeText;
         [SerializeField]
@@ -38,21 +42,31 @@ namespace OneBagJianghu.UI.Popups
         private Text boughtSealText;
         public UiButton BuyButton => buyButton;
 
+        public void SetTooltip(ItemTooltip tooltip, Func<string> textProvider)
+        {
+            HoverTooltipTarget target = GetComponent<HoverTooltipTarget>();
+            if (target == null)
+                target = gameObject.AddComponent<HoverTooltipTarget>();
+            target.Initialize(tooltip, textProvider);
+        }
+
         public void Setup(string displayName,
-string detail,
-string type,
-string price,
-string oldPrice,
-string discount,
-string rarity,
-Sprite icon,
-bool affordable,
-bool bought,
-Action buy,
-string disabledReason = null)
+            string detail,
+            string stat,
+            string type,
+            string price,
+            string oldPrice,
+            string discount,
+            string rarity,
+            Sprite icon,
+            bool affordable,
+            bool bought,
+            Action buy,
+            string disabledReason = null)
         {
             nameText.text = displayName;
             detailText.text = detail;
+            statText.text = stat;
             typeText.text = type;
             priceText.text = price;
             bool hasOldPrice = !string.IsNullOrEmpty(oldPrice);
@@ -65,7 +79,8 @@ string disabledReason = null)
             iconImage.sprite = icon;
             iconImage.preserveAspect = true;
             placeholderText.gameObject.SetActive(!hasIcon);
-            placeholderText.text = hasIcon ? string.Empty : "◆\n" + displayName;
+            placeholderText.text = hasIcon ? string.Empty : "◆";
+            RarityBadge.Apply(rarityBadge, rarity);
             rarityBorder.color =
                 string.IsNullOrEmpty(rarity)
                 ? BagViewStyle.Rarity("common")
@@ -77,8 +92,8 @@ string disabledReason = null)
             buyButton.GetComponent<Button>().interactable = affordable && !bought;
             disabledReasonText.gameObject.SetActive(!bought && !affordable);
             disabledReasonText.text = !bought
-&& !affordable ? "Không đủ "
-+ (price.Contains("Danh Vọng") ? "Danh Vọng" : "Bạc") : string.Empty;
+                && !affordable ? "Không đủ "
+                + (price.Contains("Danh Vọng") ? "Danh Vọng" : "Bạc") : string.Empty;
             if (!bought && !affordable && !string.IsNullOrEmpty(disabledReason))
                 disabledReasonText.text = disabledReason;
             CanvasGroup group = GetComponent<CanvasGroup>();

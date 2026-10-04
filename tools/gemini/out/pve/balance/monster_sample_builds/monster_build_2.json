@@ -1,0 +1,58 @@
+{
+  "name": "Hàn Sơn Phái - Băng Quy Tuyệt Hộ",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thien_nien_quy_giap",
+      "x": 0,
+      "y": 0,
+      "rarity": "legendary"
+    },
+    {
+      "id": "bang_phach_co_cot",
+      "x": 0,
+      "y": 2,
+      "rarity": "legendary"
+    },
+    {
+      "id": "bang_phach_thuong",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "han_ngoc_tieu",
+      "x": 3,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 4,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "bang_tam_linh_chau",
+      "x": 3,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ]
+}

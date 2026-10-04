@@ -53,10 +53,14 @@ namespace OneBagJianghu.Economy
         private readonly StorageState state;
         private readonly PlayerProfile profile;
         private readonly IStorageItemCatalog catalog;
-        public StorageGrid(PlayerProfile profile, IStorageItemCatalog catalog)
+        private readonly MaterialCatalog materials;
+        public StorageGrid(PlayerProfile profile,
+            IStorageItemCatalog catalog,
+            MaterialCatalog materials = null)
         {
             this.profile = profile ?? throw new ArgumentNullException(nameof(profile));
             this.catalog = catalog ?? UnitCatalog.Instance;
+            this.materials = materials;
             state = profile.Storage ??= new StorageState();
             if (state.MaterialStacks.Count == 0 && profile.Materials.Count > 0)
             {
@@ -87,11 +91,11 @@ namespace OneBagJianghu.Economy
         }
 
         public bool TryFindFirst(int width,
-int height,
-out int x,
-out int y,
-string ignoreUid = null,
-MaterialStack ignoreStack = null)
+            int height,
+            out int x,
+            out int y,
+            string ignoreUid = null,
+            MaterialStack ignoreStack = null)
         {
             for (int row = 0; row <= state.Rows - height; row++)
                 for (int col = 0; col <= state.Cols - width; col++)
@@ -107,11 +111,11 @@ MaterialStack ignoreStack = null)
         }
 
         public bool CanPlace(int x,
-int y,
-int width,
-int height,
-string ignoreUid = null,
-MaterialStack ignoreStack = null)
+            int y,
+            int width,
+            int height,
+            string ignoreUid = null,
+            MaterialStack ignoreStack = null)
         {
             var candidate = new Rect(x, y, width, height);
             if (!candidate.FitsIn(state.Cols, state.Rows))
@@ -223,7 +227,8 @@ MaterialStack ignoreStack = null)
             foreach (KeyValuePair<string, int> cost in costs)
                 if (MaterialCount(cost.Key) < cost.Value)
                 {
-                    error = $"Insufficient material '{cost.Key}'.";
+                    string name = MaterialName(cost.Key);
+                    error = $"Không đủ {name}.";
                     return false;
                 }
 
@@ -326,6 +331,20 @@ MaterialStack ignoreStack = null)
 
             x = y = -1;
             return false;
+        }
+
+        private string MaterialName(string id)
+        {
+            if (materials == null)
+                return "nguyên liệu";
+            try
+            {
+                return materials.Get(id).Name;
+            }
+            catch (KeyNotFoundException)
+            {
+                return "nguyên liệu";
+            }
         }
 
         private sealed class UnitCatalog : IStorageItemCatalog

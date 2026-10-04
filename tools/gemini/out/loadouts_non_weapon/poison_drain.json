@@ -1,0 +1,14 @@
+{
+  "name": "Huyền Độc Phệ Khí",
+  "hp": 1150, "cols": 5, "rows": 4, "sect": "huyen_doc",
+  "items": [
+    { "id": "that_tinh_tieu", "x": 0, "y": 0 },
+    { "id": "tu_kim_trao", "x": 1, "y": 0 },
+    { "id": "u_minh_bi_luc", "x": 2, "y": 0 },
+    { "id": "van_doc_dinh", "x": 2, "y": 1 },
+    { "id": "giai_doc_dan", "x": 2, "y": 2 },
+    { "id": "thanh_dong_ho_tam_kinh", "x": 2, "y": 3 },
+    { "id": "da_ho_y", "x": 3, "y": 0 },
+    { "id": "thiet_giap_y", "x": 3, "y": 2 }
+  ]
+}

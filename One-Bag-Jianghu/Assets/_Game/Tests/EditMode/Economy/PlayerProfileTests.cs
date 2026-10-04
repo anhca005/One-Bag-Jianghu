@@ -19,9 +19,9 @@ namespace OneBagJianghu.Tests.Economy
         public void SetUp()
         {
             temporaryDirectory =
-Path.Combine(Path.GetTempPath(),
-"OneBagJianghuTests",
-Guid.NewGuid().ToString("N"));
+                Path.Combine(Path.GetTempPath(),
+                "OneBagJianghuTests",
+                Guid.NewGuid().ToString("N"));
             Directory.CreateDirectory(temporaryDirectory);
             starter = StarterKit.Parse(File.ReadAllText(DataPath("starter.json")));
         }
@@ -43,31 +43,31 @@ Guid.NewGuid().ToString("N"));
             profile.AddCurrency("danh_vong", 5);
             profile.AddMaterial("han_thiet", 4);
             bool paid =
-profile.TrySpend(new Dictionary<string,
-long>
-{
-    ["bac"] =
-50,
-    ["danh_vong"] =
-6
-},
-out string currencyError);
+                profile.TrySpend(new Dictionary<string,
+                long>
+                {
+                    ["bac"] =
+                        50,
+                    ["danh_vong"] =
+                        6
+                },
+                    out string currencyError);
             bool consumed =
-profile.SpendMaterials(new Dictionary<string,
-int>
-{
-    ["han_thiet"] =
-3,
-    ["missing"] =
-1
-},
-out string materialError);
+                profile.SpendMaterials(new Dictionary<string,
+                int>
+                {
+                    ["han_thiet"] =
+                        3,
+                    ["missing"] =
+                        1
+                },
+                    out string materialError);
             Assert.That(paid, Is.False);
-            Assert.That(currencyError, Does.Contain("danh_vong"));
+            Assert.That(currencyError, Does.Contain("Danh Vọng"));
             Assert.That(profile.Currencies["bac"], Is.EqualTo(100));
             Assert.That(profile.Currencies["danh_vong"], Is.EqualTo(5));
             Assert.That(consumed, Is.False);
-            Assert.That(materialError, Does.Contain("missing"));
+            Assert.That(materialError, Does.Contain("Không đủ"));
             Assert.That(profile.Materials["han_thiet"], Is.EqualTo(4));
         }
 
@@ -95,11 +95,11 @@ out string materialError);
             Assert.That(restored.HeroName, Is.EqualTo("Round Trip"));
             Assert.That(restored.HeroLevel, Is.EqualTo(12));
             Assert.That(restored.Items.Select(item =>
-item.Uid),
-Is.EqualTo(original.Items.Select(item => item.Uid)));
+                item.Uid),
+                Is.EqualTo(original.Items.Select(item => item.Uid)));
             Assert.That(restored.Loadout.Select(item =>
-item.Uid),
-Is.EqualTo(original.Loadout.Select(item => item.Uid)));
+                item.Uid),
+                Is.EqualTo(original.Loadout.Select(item => item.Uid)));
             Assert.That(restored.Materials["han_thiet"], Is.EqualTo(9));
         }
 
@@ -116,16 +116,16 @@ Is.EqualTo(original.Loadout.Select(item => item.Uid)));
             bool cleared = false;
             string path = Path.Combine(temporaryDirectory, "profile.json");
             var store =
-new ProfileStore(path,
-starter,
-key =>
-values.TryGetValue(key,
-out string value) ?
-value :
-string.Empty,
-() =>
-cleared =
-true);
+                new ProfileStore(path,
+                starter,
+                key =>
+                values.TryGetValue(key,
+                out string value) ?
+                value :
+                string.Empty,
+                () =>
+                cleared =
+                true);
             PlayerProfile profile = store.LoadOrCreate();
             Assert.That(profile.HeroName, Is.EqualTo(name));
             Assert.That(profile.SectId, Is.EqualTo(sect));
@@ -145,7 +145,7 @@ true);
             store.Save(profile);
             Assert.That(File.Exists(path + ".bak"), Is.True);
             Assert.That(PlayerProfile.FromJson(File.ReadAllText(path + ".bak")).HeroName,
-Is.Empty);
+                Is.Empty);
         }
 
         [Test]
@@ -154,20 +154,22 @@ Is.Empty);
             PlayerProfile profile = starter.CreateProfile();
             ItemCatalog catalog = LoadItems();
             Assert.That(profile.Currencies.Keys,
-Is.EquivalentTo(new[] { "bac",
-"nguyen_bao",
-"danh_vong" }));
+                Is.EquivalentTo(new[] { "bac",
+                "nguyen_bao",
+                "danh_vong" }));
             Assert.That(profile.Loadout.Select(place =>
-profile.RequireItem(place.Uid)).Any(item =>
-catalog.Get(item.ItemId).Type == "weapon"),
-Is.True);
+                profile.RequireItem(place.Uid)).Any(item =>
+                catalog.Get(item.ItemId).Type == "weapon"),
+                Is.True);
         }
 
         [Test]
         public void EngineLoadoutUsesTierFromOwnedItem()
         {
             PlayerProfile profile = starter.CreateProfile("Tier Owner");
-            OwnedItem first = profile.RequireItem(profile.Loadout[0].Uid);
+            // The starter bag is empty (the tutorial has the player place the kit), so equip the sword here.
+            OwnedItem first = profile.Items.First(value => value.ItemId == "thanh_phong_kiem");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = first.Uid, X = 0, Y = 0 });
             first.Tier = 7;
             JObject json = JObject.Parse(GameSession.BuildEngineLoadoutJson(profile, LoadItems()));
             JToken item = json["items"].First(value => (string)value["id"] == first.ItemId);
@@ -176,9 +178,9 @@ Is.True);
             Assert.That((int)json["level"], Is.EqualTo(profile.HeroLevel));
             Assert.That(json["hp"], Is.Null);
             Assert.That(json["items"].Any(value =>
-value["uid"] != null),
-Is.False,
-"Engine input schema must not expose owned uids.");
+                value["uid"] != null),
+                Is.False,
+                "Engine input schema must not expose owned uids.");
         }
 
         [Test]
@@ -187,8 +189,8 @@ Is.False,
             string valid = File.ReadAllText(DataPath("materials.json"));
             Assert.That(MaterialCatalog.Parse(valid).All.Count, Is.EqualTo(17));
             const string invalid =
-"[{\"id\":\"x\",\"name\":\"X\",\"itemType\":\"weapon\"," +
-"\"band\":\"tier_1_3\",\"description\":\"x\",\"unexpected\":true}]";
+                "[{\"id\":\"x\",\"name\":\"X\",\"itemType\":\"weapon\"," +
+                "\"band\":\"tier_1_3\",\"description\":\"x\",\"unexpected\":true}]";
             Assert.Throws<FormatException>(() => MaterialCatalog.Parse(invalid));
         }
 
@@ -202,10 +204,10 @@ Is.False,
         }
 
         private static string DataPath(string file) =>
-Path.Combine(Application.dataPath,
-"_Game/Resources/Data",
-file);
+            Path.Combine(Application.dataPath,
+            "_Game/Resources/Data",
+            file);
         private static ItemCatalog LoadItems() =>
-ItemCatalog.Parse(File.ReadAllText(DataPath("items.json")));
+            ItemCatalog.Parse(File.ReadAllText(DataPath("items.json")));
     }
 }

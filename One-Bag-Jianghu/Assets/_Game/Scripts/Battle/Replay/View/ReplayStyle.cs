@@ -32,11 +32,11 @@ namespace OneBagJianghu.Battle.Replay.View
         public static readonly Color Bleed = Hex("#7A1F1F");
         public static readonly Color CooldownOverlay = new Color(0f, 0f, 0f, .5f);
         public static Color Status(string kind) =>
-kind == "BURN" ?
-Burn :
-kind == "POISON" ?
-Poison :
-Bleed;
+            kind == "BURN" ?
+            Burn :
+            kind == "POISON" ?
+            Poison :
+            Bleed;
         private static Color Hex(string value)
         {
             ColorUtility.TryParseHtmlString(value, out Color color);

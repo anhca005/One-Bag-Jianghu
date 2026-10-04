@@ -45,11 +45,11 @@ namespace OneBagJianghu.Core
             if (asset == null)
                 throw new InvalidOperationException("Could not load Resources/Data/starter.json.");
             return new ProfileStore(Path.Combine(Application.persistentDataPath,
-"profile.json"),
-StarterKit.Parse(asset.text),
-key => PlayerPrefs.GetString(key,
-string.Empty),
-() =>
+                "profile.json"),
+                StarterKit.Parse(asset.text),
+                key => PlayerPrefs.GetString(key,
+                string.Empty),
+                () =>
             {
                 PlayerPrefs.DeleteKey(HeroNameKey);
                 PlayerPrefs.DeleteKey(SectIdKey);
@@ -218,11 +218,11 @@ string.Empty),
                 OwnedItem owned = Profile.FindItem(placement.Uid);
                 ItemInfo info;
                 if (owned != null
-&& catalog.TryGet(owned.ItemId,
-out info)
-&& string.Equals(info.Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase))
+                    && catalog.TryGet(owned.ItemId,
+                    out info)
+                    && string.Equals(info.Type,
+                    "weapon",
+                    StringComparison.OrdinalIgnoreCase))
                 {
                     warning = string.Empty;
                     return true;
@@ -240,7 +240,7 @@ StringComparison.OrdinalIgnoreCase))
             Profile.EnsureStorage(ItemCatalog.LoadFromResources());
             Profile.Currencies.TryGetValue("bac", out long silver);
             string migration = store.LastMigrationFrom.HasValue ? ", migratedFrom=v"
-+ store.LastMigrationFrom.Value : string.Empty;
+                + store.LastMigrationFrom.Value : string.Empty;
             Debug
                 .Log(
                     $"[Profile] Load path={store.FilePath}, version={Profile.Version}{migration}, " +
@@ -307,6 +307,15 @@ StringComparison.OrdinalIgnoreCase))
                 (deleted.Count == 0 ? "none" : string.Join(",", deleted)));
         }
 
+        public int PlayerPower()
+        {
+            EnsureProfile();
+            var items = new List<OwnedItem>(Profile.Loadout.Count);
+            foreach (LoadoutPlacement placement in Profile.Loadout)
+                items.Add(Profile.RequireItem(placement.Uid));
+            return PowerCatalog.LoadFromResources().Fighter(items, Profile.HeroLevel);
+        }
+
         private static PlayerProfile CreateFreshProfile()
         {
             TextAsset asset = Resources.Load<TextAsset>("Data/starter");
@@ -344,13 +353,13 @@ StringComparison.OrdinalIgnoreCase))
             }
 
             JObject json = JObject.Parse(LoadoutSerializer.ToJson(grid,
-profile.HeroName,
-profile.HeroLevel,
-new LoadoutMeta
-{
-    Sect = profile.SectId,
-    TamPhapLevel = profile.TamPhapLevel
-}));
+                profile.HeroName,
+                profile.HeroLevel,
+                new LoadoutMeta
+                {
+                    Sect = profile.SectId,
+                    TamPhapLevel = profile.TamPhapLevel
+                }));
             JArray entries = (JArray)json["items"];
             for (int i = 0; i < profile.Loadout.Count; i++)
                 entries[i]["rarity"] = profile.RequireItem(profile.Loadout[i].Uid).Rarity;
@@ -397,8 +406,8 @@ new LoadoutMeta
             foreach (PlacedItem placed in grid.Items)
             {
                 OwnedItem owned = Profile.Items.Find(item => item.ItemId == placed.Item.Id
-&& item.Tier == placed.Tier
-&& !used.Contains(item.Uid));
+                    && item.Tier == placed.Tier
+                    && !used.Contains(item.Uid));
                 owned ??= Profile.AddItem(placed.Item.Id, placed.Tier);
                 used.Add(owned.Uid);
                 Profile.Loadout.Add(new LoadoutPlacement { Uid = owned.Uid, X = placed.X, Y = placed.Y });

@@ -33,7 +33,7 @@ namespace OneBagJianghu.Net
                 {
                     var segment = new ArraySegment<byte>(buffer);
                     WebSocketReceiveResult result = await socket.ReceiveAsync(segment,
-cancellationToken).ConfigureAwait(false);
+                        cancellationToken).ConfigureAwait(false);
                     if (result.MessageType == WebSocketMessageType.Close)
                     {
                         return null;
@@ -63,8 +63,8 @@ cancellationToken).ConfigureAwait(false);
             if (socket.State == WebSocketState.Open || socket.State == WebSocketState.CloseReceived)
             {
                 await socket.CloseAsync(WebSocketCloseStatus.NormalClosure,
-"Client disconnect",
-cancellationToken).ConfigureAwait(false);
+                    "Client disconnect",
+                    cancellationToken).ConfigureAwait(false);
             }
         }
 

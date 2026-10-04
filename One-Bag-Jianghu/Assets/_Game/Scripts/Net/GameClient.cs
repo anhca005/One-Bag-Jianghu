@@ -11,8 +11,8 @@ namespace OneBagJianghu.Net
         private readonly object gate = new object();
         private readonly IGameTransport transport;
         private readonly Dictionary<long,
-TaskCompletionSource<Envelope>> pending = new Dictionary<long,
-TaskCompletionSource<Envelope>>();
+            TaskCompletionSource<Envelope>> pending = new Dictionary<long,
+            TaskCompletionSource<Envelope>>();
         private readonly SemaphoreSlim sendGate = new SemaphoreSlim(1, 1);
         private CancellationTokenSource lifetime;
         private long nextId;
@@ -84,7 +84,7 @@ TaskCompletionSource<Envelope>>();
                 try
                 {
                     await transport.SendTextAsync(ProtocolJson.Serialize(request),
-CancellationToken.None).ConfigureAwait(false);
+                        CancellationToken.None).ConfigureAwait(false);
                 }
                 finally
                 {
@@ -96,8 +96,8 @@ CancellationToken.None).ConfigureAwait(false);
                 if (finished != completion.Task)
                 {
                     throw new TimeoutException("The server did not reply within "
-+ RequestTimeout.TotalSeconds
-+ " seconds.");
+                        + RequestTimeout.TotalSeconds
+                        + " seconds.");
                 }
 
                 return await completion.Task.ConfigureAwait(false);

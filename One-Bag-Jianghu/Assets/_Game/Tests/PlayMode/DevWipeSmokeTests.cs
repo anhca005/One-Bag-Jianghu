@@ -77,7 +77,7 @@ namespace OneBagJianghu.Tests.Play
             Assert.AreEqual(0, fresh.FirstClears.Count);
             Assert.AreEqual(0, fresh.Pve.Stages.Count);
             Assert.IsNull(fresh.SectId);
-            Assert.AreEqual(1000, fresh.Currencies["bac"]);
+            Assert.AreEqual(500, fresh.Currencies["bac"]); // starter.json (decision #48)
             Assert.AreEqual(0, fresh.Currencies["nguyen_bao"]);
             Assert.AreEqual(0, fresh.Currencies["danh_vong"]);
             Assert.AreEqual(OneBagJianghu.Pve.StaminaConfig.Load().Max, fresh.Pve.Stamina);

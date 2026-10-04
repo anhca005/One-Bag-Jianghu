@@ -71,8 +71,8 @@ namespace OneBagJianghu.Tests.Battle.Replay
         private static BattleLog LoadSample()
         {
             string path =
-Path.Combine(Application.dataPath,
-"_Game/Tests/EditMode/Data/sample_battle.json");
+                Path.Combine(Application.dataPath,
+                "_Game/Tests/EditMode/Data/sample_battle.json");
             return BattleLogParser.Parse(File.ReadAllText(path));
         }
     }

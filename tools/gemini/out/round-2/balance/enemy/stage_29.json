@@ -1,0 +1,45 @@
+{
+  "name": "Ải 29: U Minh Tuyệt Mệnh Kiếm Vệ",
+  "hp": 3080,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 4,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "phi_yen_quyet",
+      "x": 1,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 1,
+      "y": 1,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "kim_tuyen_y",
+      "x": 2,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "kiem_tong_tam_yeu",
+      "x": 4,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    }
+  ]
+}

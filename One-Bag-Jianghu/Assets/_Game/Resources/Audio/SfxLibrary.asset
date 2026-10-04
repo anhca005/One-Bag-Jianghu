@@ -1,0 +1,533 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54c5b497c5634b4cbabda91297a57df1, type: 3}
+  m_Name: SfxLibrary
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Audio.SfxLibrary
+  entries:
+  - Key: atk_sword
+    Variants:
+    - {fileID: 8300000, guid: f20ca223798e836409b6f9861bb49dab, type: 3}
+    - {fileID: 8300000, guid: 7f90f0b21c1353a4ba7b27c08c9d6c35, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_blade
+    Variants:
+    - {fileID: 8300000, guid: 10d35c0e19c22f746a0fb30fc4d40b5f, type: 3}
+    - {fileID: 8300000, guid: d7e10b9b3cb94c6459c539f5fce2f5b7, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: atk_dual
+    Variants:
+    - {fileID: 8300000, guid: 442882b211555724094f35d31a7ce59d, type: 3}
+    - {fileID: 8300000, guid: 632ec18ed34d57f49b4ce1dd8ca7620d, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: atk_spear
+    Variants:
+    - {fileID: 8300000, guid: 3155acbc5facce346b2f28a0a8c8a482, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_staff
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: atk_axe
+    Variants:
+    - {fileID: 8300000, guid: 1626f41d355f61a49a80574ff0f8de82, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: atk_hammer
+    Variants:
+    - {fileID: 8300000, guid: 47fccda12eb0fb146b0688c16433749f, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: atk_fist
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: atk_palm
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: atk_claw
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_whip
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_fan
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_brush
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: atk_zither
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: atk_flute
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: atk_hidden
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: atk_bow
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: use_pill
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: use_manual
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: use_relic
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: use_armor
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: atk_monster
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: boss_intro
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 1.2
+  - Key: hit_metal
+    Variants:
+    - {fileID: 8300000, guid: eb9a5548585718546b007e4910d62319, type: 3}
+    - {fileID: 8300000, guid: 3ee8a87850bf78f448a28d40dfbe4391, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: hit_blunt
+    Variants:
+    - {fileID: 8300000, guid: 200f12f008a8c13498c514e7aeb16f2d, type: 3}
+    - {fileID: 8300000, guid: 03f6e430f09e57049b66f6265d38aed0, type: 3}
+    - {fileID: 8300000, guid: 0f0e3414ea04c1a458f9e2a69f4545d2, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: hit_crit
+    Variants:
+    - {fileID: 8300000, guid: 42143de34b037174281d9d63a79b7e1c, type: 3}
+    - {fileID: 8300000, guid: 2a6afea069b462a499a3127ead0353cd, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: parry
+    Variants:
+    - {fileID: 8300000, guid: 7a6d9dce71ac75b42a017d3acfa1ffe7, type: 3}
+    - {fileID: 8300000, guid: 7913f44ad3f22ce40816900c0e8527a7, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: shield_gain
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: shield_hit
+    Variants:
+    - {fileID: 8300000, guid: f85b21ce4777f8143a44b0faca385276, type: 3}
+    - {fileID: 8300000, guid: e0680edfb439a1b4b8436b0501e033f5, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: dmg_reduce
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: ultimate
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: charge
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: qi_gain
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: heal
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: buff
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: max_hp
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: burn_apply
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: burn_tick
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: poison_apply
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.5
+  - Key: poison_tick
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: bleed_apply
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: bleed_tick
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: stun
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: exhaustion
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: battle_start
+    Variants:
+    - {fileID: 8300000, guid: 49addaef1b6ed34498844e0b1ffe4e84, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 1
+  - Key: win
+    Variants:
+    - {fileID: 8300000, guid: 3dc471606c2464043af02b0ef947123e, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 1.4
+  - Key: lose
+    Variants:
+    - {fileID: 8300000, guid: 01b3e953c68275448aec087c24b64df9, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 1.4
+  - Key: ko
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: ult_sword_wind
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_blade_fire
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_staff_tiger
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_axe_quake
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_zither_wave
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_flute_frost
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_palm_sand
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_hammer_thunder
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: ult_bow_soul
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: ult_claw_ghost
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: ui_click
+    Variants:
+    - {fileID: 8300000, guid: f46b8128cdd1e0c4eac7376cc57f5cbe, type: 3}
+    - {fileID: 8300000, guid: 1dc69f7b8275d5e4b99f683506399755, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.15
+  - Key: ui_hover
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.1
+  - Key: ui_open
+    Variants:
+    - {fileID: 8300000, guid: bede6b1693a9e344691d4cc54a06227e, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: ui_close
+    Variants:
+    - {fileID: 8300000, guid: 9a10417ebce0d974480eb38ca5d72aba, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: ui_error
+    Variants:
+    - {fileID: 8300000, guid: 8d8cc3bface975d41a8a9bda75a2693a, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.2
+  - Key: item_pick
+    Variants:
+    - {fileID: 8300000, guid: 4074c2dff9d58a741ab6c0f5c2e531aa, type: 3}
+    - {fileID: 8300000, guid: f4bd587b9979e28479265aebfab2e436, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.25
+  - Key: item_drop
+    Variants:
+    - {fileID: 8300000, guid: 9812ba0f2668f2d4881d2959b052e09d, type: 3}
+    - {fileID: 8300000, guid: ae290a0daf706554ca9d977f819d7c87, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.2
+  - Key: item_drop_bad
+    Variants:
+    - {fileID: 8300000, guid: d1a3e261601ede1478687ef635dd0f63, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.25
+  - Key: coin
+    Variants:
+    - {fileID: 8300000, guid: 18653d387e3ae0a4dbe8618f7be3edf1, type: 3}
+    - {fileID: 8300000, guid: 86e13e670a0de074bbc2c60e13dbcbef, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: upgrade
+    Variants:
+    - {fileID: 8300000, guid: 41a41bb3313ae2f4d8573432a27565cc, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: merge
+    Variants:
+    - {fileID: 8300000, guid: ed1c653509f3d654e8637ffe8814848d, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.7
+  - Key: level_up
+    Variants:
+    - {fileID: 8300000, guid: 8f56de867ecd7bf47bcd8c5a10fe51f1, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 1
+  - Key: reward
+    Variants:
+    - {fileID: 8300000, guid: 427594aadb29ae547b2e7d170c9decbf, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.8
+  - Key: stage_select
+    Variants:
+    - {fileID: 8300000, guid: b4cd0c7c80088724488e868348492c45, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.3
+  - Key: dialogue_next
+    Variants:
+    - {fileID: 8300000, guid: ba59f2290c0e86e42812bcf1aec73ec1, type: 3}
+    - {fileID: 8300000, guid: b568fe1bbb3436f47b4ab9101bb0633e, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.25
+  - Key: node_unlock
+    Variants:
+    - {fileID: 8300000, guid: 52e07256561801743a394447ebc1e81e, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.6
+  - Key: star_rating
+    Variants:
+    - {fileID: 8300000, guid: 260d7b4fab76b414099cf736c6eb9a88, type: 3}
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 0.4
+  - Key: amb_home
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 20
+  - Key: amb_map_hoi_1
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 20
+  - Key: amb_map_hoi_2
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 20
+  - Key: amb_map_hoi_3
+    Variants: []
+    BaseVolume: 1
+    PitchJitter: 0.05
+    MinimumInterval: 0.08
+    CatalogDuration: 20

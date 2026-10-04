@@ -1,0 +1,24 @@
+{
+  "name": "Ải 1: Thảo Khấu Tiên Phong",
+  "hp": 750,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

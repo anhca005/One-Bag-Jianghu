@@ -1,0 +1,180 @@
+{
+  "materials": [
+    {
+      "id": "han_thiet",
+      "name": "Hàn Thiết",
+      "type": "weapon",
+      "tier": 1,
+      "rarity": "uncommon",
+      "description": "Quặng sắt lạnh ngàn năm dưới đáy vực, dùng rèn binh khí sơ cấp.",
+      "icon_prompt": "A rough chunk of frost-covered cold iron ore, blue-grey metallic sheen with ice crystals, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_1", "shop"]
+    },
+    {
+      "id": "o_thiet",
+      "name": "Ô Thiết",
+      "type": "weapon",
+      "tier": 2,
+      "rarity": "rare",
+      "description": "Kim loại đen nhánh nặng nghìn cân, đao kiếm chém không mẻ.",
+      "icon_prompt": "A heavy dark-ink metal ingot with dull golden veins, dense and rugged, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_2", "shop", "pvp"]
+    },
+    {
+      "id": "thien_ngoai_van_thiet",
+      "name": "Thiên Ngoại Vẫn Thiết",
+      "type": "weapon",
+      "tier": 3,
+      "rarity": "epic",
+      "description": "Mảnh thiên thạch rực lửa từ hư không rơi xuống, rèn thần binh tuyệt phẩm.",
+      "icon_prompt": "A jagged meteorite fragment glowing with faint vermilion embers inside dark scorched crust, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_3", "shop", "pvp_season"]
+    },
+    {
+      "id": "binh_hon_tinh_thach",
+      "name": "Binh Hồn Tinh Thạch",
+      "type": "weapon",
+      "tier": 0,
+      "is_catalyst": true,
+      "rarity": "legendary",
+      "description": "Tinh thạch tụ hội linh hồn danh kiếm, dùng làm chất dẫn Đột Phá Binh Khí.",
+      "icon_prompt": "A sharp rhomboid crystal enclosing a miniature swirling sword silhouette in vermilion ink, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_boss", "shop", "pvp_box"]
+    },
+    {
+      "id": "thanh_dong_ti",
+      "name": "Thanh Đồng Ti",
+      "type": "armor",
+      "tier": 1,
+      "rarity": "uncommon",
+      "description": "Sợi đồng mềm dệt chung tơ tằm, gia cố giáp trụ cơ bản.",
+      "icon_prompt": "A spool of spun greenish-bronze metallic thread wrapped around a carved bamboo bobbin, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_1", "shop"]
+    },
+    {
+      "id": "o_kim_ti",
+      "name": "Ô Kim Ti",
+      "type": "armor",
+      "tier": 2,
+      "rarity": "rare",
+      "description": "Tơ vàng đen dẻo dai khó đứt, đỡ được ám khí đao thương.",
+      "icon_prompt": "A coil of shimmering dark gold and black braided silk rope, supple and tough, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_2", "shop", "pvp"]
+    },
+    {
+      "id": "cuu_u_tam_ti",
+      "name": "Cửu U Tàm Ti",
+      "type": "armor",
+      "tier": 3,
+      "rarity": "epic",
+      "description": "Tơ tằm nuôi nơi đầm lầy lạnh giá, hộ thể giảm sát thương cực hạn.",
+      "icon_prompt": "A skein of ethereal silver-blue silk glowing softly like moonlight on water, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_3", "shop", "pvp_season"]
+    },
+    {
+      "id": "huyen_giap_hon_thach",
+      "name": "Huyền Giáp Hồn Thạch",
+      "type": "armor",
+      "tier": 0,
+      "is_catalyst": true,
+      "rarity": "legendary",
+      "description": "Khối linh thạch hình mai rùa, chất dẫn Đột Phá Hộ Cụ.",
+      "icon_prompt": "A polished turtle-shell-shaped dark stone talisman with carved ochre-gold runes, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_boss", "shop", "pvp_box"]
+    },
+    {
+      "id": "hoang_tuyen_chi",
+      "name": "Hoàng Tuyên Chỉ",
+      "type": "manual",
+      "tier": 1,
+      "rarity": "uncommon",
+      "description": "Giấy dó cổ nhuộm hoàng liên chống mối mọt, ghi chép bí kíp nhập môn.",
+      "icon_prompt": "A roll of aged yellowed rice paper tied with a simple vermilion cord, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_1", "shop"]
+    },
+    {
+      "id": "mac_truc_tran",
+      "name": "Mặc Trúc Trản",
+      "type": "manual",
+      "tier": 2,
+      "rarity": "rare",
+      "description": "Thẻ trúc khắc mực sâu, chứa đựng yếu quyết nội công thâm sâu.",
+      "icon_prompt": "A bundle of dark bamboo slips bound with leather cord, inscribed with tiny ink characters, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_2", "shop", "pvp"]
+    },
+    {
+      "id": "tam_to_co_quyen",
+      "name": "Tằm Tơ Cổ Quyển",
+      "type": "manual",
+      "tier": 3,
+      "rarity": "epic",
+      "description": "Cuộn lụa tơ tằm thượng thừa lưu giữ tâm pháp tuyệt đỉnh tông sư.",
+      "icon_prompt": "An ornate brocade silk scroll with jade scroll-ends and golden embroidery, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_3", "shop", "pvp_season"]
+    },
+    {
+      "id": "van_dao_tam_tinh",
+      "name": "Vấn Đạo Tâm Tinh",
+      "type": "manual",
+      "tier": 0,
+      "is_catalyst": true,
+      "rarity": "legendary",
+      "description": "Hạt xá lợi đốn ngộ đạo pháp, chất dẫn Đột Phá Công Pháp.",
+      "icon_prompt": "A luminous spherical prayer bead floating amidst faint dry-brush ink smoke, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_boss", "shop", "pvp_box"]
+    },
+    {
+      "id": "chu_sa_thao",
+      "name": "Chu Sa Thảo",
+      "type": "pill_relic",
+      "tier": 1,
+      "rarity": "uncommon",
+      "description": "Thảo dược mọc trên mỏ chu sa, nguyên liệu luyện đan bồi nguyên.",
+      "icon_prompt": "A delicate wild herb with bright vermilion root nodules and pale green leaves, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_1", "shop"]
+    },
+    {
+      "id": "tu_linh_chi",
+      "name": "Tử Linh Chi",
+      "type": "pill_relic",
+      "tier": 2,
+      "rarity": "rare",
+      "description": "Nấm linh chi tím trăm năm trên vách đá cheo leo, tẩm bổ chân khí.",
+      "icon_prompt": "A fan-shaped purple wood mushroom with glossy lacquer rim and spore mist, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_2", "shop", "pvp"]
+    },
+    {
+      "id": "con_lon_tuyet_lien",
+      "name": "Côn Lôn Tuyết Liên",
+      "type": "pill_relic",
+      "tier": 3,
+      "rarity": "epic",
+      "description": "Hoa sen tuyết ngàn năm trên đỉnh băng giá, tái tạo kinh mạch.",
+      "icon_prompt": "A pure white lotus flower blooming with crystalline icy petals, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_chapter_3", "shop", "pvp_season"]
+    },
+    {
+      "id": "cuu_chuyen_dan_sa",
+      "name": "Cửu Chuyển Đan Sa",
+      "type": "pill_relic",
+      "tier": 0,
+      "is_catalyst": true,
+      "rarity": "legendary",
+      "description": "Bột đan sa luyện qua chín lần lửa lò, chất dẫn Đột Phá Đan Dược và Kỳ Trân.",
+      "icon_prompt": "A tiny open celadon porcelain dish containing sparkling golden-red powder, 2D ink wash style, transparent background.",
+      "drop_sources": ["pve_boss", "shop", "pvp_box"]
+    },
+    {
+      "id": "chi_ton_ngoc_tuy",
+      "name": "Chí Tôn Ngọc Tủy",
+      "type": "universal",
+      "tier": 0,
+      "is_catalyst": true,
+      "pvp_only": true,
+      "rarity": "supreme",
+      "description": "Tinh hoa ngọc tủy ngưng tụ từ ngàn trận quyết chiến đỉnh cao tại Luận Kiếm Đài, chất xúc tác độc nhất để hợp thành phẩm Chí Tôn.",
+      "icon_prompt": "A flawless hexagonal spirit jade radiating intense crimson and golden ink halos, floating above subtle misty brushstrokes, 2D Chinese ink wash painting, 1:1 aspect ratio, transparent background.",
+      "drop_sources": ["pvp_weekly_milestone", "pvp_season_rank", "pvp_shop_reputation"]
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Ải 5: Phong Lôi Khoái Đao Độc Cô Hạnh",
+  "hp": 1100,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "phi_yen_quyet",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "kim_tuyen_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+01 normal  65.0%  28.4s | P lv 1 n2 T[1] ['common'] | E lv 1 n2 T[1] ['common'] | rec 1 | band 82-88
+02 normal  21.2%  29.4s | P lv 2 n3 T[1] ['common'] | E lv 2 n3 T[1] ['uncommon'] | rec 2 | band 82-88
+03 normal  61.0%  31.5s | P lv 3 n4 T[1] ['common'] | E lv 3 n3 T[1] ['uncommon'] | rec 3 | band 82-88
+04 normal  77.8%  22.4s | P lv 4 n5 T[1] ['common', 'uncommon'] | E lv 4 n3 T[1, 2] ['uncommon', 'rare'] | rec 4 | band 82-88
+05 elite   53.0%  33.1s | P lv 5 n6 T[1] ['uncommon', 'rare'] | E lv 5 n4 T[1] ['epic', 'legendary'] | rec 5 | band 62-68
+06 normal  47.0%  21.6s | P lv 6 n5 T[2] ['uncommon', 'rare'] | E lv 6 n5 T[2] ['rare'] | rec 6 | band 82-88
+07 normal  82.5%  23.9s | P lv 7 n5 T[2] ['uncommon', 'rare'] | E lv 7 n3 T[2] ['rare', 'epic'] | rec 7 | OK
+08 normal  91.5%  24.3s | P lv 8 n5 T[2] ['rare'] | E lv 8 n4 T[2, 3] ['epic'] | rec 8 | band 82-88
+09 normal  91.8%  33.8s | P lv 9 n6 T[2] ['rare'] | E lv 9 n4 T[1, 2] ['rare', 'epic'] | rec 9 | band 82-88
+10 boss    52.5%  26.4s | P lv10 n7 T[2] ['rare'] | E lv11 n6 T[3] ['uncommon', 'rare'] | rec 10 | OK
+11 normal  66.2%  27.6s | P lv11 n6 T[2] ['rare'] | E lv11 n4 T[1, 2] ['uncommon', 'rare'] | rec 11 | band 82-88
+12 normal  84.5%  34.6s | P lv12 n6 T[2, 3] ['uncommon', 'rare'] | E lv12 n4 T[2, 3] ['rare', 'epic'] | rec 12 | OK
+13 normal  77.8%  25.7s | P lv13 n6 T[3] ['rare'] | E lv13 n5 T[2, 4] ['rare', 'epic'] | rec 13 | band 82-88
+14 normal  76.5%  25.5s | P lv14 n6 T[3] ['rare'] | E lv14 n5 T[2, 3, 4] ['epic'] | rec 14 | band 82-88
+15 elite   75.5%  40.8s | P lv15 n6 T[3] ['rare', 'epic'] | E lv15 n5 T[2] ['legendary', 'supreme'] | rec 15 | band 62-68, dur>40s
+16 normal  87.5%  37.4s | P lv16 n6 T[3] ['rare', 'epic'] | E lv16 n5 T[3] ['rare', 'legendary'] | rec 16 | OK
+17 normal  79.5%  22.0s | P lv17 n6 T[3] ['rare', 'epic'] | E lv17 n6 T[3, 4] ['epic'] | rec 17 | band 82-88
+18 normal  66.5%  36.3s | P lv18 n6 T[3] ['epic'] | E lv18 n5 T[2, 3] ['rare'] | rec 18 | band 82-88
+19 normal  73.2%  18.3s | P lv19 n6 T[3] ['epic'] | E lv19 n6 T[2, 3] ['rare'] | rec 19 | band 82-88
+20 boss    56.5%  23.7s | P lv20 n7 T[3, 4] ['rare', 'epic'] | E lv21 n6 T[4, 5] ['epic'] | rec 20 | OK
+21 normal  79.8%  33.4s | P lv21 n6 T[4] ['rare', 'epic'] | E lv21 n5 T[3, 4] ['rare'] | rec 21 | band 82-88
+22 normal  76.8%  33.2s | P lv22 n6 T[4] ['rare', 'epic'] | E lv22 n6 T[5] ['epic', 'legendary'] | rec 22 | band 82-88
+23 normal  81.0%  31.4s | P lv23 n6 T[4] ['epic'] | E lv25 n5 T[5] ['legendary'] | rec 23 | band 82-88
+24 normal  85.8%  41.7s | P lv24 n7 T[4] ['epic'] | E lv24 n5 T[3, 5] ['rare', 'epic'] | rec 24 | dur>40s
+25 elite   56.8%  37.2s | P lv25 n7 T[4] ['epic', 'legendary'] | E lv25 n6 T[5] ['legendary', 'supreme'] | rec 25 | band 62-68
+26 normal  65.8%  34.7s | P lv26 n7 T[4] ['epic', 'legendary'] | E lv26 n5 T[3, 5] ['epic', 'legendary'] | rec 26 | band 82-88
+27 normal  78.2%  26.7s | P lv27 n7 T[4, 5] ['rare', 'legendary'] | E lv27 n6 T[5] ['legendary', 'supreme'] | rec 27 | band 82-88
+28 normal  81.0%  34.2s | P lv28 n7 T[5] ['epic', 'legendary'] | E lv28 n5 T[4, 5] ['epic'] | rec 28 | band 82-88
+29 normal  76.5%  33.5s | P lv29 n7 T[5] ['legendary'] | E lv29 n5 T[5, 6] ['legendary', 'supreme'] | rec 29 | band 82-88
+30 boss    44.2%  42.9s | P lv30 n8 T[5] ['legendary'] | E lv31 n6 T[5, 6] ['epic', 'legendary'] | rec 30 | band 52-58, dur>40s
+
+Stages breaking a rule: 25/30

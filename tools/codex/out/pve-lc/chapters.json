@@ -1,0 +1,4547 @@
+{
+  "repeatRewardPercent": 15,
+  "characters": [
+    {
+      "id": "hero",
+      "name": "Hiệp Khách",
+      "title": "Thiếu Niên Hành Giả",
+      "portrait": "hero_portrait"
+    },
+    {
+      "id": "lao_tieu_phu",
+      "name": "Lục Tiều Phu",
+      "title": "Hộ Nang Ẩn Sĩ",
+      "portrait": "npc_lao_tieu_phu"
+    },
+    {
+      "id": "tieu_linh_nhi",
+      "name": "Bạch Linh Nhi",
+      "title": "Bách Thảo Dược Nữ",
+      "portrait": "npc_tieu_linh_nhi"
+    },
+    {
+      "id": "phong_loi",
+      "name": "Phong Vũ",
+      "title": "Phong Lôi Khoái Đao",
+      "portrait": "npc_phong_loi"
+    },
+    {
+      "id": "bui_chen",
+      "name": "Bùi Chấn",
+      "title": "Nộ Ba Hổ",
+      "portrait": "boss_bui_chen"
+    },
+    {
+      "id": "hac_doc_nuong_tu",
+      "name": "Hắc Độc Nương Tử",
+      "title": "Vạn Xà Độc Ma",
+      "portrait": "boss_hac_doc_nuong_tu"
+    },
+    {
+      "id": "da_sat_thien",
+      "name": "Dạ Sát Thiên",
+      "title": "U Minh Tả Sứ",
+      "portrait": "boss_da_sat_thien"
+    }
+  ],
+  "monsterItems": [
+    "soi_nanh_canh",
+    "heo_rung_bap_giap",
+    "man_xa_doc_tui",
+    "u_minh_quy_trao",
+    "kich_doc_chu_nga",
+    "bang_tam_linh_chau",
+    "tuyet_lang_bach_bi",
+    "hac_sat_hung_dam",
+    "bach_ho_cuong_mong",
+    "hoa_diem_xa_cot",
+    "bang_phach_co_cot",
+    "thien_nien_quy_giap"
+  ],
+  "chapters": [
+    {
+      "id": "hoi_1",
+      "index": 1,
+      "title": "Hồi 1",
+      "name": "Thanh Khê Trấn",
+      "summary": "Thiếu niên hiệp khách mang theo tàn nang gia truyền đặt chân đến bến đò Thanh Khê mùa thu lá rụng, tao ngộ Lão Tiều Phu và đối đầu thủy phỉ Ba Hổ Trại.",
+      "theme": {
+        "mapBackground": "map_hoi_1",
+        "battleBackground": "bg_battle_hoi_1",
+        "accent": "#8B2E1F",
+        "paper": "#EFE4CC",
+        "ink": "#2B2420",
+        "nodeIcon": "node_hoi_1",
+        "bossNodeIcon": "node_boss_hoi_1"
+      },
+      "unlock": {
+        "afterChapter": null
+      },
+      "stages": [
+        {
+          "id": "hoi_1_01",
+          "index": 1,
+          "name": "Trấn Khẩu Sơn Đạo",
+          "kind": "normal",
+          "mapPos": [
+            0.12,
+            0.75
+          ],
+          "description": "Lối vào trấn Thanh Khê sương sớm lãng đãng, bọn thảo khấu chực chờ cướp bóc.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Thảo Khấu Tiên Phong",
+            "sect": null,
+            "tamPhapLevel": 1,
+            "level": 1,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              }
+            ],
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 200,
+              "heroExp": 50,
+              "materials": {
+                "han_thiet": 3
+              },
+              "items": [
+                {
+                  "id": "boi_nguyen_dan",
+                  "tier": 1,
+                  "rarity": "common"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "thiet_cot_quyen_sao",
+                "chancePermille": 150,
+                "rarity": "common"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Phía trước là lối vào Thanh Khê Trấn. Sao lại có kẻ chặn đường?"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Tiểu hữu, cẩn thận! Bọn thảo khấu ven đường chuyên cướp của người lạ."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Lũ thảo khấu này đã tháo chạy. Đa tạ lão bá nhắc nhở."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Túi càn khôn của ngươi xếp đặt rất khéo, đúng là có căn cơ võ học."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Bình tĩnh lại. Sắp xếp lại binh khí trong túi, giữ Hóa Kình phòng thủ."
+              }
+            ]
+          },
+          "recommendedLevel": 1
+        },
+        {
+          "id": "hoi_1_02",
+          "index": 2,
+          "name": "Phong Diệp Bến Đò",
+          "kind": "normal",
+          "mapPos": [
+            0.2,
+            0.68
+          ],
+          "description": "Bến đò rực sắc phong đỏ, thủy phỉ tuần tra gắt gao trên các thuyền nan.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Thủy Phỉ Thám Tử",
+            "sect": null,
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "u_minh_bi_luc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 0
+              }
+            ],
+            "level": 2,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 250,
+              "heroExp": 60,
+              "materials": {
+                "han_thiet": 4
+              },
+              "items": [
+                {
+                  "id": "kim_sang_duoc",
+                  "tier": 1,
+                  "rarity": "common"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "thanh_phong_kiem",
+                "chancePermille": 120,
+                "rarity": "common"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Thuyền đò đều bị giữ lại. Các ngươi là người phương nào?"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Là tai mắt của Ba Hổ Trại. Chúng phong tỏa bến sông rồi."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Bến đò đã thông. Chúng ta có thể qua sông."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Kiếm chiêu dứt khoát. Nhưng phía trước mới là sào huyệt thực sự."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Thủy phỉ đao pháp linh hoạt. Hãy mang theo đan dược hồi phục."
+              }
+            ]
+          },
+          "recommendedLevel": 2
+        },
+        {
+          "id": "hoi_1_03",
+          "index": 3,
+          "name": "Hòe Thụ Thôn Ngoại",
+          "kind": "normal",
+          "mapPos": [
+            0.28,
+            0.6
+          ],
+          "description": "Gốc hòe già đầu thôn hoang vắng, bầy sói đói từ rừng sâu mò ra rình mồi.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Hoang Dã Sói Xám",
+            "sect": null,
+            "tamPhapLevel": 1,
+            "level": 3,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              }
+            ],
+            "portrait": "monster_soi_xam"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 300,
+              "heroExp": 70,
+              "materials": {
+                "thanh_dong_ti": 5
+              },
+              "items": [
+                {
+                  "id": "soi_nanh_canh",
+                  "tier": 1,
+                  "rarity": "uncommon"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "soi_nanh_canh",
+                "chancePermille": 100,
+                "rarity": "common"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Tiếng gầm gừ trong bụi rậm... Dã thú biến dị sao?"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Dị thú hấp thu linh khí hoang dã, nanh vuốt sắc bén dị thường."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Nanh sói này cứng chắc khác thường, có thể gắn vào binh khí."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Đó là bảo vật của quái thú. Đem vào túi càn khôn tăng bộc phát."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Sói hoang tấn công dồn dập. Dùng áo giáp che chắn cẩn thận."
+              }
+            ]
+          },
+          "recommendedLevel": 3
+        },
+        {
+          "id": "hoi_1_04",
+          "index": 4,
+          "name": "Thanh Khê Trà Thất",
+          "kind": "normal",
+          "mapPos": [
+            0.35,
+            0.52
+          ],
+          "description": "Quán trà ven đường vương khói lửa, đệ tử Liệt Diễm Bang ngang ngược chiếm cứ.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Liệt Diễm Bang Chúng",
+            "sect": "liet_diem",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              }
+            ],
+            "level": 5,
+            "portrait": "enemy_portrait_2"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 350,
+              "heroExp": 80,
+              "materials": {
+                "han_thiet": 5
+              },
+              "items": [
+                {
+                  "id": "thai_thanh_tam_kinh",
+                  "tier": 1,
+                  "rarity": "uncommon"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "thuan_duong_cong",
+                "chancePermille": 80,
+                "rarity": "common"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Quán trà thanh tịnh lại nồng nặc mùi hỏa dược."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Liệt Diễm Bang tính tình nóng nảy, đao pháp mang nhiệt khí thiêu đốt."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Hóa Kình vững chãi đã triệt tiêu được sức nóng từ hỏa đao."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Rất tốt. Tâm pháp bổ trợ sẽ giúp nội lực vận hành nhuần nhuyễn."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Đừng để bị thiêu đốt liên tục. Giữ khoảng cách và phản kích."
+              }
+            ]
+          },
+          "recommendedLevel": 5
+        },
+        {
+          "id": "hoi_1_05",
+          "index": 5,
+          "name": "Phong Ba Đình",
+          "kind": "elite",
+          "mapPos": [
+            0.42,
+            0.45
+          ],
+          "description": "Ngôi đình cổ giữa hồ sen tàn, đao khách Phong Lôi Đạo đứng đợi trong mưa gió.",
+          "staminaCost": 8,
+          "enemy": {
+            "name": "Phong Lôi Khoái Đao Phong Vũ",
+            "sect": "thai_thanh",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 1
+              }
+            ],
+            "level": 6,
+            "characterId": "phong_loi",
+            "portrait": "npc_phong_loi"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 500,
+              "heroExp": 120,
+              "materials": {
+                "han_thiet": 8,
+                "binh_hon_tinh_thach": 2
+              },
+              "items": [
+                {
+                  "id": "tuy_tien_ho_lo",
+                  "tier": 1,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "phi_yen_quyet",
+                "chancePermille": 100,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "phong_loi",
+                "text": "Kẻ mang tàn nang kia, rút đao ra! Đao pháp của ta không đợi kẻ yếu."
+              },
+              {
+                "speaker": "hero",
+                "text": "Các hạ là Phong Vũ? Ta không có ý kết oán, chỉ muốn mượn đường."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "phong_loi",
+                "text": "Hảo chiêu số! Ngươi quả nhiên có tư cách mang càn khôn nang."
+              },
+              {
+                "speaker": "hero",
+                "text": "Đa tạ Phong huynh hạ thủ lưu tình."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Đao quá chậm! Cương Khí còn non nớt lắm, luyện lại đi!"
+              }
+            ]
+          },
+          "recommendedLevel": 6
+        },
+        {
+          "id": "hoi_1_06",
+          "index": 6,
+          "name": "Ngô Đồng Cổ Hạng",
+          "kind": "normal",
+          "mapPos": [
+            0.5,
+            0.48
+          ],
+          "description": "Ngõ hẹp lá ngô đồng rơi đầy, bóng người thoắt ẩn thoắt hiện trong bóng tối.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Ám Hạng Thích Khách",
+            "sect": "thai_thanh",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 1,
+                "y": 2
+              }
+            ],
+            "level": 7,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 400,
+              "heroExp": 90,
+              "materials": {
+                "han_thiet": 6
+              },
+              "items": [
+                {
+                  "id": "that_tinh_tieu",
+                  "tier": 2,
+                  "rarity": "uncommon"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "that_tinh_tieu",
+                "chancePermille": 100,
+                "rarity": "common"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Gió lạnh thổi qua ngõ hẹp... Có sát khí!"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Là ám khí môn đồ phục kích. Coi chừng phi tiêu độc."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Ám khí nhanh nhưng uy lực không đủ phá Cương Khí."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Biết dùng hộ giáp hóa giải ám khí, kinh nghiệm của ngươi tăng rồi."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Ám khí liên hoàn rất rát. Cần giáp kiên cố để che chắn ngực."
+              }
+            ]
+          },
+          "recommendedLevel": 7
+        },
+        {
+          "id": "hoi_1_07",
+          "index": 7,
+          "name": "Thủy Tạ Nguy Kiều",
+          "kind": "normal",
+          "mapPos": [
+            0.58,
+            0.4
+          ],
+          "description": "Cây cầu gỗ chênh vênh bên đầm nước, con quái trư da sắt án ngữ đầu cầu.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Thiết Bì Trư Thú",
+            "sect": "liet_diem",
+            "tamPhapLevel": 1,
+            "level": 8,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "that_tinh_tieu",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 2,
+                "y": 2
+              }
+            ],
+            "portrait": "monster_heo_rung"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 450,
+              "heroExp": 100,
+              "materials": {
+                "thanh_dong_ti": 8
+              },
+              "items": [
+                {
+                  "id": "heo_rung_bap_giap",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "heo_rung_bap_giap",
+                "chancePermille": 120,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Con thú khổng lồ kia da dày như thiết giáp, húc đổ cả lan can cầu!"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Thiết Bì Trư Thú! Đòn húc của nó rất nặng, phải kiên nhẫn phá giáp."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Lớp da bắp giáp của nó thật phi thường, phòng ngự cực kỳ kiên cố."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Lấy tấm giáp bì đó rèn thành áo giáp, sau này đối đầu kình địch sẽ cần."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Sức húc của nó quá hung hãn. Đừng đối đầu trực diện khi nó tụ khí."
+              }
+            ]
+          },
+          "recommendedLevel": 8
+        },
+        {
+          "id": "hoi_1_08",
+          "index": 8,
+          "name": "Phong Hỏa Cổ Đài",
+          "kind": "normal",
+          "mapPos": [
+            0.66,
+            0.32
+          ],
+          "description": "Đài phong hỏa cháy rực trong hoàng hôn, hương chủ Liệt Diễm Bang trấn giữ lối lên trại.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Liệt Diễm Bang Hương Chủ",
+            "sect": "liet_diem",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "that_tinh_tieu",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 2
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              }
+            ],
+            "level": 9,
+            "portrait": "enemy_portrait_2"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 500,
+              "heroExp": 110,
+              "materials": {
+                "han_thiet": 12
+              },
+              "items": [
+                {
+                  "id": "liet_hoa_tam_kinh",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "cuong_hoa_dan",
+                "chancePermille": 100,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Khói lửa mịt mù. Lại thêm cao thủ Liệt Diễm Bang cản đường."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Hắn là Hương Chủ giữ cửa trại. Đao hỏa của hắn phối hợp đan dược cuồng hỏa."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Hỏa diễm đã tàn. Đài phong hỏa đã bị khống chế."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Sắp tới sào huyệt rồi, hãy điều tức nội thương trước khi vào trại."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Cuồng Hỏa Đan khiến đao lực tăng vọt. Cần dùng Hóa Kình giảm sát thương."
+              }
+            ]
+          },
+          "recommendedLevel": 9
+        },
+        {
+          "id": "hoi_1_09",
+          "index": 9,
+          "name": "Ba Hổ Trại Tiền Doanh",
+          "kind": "normal",
+          "mapPos": [
+            0.75,
+            0.25
+          ],
+          "description": "Tiền doanh kiên cố trước cổng trại, tinh binh hộ vệ của trại chủ bày trận nghiêm ngặt.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Ba Hổ Tiên Phong Vệ",
+            "sect": "thai_thanh",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              }
+            ],
+            "level": 10,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 550,
+              "heroExp": 120,
+              "materials": {
+                "han_thiet": 10
+              },
+              "items": [
+                {
+                  "id": "kim_sang_duoc",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "o_tam_y",
+                "chancePermille": 100,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Phía sau cánh cổng này chính là sảnh đường của Nộ Ba Hổ Bùi Chấn."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Tiên phong vệ này kiếm pháp thuần thục, đừng khinh địch."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Tiền doanh đã phá! Cửa lớn Ba Hổ Trại đã mở toang."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Bùi Chấn đang đợi bên trong. Hắn hung hãn như mãnh hổ hạ sơn."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Địch thủ phối hợp giáp và hồ lô rất cân bằng. Xem lại bố cục trang bị."
+              }
+            ]
+          },
+          "recommendedLevel": 10
+        },
+        {
+          "id": "hoi_1_10",
+          "index": 10,
+          "name": "Thủy Hỏa Phân Tranh Bến Bạc",
+          "kind": "boss",
+          "mapPos": [
+            0.85,
+            0.18
+          ],
+          "description": "Đại bản doanh Ba Hổ Trại bên vách đá dựng đứng, Nộ Ba Hổ vung đại đao cuồng nộ.",
+          "staminaCost": 10,
+          "enemy": {
+            "name": "Nộ Ba Hổ Bùi Chấn",
+            "sect": "liet_diem",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 12,
+            "characterId": "bui_chen",
+            "portrait": "boss_bui_chen"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1000,
+              "heroExp": 250,
+              "materials": {
+                "han_thiet": 15,
+                "binh_hon_tinh_thach": 5
+              },
+              "items": [
+                {
+                  "id": "liet_diem_dao",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "chu_sa_ho_lo",
+                "chancePermille": 150,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "bui_chen",
+                "text": "Tiểu tử không biết trời cao đất dày! Dám xông vào Ba Hổ Trại đoạt tàn đồ?"
+              },
+              {
+                "speaker": "hero",
+                "text": "Bùi trại chủ, ngươi cấu kết tà giáo hại dân lành, hôm nay phải đền tội!"
+              },
+              {
+                "speaker": "bui_chen",
+                "text": "Đại đao của ta sẽ chém ngươi thành muôn mảnh!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "bui_chen",
+                "text": "Khụ... Ta thua rồi... Nhưng U Minh Giáo... sẽ không tha cho ngươi..."
+              },
+              {
+                "speaker": "hero",
+                "text": "Tàn đồ Thần Nang đã tìm lại được một mảnh. Chân tướng bắt đầu hé lộ."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Làm tốt lắm tiểu hữu! Con đường phía trước dẫn vào Thập Vạn Man Uyên hiểm độc."
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Trận chiến này giúp ngươi đả thông kinh mạch, tấn thăng Đệ Thập Trọng (Cấp 10)! Giang hồ rộng lớn, hãy chọn cho mình một môn phái để tu luyện Tâm Pháp nhập thế."
+              },
+              {
+                "speaker": "hero",
+                "text": "Đa tạ tiền bối chỉ bảo. Ta sẽ tìm đến sơn môn thích hợp để bái sư học nghệ!"
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "bui_chen",
+                "text": "Ha ha ha! Nhãi ranh miệng còn hôi sữa đòi khiêu chiến Nộ Ba Hổ?"
+              },
+              {
+                "speaker": "lao_tieu_phu",
+                "text": "Đao lực của Bùi Chấn bộc phát rất mạnh. Cần phối hợp phòng ngự và hồi phục."
+              }
+            ]
+          },
+          "recommendedLevel": 11
+        }
+      ]
+    },
+    {
+      "id": "hoi_2",
+      "index": 2,
+      "title": "Hồi 2",
+      "name": "Thập Vạn Man Uyên",
+      "summary": "Tiến sâu vào vùng đầm lầy chướng khí ngút trời, hiệp khách cùng Bạch Linh Nhi giải trừ độc chướng, đối đầu thế lực Huyền Độc Môn và ác thú ngàn năm.",
+      "theme": {
+        "mapBackground": "map_hoi_2",
+        "battleBackground": "bg_battle_hoi_2",
+        "accent": "#1B5E3B",
+        "paper": "#E5EAD8",
+        "ink": "#1A241C",
+        "nodeIcon": "node_hoi_2",
+        "bossNodeIcon": "node_boss_hoi_2"
+      },
+      "unlock": {
+        "afterChapter": "hoi_1"
+      },
+      "stages": [
+        {
+          "id": "hoi_2_01",
+          "index": 1,
+          "name": "Man Uyên Nhập Khẩu",
+          "kind": "normal",
+          "mapPos": [
+            0.1,
+            0.8
+          ],
+          "description": "Lối vào chướng cốc mù sương tím biếc, trinh sát man tộc cảnh giác rình rập.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Vạn Độc Môn Đồ",
+            "sect": "bich_thuy",
+            "tamPhapLevel": 1,
+            "level": 12,
+            "items": [
+              {
+                "id": "liet_diem_dao",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              }
+            ],
+            "portrait": "enemy_portrait_3"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 600,
+              "heroExp": 130,
+              "materials": {
+                "tu_linh_chi": 5
+              },
+              "items": [
+                {
+                  "id": "giai_doc_dan",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "tu_kim_trao",
+                "chancePermille": 100,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Khí độc nồng nặc quá, hít vào thấy lồng ngực căng rát."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Uống viên Giải Độc Đan này đi! Thám tử man tộc phía trước đã phát hiện chúng ta."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Độc trảo của bọn chúng quả nhiên hiểm hóc."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Man Uyên này còn nhiều cạm bẫy lắm, chúng ta phải cẩn thận từng bước."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Ngươi trúng độc tích tụ rồi! Phải chuẩn bị đan dược giải độc kịp thời."
+              }
+            ]
+          },
+          "recommendedLevel": 12
+        },
+        {
+          "id": "hoi_2_02",
+          "index": 2,
+          "name": "Ô Đầm Nhai",
+          "kind": "normal",
+          "mapPos": [
+            0.18,
+            0.72
+          ],
+          "description": "Vách đá rêu phong bên đầm bùn đen kịch, môn đồ Huyền Độc Môn tụ tập luyện độc.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Huyền Độc Môn Đồ",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "liet_diem_dao",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 13,
+            "portrait": "enemy_portrait_3"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 650,
+              "heroExp": 140,
+              "materials": {
+                "tu_linh_chi": 6
+              },
+              "items": [
+                {
+                  "id": "u_minh_bi_luc",
+                  "tier": 2,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "van_doc_dinh",
+                "chancePermille": 100,
+                "rarity": "uncommon"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Những vò gốm kia đang bốc khói đen... Chúng đang luyện độc công."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Huyền Độc Môn dùng ám khí và độc trảo tích tầng độc tố, chớ kéo dài trận chiến!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Đoạt được mật tịch U Minh Bí Lục, ghi chép cách vận chuyển độc khí."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Hiểu rõ cơ chế độc của chúng, sau này giao chiến sẽ dễ dàng hơn."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Độc tầng quá cao khiến sát thương bộc phát! Phải tốc chiến tốc thắng."
+              }
+            ]
+          },
+          "recommendedLevel": 13
+        },
+        {
+          "id": "hoi_2_03",
+          "index": 3,
+          "name": "Hủ Cốt Thung",
+          "kind": "normal",
+          "mapPos": [
+            0.26,
+            0.65
+          ],
+          "description": "Bãi xương trắng rợn người, nhện độc khổng lồ giăng tơ khắp các thân cổ thụ.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Kịch Độc Tri Chu",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 2,
+            "level": 13,
+            "items": [
+              {
+                "id": "liet_diem_dao",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "portrait": "monster_tri_chu"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 700,
+              "heroExp": 150,
+              "materials": {
+                "mac_truc_tran": 8
+              },
+              "items": [
+                {
+                  "id": "kich_doc_chu_nga",
+                  "tier": 3,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "kich_doc_chu_nga",
+                "chancePermille": 120,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Mạng nhện dính chặt lấy binh khí... Con nhện độc này to như bò mộng!"
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Kịch Độc Chu Ngà của nó chứa nọc cực mạnh, hãy cẩn thận nanh độc!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Thu được cặp chu ngà sắc bén. Thứ này phối hợp độc tính rất tốt."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Đúng vậy! Binh khí này làm tăng sát thương mỗi khi kẻ địch trúng độc."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Nanh độc nhện cắn rách hộ thể rồi. Cần tăng cường Cương Khí bảo vệ."
+              }
+            ]
+          },
+          "recommendedLevel": 13
+        },
+        {
+          "id": "hoi_2_04",
+          "index": 4,
+          "name": "Xà Khẩu Hiệp",
+          "kind": "normal",
+          "mapPos": [
+            0.35,
+            0.58
+          ],
+          "description": "Hẻm núi uốn lượn như miệng rắn, vu đao man tộc múa may tà thuật cổ xưa.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Man Cương Vu Đao",
+            "sect": "bich_thuy",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "heo_rung_bap_giap",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "soi_nanh_canh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 14,
+            "portrait": "enemy_portrait_3"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 750,
+              "heroExp": 160,
+              "materials": {
+                "tu_linh_chi": 8
+              },
+              "items": [
+                {
+                  "id": "thanh_dang_tien",
+                  "tier": 3,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "duong_sinh_quyet",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Roi mây xanh biếc cuốn gió phần phật... Đao pháp này có nguồn gốc Bách Thảo Cốc?"
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Hắn dùng Dưỡng Sinh Quyết kết hợp roi gai độc, hồi Khí Huyết liên tục."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Phá được thế roi liên hoàn. Hắn đã bỏ chạy vào sâu trong cốc."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Bách Thảo Cốc vốn dĩ thanh tao, sao lại có kẻ sa vào tà thuật thế này..."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Hắn hồi máu quá nhanh. Phải dồn sát thương bộc phát để hạ gục hắn!"
+              }
+            ]
+          },
+          "recommendedLevel": 14
+        },
+        {
+          "id": "hoi_2_05",
+          "index": 5,
+          "name": "U Cốc Dược Đàn",
+          "kind": "elite",
+          "mapPos": [
+            0.44,
+            0.5
+          ],
+          "description": "Đàn tế dược cổ xưa giữa thung lũng, phản đồ Bách Thảo Cốc đang luyện chế độc đan.",
+          "staminaCost": 8,
+          "enemy": {
+            "name": "Bách Thảo Nghịch Đồ",
+            "sect": "bich_thuy",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "uncommon",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "thanh_phong_kiem",
+                "tier": 1,
+                "rarity": "common",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 15,
+            "portrait": "enemy_portrait_2"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 900,
+              "heroExp": 200,
+              "materials": {
+                "tu_linh_chi": 13
+              },
+              "items": [
+                {
+                  "id": "hoi_thien_dan",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "bich_thuy_cam",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Sư huynh! Vì sao huynh lại phản bội cốc chủ, câu kết với U Minh Giáo?"
+              },
+              {
+                "speaker": "hero",
+                "text": "Tiếng đàn ma quái... Hắn dùng âm luật khống chế dược tính!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Đàn đứt, khúc tàn. Dược đàn đã bị phong tỏa."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Muội đã thu hồi bí dược của bổn môn. Đa tạ hiệp khách trượng nghĩa tương trợ!"
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Tiếng đàn hồi máu và gây choáng liên tục. Cần ngắt nhịp thi triển của hắn."
+              }
+            ]
+          },
+          "recommendedLevel": 15
+        },
+        {
+          "id": "hoi_2_06",
+          "index": 6,
+          "name": "Mê Vụ Đàm",
+          "kind": "normal",
+          "mapPos": [
+            0.52,
+            0.45
+          ],
+          "description": "Đầm nước sương mù mờ ảo, cự hùng lông đen hắc ám từ dưới nước trồi lên.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Hắc Sát Độc Hùng",
+            "sect": null,
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 3
+              },
+              {
+                "id": "u_minh_bi_luc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 15,
+            "portrait": "monster_gau_den"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 800,
+              "heroExp": 170,
+              "materials": {
+                "o_kim_ti": 12
+              },
+              "items": [
+                {
+                  "id": "hac_sat_hung_dam",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "hac_sat_hung_dam",
+                "chancePermille": 150,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Một con hắc hùng khổng lồ! Móng vuốt của nó đen kịt độc chướng."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Hắc Sát Hùng Đảm của nó là dược liệu vô giá, nhưng độc khí của nó cực mạnh."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Hùng đan đã vào tay. Khí Huyết dồi dào, giải trừ được nhiều chướng độc."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Hùng đảm này dùng làm đan dược phụ trợ sẽ tăng cường hộ thể đáng kinh ngạc."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Cú tát của gấu đen quá nặng! Phải giữ vững Hóa Kình giảm chấn thương."
+              }
+            ]
+          },
+          "recommendedLevel": 15
+        },
+        {
+          "id": "hoi_2_07",
+          "index": 7,
+          "name": "Lam Hoa Trạch",
+          "kind": "normal",
+          "mapPos": [
+            0.6,
+            0.38
+          ],
+          "description": "Đầm hoa lam nở rộ huyền ảo, sát thủ bóng tối ẩn mình dưới cánh hoa độc.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "U Minh Ám Sát Thí Tử",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 16,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 850,
+              "heroExp": 180,
+              "materials": {
+                "tu_linh_chi": 10
+              },
+              "items": [
+                {
+                  "id": "van_doc_dinh",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "that_tinh_tieu",
+                "chancePermille": 120,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Hoa lam tuy đẹp nhưng hương thơm lại khiến đầu óc choáng váng."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Là tử sĩ của U Minh Giáo! Chúng dùng độc hoa che giấu ám khí bạo kích."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Ám sát thất bại, bọn chúng đã tự vẫn. Kỷ luật của giáo phái này thật đáng sợ."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Chúng quyết giữ bí mật đàn tế phía trước. Chúng ta càng phải đến đó."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Ám khí bạo kích tầm gần quá nhanh! Cần nâng cao hộ giáp kiên cố."
+              }
+            ]
+          },
+          "recommendedLevel": 16
+        },
+        {
+          "id": "hoi_2_08",
+          "index": 8,
+          "name": "Độc Long Khê",
+          "kind": "normal",
+          "mapPos": [
+            0.68,
+            0.3
+          ],
+          "description": "Dòng suối nước xanh biếc sôi sùng sục, trưởng lão Huyền Độc Môn đích thân trấn giữ.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Huyền Độc Trưởng Lão",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 17,
+            "portrait": "enemy_portrait_3"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 900,
+              "heroExp": 190,
+              "materials": {
+                "tu_linh_chi": 12,
+                "huyen_giap_hon_thach": 4
+              },
+              "items": [
+                {
+                  "id": "tu_kim_trao",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "o_tam_y",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Khí tức âm lãnh này... Ngươi là trưởng lão Huyền Độc Môn?"
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Lão tặc này luyện vạn độc vào cơ thể, móng vuốt đã biến thành hắc sắc."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Song trảo đã gãy. Trưởng lão tà môn đã quy phục."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Tử Kim Trảo phẩm chất cực cao, uy lực bộc phát độc công phi phàm."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Song trảo cào rách liên tục khiến độc ngấm sâu. Cần dùng Hóa Kình chống đỡ."
+              }
+            ]
+          },
+          "recommendedLevel": 17
+        },
+        {
+          "id": "hoi_2_09",
+          "index": 9,
+          "name": "Vạn Xà Quật",
+          "kind": "normal",
+          "mapPos": [
+            0.76,
+            0.22
+          ],
+          "description": "Hang động ngàn xà lúc nhúc, con xà tinh hỏa diệm phun nọc độc đỏ rực.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Xích Luyện Xà Tinh",
+            "sect": null,
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              }
+            ],
+            "level": 17,
+            "portrait": "monster_xich_xa"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 950,
+              "heroExp": 200,
+              "materials": {
+                "o_kim_ti": 15
+              },
+              "items": [
+                {
+                  "id": "hoa_diem_xa_cot",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "hoa_diem_xa_cot",
+                "chancePermille": 150,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Tiếng rít rợn người khắp trần hang... Cự xà toàn thân đỏ rực như than hồng!"
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Xích Luyện Xà Tinh ngàn năm! Xương cốt của nó là Hỏa Diệm Xà Cốt huyền thoại."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Đoạt được Hỏa Diệm Xà Cốt, nhiệt khí và độc tính hòa quyện tuyệt vời."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Sau hang động này chính là đàn tế của Hắc Độc Nương Tử!"
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Đòn quất đuôi xà cực mạnh kết hợp thiêu đốt! Cần giữ vững phòng tuyến."
+              }
+            ]
+          },
+          "recommendedLevel": 17
+        },
+        {
+          "id": "hoi_2_10",
+          "index": 10,
+          "name": "Thần Bí Cổ Đàn",
+          "kind": "boss",
+          "mapPos": [
+            0.86,
+            0.15
+          ],
+          "description": "Đàn tế cổ ngập tràn chướng khí, Hắc Độc Nương Tử triệu hoán vạn độc quyết chiến.",
+          "staminaCost": 10,
+          "enemy": {
+            "name": "Hắc Độc Nương Tử",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 3,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 19,
+            "characterId": "hac_doc_nuong_tu",
+            "portrait": "boss_hac_doc_nuong_tu"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1500,
+              "heroExp": 350,
+              "materials": {
+                "tu_linh_chi": 20,
+                "huyen_giap_hon_thach": 8
+              },
+              "items": [
+                {
+                  "id": "man_xa_doc_tui",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "man_xa_doc_tui",
+                "chancePermille": 200,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hac_doc_nuong_tu",
+                "text": "Kẻ nào dám kinh động đại trận của bổn nương tử? Lại là tiểu nha đầu Bách Thảo Cốc sao?"
+              },
+              {
+                "speaker": "hero",
+                "text": "Hắc Độc Nương Tử, giao mảnh tàn đồ Thần Nang ra đây!"
+              },
+              {
+                "speaker": "hac_doc_nuong_tu",
+                "text": "Muốn tàn đồ? Hãy nếm thử Mãng Xà Độc Túi vạn kiếp bất phục!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hac_doc_nuong_tu",
+                "text": "Không thể nào... Vạn độc của ta sao lại bị phá giải... Tả Sứ sẽ trả thù cho ta..."
+              },
+              {
+                "speaker": "hero",
+                "text": "Mảnh tàn chương thứ hai đã thu hồi! Man Uyên chướng khí bắt đầu tan dần."
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Tả Sứ mà mụ ta nhắc tới chính là Dạ Sát Thiên đang chiếm giữ Hàn Nguyệt Cô Phong!"
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hac_doc_nuong_tu",
+                "text": "Ha ha ha! Trúng vạn độc của bổn nương tử thì thần tiên cũng khó cứu!"
+              },
+              {
+                "speaker": "tieu_linh_nhi",
+                "text": "Độc tố bộc phát toàn diện rồi. Cần trang bị Giải Độc Đan và tăng tốc diệt địch."
+              }
+            ]
+          },
+          "recommendedLevel": 18
+        }
+      ]
+    },
+    {
+      "id": "hoi_3",
+      "index": 3,
+      "title": "Hồi 3",
+      "name": "Hàn Nguyệt Cô Phong",
+      "summary": "Leo lên đỉnh núi tuyết ngàn năm lạnh giá, hiệp khách tương ngộ Phong Vũ, giải trừ tâm ma Hàn Sơn Phái và quyết chiến U Minh Tả Sứ Dạ Sát Thiên.",
+      "theme": {
+        "mapBackground": "map_hoi_3",
+        "battleBackground": "bg_battle_hoi_3",
+        "accent": "#2C5282",
+        "paper": "#E6EDF5",
+        "ink": "#16202E",
+        "nodeIcon": "node_hoi_3",
+        "bossNodeIcon": "node_boss_hoi_3"
+      },
+      "unlock": {
+        "afterChapter": "hoi_2"
+      },
+      "stages": [
+        {
+          "id": "hoi_3_01",
+          "index": 1,
+          "name": "Tuyết Dốc Băng Khẩu",
+          "kind": "normal",
+          "mapPos": [
+            0.1,
+            0.85
+          ],
+          "description": "Lối lên đỉnh núi tuyết gió gào thét từng cơn, hộ sơn kiếm sĩ tuần tra trong bão tuyết.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Hàn Phong Tuần Tuyết Giả",
+            "sect": "han_son",
+            "tamPhapLevel": 1,
+            "level": 18,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1000,
+              "heroExp": 220,
+              "materials": {
+                "thien_ngoai_van_thiet": 6
+              },
+              "items": [
+                {
+                  "id": "han_bang_chau",
+                  "tier": 3,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "bang_tam_giap",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Hàn phong thấu xương. Lên đến đây kiếm khí đã có thể đóng băng huyết mạch."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hàn Sơn Phái kiếm pháp lạnh lùng, dính đòn sẽ bị làm chậm tốc độ ra chiêu!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Kiếm khí sắc lạnh, nhưng tâm chí kiên định đã phá tan hàn băng."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Tốt! Kiếm chiêu của ngươi đã đạt đến cảnh giới ngưng tụ chân khí."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Bị kiếm khí hàn băng khóa chặt rồi! Hãy dùng bảo vật chống lạnh."
+              }
+            ]
+          },
+          "recommendedLevel": 18
+        },
+        {
+          "id": "hoi_3_02",
+          "index": 2,
+          "name": "Phong Nhận Trầm Khê",
+          "kind": "normal",
+          "mapPos": [
+            0.18,
+            0.76
+          ],
+          "description": "Thung lũng băng đóng băng dòng suối ngàn năm, kiếm sĩ tinh nhuệ bày trận kiếm trận.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Hàn Sơn Kiếm Sĩ",
+            "sect": "han_son",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "thanh_dang_tien",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 19,
+            "portrait": "enemy_portrait_2"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1100,
+              "heroExp": 240,
+              "materials": {
+                "thien_ngoai_van_thiet": 8
+              },
+              "items": [
+                {
+                  "id": "han_ngoc_tieu",
+                  "tier": 4,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "han_bang_chau",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Tiếng tiêu ngọc vang lên trong gió tuyết... Âm luật như hàn đao cắt da thịt."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hàn Ngọc Tiêu phối hợp kiếm vũ, vừa khống chế vừa gây sát thương nội tức."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Bẻ gãy tiêu ngọc, phá tan kiếm trận. Hàn Sơn Phái quả nhiên danh bất hư truyền."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Họ bị tà thuật của U Minh Giáo làm mê muội tâm trí, chớ nên hạ sát thương tâm."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Tiếng tiêu ngọc làm phân tán nội lực. Cần định tâm giữ vững Cương Khí."
+              }
+            ]
+          },
+          "recommendedLevel": 19
+        },
+        {
+          "id": "hoi_3_03",
+          "index": 3,
+          "name": "Tuyết Lĩnh Hàn Phong",
+          "kind": "normal",
+          "mapPos": [
+            0.26,
+            0.68
+          ],
+          "description": "Sườn núi cheo leo tuyết phủ ngập gối, sói tuyết bạc gầm vang trong bão tuyết.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Tuyết Lĩnh Ngân Lang",
+            "sect": null,
+            "tamPhapLevel": 2,
+            "level": 19,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 1,
+                "y": 3
+              },
+              {
+                "id": "thai_thanh_tam_kinh",
+                "tier": 1,
+                "rarity": "uncommon",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "portrait": "monster_ngan_lang"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1150,
+              "heroExp": 250,
+              "materials": {
+                "cuu_u_tam_ti": 10
+              },
+              "items": [
+                {
+                  "id": "tuyet_lang_bach_bi",
+                  "tier": 4,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "tuyet_lang_bach_bi",
+                "chancePermille": 150,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Bóng trắng lao nhanh trong tuyết lốc... Ngân Lang đầu đàn!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Lông da của nó miễn nhiễm hàn khí, vuốt sói sắc bén xé toạc hộ giáp."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Thu được Tuyết Lang Bạch Bì. Tấm da này nhẹ như lông hồng mà cản được bão tuyết."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Trang bị tấm da này vào túi sẽ tăng mạnh tốc độ né tránh và hộ thể."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Nó lao tới từ điểm mù trong tuyết! Đừng để nó tấn công liên hoàn."
+              }
+            ]
+          },
+          "recommendedLevel": 19
+        },
+        {
+          "id": "hoi_3_04",
+          "index": 4,
+          "name": "Băng Hà Cổ Nhai",
+          "kind": "normal",
+          "mapPos": [
+            0.35,
+            0.6
+          ],
+          "description": "Vách đá cổ bên sông băng dựng đứng, cao tăng Kim Cang Tự thân mang hộ thể kim cang.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Kim Cang Hộ Giới Tăng",
+            "sect": "kim_cang",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 20,
+            "portrait": "enemy_portrait_2"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1200,
+              "heroExp": 260,
+              "materials": {
+                "thien_ngoai_van_thiet": 10
+              },
+              "items": [
+                {
+                  "id": "phuc_ma_giap",
+                  "tier": 4,
+                  "rarity": "rare"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "thien_tam_chuoi",
+                "chancePermille": 100,
+                "rarity": "rare"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Đại sư! Vì sao người xuất gia lại trấn thủ nơi hiểm địa này?"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hắn đã trúng Hám Tâm Độc của tà giáo, tâm trí chỉ còn ý niệm trấn áp!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Phá vỡ Phục Ma Giáp, đại sư đã tỉnh lại và ngồi thiền tĩnh tâm."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Côn pháp Kim Cang hộ thể thật khủng khiếp, may mà chúng ta có bảo khí."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Cương Khí của hắn quá dày! Cần dùng đòn đánh bộc phát xuyên phá giáp."
+              }
+            ]
+          },
+          "recommendedLevel": 20
+        },
+        {
+          "id": "hoi_3_05",
+          "index": 5,
+          "name": "Phong Vân Băng Đài",
+          "kind": "elite",
+          "mapPos": [
+            0.45,
+            0.5
+          ],
+          "description": "Đài đá phong vân giữa lưng chừng trời, đệ tử chân truyền Hàn Sơn Phái xuất kiếm băng hàn.",
+          "staminaCost": 8,
+          "enemy": {
+            "name": "Hàn Sơn Đại Đệ Tử",
+            "sect": "han_son",
+            "tamPhapLevel": 2,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 20,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1500,
+              "heroExp": 320,
+              "materials": {
+                "thien_ngoai_van_thiet": 15,
+                "van_dao_tam_tinh": 6
+              },
+              "items": [
+                {
+                  "id": "bang_tam_linh_chau",
+                  "tier": 4,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "bang_phach_thuong",
+                "chancePermille": 100,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Thương pháp băng phách thật lẫm liệt, một thương đâm ra ngưng kết không khí!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hắn sở hữu Băng Tàm Linh Châu, hồi nội lực cực nhanh và làm chậm đối thủ."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Linh châu đã rơi ra, băng thương đã hạ. Đỉnh núi chỉ còn cách một bước."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Băng Tàm Linh Châu là tuyệt phẩm bảo vật! Đột phá nó sẽ mở ra kỳ tích."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hàn khí làm chậm chiêu thức khiến ngươi lỡ nhịp. Phải hóa giải khống chế!"
+              }
+            ]
+          },
+          "recommendedLevel": 20
+        },
+        {
+          "id": "hoi_3_06",
+          "index": 6,
+          "name": "Bạch Hổ Tuyệt Hạp",
+          "kind": "normal",
+          "mapPos": [
+            0.55,
+            0.42
+          ],
+          "description": "Hẻm vực sâu thăm thẳm ngập tuyết trắng, mãnh thú chúa tể núi tuyết rình mồi.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Băng Nguyên Bạch Hổ",
+            "sect": null,
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 21,
+            "portrait": "monster_bach_ho"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1300,
+              "heroExp": 280,
+              "materials": {
+                "tam_to_co_quyen": 12
+              },
+              "items": [
+                {
+                  "id": "bach_ho_cuong_mong",
+                  "tier": 4,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "bach_ho_cuong_mong",
+                "chancePermille": 150,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Tiếng hổ gầm chấn động cả hẻm núi! Tuyết lở từng mảng lớn."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Bạch Hổ Cuồng Móng của nó có thể xé nát kim thạch và gây choáng váng!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Đoạt được Bạch Hổ Cuồng Móng, sát khí bộc phát vô song."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Vũ khí này khi kẻ địch choáng váng sẽ gây sát thương chí mạng cực lớn."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Bị choáng váng liên tục khiến ngươi không thể xuất chiêu! Cần tăng kháng."
+              }
+            ]
+          },
+          "recommendedLevel": 21
+        },
+        {
+          "id": "hoi_3_07",
+          "index": 7,
+          "name": "Hàn Tinh Thạch Thất",
+          "kind": "normal",
+          "mapPos": [
+            0.65,
+            0.35
+          ],
+          "description": "Thạch thất cổ khắc đầy tà văn U Minh Giáo, chấp pháp sứ áo tím âm hiểm phục kích.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "U Minh Chấp Pháp Sứ",
+            "sect": "huyen_doc",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 1,
+                "y": 1
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "liet_diem_dao",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 1
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 3,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "boi_nguyen_dan",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 3
+              }
+            ],
+            "level": 21,
+            "portrait": "enemy_portrait_3"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1400,
+              "heroExp": 300,
+              "materials": {
+                "con_lon_tuyet_lien": 15,
+                "thien_ngoai_van_thiet": 10
+              },
+              "items": [
+                {
+                  "id": "u_minh_quy_trao",
+                  "tier": 4,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "u_minh_quy_trao",
+                "chancePermille": 150,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "U Minh Giáo quả nhiên đã cắm rễ tận đỉnh tuyết sơn này."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Chấp Pháp Sứ dùng U Minh Quỷ Trảo, mỗi đòn hút máu nuôi tà công!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Quỷ trảo đã bị chém đứt. Tà văn trong thạch thất tan biến."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "U Minh Quỷ Trảo này kích thước lớn nhưng năng lực sinh tồn cực cao."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hắn hút cạn Khí Huyết để hồi phục! Phải dồn sát thương kết liễu nhanh."
+              }
+            ]
+          },
+          "recommendedLevel": 21
+        },
+        {
+          "id": "hoi_3_08",
+          "index": 8,
+          "name": "Phong Ma Cổ Đạo",
+          "kind": "normal",
+          "mapPos": [
+            0.73,
+            0.28
+          ],
+          "description": "Con đường đá cổ ngập tràn băng tảng khổng lồ, huyền quy ngàn năm phong tỏa lối đi.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "Vạn Niên Băng Quy",
+            "sect": null,
+            "tamPhapLevel": 1,
+            "level": 22,
+            "items": [
+              {
+                "id": "u_minh_quy_trao",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "portrait": "monster_bang_quy"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1500,
+              "heroExp": 320,
+              "materials": {
+                "cuu_u_tam_ti": 15
+              },
+              "items": [
+                {
+                  "id": "bang_phach_co_cot",
+                  "tier": 5,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "bang_phach_co_cot",
+                "chancePermille": 150,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Khối đá băng khổng lồ kia... cử động rồi! Là một con huyền quy ngàn năm!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Thiên Niên Quy Giáp và Băng Phách Cổ Cốt! Phòng thủ tuyệt đối, bất khả xâm phạm."
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Lớp mai rùa kiên cố cuối cùng cũng nứt ra. Chúng ta đã có thần giáp trong tay."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Bảo vật quy giáp này là chìa khóa để đối đầu Tuyệt Kỹ của Dạ Sát Thiên."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Đánh vào mai rùa bị phản chấn quá đau! Cần điều hòa lại nhịp công kích."
+              }
+            ]
+          },
+          "recommendedLevel": 22
+        },
+        {
+          "id": "hoi_3_09",
+          "index": 9,
+          "name": "Vọng Nguyệt Băng Đỉnh",
+          "kind": "normal",
+          "mapPos": [
+            0.82,
+            0.2
+          ],
+          "description": "Vọng nguyệt đài ngập tràn hàn khí tử thần, thân vệ kiếm khách bảo vệ tế đàn quyết tử.",
+          "staminaCost": 6,
+          "enemy": {
+            "name": "U Minh Tuyệt Mệnh Kiếm Vệ",
+            "sect": "thai_thanh",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "u_minh_quy_trao",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 22,
+            "portrait": "enemy_portrait_1"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 1600,
+              "heroExp": 340,
+              "materials": {
+                "thien_ngoai_van_thiet": 15,
+                "van_dao_tam_tinh": 8
+              },
+              "items": [
+                {
+                  "id": "kiem_tong_tam_yeu",
+                  "tier": 5,
+                  "rarity": "epic"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "kim_tuyen_y",
+                "chancePermille": 100,
+                "rarity": "epic"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "hero",
+                "text": "Phía trên chính là Phong Thiền Băng Đài. Không ai có thể ngăn ta bước tiếp!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Tử vệ cuối cùng này đã dâng hiến linh hồn cho tà kiếm, kiếm chiêu cực nhanh!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "hero",
+                "text": "Đài tế đã mở! Dạ Sát Thiên, món nợ máu mười năm trước hôm nay phải tính!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Hiệp khách huynh đệ, ta sẽ hộ vệ phía sau, hãy dốc toàn lực diệt trừ ma đầu!"
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "hero",
+                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Kiếm chiêu quá gấp gáp. Cần tĩnh tâm, vận chuyển Tâm Pháp tối cao."
+              }
+            ]
+          },
+          "recommendedLevel": 22
+        },
+        {
+          "id": "hoi_3_10",
+          "index": 10,
+          "name": "Phong Thiền Băng Đài",
+          "kind": "boss",
+          "mapPos": [
+            0.9,
+            0.12
+          ],
+          "description": "Đỉnh tuyết sơn ngút ngàn mây gió, U Minh Tả Sứ Dạ Sát Thiên bày trận pháp luyện hóa Thần Nang.",
+          "staminaCost": 10,
+          "enemy": {
+            "name": "U Minh Tả Sứ Dạ Sát Thiên",
+            "sect": "han_son",
+            "tamPhapLevel": 1,
+            "items": [
+              {
+                "id": "u_minh_quy_trao",
+                "tier": 4,
+                "rarity": "epic",
+                "x": 0,
+                "y": 0
+              },
+              {
+                "id": "hoi_thien_dan",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "hac_sat_hung_dam",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 3,
+                "y": 0
+              },
+              {
+                "id": "hoa_diem_xa_cot",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 4,
+                "y": 0
+              },
+              {
+                "id": "tuy_tien_ho_lo",
+                "tier": 1,
+                "rarity": "rare",
+                "x": 2,
+                "y": 1
+              },
+              {
+                "id": "kich_doc_chu_nga",
+                "tier": 3,
+                "rarity": "rare",
+                "x": 3,
+                "y": 1
+              },
+              {
+                "id": "tu_kim_trao",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 0,
+                "y": 2
+              },
+              {
+                "id": "han_ngoc_tieu",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 1,
+                "y": 2
+              },
+              {
+                "id": "tuyet_lang_bach_bi",
+                "tier": 4,
+                "rarity": "rare",
+                "x": 2,
+                "y": 3
+              },
+              {
+                "id": "han_bang_chau",
+                "tier": 3,
+                "rarity": "epic",
+                "x": 2,
+                "y": 2
+              },
+              {
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 2
+              },
+              {
+                "id": "giai_doc_dan",
+                "tier": 2,
+                "rarity": "rare",
+                "x": 4,
+                "y": 3
+              }
+            ],
+            "level": 24,
+            "characterId": "da_sat_thien",
+            "portrait": "boss_da_sat_thien"
+          },
+          "rewards": {
+            "firstClear": {
+              "silver": 3000,
+              "heroExp": 800,
+              "materials": {
+                "thien_ngoai_van_thiet": 30,
+                "van_dao_tam_tinh": 15
+              },
+              "items": [
+                {
+                  "id": "thien_nien_quy_giap",
+                  "tier": 5,
+                  "rarity": "legendary"
+                }
+              ]
+            },
+            "repeat": "default",
+            "drops": [
+              {
+                "id": "thien_nien_quy_giap",
+                "chancePermille": 250,
+                "rarity": "legendary"
+              }
+            ]
+          },
+          "dialogue": {
+            "before": [
+              {
+                "speaker": "da_sat_thien",
+                "text": "Mười năm trước sơn trang của ngươi bị hủy diệt, hôm nay lại tự tìm tới cửa nộp mạng sao?"
+              },
+              {
+                "speaker": "hero",
+                "text": "Dạ Sát Thiên! Nợ máu sơn trang và tà tâm đồ sát Cửu Châu của ngươi sẽ chấm dứt tại đây!"
+              },
+              {
+                "speaker": "da_sat_thien",
+                "text": "Càn khôn tàn nang trên tay ngươi sẽ hoàn thiện Thần Nang của U Minh Giáo. Tiếp chiêu đi!"
+              }
+            ],
+            "afterWin": [
+              {
+                "speaker": "da_sat_thien",
+                "text": "Phốc... Thần Nang sao có thể nhận ngươi làm chủ... Giáo chủ... sẽ không tha..."
+              },
+              {
+                "speaker": "hero",
+                "text": "Tà bất thắng chính. Ba mảnh tàn nang đã hợp nhất thành một khối hoàn chỉnh!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Đại thắng rồi! Nhưng Dạ Sát Thiên chỉ là Tả Sứ, Thao Thiết Giáo Chủ vẫn đang ẩn thân nơi Trung Nguyên..."
+              }
+            ],
+            "afterLoss": [
+              {
+                "speaker": "da_sat_thien",
+                "text": "Kiến cỏ đòi lay đại thụ! Tàn nang này thuộc về U Minh Giáo ta!"
+              },
+              {
+                "speaker": "phong_loi",
+                "text": "Thương pháp băng phách và giáp quy của hắn quá hoàn hảo. Cần trang bị Trọng 5 Tinh Phẩm mới địch nổi!"
+              }
+            ]
+          },
+          "recommendedLevel": 23
+        }
+      ]
+    }
+  ]
+}

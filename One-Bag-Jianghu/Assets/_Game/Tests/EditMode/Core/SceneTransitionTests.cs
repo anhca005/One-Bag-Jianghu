@@ -67,5 +67,16 @@ namespace OneBagJianghu.Tests.Core
             transition.Update(5.5d, 1f, false, false);
             Assert.That(transition.State, Is.EqualTo(SceneTransitionState.FadingOut));
         }
+
+        [Test]
+        public void LoadingBarNeverFillsFasterThanTheMinimumTime()
+        {
+            float half = SceneFlow.MinimumLoadingSeconds / 2f;
+
+            Assert.That(SceneFlow.DisplayedProgress(1f, 0f), Is.EqualTo(0f));
+            Assert.That(SceneFlow.DisplayedProgress(1f, half), Is.InRange(0.5f, 0.99f));
+            Assert.That(SceneFlow.DisplayedProgress(0.2f, half), Is.EqualTo(0.2f));
+            Assert.That(SceneFlow.DisplayedProgress(1f, SceneFlow.MinimumLoadingSeconds), Is.EqualTo(1f));
+        }
     }
 }

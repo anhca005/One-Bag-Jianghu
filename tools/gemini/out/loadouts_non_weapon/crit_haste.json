@@ -1,0 +1,14 @@
+{
+  "name": "Tử Mẫu Tốc Kích",
+  "hp": 1200, "cols": 5, "rows": 4, "sect": "thai_thanh",
+  "items": [
+    { "id": "tu_mau_song_dao", "x": 0, "y": 0 },
+    { "id": "thiet_cot_quyen_sao", "x": 2, "y": 0 },
+    { "id": "kiem_tong_tam_yeu", "x": 3, "y": 0 },
+    { "id": "bach_ngoc_boi", "x": 3, "y": 1 },
+    { "id": "tuy_tien_ho_lo", "x": 4, "y": 0 },
+    { "id": "ngung_than_dan", "x": 4, "y": 1 },
+    { "id": "da_ho_y", "x": 0, "y": 2 },
+    { "id": "thuan_duong_cong", "x": 2, "y": 2 }
+  ]
+}

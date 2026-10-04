@@ -39,7 +39,7 @@ namespace OneBagJianghu.Bag.View
             rectTransform = GetComponent<RectTransform>();
             rectTransform.pivot = new Vector2(0f, 1f);
             rectTransform.sizeDelta = new Vector2(grid.Cols * BagViewStyle.Pitch - BagViewStyle.Gap,
-grid.Rows * BagViewStyle.Pitch - BagViewStyle.Gap);
+                grid.Rows * BagViewStyle.Pitch - BagViewStyle.Gap);
             // Legacy demo scenes can still initialize an empty component. Production prefabs
             // have all three layers and the 5x4 cells serialized by BagPrefabBuilder.
             if (cellsLayer == null)
@@ -64,16 +64,16 @@ grid.Rows * BagViewStyle.Pitch - BagViewStyle.Gap);
         }
 
         public bool ScreenToCell(Vector2 screenPoint,
-Camera camera,
-int itemWidth,
-int itemHeight,
-out int x,
-out int y)
+            Camera camera,
+            int itemWidth,
+            int itemHeight,
+            out int x,
+            out int y)
         {
             if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform,
-screenPoint,
-camera,
-out Vector2 local))
+                screenPoint,
+                camera,
+                out Vector2 local))
             {
                 x = y = -1;
                 return false;
@@ -85,9 +85,9 @@ out Vector2 local))
         }
 
         public bool ContainsScreenPoint(Vector2 point,
-Camera camera) => RectTransformUtility.RectangleContainsScreenPoint(rectTransform,
-point,
-camera);
+            Camera camera) => RectTransformUtility.RectangleContainsScreenPoint(rectTransform,
+            point,
+            camera);
         public void ShowTarget(ItemInfo item, int x, int y, int ignoreInstanceId)
         {
             ClearTarget();
@@ -96,9 +96,14 @@ camera);
             for (int row = 0; row < item.Height; row++)
                 for (int col = 0; col < item.Width; col++)
                 {
+                    // Cells hanging past the bag edge get no highlight, so nothing is drawn outside the grid.
+                    int cellX = x + col;
+                    int cellY = y + row;
+                    if (cellX < 0 || cellY < 0 || cellX >= Grid.Cols || cellY >= Grid.Rows)
+                        continue;
                     Image image = Instantiate(highlightPrefab, highlightLayer);
                     image.color = color;
-                    SetCellRect(image.rectTransform, x + col, y + row, 1, 1);
+                    SetCellRect(image.rectTransform, cellX, cellY, 1, 1);
                     highlights.Add(image);
                 }
 
@@ -108,9 +113,9 @@ camera);
             foreach (PlacedItem placed in Grid.Items)
             {
                 if (placed.InstanceId != ignoreInstanceId
-&& candidate.IsAdjacent(placed.Rect)
-&& itemViews.TryGetValue(placed.InstanceId,
-out ItemView view))
+                    && candidate.IsAdjacent(placed.Rect)
+                    && itemViews.TryGetValue(placed.InstanceId,
+                    out ItemView view))
                     view.SetAdjacent(true);
             }
         }
@@ -156,11 +161,11 @@ out ItemView view))
                 for (int x = 0; x < cols; x++)
                 {
                     Image cell = CreateImage(layer,
-$"Cell {x},{y}",
-new Color(BagViewStyle.Ink.r,
-BagViewStyle.Ink.g,
-BagViewStyle.Ink.b,
-0.10f));
+                        $"Cell {x},{y}",
+                        new Color(BagViewStyle.Ink.r,
+                        BagViewStyle.Ink.g,
+                        BagViewStyle.Ink.b,
+                        0.10f));
                     SetCellRect(cell.rectTransform, x, y, 1, 1);
                 }
         }
@@ -184,7 +189,7 @@ BagViewStyle.Ink.b,
             rect.pivot = new Vector2(0f, 1f);
             rect.anchoredPosition = new Vector2(x * BagViewStyle.Pitch, -y * BagViewStyle.Pitch);
             rect.sizeDelta = new Vector2(width * BagViewStyle.Pitch - BagViewStyle.Gap,
-height * BagViewStyle.Pitch - BagViewStyle.Gap);
+                height * BagViewStyle.Pitch - BagViewStyle.Gap);
         }
 
         internal static Image CreateImage(Transform parent, string objectName, Color color)

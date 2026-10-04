@@ -1,0 +1,320 @@
+{
+  "version": 3,
+  "recommendedFactor": 1.1,
+  "tierMultiplier": {
+    "1": 1.0,
+    "2": 1.05,
+    "3": 1.1,
+    "4": 1.15,
+    "5": 1.2,
+    "6": 1.25,
+    "7": 1.3,
+    "8": 1.35,
+    "9": 1.4
+  },
+  "rarityMultiplier": {
+    "common": 1.0,
+    "uncommon": 1.1,
+    "rare": 1.21,
+    "epic": 1.33,
+    "legendary": 1.46,
+    "supreme": 1.6
+  },
+  "levelBaseDefense": 100,
+  "levelDefensePerLevel": 5,
+  "scale": 1.67755168,
+  "items": {
+    "thiet_cot_quyen_sao": {
+      "offense": 7.8203,
+      "defense": 0.0
+    },
+    "phuc_ho_con": {
+      "offense": 6.4892,
+      "defense": 0.0
+    },
+    "thanh_phong_kiem": {
+      "offense": 10.6656,
+      "defense": 0.0
+    },
+    "liet_diem_dao": {
+      "offense": 14.2429,
+      "defense": 0.0
+    },
+    "that_tinh_tieu": {
+      "offense": 7.2712,
+      "defense": 0.0
+    },
+    "tu_kim_trao": {
+      "offense": 64.5258,
+      "defense": 20.4545
+    },
+    "khai_son_phu": {
+      "offense": 13.6606,
+      "defense": 0.0
+    },
+    "phan_quan_but": {
+      "offense": 5.6905,
+      "defense": 0.0
+    },
+    "han_ngoc_tieu": {
+      "offense": 5.0915,
+      "defense": 0.0
+    },
+    "bich_thuy_cam": {
+      "offense": 5.6905,
+      "defense": 63.8298
+    },
+    "thai_thanh_tam_kinh": {
+      "offense": 0.6988,
+      "defense": 0.0
+    },
+    "o_tam_y": {
+      "offense": 0.0,
+      "defense": 233.1677
+    },
+    "boi_nguyen_dan": {
+      "offense": 0.0,
+      "defense": 107.1429
+    },
+    "tuy_tien_ho_lo": {
+      "offense": 0.5158,
+      "defense": 55.8696
+    },
+    "xich_sa_chuong": {
+      "offense": 10.0832,
+      "defense": 0.0
+    },
+    "ngoc_cot_phien": {
+      "offense": 3.7105,
+      "defense": 0.0
+    },
+    "bang_phach_thuong": {
+      "offense": 16.1398,
+      "defense": 0.0
+    },
+    "chan_nhac_chuy": {
+      "offense": 15.574,
+      "defense": 0.0
+    },
+    "thanh_dang_tien": {
+      "offense": 7.2546,
+      "defense": 27.907
+    },
+    "tu_mau_song_dao": {
+      "offense": 19.8502,
+      "defense": 0.0
+    },
+    "truy_hon_cung": {
+      "offense": 11.0316,
+      "defense": 0.0
+    },
+    "thiet_giap_y": {
+      "offense": 0.0,
+      "defense": 70.0
+    },
+    "o_thiet_giap": {
+      "offense": 0.0,
+      "defense": 239.1736
+    },
+    "kim_tuyen_y": {
+      "offense": 0.0,
+      "defense": 229.5522
+    },
+    "da_ho_y": {
+      "offense": 0.0,
+      "defense": 70.0
+    },
+    "nho_sam_y": {
+      "offense": 0.0,
+      "defense": 191.6216
+    },
+    "bang_tam_giap": {
+      "offense": 0.0,
+      "defense": 70.0
+    },
+    "tue_nguyet_bao_y": {
+      "offense": 0.0,
+      "defense": 70.0
+    },
+    "phuc_ma_giap": {
+      "offense": 0.0,
+      "defense": 140.0
+    },
+    "thanh_dong_ho_tam_kinh": {
+      "offense": 0.0,
+      "defense": 192.1429
+    },
+    "long_lan_giap": {
+      "offense": 0.0,
+      "defense": 140.0
+    },
+    "thuan_duong_cong": {
+      "offense": 8.8353,
+      "defense": 0.0
+    },
+    "quy_nguyen_quyet": {
+      "offense": 1.7637,
+      "defense": 0.0
+    },
+    "bach_luyen_chan_kinh": {
+      "offense": 0.9817,
+      "defense": 0.0
+    },
+    "u_minh_bi_luc": {
+      "offense": 0.6988,
+      "defense": 0.0
+    },
+    "liet_hoa_tam_kinh": {
+      "offense": 0.6988,
+      "defense": 0.0
+    },
+    "vo_niem_kinh": {
+      "offense": 0.2995,
+      "defense": 0.0
+    },
+    "phi_yen_quyet": {
+      "offense": 2.2629,
+      "defense": 0.0
+    },
+    "thien_dia_vo_cuc_cong": {
+      "offense": 2.3295,
+      "defense": 0.0
+    },
+    "duong_sinh_quyet": {
+      "offense": 0.2995,
+      "defense": 97.9592
+    },
+    "kiem_tong_tam_yeu": {
+      "offense": 1.9301,
+      "defense": 0.0
+    },
+    "kim_sang_duoc": {
+      "offense": 0.0,
+      "defense": 86.5979
+    },
+    "hoi_thien_dan": {
+      "offense": 0.0,
+      "defense": 264.1791
+    },
+    "thanh_tam_dan": {
+      "offense": 0.0,
+      "defense": 0.0
+    },
+    "cuong_hoa_dan": {
+      "offense": 0.0,
+      "defense": 0.0
+    },
+    "van_khi_dan": {
+      "offense": 0.0,
+      "defense": 0.0
+    },
+    "giai_doc_dan": {
+      "offense": 0.0,
+      "defense": 0.0
+    },
+    "ho_mach_dan": {
+      "offense": 0.0,
+      "defense": 136.3636
+    },
+    "ngung_than_dan": {
+      "offense": 0.0998,
+      "defense": 0.0
+    },
+    "cuu_chuyen_hoan_hon_dan": {
+      "offense": 0.0,
+      "defense": 162.5
+    },
+    "ti_khang_dan": {
+      "offense": 0.0,
+      "defense": 0.0
+    },
+    "tram_huong_lo": {
+      "offense": 0.0,
+      "defense": 47.2727
+    },
+    "bach_ngoc_boi": {
+      "offense": 6.0566,
+      "defense": 20.0
+    },
+    "da_minh_chau": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "chu_sa_ho_lo": {
+      "offense": 3.9933,
+      "defense": 20.0
+    },
+    "thien_tam_chuoi": {
+      "offense": 0.0,
+      "defense": 40.0
+    },
+    "van_doc_dinh": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "huyet_ngoc_thach": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "han_bang_chau": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "tu_kim_bat": {
+      "offense": 0.7654,
+      "defense": 85.9184
+    },
+    "am_duong_ngoc": {
+      "offense": 0.0,
+      "defense": 459.2857
+    },
+    "soi_nanh_canh": {
+      "offense": 65.3744,
+      "defense": 0.0
+    },
+    "heo_rung_bap_giap": {
+      "offense": 0.0,
+      "defense": 208.7023
+    },
+    "man_xa_doc_tui": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "u_minh_quy_trao": {
+      "offense": 17.3378,
+      "defense": 39.5604
+    },
+    "kich_doc_chu_nga": {
+      "offense": 11.0316,
+      "defense": 0.0
+    },
+    "bang_tam_linh_chau": {
+      "offense": 0.0,
+      "defense": 20.0
+    },
+    "tuyet_lang_bach_bi": {
+      "offense": 0.0,
+      "defense": 131.6822
+    },
+    "hac_sat_hung_dam": {
+      "offense": 0.0,
+      "defense": 135.1351
+    },
+    "bach_ho_cuong_mong": {
+      "offense": 7.1714,
+      "defense": 0.0
+    },
+    "hoa_diem_xa_cot": {
+      "offense": 2.9617,
+      "defense": 0.0
+    },
+    "bang_phach_co_cot": {
+      "offense": 0.0,
+      "defense": 240.7143
+    },
+    "thien_nien_quy_giap": {
+      "offense": 0.0,
+      "defense": 301.5385
+    }
+  }
+}

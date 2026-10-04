@@ -29,10 +29,10 @@ namespace OneBagJianghu.Bag
         }
 
         public SectInfo(string id,
-string name,
-string tamPhap,
-IReadOnlyList<string> weaponClasses,
-string levelOneEffect = "")
+            string name,
+            string tamPhap,
+            IReadOnlyList<string> weaponClasses,
+            string levelOneEffect = "")
         {
             Id = id;
             Name = name;
@@ -91,10 +91,10 @@ string levelOneEffect = "")
                     ? $"Tăng {first.AttackPct * 100:0}% Lực Đạo"
                     : "Mở hiệu ứng Tâm Pháp";
                 sects.Add(new SectInfo(dto.Id,
-dto.Name,
-dto.TamPhap,
-dto.WeaponClasses ?? Array.Empty<string>(),
-effect));
+                    dto.Name,
+                    dto.TamPhap,
+                    dto.WeaponClasses ?? Array.Empty<string>(),
+                    effect));
             }
 
             return new SectCatalog(sects);

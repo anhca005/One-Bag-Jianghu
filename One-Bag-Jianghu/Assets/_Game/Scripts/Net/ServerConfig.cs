@@ -13,10 +13,10 @@ namespace OneBagJianghu.Net
             for (int i = 0; i < arguments.Length - 1; i++)
             {
                 if (string.Equals(arguments[i],
-"-server",
-StringComparison.OrdinalIgnoreCase)
-&& !string.IsNullOrWhiteSpace(arguments[i
-+ 1]))
+                    "-server",
+                    StringComparison.OrdinalIgnoreCase)
+                    && !string.IsNullOrWhiteSpace(arguments[i
+                    + 1]))
                 {
                     return arguments[i + 1];
                 }

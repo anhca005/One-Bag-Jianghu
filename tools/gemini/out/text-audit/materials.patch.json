@@ -1,0 +1,22 @@
+[
+  {
+    "path": "materials[2].name",
+    "old": "Thiên Ngoại Vẫn Thiết",
+    "new": "Thiên Ngoại Thiết"
+  },
+  {
+    "path": "materials[3].name",
+    "old": "Binh Hồn Tinh Thạch",
+    "new": "Binh Hồn Thạch"
+  },
+  {
+    "path": "materials[7].name",
+    "old": "Huyền Giáp Hồn Thạch",
+    "new": "Huyền Giáp Thạch"
+  },
+  {
+    "path": "materials[14].name",
+    "old": "Côn Lôn Tuyết Liên",
+    "new": "Băng Sơn Tuyết Liên"
+  }
+]

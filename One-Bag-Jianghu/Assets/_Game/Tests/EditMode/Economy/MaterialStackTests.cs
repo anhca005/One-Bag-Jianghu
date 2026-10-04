@@ -13,35 +13,35 @@ namespace OneBagJianghu.Tests.Economy
             profile.Storage.MaterialStacks.Add(new MaterialStack
             {
                 MaterialId =
-"han_thiet",
+                    "han_thiet",
                 Count =
-5,
+                    5,
                 X =
-0,
+                    0,
                 Y =
-0
+                    0
             });
             profile.Storage.MaterialStacks.Add(new MaterialStack
             {
                 MaterialId =
-"o_kim_ti",
+                    "o_kim_ti",
                 Count =
-2,
+                    2,
                 X =
-1,
+                    1,
                 Y =
-0
+                    0
             });
             profile.Storage.MaterialStacks.Add(new MaterialStack
             {
                 MaterialId =
-"han_thiet",
+                    "han_thiet",
                 Count =
-7,
+                    7,
                 X =
-2,
+                    2,
                 Y =
-0
+                    0
             });
             grid.MergeStacks();
             Assert.AreEqual(2, profile.Storage.MaterialStacks.Count);
@@ -60,30 +60,30 @@ namespace OneBagJianghu.Tests.Economy
             profile.Storage.MaterialStacks.Add(new MaterialStack
             {
                 MaterialId =
-"han_thiet",
+                    "han_thiet",
                 Count =
-600,
+                    600,
                 X =
-0,
+                    0,
                 Y =
-0
+                    0
             });
             profile.Storage.MaterialStacks.Add(new MaterialStack
             {
                 MaterialId =
-"han_thiet",
+                    "han_thiet",
                 Count =
-600,
+                    600,
                 X =
-1,
+                    1,
                 Y =
-0
+                    0
             });
             grid.MergeStacks();
             Assert.AreEqual(2, profile.Storage.MaterialStacks.Count);
             Assert.AreEqual(StorageGrid.MaxStack, profile.Storage.MaterialStacks[0].Count);
             Assert.AreEqual(1200 - StorageGrid.MaxStack,
-profile.Storage.MaterialStacks[1].Count);
+                profile.Storage.MaterialStacks[1].Count);
         }
 
         [Test]

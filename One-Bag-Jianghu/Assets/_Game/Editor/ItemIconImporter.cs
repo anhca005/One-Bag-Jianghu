@@ -16,8 +16,8 @@ namespace OneBagJianghu.EditorTools
         // Borders are in source-image pixels (left, bottom, right, top) of the art cropped to its visible content. They keep the
         // generated corner/end ornaments intact while stretching only the quiet center.
         private static readonly IReadOnlyDictionary<string,
-Vector4> UiBorders = new Dictionary<string,
-Vector4>(StringComparer.OrdinalIgnoreCase)
+            Vector4> UiBorders = new Dictionary<string,
+            Vector4>(StringComparer.OrdinalIgnoreCase)
         {
             {
                 "button_primary",
@@ -37,11 +37,21 @@ Vector4>(StringComparer.OrdinalIgnoreCase)
             },
             {
                 "plaque_label",
-                new Vector4(300f, 160f, 300f, 160f)
+                // Bottom 102 px = lower frame; top 277 px = the hanging ties plus the upper frame, so only the
+                // paper stretches and labels can centre on it.
+                new Vector4(300f, 102f, 300f, 277f)
             },
             {
                 "progress_bar",
                 new Vector4(310f, 100f, 310f, 100f)
+            },
+            {
+                "home_banner",
+                new Vector4(520f, 80f, 540f, 80f)
+            },
+            {
+                "currency_slot",
+                new Vector4(860f, 100f, 300f, 100f)
             }
         };
         private void OnPreprocessTexture()
@@ -54,15 +64,15 @@ Vector4>(StringComparer.OrdinalIgnoreCase)
             importer.alphaIsTransparency = true;
             importer.mipmapEnabled = false;
             importer.maxTextureSize = assetPath.StartsWith(UiRoot,
-StringComparison.OrdinalIgnoreCase)
-|| assetPath.StartsWith(PveRoot,
-StringComparison.OrdinalIgnoreCase) ? 2048 : assetPath.StartsWith(StatusRoot,
-StringComparison.OrdinalIgnoreCase) ? 256 : 1024;
+                StringComparison.OrdinalIgnoreCase)
+                || assetPath.StartsWith(PveRoot,
+                StringComparison.OrdinalIgnoreCase) ? 2048 : assetPath.StartsWith(StatusRoot,
+                StringComparison.OrdinalIgnoreCase) ? 256 : 1024;
             importer.textureCompression = TextureImporterCompression.CompressedHQ;
             if (assetPath.StartsWith(UiRoot,
-StringComparison.OrdinalIgnoreCase)
-|| assetPath.StartsWith(PveRoot,
-StringComparison.OrdinalIgnoreCase))
+                StringComparison.OrdinalIgnoreCase)
+                || assetPath.StartsWith(PveRoot,
+                StringComparison.OrdinalIgnoreCase))
             {
                 string key = Path.GetFileNameWithoutExtension(assetPath);
                 Vector4 border;
@@ -72,9 +82,9 @@ StringComparison.OrdinalIgnoreCase))
                 {
                     importer.GetSourceTextureWidthAndHeight(out int width, out int height);
                     importer.spriteBorder = new Vector4(Mathf.Round(width * .12f),
-Mathf.Round(height * .12f),
-Mathf.Round(width * .12f),
-Mathf.Round(height * .12f));
+                        Mathf.Round(height * .12f),
+                        Mathf.Round(width * .12f),
+                        Mathf.Round(height * .12f));
                 }
                 else
                     importer.spriteBorder = Vector4.zero;
@@ -91,7 +101,7 @@ Mathf.Round(height * .12f));
         {
             // Import settings (9-slice borders, max sizes) only apply when textures are reimported.
             AssetDatabase.ImportAsset("Assets/_Game/Textures2D",
-ImportAssetOptions.ForceUpdate | ImportAssetOptions.ImportRecursive);
+                ImportAssetOptions.ForceUpdate | ImportAssetOptions.ImportRecursive);
             Rebuild();
         }
 
@@ -141,7 +151,7 @@ ImportAssetOptions.ForceUpdate | ImportAssetOptions.ImportRecursive);
         private static int CompareAssetPaths(string leftGuid, string rightGuid)
         {
             return string.CompareOrdinal(AssetDatabase.GUIDToAssetPath(leftGuid),
-AssetDatabase.GUIDToAssetPath(rightGuid));
+                AssetDatabase.GUIDToAssetPath(rightGuid));
         }
     }
 }

@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 901a26db76604fa896639095c2c09f4e, type: 3}
+  m_Name: MusicLibrary
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Audio.MusicLibrary
+  entries:
+  - Key: bgm_battle
+    Clip: {fileID: 8300000, guid: f9ba520f13d22b84abf1593409352b40, type: 3}
+  - Key: bgm_boss
+    Clip: {fileID: 8300000, guid: b9b603b63f1e2b14c92af617f3d962f9, type: 3}
+  - Key: bgm_home
+    Clip: {fileID: 8300000, guid: f95ae839a7586b34384e2ca36aa9d4f9, type: 3}
+  - Key: bgm_intro
+    Clip: {fileID: 8300000, guid: 1c46aa1b38daf49418312ba7d14c5904, type: 3}
+  - Key: bgm_map_hoi_1
+    Clip: {fileID: 8300000, guid: 1661c0177766b7d45b5ab31b72c53dfd, type: 3}
+  - Key: bgm_map_hoi_2
+    Clip: {fileID: 8300000, guid: 6d7a2caa652c63b4fa970024a222824e, type: 3}
+  - Key: bgm_map_hoi_3
+    Clip: {fileID: 8300000, guid: ecbeb362a6cb2f849bea09b8e9692855, type: 3}
+  - Key: bgm_map_hoi_4
+    Clip: {fileID: 8300000, guid: 1801e2f489d4a05448f2be8df22e6c38, type: 3}
+  - Key: bgm_map_hoi_5
+    Clip: {fileID: 8300000, guid: 4b016c3243012e24dafa33333a4d4803, type: 3}
+  - Key: bgm_pvp
+    Clip: {fileID: 8300000, guid: 67c2f9f8cdd970c4b9e37213db32b430, type: 3}
+  - Key: sting_defeat
+    Clip: {fileID: 8300000, guid: c77837c0aa069254e84bdf4bafe8151a, type: 3}
+  - Key: sting_victory
+    Clip: {fileID: 8300000, guid: 3b693406cb37aff42961e4a4596cfd17, type: 3}

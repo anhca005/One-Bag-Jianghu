@@ -13,11 +13,11 @@ namespace OneBagJianghu.Tests.Bag
         public void PlacedLegendaryItemKeepsOwnedColourAfterAdjacency()
         {
             GameObject root =
-new GameObject("item",
-typeof(RectTransform),
-typeof(Image),
-typeof(Outline),
-typeof(CanvasGroup));
+                new GameObject("item",
+                typeof(RectTransform),
+                typeof(Image),
+                typeof(Outline),
+                typeof(CanvasGroup));
             ItemView view = root.AddComponent<ItemView>();
             Set(view, "background", root.GetComponent<Image>());
             Set(view, "outline", root.GetComponent<Outline>());
@@ -30,11 +30,11 @@ typeof(CanvasGroup));
             PlacedItem placed = new BagGrid(5, 4).Place(info, 0, 0, 1, "owned");
             view.InitializePlaced(null, null, placed, "legendary");
             Assert.That(root.GetComponent<Outline>().effectColor,
-Is.EqualTo(BagViewStyle.Rarity("legendary")));
+                Is.EqualTo(BagViewStyle.Rarity("legendary")));
             view.SetAdjacent(true);
             view.SetAdjacent(false);
             Assert.That(root.GetComponent<Outline>().effectColor,
-Is.EqualTo(BagViewStyle.Rarity("legendary")));
+                Is.EqualTo(BagViewStyle.Rarity("legendary")));
             Object.DestroyImmediate(root);
         }
 
@@ -53,10 +53,10 @@ Is.EqualTo(BagViewStyle.Rarity("legendary")));
         }
 
         private static void Set(object target,
-string name,
-object value) =>
-target.GetType().GetField(name,
-BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target,
-value);
+            string name,
+            object value) =>
+            target.GetType().GetField(name,
+            BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target,
+            value);
     }
 }

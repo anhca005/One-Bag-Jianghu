@@ -62,11 +62,11 @@ namespace OneBagJianghu.Net
                 {
                     await client.ConnectAsync(ServerConfig.GetUrl(), source.Token);
                     Envelope hello = await client.SendAsync("hello",
-new
-{
-    clientVersion = "0.1.0",
-    heroName = GameBootstrap.Session.HeroName
-});
+                        new
+                        {
+                            clientVersion = "0.1.0",
+                            heroName = GameBootstrap.Session.HeroName
+                        });
                     if (hello.Type != "hello_ok")
                     {
                         throw new InvalidOperationException(GetServerError(hello));
@@ -85,10 +85,10 @@ new
         }
 
         public async void RequestBattle(string mode,
-string loadoutJson,
-Action<BattleLog,
-OpponentInfo> onResult,
-Action<string> onError)
+            string loadoutJson,
+            Action<BattleLog,
+            OpponentInfo> onResult,
+            Action<string> onError)
         {
             if (State != NetworkState.Online || client == null)
             {

@@ -1,0 +1,14 @@
+{
+  "name": "Hàn Sơn Phái (Băng Phách Thương + Tiêu Bút)",
+  "hp": 1200, "cols": 5, "rows": 4, "sect": "han_son",
+  "items": [
+    { "id": "bang_phach_thuong", "x": 0, "y": 0 },
+    { "id": "truy_hon_cung",     "x": 1, "y": 0 },
+    { "id": "boi_nguyen_dan",    "x": 1, "y": 3 },
+    { "id": "thanh_dang_tien",   "x": 2, "y": 0 },
+    { "id": "tuy_tien_ho_lo",    "x": 2, "y": 3 },
+    { "id": "o_tam_y",           "x": 3, "y": 0 },
+    { "id": "han_ngoc_tieu",     "x": 3, "y": 2 },
+    { "id": "phan_quan_but",     "x": 4, "y": 2 }
+  ]
+}

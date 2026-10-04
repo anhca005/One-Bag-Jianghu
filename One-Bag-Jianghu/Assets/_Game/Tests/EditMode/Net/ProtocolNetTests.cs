@@ -17,25 +17,25 @@ namespace OneBagJianghu.Tests.Net
         public void Envelope_RoundTripPreservesPayload()
         {
             Envelope source =
-ProtocolJson.Build("battle_request",
-7,
-new
-{
-    mode =
-"pve",
-    loadout =
-new
-{
-    name =
-"Vân Du"
-}
-});
+                ProtocolJson.Build("battle_request",
+                7,
+                new
+                {
+                    mode =
+                        "pve",
+                    loadout =
+                        new
+                        {
+                            name =
+                                "Vân Du"
+                        }
+                });
             Envelope parsed = ProtocolJson.Parse(ProtocolJson.Serialize(source));
             Assert.That(parsed.Type, Is.EqualTo("battle_request"));
             Assert.That(parsed.Id, Is.EqualTo(7));
             Assert.That(parsed.Payload["mode"]?.Value<string>(), Is.EqualTo("pve"));
             Assert.That(parsed.Payload["loadout"]?["name"]?.Value<string>(),
-Is.EqualTo("Vân Du"));
+                Is.EqualTo("Vân Du"));
         }
 
         // Async tests run on the thread pool with a hard timeout: awaiting on Unity's main-thread
@@ -44,8 +44,8 @@ Is.EqualTo("Vân Du"));
         {
             Task task = Task.Run(body);
             Assert.That(task.Wait(TimeSpan.FromSeconds(5)),
-Is.True,
-"Async test timed out");
+                Is.True,
+                "Async test timed out");
         }
 
         [Test]

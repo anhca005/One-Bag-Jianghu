@@ -1,0 +1,45 @@
+{
+  "name": "Người Chơi (Ải 8)",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 2,
+      "tier": 2,
+      "rarity": "rare"
+    }
+  ],
+  "level": 8
+}

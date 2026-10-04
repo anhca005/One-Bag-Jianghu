@@ -1,0 +1,23 @@
+# Task P (E4): Thương Hội (NPC shop) + Tàng Bảo Các improvements ("One Bag Jianghu")
+
+Repo root `D:\CONG VIEC\One-Bag-Jianghu`, Unity project `One-Bag-Jianghu/`. Read `docs/decisions.md` #22–#25, `docs/design/glossary.md`, `docs/reviews/2026-09-29-gemini-economy.md` (section Thương Hội, bán lại, đổi nguyên liệu, tiệm Danh Vọng), `tools/gemini/out/economy/shop.json`, `Scripts/Economy/*`, `Scripts/UI/Popups/{StoragePopup,DevCheatPanel,EconomyRuntime,ConfirmPopup,PopupManager,BasePopup}.cs`, `Scripts/UI/Home/HomeController.cs`, `Editor/Building/{EconomyPopupPrefabBuilder,LoginHomeSceneBuilder,UiBuild,CommonUiPrefabBuilder}.cs`, `Tests/EditMode/Economy/*`, `Tests/PlayMode/StorageSmokeTests.cs`.
+
+## Known pitfall (already bitten once)
+`PopupManager` calls `Setup` → `OnSetup` **before** the popup GameObject is active, so `Awake` has not run yet. Initialise lazily (see `StoragePopup.EnsureInitialized`) in every new popup.
+
+## Build
+1. **Data**: `Resources/Data/shop.json` from the Gemini file (trim to fields the code reads; strict parsing like the other catalogs). Item copy slots pick a random item id from `items.json` (any type) at the slot's rarity; material slots pick a random material of the tier from `materials.json` (exclude `chi_ton_ngoc_tuy`). Prices per the file.
+2. **`ShopService`** (pure C#, `Scripts/Economy/`): generate 6 slots from a seed; state saved in the profile (`shop`: slots, bought flags, lastFreeRefreshUtc, paidRefreshesToday, day key) — profile version 3 with migration. Free refresh every 6 h (offline: system UTC time via an injectable clock), paid refresh cost 100/200/400/800 rising per paid refresh per day, reset at 00:00 UTC. Buy (atomic, Bạc), one purchase per slot. Material exchange: 3 lower → 1 higher same group (+fee), 2 → 1 cross group at the same tier (+fee). **Tiệm Danh Vọng** tab: `chi_ton_ngoc_tuy` 500 Danh Vọng (1/week), random catalyst 250 (3/week), tier-3 material box 100 (5/week) with a weekly reset (Monday 00:00 UTC). Deterministic given seed + clock.
+3. **`ShopPopup`** (opened by the Home `shopHotspot` instead of "coming soon"): tabs **Thương Hội** (6 slot cards: icon or placeholder, name, rarity colour, Trọng 1, price, Mua button, "Đã mua"), **Đổi nguyên liệu** (pick input material + target, preview, confirm), **Tiệm Danh Vọng** (3 offers with weekly remaining count). Header: Bạc, Danh Vọng, next free refresh countdown, **Làm mới** button with its price. Selling stays in Tàng Bảo Các.
+4. **Tàng Bảo Các improvements**: (a) **Hợp Thành chooses the second copy**: pressing Hợp Thành lists valid candidates (same item, same rarity, Trọng ≥ 3, not the selected one) with their Trọng and "đang trong túi" mark; picking one shows the preview (output rarity/Trọng, Bạc, extra materials, refund, weaker warning) then Confirm. (b) Replace the plain white dropdowns (storage filters and the dev cheat panel) with a styled dropdown built once in `CommonUiPrefabBuilder` as a common prefab `Dropdown.prefab` (paper background, ink border via existing UI art, readable caption, working template/scroll), and use it in both popups.
+5. **Dev cheat panel**: add "Làm mới Thương Hội miễn phí" and "+1.000 Danh Vọng" already exists — also "Sang tuần mới" (advance the shop clock by 7 days for testing).
+6. **Builders**: extend `EconomyPopupPrefabBuilder` (ShopPopup), `CommonUiPrefabBuilder` (Dropdown), wire Home `shopHotspot` in `LoginHomeSceneBuilder`. Scenes stay flat at root with Main Camera.
+
+## Hard rules
+- Modify only under `One-Bag-Jianghu/Assets/_Game/`: `Scripts/Economy/**`, `Scripts/Core/GameSession.cs`, `Scripts/UI/Popups/**`, `Scripts/UI/Home/**`, `Scripts/UI/Common/**`, `Editor/Building/{EconomyPopupPrefabBuilder,CommonUiPrefabBuilder,LoginHomeSceneBuilder,BuildMenu}.cs`, `Resources/Data/shop.json`, `Tests/EditMode/Economy/**`, `Tests/EditMode/UI/**` (not Gameplay*), `Tests/PlayMode/**`. Another agent edits the battle screen (Replay/Gameplay) in parallel — do not touch those files.
+- English code, Vietnamese UI with glossary terms. C# 9. No git. You cannot run Unity; re-read for compile errors (CS0165; test asmdefs must reference every assembly they use — e.g. `OneBagJianghu.Economy`).
+
+## Tests
+EditMode: slot generation determinism, refresh timing and cost ladder, daily/weekly resets, buy atomic + once per slot, exchange rules, reputation limits, profile v2→v3 migration, merge candidate list. PlayMode: open Home → shop hotspot → buy a slot with cheat Bạc → assert the copy is in the profile; storage → Hợp Thành picks a chosen candidate. Keep all existing tests green (EditMode 165, PlayMode 6).
+
+Finish with: files changed, builder menu items Claude must run (order), anything unsure.

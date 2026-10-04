@@ -1,0 +1,82 @@
+{
+  "name": "H\u00e0n S\u01a1n Ph\u00e1i - H\u00e0n B\u00edch H\u1ee3p B\u00edch",
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 1,
+  "level": 1,
+  "items": [
+    {
+      "id": "han_ngoc_tieu",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "phan_quan_but",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "tram_huong_lo",
+      "x": 1,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 2,
+      "y": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 3,
+      "y": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

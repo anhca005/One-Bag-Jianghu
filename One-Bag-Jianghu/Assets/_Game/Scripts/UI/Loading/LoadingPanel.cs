@@ -63,6 +63,9 @@ namespace OneBagJianghu.UI.Loading
         {
             float clamped = Mathf.Clamp01(value);
             progress.value = clamped;
+            Image fill = progress.fillRect.GetComponent<Image>();
+            if (fill != null && fill.type == Image.Type.Filled)
+                fill.fillAmount = clamped;
             percentage.text = Mathf.RoundToInt(clamped * 100f) + "%";
         }
 

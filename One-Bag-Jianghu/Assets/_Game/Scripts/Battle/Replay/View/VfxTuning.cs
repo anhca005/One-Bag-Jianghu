@@ -79,13 +79,13 @@ namespace OneBagJianghu.Battle.Replay.View
         public static bool IsIdentity(Entry entry)
         {
             return entry == null ||
-(Mathf.Approximately(entry.rotation,
-0f) &&
-Mathf.Approximately(entry.scale,
-1f) &&
-entry.offset == Vector2.zero &&
-!entry.flipX &&
-!entry.flipY);
+                (Mathf.Approximately(entry.rotation,
+                0f) &&
+                Mathf.Approximately(entry.scale,
+                1f) &&
+                entry.offset == Vector2.zero &&
+                !entry.flipX &&
+                !entry.flipY);
         }
 
         public static VfxTransform Compose(Entry entry, bool mirrored)

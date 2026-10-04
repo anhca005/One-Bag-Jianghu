@@ -1,0 +1,45 @@
+{
+  "name": "Ải 18: Huyền Độc Trưởng Lão",
+  "hp": 2000,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "tu_kim_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Vạn Độc Môn Đồ",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 11,
+  "items": [
+    {
+      "id": "tu_kim_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 1,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 2,
+      "rarity": "supreme"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 4,
+      "y": 1,
+      "tier": 2,
+      "rarity": "supreme"
+    }
+  ]
+}

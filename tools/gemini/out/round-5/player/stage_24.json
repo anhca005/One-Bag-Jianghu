@@ -1,0 +1,59 @@
+{
+  "name": "Người Chơi (Ải 24)",
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 0,
+      "y": 3,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 1,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 2,
+      "tier": 4,
+      "rarity": "epic"
+    }
+  ],
+  "level": 24
+}

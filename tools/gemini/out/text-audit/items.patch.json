@@ -1,0 +1,37 @@
+[
+  {
+    "path": "items[0].name",
+    "old": "Thiết Cốt Quyền Sáo",
+    "new": "Thiết Cốt Quyền"
+  },
+  {
+    "path": "items[10].name",
+    "old": "Thái Thanh Tâm Kinh",
+    "new": "Thái Thanh Kinh"
+  },
+  {
+    "path": "items[29].name",
+    "old": "Thanh Đồng Hộ Tâm Kính",
+    "new": "Đồng Hộ Tâm Kính"
+  },
+  {
+    "path": "items[33].name",
+    "old": "Bách Luyện Chân Kinh",
+    "new": "Bách Luyện Kinh"
+  },
+  {
+    "path": "items[38].name",
+    "old": "Thiên Địa Vô Cực Công",
+    "new": "Thiên Địa Vô Cực"
+  },
+  {
+    "path": "items[49].name",
+    "old": "Cửu Chuyển Hoàn Hồn Đan",
+    "new": "Cửu Chuyển Đan"
+  },
+  {
+    "path": "items[72].name",
+    "old": "Thiên Niên Quy Giáp",
+    "new": "Cổ Quy Giáp"
+  }
+]

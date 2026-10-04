@@ -3,18 +3,25 @@ using System.Collections.Generic;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Core;
 using OneBagJianghu.Economy;
+using OneBagJianghu.Onboarding;
 using OneBagJianghu.Pve;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.UI.Pve
 {
     public sealed class StageMapPopup : BasePopup
     {
         [SerializeField]
-        private Image mapBackground, header, detailFrame, staminaIcon, rewardCurrencyIcon;
+        private Image mapBackground,
+            header,
+            detailFrame,
+            staminaIcon,
+            recommendedLevelIcon,
+            rewardCurrencyIcon;
         [SerializeField]
         private Text chapterText,
             staminaText,
@@ -22,9 +29,12 @@ namespace OneBagJianghu.UI.Pve
             descriptionText,
             enemyText,
             powerText,
+            playerPowerText,
             rewardsText,
             costText,
             disabledReason;
+        [SerializeField]
+        private Text powerWarningText;
         [SerializeField]
         private Image enemyPortrait;
         [SerializeField]
@@ -35,6 +45,7 @@ namespace OneBagJianghu.UI.Pve
         private GameObject[] mapPrefabs;
         [SerializeField]
         private UiButton previousButton, nextButton, challengeButton, closeButton;
+        private bool leavingForBattle;
         private readonly List<GameObject> nodes = new List<GameObject>();
         private PveCatalog catalog;
         private StaminaService stamina;
@@ -44,6 +55,8 @@ namespace OneBagJianghu.UI.Pve
         private PveStage selected;
         private GameObject mapInstance;
         private PveMapLayout mapLayout;
+        private StaminaConfig staminaConfig;
+        private float nextStaminaRefresh;
         private static readonly HashSet<string> warnedLayouts = new HashSet<string>();
         public Color HeaderColor => header.color;
         public PveMapLayout CurrentMapLayout => mapLayout;
@@ -55,23 +68,39 @@ namespace OneBagJianghu.UI.Pve
             previousButton.onClick.AddListener(() => Switch(-1));
             nextButton.onClick.AddListener(() => Switch(1));
             challengeButton.onClick.AddListener(StartStage);
-            closeButton.onClick.AddListener(Close);
+            closeButton.onClick.AddListener(CloseMap);
+            challengeButton.gameObject.AddComponent<TutorialTarget>().Configure("stage_challenge");
+            closeButton.gameObject.AddComponent<TutorialTarget>().Configure("stage_map_close");
         }
 
         protected override void OnSetup(object data)
         {
+            Closed -= RestoreHomeMusic;
+            Closed += RestoreHomeMusic;
+            leavingForBattle = false;
             catalog = PveCatalog.Load();
-            stamina = new StaminaService(StaminaConfig.Load());
+            staminaConfig = StaminaConfig.Load();
+            stamina = new StaminaService(staminaConfig);
             art = PveArtLibrary.Load();
             itemArt = ItemIconLibrary.Load();
-            stamina.Refresh(GameBootstrap.Session.Profile.Pve, DateTimeOffset.UtcNow);
-            GameBootstrap.Session.SaveProfile();
+            RefreshStamina();
             string selectedStageId = data as string;
-            PveStage requested = catalog.GetStage(selectedStageId);
+            // No stage asked for: open at the player's frontier (first unlocked stage not yet cleared).
+            PveStage requested = catalog.GetStage(selectedStageId) ?? (data is int ? null : FrontierStage(null));
             chapterIndex = data is int i ? Mathf.Clamp(i,
-0,
-catalog.Chapters.Count - 1) : requested != null ? catalog.Chapters.IndexOf(requested.Chapter) : 0;
+                0,
+                catalog.Chapters.Count - 1) : requested != null ? catalog.Chapters.IndexOf(requested.Chapter) : 0;
             DrawChapter(requested);
+        }
+
+        private void Update()
+        {
+            if (!IsShowing || Time.unscaledTime < nextStaminaRefresh)
+                return;
+            nextStaminaRefresh = Time.unscaledTime + 1f;
+            RefreshStamina();
+            if (selected != null)
+                SelectStage(selected);
         }
 
         private void Switch(int delta)
@@ -94,12 +123,13 @@ catalog.Chapters.Count - 1) : requested != null ? catalog.Chapters.IndexOf(reque
             mapInstance = null;
             mapLayout = null;
             PveChapter chapter = catalog.Chapters[chapterIndex];
+            AudioManager.EnsureExists().PlayMusic(MusicKeys.ForChapter(chapterIndex + 1));
             Color accent = Parse(chapter.Theme.Accent,
-Color.red), paper = Parse(chapter.Theme.Paper,
-new Color(.93f,
-.88f,
-.75f)), ink = Parse(chapter.Theme.Ink,
-Color.black);
+                Color.red), paper = Parse(chapter.Theme.Paper,
+                new Color(.93f,
+                .88f,
+                .75f)), ink = Parse(chapter.Theme.Ink,
+                Color.black);
             header.color = accent;
             ApplyFrame(detailFrame, "frame_stage_card", paper);
             chapterText.color = paper;
@@ -126,16 +156,17 @@ Color.black);
             }
 
             SetOptionalIcon(staminaIcon, "icon_stamina");
+            SetOptionalIcon(recommendedLevelIcon, "icon_star");
             SetOptionalIcon(rewardCurrencyIcon, "icon_bac");
-            staminaText.text = "Thể Lực: " + GameBootstrap.Session.Profile.Pve.Stamina;
+            UpdateStaminaText();
             previousButton.gameObject.SetActive(chapterIndex > 0);
             nextButton.gameObject.SetActive(chapterIndex + 1 < catalog.Chapters.Count);
             if (chapterIndex + 1 < catalog.Chapters.Count)
                 nextButton.GetComponent<Button>().interactable =
                     PveRules.IsChapterUnlocked(catalog.Chapters[chapterIndex
-+ 1],
-catalog,
-GameBootstrap.Session.Profile);
+                        + 1],
+                        catalog,
+                        GameBootstrap.Session.Profile);
             foreach (PveStage stage in chapter.Stages)
             {
                 RectTransform anchor = mapLayout != null ? mapLayout.FindAnchor(stage.Id) : null;
@@ -157,12 +188,49 @@ GameBootstrap.Session.Profile);
 
                 bool unlocked = PveRules.IsStageUnlocked(stage, catalog, GameBootstrap.Session.Profile);
                 int stars = GameBootstrap.Session.Profile.Pve.Stages.TryGetValue(stage.Id,
-out PveStageProgress progress) ? progress.BestStars : 0;
-                node.Bind(stage, unlocked, stars, accent, chapter.Theme, art, SelectStage);
+                    out PveStageProgress progress) ? progress.BestStars : 0;
+                node.Bind(stage, unlocked, stars, accent, chapter.Theme, art, OnStageClicked);
                 nodes.Add(node.gameObject);
             }
 
-            SelectStage(requested != null && requested.Chapter == chapter ? requested : chapter.Stages[0]);
+            SelectStage(requested != null && requested.Chapter == chapter
+                ? requested
+                : FrontierStage(chapter) ?? chapter.Stages[0]);
+        }
+
+        /// <summary>
+        /// The first unlocked, uncleared stage (in <paramref name="chapter"/>, or across all chapters when null).
+        /// When everything unlocked is cleared, the last unlocked stage. Null if none is unlocked.
+        /// </summary>
+        private PveStage FrontierStage(PveChapter chapter)
+        {
+            PlayerProfile profile = GameBootstrap.Session.Profile;
+            PveStage lastUnlocked = null;
+            foreach (PveChapter value in catalog.Chapters)
+            {
+                if (chapter != null && value != chapter)
+                    continue;
+                foreach (PveStage stage in value.Stages)
+                {
+                    if (!PveRules.IsStageUnlocked(stage, catalog, profile))
+                        continue;
+                    if (!PveRules.IsCleared(profile, stage.Id))
+                        return stage;
+                    lastUnlocked = stage;
+                }
+            }
+
+            return lastUnlocked;
+        }
+
+        private void RestoreHomeMusic(BasePopup popup)
+        {
+            popup.Closed -= RestoreHomeMusic;
+            // Leaving for a battle (pre-battle dialogue, then loading): keep the map music until the battle
+            // scene starts its own.
+            if (leavingForBattle || SceneFlow.IsTransitioning)
+                return;
+            AudioManager.Instance?.PlayMusic(MusicKeys.Home);
         }
 
         private GameObject FindMapPrefab(string chapterId)
@@ -180,6 +248,16 @@ out PveStageProgress progress) ? progress.BestStars : 0;
                 Debug.LogWarning("[Pve] Falling back to chapters.json mapPos because " + reason + ".");
         }
 
+        /// <summary>The player clicked a stage node: sound, tutorial event, then the details.</summary>
+        private void OnStageClicked(PveStage stage)
+        {
+            AudioManager.Instance?.Play("stage_select");
+            if (stage.Id == "hoi_1_01")
+                OnboardingRuntime.Publish("stage_1_selected");
+            SelectStage(stage);
+        }
+
+        /// <summary>Shows the stage details. Silent: also used by the once-a-second stamina refresh.</summary>
         private void SelectStage(PveStage stage)
         {
             selected = stage;
@@ -189,15 +267,26 @@ out PveStageProgress progress) ? progress.BestStars : 0;
             stageName.text = stage.Name;
             descriptionText.text = stage.Description;
             enemyText.text = string.IsNullOrEmpty(stage.Enemy.Sect) ? stage.Enemy.Name : stage.Enemy.Name
-+ " · "
-+ (OneBagJianghu.Bag.SectCatalog.LoadFromResources().TryGet(stage.Enemy.Sect,
-out var sect) ? sect.Name : stage.Enemy.Sect);
-            powerText.text = stage.RecommendedLevel > 0 ? "Cấp đề nghị: "
-+ stage.RecommendedLevel : "Chiến lực đề nghị: "
-+ stage.RecommendedPower;
-            costText.text = "Tốn " + stage.StaminaCost + " Thể Lực";
+                + " · "
+                + (OneBagJianghu.Bag.SectCatalog.LoadFromResources().TryGet(stage.Enemy.Sect,
+                out var sect) ? sect.Name : stage.Enemy.Sect);
+            int recommendedPower = StagePower.Recommended(stage);
+            int playerPower = GameBootstrap.Session.PlayerPower();
+            float powerRatio = recommendedPower > 0 ? (float)playerPower / recommendedPower : 1f;
+            powerText.text = "Lực Chiến đề nghị: " + UiFormat.Number(recommendedPower);
+            playerPowerText.text = "Lực Chiến của bạn: " + UiFormat.Number(playerPower);
+            playerPowerText.color = powerRatio >= 1f
+                ? new Color32(0x4F, 0x7A, 0x3A, 0xFF)
+                : powerRatio >= .85f ? UiKit.Gold : UiKit.Vermilion;
+            powerWarningText.text = powerRatio < .85f ? "Lực Chiến thấp hơn đề nghị" : string.Empty;
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            PveProfileState staminaState = GameBootstrap.Session.Profile.Pve;
+            string next = StaminaService.FormatDuration(stamina.SecondsToNext(staminaState, now));
+            string regen = staminaState.Stamina >= staminaConfig.Max ? "Đã đầy" : "+1 sau " + next;
+            costText.text = "Tốn " + stage.StaminaCost + " Thể Lực · "
+                + staminaState.Stamina + "/" + staminaConfig.Max + " · " + regen;
             PveFirstClearReward reward = stage.Rewards.FirstClear;
-            rewardsText.text = $"Lần đầu: {reward.Silver:N0} Bạc · {reward.HeroExp} EXP";
+            rewardsText.text = $"Lần đầu: {UiFormat.Number(reward.Silver)} Bạc · {reward.HeroExp} EXP";
             enemyPortrait.sprite = Portrait(stage.Enemy.Portrait);
             enemyPortrait.color = enemyPortrait.sprite == null ? new Color(.2f, .2f, .2f, .3f) : Color.white;
             challengeButton.GetComponent<Button>().interactable = unlocked && enough && loadout;
@@ -205,18 +294,56 @@ out var sect) ? sect.Name : stage.Enemy.Sect);
                 !unlocked
                 ? "Ải chưa mở"
                 : !enough
-                ? "Không đủ Thể Lực"
+                ? "Không đủ Thể Lực, đủ sau " + TimeUntilEnough(stage.StaminaCost, now)
                 : !loadout
                 ? loadoutReason
                 : string.Empty;
+        }
+
+        private void RefreshStamina()
+        {
+            PveProfileState state = GameBootstrap.Session.Profile.Pve;
+            int previous = state.Stamina;
+            stamina.Refresh(state, DateTimeOffset.UtcNow);
+            UpdateStaminaText();
+            if (state.Stamina != previous)
+                GameBootstrap.Session.SaveProfile();
+        }
+
+        private void UpdateStaminaText()
+        {
+            if (staminaText != null && staminaConfig != null)
+            {
+                staminaText.text = "Thể Lực: " + GameBootstrap.Session.Profile.Pve.Stamina
+                    + "/" + staminaConfig.Max;
+            }
+        }
+
+        private string TimeUntilEnough(int cost, DateTimeOffset now)
+        {
+            PveProfileState state = GameBootstrap.Session.Profile.Pve;
+            int missing = Math.Max(0, cost - state.Stamina);
+            double seconds = stamina.SecondsToNext(state, now);
+            seconds += Math.Max(0, missing - 1) * 60d / staminaConfig.RegenPerMinute;
+            return StaminaService.FormatDuration(seconds);
+        }
+
+        private void CloseMap()
+        {
+            Close();
+            OnboardingRuntime.Publish("stage_map_closed");
         }
 
         private void StartStage()
         {
             if (selected == null || !PveRules.IsStageUnlocked(selected, catalog, GameBootstrap.Session.Profile))
                 return;
+            leavingForBattle = true;
             if (!PveStageFlow.TryStart(selected, this))
+            {
+                leavingForBattle = false;
                 SelectStage(selected);
+            }
         }
 
         private Sprite Sprite(string key) => art != null && art.TryGet(key, out Sprite sprite) ? sprite : null;
@@ -228,9 +355,12 @@ out var sect) ? sect.Name : stage.Enemy.Sect);
 
         private void ApplyFrame(Image image, string key, Color fallback)
         {
+            // The stage card is a whole painting (2:3). The builder sizes this rect to the art's aspect and the
+            // labels are anchored to its paper, so draw it unsliced or the text drifts off the paper.
             Sprite sprite = Sprite(key);
             image.sprite = sprite;
-            image.type = sprite == null ? Image.Type.Simple : Image.Type.Sliced;
+            image.type = Image.Type.Simple;
+            image.preserveAspect = true;
             image.color = sprite == null ? fallback : Color.white;
         }
 
@@ -243,8 +373,8 @@ out var sect) ? sect.Name : stage.Enemy.Sect);
         }
 
         private static Color Parse(string html,
-Color fallback) => ColorUtility.TryParseHtmlString(html,
-out Color color) ? color : fallback;
+            Color fallback) => ColorUtility.TryParseHtmlString(html,
+            out Color color) ? color : fallback;
     }
 
     public static class PveStageFlow
@@ -261,9 +391,9 @@ out Color color) ? color : fallback;
                 return null;
             PveChapter next = catalog.Chapters[chapter + 1];
             return PveRules.IsChapterUnlocked(next,
-catalog,
-GameBootstrap.Session.Profile)
-&& next.Stages.Count > 0 ? next.Stages[0] : null;
+                catalog,
+                GameBootstrap.Session.Profile)
+                && next.Stages.Count > 0 ? next.Stages[0] : null;
         }
 
         public static string GetBlockedReason(PveStage stage)

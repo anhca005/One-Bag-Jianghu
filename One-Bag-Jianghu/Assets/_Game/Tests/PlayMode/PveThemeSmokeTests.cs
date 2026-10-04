@@ -70,9 +70,9 @@ namespace OneBagJianghu.Tests.Play
 
                 Assert.That(node, Is.Not.Null, stage.Id);
                 Assert.That(Vector3.Distance(node.transform.position,
-anchor.position),
-Is.LessThanOrEqualTo(1f),
-stage.Id);
+                    anchor.position),
+                    Is.LessThanOrEqualTo(1f),
+                    stage.Id);
             }
 
             popup.Hide();

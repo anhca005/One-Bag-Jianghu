@@ -25,12 +25,20 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: c9b728f252e8a4040baeeab4d0a2b808, type: 3}
   - Key: bg_battle_hoi_3
     Sprite: {fileID: 21300000, guid: 0f87efa010951da45a30da0508be1e34, type: 3}
+  - Key: bg_battle_hoi_4
+    Sprite: {fileID: 21300000, guid: 153bfcb181d320f4db416d838567a43f, type: 3}
+  - Key: bg_battle_hoi_5
+    Sprite: {fileID: 21300000, guid: 1e8e97c26b29ada42ac14987a1d7babb, type: 3}
   - Key: boss_bui_chen
     Sprite: {fileID: 21300000, guid: 77b0f46e54a137c47a0c6fb037b9287f, type: 3}
   - Key: boss_da_sat_thien
     Sprite: {fileID: 21300000, guid: 4fc53d86debfca3418e379242fb69b0e, type: 3}
   - Key: boss_hac_doc_nuong_tu
     Sprite: {fileID: 21300000, guid: 298049b7621a29f41b84cceaef3db2ba, type: 3}
+  - Key: boss_lo_tan_quang
+    Sprite: {fileID: 21300000, guid: ed8323beb8c7dd847ba98e73e230272e, type: 3}
+  - Key: boss_tao_huyen_ky
+    Sprite: {fileID: 21300000, guid: bbb13247452373f4ca2bac8fce1a72dc, type: 3}
   - Key: frame_dialogue
     Sprite: {fileID: 21300000, guid: 6f208d7149545ce4786519349d4ead1c, type: 3}
   - Key: frame_stage_card
@@ -53,6 +61,16 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: d66fb8fba0ada864f94bb684e8c3d4ec, type: 3}
   - Key: icon_star_empty
     Sprite: {fileID: 21300000, guid: cfac3eaa91fe5a940a1b266abd0d4c24, type: 3}
+  - Key: intro_1
+    Sprite: {fileID: 21300000, guid: 1257543c6c96d644993210ad565ca57e, type: 3}
+  - Key: intro_2
+    Sprite: {fileID: 21300000, guid: 04d4acb5541c05e47b82dfde706530b8, type: 3}
+  - Key: intro_3
+    Sprite: {fileID: 21300000, guid: 90789fa8216c9344a88b0708e3fd3af0, type: 3}
+  - Key: intro_4
+    Sprite: {fileID: 21300000, guid: 835ee7bea4c623642bfd471b9c56c555, type: 3}
+  - Key: intro_5
+    Sprite: {fileID: 21300000, guid: fa8784a066b77d549b90c9668cef5f83, type: 3}
   - Key: kich_doc_chu_nga
     Sprite: {fileID: 21300000, guid: 3c6523a65d988e744aa051f56ad1b6d6, type: 3}
   - Key: man_xa_doc_tui
@@ -63,6 +81,10 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: e1f88c746e5dbc04a872e424f7e0484b, type: 3}
   - Key: map_hoi_3
     Sprite: {fileID: 21300000, guid: 8a217a579c252e64fbd76d0a58495183, type: 3}
+  - Key: map_hoi_4
+    Sprite: {fileID: 21300000, guid: cbbc348e43f7d5241b3934a18a754ae6, type: 3}
+  - Key: map_hoi_5
+    Sprite: {fileID: 21300000, guid: 8a1b0ea541a3d6c49903968bd16ee497, type: 3}
   - Key: monster_bach_ho
     Sprite: {fileID: 21300000, guid: 434b4743e78771f439ea7c2168ef8b39, type: 3}
   - Key: monster_bang_quy
@@ -87,6 +109,10 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 50021f08374a31f4494589ec924b98e1, type: 3}
   - Key: node_boss_hoi_3
     Sprite: {fileID: 21300000, guid: b60307de4443a5a4cbdc115d26566e17, type: 3}
+  - Key: node_boss_hoi_4
+    Sprite: {fileID: 21300000, guid: a99dcfe3711d91241ab03a1c6b6adfc3, type: 3}
+  - Key: node_boss_hoi_5
+    Sprite: {fileID: 21300000, guid: cc7832f0c910df64391a242abb076127, type: 3}
   - Key: node_elite
     Sprite: {fileID: 21300000, guid: 37f624dd98a32d3459a9780df029f83b, type: 3}
   - Key: node_hoi_1
@@ -95,6 +121,10 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 0c6d3f239a3dddc41bef3ea37c31511b, type: 3}
   - Key: node_hoi_3
     Sprite: {fileID: 21300000, guid: 09acc01d48ac76a498b9e9641dcc21a6, type: 3}
+  - Key: node_hoi_4
+    Sprite: {fileID: 21300000, guid: 97b534a87aa6819479e86756d204110b, type: 3}
+  - Key: node_hoi_5
+    Sprite: {fileID: 21300000, guid: 009011ddd9e7bff44bc5144b72a44c1b, type: 3}
   - Key: node_stage
     Sprite: {fileID: 21300000, guid: b96ecbfc59ba32347823685b215b581b, type: 3}
   - Key: npc_lao_tieu_phu
@@ -103,6 +133,8 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 222b426bffa06a64e9c55785127dff15, type: 3}
   - Key: npc_tieu_linh_nhi
     Sprite: {fileID: 21300000, guid: df8a8b8ce23482d48ae3cca2b9235b37, type: 3}
+  - Key: npc_yen_vo_tam
+    Sprite: {fileID: 21300000, guid: ae3b8e78d6abee94c943752f1c1524db, type: 3}
   - Key: soi_nanh_canh
     Sprite: {fileID: 21300000, guid: d90a2bf53778df64683ba1041cbb282e, type: 3}
   - Key: thien_nien_quy_giap
@@ -111,6 +143,8 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
   - Key: u_minh_quy_trao
     Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - Key: avatar_frame
+    Sprite: {fileID: 21300000, guid: d2fbef0c36b54064589591f0dd8905da, type: 3}
   - Key: badge_new
     Sprite: {fileID: 21300000, guid: 232bbb9609638364fb0a8a43aebd7236, type: 3}
   - Key: bg_battle
@@ -125,6 +159,8 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: c2316411b99606246a7373c89ebfe327, type: 3}
   - Key: button_secondary
     Sprite: {fileID: 21300000, guid: b2bd71f18a2d046469d33924e43f7382, type: 3}
+  - Key: currency_slot
+    Sprite: {fileID: 21300000, guid: 9f8bd355aa035014f86b8aa7f84bebc6, type: 3}
   - Key: enemy_portrait_1
     Sprite: {fileID: 21300000, guid: 1b7c9b0bafda58147abdd123a833c5eb, type: 3}
   - Key: enemy_portrait_2
@@ -141,11 +177,29 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: c8b081e2b181f064492447342953406d, type: 3}
   - Key: hero_portrait_frame
     Sprite: {fileID: 21300000, guid: 8920975505502d441b87311262a6bc4a, type: 3}
+  - Key: home_banner
+    Sprite: {fileID: 21300000, guid: 6226df363c4337346a2e12fdface9111, type: 3}
   - Key: icon_lock
     Sprite: {fileID: 21300000, guid: 0fd3a0125f92f0f49b0705e0bfa27e01, type: 3}
+  - Key: icon_settings
+    Sprite: {fileID: 21300000, guid: 1ae4e7dd695d7ae44ac29156a8d87fef, type: 3}
+  - Key: logo_title
+    Sprite: {fileID: 21300000, guid: 55fb73a11641018499dbfdcabcae21dc, type: 3}
   - Key: plaque_label
     Sprite: {fileID: 21300000, guid: 2dfb90c938918f947933b060f6cd4671, type: 3}
   - Key: progress_bar
     Sprite: {fileID: 21300000, guid: a3f7e032eb53b234d9f329946ae42cf5, type: 3}
+  - Key: rarity_common
+    Sprite: {fileID: 21300000, guid: 05ee6bc1d044b8646a914495b8646c31, type: 3}
+  - Key: rarity_epic
+    Sprite: {fileID: 21300000, guid: 24508584a70e8c04e85c52ec41e87c26, type: 3}
+  - Key: rarity_legendary
+    Sprite: {fileID: 21300000, guid: 1ddec0f8f2789944794d0b32f3e8119d, type: 3}
+  - Key: rarity_rare
+    Sprite: {fileID: 21300000, guid: c1cc4bcfbcedf0243b62368f4c1b747f, type: 3}
+  - Key: rarity_supreme
+    Sprite: {fileID: 21300000, guid: 7477822873dfd8b4ea1557e7593a918e, type: 3}
+  - Key: rarity_uncommon
+    Sprite: {fileID: 21300000, guid: 57fb2bb4c9c2aa544bdfa932e0727f13, type: 3}
   - Key: seal_title
     Sprite: {fileID: 21300000, guid: 537cb4ab41b2e384b859eca8523e64e8, type: 3}

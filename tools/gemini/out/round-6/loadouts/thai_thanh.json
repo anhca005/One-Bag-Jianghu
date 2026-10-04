@@ -1,0 +1,82 @@
+{
+  "name": "Th\u00e1i Thanh Qu\u00e1n - Ki\u1ebfm \u0110\u1ea1o H\u00f3a K\u00ecnh",
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_phong_kiem",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 1,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "thien_tam_chuoi",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 4,
+      "y": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 3,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ],
+  "level": 1
+}

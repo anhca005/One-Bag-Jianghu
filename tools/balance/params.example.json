@@ -1,0 +1,22 @@
+{
+  "parameters": [
+    { "address": "thiet_cot_quyen_sao.attack", "step": 1, "min": 10, "max": 18 },
+    { "address": "phuc_ho_con.attack", "step": 10, "min": 130, "max": 200 },
+    { "address": "thanh_phong_kiem.attack", "step": 5, "min": 50, "max": 80 },
+    { "address": "liet_diem_dao.attack", "step": 5, "min": 90, "max": 130 },
+    { "address": "liet_diem_dao.cooldown", "step": 0.25, "min": 4.0, "max": 6.5 },
+    { "address": "that_tinh_tieu.cooldown", "step": 0.1, "min": 1.8, "max": 2.8 },
+    { "address": "tu_kim_trao.attack", "step": 1, "min": 6, "max": 13 },
+    { "address": "khai_son_phu.attack", "step": 10, "min": 200, "max": 280 },
+    { "address": "khai_son_phu.cooldown", "step": 0.25, "min": 6.0, "max": 8.5 },
+    { "address": "phan_quan_but.attack", "step": 4, "min": 20, "max": 52 },
+    { "address": "han_ngoc_tieu.attack", "step": 4, "min": 30, "max": 62 },
+    { "address": "bich_thuy_cam.attack", "step": 5, "min": 80, "max": 125 },
+    { "address": "bich_thuy_cam.basic.regen", "step": 1, "min": 2, "max": 6 },
+    { "address": "thiet_cot_quyen_sao.basic.gain_qi", "step": 1, "min": 1, "max": 2 },
+    { "address": "phuc_ho_con.ultimate.cost", "step": 5, "min": 25, "max": 45 },
+    { "address": "thanh_phong_kiem.ultimate.cost", "step": 5, "min": 30, "max": 50 },
+    { "address": "thai_thanh_tam_kinh.triggers.parry_discount", "step": 5, "min": 5, "max": 25 },
+    { "address": "thai_thanh_tam_kinh.triggers.gain_qi", "step": 5, "min": 5, "max": 25 }
+  ]
+}

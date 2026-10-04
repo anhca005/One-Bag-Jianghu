@@ -56,6 +56,8 @@ namespace OneBagJianghu.Economy
         public int[] PaidRefreshCosts;
         [JsonProperty("itemBasePrices")]
         public Dictionary<string, int> ItemBasePrices;
+        [JsonProperty("itemTypePriceMultipliers")]
+        public Dictionary<string, double> ItemTypePriceMultipliers = new Dictionary<string, double>();
         [JsonProperty("slots")]
         public List<ShopSlotRule> Slots;
         [JsonProperty("exchange")]
@@ -71,15 +73,23 @@ namespace OneBagJianghu.Economy
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 ShopCatalog value = JsonConvert.DeserializeObject<ShopCatalog>(json,
-settings) ?? throw new FormatException("Shop catalog JSON is null.");
+                    settings) ?? throw new FormatException("Shop catalog JSON is null.");
                 if (value.FreeRefreshHours <= 0
-|| value.PaidRefreshCosts == null
-|| value.PaidRefreshCosts.Length == 0
-|| value.Slots == null
-|| value.Slots.Count != 6
-|| value.Exchange == null
-|| value.ReputationOffers == null)
+                    || value.PaidRefreshCosts == null
+                    || value.PaidRefreshCosts.Length == 0
+                    || value.Slots == null
+                    || value.Slots.Count != 6
+                    || value.Exchange == null
+                    || value.ReputationOffers == null)
                     throw new FormatException("Shop catalog is incomplete.");
+                value.ItemTypePriceMultipliers = value.ItemTypePriceMultipliers
+                    ?? new Dictionary<string, double>();
+                foreach (double multiplier in value.ItemTypePriceMultipliers.Values)
+                {
+                    if (!(multiplier > 0))
+                        throw new FormatException("Shop item type price multipliers must be greater than zero.");
+                }
+
                 return value;
             }
             catch (JsonException e)

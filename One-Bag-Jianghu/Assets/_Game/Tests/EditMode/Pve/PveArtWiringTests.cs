@@ -23,14 +23,14 @@ namespace OneBagJianghu.Tests.Pve
             Image frame = ChildImage(root.transform, "Frame");
             Button button = frame.gameObject.AddComponent<Button>();
             Text index =
-ChildText(root.transform,
-"Index"),
-stars =
-ChildText(root.transform,
-"Stars"),
-kind =
-ChildText(root.transform,
-"Kind");
+                ChildText(root.transform,
+                "Index"),
+                stars =
+                ChildText(root.transform,
+                "Stars"),
+                kind =
+                ChildText(root.transform,
+                "Kind");
             Image locked = ChildImage(root.transform, "Lock");
             PveStageNode node = root.AddComponent<PveStageNode>();
             Set(node, "button", button);
@@ -49,24 +49,24 @@ ChildText(root.transform,
                 NodeIcon = "node_hoi_1"
             };
             node.Bind(stage,
-true,
-0,
-Color.red,
-theme,
-library,
-_ =>
+                true,
+                0,
+                Color.red,
+                theme,
+                library,
+                _ =>
             {
             });
             Assert.That(node.UsesArt, Is.True);
             Assert.That(frame.sprite, Is.SameAs(sprite));
             library.Entries.Clear();
             node.Bind(stage,
-true,
-0,
-Color.red,
-theme,
-library,
-_ =>
+                true,
+                0,
+                Color.red,
+                theme,
+                library,
+                _ =>
             {
             });
             Assert.That(node.UsesArt, Is.False);
@@ -101,7 +101,7 @@ _ =>
                 AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
                 PvePrefabBuilder.RebuildArtLibrary();
                 PveArtLibrary library =
-AssetDatabase.LoadAssetAtPath<PveArtLibrary>("Assets/_Game/Resources/PveArtLibrary.asset");
+                    AssetDatabase.LoadAssetAtPath<PveArtLibrary>("Assets/_Game/Resources/PveArtLibrary.asset");
                 Assert.That(library.TryGet("temp_pve_sprite", out Sprite sprite), Is.True);
                 Assert.That(sprite, Is.Not.Null);
             }
@@ -115,10 +115,10 @@ AssetDatabase.LoadAssetAtPath<PveArtLibrary>("Assets/_Game/Resources/PveArtLibra
         private static Image ChildImage(Transform parent, string name)
         {
             GameObject child =
-new GameObject(name,
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Image));
+                new GameObject(name,
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image));
             child.transform.SetParent(parent);
             return child.GetComponent<Image>();
         }
@@ -126,10 +126,10 @@ typeof(Image));
         private static Text ChildText(Transform parent, string name)
         {
             GameObject child =
-new GameObject(name,
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Text));
+                new GameObject(name,
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Text));
             child.transform.SetParent(parent);
             return child.GetComponent<Text>();
         }

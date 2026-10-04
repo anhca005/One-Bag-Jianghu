@@ -1,0 +1,31 @@
+{
+  "name": "Người Chơi (Ải 2)",
+  "hp": 1000,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "thanh_phong_kiem",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

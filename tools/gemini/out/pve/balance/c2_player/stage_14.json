@@ -1,0 +1,45 @@
+{
+  "name": "Ng\u01b0\u1eddi Ch\u01a1i (\u1ea2i 14)",
+  "hp": 1350,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 2,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

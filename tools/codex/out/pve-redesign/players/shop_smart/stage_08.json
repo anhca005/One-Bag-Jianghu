@@ -1,0 +1,73 @@
+{
+  "name": "shop_smart s08",
+  "cols": 5,
+  "rows": 4,
+  "level": 9,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 3,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "kim_sang_duoc",
+      "x": 4,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 3,
+      "y": 1,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 4,
+      "y": 1,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 1,
+      "y": 2,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 2,
+      "y": 2,
+      "tier": 2,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 2,
+      "tier": 1,
+      "rarity": "rare"
+    }
+  ]
+}

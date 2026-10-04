@@ -1,0 +1,64 @@
+{
+  "name": "Hàn Sơn Phái - Hàn Bích Hợp Bích",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "han_ngoc_tieu",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "phan_quan_but",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "bich_thuy_cam",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 1,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "tram_huong_lo",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 3,
+      "y": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
+    }
+  ]
+}

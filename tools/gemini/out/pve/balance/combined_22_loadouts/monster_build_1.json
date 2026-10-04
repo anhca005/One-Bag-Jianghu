@@ -1,0 +1,64 @@
+{
+  "name": "Huyền Độc Môn - Huyết Thú Cuồng Trảo",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "u_minh_quy_trao",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 0,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_ho_cuong_mong",
+      "x": 3,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 3,
+      "y": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 4,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ]
+}

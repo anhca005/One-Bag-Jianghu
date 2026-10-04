@@ -11,8 +11,6 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private BagLoadoutPanel bagPanel;
         [SerializeField]
-        private UiButton saveButton;
-        [SerializeField]
         private UiButton closeButton;
         [SerializeField]
         private ItemTooltip itemTooltip;
@@ -21,8 +19,7 @@ namespace OneBagJianghu.UI.Popups
         protected override void Awake()
         {
             base.Awake();
-            saveButton.onClick.AddListener(Save);
-            closeButton.onClick.AddListener(Close);
+            closeButton.onClick.AddListener(SaveAndClose);
             bagPanel.SetTooltip(itemTooltip);
         }
 
@@ -44,7 +41,21 @@ namespace OneBagJianghu.UI.Popups
             itemTooltip.Hide();
         }
 
-        private void Save()
+        // There is no save button: closing the bag (button, Escape or backdrop) always saves the layout.
+        public override bool OnBackPressed()
+        {
+            if (closeOnEscape)
+                SaveAndClose();
+            return closeOnEscape;
+        }
+
+        public override void OnBackdropClicked()
+        {
+            if (closeOnBackdrop)
+                SaveAndClose();
+        }
+
+        private void SaveAndClose()
         {
             GameSession session = GameBootstrap.Session;
             if (!bagPanel.TryApplyToProfile(out string error))

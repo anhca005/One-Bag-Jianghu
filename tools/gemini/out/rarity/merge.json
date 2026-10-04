@@ -1,0 +1,55 @@
+{
+  "merge_config": {
+    "min_required_tier": 3,
+    "input_count": 2,
+    "require_same_item_id": true,
+    "require_same_rarity": true,
+    "max_rarity_cap": "supreme",
+    "output_tier_formula": "clamp(floor((tier_a + tier_b) / 3), 2, 7)",
+    "material_refund_ratio": 0.5,
+    "refund_target": "secondary_item_and_lost_tiers"
+  },
+  "steps": [
+    {
+      "from_rarity": "common",
+      "to_rarity": "uncommon",
+      "silver_cost": 500,
+      "extra_materials": {}
+    },
+    {
+      "from_rarity": "uncommon",
+      "to_rarity": "rare",
+      "silver_cost": 1500,
+      "extra_materials": {}
+    },
+    {
+      "from_rarity": "rare",
+      "to_rarity": "epic",
+      "silver_cost": 4000,
+      "extra_materials": {}
+    },
+    {
+      "from_rarity": "epic",
+      "to_rarity": "legendary",
+      "silver_cost": 10000,
+      "extra_materials": {}
+    },
+    {
+      "from_rarity": "legendary",
+      "to_rarity": "supreme",
+      "silver_cost": 25000,
+      "extra_materials": {
+        "chi_ton_ngoc_tuy": 5
+      }
+    }
+  ],
+  "sample_tier_outcomes": [
+    { "input_a": 3, "input_b": 3, "output_tier": 2, "note": "Floor(6/3)=2. Base stat jumps higher than input, refunds 50% materials" },
+    { "input_a": 4, "input_b": 4, "output_tier": 2, "note": "Floor(8/3)=2" },
+    { "input_a": 5, "input_b": 5, "output_tier": 3, "note": "Floor(10/3)=3. Unlocks tier 3 Đột Phá immediately" },
+    { "input_a": 6, "input_b": 6, "output_tier": 4, "note": "Floor(12/3)=4. Keeps tier 3 Đột Phá" },
+    { "input_a": 7, "input_b": 7, "output_tier": 4, "note": "Floor(14/3)=4" },
+    { "input_a": 8, "input_b": 8, "output_tier": 5, "note": "Floor(16/3)=5" },
+    { "input_a": 9, "input_b": 9, "output_tier": 6, "note": "Floor(18/3)=6. Keeps tier 3 and tier 6 Đột Phá immediately" }
+  ]
+}

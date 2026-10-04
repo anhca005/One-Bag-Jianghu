@@ -1,0 +1,81 @@
+{
+  "name": "Huyền Độc Phệ Khí",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "items": [
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 0,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 1,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 1,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 2,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 3,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

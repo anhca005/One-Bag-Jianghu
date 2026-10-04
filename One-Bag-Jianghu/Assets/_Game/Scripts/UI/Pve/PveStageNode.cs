@@ -1,6 +1,7 @@
 using OneBagJianghu.Pve;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.Onboarding;
 
 namespace OneBagJianghu.UI.Pve
 {
@@ -23,37 +24,48 @@ namespace OneBagJianghu.UI.Pve
         public bool UsesArt => frame.sprite != null;
 
         public void Bind(PveStage stage,
-bool unlocked,
-int stars,
-Color accent,
-System.Action<PveStage> clicked) => Bind(stage,
-unlocked,
-stars,
-accent,
-null,
-null,
-clicked);
+            bool unlocked,
+            int stars,
+            Color accent,
+            System.Action<PveStage> clicked) => Bind(stage,
+            unlocked,
+            stars,
+            accent,
+            null,
+            null,
+            clicked);
         public void Bind(PveStage stage,
-bool unlocked,
-int stars,
-Color accent,
-PveTheme theme,
-PveArtLibrary art,
-System.Action<PveStage> clicked)
+            bool unlocked,
+            int stars,
+            Color accent,
+            PveTheme theme,
+            PveArtLibrary art,
+            System.Action<PveStage> clicked)
         {
+            TutorialTarget tutorialTarget = GetComponent<TutorialTarget>();
+            if (stage.Id == "hoi_1_01")
+            {
+                tutorialTarget ??= gameObject.AddComponent<TutorialTarget>();
+                tutorialTarget.Configure("stage_1");
+            }
+            else if (tutorialTarget != null)
+            {
+                Destroy(tutorialTarget);
+            }
+
             Sprite nodeSprite = ResolveNodeSprite(stage.Kind, theme, art);
             frame.sprite = nodeSprite;
             frame.color = nodeSprite != null ? unlocked ? Color.white : new Color(.35f,
-.35f,
-.35f,
-.9f) : unlocked ? stars > 0 ? accent : Color.Lerp(accent,
-Color.white,
-.45f) : new Color(.35f,
-.35f,
-.35f,
-.9f);
+                .35f,
+                .35f,
+                .9f) : unlocked ? stars > 0 ? accent : Color.Lerp(accent,
+                Color.white,
+                .45f) : new Color(.35f,
+                .35f,
+                .35f,
+                .9f);
             indexText.text = stage.Index.ToString();
-            kindText.text = stage.Kind == "boss" ? "BOSS" : stage.Kind == "elite" ? "TINH ANH" : string.Empty;
+            kindText.text = stage.Kind == "boss" ? "Thủ Lĩnh" : stage.Kind == "elite" ? "TINH ANH" : string.Empty;
             Sprite filled = Get(art, "icon_star"), empty = Get(art, "icon_star_empty");
             bool imageStars = filled != null && empty != null && starIcons != null && starIcons.Length == 3;
             starsText.gameObject.SetActive(!imageStars);
@@ -96,8 +108,8 @@ Color.white,
         }
 
         private static Sprite Get(PveArtLibrary art,
-string key) => art != null
-&& art.TryGet(key,
-out Sprite value) ? value : null;
+            string key) => art != null
+            && art.TryGet(key,
+            out Sprite value) ? value : null;
     }
 }

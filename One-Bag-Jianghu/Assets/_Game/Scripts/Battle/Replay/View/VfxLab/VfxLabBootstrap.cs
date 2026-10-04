@@ -82,14 +82,14 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
         private VfxTuning tuning;
         private int selectedIndex, clockMs, finishMs, backgroundMode;
         private bool playing,
-playAll,
-loop,
-hitAfter =
-true,
-attackerOnLeft =
-true,
-updatingUi,
-unsaved;
+            playAll,
+            loop,
+            hitAfter =
+            true,
+            attackerOnLeft =
+            true,
+            updatingUi,
+            unsaved;
         private float speed = 1f, clockRemainder;
         private Sprite checkerSprite;
         private void Awake()
@@ -198,12 +198,12 @@ unsaved;
             for (int i = 0; i < rows.Count; i++)
             {
                 rows[i].Background.color =
-new Color(ReplayStyle.Ink.r,
-ReplayStyle.Ink.g,
-ReplayStyle.Ink.b,
-i == selectedIndex ?
-.24f :
-.06f);
+                    new Color(ReplayStyle.Ink.r,
+                    ReplayStyle.Ink.g,
+                    ReplayStyle.Ink.b,
+                    i == selectedIndex ?
+                    .24f :
+                    .06f);
             }
 
             stageLabel.text = entries[selectedIndex].Label + "\n" + entries[selectedIndex].Key;
@@ -237,44 +237,44 @@ i == selectedIndex ?
             clockRemainder = 0f;
             playing = true;
             RectTransform attacker =
-attackerOnLeft ?
-leftFighter :
-rightFighter,
-defender =
-attackerOnLeft ?
-rightFighter :
-leftFighter;
+                attackerOnLeft ?
+                leftFighter :
+                rightFighter,
+                defender =
+                attackerOnLeft ?
+                rightFighter :
+                leftFighter;
             BattleEvent battleEvent = CreateEvent(entry);
             RectTransform source = entry.Kind == ReplayVfxKind.Travel ? attacker : null;
             Color fallback =
-entry.Kind == ReplayVfxKind.Burst ?
-ReplayStyle.Status(entry.EventKind) :
-ReplayStyle.Gold;
+                entry.Kind == ReplayVfxKind.Burst ?
+                ReplayStyle.Status(entry.EventKind) :
+                ReplayStyle.Gold;
             vfxLayer.Present(new ReplayVfx(entry.Kind,
-entry.Key),
-battleEvent,
-source,
-defender,
-fallback,
-0);
+                entry.Key),
+                battleEvent,
+                source,
+                defender,
+                fallback,
+                0);
             int duration = ReplayVfxLayer.GetDuration(entry.Kind, entry.EventKind);
             finishMs = duration + LoopPauseMs;
             if (entry.Kind == ReplayVfxKind.Travel && hitAfter)
             {
                 int at = duration - ReplayStyle.VfxBasicDurationMs;
                 vfxLayer.Present(new ReplayVfx(ReplayVfxKind.Hit,
-"hit"),
-new BattleEvent
-{
-    Type =
-BattleEventType.Damage,
-    Side =
-battleEvent.Side
-},
-null,
-defender,
-ReplayStyle.Hp,
-at);
+                    "hit"),
+                    new BattleEvent
+                    {
+                        Type =
+                            BattleEventType.Damage,
+                        Side =
+                            battleEvent.Side
+                    },
+                        null,
+                        defender,
+                        ReplayStyle.Hp,
+                        at);
                 finishMs = duration + ReplayStyle.VfxHitDurationMs + LoopPauseMs;
             }
         }
@@ -282,13 +282,13 @@ at);
         private BattleEvent CreateEvent(VfxCatalogEntry entry) => new BattleEvent
         {
             Type =
-entry.Kind == ReplayVfxKind.Travel ?
-BattleEventType.Trigger :
-entry.Kind == ReplayVfxKind.Burst ?
-BattleEventType.Burst :
-entry.Kind == ReplayVfxKind.Parry ?
-BattleEventType.Parry :
-BattleEventType.Damage,
+                entry.Kind == ReplayVfxKind.Travel ?
+                BattleEventType.Trigger :
+                entry.Kind == ReplayVfxKind.Burst ?
+                BattleEventType.Burst :
+                entry.Kind == ReplayVfxKind.Parry ?
+                BattleEventType.Parry :
+                BattleEventType.Damage,
             Kind = entry.EventKind,
             Side = attackerOnLeft ? 0 : 1
         };
@@ -302,34 +302,34 @@ BattleEventType.Damage,
             inspectorImage.sprite = hasArt ? sprite : null;
             inspectorImage.enabled = hasArt;
             VfxTuning.Entry tuned =
-tuning.TryGet(entry.Key,
-out VfxTuning.Entry found) ?
-found :
-null;
+                tuning.TryGet(entry.Key,
+                out VfxTuning.Entry found) ?
+                found :
+                null;
             VfxTransform transform = VfxTuning.Compose(tuned, false);
             inspectorImage.rectTransform.localScale = transform.LocalScale;
             inspectorImage.rectTransform.localEulerAngles = new Vector3(0f, 0f, transform.Rotation);
             inspectorText.color = hasArt ? ReplayStyle.Ink : ReplayStyle.Hp;
             inspectorText.text =
-hasArt ?
-"Texture: " +
-sprite.texture.width +
-" × " +
-sprite.texture.height +
-" px\n" +
-"Sprite rect: " +
-sprite.rect.width +
-" × " +
-sprite.rect.height +
-" px\n" +
-"Khung trong game: " +
-size.x +
-" × " +
-size.y :
-"✗ Thiếu hình — battle sẽ dùng fallback\nKhung trong game: " +
-size.x +
-" × " +
-size.y;
+                hasArt ?
+                "Texture: " +
+                sprite.texture.width +
+                " × " +
+                sprite.texture.height +
+                " px\n" +
+                "Sprite rect: " +
+                sprite.rect.width +
+                " × " +
+                sprite.rect.height +
+                " px\n" +
+                "Khung trong game: " +
+                size.x +
+                " × " +
+                size.y :
+                "✗ Thiếu hình — battle sẽ dùng fallback\nKhung trong game: " +
+                size.x +
+                " × " +
+                size.y;
         }
 
         private void TuningChanged()
@@ -359,10 +359,10 @@ size.y;
         {
             updatingUi = true;
             VfxTuning.Entry entry =
-tuning.TryGet(entries[selectedIndex].Key,
-out VfxTuning.Entry found) ?
-found :
-null;
+                tuning.TryGet(entries[selectedIndex].Key,
+                out VfxTuning.Entry found) ?
+                found :
+                null;
             rotationSlider.SetValueWithoutNotify(entry == null ? 0f : entry.rotation);
             scaleSlider.SetValueWithoutNotify(entry == null ? 1f : entry.scale);
             offsetXSlider.SetValueWithoutNotify(entry == null ? 0f : entry.offset.x);
@@ -382,11 +382,11 @@ null;
             for (int i = 0; i < entries.Count; i++)
             {
                 rows[i].Tuned.text =
-tuning.TryGet(entries[i].Key,
-out VfxTuning.Entry entry) &&
-!VfxTuning.IsIdentity(entry) ?
-"✎" :
-string.Empty;
+                    tuning.TryGet(entries[i].Key,
+                    out VfxTuning.Entry entry) &&
+                    !VfxTuning.IsIdentity(entry) ?
+                    "✎" :
+                    string.Empty;
             }
         }
 
@@ -479,21 +479,21 @@ string.Empty;
             entry.rotation = Mathf.Clamp(entry.rotation + rotation, -180f, 180f);
             entry.scale = Mathf.Clamp(entry.scale + scale, .2f, 4f);
             entry.offset =
-new Vector2(Mathf.Clamp(entry.offset.x +
-offset.x,
--200f,
-200f),
-Mathf.Clamp(entry.offset.y +
-offset.y,
--200f,
-200f));
+                new Vector2(Mathf.Clamp(entry.offset.x +
+                offset.x,
+                -200f,
+                200f),
+                Mathf.Clamp(entry.offset.y +
+                offset.y,
+                -200f,
+                200f));
             MarkTuningChanged();
         }
 
         private void Move(int delta) =>
-Select((selectedIndex + delta +
-entries.Count) % entries.Count,
-true);
+            Select((selectedIndex + delta +
+            entries.Count) % entries.Count,
+            true);
         private void ToggleLoop()
         {
             loop = !loop;
@@ -526,13 +526,13 @@ true);
             for (int i = 0; i < speedButtons.Length; i++)
             {
                 speedButtons[i].GetComponent<Image>().color =
-new Color(ReplayStyle.Gold.r,
-ReplayStyle.Gold.g,
-ReplayStyle.Gold.b,
-Mathf.Approximately(value,
-values[i]) ?
-.55f :
-.18f);
+                    new Color(ReplayStyle.Gold.r,
+                    ReplayStyle.Gold.g,
+                    ReplayStyle.Gold.b,
+                    Mathf.Approximately(value,
+                    values[i]) ?
+                    .55f :
+                    .18f);
             }
         }
 
@@ -584,20 +584,20 @@ values[i]) ?
 
             texture.Apply(false, true);
             return Sprite.Create(texture,
-new Rect(0f,
-0f,
-size,
-size),
-new Vector2(.5f,
-.5f),
-100f,
-0,
-SpriteMeshType.FullRect);
+                new Rect(0f,
+                0f,
+                size,
+                size),
+                new Vector2(.5f,
+                .5f),
+                100f,
+                0,
+                SpriteMeshType.FullRect);
         }
 
         private static void SetButtonText(Button button,
-string value) =>
-button.GetComponentInChildren<Text>().text =
-value;
+            string value) =>
+            button.GetComponentInChildren<Text>().text =
+            value;
     }
 }

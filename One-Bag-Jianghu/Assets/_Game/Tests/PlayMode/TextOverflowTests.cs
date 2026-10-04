@@ -46,20 +46,20 @@ namespace OneBagJianghu.Tests.Play
                 string rarity = i == definitions.Count - 1 ? "supreme" : rarities[i % rarities.Length];
                 OwnedItem item = profile.AddItem(definitions[i].Id, tier, rarity: rarity);
                 Assert.IsTrue(grid.TryPlaceItem(item),
-"Every catalog item did not fit in the test storage: " +
-item.ItemId);
+                    "Every catalog item did not fit in the test storage: " +
+                    item.ItemId);
                 owned.Add(item);
             }
 
             GameBootstrap.Session.SaveProfile();
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StoragePopup>(),
-"StoragePopup did not open.");
+                PopupManager.IsOpen<StoragePopup>(),
+                "StoragePopup did not open.");
             StoragePopup storage = PopupManager.Top as StoragePopup;
             MethodInfo select =
-typeof(StoragePopup).GetMethod("Select",
-BindingFlags.Instance | BindingFlags.NonPublic);
+                typeof(StoragePopup).GetMethod("Select",
+                BindingFlags.Instance | BindingFlags.NonPublic);
             var failures = new List<string>();
             string longestId = null;
             int longest = -1;
@@ -72,19 +72,19 @@ BindingFlags.Instance | BindingFlags.NonPublic);
                 CheckTexts(storage.transform, item.ItemId, failures);
                 string description = ItemDescriber.Describe(item.ItemId, item.Rarity, item.Tier);
                 string visibleDescription =
-System.Text.RegularExpressions.Regex.Replace(description,
-"<[^>]+>",
-string.Empty);
+                    System.Text.RegularExpressions.Regex.Replace(description,
+                    "<[^>]+>",
+                    string.Empty);
                 // Vietnamese has ASCII-only words ("tung", "khi"), so only flag snake_case and known engine identifiers.
                 System.Text.RegularExpressions.Match rawWord =
-System.Text.RegularExpressions.Regex.Match(visibleDescription,
-@"(?<![\p{L}])([a-z]+_[a-z_]+|[A-Z]+_[A-Z_]+|axe|blade|bow|brush|claw|dual|fan|fist|flute|" +
-@"hammer|hidden|palm|spear|staff|sword|whip|zither|weapon|armor|manual|pill|relic|burn|poison|" +
-@"bleed|regen|stun|slow|seal|haste|shield|damage|heal)(?![\p{L}])");
+                    System.Text.RegularExpressions.Regex.Match(visibleDescription,
+                    @"(?<![\p{L}])([a-z]+_[a-z_]+|[A-Z]+_[A-Z_]+|axe|blade|bow|brush|claw|dual|fan|fist|flute|" +
+                    @"hammer|hidden|palm|spear|staff|sword|whip|zither|weapon|armor|manual|pill|relic|burn|poison|" +
+                    @"bleed|regen|stun|slow|seal|haste|shield|damage|heal)(?![\p{L}])");
                 Assert.IsFalse(rawWord.Success,
-item.ItemId +
-" description contains raw ASCII identifier: " +
-rawWord.Value);
+                    item.ItemId +
+                    " description contains raw ASCII identifier: " +
+                    rawWord.Value);
                 CheckDetailDoesNotOverlapActions(storage, item.ItemId, failures);
                 int length = description.Length;
                 if (length > longest)
@@ -113,9 +113,9 @@ rawWord.Value);
             foreach (OwnedItem item in owned)
             {
                 tooltip.ShowDelayed(ItemDescriber.Describe(item.ItemId,
-item.Rarity,
-item.Tier),
-pointer);
+                    item.Rarity,
+                    item.Tier),
+                    pointer);
                 yield return null;
                 Canvas.ForceUpdateCanvases();
                 CheckTexts(tooltip.transform, "tooltip " + item.ItemId, failures);
@@ -128,9 +128,9 @@ pointer);
             yield return null;
             CheckTexts(bagPanel.transform, "bag stats", failures);
             tooltip.ShowDelayed(ItemDescriber.Describe(profile.FindItem(longestId).ItemId,
-profile.FindItem(longestId).Rarity,
-profile.FindItem(longestId).Tier),
-pointer);
+                profile.FindItem(longestId).Rarity,
+                profile.FindItem(longestId).Tier),
+                pointer);
             yield return null;
             Canvas.ForceUpdateCanvases();
             yield return Capture("Tooltip_filled.png");
@@ -138,12 +138,12 @@ pointer);
             yield return null;
             GetField<HomeHotspot>(home, "shopHotspot").OnClick.Invoke();
             yield return WaitUntil(() => PopupManager.IsOpen<ShopPopup>(),
-"ShopPopup did not open.");
+                "ShopPopup did not open.");
             CheckTexts((PopupManager.Top as ShopPopup).transform, "shop", failures);
             Assert.That(failures,
-Is.Empty,
-"Text overflow:\n" + string.Join("\n",
-failures));
+                Is.Empty,
+                "Text overflow:\n" + string.Join("\n",
+                failures));
         }
 
         private static void CheckTexts(Transform root, string itemId, List<string> failures)
@@ -155,18 +155,18 @@ failures));
                     continue;
                 bool fitted = text.resizeTextForBestFit || text.GetComponent<SingleLineFit>() != null;
                 if (text.horizontalOverflow == HorizontalWrapMode.Overflow &&
-!fitted &&
-text.preferredWidth > rect.rect.width +
-1f)
+                    !fitted &&
+                    text.preferredWidth > rect.rect.width +
+                    1f)
                 {
                     failures.Add(itemId +
-" · " +
-PathOf(text.transform,
-root) +
-" · width " +
-text.preferredWidth.ToString("0.0") +
-" > " +
-rect.rect.width.ToString("0.0"));
+                        " · " +
+                        PathOf(text.transform,
+                        root) +
+                        " · width " +
+                        text.preferredWidth.ToString("0.0") +
+                        " > " +
+                        rect.rect.width.ToString("0.0"));
                 }
 
                 if (text.resizeTextForBestFit)
@@ -177,16 +177,16 @@ rect.rect.width.ToString("0.0"));
                     if (generator.characterCountVisible < generator.characterCount - 1)
                     {
                         failures.Add(itemId +
-" · " +
-PathOf(text.transform,
-root) +
-" · best fit truncates at " +
-generator.fontSizeUsedForBestFit +
-"px (" +
-generator.characterCountVisible +
-"/" +
-generator.characterCount +
-" chars)");
+                            " · " +
+                            PathOf(text.transform,
+                            root) +
+                            " · best fit truncates at " +
+                            generator.fontSizeUsedForBestFit +
+                            "px (" +
+                            generator.characterCountVisible +
+                            "/" +
+                            generator.characterCount +
+                            " chars)");
                     }
 
                     continue;
@@ -196,25 +196,25 @@ generator.characterCount +
                     continue;
                 ScrollRect scroll = text.GetComponentInParent<ScrollRect>();
                 bool growing =
-scroll != null &&
-scroll.content != null &&
-(scroll.content.GetComponent<ContentSizeFitter>() != null ||
-scroll.content.GetComponent<LayoutGroup>() != null);
+                    scroll != null &&
+                    scroll.content != null &&
+                    (scroll.content.GetComponent<ContentSizeFitter>() != null ||
+                    scroll.content.GetComponent<LayoutGroup>() != null);
                 bool masked =
-scroll != null &&
-scroll.viewport != null &&
-(scroll.viewport.GetComponent<Mask>() != null ||
-scroll.viewport.GetComponent<RectMask2D>() != null);
+                    scroll != null &&
+                    scroll.viewport != null &&
+                    (scroll.viewport.GetComponent<Mask>() != null ||
+                    scroll.viewport.GetComponent<RectMask2D>() != null);
                 if (!growing || !masked)
                 {
                     failures.Add(itemId +
-" · " +
-PathOf(text.transform,
-root) +
-" · height " +
-text.preferredHeight.ToString("0.0") +
-" > " +
-rect.rect.height.ToString("0.0"));
+                        " · " +
+                        PathOf(text.transform,
+                        root) +
+                        " · height " +
+                        text.preferredHeight.ToString("0.0") +
+                        " > " +
+                        rect.rect.height.ToString("0.0"));
                 }
             }
         }
@@ -258,40 +258,40 @@ rect.rect.height.ToString("0.0"));
             // Screen rects are in pixels; the insets and paper size are in canvas units (CanvasScaler).
             float scale = paper.lossyScale.x <= 0f ? 1f : paper.lossyScale.x;
             float expectedHeight =
-Mathf.Min(description.preferredHeight +
-ItemTooltip.TopInset +
-ItemTooltip.BottomInset,
-Mathf.Max(160f,
-Screen.height / scale * .70f));
+                Mathf.Min(description.preferredHeight +
+                ItemTooltip.TopInset +
+                ItemTooltip.BottomInset,
+                Mathf.Max(160f,
+                Screen.height / scale * .70f));
             if (paper.rect.height < expectedHeight - tolerance)
             {
                 failures.Add("tooltip " +
-itemId +
-" · paper height " +
-paper.rect.height.ToString("0.0") +
-" < content-sized height " +
-expectedHeight.ToString("0.0"));
+                    itemId +
+                    " · paper height " +
+                    paper.rect.height.ToString("0.0") +
+                    " < content-sized height " +
+                    expectedHeight.ToString("0.0"));
             }
 
             if (paperRect.xMin < -tolerance ||
-paperRect.yMin < -tolerance ||
-paperRect.xMax > Screen.width +
-tolerance ||
-paperRect.yMax > Screen.height +
-tolerance)
+                paperRect.yMin < -tolerance ||
+                paperRect.xMax > Screen.width +
+                tolerance ||
+                paperRect.yMax > Screen.height +
+                tolerance)
             {
                 failures.Add("tooltip " + itemId + " · paper is outside the screen: " + paperRect);
             }
 
             float px = scale * tolerance;
             if (viewportRect.xMin < paperRect.xMin +
-ItemTooltip.HorizontalInset * scale - px ||
-viewportRect.xMax > paperRect.xMax - ItemTooltip.HorizontalInset * scale +
-px ||
-viewportRect.yMin < paperRect.yMin +
-ItemTooltip.BottomInset * scale - px ||
-viewportRect.yMax > paperRect.yMax - ItemTooltip.TopInset * scale +
-px)
+                ItemTooltip.HorizontalInset * scale - px ||
+                viewportRect.xMax > paperRect.xMax - ItemTooltip.HorizontalInset * scale +
+                px ||
+                viewportRect.yMin < paperRect.yMin +
+                ItemTooltip.BottomInset * scale - px ||
+                viewportRect.yMax > paperRect.yMax - ItemTooltip.TopInset * scale +
+                px)
             {
                 failures.Add("tooltip " + itemId + " · viewport does not honor paper padding");
             }
@@ -384,8 +384,8 @@ px)
         private static void SetField(object target, string name, object value)
         {
             target.GetType().GetField(name,
-BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target,
-value);
+                BindingFlags.Instance | BindingFlags.NonPublic).SetValue(target,
+                value);
         }
     }
 }

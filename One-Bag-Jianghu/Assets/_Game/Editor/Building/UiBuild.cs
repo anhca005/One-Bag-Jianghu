@@ -9,6 +9,8 @@ namespace OneBagJianghu.EditorTools.Building
     {
         public enum LabelFitPreset
         {
+            /// <summary>Only adds single-line shrink-to-fit; keeps the label's current rect.</summary>
+            None,
             OrnateButton,
             Plaque,
             InkBox
@@ -20,17 +22,33 @@ namespace OneBagJianghu.EditorTools.Building
         public static readonly Color Vermilion = UiKit.Vermilion;
         private const string UiTextureFolder = "Assets/_Game/Textures2D/UI/";
 
-        public static bool ApplyUiSprite(Image image, string key, UnityEngine.UI.Image.Type type = UnityEngine.UI.Image.Type.Simple)
+        public static bool ApplyUiSprite(
+            Image image,
+            string key,
+            UnityEngine.UI.Image.Type type = UnityEngine.UI.Image.Type.Simple)
         {
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");
-            if (sprite == null) return false;
+            if (sprite == null)
+            {
+                return false;
+            }
             image.sprite = sprite;
             image.type = type;
             image.color = Color.white;
             // The 9-slice art is drawn large (borders of 150-420 px); shrink the borders so the ornaments
             // keep their proportions on small UI elements instead of being squashed by Unity.
-            if (type == UnityEngine.UI.Image.Type.Sliced && SlicedPixelsPerUnit.TryGetValue(key, out float multiplier))
+            if (type == UnityEngine.UI.Image.Type.Sliced &&
+                SlicedPixelsPerUnit.TryGetValue(key, out float multiplier))
+            {
                 image.pixelsPerUnitMultiplier = multiplier;
+                SlicedAutoFit autoFit = image.GetComponent<SlicedAutoFit>();
+                if (autoFit == null)
+                {
+                    autoFit = image.gameObject.AddComponent<SlicedAutoFit>();
+                }
+
+                autoFit.Configure(multiplier);
+            }
             return true;
         }
 
@@ -62,7 +80,13 @@ namespace OneBagJianghu.EditorTools.Building
             return image;
         }
 
-        public static Text Text(Transform parent, string name, string value, int size, TextAnchor alignment = TextAnchor.MiddleCenter, UiFontRole role = UiFontRole.Body)
+        public static Text Text(
+            Transform parent,
+            string name,
+            string value,
+            int size,
+            TextAnchor alignment = TextAnchor.MiddleCenter,
+            UiFontRole role = UiFontRole.Body)
         {
             RectTransform rect = Rect(parent, name);
             rect.gameObject.AddComponent<CanvasRenderer>();
@@ -99,6 +123,22 @@ namespace OneBagJianghu.EditorTools.Building
         /// <summary>Share of the sliced ornament border the label must stay clear of (the inner part is plain bar).</summary>
         public const float OrnateBorderClearance = 0.8f;
 
+        // The plaque art keeps its ties and upper frame in a tall top border, so a label centred on the whole
+        // plaque sits too high. Inset it by the sliced top/bottom borders so it centres on the paper.
+        private static void ClearPlaqueBorders(RectTransform rect, LabelFitPreset preset)
+        {
+            if (preset != LabelFitPreset.Plaque || rect.parent == null)
+                return;
+            UnityEngine.UI.Image plaque = rect.parent.GetComponent<UnityEngine.UI.Image>();
+            if (plaque == null || plaque.sprite == null || plaque.sprite.name != "plaque_label")
+                return;
+            if (plaque.type != UnityEngine.UI.Image.Type.Sliced || !plaque.hasBorder)
+                return;
+            float scale = 1f / (plaque.pixelsPerUnit * plaque.pixelsPerUnitMultiplier);
+            rect.offsetMin = new Vector2(0f, plaque.sprite.border.y * scale + 2f);
+            rect.offsetMax = new Vector2(0f, -(plaque.sprite.border.w * scale + 2f));
+        }
+
         public static void FitLabel(Text text, LabelFitPreset preset, int minimumSize = 14)
         {
             int authoredSize = text.fontSize;
@@ -107,17 +147,35 @@ namespace OneBagJianghu.EditorTools.Building
             float vertical;
             switch (preset)
             {
-                case LabelFitPreset.OrnateButton: left = right = 0.27f; vertical = 9f; break;
-                case LabelFitPreset.Plaque: left = right = 0.16f; vertical = 8f; break;
-                case LabelFitPreset.InkBox: left = 0.18f; right = 0.14f; vertical = 7f; break;
-                default: left = right = 0f; vertical = 0f; break;
+                case LabelFitPreset.OrnateButton:
+                    left = right = 0.27f;
+                    vertical = 9f;
+                    break;
+                case LabelFitPreset.Plaque:
+                    left = right = 0.16f;
+                    vertical = 8f;
+                    break;
+                case LabelFitPreset.InkBox:
+                    left = 0.18f;
+                    right = 0.14f;
+                    vertical = 7f;
+                    break;
+                default:
+                    left = right = 0f;
+                    vertical = 0f;
+                    break;
             }
 
             RectTransform rect = text.rectTransform;
             // Ornate button art is 9-sliced: its cloud scrolls keep a fixed pixel width whatever the
             // button width, so the label must clear the slice border in pixels, not a percentage.
-            UnityEngine.UI.Image frame = preset == LabelFitPreset.OrnateButton && rect.parent != null ? rect.parent.GetComponent<UnityEngine.UI.Image>() : null;
-            if (frame != null && frame.type == UnityEngine.UI.Image.Type.Sliced && frame.sprite != null && frame.hasBorder)
+            UnityEngine.UI.Image frame = preset == LabelFitPreset.OrnateButton && rect.parent != null
+                ? rect.parent.GetComponent<UnityEngine.UI.Image>()
+                : null;
+            if (frame != null &&
+                frame.type == UnityEngine.UI.Image.Type.Sliced &&
+                frame.sprite != null &&
+                frame.hasBorder)
             {
                 float scale = 1f / (frame.pixelsPerUnit * frame.pixelsPerUnitMultiplier);
                 rect.anchorMin = new Vector2(0f, 0f);
@@ -125,12 +183,13 @@ namespace OneBagJianghu.EditorTools.Building
                 rect.offsetMin = new Vector2(frame.sprite.border.x * scale * OrnateBorderClearance, vertical);
                 rect.offsetMax = new Vector2(-frame.sprite.border.z * scale * OrnateBorderClearance, -vertical);
             }
-            else
+            else if (preset != LabelFitPreset.None)
             {
                 rect.anchorMin = new Vector2(left, 0f);
                 rect.anchorMax = new Vector2(1f - right, 1f);
                 rect.offsetMin = new Vector2(0f, vertical);
                 rect.offsetMax = new Vector2(0f, -vertical);
+                ClearPlaqueBorders(rect, preset);
             }
             SingleLineFit fit = text.GetComponent<SingleLineFit>();
             if (fit == null) fit = text.gameObject.AddComponent<SingleLineFit>();

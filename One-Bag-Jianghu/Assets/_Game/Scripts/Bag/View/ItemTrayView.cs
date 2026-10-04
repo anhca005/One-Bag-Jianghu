@@ -105,15 +105,15 @@ namespace OneBagJianghu.Bag.View
             if (!spatial || placed == null || string.IsNullOrEmpty(placed.OwnedUid))
                 return true;
             if (ToCell(point,
-camera,
-placed.Item.Width,
-placed.Item.Height,
-out int x,
-out int y)
-&& storageGrid.CanPlace(x,
-y,
-placed.Item.Width,
-placed.Item.Height))
+                camera,
+                placed.Item.Width,
+                placed.Item.Height,
+                out int x,
+                out int y)
+                && storageGrid.CanPlace(x,
+                y,
+                placed.Item.Width,
+                placed.Item.Height))
             {
                 draftProfile.Storage.Items.Add(new StorageItemPlacement { Uid = placed.OwnedUid, X = x, Y = y });
                 return true;
@@ -126,6 +126,24 @@ placed.Item.Height))
             Debug.LogWarning($"[Bag] Bag to storage transfer refused: uid={placed.OwnedUid}, reason={error}");
             PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", error));
             return false;
+        }
+
+        /// <summary>Moves a storage item to another free spot in the storage grid (drag within the storage).</summary>
+        public bool TryMoveWithin(string uid, int width, int height, Vector2 point, Camera camera)
+        {
+            if (!spatial || string.IsNullOrEmpty(uid))
+                return false;
+            StorageItemPlacement placement = draftProfile.Storage.Items.Find(value => value.Uid == uid);
+            if (placement == null)
+                return false;
+            if (!ToCell(point, camera, width, height, out int x, out int y))
+                return false;
+            if (!storageGrid.CanPlace(x, y, width, height, uid))
+                return false;
+            placement.X = x;
+            placement.Y = y;
+            Rebuild();
+            return true;
         }
 
         public bool TryAcceptAt(PlacedItem placed, int x, int y)
@@ -194,7 +212,7 @@ placed.Item.Height))
                 view.Bind(entry.Item, entry.Rarity);
                 float pitch = CellPitch;
                 view.RectTransform.sizeDelta = new Vector2(entry.Item.Width * pitch - BagViewStyle.Gap,
-entry.Item.Height * pitch - BagViewStyle.Gap);
+                    entry.Item.Height * pitch - BagViewStyle.Gap);
                 LayoutElement element = view.GetComponent<LayoutElement>();
                 if (spatial)
                 {
@@ -224,7 +242,7 @@ entry.Item.Height * pitch - BagViewStyle.Gap);
             content.anchorMin = content.anchorMax = new Vector2(0, 1);
             content.pivot = new Vector2(0, 1);
             content.sizeDelta = new Vector2(draftProfile.Storage.Cols * spatialPitch,
-draftProfile.Storage.Rows * spatialPitch);
+                draftProfile.Storage.Rows * spatialPitch);
             VerticalLayoutGroup layout = content.GetComponent<VerticalLayoutGroup>();
             if (layout != null)
                 layout.enabled = false;
@@ -235,11 +253,11 @@ draftProfile.Storage.Rows * spatialPitch);
                 for (int x = 0; x < draftProfile.Storage.Cols; x++)
                 {
                     Image cell = BagGridView.CreateImage(content,
-$"Storage Cell {x},{y}",
-new Color(BagViewStyle.Ink.r,
-BagViewStyle.Ink.g,
-BagViewStyle.Ink.b,
-.1f));
+                        $"Storage Cell {x},{y}",
+                        new Color(BagViewStyle.Ink.r,
+                        BagViewStyle.Ink.g,
+                        BagViewStyle.Ink.b,
+                        .1f));
                     cell.raycastTarget = false;
                     SetRect(cell.rectTransform, x, y, 1, 1);
                     decorationViews.Add(cell.gameObject);
@@ -251,18 +269,18 @@ BagViewStyle.Ink.b,
             foreach (MaterialStack stack in draftProfile.Storage.MaterialStacks)
             {
                 Image tile = BagGridView.CreateImage(content,
-"Material "
-+ stack.MaterialId,
-new Color(.42f,
-.32f,
-.18f,
-.42f));
+                    "Material "
+                    + stack.MaterialId,
+                    new Color(.42f,
+                    .32f,
+                    .18f,
+                    .42f));
                 SetRect(tile.rectTransform, stack.X, stack.Y, 1, 1);
                 tile.raycastTarget = true;
                 Text label = new GameObject("Label",
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Text)).GetComponent<Text>();
+                    typeof(RectTransform),
+                    typeof(CanvasRenderer),
+                    typeof(Text)).GetComponent<Text>();
                 label.transform.SetParent(tile.transform, false);
                 OneBagJianghu.UI.Common.UiFonts.Apply(label, OneBagJianghu.UI.Common.UiFontRole.Body);
                 label.color = new Color(1, 1, 1, .7f);
@@ -296,7 +314,7 @@ typeof(Text)).GetComponent<Text>();
                     label.text = (material != null ? material.Name : stack.MaterialId) + "\n×" + stack.Count;
                 MaterialTooltipTarget target = tile.gameObject.AddComponent<MaterialTooltipTarget>();
                 target.Initialize(Tooltip,
-OneBagJianghu
+                    OneBagJianghu
     .UI
     .Common
     .ItemDescriber
@@ -334,7 +352,7 @@ OneBagJianghu
             rect.pivot = new Vector2(0, 1);
             rect.anchoredPosition = new Vector2(x * spatialPitch, -y * spatialPitch);
             rect.sizeDelta = new Vector2(width * spatialPitch - BagViewStyle.Gap,
-height * spatialPitch - BagViewStyle.Gap);
+                height * spatialPitch - BagViewStyle.Gap);
         }
 
         public void SetSect(SectInfo value)
@@ -345,9 +363,9 @@ height * spatialPitch - BagViewStyle.Gap);
         }
 
         public bool ContainsScreenPoint(Vector2 point,
-Camera camera) => RectTransformUtility.RectangleContainsScreenPoint(rectTransform,
-point,
-camera);
+            Camera camera) => RectTransformUtility.RectangleContainsScreenPoint(rectTransform,
+            point,
+            camera);
     }
 
     public sealed class MaterialTooltipTarget

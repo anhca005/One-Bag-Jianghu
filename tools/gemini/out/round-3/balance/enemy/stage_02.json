@@ -1,0 +1,24 @@
+{
+  "name": "Thủy Phỉ Thám Tử",
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "legendary"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "legendary"
+    }
+  ],
+  "level": 2,
+  "cols": 5,
+  "rows": 4
+}

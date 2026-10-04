@@ -1,0 +1,45 @@
+{
+  "name": "Vạn Niên Băng Quy",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 28,
+  "items": [
+    {
+      "id": "bang_phach_co_cot",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thien_nien_quy_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bang_phach_thuong",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "han_ngoc_tieu",
+      "x": 0,
+      "y": 2,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 1,
+      "y": 2,
+      "tier": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

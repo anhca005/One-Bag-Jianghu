@@ -40,13 +40,13 @@ namespace OneBagJianghu.Economy
         }
 
         public MaterialInfo(string id,
-string name,
-string itemType,
-string band,
-string description,
-int tier = 0,
-bool isCatalyst = false,
-bool pvpOnly = false)
+            string name,
+            string itemType,
+            string band,
+            string description,
+            int tier = 0,
+            bool isCatalyst = false,
+            bool pvpOnly = false)
         {
             Id = id;
             Name = name;
@@ -93,17 +93,17 @@ bool pvpOnly = false)
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 List<MaterialDto> data = JsonConvert.DeserializeObject<List<MaterialDto>>(json,
-settings) ?? throw new FormatException("Material catalog JSON is null.");
+                    settings) ?? throw new FormatException("Material catalog JSON is null.");
                 var materials = new List<MaterialInfo>(data.Count);
                 foreach (MaterialDto dto in data)
                     materials.Add(new MaterialInfo(dto.Id,
-dto.Name,
-dto.ItemType,
-dto.Band,
-dto.Description,
-dto.Tier,
-dto.IsCatalyst,
-dto.PvpOnly));
+                        dto.Name,
+                        dto.ItemType,
+                        dto.Band,
+                        dto.Description,
+                        dto.Tier,
+                        dto.IsCatalyst,
+                        dto.PvpOnly));
                 return new MaterialCatalog(materials);
             }
             catch (JsonException exception)
@@ -113,7 +113,7 @@ dto.PvpOnly));
         }
 
         public MaterialInfo Get(string id) => byId.TryGetValue(id,
-out MaterialInfo value) ? value : throw new KeyNotFoundException($"Unknown material id '{id}'.");
+            out MaterialInfo value) ? value : throw new KeyNotFoundException($"Unknown material id '{id}'.");
         private sealed class MaterialDto
         {
             [JsonProperty("id")]

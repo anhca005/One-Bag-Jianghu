@@ -1,0 +1,59 @@
+{
+  "name": "Người Chơi (Ải 27)",
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 5,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_ho_cuong_mong",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 3,
+      "y": 0,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 1,
+      "y": 1,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "bang_tam_linh_chau",
+      "x": 3,
+      "y": 2,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 2,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 0,
+      "y": 3,
+      "tier": 4,
+      "rarity": "legendary"
+    }
+  ],
+  "level": 27
+}

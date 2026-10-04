@@ -22,8 +22,8 @@ namespace OneBagJianghu.Economy
     {
         [JsonProperty("steps")]
         public Dictionary<string,
-List<UpgradeStep>> Steps = new Dictionary<string,
-List<UpgradeStep>>(StringComparer.Ordinal);
+            List<UpgradeStep>> Steps = new Dictionary<string,
+            List<UpgradeStep>>(StringComparer.Ordinal);
         public UpgradeStep Get(string rarity, int fromTier)
         {
             if (!Steps.TryGetValue(rarity, out List<UpgradeStep> steps))
@@ -41,7 +41,7 @@ List<UpgradeStep>>(StringComparer.Ordinal);
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 UpgradeCatalog value = JsonConvert.DeserializeObject<UpgradeCatalog>(json,
-settings) ?? throw new FormatException("Upgrade catalog JSON is null.");
+                    settings) ?? throw new FormatException("Upgrade catalog JSON is null.");
                 foreach (string rarity in RarityRules.Ordered)
                 {
                     if (!value.Steps.TryGetValue(rarity, out List<UpgradeStep> steps) || steps.Count != 8)
@@ -78,8 +78,8 @@ settings) ?? throw new FormatException("Upgrade catalog JSON is null.");
         public MergeStep Get(string rarity)
             => Steps.Find(step
             => step.FromRarity == rarity) ?? throw new KeyNotFoundException("No merge step for rarity '"
-+ rarity
-+ "'.");
+                + rarity
+                + "'.");
         public static MergeCatalog Parse(string json)
         {
             try
@@ -89,7 +89,7 @@ settings) ?? throw new FormatException("Upgrade catalog JSON is null.");
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 MergeCatalog value = JsonConvert.DeserializeObject<MergeCatalog>(json,
-settings) ?? throw new FormatException("Merge catalog JSON is null.");
+                    settings) ?? throw new FormatException("Merge catalog JSON is null.");
                 if (value.Steps.Count != 5)
                     throw new FormatException("Merge catalog must contain five steps.");
                 foreach (MergeStep step in value.Steps)

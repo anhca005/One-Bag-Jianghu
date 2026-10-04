@@ -42,9 +42,9 @@ namespace OneBagJianghu.Economy
         private readonly MaterialCatalog materials;
         private readonly IUpgradeItemCatalog items;
         public MergeService(UpgradeCatalog upgrades,
-MergeCatalog merges,
-MaterialCatalog materials,
-IUpgradeItemCatalog items)
+            MergeCatalog merges,
+            MaterialCatalog materials,
+            IUpgradeItemCatalog items)
         {
             this.upgrades = upgrades;
             this.merges = merges;
@@ -69,10 +69,10 @@ IUpgradeItemCatalog items)
                 OutputTier = outputTier,
                 Silver = step.Silver,
                 WeakerThanBestInput = Strength(step.ToRarity,
-outputTier) < Math.Max(Strength(first.Rarity,
-first.Tier),
-Strength(second.Rarity,
-second.Tier))
+                    outputTier) < Math.Max(Strength(first.Rarity,
+                    first.Tier),
+                    Strength(second.Rarity,
+                    second.Tier))
             };
             foreach (KeyValuePair<string, int> extra in step.ExtraMaterials)
                 result.ExtraMaterials.Add(extra.Key, extra.Value);
@@ -115,9 +115,9 @@ second.Tier))
                 return result;
             foreach (OwnedItem value in profile.Items)
                 if (value.Uid != selectedUid
-&& value.ItemId == selected.ItemId
-&& value.Rarity == selected.Rarity
-&& value.Tier >= 3)
+                    && value.ItemId == selected.ItemId
+                    && value.Rarity == selected.Rarity
+                    && value.Tier >= 3)
                     result.Add(value);
             return result;
         }
@@ -154,10 +154,10 @@ second.Tier))
         }
 
         private static string Validate(PlayerProfile profile,
-string a,
-string b,
-out OwnedItem first,
-out OwnedItem second)
+            string a,
+            string b,
+            out OwnedItem first,
+            out OwnedItem second)
         {
             first = profile?.FindItem(a);
             second = profile?.FindItem(b);

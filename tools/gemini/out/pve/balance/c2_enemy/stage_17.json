@@ -1,0 +1,45 @@
+{
+  "name": "Ải 17: U Minh Ám Sát Thí Tử",
+  "hp": 1450,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 3,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

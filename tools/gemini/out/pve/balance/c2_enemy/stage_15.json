@@ -1,0 +1,31 @@
+{
+  "name": "\u1ea2i 15: V\u1ea1n Hoa Ngh\u1ecbch \u0110\u1ed3",
+  "hp": 1380,
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

@@ -41,11 +41,11 @@ namespace OneBagJianghu.Tests.Play
             yield return StartFreshHome(CreateStageOneLoadout, 10);
             yield return StartStageFromHome();
             GameplayController gameplay =
-UnityEngine.Object.FindFirstObjectByType<GameplayController>();
+                UnityEngine.Object.FindFirstObjectByType<GameplayController>();
             Assert.IsNotNull(gameplay);
             Assert.That(GetField<string>(gameplay,
-"opponentName"),
-Is.EqualTo(PveCatalog.Load().GetStage("hoi_1_01").Enemy.Name));
+                "opponentName"),
+                Is.EqualTo(PveCatalog.Load().GetStage("hoi_1_01").Enemy.Name));
             yield return FinishBattleAndOpenResult();
             ResultPopup result = FindPopup<ResultPopup>();
             UiButton continueButton = GetField<UiButton>(result, "playAgainButton");
@@ -55,11 +55,11 @@ Is.EqualTo(PveCatalog.Load().GetStage("hoi_1_01").Enemy.Name));
             int staminaBefore = GameBootstrap.Session.Profile.Pve.Stamina;
             continueButton.onClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>(),
-TimeoutSeconds,
-"Continuing did not open the next stage's before-dialogue.");
+                PopupManager.IsOpen<DialoguePopup>(),
+                TimeoutSeconds,
+                "Continuing did not open the next stage's before-dialogue.");
             Assert.AreEqual(staminaBefore - next.StaminaCost,
-GameBootstrap.Session.Profile.Pve.Stamina);
+                GameBootstrap.Session.Profile.Pve.Stamina);
             Assert.AreEqual("hoi_1_02", GameBootstrap.Session.CurrentPveStageId);
             GameplayController previous = gameplay;
             SkipTopDialogue();
@@ -67,21 +67,21 @@ GameBootstrap.Session.Profile.Pve.Stamina);
             yield return WaitUntil(() =>
             {
                 GameplayController current =
-UnityEngine.Object.FindFirstObjectByType<GameplayController>();
+                    UnityEngine.Object.FindFirstObjectByType<GameplayController>();
                 return previous == null && current != null || current != null && current != previous;
             },
-TimeoutSeconds,
-"Continuing did not reload GameplayScene.");
+                TimeoutSeconds,
+                "Continuing did not reload GameplayScene.");
             yield return WaitForReadyScene("GameplayScene",
-"Continuing did not load a ready GameplayScene.");
+                "Continuing did not load a ready GameplayScene.");
             gameplay = UnityEngine.Object.FindFirstObjectByType<GameplayController>();
             Assert.IsNotNull(gameplay);
             Assert.That(GetField<string>(gameplay,
-"opponentName"),
-Is.EqualTo(next.Enemy.Name));
+                "opponentName"),
+                Is.EqualTo(next.Enemy.Name));
             yield return FinishBattleAndOpenResult();
             Assert.IsNotNull(FindPopup<ResultPopup>(),
-"The continued battle did not show another result popup.");
+                "The continued battle did not show another result popup.");
         }
 
         [UnityTest]
@@ -93,14 +93,14 @@ Is.EqualTo(next.Enemy.Name));
             ResultPopup result = FindPopup<ResultPopup>();
             UiButton retryButton = GetField<UiButton>(result, "playAgainButton");
             Assert.That(ButtonLabel(retryButton),
-Is.EqualTo("Đánh lại"),
-"The deliberately underpowered one-item bag unexpectedly won hoi_1_01.");
+                Is.EqualTo("Đánh lại"),
+                "The deliberately underpowered one-item bag unexpectedly won hoi_1_01.");
             Assert.IsTrue(retryButton.GetComponent<Button>().interactable);
             retryButton.onClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>(),
-TimeoutSeconds,
-"Retry did not reopen hoi_1_01's before-dialogue.");
+                PopupManager.IsOpen<DialoguePopup>(),
+                TimeoutSeconds,
+                "Retry did not reopen hoi_1_01's before-dialogue.");
             Assert.AreEqual("hoi_1_01", GameBootstrap.Session.CurrentPveStageId);
         }
 
@@ -127,13 +127,13 @@ TimeoutSeconds,
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
             GetField<HomeHotspot>(home, "pveHotspot").OnPointerClick(null);
             yield return WaitUntil(() =>
-PopupManager.IsOpen<MessagePopup>(),
-TimeoutSeconds,
-"The PvE hotspot did not explain why an empty bag cannot battle.");
+                PopupManager.IsOpen<MessagePopup>(),
+                TimeoutSeconds,
+                "The PvE hotspot did not explain why an empty bag cannot battle.");
             MessagePopup message = FindPopup<MessagePopup>();
             Assert.That(GetField<Text>(message,
-"messageText").text,
-Does.Contain("chưa có binh khí"));
+                "messageText").text,
+                Does.Contain("chưa có binh khí"));
             Assert.IsFalse(PopupManager.IsOpen<StageMapPopup>());
             Assert.AreEqual("HomeScene", SceneManager.GetActiveScene().name);
             Assert.IsNull(UnityEngine.Object.FindFirstObjectByType<GameplayController>());
@@ -155,9 +155,9 @@ Does.Contain("chưa có binh khí"));
             GameBootstrap.Session?.LoadProfile();
             yield return LoadScene("Assets/_Game/Scenes/LoginScene.unity");
             yield return WaitUntil(() =>
-GameBootstrap.Session != null,
-TimeoutSeconds,
-"Game services did not initialize after loading LoginScene.");
+                GameBootstrap.Session != null,
+                TimeoutSeconds,
+                "Game services did not initialize after loading LoginScene.");
             LoginController login = UnityEngine.Object.FindFirstObjectByType<LoginController>();
             InputField name = GetField<InputField>(login, "heroName");
             Button enter = GetField<Button>(login, "enterButton");
@@ -179,49 +179,49 @@ TimeoutSeconds,
             GameBootstrap.Network.Disconnect();
             GetField<HomeHotspot>(home, "pveHotspot").OnPointerClick(null);
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StageMapPopup>(),
-TimeoutSeconds,
-"Home PvE entry did not open the stage map.");
+                PopupManager.IsOpen<StageMapPopup>(),
+                TimeoutSeconds,
+                "Home PvE entry did not open the stage map.");
             CloseSectPromptIfPresent();
             StageMapPopup map = UnityEngine.Object.FindFirstObjectByType<StageMapPopup>();
             Assert.IsNotNull(map);
             GetField<UiButton>(map, "challengeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>(),
-TimeoutSeconds,
-"The stage before-dialogue did not open.");
+                PopupManager.IsOpen<DialoguePopup>(),
+                TimeoutSeconds,
+                "The stage before-dialogue did not open.");
             SkipTopDialogue();
             yield return WaitForReadyScene("GameplayScene",
-"The stage did not load a ready GameplayScene.");
+                "The stage did not load a ready GameplayScene.");
             Assert.IsNotNull(UnityEngine.Object.FindFirstObjectByType<GameplayController>());
         }
 
         private static IEnumerator FinishBattleAndOpenResult()
         {
             GameplayController gameplay =
-UnityEngine.Object.FindFirstObjectByType<GameplayController>();
+                UnityEngine.Object.FindFirstObjectByType<GameplayController>();
             ReplayScreen replay = GetField<ReplayScreen>(gameplay, "replayScreen");
             yield return WaitUntil(() =>
-replay.gameObject.activeInHierarchy,
-TimeoutSeconds,
-"Starting the battle did not reveal the replay screen.");
+                replay.gameObject.activeInHierarchy,
+                TimeoutSeconds,
+                "Starting the battle did not reveal the replay screen.");
             GetField<Button>(replay, "speed4Button").onClick.Invoke();
             Slider scrub = GetField<Slider>(replay, "scrub");
             scrub.value = scrub.maxValue;
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>() ||
-PopupManager.IsOpen<ResultPopup>(),
-TimeoutSeconds,
-"The battle replay did not reach its result flow.");
+                PopupManager.IsOpen<DialoguePopup>() ||
+                PopupManager.IsOpen<ResultPopup>(),
+                TimeoutSeconds,
+                "The battle replay did not reach its result flow.");
             if (PopupManager.IsOpen<DialoguePopup>())
             {
                 SkipTopDialogue();
             }
 
             yield return WaitUntil(() =>
-PopupManager.IsOpen<ResultPopup>(),
-TimeoutSeconds,
-"The result popup did not appear after the post-battle dialogue.");
+                PopupManager.IsOpen<ResultPopup>(),
+                TimeoutSeconds,
+                "The result popup did not appear after the post-battle dialogue.");
         }
 
         private static string CreateStageOneLoadout(string name)
@@ -263,7 +263,7 @@ TimeoutSeconds,
         private static T FindPopup<T>()
             where T : Component => UnityEngine.Object.FindFirstObjectByType<T>();
         private static string ButtonLabel(UiButton button) =>
-button.GetComponentInChildren<Text>(true).text;
+            button.GetComponentInChildren<Text>(true).text;
         private static IEnumerator LoadScene(string path)
         {
 #if UNITY_EDITOR
@@ -282,11 +282,11 @@ button.GetComponentInChildren<Text>(true).text;
         private static IEnumerator WaitForReadyScene(string sceneName, string failureMessage)
         {
             yield return WaitUntil(() =>
-SceneManager.GetActiveScene().name == sceneName &&
-!SceneFlow.IsTransitioning &&
-!LoadingPanel.IsVisible,
-TimeoutSeconds,
-failureMessage);
+                SceneManager.GetActiveScene().name == sceneName &&
+                !SceneFlow.IsTransitioning &&
+                !LoadingPanel.IsVisible,
+                TimeoutSeconds,
+                failureMessage);
         }
 
         private static IEnumerator WaitUntil(Func<bool> condition, float timeout, string failureMessage)
@@ -305,13 +305,13 @@ failureMessage);
         {
             Assert.IsNotNull(target, "Cannot read field '" + name + "' from a null target.");
             FieldInfo field =
-target.GetType().GetField(name,
-BindingFlags.Instance | BindingFlags.NonPublic);
+                target.GetType().GetField(name,
+                BindingFlags.Instance | BindingFlags.NonPublic);
             Assert.IsNotNull(field,
-target.GetType().Name + "." + name + " field was not found.");
+                target.GetType().Name + "." + name + " field was not found.");
             T value = field.GetValue(target) as T;
             Assert.IsNotNull(value,
-target.GetType().Name + "." + name + " was not assigned.");
+                target.GetType().Name + "." + name + " was not assigned.");
             return value;
         }
 

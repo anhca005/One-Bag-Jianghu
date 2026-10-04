@@ -22,22 +22,22 @@ namespace OneBagJianghu.Tests.Pve
                 PveMapLayout layout = prefab.GetComponent<PveMapLayout>();
                 Assert.That(layout, Is.Not.Null, path);
                 Assert.That(layout.NodesRoot.childCount,
-Is.EqualTo(chapter.Stages.Count),
-path);
+                    Is.EqualTo(chapter.Stages.Count),
+                    path);
                 var actual = new HashSet<string>();
                 for (int i = 0; i < layout.NodesRoot.childCount; i++)
                 {
                     Assert.That(actual.Add(layout.NodesRoot.GetChild(i).name),
-Is.True,
-"Duplicate anchor in " +
-path);
+                        Is.True,
+                        "Duplicate anchor in " +
+                        path);
                 }
 
                 foreach (PveStage stage in chapter.Stages)
                 {
                     Assert.That(actual.Remove(stage.Id),
-Is.True,
-"Missing " + stage.Id + " in " + path);
+                        Is.True,
+                        "Missing " + stage.Id + " in " + path);
                 }
 
                 Assert.That(actual, Is.Empty, "Extra anchors in " + path);
@@ -61,7 +61,7 @@ Is.True,
                 PvePrefabBuilder.EnsureMapPrefabs();
                 GameObject prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
                 Assert.That(prefab.GetComponent<PveMapLayout>().FindAnchor("hoi_1_01").anchoredPosition,
-Is.EqualTo(moved));
+                    Is.EqualTo(moved));
             }
             finally
             {

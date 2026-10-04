@@ -56,16 +56,16 @@ namespace OneBagJianghu.Tests.Play
             Assert.Fail("These PlayMode tests require the Unity Editor.");
 #endif
             yield return WaitUntil(() =>
-GameBootstrap.Session != null,
-"Game services did not initialize.");
+                GameBootstrap.Session != null,
+                "Game services did not initialize.");
             LoginController login = UnityEngine.Object.FindFirstObjectByType<LoginController>();
             GetField<InputField>(login, "heroName").text = name;
             GetField<Button>(login, "enterButton").onClick.Invoke();
             yield return WaitUntil(() =>
-SceneManager.GetActiveScene().name == "HomeScene" &&
-!SceneFlow.IsTransitioning &&
-!LoadingPanel.IsVisible,
-"Login did not reach HomeScene.");
+                SceneManager.GetActiveScene().name == "HomeScene" &&
+                !SceneFlow.IsTransitioning &&
+                !LoadingPanel.IsVisible,
+                "Login did not reach HomeScene.");
         }
 
         protected static IEnumerator WaitUntil(Func<bool> condition, string message)
@@ -83,12 +83,12 @@ SceneManager.GetActiveScene().name == "HomeScene" &&
             where T : class
         {
             FieldInfo field =
-target.GetType().GetField(name,
-BindingFlags.Instance | BindingFlags.NonPublic);
+                target.GetType().GetField(name,
+                BindingFlags.Instance | BindingFlags.NonPublic);
             Assert.IsNotNull(field, target.GetType().Name + "." + name + " was not found.");
             T value = field.GetValue(target) as T;
             Assert.IsNotNull(value,
-target.GetType().Name + "." + name + " was not assigned.");
+                target.GetType().Name + "." + name + " was not assigned.");
             return value;
         }
 
@@ -106,10 +106,10 @@ target.GetType().Name + "." + name + " was not assigned.");
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             OwnedItem weapon =
-profile.Items.Find(item =>
-string.Equals(catalog.Get(item.ItemId).Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase));
+                profile.Items.Find(item =>
+                string.Equals(catalog.Get(item.ItemId).Type,
+                "weapon",
+                StringComparison.OrdinalIgnoreCase));
             Assert.IsNotNull(weapon);
             profile.Loadout.RemoveAll(value => value.Uid == weapon.Uid);
             Assert.IsTrue(new StorageGrid(profile, catalog).TryPlaceItem(weapon));
@@ -119,8 +119,8 @@ StringComparison.OrdinalIgnoreCase));
             GameBootstrap.Session.SaveProfile();
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StoragePopup>(),
-"StoragePopup did not open.");
+                PopupManager.IsOpen<StoragePopup>(),
+                "StoragePopup did not open.");
             StoragePopup popup = PopupManager.Top as StoragePopup;
             StorageItemView view = ViewFor(popup, profile, weapon.Uid);
             Assert.IsNotNull(view, "No view existed at the weapon's placed cells.");
@@ -128,9 +128,9 @@ PopupManager.IsOpen<StoragePopup>(),
             {
                 view.OnPointerClick(null);
                 UpgradePreview preview =
-GetField<UpgradeService>(popup,
-"upgrade").Preview(profile,
-weapon.Uid);
+                    GetField<UpgradeService>(popup,
+                    "upgrade").Preview(profile,
+                    weapon.Uid);
                 long silver = profile.Currencies["bac"];
                 var before = new Dictionary<string, int>();
                 foreach (KeyValuePair<string, int> cost in preview.Materials)
@@ -156,20 +156,20 @@ weapon.Uid);
             GetField<UiButton>(popup, "mergeButton").onClick.Invoke();
             ViewFor(popup, profile, copy.Uid).OnPointerClick(null);
             yield return WaitUntil(() =>
-PopupManager.IsOpen<ConfirmPopup>(),
-"Merge confirmation did not open.");
+                PopupManager.IsOpen<ConfirmPopup>(),
+                "Merge confirmation did not open.");
             GetField<UiButton>(PopupManager.Top, "confirmButton").onClick.Invoke();
             yield return WaitUntil(() =>
-!PopupManager.IsOpen<ConfirmPopup>(),
-"Merge confirmation did not close.");
+                !PopupManager.IsOpen<ConfirmPopup>(),
+                "Merge confirmation did not close.");
             List<OwnedItem> merged = profile.Items.FindAll(item => item.ItemId == weapon.ItemId);
             Assert.AreEqual(1, merged.Count);
             Assert.AreEqual("uncommon", merged[0].Rarity);
             Assert.IsNotNull(profile.Storage.Items.Find(p => p.Uid == merged[0].Uid));
             Assert.AreEqual(UsedCells(profile,
-catalog),
-new StorageGrid(profile,
-catalog).UsedCells);
+                catalog),
+                new StorageGrid(profile,
+                catalog).UsedCells);
             StorageItemPlacement placement = profile.Storage.Items.Find(p => p.Uid == merged[0].Uid);
             StorageGrid grid = new StorageGrid(profile, catalog);
             catalog.GetItemSize(merged[0].ItemId, out int width, out int height);
@@ -178,19 +178,19 @@ catalog).UsedCells);
             // Drops target the item's centre cell (left/above centre for even sizes), not its top-left.
             int centreX = x + (width - 1) / 2, centreY = y + (height - 1) / 2;
             Vector3 world =
-content.TransformPoint(new Vector3(centreX * 80f + 40f,
--centreY * 80f - 40f));
+                content.TransformPoint(new Vector3(centreX * 80f + 40f,
+                -centreY * 80f - 40f));
             Assert.IsTrue(popup.CommitDrop(merged[0].Uid,
-false,
-RectTransformUtility.WorldToScreenPoint(null,
-world),
-null));
+                false,
+                RectTransformUtility.WorldToScreenPoint(null,
+                world),
+                null));
             Assert.AreEqual(x, placement.X);
             Assert.AreEqual(y, placement.Y);
             GetField<UiButton>(popup, "closeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-!PopupManager.IsOpen<StoragePopup>(),
-"StoragePopup did not close.");
+                !PopupManager.IsOpen<StoragePopup>(),
+                "StoragePopup did not close.");
             // Errors and exceptions already fail the test; tagged Debug.Log lines are expected (decision #29).
         }
 
@@ -209,11 +209,11 @@ null));
         }
 
         private static bool FindFree(StorageGrid grid,
-StorageItemPlacement p,
-int width,
-int height,
-out int resultX,
-out int resultY)
+            StorageItemPlacement p,
+            int width,
+            int height,
+            out int resultX,
+            out int resultY)
         {
             for (int y = 0; y <= 20 - height; y++)
             {
@@ -238,8 +238,8 @@ out int resultY)
             foreach (StorageItemPlacement p in profile.Storage.Items)
             {
                 catalog.GetItemSize(profile.RequireItem(p.Uid).ItemId,
-out int width,
-out int height);
+                    out int width,
+                    out int height);
                 result += width * height;
             }
 

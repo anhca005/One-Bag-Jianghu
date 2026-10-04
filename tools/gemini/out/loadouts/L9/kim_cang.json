@@ -1,0 +1,45 @@
+﻿{
+    "name":  "Kim Cang Tá»± (Quyá»n + CÃ´n)",
+    "hp":  1200,
+    "cols":  5,
+    "rows":  4,
+    "sect":  "kim_cang",
+    "items":  [
+                  {
+                      "id":  "phuc_ho_con",
+                      "x":  0,
+                      "y":  0
+                  },
+                  {
+                      "id":  "phuc_ho_con",
+                      "x":  1,
+                      "y":  0
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  2,
+                      "y":  0
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  2,
+                      "y":  2
+                  },
+                  {
+                      "id":  "o_tam_y",
+                      "x":  3,
+                      "y":  0
+                  },
+                  {
+                      "id":  "tuy_tien_ho_lo",
+                      "x":  3,
+                      "y":  2
+                  },
+                  {
+                      "id":  "boi_nguyen_dan",
+                      "x":  4,
+                      "y":  2
+                  }
+              ],
+    "tamPhapLevel":  9
+}

@@ -19,18 +19,18 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         private static MaterialCatalog Materials() =>
-MaterialCatalog.Parse("[" +
-"{\"id\":\"m1\",\"name\":\"M1\",\"itemType\":\"weapon\",\"band\":\"t1\"," +
-"\"tier\":1,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-"{\"id\":\"m2\",\"name\":\"M2\",\"itemType\":\"weapon\",\"band\":\"t2\"," +
-"\"tier\":2,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-"{\"id\":\"m3\",\"name\":\"M3\",\"itemType\":\"weapon\",\"band\":\"t3\"," +
-"\"tier\":3,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
-"{\"id\":\"cat\",\"name\":\"Cat\",\"itemType\":\"weapon\",\"band\":\"cat\"," +
-"\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":false,\"description\":\"\"}," +
-"{\"id\":\"chi_ton_ngoc_tuy\",\"name\":\"Ngọc\",\"itemType\":\"universal\"," +
-"\"band\":\"pvp\",\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":true," +
-"\"description\":\"\"}]");
+            MaterialCatalog.Parse("[" +
+            "{\"id\":\"m1\",\"name\":\"M1\",\"itemType\":\"weapon\",\"band\":\"t1\"," +
+            "\"tier\":1,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+            "{\"id\":\"m2\",\"name\":\"M2\",\"itemType\":\"weapon\",\"band\":\"t2\"," +
+            "\"tier\":2,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+            "{\"id\":\"m3\",\"name\":\"M3\",\"itemType\":\"weapon\",\"band\":\"t3\"," +
+            "\"tier\":3,\"isCatalyst\":false,\"pvpOnly\":false,\"description\":\"\"}," +
+            "{\"id\":\"cat\",\"name\":\"Cat\",\"itemType\":\"weapon\",\"band\":\"cat\"," +
+            "\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":false,\"description\":\"\"}," +
+            "{\"id\":\"chi_ton_ngoc_tuy\",\"name\":\"Ngọc\",\"itemType\":\"universal\"," +
+            "\"band\":\"pvp\",\"tier\":0,\"isCatalyst\":true,\"pvpOnly\":true," +
+            "\"description\":\"\"}]");
         private static UpgradeCatalog Upgrades()
         {
             var catalog = new UpgradeCatalog();
@@ -42,21 +42,21 @@ MaterialCatalog.Parse("[" +
                     steps.Add(new UpgradeStep
                     {
                         FromTier =
-tier,
+                            tier,
                         MaterialTier =
-tier < 3 ?
-1 :
-tier < 6 ?
-2 :
-3,
+                            tier < 3 ?
+                            1 :
+                            tier < 6 ?
+                            2 :
+                            3,
                         MaterialCount =
-tier,
+                            tier,
                         CatalystCount =
-tier == 2 ?
-1 :
-0,
+                            tier == 2 ?
+                            1 :
+                            0,
                         Silver =
-tier * 100
+                            tier * 100
                     });
                 }
 
@@ -67,13 +67,13 @@ tier * 100
         }
 
         private static MergeCatalog Merges() =>
-MergeCatalog.Parse("{\"steps\":[{\"fromRarity\":\"common\",\"toRarity\":\"uncommon\",\"silver\":500," +
-"\"extraMaterials\":{}},{\"fromRarity\":\"uncommon\",\"toRarity\":\"rare\"," +
-"\"silver\":1500,\"extraMaterials\":{}},{\"fromRarity\":\"rare\"," +
-"\"toRarity\":\"epic\",\"silver\":4000,\"extraMaterials\":{}}," +
-"{\"fromRarity\":\"epic\",\"toRarity\":\"legendary\",\"silver\":10000," +
-"\"extraMaterials\":{}},{\"fromRarity\":\"legendary\",\"toRarity\":\"supreme\"," +
-"\"silver\":25000,\"extraMaterials\":{\"chi_ton_ngoc_tuy\":5}}]}");
+            MergeCatalog.Parse("{\"steps\":[{\"fromRarity\":\"common\",\"toRarity\":\"uncommon\",\"silver\":500," +
+            "\"extraMaterials\":{}},{\"fromRarity\":\"uncommon\",\"toRarity\":\"rare\"," +
+            "\"silver\":1500,\"extraMaterials\":{}},{\"fromRarity\":\"rare\"," +
+            "\"toRarity\":\"epic\",\"silver\":4000,\"extraMaterials\":{}}," +
+            "{\"fromRarity\":\"epic\",\"toRarity\":\"legendary\",\"silver\":10000," +
+            "\"extraMaterials\":{}},{\"fromRarity\":\"legendary\",\"toRarity\":\"supreme\"," +
+            "\"silver\":25000,\"extraMaterials\":{\"chi_ton_ngoc_tuy\":5}}]}");
         private static PlayerProfile Rich()
         {
             var profile = new PlayerProfile();
@@ -173,9 +173,9 @@ MergeCatalog.Parse("{\"steps\":[{\"fromRarity\":\"common\",\"toRarity\":\"uncomm
             profile.AddItem("sword", 3, uid: "a");
             profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
             Assert.IsTrue(new SellService(Upgrades(),
-Materials(),
-new Items()).Apply(profile,
-"a").Success);
+                Materials(),
+                new Items()).Apply(profile,
+                "a").Success);
             Assert.IsNull(profile.FindItem("a"));
             Assert.IsEmpty(profile.Loadout);
         }
@@ -184,21 +184,21 @@ new Items()).Apply(profile,
         public void RewardIsDeterministic()
         {
             RewardCatalog rules =
-RewardCatalog.Parse("{\"win\":{\"silver\":1,\"materialTier\":1,\"materialCount\":1}," +
-"\"loss\":{\"silver\":0,\"materialTier\":1,\"materialCount\":1}," +
-"\"firstClear\":{\"silver\":2,\"materialTier\":1,\"materialCount\":1}}");
+                RewardCatalog.Parse("{\"win\":{\"silver\":1,\"materialTier\":1,\"materialCount\":1}," +
+                "\"loss\":{\"silver\":0,\"materialTier\":1,\"materialCount\":1}," +
+                "\"firstClear\":{\"silver\":2,\"materialTier\":1,\"materialCount\":1}}");
             BattleReward a =
-new RewardService(rules,
-Materials()).Grant(new PlayerProfile(),
-true,
-false,
-42);
+                new RewardService(rules,
+                Materials()).Grant(new PlayerProfile(),
+                true,
+                false,
+                42);
             BattleReward b =
-new RewardService(rules,
-Materials()).Grant(new PlayerProfile(),
-true,
-false,
-42);
+                new RewardService(rules,
+                Materials()).Grant(new PlayerProfile(),
+                true,
+                false,
+                42);
             CollectionAssert.AreEquivalent(a.Materials, b.Materials);
         }
 
@@ -206,13 +206,14 @@ false,
         public void VersionOneMigratesAndLoadoutRarityCanBeRepresented()
         {
             PlayerProfile profile =
-PlayerProfile.FromJson("{\"version\":1,\"heroName\":\"A\",\"heroLevel\":1,\"heroExp\":0,\"sectId\":null," +
-"\"tamPhapLevel\":1,\"currencies\":{},\"materials\":{},\"items\":[{\"uid\":\"a\"," +
-"\"itemId\":\"sword\",\"tier\":1,\"acquiredAt\":\"x\"}],\"loadout\":[]}");
+                PlayerProfile.FromJson("{\"version\":1,\"heroName\":\"A\",\"heroLevel\":1,\"heroExp\":0," +
+                "\"sectId\":null," +
+                "\"tamPhapLevel\":1,\"currencies\":{},\"materials\":{},\"items\":[{\"uid\":\"a\"," +
+                "\"itemId\":\"sword\",\"tier\":1,\"acquiredAt\":\"x\"}],\"loadout\":[]}");
             Assert.AreEqual(PlayerProfile.CurrentVersion, profile.Version);
             Assert.AreEqual("common", profile.Items[0].Rarity);
             Assert.AreEqual("common",
-JObject.Parse("{\"rarity\":\"common\"}").Value<string>("rarity"));
+                JObject.Parse("{\"rarity\":\"common\"}").Value<string>("rarity"));
         }
     }
 }

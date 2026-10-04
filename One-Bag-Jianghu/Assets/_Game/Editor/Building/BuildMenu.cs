@@ -52,6 +52,28 @@ namespace OneBagJianghu.EditorTools.Building
         [MenuItem("One Bag Jianghu/Build/Build All Missing (Overwrite)")]
         public static void BuildAllOverwrite() { PvePrefabBuilder.RebuildArtLibrary(); BuildAll(true); }
 
+        /// <summary>
+        /// Batch entry: rebuilds libraries and every generated prefab/scene, but keeps the hand-edited
+        /// GameController (loading panel) and LoginScene as they are.
+        /// </summary>
+        public static void BuildAllKeepHandEdited()
+        {
+            ItemIconLibraryBuilder.ReimportAndRebuild();
+            PvePrefabBuilder.RebuildArtLibrary();
+            Audio.SfxLibraryBuilder.Rebuild();
+            Audio.MusicLibraryBuilder.Rebuild();
+            foreach (Action<bool> builder in Builders)
+            {
+                if (builder != GameControllerPrefabBuilder.Build)
+                    builder(true);
+            }
+
+            Audio.UiSfxPrefabBuilder.AddToPopupPrefabs();
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
+            Debug.Log("One Bag Jianghu UI build (keep hand-edited) completed.");
+        }
+
         private static void BuildAll(bool overwrite)
         {
             foreach (Action<bool> builder in Builders) builder(overwrite);

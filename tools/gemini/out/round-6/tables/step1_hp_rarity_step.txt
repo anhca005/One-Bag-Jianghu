@@ -1,0 +1,30 @@
+Loadout                                          Lương>Phàm           Tinh>Lương           Tuyệt>Tinh      Thần Binh>Tuyệt    Chí Tôn>Thần Binh  Phàm T9 vs Lương T1
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Bích Thủy Am - Dưỡng Sinh Cầm Âm                      76.5%                91.5%                94.5%                92.5%                93.5%                 0.0%
+Hàn Sơn Phái - Băng Tâm Bút Cung                      85.5%                99.0%                97.5%               100.0%                97.0%                 0.0%
+Huyền Độc Môn - Hắc Huyết Ám Khí                     100.0%               100.0%               100.0%               100.0%               100.0%                 0.0%
+Huyền Độc Môn - Vạn Độc Phệ Huyết                    100.0%               100.0%               100.0%               100.0%               100.0%                 0.0%
+Hàn Sơn Phái - Hàn Bích Hợp Bích                      77.5%                66.5%                94.5%                84.5%                72.5%                 0.0%
+Kim Cang Tự - Kim Cang Thiết Phủ                      25.0%                75.0%                49.5%                29.0%                27.0%                 0.0%
+Thái Thanh Quán - Thái Thanh Liệt Diễm                81.5%                96.5%                88.5%                87.0%                95.0%                 0.0%
+Thiết Phủ Bang - Thiết Phủ Liệt Diễm                  53.0%                60.5%                53.0%                29.5%                62.0%                 0.0%
+Kim Cang Tự - Hộ Thể Côn Quyền                        82.5%                99.0%                98.5%                97.5%                99.5%                 0.0%
+Kim Cang Tự - Bách Luyện Thuần Quyền                  92.0%               100.0%               100.0%               100.0%               100.0%                 0.0%
+Liệt Diễm Đường - Cuồng Đao Liệt Hỏa                  98.0%               100.0%               100.0%                99.0%               100.0%                 0.0%
+Liệt Diễm Đường - Hỏa Hải Song Đao                    54.0%                67.0%                79.0%                95.0%               100.0%                 0.0%
+Huyền Độc Môn - Huyết Thú Cuồng Trảo                 100.0%               100.0%               100.0%               100.0%               100.0%                 0.0%
+Hàn Sơn Phái - Băng Quy Tuyệt Hộ                      87.5%                89.5%                93.0%                93.0%                91.5%                 0.0%
+Liệt Diễm Đường - Xích Xà Hỏa Liệp                    51.0%               100.0%                87.0%                 1.0%               100.0%                 0.0%
+Kim Cang Tự - Bạch Hổ Bá Quyền                        66.0%               100.0%                85.0%                92.0%               100.0%                 0.0%
+Bích Thủy Am - Thanh Đằng Trường Tiên                 91.0%                92.0%                95.0%                95.5%                95.0%                 0.0%
+Hàn Sơn Phái - Hàn Băng Thương Pháp                   87.0%                90.0%                91.0%                88.0%                91.0%                 0.0%
+Liệt Diễm Đường - Xích Sa Chưởng Kình                 92.0%                99.5%               100.0%               100.0%               100.0%                 0.0%
+Thái Thanh Quán - Tiêu Dao Phiến Pháp                 67.5%                74.0%                80.0%                73.5%                74.0%                 0.0%
+Thiết Phủ Bang - Chấn Nhạc Chùy Phong                 80.5%                82.5%                82.0%                87.5%                80.5%                 0.0%
+Thái Thanh Quán - Kiếm Đạo Hóa Kình                   72.5%                85.5%                72.5%                82.0%                69.0%                 0.0%
+Thái Thanh Quán - Kiếm Khí Xuyên Giáp                 74.5%                83.5%                82.0%                88.5%                85.0%                 0.0%
+Thiết Phủ Bang - Bá Khí Khai Sơn                      78.0%                78.0%                78.0%                77.0%                78.0%                 0.0%
+Average                                               78.0%                88.7%                87.5%                83.0%                87.9%                 0.0%
+(draws count as half a win; the last column reports the Lương T1 side)
+
+Number of 100% cells: 31

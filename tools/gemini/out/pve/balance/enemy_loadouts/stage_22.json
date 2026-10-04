@@ -1,0 +1,38 @@
+{
+  "name": "Ải 22: Hàn Sơn Kiếm Sĩ",
+  "hp": 1650,
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "han_ngoc_tieu",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_phong_kiem",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "U Minh Ám Sát Thí Tử",
+  "sect": "huyen_doc",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 3,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 4,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    }
+  ],
+  "level": 17,
+  "cols": 5,
+  "rows": 4
+}

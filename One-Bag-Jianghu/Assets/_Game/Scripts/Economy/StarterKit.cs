@@ -21,7 +21,7 @@ namespace OneBagJianghu.Economy
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 return JsonConvert.DeserializeObject<StarterKit>(json,
-settings) ?? throw new FormatException("Starter kit JSON is null.");
+                    settings) ?? throw new FormatException("Starter kit JSON is null.");
             }
             catch (JsonException exception)
             {
@@ -54,11 +54,11 @@ settings) ?? throw new FormatException("Starter kit JSON is null.");
                 if (keys.ContainsKey(entry.Key))
                     throw new FormatException($"Duplicate starter item key '{entry.Key}'.");
                 OwnedItem item = profile.AddItem(entry.ItemId,
-entry.Tier,
-"starter",
-"starter_"
-+ entry.Key,
-entry.Rarity);
+                    entry.Tier,
+                    "starter",
+                    "starter_"
+                    + entry.Key,
+                    entry.Rarity);
                 keys.Add(entry.Key, item.Uid);
             }
 

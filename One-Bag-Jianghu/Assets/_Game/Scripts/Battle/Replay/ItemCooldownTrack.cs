@@ -24,10 +24,10 @@ namespace OneBagJianghu.Battle.Replay
 
             activations = times.ToArray();
             nominalCooldownMs =
-item == null ?
-0 :
-Math.Max(0,
-(int)Math.Round(item.CooldownSeconds * 1000f));
+                item == null ?
+                0 :
+                Math.Max(0,
+                (int)Math.Round(item.CooldownSeconds * 1000f));
         }
 
         public bool HasActivations => activations.Length > 0;

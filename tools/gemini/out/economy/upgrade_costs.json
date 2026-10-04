@@ -1,0 +1,72 @@
+{
+  "cost_multipliers": {
+    "common": 1.0,
+    "uncommon": 1.4,
+    "rare": 2.0,
+    "epic": 3.0,
+    "legendary": 4.5,
+    "supreme": 6.5
+  },
+  "upgrade_steps": {
+    "common": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 3, "catalyst_count": 0, "silver_cost": 100 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 6, "catalyst_count": 1, "silver_cost": 250 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 4, "catalyst_count": 0, "silver_cost": 500 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 7, "catalyst_count": 0, "silver_cost": 900 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 10, "catalyst_count": 2, "silver_cost": 1500 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 6, "catalyst_count": 0, "silver_cost": 2500 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 10, "catalyst_count": 0, "silver_cost": 4000 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 15, "catalyst_count": 3, "silver_cost": 6500 }
+    ],
+    "uncommon": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 4, "catalyst_count": 0, "silver_cost": 140 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 8, "catalyst_count": 1, "silver_cost": 350 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 6, "catalyst_count": 0, "silver_cost": 700 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 10, "catalyst_count": 0, "silver_cost": 1260 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 14, "catalyst_count": 2, "silver_cost": 2100 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 8, "catalyst_count": 0, "silver_cost": 3500 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 14, "catalyst_count": 0, "silver_cost": 5600 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 21, "catalyst_count": 3, "silver_cost": 9100 }
+    ],
+    "rare": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 6, "catalyst_count": 0, "silver_cost": 200 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 12, "catalyst_count": 1, "silver_cost": 500 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 8, "catalyst_count": 0, "silver_cost": 1000 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 14, "catalyst_count": 0, "silver_cost": 1800 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 20, "catalyst_count": 2, "silver_cost": 3000 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 12, "catalyst_count": 0, "silver_cost": 5000 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 20, "catalyst_count": 0, "silver_cost": 8000 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 30, "catalyst_count": 3, "silver_cost": 13000 }
+    ],
+    "epic": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 9, "catalyst_count": 0, "silver_cost": 300 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 18, "catalyst_count": 1, "silver_cost": 750 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 12, "catalyst_count": 0, "silver_cost": 1500 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 21, "catalyst_count": 0, "silver_cost": 2700 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 30, "catalyst_count": 2, "silver_cost": 4500 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 18, "catalyst_count": 0, "silver_cost": 7500 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 30, "catalyst_count": 0, "silver_cost": 12000 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 45, "catalyst_count": 4, "silver_cost": 19500 }
+    ],
+    "legendary": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 14, "catalyst_count": 0, "silver_cost": 450 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 27, "catalyst_count": 2, "silver_cost": 1125 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 18, "catalyst_count": 0, "silver_cost": 2250 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 32, "catalyst_count": 0, "silver_cost": 4050 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 45, "catalyst_count": 3, "silver_cost": 6750 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 27, "catalyst_count": 0, "silver_cost": 11250 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 45, "catalyst_count": 0, "silver_cost": 18000 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 68, "catalyst_count": 5, "silver_cost": 29250 }
+    ],
+    "supreme": [
+      { "from_tier": 1, "to_tier": 2, "material_tier": 1, "material_count": 20, "catalyst_count": 0, "silver_cost": 650 },
+      { "from_tier": 2, "to_tier": 3, "material_tier": 1, "material_count": 39, "catalyst_count": 2, "silver_cost": 1625 },
+      { "from_tier": 3, "to_tier": 4, "material_tier": 2, "material_count": 26, "catalyst_count": 0, "silver_cost": 3250 },
+      { "from_tier": 4, "to_tier": 5, "material_tier": 2, "material_count": 46, "catalyst_count": 0, "silver_cost": 5850 },
+      { "from_tier": 5, "to_tier": 6, "material_tier": 2, "material_count": 65, "catalyst_count": 4, "silver_cost": 9750 },
+      { "from_tier": 6, "to_tier": 7, "material_tier": 3, "material_count": 39, "catalyst_count": 0, "silver_cost": 16250 },
+      { "from_tier": 7, "to_tier": 8, "material_tier": 3, "material_count": 65, "catalyst_count": 0, "silver_cost": 26000 },
+      { "from_tier": 8, "to_tier": 9, "material_tier": 3, "material_count": 98, "catalyst_count": 6, "silver_cost": 42250 }
+    ]
+  }
+}

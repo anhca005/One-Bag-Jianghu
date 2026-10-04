@@ -14,15 +14,15 @@ namespace OneBagJianghu.Tests.UI
         public void PushMovesExistingPopupToTop()
         {
             GameObject firstObject =
-new GameObject("First",
-typeof(RectTransform),
-typeof(CanvasGroup),
-typeof(PopupStackTestPopup));
+                new GameObject("First",
+                typeof(RectTransform),
+                typeof(CanvasGroup),
+                typeof(PopupStackTestPopup));
             GameObject secondObject =
-new GameObject("Second",
-typeof(RectTransform),
-typeof(CanvasGroup),
-typeof(PopupStackTestPopup));
+                new GameObject("Second",
+                typeof(RectTransform),
+                typeof(CanvasGroup),
+                typeof(PopupStackTestPopup));
             try
             {
                 PopupStackTestPopup first = firstObject.GetComponent<PopupStackTestPopup>();
@@ -45,10 +45,10 @@ typeof(PopupStackTestPopup));
         public void RemoveAndClearUpdateTop()
         {
             GameObject popupObject =
-new GameObject("Popup",
-typeof(RectTransform),
-typeof(CanvasGroup),
-typeof(PopupStackTestPopup));
+                new GameObject("Popup",
+                typeof(RectTransform),
+                typeof(CanvasGroup),
+                typeof(PopupStackTestPopup));
             try
             {
                 PopupStackTestPopup popup = popupObject.GetComponent<PopupStackTestPopup>();
@@ -73,7 +73,7 @@ typeof(PopupStackTestPopup));
         {
             Assert.That(PopupStack.PopupSortingOrder(index), Is.EqualTo(popupOrder));
             Assert.That(PopupStack.BackdropSortingOrder(index),
-Is.EqualTo(backdropOrder));
+                Is.EqualTo(backdropOrder));
         }
     }
 }

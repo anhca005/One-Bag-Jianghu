@@ -1,0 +1,22 @@
+{
+  "thiet_cot_quyen_sao.attack": 12,
+  "thiet_cot_quyen_sao.basic.gain_qi": 2,
+  "phuc_ho_con.attack": 95,
+  "phuc_ho_con.ultimate.cost": 25,
+  "thanh_phong_kiem.attack": 48,
+  "thanh_phong_kiem.ultimate.cost": 50,
+  "liet_diem_dao.attack": 76,
+  "liet_diem_dao.cooldown": 4.8,
+  "xich_sa_chuong.attack": 27,
+  "that_tinh_tieu.basic.poison": 5,
+  "khai_son_phu.attack": 165,
+  "khai_son_phu.cooldown": 7.0,
+  "chan_nhac_chuy.attack": 100,
+  "bich_thuy_cam.attack": 70,
+  "bich_thuy_cam.cooldown": 5.0,
+  "tu_mau_song_dao.attack": 24,
+  "tu_mau_song_dao.crit": 0.2,
+  "sect:kim_cang.levels.1.attackPct": 0.08,
+  "sect:thiet_phu.levels.1.attackPct": 0.1,
+  "sect:liet_diem.levels.1.attackPct": 0.04
+}

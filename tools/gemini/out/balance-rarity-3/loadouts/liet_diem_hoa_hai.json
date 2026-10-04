@@ -1,0 +1,63 @@
+{
+  "name": "Liệt Diễm Đường - Hỏa Hải (Tứ Đao)",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "liet_diem",
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 1,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 2,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 0,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 4,
+      "y": 2,
+      "rarity": "common"
+    }
+  ]
+}

@@ -208,21 +208,23 @@ namespace OneBagJianghu.UI.Popups
                 nestedCanvas.sortingOrder = PopupStack.PopupSortingOrder(i);
             }
 
-            BasePopup top = stack.Top;
-            bool showBackdrop = false;
-            for (int i = 0; i < stack.Count; i++)
+            // The backdrop sits right under the highest popup that dims. A non-dimming popup above it (the
+            // tutorial overlay) must not push the backdrop over the popup it is pointing at.
+            int dimmingIndex = -1;
+            for (int i = stack.Count - 1; i >= 0; i--)
             {
                 if (stack.Items[i].DimsBackground)
                 {
-                    showBackdrop = true;
+                    dimmingIndex = i;
                     break;
                 }
             }
 
+            bool showBackdrop = dimmingIndex >= 0;
             backdrop.SetActive(showBackdrop);
             if (showBackdrop)
             {
-                backdropCanvas.sortingOrder = PopupStack.BackdropSortingOrder(stack.Count - 1);
+                backdropCanvas.sortingOrder = PopupStack.BackdropSortingOrder(dimmingIndex);
             }
         }
     }

@@ -34,6 +34,8 @@ namespace OneBagJianghu.UI.Common
         [SerializeField]
         private Text statsText;
         [SerializeField]
+        private Text powerText;
+        [SerializeField]
         private bool showSectSelector = true;
         [SerializeField]
         private BagGridView gridView;
@@ -53,6 +55,7 @@ namespace OneBagJianghu.UI.Common
         public int TamPhapLevel => tamPhapLevel;
 
         public event Action<ItemInfo, OwnedItem> ItemSelected;
+        public event Action LoadoutChanged;
         public bool IsEmpty => gridView.Grid.Items.Count == 0;
 
         public bool HasWeapon
@@ -79,7 +82,10 @@ namespace OneBagJianghu.UI.Common
         private string Describe(ItemInfo info, string uid, int tier)
         {
             OwnedItem owned = boundProfile?.FindItem(uid);
-            return ItemDescriber.Describe(info.Id, owned?.Rarity ?? info.Rarity, owned?.Tier ?? tier);
+            string rarity = owned?.Rarity ?? info.Rarity;
+            int resolvedTier = owned?.Tier ?? tier;
+            int power = PowerCatalog.LoadFromResources().ItemPower(info.Id, resolvedTier, rarity);
+            return ItemTooltip.WithPower(ItemDescriber.Describe(info.Id, rarity, resolvedTier), power);
         }
 
         private string OwnedRarity(string uid, string fallback) => boundProfile?.FindItem(uid)?.Rarity ?? fallback;
@@ -89,11 +95,11 @@ namespace OneBagJianghu.UI.Common
                 return false;
             OwnedItem owned = boundProfile.FindItem(uid);
             if (owned == null
-|| !itemCatalog.TryGet(owned.ItemId,
-out ItemInfo info)
-|| !gridView.Grid.CanPlace(info,
-x,
-y))
+                || !itemCatalog.TryGet(owned.ItemId,
+                out ItemInfo info)
+                || !gridView.Grid.CanPlace(info,
+                x,
+                y))
                 return false;
             gridView.Grid.Place(info, x, y, owned.Tier, uid);
             return true;
@@ -144,7 +150,7 @@ y))
             itemCatalog = ItemCatalog.LoadFromResources();
             sectCatalog = SectCatalog.LoadFromResources();
             selectedSectId = string.IsNullOrWhiteSpace(sectId) ? showSectSelector
-&& sectCatalog.All.Count > 0 ? sectCatalog.All[0].Id : null : sectId;
+                && sectCatalog.All.Count > 0 ? sectCatalog.All[0].Id : null : sectId;
             tamPhapLevel = Mathf.Clamp(level, 1, 9);
             var options = new List<Dropdown.OptionData>();
             foreach (SectInfo sect in sectCatalog.All)
@@ -152,9 +158,13 @@ y))
             sectDropdown.options = options;
             gridView.Initialize(grid, trayView);
             if (statsGrid != null)
+            {
                 statsGrid.Changed -= RefreshStats;
+                statsGrid.Changed -= HandleLoadoutChanged;
+            }
             statsGrid = grid;
             statsGrid.Changed += RefreshStats;
+            statsGrid.Changed += HandleLoadoutChanged;
             gridView.Rarity = placed => OwnedRarity(placed.OwnedUid, placed.Item.Rarity);
             gridView.ItemSelected = OnItemSelected;
             trayView.ItemSelected = OnItemSelected;
@@ -168,16 +178,17 @@ y))
             ApplySect(selectedSectId);
             RefreshLevel();
             RefreshStats();
+            RefreshPower();
         }
 
         public string ToJson(string heroName) => LoadoutSerializer.ToJson(gridView.Grid,
-heroName,
-boundProfile?.HeroLevel ?? 1,
-new LoadoutMeta
-{
-    Sect = selectedSectId,
-    TamPhapLevel = tamPhapLevel
-});
+            heroName,
+            boundProfile?.HeroLevel ?? 1,
+            new LoadoutMeta
+            {
+                Sect = selectedSectId,
+                TamPhapLevel = tamPhapLevel
+            });
         public void ApplyToProfile()
         {
             if (!TryApplyToProfile(out string error))
@@ -294,29 +305,56 @@ new LoadoutMeta
 
             int level = boundProfile?.HeroLevel ?? 1;
             FighterStats stats = new BattleSimulator(engineItems,
-engineSects,
-BattleConfig.Defaults()).FighterStats(BuildStatsLoadout(statsGrid,
-level,
-selectedSectId,
-tamPhapLevel,
-boundProfile));
+                engineSects,
+                BattleConfig.Defaults()).FighterStats(BuildStatsLoadout(statsGrid,
+                level,
+                selectedSectId,
+                tamPhapLevel,
+                boundProfile));
             statsText.text = "Cấp "
-+ level
-+ "\nKhí Huyết tối đa: "
-+ stats.maxHp
-+ "\nHộ Thân: "
-+ (stats.dmgReducePermille / 10f).ToString("0.#")
-+ "% (≤ 80%)"
-+ "\nGiảm Hồi Chiêu: "
-+ (stats.cooldownReductionPermille / 10f).ToString("0.#")
-+ "% (≤ 40%)";
+                + level
+                + "\nKhí Huyết tối đa: "
+                + stats.maxHp
+                + "\nHộ Thân: "
+                + (stats.dmgReducePermille / 10f).ToString("0.#")
+                + "% (≤ 80%)"
+                + "\nGiảm Hồi Chiêu: "
+                + (stats.cooldownReductionPermille / 10f).ToString("0.#")
+                + "% (≤ 40%)";
+        }
+
+        private void HandleLoadoutChanged()
+        {
+            RefreshPower();
+            LoadoutChanged?.Invoke();
+        }
+
+        private void RefreshPower()
+        {
+            if (powerText == null || statsGrid == null)
+                return;
+            var items = new List<OwnedItem>();
+            foreach (PlacedItem placed in statsGrid.Items)
+            {
+                OwnedItem owned = boundProfile?.FindItem(placed.OwnedUid);
+                items.Add(owned ?? new OwnedItem
+                {
+                    ItemId = placed.Item.Id,
+                    Tier = placed.Tier,
+                    Rarity = placed.Item.Rarity
+                });
+            }
+
+            int level = boundProfile?.HeroLevel ?? 1;
+            int power = PowerCatalog.LoadFromResources().Fighter(items, level);
+            powerText.text = "Lực Chiến: " + UiFormat.Number(power);
         }
 
         public static Loadout BuildStatsLoadout(BagGrid grid,
-int level,
-string sectId,
-int tamPhapLevel,
-PlayerProfile profile = null)
+            int level,
+            string sectId,
+            int tamPhapLevel,
+            PlayerProfile profile = null)
         {
             var loadout = new Loadout
             {
@@ -349,7 +387,10 @@ PlayerProfile profile = null)
         private void OnDestroy()
         {
             if (statsGrid != null)
+            {
                 statsGrid.Changed -= RefreshStats;
+                statsGrid.Changed -= HandleLoadoutChanged;
+            }
         }
     }
 }

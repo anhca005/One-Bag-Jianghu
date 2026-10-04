@@ -30,11 +30,11 @@ namespace OneBagJianghu.Tests.Battle.Replay.VfxLab
                 if (item.Type != "weapon")
                     continue;
                 Assert.That(keys,
-Does.Contain(item.WeaponClass + "_basic"),
-item.WeaponClass);
+                    Does.Contain(item.WeaponClass + "_basic"),
+                    item.WeaponClass);
                 Assert.That(keys,
-Does.Contain(item.WeaponClass + "_ultimate"),
-item.WeaponClass);
+                    Does.Contain(item.WeaponClass + "_ultimate"),
+                    item.WeaponClass);
             }
         }
 

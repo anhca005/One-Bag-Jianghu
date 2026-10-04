@@ -1,0 +1,25 @@
+# Task: VFX Lab — a standalone test scene to preview each attack effect ("One Bag Jianghu")
+
+Repo root `D:\CONG VIEC\One-Bag-Jianghu`, Unity project `One-Bag-Jianghu/` (Unity 6000.3.9f1, UGUI built procedurally in code, Input System). The artist is drawing 39 VFX sprites by hand into `Assets/_Game/Textures2D/Vfx/` (list and naming: `docs/art/prompts-attack-vfx.md`). They need a tool to check each sprite **exactly as it looks in battle** (same size, speed, easing, mirroring) one by one, and compare it against the others.
+
+## Hard rules
+- Create/modify files only under `One-Bag-Jianghu/Assets/_Game/`. No Packages/, ProjectSettings/, no Java, no git.
+- English code/comments, C# 9, match the existing style (procedural UGUI helpers in `Scripts/Battle/Replay/View/ReplayUi.cs`, colors in `ReplayStyle` / `BagViewStyle`). Must compile in Unity 6 — you cannot run Unity, so double-check APIs and assembly references. Existing EditMode tests must keep passing.
+- **Reuse, do not duplicate**, the real battle rendering: `ReplayVfxLayer` (`Present` + `Tick`), `VfxResolver` (key naming), `ReplayStyle` (sizes/durations), `ItemIconLibrary` (sprite lookup by file name). If the lab needs something from them, add a small public member rather than copying logic. Do not change how battles look.
+
+## What to build
+1. `Scripts/Battle/Replay/View/VfxLab/` (namespace `OneBagJianghu.Battle.Replay.View.VfxLab`):
+   - `VfxCatalog` (pure C#, no MonoBehaviour): the full list of 39 keys grouped as in the doc — 17 `<class>_basic` (Travel), 17 `<class>_ultimate` (Travel, ULTIMATE), `hit` (Hit), `parry` (Parry), `burst_burn` / `burst_poison` / `burst_bleed` (Burst). Weapon classes: fist staff sword blade hidden claw axe brush flute zither palm fan spear hammer whip dual bow (same strings as `weaponClass` in `Resources/Data/items.json`). Each entry: key, kind, display label (Vietnamese weapon class name from `docs/design/glossary.md`, e.g. "Quyền Sáo — Phổ Công"). Build keys the same way `VfxResolver` does.
+   - `VfxLabBootstrap : MonoBehaviour` — builds the whole screen at Start (EventSystem + 1920×1080 ScaleWithScreenSize canvas, match .5, like `ReplayDemoBootstrap`).
+2. Screen layout (paper background, ink text):
+   - **Left panel**: scrollable list of all 39 entries grouped by header (Phổ Công / Tuyệt Kỹ / Chung). Each row: label, file key, and a status mark — ✓ art found in `ItemIconLibrary`, ✗ missing (shows fallback shape). Header shows "x/39 có hình". Clicking a row selects and plays it.
+   - **Stage (center/right)**: two fighter placeholder boxes (left "Ta", right "Địch") placed at the same distance as in the real `ReplayScreen`, with a `ReplayVfxLayer` on top. Travel effects fly from the attacker box to the defender box; Hit/Parry/Burst play on the defender.
+   - **Controls bar**: Play (replay selected), Loop toggle (repeat with 0.4 s pause), Side toggle (attacker left / attacker right → tests mirroring), Speed buttons 0.25× / 0.5× / 1× / 2×, "Play all" (plays every entry in list order, the current label shown big on the stage), Prev / Next, Background toggle (paper / dark / checker — checker makes leftover white or checker pixels from bad background removal visible), "Hit after" toggle (a Travel entry also plays `hit` on arrival, exactly like the battle: hit delayed by the travel duration).
+   - **Inspector strip** under the stage: the raw sprite at native aspect (static, not animated) inside a box of the in-game size (260×170 basic, 420×280 ultimate, 250 burst, 220 parry, 180 hit) plus the texture's pixel size and its visible-content bounding box ratio (how much of the canvas the ink actually fills — warn in red when < 35% of width for Travel sprites, because a small shape inside a big transparent canvas looks tiny in game).
+   - Keyboard: Space = play, ←/→ = prev/next, L = loop (use Input System `Keyboard.current`).
+   - Time: drive `ReplayVfxLayer.Tick(nowMs)` from your own clock scaled by speed (do not touch `Time.timeScale`).
+3. Editor: add menu **One Bag Jianghu → Create VFX Lab Scene** in `Editor/DemoSceneBuilder.cs` (reuse its `Create<T>` helper) → `Assets/_Game/Scenes/VfxLab.unity` with a `VfxLabBootstrap` object; call `ItemIconLibraryBuilder.Rebuild()` first so new sprites are picked up. Do NOT add the scene to Build Settings. Also add a line to `CreateAll` only if it keeps the existing scenes untouched.
+4. Tests `Tests/EditMode/VfxLab/VfxCatalogTests.cs`: 39 unique keys; every weapon class in `Resources/Data/items.json` has both a basic and an ultimate entry; each weapon entry key equals what `VfxResolver.Resolve` returns for a fake weapon trigger event of that class (BASIC / ULTIMATE); burst keys equal `VfxResolver` output for BURN/POISON/BLEED burst events.
+5. Docs (do not edit anything under `docs/`): write `Scripts/Battle/Replay/View/VfxLab/README.md` (Vietnamese, ≤ 25 lines): how to open (menu → scene → Play), controls, what the checks mean.
+
+Finish with: files created/changed, any public member you added to existing classes and why, anything unsure (especially API calls you could not verify without Unity).

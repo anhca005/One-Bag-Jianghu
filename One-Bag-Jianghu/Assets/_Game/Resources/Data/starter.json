@@ -1,6 +1,6 @@
 {
   "currencies": {
-    "bac": 1000,
+    "bac": 500,
     "nguyen_bao": 0,
     "danh_vong": 0
   },
@@ -18,16 +18,5 @@
       "rarity": "common"
     }
   ],
-  "loadout": [
-    {
-      "itemKey": "sword",
-      "x": 0,
-      "y": 0
-    },
-    {
-      "itemKey": "armor",
-      "x": 1,
-      "y": 0
-    }
-  ]
+  "loadout": []
 }

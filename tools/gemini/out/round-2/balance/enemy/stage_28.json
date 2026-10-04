@@ -1,0 +1,31 @@
+{
+  "name": "Ải 28: Vạn Niên Băng Quy",
+  "hp": 4620,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 4,
+  "items": [
+    {
+      "id": "bang_phach_co_cot",
+      "x": 0,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "thien_nien_quy_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 4,
+      "y": 0,
+      "tier": 5,
+      "rarity": "epic"
+    }
+  ]
+}

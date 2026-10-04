@@ -1,0 +1,59 @@
+{
+  "name": "Người Chơi (Ải 20)",
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "phi_yen_quyet",
+      "x": 4,
+      "y": 2,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 1,
+      "y": 2,
+      "tier": 3,
+      "rarity": "epic"
+    }
+  ],
+  "level": 20
+}

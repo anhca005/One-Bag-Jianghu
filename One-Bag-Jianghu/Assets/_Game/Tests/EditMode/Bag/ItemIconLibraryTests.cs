@@ -48,9 +48,9 @@ namespace OneBagJianghu.Tests.Bag
             foreach (string code in codes)
             {
                 Assert.That(library.TryGet("status_" + code,
-out Sprite sprite),
-Is.True,
-code);
+                    out Sprite sprite),
+                    Is.True,
+                    code);
                 Assert.That(sprite, Is.Not.Null, code);
             }
         }

@@ -1,0 +1,130 @@
+{
+  "drop_group_weights": {
+    "description": "Weighted drop proportions matching Part C item composition (17 weapons, 11 armors, 11 manuals, 22 pills/relics)",
+    "weapon": 28,
+    "armor": 18,
+    "manual": 18,
+    "pill_relic": 36
+  },
+  "pve_rewards": {
+    "chapter_1": {
+      "stages_1_to_9": {
+        "first_clear": {
+          "silver": 200,
+          "exp": 60,
+          "guaranteed_tier_1_materials": 3,
+          "catalyst_drop_chance": 0.2
+        },
+        "repeat_win": {
+          "silver": 60,
+          "exp": 20,
+          "guaranteed_tier_1_materials": 1,
+          "catalyst_drop_chance": 0.05
+        },
+        "loss": {
+          "silver": 15,
+          "exp": 5,
+          "tier_1_material_chance": 0.3
+        }
+      },
+      "stage_10_boss": {
+        "first_clear": {
+          "silver": 600,
+          "exp": 150,
+          "guaranteed_tier_1_materials": 8,
+          "guaranteed_catalyst": 1
+        },
+        "repeat_win": {
+          "silver": 150,
+          "exp": 40,
+          "guaranteed_tier_1_materials": 3,
+          "catalyst_drop_chance": 0.15
+        },
+        "loss": {
+          "silver": 30,
+          "exp": 10,
+          "tier_1_material_chance": 0.5
+        }
+      }
+    },
+    "chapter_2": {
+      "stages_1_to_9": {
+        "first_clear": {
+          "silver": 400,
+          "exp": 100,
+          "guaranteed_tier_2_materials": 3,
+          "catalyst_drop_chance": 0.25
+        },
+        "repeat_win": {
+          "silver": 120,
+          "exp": 35,
+          "guaranteed_tier_2_materials": 1,
+          "catalyst_drop_chance": 0.08
+        },
+        "loss": {
+          "silver": 25,
+          "exp": 10,
+          "tier_2_material_chance": 0.3
+        }
+      },
+      "stage_10_boss": {
+        "first_clear": {
+          "silver": 1200,
+          "exp": 250,
+          "guaranteed_tier_2_materials": 8,
+          "guaranteed_catalyst": 1
+        },
+        "repeat_win": {
+          "silver": 300,
+          "exp": 70,
+          "guaranteed_tier_2_materials": 3,
+          "catalyst_drop_chance": 0.2
+        },
+        "loss": {
+          "silver": 50,
+          "exp": 15,
+          "tier_2_material_chance": 0.5
+        }
+      }
+    }
+  },
+  "pvp_rewards": {
+    "per_match": {
+      "win": {
+        "silver": 100,
+        "reputation": 25,
+        "exp": 35,
+        "material_drop_chance": 0.5,
+        "material_tier": 1,
+        "catalyst_drop_chance": 0.1
+      },
+      "draw": {
+        "silver": 50,
+        "reputation": 10,
+        "exp": 20,
+        "material_drop_chance": 0.25,
+        "material_tier": 1,
+        "catalyst_drop_chance": 0.0
+      },
+      "loss": {
+        "silver": 25,
+        "reputation": 5,
+        "exp": 10,
+        "material_drop_chance": 0.1,
+        "material_tier": 1,
+        "catalyst_drop_chance": 0.0
+      }
+    },
+    "weekly_milestones": [
+      { "wins_required": 5, "silver": 500, "reputation": 50 },
+      { "wins_required": 10, "silver": 1000, "reputation": 100, "guaranteed_special_material": { "id": "chi_ton_ngoc_tuy", "count": 1 } },
+      { "wins_required": 20, "silver": 2000, "reputation": 150 }
+    ],
+    "season_ranking": [
+      { "bracket": "top_10", "silver": 20000, "special_material": { "id": "chi_ton_ngoc_tuy", "count": 5 }, "title": "Tông Sư Đỉnh Phong" },
+      { "bracket": "top_5_percent", "silver": 12000, "special_material": { "id": "chi_ton_ngoc_tuy", "count": 3 }, "title": "Bát Hoang Vô Song" },
+      { "bracket": "top_20_percent", "silver": 8000, "special_material": { "id": "chi_ton_ngoc_tuy", "count": 2 }, "title": "Giang Hồ Hào Kiệt" },
+      { "bracket": "top_50_percent", "silver": 5000, "special_material": { "id": "chi_ton_ngoc_tuy", "count": 1 }, "title": "Kiếm Khách Thục Luyện" }
+    ]
+  }
+}

@@ -1,4 +1,5 @@
 using System.Collections;
+using OneBagJianghu.Economy;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -26,6 +27,23 @@ namespace OneBagJianghu.UI.Common
         public bool IsVisible => panel != null && panel.gameObject.activeSelf;
         public string Text => descriptionText == null ? string.Empty : descriptionText.text;
         public Canvas OverlayCanvas => overlayCanvas;
+
+        public static string WithPower(string description, OwnedItem item)
+        {
+            if (item == null)
+                return description;
+            int power = PowerCatalog.LoadFromResources().ItemPower(item);
+            return WithPower(description, power);
+        }
+
+        public static string WithPower(string description, int power)
+        {
+            string line = "<color=#A33A2B>Lực Chiến +" + UiFormat.Number(power) + "</color>";
+            int insertion = FindLineEnd(description, 3);
+            return insertion < 0
+                ? description + "\n" + line
+                : description.Insert(insertion, "\n" + line);
+        }
 
         private void Awake()
         {
@@ -131,6 +149,21 @@ namespace OneBagJianghu.UI.Common
         {
             foreach (Graphic graphic in root.GetComponentsInChildren<Graphic>(true))
                 graphic.raycastTarget = value;
+        }
+
+        private static int FindLineEnd(string value, int line)
+        {
+            if (string.IsNullOrEmpty(value))
+                return -1;
+            int index = -1;
+            for (int current = 0; current < line; current++)
+            {
+                index = value.IndexOf('\n', index + 1);
+                if (index < 0)
+                    return -1;
+            }
+
+            return index;
         }
     }
 }

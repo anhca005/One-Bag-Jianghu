@@ -1,0 +1,82 @@
+{
+  "name": "Liệt Diễm Đường - Xích Xà Hỏa Liệp",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "liet_diem",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 0,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "hoa_diem_xa_cot",
+      "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 1,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_diem_dao",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 2,
+      "y": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 3,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

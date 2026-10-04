@@ -40,18 +40,18 @@ namespace OneBagJianghu.Tests.Scenes
         {
             Scene scene = EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
             Assert.That(Object.FindObjectsByType<EventSystem>(FindObjectsInactive.Include,
-FindObjectsSortMode.None),
-Has.Length.EqualTo(1));
+                FindObjectsSortMode.None),
+                Has.Length.EqualTo(1));
             Canvas[] canvases =
-Object.FindObjectsByType<Canvas>(FindObjectsInactive.Include,
-FindObjectsSortMode.None);
+                Object.FindObjectsByType<Canvas>(FindObjectsInactive.Include,
+                FindObjectsSortMode.None);
             Assert.That(canvases, Has.Length.EqualTo(1));
             CanvasScaler scaler = canvases[0].GetComponent<CanvasScaler>();
             Assert.That(scaler.uiScaleMode,
-Is.EqualTo(CanvasScaler.ScaleMode.ScaleWithScreenSize));
+                Is.EqualTo(CanvasScaler.ScaleMode.ScaleWithScreenSize));
             Assert.That(scaler.referenceResolution,
-Is.EqualTo(new Vector2(1920f,
-1080f)));
+                Is.EqualTo(new Vector2(1920f,
+                1080f)));
             Assert.That(scaler.matchWidthOrHeight, Is.EqualTo(.5f));
             MonoBehaviour bootstrap = null;
             foreach (GameObject root in scene.GetRootGameObjects())
@@ -72,14 +72,14 @@ Is.EqualTo(new Vector2(1920f,
                     Assert.That(value, Is.Not.Null, bootstrapType.Name + "." + field.Name);
                 }
                 else if (field.FieldType.IsArray &&
-typeof(Object).IsAssignableFrom(field.FieldType.GetElementType()))
+                    typeof(Object).IsAssignableFrom(field.FieldType.GetElementType()))
                 {
                     var array = (System.Array)value;
                     Assert.That(array,
-Is.Not.Null.And.Length.GreaterThan(0),
-bootstrapType.Name +
-"." +
-field.Name);
+                        Is.Not.Null.And.Length.GreaterThan(0),
+                        bootstrapType.Name +
+                        "." +
+                        field.Name);
                     foreach (object element in array)
                     {
                         Assert.That(element, Is.Not.Null, bootstrapType.Name + "." + field.Name);
@@ -100,17 +100,17 @@ field.Name);
             GameObject[] roots = scene.GetRootGameObjects();
             bool isLogin = scene.name == "LoginScene";
             Assert.That(System.Array.FindAll(roots,
-root =>
-root.GetComponent<GameController>() != null),
-Has.Length.EqualTo(isLogin ?
-1 :
-0));
+                root =>
+                root.GetComponent<GameController>() != null),
+                Has.Length.EqualTo(isLogin ?
+                1 :
+                0));
             Assert.That(System.Array.Find(roots,
-root => root.name == scene.name),
-Is.Null);
+                root => root.name == scene.name),
+                Is.Null);
             Assert.That(System.Array.Find(roots,
-root => root.name == scene.name + "Scene"),
-Is.Null);
+                root => root.name == scene.name + "Scene"),
+                Is.Null);
             GameObject cameraRoot = SingleRoot(roots, "Main Camera");
             Assert.That(cameraRoot.CompareTag("MainCamera"), Is.True);
             Camera camera = cameraRoot.GetComponent<Camera>();
@@ -120,21 +120,21 @@ Is.Null);
             Assert.That(camera.backgroundColor, Is.EqualTo(UiKit.Paper));
             Assert.That(camera.depth, Is.EqualTo(-1f));
             Assert.That(cameraRoot.GetComponents<AudioListener>(),
-Has.Length.EqualTo(1));
+                Has.Length.EqualTo(1));
             GameObject eventSystemRoot = SingleRoot(roots, "EventSystem");
             Assert.That(eventSystemRoot.GetComponent<EventSystem>(), Is.Not.Null);
             Assert.That(eventSystemRoot.GetComponent("InputSystemUIInputModule"),
-Is.Not.Null);
+                Is.Not.Null);
             Assert.That(Object.FindObjectsByType<EventSystem>(FindObjectsInactive.Include,
-FindObjectsSortMode.None),
-Has.Length.EqualTo(1));
+                FindObjectsSortMode.None),
+                Has.Length.EqualTo(1));
             GameObject controllerRoot =
-System.Array.Find(roots,
-root =>
-root.GetComponent(controllerType) != null);
+                System.Array.Find(roots,
+                root =>
+                root.GetComponent(controllerType) != null);
             Assert.That(controllerRoot,
-Is.Not.Null,
-controllerType.Name + " must be a scene root.");
+                Is.Not.Null,
+                controllerType.Name + " must be a scene root.");
             Canvas canvas = SingleRoot(roots, "Canvas").GetComponent<Canvas>();
             Assert.That(canvas, Is.Not.Null);
             Assert.That(canvas.renderMode, Is.EqualTo(RenderMode.ScreenSpaceOverlay));
@@ -144,13 +144,13 @@ controllerType.Name + " must be a scene root.");
         public void DemoScenesUseLinkedTaskCPrefabs()
         {
             AssertLinked("Assets/_Game/Scenes/BagDemo.unity",
-"Assets/_Game/Prefabs/UI/Bag/BagLoadoutPanel.prefab");
+                "Assets/_Game/Prefabs/UI/Bag/BagLoadoutPanel.prefab");
             AssertLinked("Assets/_Game/Scenes/ReplayDemo.unity",
-"Assets/_Game/Prefabs/UI/Replay/ReplayScreen.prefab");
+                "Assets/_Game/Prefabs/UI/Replay/ReplayScreen.prefab");
             EditorSceneManager.OpenScene("Assets/_Game/Scenes/VfxLab.unity", OpenSceneMode.Single);
             FighterPanelView[] fighters =
-Object.FindObjectsByType<FighterPanelView>(FindObjectsInactive.Include,
-FindObjectsSortMode.None);
+                Object.FindObjectsByType<FighterPanelView>(FindObjectsInactive.Include,
+                FindObjectsSortMode.None);
             Assert.That(fighters, Has.Length.EqualTo(2));
             foreach (FighterPanelView fighter in fighters)
             {
@@ -181,10 +181,10 @@ FindObjectsSortMode.None);
         {
             GameObject[] matches = System.Array.FindAll(roots, root => root.name == name);
             Assert.That(matches,
-Has.Length.EqualTo(1),
-"Expected exactly one root named " +
-name +
-".");
+                Has.Length.EqualTo(1),
+                "Expected exactly one root named " +
+                name +
+                ".");
             return matches[0];
         }
     }

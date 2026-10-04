@@ -1,0 +1,17 @@
+[
+  {
+    "path": "sects[0].tamPhap",
+    "old": "Kim Cang Thiết Cốt Quyết",
+    "new": "Kim Cang Thiết Cốt"
+  },
+  {
+    "path": "sects[2].tamPhap",
+    "old": "Liệt Diễm Tâm Hỏa Quyết",
+    "new": "Liệt Diễm Tâm Hỏa"
+  },
+  {
+    "path": "sects[4].tamPhap",
+    "old": "Hàn Sơn Băng Tâm Quyết",
+    "new": "Hàn Sơn Băng Tâm"
+  }
+]

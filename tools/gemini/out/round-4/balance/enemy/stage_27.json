@@ -1,0 +1,45 @@
+{
+  "name": "U Minh Chấp Pháp Sứ",
+  "sect": "huyen_doc",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "u_minh_quy_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 6,
+      "rarity": "legendary"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 3,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 3,
+      "y": 1,
+      "tier": 6,
+      "rarity": "supreme"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 6,
+      "rarity": "supreme"
+    }
+  ],
+  "level": 26,
+  "cols": 5,
+  "rows": 4
+}

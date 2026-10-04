@@ -90,8 +90,9 @@ GameObject:
   - component: {fileID: 3795926572320667370}
   - component: {fileID: 7949277549210620228}
   - component: {fileID: 531636847998214661}
-  - component: {fileID: 6975069332708176950}
+  - component: {fileID: 1623742671407126213}
   - component: {fileID: 4768242467416195080}
+  - component: {fileID: 1183329309721399176}
   m_Layer: 0
   m_Name: SectSelectPopup
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!114 &6975069332708176950
+--- !u!114 &1623742671407126213
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -191,6 +192,19 @@ MonoBehaviour:
   descriptionText: {fileID: 6308925843982877543}
   confirmButton: {fileID: 1375880671668759595}
   cancelButton: {fileID: 2938681381175235451}
+--- !u!114 &1183329309721399176
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8394780754592915662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b801632946408b1468073d9cd0bcd0fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Audio.UiSfx
+  cue: 1
 --- !u!1 &8480643608226875501
 GameObject:
   m_ObjectHideFlags: 0
@@ -358,9 +372,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7427100909598966331, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6.5
+      objectReference: {fileID: 0}
     - target: {fileID: 9218925419710371629, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Name
-      value: Panel_Paper
+      value: Panel
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -402,6 +420,10 @@ PrefabInstance:
     - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 1168793677721913333, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x
@@ -615,8 +637,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8871249755045663889, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5998485293960055130}
   m_SourcePrefab: {fileID: 100100000, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
+--- !u!1 &2906668048481689398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8871249755045663889, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
+  m_PrefabInstance: {fileID: 6002046607661337511}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5998485293960055130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2906668048481689398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e923486bf177469a8df2bc5a718541e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.Onboarding.TutorialTarget
+  id: sect_choices
 --- !u!224 &5950540902151324822 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 134858376878722865, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
@@ -627,7 +670,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4138167588544832560, guid: bc35688ac3310c74783de98fe3549a7d, type: 3}
   m_PrefabInstance: {fileID: 6002046607661337511}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2906668048481689398}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0d0b652f32a2cc243917e4028fa0f046, type: 3}
@@ -641,6 +684,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4613795382540034676}
     m_Modifications:
+    - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2145533071607749656, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Name
       value: Confirm

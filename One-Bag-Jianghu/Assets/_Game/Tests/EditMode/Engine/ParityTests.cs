@@ -31,11 +31,11 @@ namespace OneBagJianghu.Tests.Engine
             JObject expected = (JObject)golden["expected"];
             expected.Remove("draw");
             JObject actual =
-new BattleSimulator(items,
-sects,
-BattleConfig.Defaults()).Run(a,
-b,
-golden.Value<long>("seed")).ToJObject();
+                new BattleSimulator(items,
+                sects,
+                BattleConfig.Defaults()).Run(a,
+                b,
+                golden.Value<long>("seed")).ToJObject();
             foreach (string field in new[]
             {
                 "winner",
@@ -48,19 +48,19 @@ golden.Value<long>("seed")).ToJObject();
             )
             {
                 Assert.That(JToken.DeepEquals(expected[field],
-actual[field]),
-Is.True,
-Path.GetFileName(file) +
-" field " +
-field);
+                    actual[field]),
+                    Is.True,
+                    Path.GetFileName(file) +
+                    " field " +
+                    field);
             }
 
             JArray expectedEvents = (JArray)expected["events"];
             JArray actualEvents = (JArray)actual["events"];
             Assert.That(actualEvents.Count,
-Is.EqualTo(expectedEvents.Count),
-Path.GetFileName(file) +
-" event count");
+                Is.EqualTo(expectedEvents.Count),
+                Path.GetFileName(file) +
+                " event count");
             for (int i = 0; i < expectedEvents.Count; i++)
             {
                 if (JToken.DeepEquals(expectedEvents[i], actualEvents[i]))
@@ -73,14 +73,14 @@ Path.GetFileName(file) +
                 }
 
                 Assert.Fail(Path.GetFileName(file) +
-" event " +
-i +
-"\nexpected: " +
-expectedEvents[i] +
-"\nactual: " +
-actualEvents[i] +
-"\nprevious actual: " +
-context);
+                    " event " +
+                    i +
+                    "\nexpected: " +
+                    expectedEvents[i] +
+                    "\nactual: " +
+                    actualEvents[i] +
+                    "\nprevious actual: " +
+                    context);
             }
         }
 
@@ -88,9 +88,9 @@ context);
         public void BagGridFindsOverlapAndOutside()
         {
             List<string> errors =
-new BagGrid(2,
-2).Validate(new[] { new Rect(0, 0, 2, 1),
-new Rect(1, 0, 2, 1) });
+                new BagGrid(2,
+                2).Validate(new[] { new Rect(0, 0, 2, 1),
+                new Rect(1, 0, 2, 1) });
             Assert.That(errors, Has.Count.EqualTo(2));
         }
 
@@ -99,7 +99,7 @@ new Rect(1, 0, 2, 1) });
         {
             Rng rng = new Rng(0);
             Assert.That(rng.NextLong(),
-Is.EqualTo(unchecked((long)0xE220A8397B1DCDAFUL)));
+                Is.EqualTo(unchecked((long)0xE220A8397B1DCDAFUL)));
         }
 
         [Test]

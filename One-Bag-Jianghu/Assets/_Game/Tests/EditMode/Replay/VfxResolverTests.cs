@@ -23,10 +23,10 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void Resolve_NonWeaponTriggerReturnsNone(string itemType)
         {
             ReplayVfx result =
-VfxResolver.Resolve(Event(BattleEventType.Trigger,
-"BASIC"),
-Item(itemType,
-null));
+                VfxResolver.Resolve(Event(BattleEventType.Trigger,
+                "BASIC"),
+                Item(itemType,
+                null));
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.None));
             Assert.That(result.SpriteKey, Is.Null);
         }
@@ -35,10 +35,10 @@ null));
         public void Resolve_UnknownWeaponClassUsesNamingContract()
         {
             ReplayVfx result =
-VfxResolver.Resolve(Event(BattleEventType.Trigger,
-"ULTIMATE"),
-Item("weapon",
-"Spear"));
+                VfxResolver.Resolve(Event(BattleEventType.Trigger,
+                "ULTIMATE"),
+                Item("weapon",
+                "Spear"));
             Assert.That(result.Kind, Is.EqualTo(ReplayVfxKind.Travel));
             Assert.That(result.SpriteKey, Is.EqualTo("spear_ultimate"));
         }
@@ -47,9 +47,9 @@ Item("weapon",
         [TestCase(BattleEventType.Parry, null, ReplayVfxKind.Parry, "parry")]
         [TestCase(BattleEventType.Damage, null, ReplayVfxKind.Hit, "hit")]
         public void Resolve_CenteredEventReturnsExpectedEffect(BattleEventType type,
-string eventKind,
-ReplayVfxKind expectedKind,
-string expectedKey)
+            string eventKind,
+            ReplayVfxKind expectedKind,
+            string expectedKey)
         {
             ReplayVfx result = VfxResolver.Resolve(Event(type, eventKind), null);
             Assert.That(result.Kind, Is.EqualTo(expectedKind));

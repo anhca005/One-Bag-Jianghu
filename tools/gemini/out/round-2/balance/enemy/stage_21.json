@@ -1,0 +1,31 @@
+{
+  "name": "Ải 21: Hàn Phong Tuần Tuyết Giả",
+  "hp": 4900,
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    }
+  ]
+}

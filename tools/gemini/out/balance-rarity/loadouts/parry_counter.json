@@ -1,0 +1,69 @@
+{
+  "name": "Thái Thanh Hóa Kình",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 1,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 1,
+      "y": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "ngoc_cot_phien",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "phan_quan_but",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "vo_niem_kinh",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "thien_tam_chuoi",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 4,
+      "y": 0,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 4,
+      "y": 1,
+      "rarity": "epic"
+    }
+  ]
+}

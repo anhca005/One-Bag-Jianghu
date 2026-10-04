@@ -1,0 +1,608 @@
+{
+  "items": {
+    "thiet_cot_quyen_sao": {
+      "attackKey": "atk_fist",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "phuc_ho_con": {
+      "attackKey": "atk_staff",
+      "hitKey": "hit_blunt",
+      "ultimateKey": "ult_staff_tiger",
+      "statusKey": null
+    },
+    "thanh_phong_kiem": {
+      "attackKey": "atk_sword",
+      "hitKey": "hit_metal",
+      "ultimateKey": "ult_sword_wind",
+      "statusKey": null
+    },
+    "liet_diem_dao": {
+      "attackKey": "atk_blade",
+      "hitKey": "hit_metal",
+      "ultimateKey": "ult_blade_fire",
+      "statusKey": null
+    },
+    "that_tinh_tieu": {
+      "attackKey": "atk_hidden",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tu_kim_trao": {
+      "attackKey": "atk_claw",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "khai_son_phu": {
+      "attackKey": "atk_axe",
+      "hitKey": "hit_metal",
+      "ultimateKey": "ult_axe_quake",
+      "statusKey": null
+    },
+    "phan_quan_but": {
+      "attackKey": "atk_brush",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "han_ngoc_tieu": {
+      "attackKey": "atk_flute",
+      "hitKey": "hit_blunt",
+      "ultimateKey": "ult_flute_frost",
+      "statusKey": null
+    },
+    "bich_thuy_cam": {
+      "attackKey": "atk_zither",
+      "hitKey": "hit_blunt",
+      "ultimateKey": "ult_zither_wave",
+      "statusKey": null
+    },
+    "thai_thanh_tam_kinh": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "o_tam_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "boi_nguyen_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tuy_tien_ho_lo": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "xich_sa_chuong": {
+      "attackKey": "atk_palm",
+      "hitKey": "hit_blunt",
+      "ultimateKey": "ult_palm_sand",
+      "statusKey": null
+    },
+    "ngoc_cot_phien": {
+      "attackKey": "atk_fan",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bang_phach_thuong": {
+      "attackKey": "atk_spear",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "chan_nhac_chuy": {
+      "attackKey": "atk_hammer",
+      "hitKey": "hit_blunt",
+      "ultimateKey": "ult_hammer_thunder",
+      "statusKey": null
+    },
+    "thanh_dang_tien": {
+      "attackKey": "atk_whip",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tu_mau_song_dao": {
+      "attackKey": "atk_dual",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "truy_hon_cung": {
+      "attackKey": "atk_bow",
+      "hitKey": "hit_metal",
+      "ultimateKey": "ult_bow_soul",
+      "statusKey": null
+    },
+    "thiet_giap_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "o_thiet_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "kim_tuyen_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "da_ho_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "nho_sam_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bang_tam_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tue_nguyet_bao_y": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "phuc_ma_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thanh_dong_ho_tam_kinh": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "long_lan_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thuan_duong_cong": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "quy_nguyen_quyet": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bach_luyen_chan_kinh": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "u_minh_bi_luc": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "liet_hoa_tam_kinh": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "vo_niem_kinh": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "phi_yen_quyet": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thien_dia_vo_cuc_cong": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "duong_sinh_quyet": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "kiem_tong_tam_yeu": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "kim_sang_duoc": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "hoi_thien_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thanh_tam_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "cuong_hoa_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "van_khi_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "giai_doc_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "ho_mach_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "ngung_than_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "cuu_chuyen_hoan_hon_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "ti_khang_dan": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tram_huong_lo": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bach_ngoc_boi": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "da_minh_chau": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "chu_sa_ho_lo": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thien_tam_chuoi": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "van_doc_dinh": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "huyet_ngoc_thach": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "han_bang_chau": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tu_kim_bat": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "am_duong_ngoc": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "soi_nanh_canh": {
+      "attackKey": "atk_hidden",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "heo_rung_bap_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "man_xa_doc_tui": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "u_minh_quy_trao": {
+      "attackKey": "atk_claw",
+      "hitKey": "hit_metal",
+      "ultimateKey": "ult_claw_ghost",
+      "statusKey": null
+    },
+    "kich_doc_chu_nga": {
+      "attackKey": "atk_claw",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bang_tam_linh_chau": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "tuyet_lang_bach_bi": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_blunt",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "hac_sat_hung_dam": {
+      "attackKey": "use_pill",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bach_ho_cuong_mong": {
+      "attackKey": "atk_claw",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "hoa_diem_xa_cot": {
+      "attackKey": "use_manual",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "bang_phach_co_cot": {
+      "attackKey": "use_relic",
+      "hitKey": null,
+      "ultimateKey": null,
+      "statusKey": null
+    },
+    "thien_nien_quy_giap": {
+      "attackKey": "use_armor",
+      "hitKey": "hit_metal",
+      "ultimateKey": null,
+      "statusKey": null
+    }
+  },
+  "enemies": {
+    "hero": {
+      "voiceKey": null
+    },
+    "lao_tieu_phu": {
+      "voiceKey": null
+    },
+    "tieu_linh_nhi": {
+      "voiceKey": null
+    },
+    "phong_loi": {
+      "voiceKey": null
+    },
+    "bui_chen": {
+      "voiceKey": "boss_intro"
+    },
+    "hac_doc_nuong_tu": {
+      "voiceKey": "boss_intro"
+    },
+    "da_sat_thien": {
+      "voiceKey": "boss_intro"
+    },
+    "monster_soi_xam": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_heo_rung": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_tri_chu": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_gau_den": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_xich_xa": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_ngan_lang": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_bach_ho": {
+      "voiceKey": "atk_monster"
+    },
+    "monster_bang_quy": {
+      "voiceKey": "atk_monster"
+    },
+    "Thảo Khấu Tiên Phong": {
+      "voiceKey": null
+    },
+    "Thủy Phỉ Thám Tử": {
+      "voiceKey": null
+    },
+    "Hoang Dã Sói Xám": {
+      "voiceKey": "atk_monster"
+    },
+    "Liệt Diễm Bang Chúng": {
+      "voiceKey": null
+    },
+    "Phong Lôi Khoái Đao Phong Vũ": {
+      "voiceKey": null
+    },
+    "Ám Hạng Thích Khách": {
+      "voiceKey": null
+    },
+    "Liệt Diễm Bang Tinh Anh": {
+      "voiceKey": "atk_monster"
+    },
+    "Liệt Diễm Bang Hương Chủ": {
+      "voiceKey": null
+    },
+    "Ba Hổ Tiên Phong Vệ": {
+      "voiceKey": null
+    },
+    "Nộ Ba Hổ Bùi Chấn": {
+      "voiceKey": "boss_intro"
+    },
+    "Vạn Độc Môn Đồ": {
+      "voiceKey": null
+    },
+    "Huyền Độc Môn Đồ": {
+      "voiceKey": null
+    },
+    "Kịch Độc Tri Chu": {
+      "voiceKey": "atk_monster"
+    },
+    "Man Cương Vu Đao": {
+      "voiceKey": null
+    },
+    "Bách Thảo Nghịch Đồ": {
+      "voiceKey": null
+    },
+    "Hắc Sát Độc Hùng": {
+      "voiceKey": "atk_monster"
+    },
+    "U Minh Ám Sát Thí Tử": {
+      "voiceKey": null
+    },
+    "Huyền Độc Trưởng Lão": {
+      "voiceKey": null
+    },
+    "Xích Luyện Xà Tinh": {
+      "voiceKey": "atk_monster"
+    },
+    "Hắc Độc Nương Tử": {
+      "voiceKey": "boss_intro"
+    },
+    "Hàn Phong Tuần Tuyết Giả": {
+      "voiceKey": null
+    },
+    "Hàn Sơn Kiếm Sĩ": {
+      "voiceKey": null
+    },
+    "Tuyết Lĩnh Ngân Lang": {
+      "voiceKey": "atk_monster"
+    },
+    "Kim Cang Hộ Giới Tăng": {
+      "voiceKey": null
+    },
+    "Hàn Sơn Đại Đệ Tử": {
+      "voiceKey": null
+    },
+    "Băng Nguyên Bạch Hổ": {
+      "voiceKey": "atk_monster"
+    },
+    "U Minh Chấp Pháp Sứ": {
+      "voiceKey": null
+    },
+    "Vạn Niên Băng Quy": {
+      "voiceKey": "atk_monster"
+    },
+    "U Minh Tuyệt Mệnh Kiếm Vệ": {
+      "voiceKey": null
+    },
+    "U Minh Tả Sứ Dạ Sát Thiên": {
+      "voiceKey": "boss_intro"
+    }
+  },
+  "events": {
+    "Start": "battle_start",
+    "Trigger": "ultimate",
+    "Damage": "hit_metal",
+    "DamageCrit": "hit_crit",
+    "DamageShield": "shield_hit",
+    "Dot": "exhaustion",
+    "Burst": "burn_tick",
+    "Heal": "heal",
+    "Shield": "shield_gain",
+    "Qi": "qi_gain",
+    "Status": "burn_apply",
+    "Parry": "parry",
+    "Charge": "charge",
+    "Buff": "buff",
+    "MaxHp": "max_hp",
+    "DmgReduce": "dmg_reduce",
+    "ParryCost": "parry",
+    "End": "win",
+    "EndLose": "lose",
+    "Ko": "ko",
+    "BurnApply": "burn_apply",
+    "PoisonApply": "poison_apply",
+    "BleedApply": "bleed_apply",
+    "Stun": "stun",
+    "BurnTick": "burn_tick",
+    "PoisonTick": "poison_tick",
+    "BleedTick": "bleed_tick"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "parameters": [
+    { "address": "thiet_cot_quyen_sao.attack", "start": 10, "min": 9, "max": 12, "step": 1 },
+    { "address": "thiet_cot_quyen_sao.basic.gain_qi", "start": 1, "min": 1, "max": 2, "step": 1 },
+    { "address": "phuc_ho_con.attack", "start": 95, "min": 85, "max": 110, "step": 5 },
+    { "address": "phuc_ho_con.ultimate.cost", "start": 30, "min": 25, "max": 35, "step": 5 },
+    { "address": "thanh_phong_kiem.attack", "start": 44, "min": 38, "max": 48, "step": 2 },
+    { "address": "thanh_phong_kiem.ultimate.cost", "start": 45, "min": 40, "max": 50, "step": 5 },
+    { "address": "liet_diem_dao.attack", "start": 68, "min": 60, "max": 76, "step": 4 },
+    { "address": "liet_diem_dao.cooldown", "start": 4.8, "min": 4.5, "max": 5.2, "step": 0.25 },
+    { "address": "xich_sa_chuong.attack", "start": 23, "min": 18, "max": 27, "step": 2 },
+    { "address": "that_tinh_tieu.basic.poison", "start": 4, "min": 3, "max": 5, "step": 1 },
+    { "address": "khai_son_phu.attack", "start": 155, "min": 145, "max": 175, "step": 5 },
+    { "address": "khai_son_phu.cooldown", "start": 7.0, "min": 6.5, "max": 7.5, "step": 0.25 },
+    { "address": "chan_nhac_chuy.attack", "start": 115, "min": 100, "max": 125, "step": 5 },
+    { "address": "bich_thuy_cam.attack", "start": 70, "min": 60, "max": 80, "step": 4 },
+    { "address": "bich_thuy_cam.cooldown", "start": 4.6, "min": 4.2, "max": 5.0, "step": 0.2 },
+    { "address": "tu_mau_song_dao.attack", "start": 28, "min": 22, "max": 34, "step": 2 },
+    { "address": "tu_mau_song_dao.crit", "start": 0.15, "min": 0.10, "max": 0.20, "step": 0.05 },
+    { "address": "sect:kim_cang.levels.1.attackPct", "start": 0.06, "min": 0.04, "max": 0.10, "step": 0.02 },
+    { "address": "sect:thiet_phu.levels.1.attackPct", "start": 0.06, "min": 0.04, "max": 0.10, "step": 0.02 },
+    { "address": "sect:liet_diem.levels.1.attackPct", "start": 0.06, "min": 0.04, "max": 0.10, "step": 0.02 }
+  ]
+}

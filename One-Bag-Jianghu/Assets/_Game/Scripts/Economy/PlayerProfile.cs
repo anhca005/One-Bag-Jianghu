@@ -17,8 +17,8 @@ namespace OneBagJianghu.Economy
     {
         [JsonProperty("stages")]
         public Dictionary<string,
-PveStageProgress> Stages = new Dictionary<string,
-PveStageProgress>(StringComparer.Ordinal);
+            PveStageProgress> Stages = new Dictionary<string,
+            PveStageProgress>(StringComparer.Ordinal);
         [JsonProperty("stamina")]
         public int Stamina = -1;
         [JsonProperty("lastStaminaRegenUtc")]
@@ -89,7 +89,7 @@ PveStageProgress>(StringComparer.Ordinal);
 
     public sealed class PlayerProfile
     {
-        public const int CurrentVersion = 6;
+        public const int CurrentVersion = 7;
         [JsonProperty("version")]
         public int Version = CurrentVersion;
         [JsonProperty("heroName")]
@@ -104,6 +104,10 @@ PveStageProgress>(StringComparer.Ordinal);
         public int TamPhapLevel = 1;
         [JsonProperty("sectPromptShown")]
         public bool SectPromptShown;
+        [JsonProperty("introSeen")]
+        public bool IntroSeen;
+        [JsonProperty("completedTutorials")]
+        public List<string> CompletedTutorials = new List<string>();
         [JsonProperty("currencies")]
         public Dictionary<string, long> Currencies = new Dictionary<string, long>(StringComparer.Ordinal);
         [JsonProperty("materials")]
@@ -121,10 +125,10 @@ PveStageProgress>(StringComparer.Ordinal);
         [JsonProperty("pve")]
         public PveProfileState Pve = new PveProfileState();
         public OwnedItem AddItem(string itemId,
-int tier,
-string acquiredAt = null,
-string uid = null,
-string rarity = "common")
+            int tier,
+            string acquiredAt = null,
+            string uid = null,
+            string rarity = "common")
         {
             if (string.IsNullOrWhiteSpace(itemId))
                 throw new ArgumentException("Item id must not be empty.", nameof(itemId));
@@ -218,6 +222,7 @@ string rarity = "common")
             Items ??= new List<OwnedItem>();
             Loadout ??= new List<LoadoutPlacement>();
             FirstClears ??= new List<string>();
+            CompletedTutorials ??= new List<string>();
             Shop ??= new ShopState();
             Storage ??= new StorageState();
             Pve ??= new PveProfileState();
@@ -227,9 +232,9 @@ string rarity = "common")
                 throw new FormatException("Profile PvE stamina must be -1 or non-negative.");
             foreach (KeyValuePair<string, PveStageProgress> value in Pve.Stages)
                 if (string.IsNullOrWhiteSpace(value.Key)
-|| value.Value == null
-|| value.Value.BestStars < 0
-|| value.Value.BestStars > 3)
+                    || value.Value == null
+                    || value.Value.BestStars < 0
+                    || value.Value.BestStars > 3)
                     throw new FormatException("Profile contains invalid PvE stage progress.");
             Storage.Items ??= new List<StorageItemPlacement>();
             Storage.MaterialStacks ??= new List<MaterialStack>();
@@ -282,9 +287,9 @@ string rarity = "common")
 
             foreach (MaterialStack stack in Storage.MaterialStacks)
                 if (stack == null
-|| string.IsNullOrWhiteSpace(stack.MaterialId)
-|| stack.Count < 1
-|| stack.Count > StorageGrid.MaxStack)
+                    || string.IsNullOrWhiteSpace(stack.MaterialId)
+                    || stack.Count < 1
+                    || stack.Count > StorageGrid.MaxStack)
                     throw new FormatException("Storage contains an invalid material stack.");
             var stackedTotals = new Dictionary<string, int>(StringComparer.Ordinal);
             foreach (MaterialStack stack in Storage.MaterialStacks)
@@ -344,6 +349,13 @@ string rarity = "common")
                     version = 6;
                 }
 
+                if (version == 6)
+                {
+                    root["introSeen"] = false;
+                    root["completedTutorials"] = new JArray();
+                    version = 7;
+                }
+
                 if (version != CurrentVersion)
                     throw new FormatException(
                         $"Unsupported profile version {version}; expected 1 through {CurrentVersion}.");
@@ -353,7 +365,7 @@ string rarity = "common")
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 PlayerProfile profile = JsonConvert.DeserializeObject<PlayerProfile>(root.ToString(),
-settings) ?? throw new FormatException("Profile JSON is null.");
+                    settings) ?? throw new FormatException("Profile JSON is null.");
                 profile.EnsureStorage(catalog ?? UnitSizeCatalog.Instance);
                 profile.Validate();
                 return profile;
@@ -415,11 +427,11 @@ settings) ?? throw new FormatException("Profile JSON is null.");
         }
 
         private static bool CanAfford<T>(IReadOnlyDictionary<string,
-T> costs,
-IReadOnlyDictionary<string,
-T> balances,
-string label,
-out string error)
+            T> costs,
+            IReadOnlyDictionary<string,
+            T> balances,
+            string label,
+            out string error)
             where T : struct, IComparable<T>
         {
             if (costs == null)
@@ -429,11 +441,16 @@ out string error)
             {
                 if (string.IsNullOrWhiteSpace(cost.Key) || cost.Value.CompareTo(zero) < 0)
                     throw new ArgumentException($"Every {label} cost must have a non-empty id and non-negative amount.",
-nameof(costs));
+                        nameof(costs));
                 balances.TryGetValue(cost.Key, out T balance);
                 if (balance.CompareTo(cost.Value) < 0)
                 {
-                    error = $"Insufficient {label} '{cost.Key}': need {cost.Value}, have {balance}.";
+                    string name = cost.Key == "bac"
+                        ? "Bạc"
+                        : cost.Key == "danh_vong"
+                            ? "Danh Vọng"
+                            : "tài nguyên";
+                    error = $"Không đủ {name}: cần {cost.Value}, hiện có {balance}.";
                     return false;
                 }
             }

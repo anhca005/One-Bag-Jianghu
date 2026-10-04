@@ -1,0 +1,67 @@
+{
+  "name": "U Minh Tả Sứ Dạ Sát Thiên",
+  "sect": "han_son",
+  "tamPhapLevel": 4,
+  "items": [
+    {
+      "id": "bang_phach_thuong",
+      "x": 0,
+      "y": 0,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "thien_nien_quy_giap",
+      "x": 1,
+      "y": 0,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 1,
+      "y": 2,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "bang_tam_linh_chau",
+      "x": 3,
+      "y": 0,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 3,
+      "y": 1,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "kiem_tong_tam_yeu",
+      "x": 4,
+      "y": 0,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "cuu_chuyen_hoan_hon_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 6,
+      "rarity": "common"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 3,
+      "y": 2,
+      "tier": 6,
+      "rarity": "common"
+    }
+  ],
+  "level": 27,
+  "characterId": "da_sat_thien",
+  "cols": 5,
+  "rows": 4
+}

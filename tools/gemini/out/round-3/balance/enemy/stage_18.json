@@ -1,0 +1,45 @@
+{
+  "name": "Huyền Độc Trưởng Lão",
+  "sect": "huyen_doc",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "tu_kim_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "giai_doc_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "common"
+    }
+  ],
+  "level": 18,
+  "cols": 5,
+  "rows": 4
+}

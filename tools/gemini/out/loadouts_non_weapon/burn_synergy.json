@@ -1,0 +1,14 @@
+{
+  "name": "Liệt Hỏa Thiêu Thân",
+  "hp": 1200, "cols": 5, "rows": 4, "sect": "liet_diem",
+  "items": [
+    { "id": "liet_diem_dao", "x": 0, "y": 0 },
+    { "id": "chu_sa_ho_lo", "x": 1, "y": 0 },
+    { "id": "liet_hoa_tam_kinh", "x": 1, "y": 1 },
+    { "id": "cuong_hoa_dan", "x": 1, "y": 2 },
+    { "id": "bang_tam_giap", "x": 0, "y": 3 },
+    { "id": "thiet_cot_quyen_sao", "x": 2, "y": 0 },
+    { "id": "thanh_dong_ho_tam_kinh", "x": 2, "y": 2 },
+    { "id": "boi_nguyen_dan", "x": 2, "y": 3 }
+  ]
+}

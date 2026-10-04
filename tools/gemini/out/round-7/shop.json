@@ -1,0 +1,130 @@
+{
+  "freeRefreshHours": 6,
+  "paidRefreshCosts": [
+    150,
+    250,
+    500,
+    1000
+  ],
+  "itemBasePrices": {
+    "common": 300,
+    "uncommon": 600,
+    "rare": 1400,
+    "epic": 3200,
+    "legendary": 8500
+  },
+  "slots": [
+    {
+      "type": "item",
+      "rarities": [
+        "common",
+        "uncommon",
+        "rare"
+      ],
+      "weights": [
+        60,
+        35,
+        5
+      ],
+      "tier": 0,
+      "quantity": 1,
+      "price": 0,
+      "discountPercent": 0
+    },
+    {
+      "type": "item",
+      "rarities": [
+        "uncommon",
+        "rare",
+        "epic"
+      ],
+      "weights": [
+        50,
+        35,
+        15
+      ],
+      "tier": 0,
+      "quantity": 1,
+      "price": 0,
+      "discountPercent": 0
+    },
+    {
+      "type": "material",
+      "rarities": [],
+      "weights": [],
+      "tier": 1,
+      "quantity": 5,
+      "price": 250,
+      "discountPercent": 0
+    },
+    {
+      "type": "material",
+      "rarities": [],
+      "weights": [],
+      "tier": 2,
+      "quantity": 5,
+      "price": 750,
+      "discountPercent": 0
+    },
+    {
+      "type": "catalyst_or_tier3",
+      "rarities": [],
+      "weights": [],
+      "tier": 0,
+      "quantity": 1,
+      "price": 0,
+      "discountPercent": 0
+    },
+    {
+      "type": "discount",
+      "rarities": [
+        "uncommon",
+        "rare"
+      ],
+      "weights": [
+        70,
+        30
+      ],
+      "tier": 0,
+      "quantity": 1,
+      "price": 0,
+      "discountPercent": 20
+    }
+  ],
+  "exchange": {
+    "sameInput": 3,
+    "sameFees": [
+      50,
+      150
+    ],
+    "crossInput": 2,
+    "crossFees": [
+      25,
+      75,
+      200
+    ]
+  },
+  "reputationOffers": [
+    {
+      "id": "chi_ton_ngoc_tuy",
+      "name": "Chi Ton Ngoc Tuy",
+      "price": 500,
+      "limit": 1,
+      "quantity": 1
+    },
+    {
+      "id": "catalyst_box_random",
+      "name": "Ruong Chat Dan",
+      "price": 250,
+      "limit": 3,
+      "quantity": 1
+    },
+    {
+      "id": "tier_3_material_box",
+      "name": "Ruong NL Bac 3",
+      "price": 100,
+      "limit": 5,
+      "quantity": 3
+    }
+  ]
+}

@@ -32,10 +32,10 @@ namespace OneBagJianghu.Economy
         private readonly IShopClock clock;
         private readonly int seed;
         public ShopService(ShopCatalog config,
-MaterialCatalog materials,
-IShopItemCatalog items,
-int seed,
-IShopClock clock = null)
+            MaterialCatalog materials,
+            IShopItemCatalog items,
+            int seed,
+            IShopClock clock = null)
         {
             this.config = config ?? throw new ArgumentNullException(nameof(config));
             this.materials = materials ?? throw new ArgumentNullException(nameof(materials));
@@ -105,7 +105,7 @@ IShopClock clock = null)
             profile.Currencies.TryGetValue("bac", out long silver);
             if (silver < slot.Price)
                 return EconomyResult.Fail($"Không đủ Bạc ({silver}/{slot.Price}).");
-            var storage = new StorageGrid(profile, items as IStorageItemCatalog);
+            var storage = new StorageGrid(profile, items as IStorageItemCatalog, materials);
             if (slot.Kind == "item")
             {
                 items.GetItemSizeOrDefault(slot.ContentId, out int width, out int height);
@@ -125,7 +125,7 @@ IShopClock clock = null)
 
         public bool HasStorageSpace(PlayerProfile profile, ShopSlotState slot)
         {
-            var storage = new StorageGrid(profile, items as IStorageItemCatalog);
+            var storage = new StorageGrid(profile, items as IStorageItemCatalog, materials);
             if (slot.Kind != "item")
                 return storage.CanAddMaterial(slot.ContentId, slot.Quantity);
             items.GetItemSizeOrDefault(slot.ContentId, out int width, out int height);
@@ -146,9 +146,9 @@ IShopClock clock = null)
             }
 
             if (input.IsCatalyst
-|| target.IsCatalyst
-|| input.Id == "chi_ton_ngoc_tuy"
-|| target.Id == "chi_ton_ngoc_tuy")
+                || target.IsCatalyst
+                || input.Id == "chi_ton_ngoc_tuy"
+                || target.Id == "chi_ton_ngoc_tuy")
                 return EconomyResult.Fail("Không thể đổi chất dẫn hoặc Chí Tôn Ngọc Tủy.");
             bool same = input.ItemType == target.ItemType && target.Tier == input.Tier + 1;
             bool cross = input.ItemType != target.ItemType && target.Tier == input.Tier;
@@ -164,7 +164,7 @@ IShopClock clock = null)
                 return EconomyResult.Fail($"Không đủ Bạc ({silver}/{fee}).");
             // Spend through the storage stacks; writing profile.Materials directly was overwritten
             // by the next stack sync, so the input was never deducted.
-            var storage = new StorageGrid(profile, items as IStorageItemCatalog);
+            var storage = new StorageGrid(profile, items as IStorageItemCatalog, materials);
             if (!storage.SpendMaterials(new Dictionary<string, int> { [input.Id] = count }, out string error))
                 return EconomyResult.Fail(error);
             if (!storage.TryAddMaterial(target.Id, 1))
@@ -211,12 +211,19 @@ IShopClock clock = null)
             return EconomyResult.Ok();
         }
 
+        // The very first shop a player sees offers this beginner Công Pháp in slot 1 (the tutorial buys it).
+        public const string FirstShopItemId = "thai_thanh_tam_kinh";
+        public const string FirstShopRarity = "common";
+
         private void Generate(PlayerProfile profile, bool markFree)
         {
+            bool firstShop = profile.Shop.Generation == 0;
             var random = Rng(profile.Shop.Generation++);
             profile.Shop.Slots.Clear();
             foreach (ShopSlotRule rule in config.Slots)
                 profile.Shop.Slots.Add(CreateSlot(rule, random));
+            if (firstShop && profile.Shop.Slots.Count > 0 && profile.Shop.Slots[0].Kind == "item")
+                profile.Shop.Slots[0] = ItemSlot(FirstShopItemId, FirstShopRarity, 0);
             if (markFree || string.IsNullOrEmpty(profile.Shop.LastFreeRefreshUtc))
                 profile.Shop.LastFreeRefreshUtc = clock.UtcNow.ToString("O");
         }
@@ -227,32 +234,40 @@ IShopClock clock = null)
                 return MaterialSlot(PickMaterial(random, rule.Tier, false), rule.Quantity, rule.Price);
             if (rule.Type == "catalyst_or_tier3")
                 return random.Next(100) < 40 ? MaterialSlot(PickMaterial(random,
-0,
-true),
-1,
-1200) : MaterialSlot(PickMaterial(random,
-3,
-false),
-2,
-800);
+                    0,
+                    true),
+                    1,
+                    1200) : MaterialSlot(PickMaterial(random,
+                    3,
+                    false),
+                    2,
+                    800);
             string rarity = Weighted(rule.Rarities, rule.Weights, random);
             bool item = rule.Type == "item" || (rule.Type == "discount" && random.Next(100) >= 30);
             if (!item)
                 return MaterialSlot(PickMaterial(random,
-1,
-false,
-"pill_relic"),
-5,
-250 * (100 - rule.DiscountPercent) / 100);
+                    1,
+                    false,
+                    "pill_relic"),
+                    5,
+                    250 * (100 - rule.DiscountPercent) / 100);
             IReadOnlyList<string> all = items.AllItemIds;
             string selected = all[random.Next(all.Count)];
-            long price = config.ItemBasePrices[rarity];
-            if (rule.DiscountPercent > 0)
-                price = price * (100 - rule.DiscountPercent) / 100;
+            return ItemSlot(selected, rarity, rule.DiscountPercent);
+        }
+
+        private ShopSlotState ItemSlot(string itemId, string rarity, int discountPercent)
+        {
+            string itemType = items.GetItemType(itemId);
+            config.ItemTypePriceMultipliers.TryGetValue(itemType, out double multiplier);
+            multiplier = multiplier > 0 ? multiplier : 1.0;
+            long price = (long)Math.Round(config.ItemBasePrices[rarity] * multiplier);
+            if (discountPercent > 0)
+                price = price * (100 - discountPercent) / 100;
             return new ShopSlotState
             {
                 Kind = "item",
-                ContentId = selected,
+                ContentId = itemId,
                 Rarity = rarity,
                 Quantity = 1,
                 Price = price
@@ -271,10 +286,10 @@ false,
             var pool = new List<MaterialInfo>();
             foreach (MaterialInfo x in materials.All)
                 if (x.Id != "chi_ton_ngoc_tuy"
-&& x.Tier == tier
-&& x.IsCatalyst == catalyst
-&& (group == null
-|| x.ItemType == group))
+                    && x.Tier == tier
+                    && x.IsCatalyst == catalyst
+                    && (group == null
+                    || x.ItemType == group))
                     pool.Add(x);
             if (pool.Count == 0)
                 throw new FormatException("No matching shop material.");
@@ -329,16 +344,16 @@ false,
         }
 
         private static DateTimeOffset Parse(string value,
-DateTimeOffset fallback) => DateTimeOffset.TryParse(value,
-out DateTimeOffset parsed) ? parsed : fallback;
+            DateTimeOffset fallback) => DateTimeOffset.TryParse(value,
+            out DateTimeOffset parsed) ? parsed : fallback;
     }
 
     internal static class StorageCatalogExtensions
     {
         public static void GetItemSizeOrDefault(this IUpgradeItemCatalog catalog,
-string id,
-out int width,
-out int height)
+            string id,
+            out int width,
+            out int height)
         {
             if (catalog is IStorageItemCatalog sized)
                 sized.GetItemSize(id, out width, out height);

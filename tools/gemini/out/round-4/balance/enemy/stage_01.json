@@ -1,0 +1,24 @@
+{
+  "name": "Thảo Khấu Tiên Phong",
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 1,
+  "cols": 5,
+  "rows": 4,
+  "items": [
+    {
+      "id": "thanh_dang_tien",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

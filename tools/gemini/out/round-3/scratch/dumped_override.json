@@ -1,0 +1,40 @@
+{
+  "tickMs" : 100,
+  "maxQi" : 100,
+  "parryCost" : 60,
+  "minParryCost" : 20,
+  "parryStunMs" : 1000,
+  "exhaustionStartMs" : 45000,
+  "exhaustionStep" : 20,
+  "maxDurationMs" : 120000,
+  "maxTriggerDepth" : 8,
+  "maxRegen" : 30,
+  "shieldCapPermille" : 1000,
+  "maxDmgReducePermille" : 800,
+  "maxCooldownReducePermille" : 400,
+  "baseHp" : 100,
+  "hpPerLevel" : 5,
+  "tierMultiplierPermille" : [ 1000, 1050, 1100, 1150, 1200, 1250, 1300, 1350, 1400 ],
+  "rarityMultiplierPermille" : [ 1000, 1300, 1700, 2200, 2800, 3500 ],
+  "burn" : {
+    "threshold" : 50,
+    "damage" : 300,
+    "maxHpPermille" : 0,
+    "ignoreShield" : false,
+    "decayPerSecond" : 0
+  },
+  "poison" : {
+    "threshold" : 50,
+    "damage" : 240,
+    "maxHpPermille" : 0,
+    "ignoreShield" : true,
+    "decayPerSecond" : 0
+  },
+  "bleed" : {
+    "threshold" : 50,
+    "damage" : 150,
+    "maxHpPermille" : 100,
+    "ignoreShield" : true,
+    "decayPerSecond" : 0
+  }
+}

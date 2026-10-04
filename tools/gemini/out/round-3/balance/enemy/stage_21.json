@@ -1,0 +1,45 @@
+{
+  "name": "Hàn Phong Tuần Tuyết Giả",
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "level": 21,
+  "items": [
+    {
+      "id": "bang_phach_thuong",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 3,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "han_ngoc_tieu",
+      "x": 3,
+      "y": 1,
+      "tier": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "uncommon"
+    }
+  ]
+}

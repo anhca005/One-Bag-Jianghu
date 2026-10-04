@@ -107,7 +107,7 @@ namespace OneBagJianghu.UI.Home
         }
 
         public void OnPointerDown(PointerEventData eventData) => plaque.anchoredPosition = plaquePosition
-+ Vector2.down * 2f;
+            + Vector2.down * 2f;
         public void OnPointerUp(PointerEventData eventData) => plaque.anchoredPosition = plaquePosition;
         public void OnPointerClick(PointerEventData eventData)
         {

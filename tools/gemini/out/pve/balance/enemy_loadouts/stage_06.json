@@ -1,0 +1,38 @@
+{
+  "name": "Ải 6: Ám Hạng Thích Khách",
+  "hp": 1050,
+  "cols": 5,
+  "rows": 4,
+  "sect": "thai_thanh",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "that_tinh_tieu",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "that_tinh_tieu",
+      "x": 1,
+      "y": 0,
+      "tier": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "common"
+    },
+    {
+      "id": "phi_yen_quyet",
+      "x": 3,
+      "y": 0,
+      "tier": 2,
+      "rarity": "common"
+    }
+  ]
+}

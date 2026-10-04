@@ -1,0 +1,14 @@
+Ải 01 giữ nguyên: fresh 100.0%, 14.2s
+Ải 02 giữ nguyên: fresh 6.0%, 47.4s
+Ải 03 giữ nguyên: fresh 65.0%, 44.8s
+Ải 04 giữ nguyên: fresh 94.0%, 51.8s
+Ải 05 giữ nguyên: fresh 34.0%, 22.5s
+Ải 06 giữ nguyên: fresh 0.0%, 17.1s
+Ải 07 giữ nguyên: fresh 0.0%, 23.8s
+Ải 08 giữ nguyên: fresh 0.0%, 12.5s
+Ải 09 giữ nguyên: fresh 82.0%, 19.3s
+Ải 10 giữ nguyên: fresh 0.0%, 24.9s
+Ải 11 giữ nguyên: fresh 100.0%, 49.3s
+Ải 12 giữ nguyên: fresh 9.0%, 46.3s
+Ải 13 giữ nguyên: fresh 50.0%, 55.9s
+Ải 14 giữ nguyên: fresh 100.0%, 12.5s

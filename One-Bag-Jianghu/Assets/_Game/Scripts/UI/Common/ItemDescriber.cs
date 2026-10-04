@@ -41,7 +41,7 @@ namespace OneBagJianghu.UI.Common
 
 
                 rarity,
-tier));
+                    tier));
             if (raw.type == ItemType.WEAPON)
             {
                 text
@@ -71,7 +71,7 @@ tier));
                     .Append(item
                     .ultimate
                     .cost)
-                    .Append(" nội lực): ")
+                    .Append(" Nội Lực): ")
                     .Append(Effects(raw
                     .ultimate
                     .effects));
@@ -94,10 +94,10 @@ tier));
         }
 
         public static string StatLine(string itemId,
-string rarity,
-int tier) => StatLine(Catalog.Get(itemId),
-rarity,
-tier);
+            string rarity,
+            int tier) => StatLine(Catalog.Get(itemId),
+            rarity,
+            tier);
         private static string StatLine(ItemDef raw, string rarity, int tier)
         {
             ItemDef item = raw.AtTier(tier);
@@ -108,10 +108,10 @@ tier);
                 return "Khí Huyết +" + Scale(stats?.hp ?? 0, rarity, tier);
             if (raw.type == ItemType.MANUAL)
                 return "Giảm Hồi Chiêu +"
-+ Fmt(Scale(stats?.CooldownReductionPermille() ?? 0,
-rarity,
-tier) / 10d)
-+ "%";
+                    + Fmt(Scale(stats?.CooldownReductionPermille() ?? 0,
+                    rarity,
+                    tier) / 10d)
+                    + "%";
             return "Hộ Thân +" + Fmt(Scale(stats?.DmgReducePermille() ?? 0, rarity, tier) / 10d) + "%";
         }
 
@@ -146,31 +146,31 @@ tier) / 10d)
                 case EffectOp.DAMAGE:
                     string amount = effect.value != 0 ? effect.value.ToString() : Fmt(effect.pct * 100) + "% Lực Đạo";
                     string damage = effect.hits > 1 ? $"Sát thương {effect.hits} nhát × {amount}" : "Sát thương "
-+ amount;
+                        + amount;
                     if (effect.ignoreShield)
                         damage += " (xuyên Cương Khí)";
                     return damage + (effect.target == Target.SELF ? " vào bản thân" : "");
                 case EffectOp.GAIN_QI:
-                    return "+" + effect.value + " nội lực";
+                    return "+" + effect.value + " Nội Lực";
                 case EffectOp.DRAIN_QI:
-                    return "đối thủ −" + effect.value + " nội lực";
+                    return "Đối thủ −" + effect.value + " Nội Lực";
                 case EffectOp.SHIELD:
                     return "+" + effect.value + " Cương Khí";
                 case EffectOp.HEAL:
-                    return "hồi " + effect.value + " khí huyết";
+                    return "Hồi " + effect.value + " Khí Huyết";
                 case EffectOp.SHIELD_BREAK:
                     return "Phá Cương " + effect.value;
                 case EffectOp.DMG_REDUCE:
                     return "Hộ Thân +" + Fmt(effect.pct * 100) + "%";
                 case EffectOp.REDUCE_MAX_HP:
-                    return "Nội Thương: đối thủ −" + effect.value + " khí huyết tối đa";
+                    return "Nội Thương: đối thủ −" + effect.value + " Khí Huyết tối đa";
                 case EffectOp.PARRY_DISCOUNT:
-                    return "Hóa Kình tốn ít hơn " + effect.value + " nội lực";
+                    return "Hóa Kình tốn ít hơn " + effect.value + " Nội Lực";
                 case EffectOp.APPLY:
                     string status = StatusName(effect.status);
                     if (effect.status == StatusType.BURN
-|| effect.status == StatusType.POISON
-|| effect.status == StatusType.BLEED)
+                        || effect.status == StatusType.POISON
+                        || effect.status == StatusType.BLEED)
                         return "+" + effect.stacks + " điểm " + status;
                     if (effect.status == StatusType.REGEN)
                         return "+" + effect.stacks + " Điều Tức";
@@ -193,14 +193,14 @@ tier) / 10d)
                         ? "Hội Tâm"
                         : "chỉ số";
                     string stackAmount = effect.stat == "attack" ? effect.value.ToString() : Fmt(effect.pct * 100)
-+ "%";
+                        + "%";
                     return "Cộng dồn " + stat + " +" + stackAmount + target + " (tối đa " + effect.maxStacks + " tầng)";
                 case EffectOp.CLEANSE:
                     return "Xóa Trì Trệ và Điểm Huyệt" + target;
                 case EffectOp.LIFESTEAL:
-                    return "Hút khí huyết " + Fmt(effect.pct * 100) + "%" + target;
+                    return "Hút Khí Huyết " + Fmt(effect.pct * 100) + "%" + target;
                 case EffectOp.RAISE_MAX_HP:
-                    return "Tăng khí huyết tối đa +" + effect.value + target;
+                    return "Tăng Khí Huyết tối đa +" + effect.value + target;
                 default:
                     return "Hiệu ứng chưa hỗ trợ";
             }
@@ -360,7 +360,7 @@ tier) / 10d)
             : value == TriggerEvent.PARRIED
             ? "Khi bị Hóa Kình"
             : value == TriggerEvent.HP_BELOW
-            ? "Khi khí huyết dưới"
+            ? "Khi Khí Huyết dưới"
             : value == TriggerEvent.STATUS_APPLIED
             ? "Khi gây trạng thái"
             : value == TriggerEvent.BURST
@@ -368,7 +368,7 @@ tier) / 10d)
             : value == TriggerEvent.DAMAGED
             ? "Khi chịu sát thương"
             : value == TriggerEvent.HEALED
-            ? "Khi được hồi khí huyết"
+            ? "Khi được hồi Khí Huyết"
             : value == TriggerEvent.CONTROLLED
             ? "Khi bị khống chế"
             : value == TriggerEvent.CRIT_TAKEN
@@ -385,7 +385,7 @@ tier) / 10d)
         private static string TargetText(Target? value) => value.HasValue ? " lên "
 
 
-+ (value == Target.SELF
+            + (value == Target.SELF
     ? "bản thân"
     : value == Target.ENEMY
     ? "đối thủ"

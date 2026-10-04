@@ -1,0 +1,4 @@
+Music by Richard Guo (Game Music Pack, 12 tracks) - credit required, no resale/redistribution of the tracks alone.
+  bgm_home, bgm_map_hoi_1..5, bgm_battle, bgm_boss, bgm_pvp; sting_defeat is cut from 仙愁.
+  bgm_intro is an edit of 仙愁 + 剑拔弩张 + 仙愁 + 剑侠无双 (crossfaded, level-matched).
+sting_victory: cut from "10 Fanfares" (OpenGameArt, CC0).

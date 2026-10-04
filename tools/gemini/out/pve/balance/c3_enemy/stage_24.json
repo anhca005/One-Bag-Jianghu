@@ -1,0 +1,38 @@
+{
+  "name": "Ải 24: Kim Cang Hộ Giới Tăng",
+  "hp": 1850,
+  "cols": 5,
+  "rows": 4,
+  "sect": "kim_cang",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "phuc_ho_con",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "vo_niem_kinh",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "phuc_ma_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    },
+    {
+      "id": "thien_tam_chuoi",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "rare"
+    }
+  ]
+}

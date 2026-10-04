@@ -1,0 +1,1681 @@
+[
+  {
+    "item": "thiet_cot_quyen_sao",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 470.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.7,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 28.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 7.8203,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "phuc_ho_con",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 390.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 28.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 6.4892,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "thanh_phong_kiem",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 41.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 10.6656,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "liet_diem_dao",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 856.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 44.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 14.2429,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "that_tinh_tieu",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 437.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.9,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 44.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 7.2712,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "tu_kim_trao",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 3878.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.8,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 37.0,
+      "heal": 6.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 64.5258,
+      "defense": 20.4545
+    }
+  },
+  {
+    "item": "khai_son_phu",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 821.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.9,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 64.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 13.6606,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "phan_quan_but",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 342.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.9,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 30.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 5.6905,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "han_ngoc_tieu",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 306.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.9,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 28.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 5.0915,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "bich_thuy_cam",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 342.0,
+      "heal": 0.0,
+      "shield": 40.0
+    },
+    "defenseStats": {
+      "duration": 9.4,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 52.0,
+      "heal": 20.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 5.6905,
+      "defense": 63.8298
+    }
+  },
+  {
+    "item": "thai_thanh_tam_kinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 683.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.6988,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "o_tam_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 16.1,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 50.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 233.1677
+    }
+  },
+  {
+    "item": "boi_nguyen_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.8,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 35.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 107.1429
+    }
+  },
+  {
+    "item": "tuy_tien_ho_lo",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 672.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.2,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 11.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.5158,
+      "defense": 55.8696
+    }
+  },
+  {
+    "item": "xich_sa_chuong",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 606.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.7,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 47.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 10.0832,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "ngoc_cot_phien",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 223.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 17.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 3.7105,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "bang_phach_thuong",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 970.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 99.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 16.1398,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "chan_nhac_chuy",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 936.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.8,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 62.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 15.574,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "thanh_dang_tien",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 436.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 37.0,
+      "heal": 8.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 7.2546,
+      "defense": 27.907
+    }
+  },
+  {
+    "item": "tu_mau_song_dao",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 1193.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.4,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 98.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 19.8502,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "truy_hon_cung",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 663.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.8,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 52.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 11.0316,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "thiet_giap_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.2,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 70.0
+    }
+  },
+  {
+    "item": "o_thiet_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 40.0
+    },
+    "defenseStats": {
+      "duration": 12.1,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 40.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 239.1736
+    }
+  },
+  {
+    "item": "kim_tuyen_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 13.4,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 40.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 229.5522
+    }
+  },
+  {
+    "item": "da_ho_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 10.2,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 70.0
+    }
+  },
+  {
+    "item": "nho_sam_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.1,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 45.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 191.6216
+    }
+  },
+  {
+    "item": "bang_tam_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 12.9,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 70.0
+    }
+  },
+  {
+    "item": "tue_nguyet_bao_y",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 10.2,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 70.0
+    }
+  },
+  {
+    "item": "phuc_ma_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.4,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 56.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 140.0
+    }
+  },
+  {
+    "item": "thanh_dong_ho_tam_kinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100035.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 10.5,
+      "maxHp": 395.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 55.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 192.1429
+    }
+  },
+  {
+    "item": "long_lan_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 13.1,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 140.0
+    }
+  },
+  {
+    "item": "thuan_duong_cong",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 1172.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 8.8353,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "quy_nguyen_quyet",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 747.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 1.7637,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "bach_luyen_chan_kinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 700.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.9817,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "u_minh_bi_luc",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 683.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.6988,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "liet_hoa_tam_kinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 683.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.6988,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "vo_niem_kinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 659.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.2995,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "phi_yen_quyet",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 777.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 2.2629,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "thien_dia_vo_cuc_cong",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 781.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 2.3295,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "duong_sinh_quyet",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 659.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.8,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 16.0,
+      "shield": 16.0
+    },
+    "value": {
+      "offense": 0.2995,
+      "defense": 97.9592
+    }
+  },
+  {
+    "item": "kiem_tong_tam_yeu",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 757.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 1.9301,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "kim_sang_duoc",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.7,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 28.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 86.5979
+    }
+  },
+  {
+    "item": "hoi_thien_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 13.4,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 80.0,
+      "shield": 38.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 264.1791
+    }
+  },
+  {
+    "item": "thanh_tam_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "cuong_hoa_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "van_khi_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "giai_doc_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "ho_mach_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.0,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 50.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 136.3636
+    }
+  },
+  {
+    "item": "ngung_than_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 647.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0998,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "cuu_chuyen_hoan_hon_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 12.0,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 65.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 162.5
+    }
+  },
+  {
+    "item": "ti_khang_dan",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "tram_huong_lo",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 90.0
+    },
+    "defenseStats": {
+      "duration": 8.8,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 8.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 47.2727
+    }
+  },
+  {
+    "item": "bach_ngoc_boi",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 1005.0,
+      "heal": 0.0,
+      "shield": 163.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 6.0566,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "da_minh_chau",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "chu_sa_ho_lo",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 881.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 3.9933,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "thien_tam_chuoi",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100040.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.3,
+      "maxHp": 400.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 40.0
+    }
+  },
+  {
+    "item": "van_doc_dinh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "huyet_ngoc_thach",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "han_bang_chau",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.9,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "tu_kim_bat",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100040.0,
+      "reduction": 0.0,
+      "damage": 687.0,
+      "heal": 0.0,
+      "shield": 150.0
+    },
+    "defenseStats": {
+      "duration": 9.8,
+      "maxHp": 400.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 15.0
+    },
+    "value": {
+      "offense": 0.7654,
+      "defense": 85.9184
+    }
+  },
+  {
+    "item": "am_duong_ngoc",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.2,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 164.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 459.2857
+    }
+  },
+  {
+    "item": "soi_nanh_canh",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 3929.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.7,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 46.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 65.3744,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "heo_rung_bap_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 30.0
+    },
+    "defenseStats": {
+      "duration": 13.1,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 30.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 208.7023
+    }
+  },
+  {
+    "item": "man_xa_doc_tui",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.6,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "u_minh_quy_trao",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 1042.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.1,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 94.0,
+      "heal": 12.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 17.3378,
+      "defense": 39.5604
+    }
+  },
+  {
+    "item": "kich_doc_chu_nga",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 663.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.7,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 62.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 11.0316,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "bang_tam_linh_chau",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100020.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 9.3,
+      "maxHp": 380.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 20.0
+    }
+  },
+  {
+    "item": "tuyet_lang_bach_bi",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100070.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 22.0
+    },
+    "defenseStats": {
+      "duration": 10.7,
+      "maxHp": 430.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 22.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 131.6822
+    }
+  },
+  {
+    "item": "hac_sat_hung_dam",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.03,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 11.1,
+      "maxHp": 360.0,
+      "reduction": 0.03,
+      "damage": 0.0,
+      "heal": 50.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 135.1351
+    }
+  },
+  {
+    "item": "bach_ho_cuong_mong",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 431.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 44.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 7.1714,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "hoa_diem_xa_cot",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100000.0,
+      "reduction": 0.0,
+      "damage": 819.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 8.3,
+      "maxHp": 360.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "value": {
+      "offense": 2.9617,
+      "defense": 0.0
+    }
+  },
+  {
+    "item": "bang_phach_co_cot",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100080.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 0.0
+    },
+    "defenseStats": {
+      "duration": 14.0,
+      "maxHp": 440.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 75.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 240.7143
+    }
+  },
+  {
+    "item": "thien_nien_quy_giap",
+    "offenseStats": {
+      "duration": 60.1,
+      "maxHp": 100140.0,
+      "reduction": 0.0,
+      "damage": 641.0,
+      "heal": 0.0,
+      "shield": 70.0
+    },
+    "defenseStats": {
+      "duration": 13.0,
+      "maxHp": 500.0,
+      "reduction": 0.0,
+      "damage": 0.0,
+      "heal": 0.0,
+      "shield": 70.0
+    },
+    "value": {
+      "offense": 0.0,
+      "defense": 301.5385
+    }
+  }
+]

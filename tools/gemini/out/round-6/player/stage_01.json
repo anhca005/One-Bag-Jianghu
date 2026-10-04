@@ -1,0 +1,24 @@
+{
+  "name": "Người Chơi (Ải 1)",
+  "cols": 5,
+  "rows": 4,
+  "level": 1,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

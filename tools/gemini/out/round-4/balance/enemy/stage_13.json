@@ -1,0 +1,45 @@
+{
+  "name": "Kịch Độc Tri Chu",
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 16,
+  "items": [
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "epic"
+    }
+  ],
+  "cols": 5,
+  "rows": 4
+}

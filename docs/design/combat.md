@@ -18,22 +18,34 @@
 | Nội lực tối đa | 100 |
 | Chi phí Hóa Kình | 60 (giảm được bằng `parry_discount`, tối thiểu 20) |
 | Định Thân khi bị Hóa Kình | 1 giây |
-| Liệt Hỏa bộc phát | đủ **50** điểm → **300** sát thương, Cương Khí đỡ được |
-| Kịch Độc bộc phát | đủ **50** điểm → **240** sát thương, xuyên Cương Khí |
-| Xuất Huyết bộc phát | đủ **50** điểm → **150 + 10% khí huyết tối đa**, xuyên Cương Khí |
+| Liệt Hỏa bộc phát | đủ **50** điểm → **80** sát thương, Cương Khí đỡ được (#40) |
+| Kịch Độc bộc phát | đủ **50** điểm → **32** sát thương, xuyên Cương Khí (#40) |
+| Xuất Huyết bộc phát | đủ **50** điểm → **20 + 3,5% khí huyết tối đa**, xuyên Cương Khí (#40) |
 | Điểm trạng thái tự giảm mỗi giây | 0 (không giảm; có thể bật riêng cho từng loại) |
-| Kiệt Lực bắt đầu | 45 giây, giây thứ n mất n × 20 máu (bỏ qua Cương Khí) |
+| Điều Tức tối đa | 3 khí huyết mỗi giây (cộng vượt mức bị bỏ) (#40) |
+| Kiệt Lực bắt đầu | 45 giây, giây thứ n mất n × 5 máu (bỏ qua Cương Khí) |
 | Hết giờ (hòa) | 120 giây |
 | Độ sâu chuỗi sự kiện tối đa | 8 |
 | Hộ Thân tối đa | 80% |
-| Hệ số theo Trọng 1→9 | 1.0 · 1.2 · 1.4 · 1.55 · 1.7 · 1.8 · 1.9 · 1.95 · 2.0 |
+| Hệ số theo Trọng 1→9 | 1.00 → 1.40, +0.05 mỗi Trọng (quyết định #35, giá trị khởi điểm) |
+| Hệ số theo phẩm (Phàm → Chí Tôn) | 1.0 · 1.1 · 1.21 · 1.33 · 1.46 · 1.6 (quyết định #36) |
+| Khí Huyết cơ bản | 100 + 5 × (cấp − 1) |
+| Giảm Hồi Chiêu tối đa | 40% |
+| Trần Cương Khí | 100% Sinh Lực tối đa (quyết định #28) |
 
-Hệ số Trọng nhân vào Lực Đạo, và vào `value`/`stacks` của hiệu ứng (khiên, hồi máu, số điểm trạng thái…). Không nhân vào thời gian, nội lực, chi phí.
+Hệ số Trọng và hệ số phẩm (nhân sau Trọng, cắt số nguyên từng bước) nhân vào Lực Đạo, dòng chỉ số (`stats`), và vào `value`/`stacks` của hiệu ứng (khiên, hồi máu, số điểm trạng thái…). Không nhân vào thời gian, nội lực, chi phí. Ngoài hệ số, ở Trọng 3 / 6 / 9 vật phẩm còn mở thêm hiệu ứng (**Đột Phá**, xem [items.md](items.md#đột-phá)).
+
+## Chỉ số Hiệp Khách (quyết định #35)
+- **Khí Huyết tối đa** = 100 + 5 × (cấp − 1) + tổng `stats.hp` của các món trong túi (sau hệ số Trọng × phẩm).
+- **Hộ Thân nền** = tổng `stats.dmgReduce` (Đan Dược), cộng với Hộ Thân tạm thời từ hiệu ứng, chung trần 80%.
+- **Giảm Hồi Chiêu** = tổng `stats.cooldownReduction` (Công Pháp), trần 40%. Áp cho thời gian hồi của mọi món có hồi chiêu của Hiệp Khách đó.
+- **Công** của binh khí chính là Lực Đạo của món đó, chỉ món đó hưởng.
+- Quái PvE dùng cùng công thức theo `level` của quái.
 
 ## Vòng lặp mỗi tick
 
 ```
-bắt đầu trận: kích hoạt các trigger BATTLE_START của hai bên
+bắt đầu trận: kích hoạt các trigger BATTLE_START của hai bên (bên nào trước chọn bằng random có seed)
 
 mỗi tick (now += 100ms):
   1. Cả hai bên cùng chạy thanh hồi chiêu:
@@ -45,6 +57,7 @@ mỗi tick (now += 100ms):
 ```
 
 - **Đồng thời thật sự:** đòn đã ra trong một tick luôn trúng, kể cả khi bên kia vừa bị hạ gục hoặc vừa bị Định Thân trong cùng tick. Hai bên cùng gục trong một tick → **hòa**.
+- Bên đã về 0 khí huyết trong tick **không thể được hồi máu** nữa (mọi nguồn: hiệu ứng `heal`, Đan Dược, Điều Tức). Nhật ký trận không bao giờ ghi hp âm.
 - Thứ tự xen kẽ trong tick chỉ ảnh hưởng tài nguyên dùng chung (nội lực, Hóa Kình), và được chọn ngẫu nhiên có seed để không bên nào được ưu tiên cố định.
 - Trạng thái có thời hạn kéo dài đến mốc T thì vẫn có hiệu lực ở tick kết thúc tại T (mỗi tick phủ khoảng (now−100, now]).
 - Một vật phẩm ra đòn tối đa **1 lần mỗi tick**.
@@ -130,5 +143,5 @@ Các loại: `START, TRIGGER (kind BASIC/ULTIMATE/PASSIVE), DAMAGE, BURST (kind 
 
 ## Chưa làm
 - Xoay vật phẩm trong túi.
-- Côn "cắt ngang Tuyệt Kỹ", Cung "phá Đan Dược", bộ môn phái (hiệu ứng khi đủ 2/4/6 món cùng phái).
-- Kỹ năng bị động của Hiệp Khách.
+- Côn "cắt ngang Tuyệt Kỹ", Cung "phá Đan Dược".
+- Tâm Pháp mới có mốc 1 (+10% Lực Đạo) cho mọi phái; các mốc 3 / 6 / 9 chưa thiết kế.

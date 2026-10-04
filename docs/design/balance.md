@@ -4,7 +4,7 @@ Quy tắc dùng để đặt chỉ số vật phẩm, cách đo, và kết quả
 
 ## Quy tắc 1: ngân sách sức mạnh theo ô
 
-**Sát thương/giây mỗi ô ≈ 6 × hệ số độ hiếm**
+**Sát thương/giây mỗi ô ≈ 6** ở chỉ số gốc Phàm (từ #24/#25, `items.json` chỉ chứa gốc Phàm; phẩm của từng bản nhân thêm 1.00 → 1.34, quyết định #30). Bảng dưới là quy tắc cũ khi mỗi món có phẩm cố định, giữ để tham khảo:
 
 | Độ hiếm | Phàm | Lương | Tinh | Tuyệt | Thần Binh | Chí Tôn |
 |---|---|---|---|---|---|---|
@@ -120,7 +120,58 @@ Ngay sau khi đổi luật (chưa chỉnh số): từ 0.6% đến 82.7%.
 
 Đội hình mẫu được xếp lại cho vừa binh khí 1x2 (vẫn 18–19/20 ô).
 
+## Đột Phá · 2026-09-27
+
+Chạy 5 đội hình mẫu, cả hai bên cùng Trọng, 200 trận mỗi cặp. Cột là tỉ lệ thắng trung bình của từng đội.
+
+| Trọng | Huyền Độc | Kim Cang | Liệt Diễm | Thái Thanh | Thiết Phủ |
+|---|---|---|---|---|---|
+| 1 (chưa có Đột Phá) | 40% | 40% | 56% | 52% | 63% |
+| 3 | 28% | 71% | 47% | 56% | 48% |
+| 6 | 57% | 44% | 30% | 53% | 66% |
+| 9 | 46% | 60% | 33% | 64% | 48% |
+
+Bài học rút ra khi chỉnh:
+- **Bản đầu** cho Huyền Độc Môn thắng 94% ở Trọng 9. Có hai nguyên nhân:
+  - Kích hoạt "khi bộc phát" chạy trên mọi bản sao của món trong túi → sửa bằng `from: self`.
+  - Tiêu được +2 điểm Kịch Độc, làm số đòn cần để bộc phát giảm từ 5 xuống 4 → đổi sang giảm Tốc Xuất Chiêu.
+- **Đã thử giữ điểm dư sau bộc phát:** không mượt hơn mà chỉ làm trạng thái mạnh lên, nên bỏ.
+- Vòng sau giảm Côn (Cương Khí Trọng 3: 40 → 20) và Quyền Sáo (đòn phụ Trọng 9: 40% → 25%), tăng nhẹ Trảo.
+- **Chưa đạt mục tiêu 35–65%:** Kim Cang ở Trọng 3 (71%, phần lớn do hệ số Trọng: không có Đột Phá vẫn 63%), Huyền Độc ở Trọng 3 (28%), Liệt Diễm ở Trọng 6/9 (30–33%). Dừng chỉnh tay ở đây, vì với 5 đội hình mẫu mỗi lần sửa một món lại làm đội khác lệch. Cần thêm đội hình mẫu hoặc công cụ dò tự động. Trong game thật hai bên thường khác Trọng, nên bảng này chỉ để phát hiện món quá mạnh.
+
+## Đợt 3 · 2026-09-27
+
+**Dữ liệu:** 15 đội hình mẫu (5 gốc + 10 do Gemini tạo, báo cáo ở [reviews/2026-09-27-gemini-loadouts.md](../reviews/2026-09-27-gemini-loadouts.md)). Trước đợt 3: Cầm + Tiêu 99%, 6 Quyền Sáo 77%, Vạn Độc 77%.
+
+**Đổi luật:** Điều Tức tối đa 30/giây (`BattleConfig.maxRegen`). Trước đó cộng dồn mãi, đội có 2 Cầm hồi trung bình 812 máu mỗi trận.
+
+**Cách làm:** chỉnh tay 4 vòng không hội tụ (sửa một món thì đội khác lệch), nên chuyển sang **bộ dò tự động**:
+- Mỗi lần nhích một trong 18 thông số (Lực Đạo, Tốc Xuất Chiêu, chi phí Tuyệt Kỹ, nội lực, Điều Tức, Tâm Kinh), giữ thay đổi nếu tốt hơn.
+- Mục tiêu đo trên bảng 15×15 ở cả Trọng 1, 3, 6, 9: phạt nặng đội vượt 62% (build áp đảo), phạt nhẹ đội dưới 38% (người chơi có thể tự xếp ra túi dở).
+- Mỗi lần đo khoảng 3 giây; chạy tới khi không còn cải thiện.
+
+**Kết quả** (tỉ lệ thắng trung bình trong bảng 15×15):
+
+| Trọng | Thấp nhất | Cao nhất | Đội cao nhất |
+|---|---|---|---|
+| 1 | 12% (Huyền Độc gốc) | 64% | Kim Cang + Thiết Phủ |
+| 3 | 11% | 69% | Thái Thanh Tuyệt Kỹ |
+| 6 | 22% | 69% | Vạn Độc |
+| 9 | 22% | 72% | 6 Quyền Sáo |
+
+Không còn build áp đảo. Đội yếu nhất là đội Huyền Độc gốc (2 Tiêu + 2 Trảo + 2 Hàn Ngọc Tiêu): độc và huyết đều không đủ nhanh, coi như một cách xếp túi dở.
+
+**Thay đổi chỉ số chính:** Quyền Sáo Lực Đạo 16 → 11; Trảo 12 → 8; Tiêu 2.0s → 2.1s; Kiếm 65 → 75; Đao 105 → 120, 6s → 4.5s; Côn 160 → 200, Tuyệt Kỹ 30 → 25; Rìu 240 → 280, 8s → 6.75s; Bút 44 → 28; Hàn Ngọc Tiêu 38 → 62, Trì Trệ 1s → 0.7s, nội lực 4 → 2; Cầm 120 → 90, Điều Tức 6 → 3, nội lực 4 → 2. Đột Phá: Rìu (Phá Cương 80 → 40, Lực Đạo +40 → +20), Cầm (hồi 250 → 150), Quyền Sáo Trọng 9 (đòn phụ 25% → 15%).
+
+**Nhận xét:** bộ dò đẩy món nặng (Côn, Rìu, Đao) mạnh lên và món nhẹ nhiều bản sao (Quyền Sáo, Trảo, Bút) yếu đi, khớp với nhận định "món nhỏ bị nhân theo số bản sao". Bộ dò đã được Codex làm lại thành công cụ `tools/balance/balance.py` (`matrix`, `whatif`, `tune`), xem [README](../../tools/balance/README.md).
+
+## 7 binh khí mới · 2026-09-27
+
+Gemini thiết kế ([báo cáo](../reviews/2026-09-27-gemini-new-weapons.md)), Claude kiểm chứng và sửa 3 lỗi trước khi áp dụng: Chấn Nhạc Chùy Trọng 9 "Định Thân +0.5s" không có tác dụng (thời gian khống chế lấy mức lớn nhất, không cộng) → đổi thành Tuyệt Kỹ −5 nội lực; Thanh Đằng Tiên Trọng 9 "Trì Trệ +0.4s" thực chất là một lần Trì Trệ riêng → đổi thành Tốc Xuất Chiêu −0.2s; Truy Hồn Cung không có Tuyệt Kỹ nhưng cho 1.1 nội lực/giây → 4 nội lực mỗi đòn. Bộ mẫu thành 20 đội (thêm 5 đội dùng binh khí mới); không đội mới nào vượt 70%.
+
+**Phát hiện mới:** khi **cả** Trọng 9 **và** Tâm Pháp cấp 9, vài đội vượt ngưỡng (6 Quyền Sáo ~77%, Kim Cang + Thiết Phủ ~71%, Kiếm Khí ~70%). Các đợt trước chỉ đo Trọng và Tâm Pháp riêng rẽ. Cần một vòng `tools/balance/balance.py tune` với `--tiers 1,9 --tp 1,9`.
+
 ## Vấn đề còn mở
 
-- **Khắc chế quá cứng** (vẫn còn sau đợt 2; cơ chế bộc phát theo ngưỡng cũng góp phần). Nhiều cặp ra 0–10% hoặc 90–100%, vì trận gần như không có ngẫu nhiên: chỉ có Hội Tâm và việc chọn mục tiêu. Chỉ cần vượt ngưỡng là kết quả lật hẳn, nên cân bằng rất nhạy (giảm 1 điểm Lực Đạo làm một cặp đổi từ 56% xuống 0.2%). Đây là vấn đề thiết kế cần bàn: khắc chế cứng có thể chấp nhận vì người chơi được đổi đội hình, hoặc có thể thêm yếu tố ngẫu nhiên (né tránh, dao động sát thương…).
-- Mới cân bằng với 5 đội hình mẫu, chưa tính hệ số Trọng và hiệu ứng bộ môn phái.
+- ~~Khắc chế quá cứng~~ → **chấp nhận** (quyết định #13). Mục tiêu cân bằng mới: tỉ lệ thắng **trung bình** của mỗi đội hình trong 35–65%, mỗi đội có ít nhất một cặp thắng và một cặp thua rõ; từng cặp riêng lẻ được phép 0–100%. Ghi chú cũ: Nhiều cặp ra 0–10% hoặc 90–100%, vì trận gần như không có ngẫu nhiên: chỉ có Hội Tâm và việc chọn mục tiêu. Chỉ cần vượt ngưỡng là kết quả lật hẳn, nên cân bằng rất nhạy (giảm 1 điểm Lực Đạo làm một cặp đổi từ 56% xuống 0.2%). Đây là vấn đề thiết kế cần bàn: khắc chế cứng có thể chấp nhận vì người chơi được đổi đội hình, hoặc có thể thêm yếu tố ngẫu nhiên (né tránh, dao động sát thương…).
+- Mới cân bằng với 5 đội hình mẫu, chưa có hiệu ứng bộ môn phái. Đội hình mẫu còn ít nên mỗi con số rất nhạy với từng món.

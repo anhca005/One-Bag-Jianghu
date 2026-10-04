@@ -11,7 +11,7 @@ namespace OneBagJianghu.Tests.VfxLab
         public void CatalogRowIsAReusablePrefab()
         {
             GameObject prefab =
-AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Prefabs/UI/Tools/VfxCatalogRow.prefab");
+                AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Prefabs/UI/Tools/VfxCatalogRow.prefab");
             Assert.That(prefab, Is.Not.Null);
             Assert.That(prefab.GetComponent<VfxCatalogRow>(), Is.Not.Null);
         }

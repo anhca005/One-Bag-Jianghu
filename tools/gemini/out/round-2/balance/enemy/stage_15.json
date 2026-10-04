@@ -1,0 +1,45 @@
+{
+  "name": "Ải 15: Vạn Hoa Nghịch Đồ",
+  "hp": 560,
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "hoi_thien_dan",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 4,
+      "y": 1,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 2,
+      "y": 1,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

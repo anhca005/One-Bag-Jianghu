@@ -14,6 +14,8 @@ namespace OneBagJianghu.Battle.Replay.View
         [SerializeField]
         private Image cooldownOverlay;
         [SerializeField]
+        private Image rarityFrame;
+        [SerializeField]
         private Image flashOverlay;
         [SerializeField]
         private Outline rarityOutline;
@@ -21,6 +23,7 @@ namespace OneBagJianghu.Battle.Replay.View
         private Text nameText;
         [SerializeField]
         private Text statusText;
+        private static Sprite fillSprite;
         private float flashUntil;
         private int statusUntil;
         public int Uid
@@ -30,22 +33,24 @@ namespace OneBagJianghu.Battle.Replay.View
         }
 
         public void Initialize(int uid,
-string itemName,
-int tier,
-string rarity) =>
-Initialize(uid,
-null,
-itemName,
-tier,
-rarity);
+            string itemName,
+            int tier,
+            string rarity) =>
+            Initialize(uid,
+            null,
+            itemName,
+            tier,
+            rarity);
         public void Initialize(int uid,
-string itemId,
-string itemName,
-int tier,
-string rarity)
+            string itemId,
+            string itemName,
+            int tier,
+            string rarity)
         {
             Uid = uid;
+            EnsureFillSprite();
             background.color = BagViewStyle.Fill(rarity);
+            rarityFrame.color = BagViewStyle.Rarity(rarity);
             nameText.text = itemName + (tier > 1 ? "  T" + tier : "");
             if (rarityOutline == null)
             {
@@ -59,9 +64,12 @@ string rarity)
             bool hasIcon = library != null && library.TryGet(itemId, out sprite);
             icon.gameObject.SetActive(hasIcon);
             icon.sprite = hasIcon ? sprite : null;
+            nameText.gameObject.SetActive(!hasIcon);
             nameText.fontSize = hasIcon ? 14 : ReplayStyle.SmallFont;
-            nameText.alignment = hasIcon ? TextAnchor.LowerCenter : TextAnchor.MiddleCenter;
-            nameText.rectTransform.anchorMax = hasIcon ? new Vector2(1f, .28f) : Vector2.one;
+            nameText.alignment = TextAnchor.MiddleCenter;
+            nameText.rectTransform.anchorMin = Vector2.zero;
+            nameText.rectTransform.anchorMax = Vector2.one;
+            rarityFrame.transform.SetAsLastSibling();
             statusText.gameObject.SetActive(false);
             cooldownOverlay.gameObject.SetActive(false);
             flashOverlay.gameObject.SetActive(false);
@@ -87,6 +95,25 @@ string rarity)
         {
             statusText.gameObject.SetActive(false);
             statusUntil = 0;
+        }
+
+        /// <summary>
+        /// A Filled image ignores fillAmount when it has no sprite and just draws the whole rect, so the cooldown
+        /// overlay never drained. Give it a plain white sprite (tinted by the overlay colour).
+        /// </summary>
+        private void EnsureFillSprite()
+        {
+            if (cooldownOverlay == null || cooldownOverlay.sprite != null)
+                return;
+            if (fillSprite == null)
+            {
+                Texture2D white = Texture2D.whiteTexture;
+                fillSprite = Sprite.Create(white, new Rect(0f, 0f, white.width, white.height), new Vector2(.5f, .5f));
+                fillSprite.name = "CooldownFill";
+            }
+
+            cooldownOverlay.sprite = fillSprite;
+            cooldownOverlay.type = Image.Type.Filled;
         }
 
         public void SetCooldown(float fill, bool active)

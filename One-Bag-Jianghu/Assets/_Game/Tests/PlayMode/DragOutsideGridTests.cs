@@ -35,9 +35,9 @@ namespace OneBagJianghu.Tests.Play
             int oldX = placed.X, oldY = placed.Y;
             ItemView view = FindItemView(panel.transform, item.ItemId);
             Drag(view.gameObject,
-Centre(view.RectTransform),
-new Vector2(-100f,
--100f));
+                Centre(view.RectTransform),
+                new Vector2(-100f,
+                -100f));
             yield return null;
             Assert.AreEqual(oldX, grid.Grid.Items[0].X);
             Assert.AreEqual(oldY, grid.Grid.Items[0].Y);
@@ -60,13 +60,13 @@ new Vector2(-100f,
             ItemView view = FindItemView(panel.StorageGridRect, item.ItemId);
             Vector2 before = view.RectTransform.anchoredPosition;
             Drag(view.gameObject,
-Centre(view.RectTransform),
-new Vector2(-100f,
--100f));
+                Centre(view.RectTransform),
+                new Vector2(-100f,
+                -100f));
             yield return null;
             Assert.Less(Vector2.Distance(view.RectTransform.anchoredPosition,
-before),
-.1f);
+                before),
+                .1f);
             Assert.AreEqual(1, CountViews(panel.transform, item.ItemId));
             Assert.IsEmpty(profile.Loadout);
         }
@@ -84,16 +84,16 @@ before),
             int x = placement.X, y = placement.Y, count = profile.Storage.Items.Count;
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StoragePopup>(),
-"StoragePopup did not open.");
+                PopupManager.IsOpen<StoragePopup>(),
+                "StoragePopup did not open.");
             StoragePopup popup = PopupManager.Top as StoragePopup;
             StorageItemView view = FindStorageView(popup, placement);
             LogAssert.Expect(LogType.Warning,
-new System.Text.RegularExpressions.Regex("\\[Storage\\] Move refused: .* -> outside grid"));
+                new System.Text.RegularExpressions.Regex("\\[Storage\\] Move refused: .* -> outside grid"));
             Drag(view.gameObject,
-Centre((RectTransform)view.transform),
-new Vector2(-100f,
--100f));
+                Centre((RectTransform)view.transform),
+                new Vector2(-100f,
+                -100f));
             yield return null;
             Assert.AreEqual(x, placement.X);
             Assert.AreEqual(y, placement.Y);
@@ -123,28 +123,28 @@ new Vector2(-100f,
             ExecuteEvents.Execute(view.gameObject, data, ExecuteEvents.beginDragHandler);
             ExecuteEvents.Execute(view.gameObject, data, ExecuteEvents.dragHandler);
             Assert.Less(Vector2.Distance(Centre(view.RectTransform),
-pointer),
-4f,
-"Dragged image was not centred on the cursor.");
+                pointer),
+                4f,
+                "Dragged image was not centred on the cursor.");
             GetField<UiButton>(popup, "closeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-!popup.gameObject.activeInHierarchy,
-"BagPopup did not finish closing.");
+                !popup.gameObject.activeInHierarchy,
+                "BagPopup did not finish closing.");
             yield return null;
             Assert.AreEqual(1, profile.Storage.Items.Count);
             Assert.AreEqual(0,
-UnityEngine.Object.FindObjectsByType<ItemView>(FindObjectsSortMode.None).Length,
-"A drag ghost survived popup disable.");
+                UnityEngine.Object.FindObjectsByType<ItemView>(FindObjectsSortMode.None).Length,
+                "A drag ghost survived popup disable.");
             GetField<HomeHotspot>(home, "bagHotspot").OnClick.Invoke();
             yield return WaitUntil(() => PopupManager.IsOpen<BagPopup>(),
-"BagPopup did not reopen.");
+                "BagPopup did not reopen.");
             panel = GetField<BagLoadoutPanel>(PopupManager.Top, "bagPanel");
             Assert.AreEqual(1, CountViews(panel.transform, item.ItemId));
         }
 
         private static void PrepareSingleStoredItem(out HomeController home,
-out PlayerProfile profile,
-out OwnedItem item)
+            out PlayerProfile profile,
+            out OwnedItem item)
         {
             home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
             GameBootstrap.Session.ResetProfile();
@@ -175,8 +175,8 @@ out OwnedItem item)
         }
 
         private static Vector2 Centre(RectTransform rect) =>
-RectTransformUtility.WorldToScreenPoint(null,
-rect.TransformPoint(rect.rect.center));
+            RectTransformUtility.WorldToScreenPoint(null,
+            rect.TransformPoint(rect.rect.center));
         private static ItemView FindItemView(Transform root, string id)
         {
             foreach (ItemView view in root.GetComponentsInChildren<ItemView>())
@@ -209,9 +209,9 @@ rect.TransformPoint(rect.rect.center));
             {
                 Vector2 p = ((RectTransform)row.transform).anchoredPosition;
                 if (Mathf.Approximately(p.x,
-placement.X * 80f) &&
-Mathf.Approximately(p.y,
--placement.Y * 80f))
+                    placement.X * 80f) &&
+                    Mathf.Approximately(p.y,
+                    -placement.Y * 80f))
                     return row.GetComponent<StorageItemView>();
             }
 
@@ -226,9 +226,9 @@ Mathf.Approximately(p.y,
             {
                 Vector2 p = ((RectTransform)row.transform).anchoredPosition;
                 if (Mathf.Approximately(p.x,
-placement.X * 80f) &&
-Mathf.Approximately(p.y,
--placement.Y * 80f))
+                    placement.X * 80f) &&
+                    Mathf.Approximately(p.y,
+                    -placement.Y * 80f))
                 {
                     count++;
                 }

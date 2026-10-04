@@ -21,8 +21,8 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
         public Text Tuned => tuned;
 
         public void Bind(VfxCatalogEntry entry,
-bool hasArt,
-UnityEngine.Events.UnityAction selected)
+            bool hasArt,
+            UnityEngine.Events.UnityAction selected)
         {
             status.text = hasArt ? "✓" : "✗";
             status.color = hasArt ? ReplayStyle.Heal : ReplayStyle.Hp;

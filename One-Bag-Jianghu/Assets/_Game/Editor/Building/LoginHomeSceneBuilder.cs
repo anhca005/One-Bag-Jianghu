@@ -4,6 +4,7 @@ using OneBagJianghu.Core;
 using OneBagJianghu.UI.Home;
 using OneBagJianghu.UI.Login;
 using OneBagJianghu.UI.Common;
+using OneBagJianghu.Onboarding;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -25,7 +26,9 @@ namespace OneBagJianghu.EditorTools.Building
 
         public static void Build(bool overwrite)
         {
-            BuildLoginScene(overwrite);
+            // LoginScene is edited by hand. "Build All (Overwrite)" runs without a dialog in batch mode, so it only
+            // creates the scene when missing; use the explicit Login Scene (Overwrite) menu to rebuild it.
+            BuildLoginScene(false);
             BuildHomeScene(overwrite);
         }
 
@@ -67,6 +70,7 @@ namespace OneBagJianghu.EditorTools.Building
             if (!ShouldBuild(HomePath, overwrite, typeof(HomeController))) return;
             Scene scene = CreateScene("HomeScene", typeof(HomeController), out Component component, out Canvas canvas);
             var controller = (HomeController)component;
+            controller.gameObject.AddComponent<OnboardingRuntime>();
             Image background = canvas.transform.Find("Background").GetComponent<Image>();
             background.color = UiBuild.Paper;
             UiBuild.ApplyUiSprite(background, "bg_home");
@@ -82,24 +86,91 @@ namespace OneBagJianghu.EditorTools.Building
                 hero.rectTransform.sizeDelta = new Vector2(300f, 450f);
             }
 
-            Image header = UiBuild.Image(canvas.transform, "Header", new Color(UiBuild.Paper.r, UiBuild.Paper.g, UiBuild.Paper.b, 0.88f));
-            TopStretch(header.rectTransform, 80f);
-            Text heroName = UiBuild.Text(header.transform, "HeroName", "Vân Du", 28, TextAnchor.MiddleLeft, UiFontRole.Title); Rect(heroName.rectTransform, 32f, 10f, 260f, 60f);
-            Slider exp = Slider(header.transform, "ExpBar"); Rect(exp.GetComponent<RectTransform>(), 300f, 20f, 280f, 40f);
-            Text expText = UiBuild.Text(exp.transform, "ExpText", "EXP 0/100", 16); UiBuild.Stretch(expText.rectTransform, 5f); expText.raycastTarget = false;
-            Text level = UiBuild.Text(header.transform, "LevelText", "Cấp 1", 20, TextAnchor.MiddleCenter, UiFontRole.Title); Rect(level.rectTransform, 590f, 10f, 100f, 60f);
-            Text stamina;
-            Text silver;
-            Button settings = LinkedButton("Button_Secondary", header.transform, "Btn_Settings", "Cài đặt"); Rect(settings.GetComponent<RectTransform>(), 1700f, 10f, 180f, 60f); settings.GetComponent<Image>().pixelsPerUnitMultiplier = 10f; UiBuild.FitLabel(settings.GetComponentInChildren<Text>(), UiBuild.LabelFitPreset.OrnateButton); settings.GetComponent<OneBagJianghu.UI.Common.UiButton>().SetLabel("Cài đặt");
+            // The banner is 9-sliced so the rolled scroll ends keep their shape.
+            Color headerFallback = new Color(UiBuild.Paper.r, UiBuild.Paper.g, UiBuild.Paper.b, .88f);
+            Image header = UiBuild.Image(canvas.transform, "Header", headerFallback);
+            TopStretch(header.rectTransform, 132f);
+            if (UiBuild.ApplyUiSprite(header, "home_banner", Image.Type.Sliced))
+            {
+                header.color = Color.white;
+                // Scale the ends with the banner height (art is 390 px tall) instead of stretching them sideways.
+                header.pixelsPerUnitMultiplier = 390f / 132f;
+            }
 
-            Text premium;
-            Text reputation;
-            RectTransform currencyRow = UiBuild.Rect(header.transform, "Currency Row"); Rect(currencyRow, 990f, 10f, 700f, 60f);
-            HorizontalLayoutGroup currencyLayout = currencyRow.gameObject.AddComponent<HorizontalLayoutGroup>(); currencyLayout.spacing = 10f; currencyLayout.childAlignment = TextAnchor.MiddleLeft; currencyLayout.childControlWidth = true; currencyLayout.childControlHeight = true; currencyLayout.childForceExpandWidth = false;
-            stamina = CurrencyEntry(currencyRow, "StaminaText", "Thể Lực 120/120", 165f);
-            silver = CurrencyEntry(currencyRow, "SilverText", "Bạc 8,800", 125f);
-            premium = CurrencyEntry(currencyRow, "PremiumText", "Nguyên Bảo 0", 185f);
-            reputation = CurrencyEntry(currencyRow, "ReputationText", "Danh Vọng 0", 165f);
+            // Crop the half-body portrait to the frame's inner circle, anchored at the top so the face stays visible.
+            RectTransform avatar = UiBuild.Rect(header.transform, "Avatar");
+            Rect(avatar, 76f, 34f, 76f, 76f);
+            Image avatarMask = avatar.gameObject.AddComponent<Image>();
+            avatarMask.sprite = AssetDatabase.GetBuiltinExtraResource<Sprite>("UI/Skin/Knob.psd");
+            avatar.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            Color portraitFallback = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .15f);
+            Image portrait = UiBuild.Image(avatar, "Portrait", portraitFallback);
+            portrait.rectTransform.anchorMin = portrait.rectTransform.anchorMax = new Vector2(.5f, 1f);
+            portrait.rectTransform.pivot = new Vector2(.5f, 1f);
+            portrait.rectTransform.sizeDelta = new Vector2(84f, 126f);
+            portrait.rectTransform.anchoredPosition = new Vector2(0f, 4f);
+            portrait.preserveAspect = true;
+            if (UiBuild.ApplyUiSprite(portrait, "hero_portrait", Image.Type.Simple))
+                portrait.color = Color.white;
+            Image avatarFrame = UiBuild.Image(header.transform, "Avatar Frame", Color.clear);
+            Rect(avatarFrame.rectTransform, 64f, 22f, 100f, 100f);
+            avatarFrame.preserveAspect = true;
+            bool hasAvatarFrame = UiBuild.ApplyUiSprite(avatarFrame, "avatar_frame", Image.Type.Simple);
+            if (!hasAvatarFrame)
+                hasAvatarFrame = UiBuild.ApplyUiSprite(avatarFrame, "hero_portrait_frame", Image.Type.Simple);
+            if (hasAvatarFrame)
+                avatarFrame.color = Color.white;
+
+            // Name, level seal and EXP bar on the left.
+            Text heroName = UiBuild.Text(header.transform, "HeroName", "Vân Du", 28,
+                TextAnchor.MiddleLeft, UiFontRole.Title);
+            Rect(heroName.rectTransform, 184f, 34f, 236f, 34f);
+            UiBuild.FitLabel(heroName, UiBuild.LabelFitPreset.None);
+            // Layout follows the banner's paper band (about y 30-115 of 132): name and combat power on the
+            // top row, EXP bar below, and the level seal pinned to the avatar's lower-right corner.
+            Text power = UiBuild.Text(header.transform, "Power", "Lực Chiến 100", 20,
+                TextAnchor.MiddleLeft, UiFontRole.Title);
+            Rect(power.rectTransform, 430f, 37f, 230f, 28f);
+            power.color = UiBuild.Vermilion;
+            UiBuild.FitLabel(power, UiBuild.LabelFitPreset.None);
+            Image levelSeal = UiBuild.Image(header.transform, "Level Badge", Color.clear);
+            Rect(levelSeal.rectTransform, 130f, 82f, 40f, 40f);
+            levelSeal.preserveAspect = true;
+            if (UiBuild.ApplyUiSprite(levelSeal, "seal_title", Image.Type.Simple))
+                levelSeal.color = Color.white;
+            Text level = UiBuild.Text(levelSeal.transform, "LevelText", "1", 20,
+                TextAnchor.MiddleCenter, UiFontRole.Title);
+            level.color = UiBuild.Paper;
+            level.fontStyle = FontStyle.Bold;
+            // The seal art is busy, so the number needs an ink outline to stay readable.
+            Outline levelOutline = level.gameObject.AddComponent<Outline>();
+            levelOutline.effectColor = UiBuild.Ink;
+            levelOutline.effectDistance = new Vector2(2f, -2f);
+            UiBuild.Stretch(level.rectTransform, 2f);
+            UiBuild.FitLabel(level, UiBuild.LabelFitPreset.None, 12);
+            Slider exp = BuildHomeExpBar(header.transform);
+            Rect(exp.GetComponent<RectTransform>(), 184f, 72f, 300f, 41f);
+            Text expText = UiBuild.Text(exp.transform, "ExpText", "Cấp 1 · EXP 0/100", 15);
+            expText.color = UiBuild.Ink;
+            UiBuild.Stretch(expText.rectTransform);
+            UiBuild.FitLabel(expText, UiBuild.LabelFitPreset.None, 10);
+            expText.raycastTarget = false;
+
+            // Four currency slots holding only an icon and a number.
+            RectTransform currencyRow = UiBuild.Rect(header.transform, "Currency Row");
+            Rect(currencyRow, 770f, 44f, 1010f, 56f);
+            HorizontalLayoutGroup currencyLayout = currencyRow.gameObject.AddComponent<HorizontalLayoutGroup>();
+            currencyLayout.spacing = 10f;
+            currencyLayout.childAlignment = TextAnchor.MiddleLeft;
+            currencyLayout.childControlWidth = false;
+            currencyLayout.childControlHeight = false;
+            Text stamina = CurrencyEntry(currencyRow, "StaminaText", "120/120", "icon_stamina");
+            Text silver = CurrencyEntry(currencyRow, "SilverText", "8.800", "icon_bac");
+            Text premium = CurrencyEntry(currencyRow, "PremiumText", "0", "icon_nguyen_bao");
+            Text reputation = CurrencyEntry(currencyRow, "ReputationText", "0", "icon_danh_vong");
+            HoverTooltipTarget staminaTarget = stamina.transform.parent.gameObject.AddComponent<HoverTooltipTarget>();
+            ItemTooltip staminaTooltip = BuildHomeTooltip(canvas.transform);
+            Button settings = BuildSettingsButton(header.transform);
             RectTransform hotspots = UiBuild.Rect(canvas.transform, "Hotspots"); UiBuild.Stretch(hotspots);
             HomeHotspot pve = Hotspot(hotspots, "Hotspot_Pve", "Hành Tẩu Giang Hồ", "Vào ải hành tẩu", 1380, 380, 260, 200, new Vector2(1f, 0.5f), false);
             HomeHotspot pvp = Hotspot(hotspots, "Hotspot_Pvp", "Luận Kiếm Đài", "Tỷ thí cùng quần hùng", 1600, 140, 240, 180, Vector2.one, false);
@@ -108,13 +179,57 @@ namespace OneBagJianghu.EditorTools.Building
             HomeHotspot codex = Hotspot(hotspots, "Hotspot_Codex", "Vạn Bảo Phổ", "Xem đồ giám giang hồ", 80, 680, 220, 160, Vector2.zero, false);
             HomeHotspot shop = Hotspot(hotspots, "Hotspot_Shop", "Thương Hội", "Giao dịch vật phẩm", 380, 400, 300, 200, new Vector2(0f, 0.5f), false);
             HomeHotspot sect = Hotspot(hotspots, "Hotspot_Sect", "Môn Phái", "Đạt cấp 10 mở khóa gia nhập Môn Phái", 250, 90, 240, 180, new Vector2(0f, 1f), true);
+            HomeHotspot encyclopedia = Hotspot(hotspots, "Hotspot_Encyclopedia", "Bách Khoa",
+                "Tra cứu thuật ngữ giang hồ", 80, 870, 220, 130, Vector2.zero, false);
+            AddTarget(pve.gameObject, "home_pve");
+            AddTarget(bag.gameObject, "home_bag");
+            AddTarget(storage.gameObject, "home_storage");
+            AddTarget(shop.gameObject, "home_shop");
+            AddTarget(sect.gameObject, "home_sect");
 
             UiBuild.Set(controller, "background", background); UiBuild.Set(controller, "heroZone", hero); UiBuild.Set(controller, "heroName", heroName);
             UiBuild.Set(controller, "expBar", exp); UiBuild.Set(controller, "expText", expText); UiBuild.Set(controller, "levelText", level); UiBuild.Set(controller, "settingsButton", settings);
+            UiBuild.Set(controller, "powerText", power);
             UiBuild.Set(controller, "staminaText", stamina); UiBuild.Set(controller, "silverText", silver); UiBuild.Set(controller, "premiumText", premium); UiBuild.Set(controller, "reputationText", reputation);
+            UiBuild.Set(controller, "staminaTooltip", staminaTooltip);
+            UiBuild.Set(controller, "staminaTooltipTarget", staminaTarget);
             UiBuild.Set(controller, "pveHotspot", pve); UiBuild.Set(controller, "pvpHotspot", pvp); UiBuild.Set(controller, "bagHotspot", bag);
             UiBuild.Set(controller, "storageHotspot", storage); UiBuild.Set(controller, "codexHotspot", codex); UiBuild.Set(controller, "shopHotspot", shop); UiBuild.Set(controller, "sectHotspot", sect);
+            UiBuild.Set(controller, "encyclopediaHotspot", encyclopedia);
             EditorSceneManager.SaveScene(scene, HomePath); EnsureBuildSettings();
+        }
+
+        private static ItemTooltip BuildHomeTooltip(Transform parent)
+        {
+            // The stamina slot uses the same framed, cursor-following tooltip as the shop.
+            var root = new GameObject("Stamina Tooltip", typeof(RectTransform), typeof(Canvas), typeof(ItemTooltip));
+            root.transform.SetParent(parent, false);
+            UiBuild.Stretch(root.GetComponent<RectTransform>());
+            Canvas canvas = root.GetComponent<Canvas>();
+            canvas.overrideSorting = true;
+            Image paper = UiBuild.Image(root.transform, "Paper", UiBuild.Paper);
+            UiBuild.ApplyUiSprite(paper, "frame_tooltip", Image.Type.Sliced);
+            RectTransform panel = paper.rectTransform;
+            panel.anchorMin = Vector2.zero;
+            panel.anchorMax = Vector2.zero;
+            panel.pivot = new Vector2(0f, 1f);
+            panel.sizeDelta = new Vector2(440f, 260f);
+            RectTransform viewport = UiBuild.Image(paper.transform, "Viewport", Color.clear).rectTransform;
+            viewport.anchorMin = Vector2.zero;
+            viewport.anchorMax = Vector2.one;
+            viewport.offsetMin = new Vector2(ItemTooltip.HorizontalInset, ItemTooltip.BottomInset);
+            viewport.offsetMax = new Vector2(-ItemTooltip.HorizontalInset, -ItemTooltip.TopInset);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            Text description = UiBuild.Text(viewport, "Description", string.Empty, 18, TextAnchor.UpperLeft);
+            UiBuild.Stretch(description.rectTransform);
+            description.color = UiBuild.Ink;
+            description.horizontalOverflow = HorizontalWrapMode.Wrap;
+            description.verticalOverflow = VerticalWrapMode.Overflow;
+            ItemTooltip tooltip = root.GetComponent<ItemTooltip>();
+            UiBuild.Set(tooltip, "overlayCanvas", canvas);
+            UiBuild.Set(tooltip, "panel", panel);
+            UiBuild.Set(tooltip, "descriptionText", description);
+            return tooltip;
         }
 
         private static HomeHotspot Hotspot(Transform parent, string name, string label, string tooltip, float x, float y, float width, float height, Vector2 anchor, bool locked)
@@ -123,10 +238,38 @@ namespace OneBagJianghu.EditorTools.Building
             PixelRect((RectTransform)hotspot.transform, x, y, width, height, anchor); hotspot.Configure(label, tooltip, locked, locked ? 10 : 0, false); return hotspot;
         }
 
-        private static Slider Slider(Transform parent, string name)
+        private static void AddTarget(GameObject owner, string id)
         {
-            Image root = UiBuild.Image(parent, name, new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f)); Slider slider = root.gameObject.AddComponent<Slider>();
-            Image fill = UiBuild.Image(root.transform, "Fill", UiBuild.Gold); UiBuild.Stretch(fill.rectTransform, 3f); slider.fillRect = fill.rectTransform; slider.targetGraphic = fill; slider.interactable = false; return slider;
+            TutorialTarget target = owner.AddComponent<TutorialTarget>();
+            target.Configure(id);
+        }
+
+        private static Slider BuildHomeExpBar(Transform parent)
+        {
+            // Same layering as the loading bar: fill first, bamboo frame drawn on top of it.
+            RectTransform bar = UiBuild.Rect(parent, "ExpBar");
+            RectTransform fillArea = UiBuild.Rect(bar, "Fill Area");
+            fillArea.anchorMin = new Vector2(.105f, .28f);
+            fillArea.anchorMax = new Vector2(.895f, .72f);
+            fillArea.offsetMin = Vector2.zero;
+            fillArea.offsetMax = Vector2.zero;
+            Image fill = UiBuild.Image(fillArea, "Fill", UiBuild.Vermilion);
+            fill.type = Image.Type.Simple;
+            fill.rectTransform.anchorMin = Vector2.zero;
+            fill.rectTransform.anchorMax = new Vector2(0f, 1f);
+            fill.rectTransform.offsetMin = Vector2.zero;
+            fill.rectTransform.offsetMax = Vector2.zero;
+            Color frameFallback = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .18f);
+            Image frame = UiBuild.Image(bar, "Frame", frameFallback);
+            if (UiBuild.ApplyUiSprite(frame, "progress_bar", Image.Type.Simple))
+                frame.color = Color.white;
+            frame.raycastTarget = false;
+            UiBuild.Stretch(frame.rectTransform);
+            Slider slider = bar.gameObject.AddComponent<Slider>();
+            slider.fillRect = fill.rectTransform;
+            slider.interactable = false;
+            slider.transition = Selectable.Transition.None;
+            return slider;
         }
 
         private static Scene CreateScene(string name, Type controllerType, out Component controller, out Canvas canvas)
@@ -157,16 +300,63 @@ namespace OneBagJianghu.EditorTools.Building
             ((RectTransform)gameObject.transform).sizeDelta = new Vector2(width, height);
         }
 
-        private static Text CurrencyEntry(Transform parent, string name, string value, float width)
+        private static Text CurrencyEntry(Transform parent, string name, string value, string iconKey)
         {
+            // The slot art has a round icon socket on the left, so it keeps its aspect instead of 9-slicing.
             RectTransform entry = UiBuild.Rect(parent, name + " Entry");
-            LayoutElement entrySize = entry.gameObject.AddComponent<LayoutElement>(); entrySize.preferredWidth = width; entrySize.preferredHeight = 60f;
-            HorizontalLayoutGroup layout = entry.gameObject.AddComponent<HorizontalLayoutGroup>(); layout.spacing = 6f; layout.childAlignment = TextAnchor.MiddleLeft; layout.childControlWidth = true; layout.childControlHeight = true; layout.childForceExpandWidth = false; layout.childForceExpandHeight = false;
-            Image icon = UiBuild.Image(entry, "Icon", Color.white); icon.preserveAspect = true; icon.raycastTarget = false;
-            LayoutElement iconSize = icon.gameObject.AddComponent<LayoutElement>(); iconSize.minWidth = iconSize.preferredWidth = 26f; iconSize.minHeight = iconSize.preferredHeight = 26f;
-            Text text = UiBuild.Text(entry, name, value, 22, TextAnchor.MiddleLeft, UiFontRole.Body); text.horizontalOverflow = HorizontalWrapMode.Overflow;
-            ContentSizeFitter fitter = text.gameObject.AddComponent<ContentSizeFitter>(); fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
+            entry.sizeDelta = new Vector2(242f, 56f);
+            Image slot = entry.gameObject.AddComponent<Image>();
+            slot.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .92f);
+            bool hasSlotArt = UiBuild.ApplyUiSprite(slot, "currency_slot", Image.Type.Simple);
+            if (hasSlotArt)
+            {
+                slot.color = Color.white;
+                slot.preserveAspect = true;
+            }
+            else
+                UiBuild.ApplyUiSprite(slot, "plaque_label", Image.Type.Sliced);
+            Image icon = UiBuild.Image(entry, "Icon", Color.white);
+            if (hasSlotArt)
+                Rect(icon.rectTransform, 24f, 11f, 34f, 34f); // socket centre measured at x 16.8%, y 49% of the art
+            else
+                Rect(icon.rectTransform, 12f, 8f, 40f, 40f);
+            icon.preserveAspect = true;
+            // preserveAspect aligns the sprite by the pivot; centre it so wide icons sit in the middle of the socket.
+            RectTransform iconRect = icon.rectTransform;
+            iconRect.pivot = new Vector2(.5f, .5f);
+            iconRect.anchoredPosition += new Vector2(iconRect.sizeDelta.x / 2f, -iconRect.sizeDelta.y / 2f);
+            icon.raycastTarget = false;
+            icon.sprite = CurrencyArt.TryGetSprite(iconKey, out Sprite sprite) ? sprite : null;
+            icon.gameObject.SetActive(icon.sprite != null);
+            Text text = UiBuild.Text(entry, name, value, 22, TextAnchor.MiddleRight, UiFontRole.Body);
+            text.color = UiBuild.Paper;
+            text.rectTransform.anchorMin = new Vector2(.3f, .1f);
+            text.rectTransform.anchorMax = new Vector2(.86f, .9f);
+            text.rectTransform.offsetMin = Vector2.zero;
+            text.rectTransform.offsetMax = Vector2.zero;
+            UiBuild.FitLabel(text, UiBuild.LabelFitPreset.None);
             return text;
+        }
+
+        private static Button BuildSettingsButton(Transform parent)
+        {
+            Image icon = UiBuild.Image(parent, "Btn_Settings", Color.clear);
+            Rect(icon.rectTransform, 1776f, 34f, 76f, 76f);
+            icon.preserveAspect = true;
+            if (UiBuild.ApplyUiSprite(icon, "icon_settings", Image.Type.Simple))
+            {
+                icon.color = Color.white;
+                Button iconButton = icon.gameObject.AddComponent<Button>();
+                iconButton.targetGraphic = icon;
+                return iconButton;
+            }
+
+            UnityEngine.Object.DestroyImmediate(icon.gameObject);
+            Button fallback = LinkedButton("Button_Secondary", parent, "Btn_Settings", "Cài đặt");
+            Rect(fallback.GetComponent<RectTransform>(), 1710f, 26f, 180f, 60f);
+            fallback.GetComponent<Image>().pixelsPerUnitMultiplier = 10f;
+            UiBuild.FitLabel(fallback.GetComponentInChildren<Text>(), UiBuild.LabelFitPreset.OrnateButton);
+            return fallback;
         }
 
         private static void PixelRect(RectTransform rect, float x, float y, float width, float height, Vector2 anchor)

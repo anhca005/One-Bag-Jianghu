@@ -1,0 +1,12 @@
+[
+  {
+    "path": "reputationOffers[1].name",
+    "old": "Rương Chất Dẫn Ngẫu Nhiên",
+    "new": "Rương Chất Dẫn"
+  },
+  {
+    "path": "reputationOffers[2].name",
+    "old": "Rương Nguyên Liệu Bậc 3",
+    "new": "Rương Liệu Bậc 3"
+  }
+]

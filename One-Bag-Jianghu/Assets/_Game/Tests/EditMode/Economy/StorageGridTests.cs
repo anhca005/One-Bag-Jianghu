@@ -38,10 +38,10 @@ namespace OneBagJianghu.Tests.Economy
             Assert.That(profile.Storage.MaterialStacks.Count, Is.EqualTo(2));
             Assert.That(profile.Materials["ore"], Is.EqualTo(1000));
             Assert.That(grid.SpendMaterials(new System.Collections.Generic.Dictionary<string,
-int> { { "ore",
-1 } },
-out _),
-Is.True);
+                int> { { "ore",
+                1 } },
+                out _),
+                Is.True);
             Assert.That(profile.Storage.MaterialStacks.Count, Is.EqualTo(1));
             Assert.That(profile.Materials["ore"], Is.EqualTo(999));
         }

@@ -1,0 +1,45 @@
+{
+  "name": "Ải 25: Hàn Sơn Đại Đệ Tử",
+  "hp": 1950,
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "bang_phach_thuong",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "bang_tam_linh_chau",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 1,
+      "y": 1,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "kiem_tong_tam_yeu",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    }
+  ]
+}

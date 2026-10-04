@@ -35,18 +35,18 @@ namespace OneBagJianghu.Bag.View
 
         public static string RarityName(string rarity) => RarityRules.Index(rarity) switch
         {
-            1 => "Lương",
-            2 => "Tinh",
-            3 => "Tuyệt",
+            1 => "Lương Phẩm",
+            2 => "Tinh Phẩm",
+            3 => "Tuyệt Phẩm",
             4 => "Thần Binh",
             5 => "Chí Tôn",
-            _ => "Phàm"
+            _ => "Phàm Phẩm"
         };
         public static string RarityRichText(string rarity) => "<color=#"
-+ ColorUtility.ToHtmlStringRGB(RarityText(rarity))
-+ ">"
-+ RarityName(rarity)
-+ "</color>";
+            + ColorUtility.ToHtmlStringRGB(RarityText(rarity))
+            + ">"
+            + RarityName(rarity)
+            + "</color>";
         // Frames use the brighter palette; copy printed on pale paper needs substantially
         // darker ink, especially the common grey and legendary gold.
         public static Color RarityText(string rarity)

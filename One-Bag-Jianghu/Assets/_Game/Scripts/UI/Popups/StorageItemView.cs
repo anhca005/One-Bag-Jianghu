@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+using OneBagJianghu.Audio;
+using OneBagJianghu.Bag.View;
 using UnityEngine.UI;
 
 namespace OneBagJianghu.UI.Popups
@@ -20,6 +22,8 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private Text badgeText;
         [SerializeField]
+        private Image rarityBadge;
+        [SerializeField]
         private CanvasGroup canvasGroup;
         private StoragePopup owner;
         private string key;
@@ -28,13 +32,14 @@ namespace OneBagJianghu.UI.Popups
         private Vector2 origin, originPivot;
         private int originSibling;
         public void Bind(StoragePopup popup,
-string id,
-bool isMaterial,
-string label,
-string badge,
-Sprite sprite,
-Color color,
-float alpha)
+            string id,
+            bool isMaterial,
+            string label,
+            string badge,
+            Sprite sprite,
+            Color color,
+            float alpha,
+            string rarity = null)
         {
             owner = popup;
             key = id;
@@ -45,6 +50,7 @@ float alpha)
             canvasGroup.alpha = alpha;
             icon.sprite = sprite;
             icon.gameObject.SetActive(sprite != null);
+            RarityBadge.Apply(rarityBadge, isMaterial ? null : rarity);
             nameText.gameObject.SetActive(sprite == null);
             nameText.horizontalOverflow = HorizontalWrapMode.Wrap;
             nameText.verticalOverflow = VerticalWrapMode.Overflow;
@@ -61,6 +67,7 @@ float alpha)
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            AudioManager.Instance?.Play("item_pick");
             origin = ((RectTransform)transform).anchoredPosition;
             originPivot = ((RectTransform)transform).pivot;
             originSibling = transform.GetSiblingIndex();
@@ -84,7 +91,12 @@ float alpha)
             dragging = false;
             canvasGroup.blocksRaycasts = true;
             if (!owner.CommitDrop(key, material, eventData.position, eventData.pressEventCamera))
+            {
+                AudioManager.Instance?.Play("item_drop_bad");
                 RestoreOrigin();
+            }
+            else
+                AudioManager.Instance?.Play("item_drop");
             owner.ClearDropPreview();
         }
 

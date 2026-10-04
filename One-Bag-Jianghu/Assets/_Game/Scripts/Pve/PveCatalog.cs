@@ -186,6 +186,8 @@ namespace OneBagJianghu.Pve
 
     public sealed class PveCatalog
     {
+        [JsonProperty("repeatRewardPercent")]
+        public int RepeatRewardPercent = 15;
         [JsonProperty("characters")]
         public List<PveCharacter> Characters;
         [JsonProperty("monsterItems")]
@@ -196,8 +198,8 @@ namespace OneBagJianghu.Pve
         private readonly Dictionary<string, PveStage> stages = new Dictionary<string, PveStage>(StringComparer.Ordinal);
         [JsonIgnore]
         private readonly Dictionary<string,
-PveCharacter> characters = new Dictionary<string,
-PveCharacter>(StringComparer.Ordinal);
+            PveCharacter> characters = new Dictionary<string,
+            PveCharacter>(StringComparer.Ordinal);
         public static PveCatalog Load()
         {
             TextAsset asset = Resources.Load<TextAsset>("Data/Pve/chapters");
@@ -215,7 +217,7 @@ PveCharacter>(StringComparer.Ordinal);
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 PveCatalog value = JsonConvert.DeserializeObject<PveCatalog>(json,
-settings) ?? throw new FormatException("PvE catalog JSON is null.");
+                    settings) ?? throw new FormatException("PvE catalog JSON is null.");
                 value.Validate(items ?? throw new ArgumentNullException(nameof(items)));
                 return value;
             }
@@ -227,22 +229,24 @@ settings) ?? throw new FormatException("PvE catalog JSON is null.");
 
         public PveStage GetStage(string id) => id != null && stages.TryGetValue(id, out PveStage stage) ? stage : null;
         public PveCharacter GetCharacter(string id) => id != null
-&& characters.TryGetValue(id,
-out PveCharacter value) ? value : null;
+            && characters.TryGetValue(id,
+            out PveCharacter value) ? value : null;
         public HashSet<string> MonsterItemSet() => new HashSet<string>(MonsterItems ?? new List<string>(),
-StringComparer.Ordinal);
+            StringComparer.Ordinal);
         private void Validate(ItemCatalog items)
         {
+            if (RepeatRewardPercent < 0 || RepeatRewardPercent > 100)
+                throw new FormatException("PvE repeatRewardPercent must be from 0 to 100.");
             if (Characters == null || Chapters == null || Chapters.Count == 0)
                 throw new FormatException("PvE catalog requires characters and chapters.");
             characters.Clear();
             stages.Clear();
             foreach (PveCharacter c in Characters)
                 if (c == null
-|| string.IsNullOrWhiteSpace(c.Id)
-|| string.IsNullOrWhiteSpace(c.Name)
-|| !characters.TryAdd(c.Id,
-c))
+                    || string.IsNullOrWhiteSpace(c.Id)
+                    || string.IsNullOrWhiteSpace(c.Name)
+                    || !characters.TryAdd(c.Id,
+                    c))
                     throw new FormatException("PvE character ids must be non-empty and unique.");
             var chapterIds = new HashSet<string>(StringComparer.Ordinal);
             var itemIds = new HashSet<string>(StringComparer.Ordinal);
@@ -264,7 +268,7 @@ c))
 
             foreach (PveChapter chapter in Chapters)
                 if (!string.IsNullOrEmpty(chapter.Unlock?.AfterChapter)
-&& !chapterIds.Contains(chapter.Unlock.AfterChapter))
+                    && !chapterIds.Contains(chapter.Unlock.AfterChapter))
                     throw new FormatException("Chapter '" + chapter.Id + "' references unknown prerequisite chapter.");
         }
 
@@ -276,16 +280,16 @@ c))
             if (stage.Kind != "normal" && stage.Kind != "elite" && stage.Kind != "boss")
                 throw new FormatException("Stage '" + stage.Id + "' has invalid kind.");
             if (stage.MapPos == null
-|| stage.MapPos.Length != 2
-|| stage.MapPos[0] < 0
-|| stage.MapPos[0] > 1
-|| stage.MapPos[1] < 0
-|| stage.MapPos[1] > 1)
+                || stage.MapPos.Length != 2
+                || stage.MapPos[0] < 0
+                || stage.MapPos[0] > 1
+                || stage.MapPos[1] < 0
+                || stage.MapPos[1] > 1)
                 throw new FormatException("Stage '" + stage.Id + "' mapPos must contain two values from 0 to 1.");
             if (stage.StaminaCost < 0 || stage.Enemy == null || stage.Enemy.Level < 1 || stage.Enemy.Items == null)
                 throw new FormatException("Stage '"
-+ stage.Id
-+ "' has incomplete enemy/stamina data; enemy level must be >= 1.");
+                    + stage.Id
+                    + "' has incomplete enemy/stamina data; enemy level must be >= 1.");
             if (!string.IsNullOrWhiteSpace(stage.Enemy.CharacterId) && !characters.ContainsKey(stage.Enemy.CharacterId))
                 throw new FormatException("Stage '" + stage.Id + "' enemy references an unknown character.");
             bool[,] occupied = new bool[5, 4];
@@ -293,10 +297,10 @@ c))
             {
                 if (entry == null || !itemIds.Contains(entry.Id))
                     throw new FormatException("Stage '"
-+ stage.Id
-+ "' references unknown item id '"
-+ entry?.Id
-+ "'.");
+                        + stage.Id
+                        + "' references unknown item id '"
+                        + entry?.Id
+                        + "'.");
                 if (entry.Tier < 1 || entry.Tier > 9 || !Economy.RarityRules.IsValid(entry.Rarity))
                     throw new FormatException("Stage '" + stage.Id + "' has invalid item tier/rarity.");
                 ItemInfo info = items.Get(entry.Id);
@@ -322,10 +326,10 @@ c))
             foreach (PveRewardItem item in stage.Rewards.FirstClear.Items ?? new List<PveRewardItem>())
                 if (!itemIds.Contains(item.Id))
                     throw new FormatException("Stage '"
-+ stage.Id
-+ "' reward references unknown item id '"
-+ item.Id
-+ "'.");
+                        + stage.Id
+                        + "' reward references unknown item id '"
+                        + item.Id
+                        + "'.");
             foreach (PveDrop drop in stage.Rewards.Drops ?? new List<PveDrop>())
                 if (!itemIds.Contains(drop.Id) || drop.ChancePermille < 0 || drop.ChancePermille > 1000)
                     throw new FormatException("Stage '" + stage.Id + "' has an invalid drop.");
@@ -341,20 +345,20 @@ c))
         private static void ValidateTheme(PveTheme t, string chapter)
         {
             if (t == null
-|| string.IsNullOrWhiteSpace(t.MapBackground)
-|| string.IsNullOrWhiteSpace(t.BattleBackground)
-|| string.IsNullOrWhiteSpace(t.Accent)
-|| string.IsNullOrWhiteSpace(t.Paper)
-|| string.IsNullOrWhiteSpace(t.Ink)
-|| string.IsNullOrWhiteSpace(t.NodeIcon)
-|| string.IsNullOrWhiteSpace(t.BossNodeIcon))
+                || string.IsNullOrWhiteSpace(t.MapBackground)
+                || string.IsNullOrWhiteSpace(t.BattleBackground)
+                || string.IsNullOrWhiteSpace(t.Accent)
+                || string.IsNullOrWhiteSpace(t.Paper)
+                || string.IsNullOrWhiteSpace(t.Ink)
+                || string.IsNullOrWhiteSpace(t.NodeIcon)
+                || string.IsNullOrWhiteSpace(t.BossNodeIcon))
                 throw new FormatException("Chapter '" + chapter + "' theme keys are required.");
             if (!ColorUtility.TryParseHtmlString(t.Accent,
-out _)
-|| !ColorUtility.TryParseHtmlString(t.Paper,
-out _)
-|| !ColorUtility.TryParseHtmlString(t.Ink,
-out _))
+                out _)
+                || !ColorUtility.TryParseHtmlString(t.Paper,
+                out _)
+                || !ColorUtility.TryParseHtmlString(t.Ink,
+                out _))
                 throw new FormatException("Chapter '" + chapter + "' theme colors are invalid.");
         }
     }

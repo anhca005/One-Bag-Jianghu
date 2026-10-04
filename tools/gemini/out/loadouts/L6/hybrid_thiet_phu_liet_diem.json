@@ -1,0 +1,50 @@
+﻿{
+    "name":  "Thiáº¿t Phá»§ - Liá»‡t Diá»…m Há»£p BÃ­ch (RÃ¬u + Äao)",
+    "hp":  1200,
+    "cols":  5,
+    "rows":  4,
+    "sect":  "thiet_phu",
+    "items":  [
+                  {
+                      "id":  "khai_son_phu",
+                      "x":  0,
+                      "y":  0
+                  },
+                  {
+                      "id":  "khai_son_phu",
+                      "x":  0,
+                      "y":  2
+                  },
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  2,
+                      "y":  0
+                  },
+                  {
+                      "id":  "tuy_tien_ho_lo",
+                      "x":  2,
+                      "y":  3
+                  },
+                  {
+                      "id":  "liet_diem_dao",
+                      "x":  3,
+                      "y":  0
+                  },
+                  {
+                      "id":  "boi_nguyen_dan",
+                      "x":  3,
+                      "y":  3
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  4,
+                      "y":  0
+                  },
+                  {
+                      "id":  "thiet_cot_quyen_sao",
+                      "x":  4,
+                      "y":  2
+                  }
+              ],
+    "tamPhapLevel":  6
+}

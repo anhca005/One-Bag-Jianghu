@@ -7,7 +7,7 @@
  {"id":"o_kim_ti","name":"Ô Kim Ti","itemType":"armor","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Hộ Cụ trung cấp."},
  {"id":"cuu_u_tam_ti","name":"Cửu U Tàm Ti","itemType":"armor","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Hộ Cụ cao cấp."},
  {"id":"huyen_giap_hon_thach","name":"Huyền Giáp Hồn Thạch","itemType":"armor","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Hộ Cụ."},
- {"id":"hoang_tuyen_chi","name":"Hoàng Tuyền Chỉ","itemType":"manual","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp sơ cấp."},
+ {"id":"hoang_tuyen_chi","name":"Hoàng Tuyên Chỉ","itemType":"manual","band":"tier_1","tier":1,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp sơ cấp."},
  {"id":"mac_truc_tran","name":"Mặc Trúc Trản","itemType":"manual","band":"tier_2","tier":2,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp trung cấp."},
  {"id":"tam_to_co_quyen","name":"Tằm Tơ Cổ Quyển","itemType":"manual","band":"tier_3","tier":3,"isCatalyst":false,"pvpOnly":false,"description":"Vật liệu Công Pháp cao cấp."},
  {"id":"van_dao_tam_tinh","name":"Vấn Đạo Tâm Tinh","itemType":"manual","band":"catalyst","tier":0,"isCatalyst":true,"pvpOnly":false,"description":"Chất dẫn Đột Phá Công Pháp."},

@@ -1,0 +1,45 @@
+{
+  "name": "Ải 10: Nộ Ba Hổ Bùi Chấn",
+  "hp": 1000,
+  "cols": 5,
+  "rows": 4,
+  "sect": "liet_diem",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "cuong_hoa_dan",
+      "x": 1,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 1,
+      "y": 1,
+      "tier": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "chu_sa_ho_lo",
+      "x": 4,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "name": "Tuyết Lĩnh Ngân Lang",
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 36,
+  "items": [
+    {
+      "id": "soi_nanh_canh",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 1,
+      "y": 0,
+      "tier": 5,
+      "rarity": "legendary"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 0,
+      "y": 2,
+      "tier": 4,
+      "rarity": "legendary"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "legendary"
+    }
+  ],
+  "cols": 5,
+  "rows": 4
+}

@@ -1,4 +1,5 @@
 using System;
+using OneBagJianghu.Audio;
 using OneBagJianghu.Core;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,7 @@ namespace OneBagJianghu.UI.Login
 
         private void Start()
         {
+            AudioManager.EnsureExists().PlayMusic(MusicKeys.Home);
             isNewProfile = string.IsNullOrWhiteSpace(GameBootstrap.Session.HeroName);
             heroName.SetTextWithoutNotify(GameBootstrap.Session.HeroName);
             OnNameChanged(heroName.text);

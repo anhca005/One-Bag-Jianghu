@@ -1,0 +1,482 @@
+[
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Home\\HomeController.cs",
+    "line": 260,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_stamina' có thể hiển thị ra màn hình",
+    "old": "icon_stamina",
+    "context": "SetCurrency(staminaText, \"icon_stamina\", \"Thể Lực\", session.Profile.Pve.Stamina);"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Home\\HomeController.cs",
+    "line": 261,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_bac' có thể hiển thị ra màn hình",
+    "old": "icon_bac",
+    "context": "SetCurrency(silverText, \"icon_bac\", \"Bạc\", silver);"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Home\\HomeController.cs",
+    "line": 262,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_nguyen_bao' có thể hiển thị ra màn hình",
+    "old": "icon_nguyen_bao",
+    "context": "SetCurrency(premiumText, \"icon_nguyen_bao\", \"Nguyên Bảo\", premium);"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Home\\HomeController.cs",
+    "line": 263,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_danh_vong' có thể hiển thị ra màn hình",
+    "old": "icon_danh_vong",
+    "context": "SetCurrency(reputationText, \"icon_danh_vong\", \"Danh Vọng\", reputation);"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Popups\\DevCheatPanel.cs",
+    "line": 61,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'danh_vong' có thể hiển thị ra màn hình",
+    "old": "danh_vong",
+    "context": "addReputationButton.onClick.AddListener(() => AddCurrency(\"danh_vong\","
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Popups\\ShopPopup.cs",
+    "line": 155,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_bac' có thể hiển thị ra màn hình",
+    "old": "icon_bac",
+    "context": "CurrencyArt.Apply(silverText, \"icon_bac\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Popups\\ShopPopup.cs",
+    "line": 156,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_danh_vong' có thể hiển thị ra màn hình",
+    "old": "icon_danh_vong",
+    "context": "CurrencyArt.Apply(reputationText, \"icon_danh_vong\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Popups\\StoragePopup.cs",
+    "line": 94,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_bac' có thể hiển thị ra màn hình",
+    "old": "icon_bac",
+    "context": "CurrencyArt.Apply(currencyText, \"icon_bac\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Popups\\StoragePopup.cs",
+    "line": 95,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'icon_danh_vong' có thể hiển thị ra màn hình",
+    "old": "icon_danh_vong",
+    "context": "CurrencyArt.Apply(reputationText, \"icon_danh_vong\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\UI\\Pve\\PveStageNode.cs",
+    "line": 56,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BOSS' có thể hiển thị ra màn hình",
+    "old": "BOSS",
+    "context": "kindText.text = stage.Kind == \"boss\" ? \"BOSS\" : stage.Kind == \"elite\" ? \"TINH ANH\" : string.Empty;"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 125,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'START' có thể hiển thị ra màn hình",
+    "old": "START",
+    "context": "case \"START\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 127,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'TRIGGER' có thể hiển thị ra màn hình",
+    "old": "TRIGGER",
+    "context": "case \"TRIGGER\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 129,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'DAMAGE' có thể hiển thị ra màn hình",
+    "old": "DAMAGE",
+    "context": "case \"DAMAGE\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 131,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'DOT' có thể hiển thị ra màn hình",
+    "old": "DOT",
+    "context": "case \"DOT\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 133,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BURST' có thể hiển thị ra màn hình",
+    "old": "BURST",
+    "context": "case \"BURST\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 135,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'HEAL' có thể hiển thị ra màn hình",
+    "old": "HEAL",
+    "context": "case \"HEAL\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 137,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'SHIELD' có thể hiển thị ra màn hình",
+    "old": "SHIELD",
+    "context": "case \"SHIELD\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 139,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'QI' có thể hiển thị ra màn hình",
+    "old": "QI",
+    "context": "case \"QI\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 141,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'STATUS' có thể hiển thị ra màn hình",
+    "old": "STATUS",
+    "context": "case \"STATUS\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 143,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'PARRY' có thể hiển thị ra màn hình",
+    "old": "PARRY",
+    "context": "case \"PARRY\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 145,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'CHARGE' có thể hiển thị ra màn hình",
+    "old": "CHARGE",
+    "context": "case \"CHARGE\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 147,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BUFF' có thể hiển thị ra màn hình",
+    "old": "BUFF",
+    "context": "case \"BUFF\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 149,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'MAX_HP' có thể hiển thị ra màn hình",
+    "old": "MAX_HP",
+    "context": "case \"MAX_HP\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 151,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'DMG_REDUCE' có thể hiển thị ra màn hình",
+    "old": "DMG_REDUCE",
+    "context": "case \"DMG_REDUCE\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 153,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'PARRY_COST' có thể hiển thị ra màn hình",
+    "old": "PARRY_COST",
+    "context": "case \"PARRY_COST\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleLogParser.cs",
+    "line": 155,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'END' có thể hiển thị ra màn hình",
+    "old": "END",
+    "context": "case \"END\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleTimeline.cs",
+    "line": 136,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BURN' có thể hiển thị ra màn hình",
+    "old": "BURN",
+    "context": "case \"BURN\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleTimeline.cs",
+    "line": 139,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'POISON' có thể hiển thị ra màn hình",
+    "old": "POISON",
+    "context": "case \"POISON\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleTimeline.cs",
+    "line": 142,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BLEED' có thể hiển thị ra màn hình",
+    "old": "BLEED",
+    "context": "case \"BLEED\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\BattleTimeline.cs",
+    "line": 145,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'REGEN' có thể hiển thị ra màn hình",
+    "old": "REGEN",
+    "context": "case \"REGEN\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 20,
+    "category": "terminology",
+    "issue": "Dùng 'Võ Hiệp' thay vì 'Hiệp Khách'",
+    "old": "Võ hiệp",
+    "context": "\"Võ hiệp\";"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 25,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'ULTIMATE' có thể hiển thị ra màn hình",
+    "old": "ULTIMATE",
+    "context": "return time + item + \" thi triển\" + (battleEvent.Kind == \"ULTIMATE\" ? \" tuyệt kỹ\" : \"\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 38,
+    "category": "terminology",
+    "issue": "Dùng 'Sinh Lực' thay vì 'Khí Huyết'",
+    "old": " sinh lực",
+    "context": "return time + item + \" hồi \" + value + \" sinh lực\";"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 61,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BURN' có thể hiển thị ra màn hình",
+    "old": "BURN",
+    "context": "case \"BURN\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 63,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'POISON' có thể hiển thị ra màn hình",
+    "old": "POISON",
+    "context": "case \"POISON\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 65,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'BLEED' có thể hiển thị ra màn hình",
+    "old": "BLEED",
+    "context": "case \"BLEED\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 67,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'STUN' có thể hiển thị ra màn hình",
+    "old": "STUN",
+    "context": "case \"STUN\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 69,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'SEAL' có thể hiển thị ra màn hình",
+    "old": "SEAL",
+    "context": "case \"SEAL\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 71,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'SLOW' có thể hiển thị ra màn hình",
+    "old": "SLOW",
+    "context": "case \"SLOW\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 73,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'HASTE' có thể hiển thị ra màn hình",
+    "old": "HASTE",
+    "context": "case \"HASTE\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 75,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'REGEN' có thể hiển thị ra màn hình",
+    "old": "REGEN",
+    "context": "case \"REGEN\":"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\EventTextFormatter.cs",
+    "line": 76,
+    "category": "terminology",
+    "issue": "Dùng 'Hồi Phục' thay vì 'Điều Tức / Liệu Thương'",
+    "old": "Hồi Phục",
+    "context": "return \"Hồi Phục\";"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Scripts\\Battle\\Replay\\View\\FighterPanelView.cs",
+    "line": 90,
+    "category": "terminology",
+    "issue": "Dùng 'Sinh Lực' thay vì 'Khí Huyết'",
+    "old": "Sinh Lực  ",
+    "context": "hpText.text = \"Sinh Lực  \" + Mathf.Max(0, state.Hp) + \"/\" + state.MaxHp;"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\BagPrefabBuilder.cs",
+    "line": 34,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'TP' có thể hiển thị ra màn hình",
+    "old": "TP",
+    "context": "Text mark = UiBuild.Text(bg.transform, \"Tam Phap\", \"TP\", 14, TextAnchor.UpperLeft); Anchor(mark.rectTransform, new Vector2(0f, 1f), new Vector2(4f, -3f), new Vector2(30f, 20f), new Vector2(0f, 1f)); mark.color = UiBuild.Gold; mark.fontStyle = FontStyle.Bold; mark.gameObject.SetActive(false);"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\DemoSceneBuilder.cs",
+    "line": 41,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'vfx_key' có thể hiển thị ra màn hình",
+    "old": "vfx_key",
+    "context": "Text key = UiBuild.Text(root.transform, \"Key\", \"vfx_key\", 14, TextAnchor.LowerLeft); Place(key.rectTransform, Vector2.zero, Vector2.one, new Vector2(50f, 0f), new Vector2(-38f, -26f));"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\DemoSceneBuilder.cs",
+    "line": 86,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'VFX' có thể hiển thị ra màn hình",
+    "old": "VFX",
+    "context": "Text stageLabel = UiBuild.Text(stage.transform, \"Current VFX\", \"VFX\", 30, TextAnchor.MiddleCenter, UiFontRole.Title); Place(stageLabel.rectTransform, new Vector2(0f, 1f), Vector2.one, new Vector2(12f, -92f), new Vector2(-12f, -12f));"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\DemoSceneBuilder.cs",
+    "line": 96,
+    "category": "raw_id",
+    "issue": "Enum/Raw English 'TUNING' có thể hiển thị ra màn hình",
+    "old": "TUNING",
+    "context": "Text tuningTitle = UiBuild.Text(tuning, \"Title\", \"TUNING\", 22, TextAnchor.UpperLeft, UiFontRole.Title); Place(tuningTitle.rectTransform, new Vector2(0f, 1f), Vector2.one, Vector2.zero, new Vector2(-300f, -30f));"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\DemoSceneBuilder.cs",
+    "line": 104,
+    "category": "length",
+    "issue": "Nút bấm quá dài (89 ký tự > 14)",
+    "old": "Space play | ←/→ prev/next | L loop | Q/E rotate | Z/X scale | W/A/S/D offset | Shift: 1°",
+    "context": "RectTransform second = Row(controls.transform, 8f, -59f); Button bg = Button(second, \"Background\", \"BG: Paper\", 150f), hit = Button(second, \"Hit After\", \"Hit after: On\", 160f); Text hint = UiBuild.Text(second, \"Keyboard\", \"Space play | ←/→ prev/next | L loop | Q/E rotate | Z/X scale | W/A/S/D offset | Shift: 1°\", 16, TextAnchor.MiddleLeft); hint.gameObject.AddComponent<LayoutElement>().flexibleWidth = 1f;"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\GameplaySceneBuilder.cs",
+    "line": 25,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'bg_battle' có thể hiển thị ra màn hình",
+    "old": "bg_battle",
+    "context": "if (UiBuild.ApplyUiSprite(bg,\"bg_battle\")) { AspectRatioFitter fit=bg.gameObject.AddComponent<AspectRatioFitter>();fit.aspectMode=AspectRatioFitter.AspectMode.EnvelopeParent;fit.aspectRatio=1.5f; }"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\PopupPrefabBuilder.cs",
+    "line": 119,
+    "category": "length",
+    "issue": "Nút bấm quá dài (17 ký tự > 14)",
+    "old": "Play Again Button",
+    "context": "UiButton again = AddButton(panel, \"Play Again Button\", \"Đấu tiếp\", true, new Vector2(0.5f, 0.13f));"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\PvePrefabBuilder.cs",
+    "line": 162,
+    "category": "length",
+    "issue": "Nút bấm quá dài (18 ký tự > 14)",
+    "old": "rewardCurrencyIcon",
+    "context": "private static void Set(StageMapPopup popup, Image map, Image header, Image detail, Image staminaIcon, Image rewardIcon, Text chapter, Text stamina, Text name, Text desc, Text enemy, Text power, Text rewards, Text cost, Text reason, Image portrait, RectTransform nodes, PveStageNode template, UiButton prev, UiButton next, UiButton challenge, UiButton close) { UiBuild.Set(popup, \"mapBackground\", map); UiBuild.Set(popup, \"header\", header); UiBuild.Set(popup, \"detailFrame\", detail); UiBuild.Set(popup, \"staminaIcon\", staminaIcon); UiBuild.Set(popup, \"rewardCurrencyIcon\", rewardIcon); UiBuild.Set(popup, \"chapterText\", chapter); UiBuild.Set(popup, \"staminaText\", stamina); UiBuild.Set(popup, \"stageName\", name); UiBuild.Set(popup, \"descriptionText\", desc); UiBuild.Set(popup, \"enemyText\", enemy); UiBuild.Set(popup, \"powerText\", power); UiBuild.Set(popup, \"rewardsText\", rewards); UiBuild.Set(popup, \"costText\", cost); UiBuild.Set(popup, \"disabledReason\", reason); UiBuild.Set(popup, \"enemyPortrait\", portrait); UiBuild.Set(popup, \"nodeLayer\", nodes); UiBuild.Set(popup, \"nodePrefab\", template); UiBuild.Set(popup, \"previousButton\", prev); UiBuild.Set(popup, \"nextButton\", next); UiBuild.Set(popup, \"challengeButton\", challenge); UiBuild.Set(popup, \"closeButton\", close); }"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\PvePrefabBuilder.cs",
+    "line": 162,
+    "category": "length",
+    "issue": "Nút bấm quá dài (15 ký tự > 14)",
+    "old": "descriptionText",
+    "context": "private static void Set(StageMapPopup popup, Image map, Image header, Image detail, Image staminaIcon, Image rewardIcon, Text chapter, Text stamina, Text name, Text desc, Text enemy, Text power, Text rewards, Text cost, Text reason, Image portrait, RectTransform nodes, PveStageNode template, UiButton prev, UiButton next, UiButton challenge, UiButton close) { UiBuild.Set(popup, \"mapBackground\", map); UiBuild.Set(popup, \"header\", header); UiBuild.Set(popup, \"detailFrame\", detail); UiBuild.Set(popup, \"staminaIcon\", staminaIcon); UiBuild.Set(popup, \"rewardCurrencyIcon\", rewardIcon); UiBuild.Set(popup, \"chapterText\", chapter); UiBuild.Set(popup, \"staminaText\", stamina); UiBuild.Set(popup, \"stageName\", name); UiBuild.Set(popup, \"descriptionText\", desc); UiBuild.Set(popup, \"enemyText\", enemy); UiBuild.Set(popup, \"powerText\", power); UiBuild.Set(popup, \"rewardsText\", rewards); UiBuild.Set(popup, \"costText\", cost); UiBuild.Set(popup, \"disabledReason\", reason); UiBuild.Set(popup, \"enemyPortrait\", portrait); UiBuild.Set(popup, \"nodeLayer\", nodes); UiBuild.Set(popup, \"nodePrefab\", template); UiBuild.Set(popup, \"previousButton\", prev); UiBuild.Set(popup, \"nextButton\", next); UiBuild.Set(popup, \"challengeButton\", challenge); UiBuild.Set(popup, \"closeButton\", close); }"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\PvePrefabBuilder.cs",
+    "line": 162,
+    "category": "length",
+    "issue": "Nút bấm quá dài (15 ký tự > 14)",
+    "old": "challengeButton",
+    "context": "private static void Set(StageMapPopup popup, Image map, Image header, Image detail, Image staminaIcon, Image rewardIcon, Text chapter, Text stamina, Text name, Text desc, Text enemy, Text power, Text rewards, Text cost, Text reason, Image portrait, RectTransform nodes, PveStageNode template, UiButton prev, UiButton next, UiButton challenge, UiButton close) { UiBuild.Set(popup, \"mapBackground\", map); UiBuild.Set(popup, \"header\", header); UiBuild.Set(popup, \"detailFrame\", detail); UiBuild.Set(popup, \"staminaIcon\", staminaIcon); UiBuild.Set(popup, \"rewardCurrencyIcon\", rewardIcon); UiBuild.Set(popup, \"chapterText\", chapter); UiBuild.Set(popup, \"staminaText\", stamina); UiBuild.Set(popup, \"stageName\", name); UiBuild.Set(popup, \"descriptionText\", desc); UiBuild.Set(popup, \"enemyText\", enemy); UiBuild.Set(popup, \"powerText\", power); UiBuild.Set(popup, \"rewardsText\", rewards); UiBuild.Set(popup, \"costText\", cost); UiBuild.Set(popup, \"disabledReason\", reason); UiBuild.Set(popup, \"enemyPortrait\", portrait); UiBuild.Set(popup, \"nodeLayer\", nodes); UiBuild.Set(popup, \"nodePrefab\", template); UiBuild.Set(popup, \"previousButton\", prev); UiBuild.Set(popup, \"nextButton\", next); UiBuild.Set(popup, \"challengeButton\", challenge); UiBuild.Set(popup, \"closeButton\", close); }"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 62,
+    "category": "terminology",
+    "issue": "Dùng 'Sinh Lực' thay vì 'Khí Huyết'",
+    "old": "Sinh Lực  0/0",
+    "context": "Bar(view, root.transform, \"HpBar\", 172, ReplayStyle.Hp, \"hpFill\", \"hpText\", \"Sinh Lực  0/0\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 67,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_burn' có thể hiển thị ra màn hình",
+    "old": "status_burn",
+    "context": "Status(view, chips, \"Burn\", \"burnIcon\", \"burnText\", \"status_burn\"); Status(view, chips, \"Poison\", \"poisonIcon\", \"poisonText\", \"status_poison\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 67,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_poison' có thể hiển thị ra màn hình",
+    "old": "status_poison",
+    "context": "Status(view, chips, \"Burn\", \"burnIcon\", \"burnText\", \"status_burn\"); Status(view, chips, \"Poison\", \"poisonIcon\", \"poisonText\", \"status_poison\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 68,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_bleed' có thể hiển thị ra màn hình",
+    "old": "status_bleed",
+    "context": "Status(view, chips, \"Bleed\", \"bleedIcon\", \"bleedText\", \"status_bleed\"); Status(view, chips, \"Stun\", \"stunIcon\", \"stunText\", \"status_stun\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 68,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_stun' có thể hiển thị ra màn hình",
+    "old": "status_stun",
+    "context": "Status(view, chips, \"Bleed\", \"bleedIcon\", \"bleedText\", \"status_bleed\"); Status(view, chips, \"Stun\", \"stunIcon\", \"stunText\", \"status_stun\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 69,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_regen' có thể hiển thị ra màn hình",
+    "old": "status_regen",
+    "context": "Status(view, chips, \"Regen\", \"regenIcon\", \"regenText\", \"status_regen\"); Status(view, chips, \"Haste\", \"hasteIcon\", \"hasteText\", \"status_haste\");"
+  },
+  {
+    "file": "One-Bag-Jianghu\\Assets\\_Game\\Editor\\Building\\ReplayPrefabBuilder.cs",
+    "line": 69,
+    "category": "raw_id",
+    "issue": "Raw snake_case id 'status_haste' có thể hiển thị ra màn hình",
+    "old": "status_haste",
+    "context": "Status(view, chips, \"Regen\", \"regenIcon\", \"regenText\", \"status_regen\"); Status(view, chips, \"Haste\", \"hasteIcon\", \"hasteText\", \"status_haste\");"
+  }
+]

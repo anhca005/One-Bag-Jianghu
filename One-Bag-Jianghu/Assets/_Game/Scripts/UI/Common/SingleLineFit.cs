@@ -109,10 +109,10 @@ namespace OneBagJianghu.UI.Common
                 return;
             float width = label.rectTransform.rect.width;
             if (lastText != label.text
-|| !Mathf.Approximately(lastWidth,
-width)
-|| lastFont != label.font
-|| lastAuthoredSize != authoredSize)
+                || !Mathf.Approximately(lastWidth,
+                width)
+                || lastFont != label.font
+                || lastAuthoredSize != authoredSize)
                 Fit();
         }
     }

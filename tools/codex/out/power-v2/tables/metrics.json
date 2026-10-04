@@ -1,0 +1,11 @@
+{
+  "v1": {
+    "accuracyPct": 80.0,
+    "logLoss": 0.412
+  },
+  "v2": {
+    "accuracyPct": 86.0,
+    "logLoss": 0.3653
+  },
+  "slopeK": 5.0
+}

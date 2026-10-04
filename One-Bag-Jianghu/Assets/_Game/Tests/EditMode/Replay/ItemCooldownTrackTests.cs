@@ -18,13 +18,13 @@ namespace OneBagJianghu.Tests.Battle.Replay
         public void FillAt_UsesRealCyclesThenNominalCooldown(int timeMs, float expected)
         {
             ItemCooldownTrack track =
-Track(2000,
-Trigger(7,
-1000),
-Trigger(7,
-3000),
-Trigger(7,
-6000));
+                Track(2000,
+                Trigger(7,
+                1000),
+                Trigger(7,
+                3000),
+                Trigger(7,
+                6000));
             Assert.That(track.FillAt(timeMs), Is.EqualTo(expected).Within(.0001f));
         }
 
@@ -32,13 +32,13 @@ Trigger(7,
         public void FillAt_IsIndependentOfSeekDirection()
         {
             ItemCooldownTrack track =
-Track(2000,
-Trigger(7,
-1000),
-Trigger(7,
-3000),
-Trigger(7,
-6000));
+                Track(2000,
+                Trigger(7,
+                1000),
+                Trigger(7,
+                3000),
+                Trigger(7,
+                6000));
             float forward = track.FillAt(4500);
             track.FillAt(6500);
             Assert.That(track.FillAt(4500), Is.EqualTo(forward));
@@ -49,16 +49,16 @@ Trigger(7,
         public void PassiveAndOtherItemTriggers_DoNotResetCycle()
         {
             ItemCooldownTrack track =
-Track(2000,
-Trigger(7,
-1000),
-Trigger(7,
-1500,
-"ON_HIT"),
-Trigger(8,
-2000),
-Trigger(7,
-3000));
+                Track(2000,
+                Trigger(7,
+                1000),
+                Trigger(7,
+                1500,
+                "ON_HIT"),
+                Trigger(8,
+                2000),
+                Trigger(7,
+                3000));
             Assert.That(track.FillAt(2000), Is.EqualTo(.5f).Within(.0001f));
         }
 
@@ -82,20 +82,20 @@ Trigger(7,
         public void ActiveRelic_WithCooldownUsesTheSameTriggerRule()
         {
             ItemInfo relic =
-new ItemInfo("relic",
-"Relic",
-"relic",
-null,
-null,
-"common",
-1,
-1,
-4f,
-true);
+                new ItemInfo("relic",
+                "Relic",
+                "relic",
+                null,
+                null,
+                "common",
+                1,
+                1,
+                4f,
+                true);
             ItemCooldownTrack track =
-new ItemCooldownTrack(7,
-relic,
-new List<BattleEvent> { Trigger(7, 1000) });
+                new ItemCooldownTrack(7,
+                relic,
+                new List<BattleEvent> { Trigger(7, 1000) });
             Assert.That(track.HasActivations, Is.True);
             Assert.That(track.FillAt(3000), Is.EqualTo(.5f).Within(.0001f));
         }
@@ -103,15 +103,15 @@ new List<BattleEvent> { Trigger(7, 1000) });
         private static ItemCooldownTrack Track(int cooldownMs, params BattleEvent[] events)
         {
             ItemInfo item =
-new ItemInfo("weapon",
-"Weapon",
-"weapon",
-"sword",
-null,
-"common",
-1,
-1,
-cooldownMs / 1000f);
+                new ItemInfo("weapon",
+                "Weapon",
+                "weapon",
+                "sword",
+                null,
+                "common",
+                1,
+                1,
+                cooldownMs / 1000f);
             return new ItemCooldownTrack(7, item, new List<BattleEvent>(events));
         }
 

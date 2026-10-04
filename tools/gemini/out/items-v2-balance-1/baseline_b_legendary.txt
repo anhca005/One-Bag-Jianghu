@@ -1,0 +1,23 @@
+Loadout                                    T1/TP1     T9/TP1
+-------------------------------------------------------------
+Bích Thủy Am - Dưỡng Sinh Cầm Âm           93.2%!     71.5%!
+Hàn Sơn Phái - Băng Tâm Bút Cung           14.3%!      9.3%!
+Huyền Độc Môn - Hắc Huyết Ám Khí            2.5%!     94.7%!
+Huyền Độc Môn - Vạn Độc Phệ Huyết           2.8%!    100.0%!
+Hàn Sơn Phái - Hàn Bích Hợp Bích           74.9%!     59.9% 
+Kim Cang Tự - Kim Cang Thiết Phủ           76.2%!     55.6% 
+Thái Thanh Quán - Thái Thanh Liệt Diễm     37.4%      41.6% 
+Thiết Phủ Bang - Thiết Phủ Liệt Diễm       28.0%!     11.2%!
+Kim Cang Tự - Hộ Thể Côn Quyền             98.6%!     86.3%!
+Kim Cang Tự - Bách Luyện Thuần Quyền       81.6%!     73.1%!
+Liệt Diễm Đường - Cuồng Đao Liệt Hỏa       51.4%      27.1%!
+Liệt Diễm Đường - Hỏa Hải Song Đao         35.2%      54.1% 
+Bích Thủy Am - Thanh Đằng Trường Tiên      91.3%!     71.3%!
+Hàn Sơn Phái - Hàn Băng Thương Pháp        25.4%!     20.3%!
+Liệt Diễm Đường - Xích Sa Chưởng Kình      31.7%!     22.6%!
+Thái Thanh Quán - Tiêu Dao Phiến Pháp      60.4%      54.2% 
+Thiết Phủ Bang - Chấn Nhạc Chùy Phong      38.3%      31.5%!
+Thái Thanh Quán - Kiếm Đạo Hóa Kình        65.4%!     59.8% 
+Thái Thanh Quán - Kiếm Khí Xuyên Giáp      56.9%      27.1%!
+Thiết Phủ Bang - Bá Khí Khai Sơn           35.5%      28.7%!
+Outside [35, 65]: 27/40

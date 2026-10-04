@@ -42,7 +42,7 @@ namespace OneBagJianghu.Battle.Replay
             if (battleEvent.Type == BattleEventType.Burst && !string.IsNullOrWhiteSpace(battleEvent.Kind))
             {
                 return new ReplayVfx(ReplayVfxKind.Burst,
-"burst_" + battleEvent.Kind.ToLowerInvariant());
+                    "burst_" + battleEvent.Kind.ToLowerInvariant());
             }
 
             if (battleEvent.Type == BattleEventType.Parry)
@@ -64,16 +64,16 @@ namespace OneBagJianghu.Battle.Replay
                 return false;
             bool basic = string.Equals(battleEvent.Kind, "BASIC", StringComparison.OrdinalIgnoreCase);
             bool ultimate =
-string.Equals(battleEvent.Kind,
-"ULTIMATE",
-StringComparison.OrdinalIgnoreCase);
+                string.Equals(battleEvent.Kind,
+                "ULTIMATE",
+                StringComparison.OrdinalIgnoreCase);
             if (!basic && !ultimate)
                 return false;
             bool weapon =
-string.Equals(item.Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase) &&
-!string.IsNullOrWhiteSpace(item.WeaponClass);
+                string.Equals(item.Type,
+                "weapon",
+                StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrWhiteSpace(item.WeaponClass);
             return weapon || (item.HasActive && item.CooldownSeconds > 0f);
         }
 
@@ -86,9 +86,9 @@ StringComparison.OrdinalIgnoreCase) &&
 
             bool basic = string.Equals(triggerKind, "BASIC", StringComparison.OrdinalIgnoreCase);
             bool ultimate =
-string.Equals(triggerKind,
-"ULTIMATE",
-StringComparison.OrdinalIgnoreCase);
+                string.Equals(triggerKind,
+                "ULTIMATE",
+                StringComparison.OrdinalIgnoreCase);
             if (!basic && !ultimate)
             {
                 return null;
@@ -100,10 +100,10 @@ StringComparison.OrdinalIgnoreCase);
         private static ReplayVfx ResolveTrigger(BattleEvent battleEvent, ItemInfo item)
         {
             if (!IsItemAttackTrigger(battleEvent,
-item) ||
-!string.Equals(item.Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase))
+                item) ||
+                !string.Equals(item.Type,
+                "weapon",
+                StringComparison.OrdinalIgnoreCase))
             {
                 return None;
             }

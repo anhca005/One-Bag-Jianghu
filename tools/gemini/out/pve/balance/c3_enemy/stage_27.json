@@ -1,0 +1,45 @@
+{
+  "name": "Ải 27: U Minh Chấp Pháp Sứ",
+  "hp": 2000,
+  "cols": 5,
+  "rows": 4,
+  "sect": "huyen_doc",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "u_minh_quy_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 3,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "u_minh_bi_luc",
+      "x": 3,
+      "y": 1,
+      "tier": 4,
+      "rarity": "epic"
+    },
+    {
+      "id": "van_doc_dinh",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "epic"
+    }
+  ]
+}

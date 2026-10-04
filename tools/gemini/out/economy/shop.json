@@ -1,0 +1,108 @@
+{
+  "shop_config": {
+    "total_slots": 6,
+    "free_refresh_hours": 6,
+    "paid_refresh_costs": [100, 200, 400, 800],
+    "daily_reset_utc_hour": 0,
+    "sell_ratio_to_base_price": 0.3,
+    "sell_silver_upgrade_refund_ratio": 0.15,
+    "sell_material_refund_ratio": 0.5,
+    "sell_catalyst_refund_ratio": 0.5
+  },
+  "item_base_prices": {
+    "common": 200,
+    "uncommon": 500,
+    "rare": 1200,
+    "epic": 3000,
+    "legendary": 8000
+  },
+  "material_unit_prices": {
+    "tier_1": 50,
+    "tier_2": 150,
+    "tier_3": 400,
+    "catalyst": 1200
+  },
+  "material_exchange": {
+    "same_group_upgrade": {
+      "input_count": 3,
+      "output_count": 1,
+      "t1_to_t2_fee_silver": 50,
+      "t2_to_t3_fee_silver": 150
+    },
+    "cross_group_exchange": {
+      "input_count": 2,
+      "output_count": 1,
+      "fee_silver_per_tier": [25, 75, 200]
+    }
+  },
+  "slots": [
+    {
+      "slot_index": 1,
+      "type": "item_copy",
+      "pool": ["common", "uncommon", "rare"],
+      "weights": { "common": 45, "uncommon": 40, "rare": 15 }
+    },
+    {
+      "slot_index": 2,
+      "type": "item_copy",
+      "pool": ["uncommon", "rare", "epic"],
+      "weights": { "uncommon": 50, "rare": 35, "epic": 15 }
+    },
+    {
+      "slot_index": 3,
+      "type": "material",
+      "tier": 1,
+      "stack_size": 5,
+      "price": 250
+    },
+    {
+      "slot_index": 4,
+      "type": "material",
+      "tier": 2,
+      "stack_size": 5,
+      "price": 750
+    },
+    {
+      "slot_index": 5,
+      "type": "catalyst_or_tier_3",
+      "pool": [
+        { "id": "catalyst_random", "stack_size": 1, "price": 1200, "weight": 40 },
+        { "id": "tier_3_material_random", "stack_size": 2, "price": 800, "weight": 60 }
+      ]
+    },
+    {
+      "slot_index": 6,
+      "type": "special_discount",
+      "discount_percent": 20,
+      "pool": ["uncommon_item", "pill_relic_t1", "rare_item"],
+      "weights": { "uncommon_item": 50, "pill_relic_t1": 30, "rare_item": 20 }
+    }
+  ],
+  "pvp_reputation_shop": {
+    "currency": "reputation",
+    "weekly_reset_day": "monday",
+    "items": [
+      {
+        "id": "chi_ton_ngoc_tuy",
+        "name": "Chí Tôn Ngọc Tủy",
+        "price_reputation": 500,
+        "weekly_limit": 1,
+        "description": "Chất xúc tác duy nhất để hợp thành phẩm Chí Tôn. Không bán bằng Bạc hay Nguyên Bảo."
+      },
+      {
+        "id": "catalyst_box_random",
+        "name": "Rương Chất Dẫn Ngẫu Nhiên",
+        "price_reputation": 250,
+        "weekly_limit": 3,
+        "description": "Mở ra 1 chất dẫn Đột Phá ngẫu nhiên thuộc 4 nhóm trang bị."
+      },
+      {
+        "id": "tier_3_material_box",
+        "name": "Rương Nguyên Liệu Bậc 3",
+        "price_reputation": 100,
+        "weekly_limit": 5,
+        "description": "Mở ra 3 nguyên liệu Bậc 3 ngẫu nhiên."
+      }
+    ]
+  }
+}

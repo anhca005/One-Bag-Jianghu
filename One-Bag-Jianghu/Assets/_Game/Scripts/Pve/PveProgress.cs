@@ -43,9 +43,9 @@ namespace OneBagJianghu.Pve
                 return true;
             PveChapter prerequisite = catalog.Chapters.Find(c => c.Id == chapter.Unlock.AfterChapter);
             return prerequisite != null
-&& prerequisite.Stages.Count > 0
-&& IsCleared(profile,
-prerequisite.Stages[prerequisite.Stages.Count - 1].Id);
+                && prerequisite.Stages.Count > 0
+                && IsCleared(profile,
+                prerequisite.Stages[prerequisite.Stages.Count - 1].Id);
         }
 
         public static bool IsStageUnlocked(PveStage stage, PveCatalog catalog, PlayerProfile profile)
@@ -57,9 +57,9 @@ prerequisite.Stages[prerequisite.Stages.Count - 1].Id);
         }
 
         public static bool IsCleared(PlayerProfile profile,
-string id) => profile.Pve.Stages.TryGetValue(id,
-out PveStageProgress p)
-&& p.Cleared;
+            string id) => profile.Pve.Stages.TryGetValue(id,
+            out PveStageProgress p)
+            && p.Cleared;
     }
 
     public sealed class StaminaService
@@ -103,16 +103,52 @@ out PveStageProgress p)
                 throw new ArgumentOutOfRangeException(nameof(amount));
             if (state.Stamina < amount)
                 return false;
+            // Refresh already moved the regen clock to now when stamina was full; otherwise keep the partial
+            // progress toward the next point instead of restarting it.
             state.Stamina -= amount;
-            if (state.Stamina < config.Max)
-                state.LastStaminaRegenUtc = now.ToString("O");
             return true;
+        }
+
+        public double SecondsToNext(PveProfileState state, DateTimeOffset now)
+        {
+            double perPoint = SecondsPerPoint();
+            double elapsed = ElapsedSeconds(state, now);
+            int pending = (int)(elapsed / perPoint);
+            if (state.Stamina + pending >= config.Max)
+                return 0d;
+            return perPoint - elapsed % perPoint;
+        }
+
+        public double SecondsToFull(PveProfileState state, DateTimeOffset now)
+        {
+            if (state.Stamina >= config.Max)
+                return 0d;
+            double remaining = (config.Max - state.Stamina) * SecondsPerPoint();
+            return Math.Max(0d, remaining - ElapsedSeconds(state, now));
+        }
+
+        public static string FormatDuration(double seconds)
+        {
+            int totalSeconds = Math.Max(0, (int)Math.Ceiling(seconds));
+            TimeSpan duration = TimeSpan.FromSeconds(totalSeconds);
+            return totalSeconds >= 3600
+                ? $"{(int)duration.TotalHours}:{duration.Minutes:00}:{duration.Seconds:00}"
+                : $"{duration.Minutes:00}:{duration.Seconds:00}";
         }
 
         public void Refill(PveProfileState state, DateTimeOffset now)
         {
             state.Stamina = config.Max;
             state.LastStaminaRegenUtc = now.ToString("O");
+        }
+
+        private double SecondsPerPoint() => 60d / config.RegenPerMinute;
+
+        private static double ElapsedSeconds(PveProfileState state, DateTimeOffset now)
+        {
+            if (!DateTimeOffset.TryParse(state.LastStaminaRegenUtc, out DateTimeOffset last))
+                return 0d;
+            return Math.Max(0d, (now - last).TotalSeconds);
         }
     }
 }

@@ -1,3 +1,4 @@
+using OneBagJianghu.Onboarding;
 using OneBagJianghu.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
@@ -90,6 +91,7 @@ namespace OneBagJianghu.UI.Popups
             base.Awake();
             homeButton.onClick.AddListener(() => CloseWithResult(firstChoice));
             playAgainButton.onClick.AddListener(() => CloseWithResult(secondChoice));
+            homeButton.gameObject.AddComponent<TutorialTarget>().Configure("result_first");
         }
 
         protected override void OnSetup(ResultPopupData data)
@@ -97,9 +99,11 @@ namespace OneBagJianghu.UI.Popups
             data = data ?? new ResultPopupData(string.Empty, string.Empty);
             resultText.text = data.ResultText;
             winnerText.text = string.IsNullOrWhiteSpace(data.WinnerName) ? string.Empty : "Người thắng: "
-+ data.WinnerName;
+                + data.WinnerName;
             if (rewardText != null)
+            {
                 rewardText.text = data.Rewards ?? string.Empty;
+            }
             firstChoice = data.FirstChoice;
             secondChoice = data.SecondChoice;
             homeButton.SetLabel(data.FirstLabel);

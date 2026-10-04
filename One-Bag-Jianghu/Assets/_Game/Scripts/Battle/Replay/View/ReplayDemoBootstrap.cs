@@ -19,7 +19,7 @@ namespace OneBagJianghu.Battle.Replay.View
             }
 
             replayScreen.Initialize(BattleLogParser.Parse(source.text),
-ItemCatalog.LoadFromResources());
+                ItemCatalog.LoadFromResources());
         }
     }
 }

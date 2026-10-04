@@ -1,0 +1,33 @@
+{
+  "currencies": {
+    "bac": 600,
+    "nguyen_bao": 0,
+    "danh_vong": 0
+  },
+  "items": [
+    {
+      "key": "sword",
+      "itemId": "thanh_phong_kiem",
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "key": "armor",
+      "itemId": "o_tam_y",
+      "tier": 1,
+      "rarity": "common"
+    }
+  ],
+  "loadout": [
+    {
+      "itemKey": "sword",
+      "x": 0,
+      "y": 0
+    },
+    {
+      "itemKey": "armor",
+      "x": 1,
+      "y": 0
+    }
+  ]
+}

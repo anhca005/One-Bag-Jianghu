@@ -1,0 +1,31 @@
+{
+  "name": "Ải 13: Kịch Độc Tri Chu",
+  "hp": 1350,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "kich_doc_chu_nga",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "rare"
+    }
+  ]
+}

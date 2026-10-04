@@ -1,0 +1,13 @@
+# Task T: storage popup fix-ups + PlayMode tests for storage and shop ("One Bag Jianghu")
+
+Repo root `D:\CONG VIEC\One-Bag-Jianghu`, Unity project `One-Bag-Jianghu/`. Task R rewrote `Scripts/UI/Popups/StoragePopup.cs` for the spatial 10×20 storage (decision #27). Claude ran Unity: EditMode is green, but PlayMode `StorageSmokeTests.StorageUpgradesAndMergesStarterWeapon` fails (it still uses the old `rows` list: "Storage did not create one row per owned copy. Expected 3 But was 2" — starter items placed in the bag are no longer in storage, which is correct per #27).
+
+## Do
+1. **Reformat `StoragePopup.cs`** (and `StorageCell.cs`, `StorageItemView.cs` if dense) into the normal readable style of the other popups (one statement per line, methods separated, short comments where non-obvious). No behaviour change except item 2.
+2. **Restore the detail panel content that R dropped**: stats preview current → next Trọng using `RarityRules.PowerPermille` ("Chỉ số: X% → Y% (so với Phàm 1 Trọng)"), and the full cost list "Bạc có/cần, <material name> có/cần …, • mở Đột Phá" (see the previous implementation in git history is not available — rebuild it from `UpgradePreview.Materials`, `MaterialCatalog`, profile counts). Keep Hợp Thành candidate choice + confirmation, Bán confirmation.
+3. **PlayMode tests** (`Tests/PlayMode/`): rewrite `StorageSmokeTests` for the spatial storage — reset to starter kit, move the starter weapon from the bag to storage (or add a weapon copy via the profile API that auto-places), open storage via the Home hotspot, assert the item view exists at its placed cells, select it through the view's public API, upgrade twice (Trọng 1 → 3) checking Bạc/material deductions against the preview, add a second copy at Trọng 3, Hợp Thành choosing that candidate, confirm, assert one `uncommon` copy placed in storage and the used-cell count is consistent, drag-move an item to a free spot via the popup's public drop API, close. Add `ShopSmokeTests`: Home → shop hotspot → with cheat Bạc buy the first item card via its Mua button + confirm → the copy is in the profile and placed in storage; buying when storage has no room is refused with "Tàng Bảo Các không đủ chỗ." Both must back up / restore `profile.json` like the existing PlayMode tests and use `LogAssert.NoUnexpectedReceived()`.
+
+## Hard rules
+- Modify only: `Scripts/UI/Popups/{StoragePopup,StorageCell,StorageItemView}.cs`, `Tests/PlayMode/**`. Do not touch `Scripts/Engine/**` (not writable for you) or anything else. English code, Vietnamese UI. C# 9. No git. You cannot run Unity; re-read for compile errors (test asmdef already references Game + Economy).
+
+Finish with: files changed, anything unsure.

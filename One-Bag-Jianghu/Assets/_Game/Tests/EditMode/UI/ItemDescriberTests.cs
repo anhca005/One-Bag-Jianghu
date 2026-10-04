@@ -25,8 +25,8 @@ namespace OneBagJianghu.Tests.UI
             string value = ItemDescriber.Describe("thai_thanh_tam_kinh", "common", 1);
             StringAssert.Contains("Khi ", value);
             Assert.IsTrue(value.Contains("Cương Khí") ||
-value.Contains("nội lực") ||
-value.Contains("khí huyết"));
+                value.Contains("nội lực") ||
+                value.Contains("khí huyết"));
         }
 
         [Test]
@@ -49,14 +49,14 @@ value.Contains("khí huyết"));
             foreach (ItemDef item in catalog.All())
             {
                 string value =
-ItemDescriber.Describe(item.id,
-item.rarity.Value.ToString().ToLowerInvariant(),
-9);
+                    ItemDescriber.Describe(item.id,
+                    item.rarity.Value.ToString().ToLowerInvariant(),
+                    9);
                 Assert.IsFalse(Regex.IsMatch(value,
-@"\b[A-Z]+(?:_[A-Z]+)+\b"),
-item.id +
-" leaked a raw identifier: " +
-value);
+                    @"\b[A-Z]+(?:_[A-Z]+)+\b"),
+                    item.id +
+                    " leaked a raw identifier: " +
+                    value);
                 foreach (string op in new[]
                 {
                     "BUFF_STACK",
@@ -97,10 +97,10 @@ value);
             Assert.NotNull(active);
             string value = ItemDescriber.Describe(active.id, "common", 1);
             StringAssert.Contains("Chiêu chủ động (mỗi " +
-active.cooldown.ToString("0.##",
-System.Globalization.CultureInfo.InvariantCulture) +
-" giây)",
-value);
+                active.cooldown.ToString("0.##",
+                System.Globalization.CultureInfo.InvariantCulture) +
+                " giây)",
+                value);
         }
 
         [Test]

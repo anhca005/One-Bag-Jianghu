@@ -1,0 +1,24 @@
+{
+  "name": "Ải 3: Hoang Dã Sói Xám",
+  "hp": 1540,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "soi_nanh_canh",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

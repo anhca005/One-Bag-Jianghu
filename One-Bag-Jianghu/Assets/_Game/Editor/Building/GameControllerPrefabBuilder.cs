@@ -50,13 +50,33 @@ namespace OneBagJianghu.EditorTools.Building
                 fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
                 fitter.aspectRatio = 1.5f;
             }
-            Text title = UiBuild.Text(background.transform, "Title", "Nhất Nang Giang Hồ", 60, TextAnchor.MiddleCenter, UiFontRole.Display);
+            Text title = UiBuild.Text(
+                background.transform,
+                "Title",
+                "Nhất Nang Giang Hồ",
+                60,
+                TextAnchor.MiddleCenter,
+                UiFontRole.Display);
             UiBuild.Anchors(title.rectTransform, new Vector2(0.16f, 0.61f), new Vector2(0.84f, 0.77f));
-            Slider progress = UiBuild.InstantiateLinked<Slider>(CommonUiPrefabBuilder.Folder + "/Slider.prefab", background.transform);
-            progress.name = "Progress Bar";
-            progress.interactable = false;
-            UiBuild.ApplyUiSprite(progress.GetComponent<Image>(), "progress_bar", Image.Type.Sliced);
-            UiBuild.Anchors(progress.GetComponent<RectTransform>(), new Vector2(0.25f, 0.45f), new Vector2(0.75f, 0.49f));
+
+            // Title logo replaces the text title when the art exists; the text stays as a hidden fallback.
+            Image logo = UiBuild.Image(background.transform, LoginTitleLogo.LogoName, Color.white);
+            if (UiBuild.ApplyUiSprite(logo, LoginTitleLogo.LogoKey))
+            {
+                LoginTitleLogo.Place(
+                    logo,
+                    logo.sprite,
+                    LoginTitleLogo.LoadingMin,
+                    LoginTitleLogo.LoadingMax,
+                    title.transform.GetSiblingIndex());
+                title.gameObject.SetActive(false);
+            }
+            else
+            {
+                Object.DestroyImmediate(logo.gameObject);
+            }
+
+            Slider progress = BuildLoadingProgress(background.transform);
             Text percentage = UiBuild.Text(background.transform, "Percentage", "0%", 24);
             UiBuild.Anchors(percentage.rectTransform, new Vector2(0.4f, 0.37f), new Vector2(0.6f, 0.43f));
             Text tip = UiBuild.Text(background.transform, "Tip", "Mỗi ô trong bao phục đều đáng giá.", 22);
@@ -84,6 +104,51 @@ namespace OneBagJianghu.EditorTools.Building
             var child = new GameObject(name, typeof(T));
             child.transform.SetParent(parent, false);
             return child.GetComponent<T>();
+        }
+
+        private static Slider BuildLoadingProgress(Transform parent)
+        {
+            // The container holds the Slider; the fill sits inside it and the bamboo frame is drawn last,
+            // so the red fill stays inside the tube instead of covering it.
+            RectTransform bar = UiBuild.Rect(parent, "Progress Bar");
+            bar.anchorMin = new Vector2(0.5f, 0.47f);
+            bar.anchorMax = new Vector2(0.5f, 0.47f);
+            bar.sizeDelta = new Vector2(960f, 131f);
+
+            // Hollow channel inside the tube, measured on the PNG: x 11.7%-88.2%, y 30%-70%. The fill reaches a
+            // little under the frame, which is drawn on top, so no gap shows at the ends.
+            RectTransform fillArea = UiBuild.Rect(bar, "Fill Area");
+            fillArea.anchorMin = new Vector2(0.105f, 0.28f);
+            fillArea.anchorMax = new Vector2(0.895f, 0.72f);
+            fillArea.offsetMin = Vector2.zero;
+            fillArea.offsetMax = Vector2.zero;
+
+            // Plain solid fill; the Slider stretches it by setting anchorMax.x to the progress value.
+            Image fill = UiBuild.Image(fillArea, "Fill", UiBuild.Vermilion);
+            fill.type = Image.Type.Simple;
+            RectTransform fillRect = fill.rectTransform;
+            fillRect.anchorMin = Vector2.zero;
+            fillRect.anchorMax = new Vector2(0f, 1f);
+            fillRect.offsetMin = Vector2.zero;
+            fillRect.offsetMax = Vector2.zero;
+
+            // progress_bar.png is a bamboo tube (~7.3:1); draw it whole at its own aspect.
+            Image frame = UiBuild.Image(bar, "Frame", Color.white);
+            UiBuild.ApplyUiSprite(frame, "progress_bar", Image.Type.Simple);
+            frame.preserveAspect = true;
+            frame.raycastTarget = false;
+            UiBuild.Stretch(frame.rectTransform);
+
+            Slider slider = bar.gameObject.AddComponent<Slider>();
+            slider.interactable = false;
+            // A non-interactable Selectable tints its target with the disabled colour; skip tinting entirely.
+            slider.transition = Selectable.Transition.None;
+            slider.fillRect = fill.rectTransform;
+            slider.direction = Slider.Direction.LeftToRight;
+            slider.minValue = 0f;
+            slider.maxValue = 1f;
+            slider.value = 0f;
+            return slider;
         }
     }
 }

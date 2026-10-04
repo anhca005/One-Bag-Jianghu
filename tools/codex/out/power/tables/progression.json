@@ -1,0 +1,182 @@
+[
+  {
+    "stage": 1,
+    "level": 1,
+    "noShop": 100,
+    "shopSmart": 167
+  },
+  {
+    "stage": 2,
+    "level": 2,
+    "noShop": 109,
+    "shopSmart": 229
+  },
+  {
+    "stage": 3,
+    "level": 3,
+    "noShop": 113,
+    "shopSmart": 257
+  },
+  {
+    "stage": 4,
+    "level": 5,
+    "noShop": 135,
+    "shopSmart": 236
+  },
+  {
+    "stage": 5,
+    "level": 6,
+    "noShop": 144,
+    "shopSmart": 239
+  },
+  {
+    "stage": 6,
+    "level": 7,
+    "noShop": 168,
+    "shopSmart": 227
+  },
+  {
+    "stage": 7,
+    "level": 8,
+    "noShop": 180,
+    "shopSmart": 243
+  },
+  {
+    "stage": 8,
+    "level": 9,
+    "noShop": 193,
+    "shopSmart": 240
+  },
+  {
+    "stage": 9,
+    "level": 10,
+    "noShop": 205,
+    "shopSmart": 236
+  },
+  {
+    "stage": 10,
+    "level": 11,
+    "noShop": 210,
+    "shopSmart": 218
+  },
+  {
+    "stage": 11,
+    "level": 12,
+    "noShop": 211,
+    "shopSmart": 249
+  },
+  {
+    "stage": 12,
+    "level": 13,
+    "noShop": 223,
+    "shopSmart": 254
+  },
+  {
+    "stage": 13,
+    "level": 13,
+    "noShop": 227,
+    "shopSmart": 227
+  },
+  {
+    "stage": 14,
+    "level": 14,
+    "noShop": 251,
+    "shopSmart": 323
+  },
+  {
+    "stage": 15,
+    "level": 15,
+    "noShop": 291,
+    "shopSmart": 305
+  },
+  {
+    "stage": 16,
+    "level": 15,
+    "noShop": 325,
+    "shopSmart": 374
+  },
+  {
+    "stage": 17,
+    "level": 16,
+    "noShop": 347,
+    "shopSmart": 347
+  },
+  {
+    "stage": 18,
+    "level": 17,
+    "noShop": 342,
+    "shopSmart": 342
+  },
+  {
+    "stage": 19,
+    "level": 17,
+    "noShop": 338,
+    "shopSmart": 338
+  },
+  {
+    "stage": 20,
+    "level": 18,
+    "noShop": 397,
+    "shopSmart": 397
+  },
+  {
+    "stage": 21,
+    "level": 18,
+    "noShop": 357,
+    "shopSmart": 357
+  },
+  {
+    "stage": 22,
+    "level": 19,
+    "noShop": 361,
+    "shopSmart": 361
+  },
+  {
+    "stage": 23,
+    "level": 19,
+    "noShop": 366,
+    "shopSmart": 366
+  },
+  {
+    "stage": 24,
+    "level": 20,
+    "noShop": 377,
+    "shopSmart": 377
+  },
+  {
+    "stage": 25,
+    "level": 20,
+    "noShop": 360,
+    "shopSmart": 360
+  },
+  {
+    "stage": 26,
+    "level": 21,
+    "noShop": 349,
+    "shopSmart": 349
+  },
+  {
+    "stage": 27,
+    "level": 21,
+    "noShop": 348,
+    "shopSmart": 348
+  },
+  {
+    "stage": 28,
+    "level": 22,
+    "noShop": 346,
+    "shopSmart": 346
+  },
+  {
+    "stage": 29,
+    "level": 22,
+    "noShop": 359,
+    "shopSmart": 359
+  },
+  {
+    "stage": 30,
+    "level": 23,
+    "noShop": 333,
+    "shopSmart": 333
+  }
+]

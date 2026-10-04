@@ -1,0 +1,25 @@
+{
+  "exhaustionStep": 5,
+  "maxRegen": 8,
+  "burn": {
+    "threshold": 50,
+    "damage": 65,
+    "maxHpPermille": 0,
+    "ignoreShield": false,
+    "decayPerSecond": 0
+  },
+  "poison": {
+    "threshold": 50,
+    "damage": 30,
+    "maxHpPermille": 0,
+    "ignoreShield": true,
+    "decayPerSecond": 0
+  },
+  "bleed": {
+    "threshold": 50,
+    "damage": 15,
+    "maxHpPermille": 35,
+    "ignoreShield": true,
+    "decayPerSecond": 0
+  }
+}

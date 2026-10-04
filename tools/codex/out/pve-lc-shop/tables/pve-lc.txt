@@ -1,0 +1,65 @@
+Ải 01 normal cấp 1: LC 161/160, expected 65.0%, chọn 65.0%, starter 0.0%, lucky 65.0%, 51.2s
+Ải 02 normal cấp 2: LC 222/221, expected 61.0% -> 61.0%, chọn 61.0%, starter 0.0%, lucky 61.0%, 55.1s
+Ải 03 normal cấp 3: LC 282/282, expected 51.0% -> 51.0%, chọn 51.0%, starter 0.0%, lucky 0.0%, 58.1s
+Ải 04 normal cấp 5: LC 298/298, expected 31.0% -> 31.0%, chọn 31.0%, starter 0.0%, lucky 0.0%, 54.7s
+Ải 05 elite cấp 6: LC 317/316, expected 61.0%, chọn 61.0%, starter 0.0%, lucky 61.0%, 54.5s
+Ải 06 normal cấp 7: LC 317/317, expected 99.0% -> 50.0%, chọn 50.0%, starter 0.0%, lucky 58.0%, 55.0s
+Ải 07 normal cấp 8: LC 329/314, expected 28.0% -> 40.0%, chọn 40.0%, starter 0.0%, lucky 89.0%, 54.7s
+Ải 08 normal cấp 9: LC 401/386, expected 48.0% -> 48.0%, chọn 48.0%, starter 0.0%, lucky 48.0%, 56.0s
+Ải 09 normal cấp 10: LC 413/397, expected 59.0% -> 64.0%, chọn 64.0%, starter 0.0%, lucky 96.0%, 54.7s
+Ải 10 boss cấp 11: LC 485/485, expected 44.0%, chọn 44.0%, starter 0.0%, lucky 44.0%, 55.9s
+Đã lưu hết Hồi 1: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-lc-shop\chapters.json
+Ải 11 normal cấp 12: LC 571/555, expected 65.0%, chọn 65.0%, starter 0.0%, lucky 72.0%, 57.2s
+Ải 12 normal cấp 13: LC 656/640, expected 63.0%, chọn 63.0%, starter 0.0%, lucky 7.0%, 58.1s
+Ải 13 normal cấp 13: LC 741/710, expected 47.0% -> 56.0%, chọn 56.0%, starter 0.0%, lucky 8.0%, 56.7s
+Ải 14 normal cấp 14: LC 824/809, expected 59.0% -> 17.0%, chọn 59.0%, starter 0.0%, lucky 74.0%, 55.3s
+Ải 15 elite cấp 15: LC 953/938, expected 52.0%, chọn 52.0%, starter 0.0%, lucky 74.0%, 56.5s
+Ải 16 normal cấp 15: LC 1038/981, expected 32.0% -> 74.0%, chọn 74.0%, starter 0.0%, lucky 76.0%, 57.0s
+Ải 17 normal cấp 16: LC 1039/982, expected 36.0% -> 77.0%, chọn 77.0%, starter 0.0%, lucky 78.0%, 57.1s
+Ải 18 normal cấp 17: LC 1041/983, expected 27.0% -> 75.0%, chọn 75.0%, starter 0.0%, lucky 78.0%, 57.2s
+Ải 19 normal cấp 17: LC 1042/984, expected 27.0% -> 77.0%, chọn 77.0%, starter 0.0%, lucky 77.0%, 57.3s
+Ải 20 boss cấp 18: LC 1042/1042, expected 44.0%, chọn 44.0%, starter 0.0%, lucky 44.0%, 57.5s
+Đã lưu hết Hồi 2: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-lc-shop\chapters.json
+Ải 21 normal cấp 18: LC 1042/985, expected 33.0% -> 56.0%, chọn 56.0%, starter 0.0%, lucky 56.0%, 57.3s
+Ải 22 normal cấp 19: LC 1042/985, expected 35.0% -> 57.0%, chọn 57.0%, starter 0.0%, lucky 57.0%, 57.4s
+Ải 23 normal cấp 19: LC 1042/985, expected 35.0% -> 57.0%, chọn 57.0%, starter 0.0%, lucky 57.0%, 57.4s
+Ải 24 normal cấp 20: LC 1042/985, expected 35.0% -> 58.0%, chọn 58.0%, starter 0.0%, lucky 58.0%, 57.5s
+Ải 25 elite cấp 20: LC 1042/1042, expected 49.0% -> 28.0%, chọn 49.0%, starter 0.0%, lucky 49.0%, 57.6s
+Ải 26 normal cấp 21: LC 1042/985, expected 29.0% -> 57.0%, chọn 57.0%, starter 0.0%, lucky 57.0%, 57.5s
+Ải 27 normal cấp 21: LC 1042/985, expected 29.0% -> 57.0%, chọn 57.0%, starter 0.0%, lucky 57.0%, 57.5s
+Ải 28 normal cấp 22: LC 1042/985, expected 30.0% -> 55.0%, chọn 55.0%, starter 0.0%, lucky 55.0%, 57.6s
+Ải 29 normal cấp 22: LC 1042/985, expected 30.0% -> 55.0%, chọn 55.0%, starter 0.0%, lucky 55.0%, 57.6s
+Ải 30 boss cấp 23: LC 1042/1042, expected 47.0%, chọn 47.0%, starter 0.0%, lucky 47.0%, 57.8s
+Đã lưu hết Hồi 3: D:\CONG VIEC\One-Bag-Jianghu\tools\codex\out\pve-lc-shop\chapters.json
+
+FINAL_TABLE
+{"stage": 1, "kind": "normal", "level": 1, "silver": 500, "expectedItems": 3, "expectedLc": 161, "enemyLc": 160, "enemyItems": 3, "targetLc": 156.12, "expected": 65.0, "starterOnly": 0.0, "lucky": 65.0, "seconds": 51.2, "adjustment": "rarity", "status": "trong_dai"}
+{"stage": 2, "kind": "normal", "level": 2, "silver": 400, "expectedItems": 4, "expectedLc": 222, "enemyLc": 221, "enemyItems": 4, "targetLc": 215.27, "expected": 61.0, "starterOnly": 0.0, "lucky": 61.0, "seconds": 55.1, "adjustment": "rarity", "status": "ngoai_dai"}
+{"stage": 3, "kind": "normal", "level": 3, "silver": 350, "expectedItems": 5, "expectedLc": 282, "enemyLc": 282, "enemyItems": 5, "targetLc": 273.45, "expected": 51.0, "starterOnly": 0.0, "lucky": 0.0, "seconds": 58.1, "adjustment": "mirror", "status": "ngoai_dai"}
+{"stage": 4, "kind": "normal", "level": 5, "silver": 550, "expectedItems": 5, "expectedLc": 298, "enemyLc": 298, "enemyItems": 5, "targetLc": 288.97, "expected": 31.0, "starterOnly": 0.0, "lucky": 0.0, "seconds": 54.7, "adjustment": "mirror", "status": "ngoai_dai"}
+{"stage": 5, "kind": "elite", "level": 6, "silver": 600, "expectedItems": 6, "expectedLc": 317, "enemyLc": 316, "enemyItems": 6, "targetLc": 311.98, "expected": 61.0, "starterOnly": 0.0, "lucky": 61.0, "seconds": 54.5, "adjustment": "rarity", "status": "trong_dai"}
+{"stage": 6, "kind": "normal", "level": 7, "silver": 600, "expectedItems": 6, "expectedLc": 317, "enemyLc": 317, "enemyItems": 6, "targetLc": 313.54, "expected": 50.0, "starterOnly": 0.0, "lucky": 58.0, "seconds": 55.0, "adjustment": "mirror", "status": "ngoai_dai"}
+{"stage": 7, "kind": "normal", "level": 8, "silver": 700, "expectedItems": 7, "expectedLc": 329, "enemyLc": 314, "enemyItems": 6, "targetLc": 312.65, "expected": 40.0, "starterOnly": 0.0, "lucky": 89.0, "seconds": 54.7, "adjustment": "rarity,item", "status": "ngoai_dai"}
+{"stage": 8, "kind": "normal", "level": 9, "silver": 650, "expectedItems": 9, "expectedLc": 401, "enemyLc": 386, "enemyItems": 8, "targetLc": 388.84, "expected": 48.0, "starterOnly": 0.0, "lucky": 48.0, "seconds": 56.0, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 9, "kind": "normal", "level": 10, "silver": 650, "expectedItems": 10, "expectedLc": 413, "enemyLc": 397, "enemyItems": 9, "targetLc": 392.47, "expected": 64.0, "starterOnly": 0.0, "lucky": 96.0, "seconds": 54.7, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 10, "kind": "boss", "level": 11, "silver": 700, "expectedItems": 12, "expectedLc": 485, "enemyLc": 485, "enemyItems": 12, "targetLc": 485.0, "expected": 44.0, "starterOnly": 0.0, "lucky": 44.0, "seconds": 55.9, "adjustment": "mirror", "status": "trong_dai"}
+{"stage": 11, "kind": "normal", "level": 12, "silver": 1200, "expectedItems": 12, "expectedLc": 571, "enemyLc": 555, "enemyItems": 11, "targetLc": 553.69, "expected": 65.0, "starterOnly": 0.0, "lucky": 72.0, "seconds": 57.2, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 12, "kind": "normal", "level": 13, "silver": 800, "expectedItems": 12, "expectedLc": 656, "enemyLc": 640, "enemyItems": 11, "targetLc": 636.11, "expected": 63.0, "starterOnly": 0.0, "lucky": 7.0, "seconds": 58.1, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 13, "kind": "normal", "level": 13, "silver": 950, "expectedItems": 15, "expectedLc": 741, "enemyLc": 710, "enemyItems": 13, "targetLc": 704.17, "expected": 56.0, "starterOnly": 0.0, "lucky": 8.0, "seconds": 56.7, "adjustment": "rarity,item,item", "status": "ngoai_dai"}
+{"stage": 14, "kind": "normal", "level": 14, "silver": 850, "expectedItems": 18, "expectedLc": 824, "enemyLc": 809, "enemyItems": 17, "targetLc": 799.02, "expected": 59.0, "starterOnly": 0.0, "lucky": 74.0, "seconds": 55.3, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 15, "kind": "elite", "level": 15, "silver": 1100, "expectedItems": 18, "expectedLc": 953, "enemyLc": 938, "enemyItems": 17, "targetLc": 937.91, "expected": 52.0, "starterOnly": 0.0, "lucky": 74.0, "seconds": 56.5, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 16, "kind": "normal", "level": 15, "silver": 1000, "expectedItems": 18, "expectedLc": 1038, "enemyLc": 981, "enemyItems": 17, "targetLc": 986.4, "expected": 74.0, "starterOnly": 0.0, "lucky": 76.0, "seconds": 57.0, "adjustment": "item", "status": "trong_dai"}
+{"stage": 17, "kind": "normal", "level": 16, "silver": 1000, "expectedItems": 18, "expectedLc": 1039, "enemyLc": 982, "enemyItems": 17, "targetLc": 987.35, "expected": 77.0, "starterOnly": 0.0, "lucky": 78.0, "seconds": 57.1, "adjustment": "item", "status": "trong_dai"}
+{"stage": 18, "kind": "normal", "level": 17, "silver": 1050, "expectedItems": 18, "expectedLc": 1041, "enemyLc": 983, "enemyItems": 17, "targetLc": 989.25, "expected": 75.0, "starterOnly": 0.0, "lucky": 78.0, "seconds": 57.2, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 19, "kind": "normal", "level": 17, "silver": 1150, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 984, "enemyItems": 17, "targetLc": 990.2, "expected": 77.0, "starterOnly": 0.0, "lucky": 77.0, "seconds": 57.3, "adjustment": "rarity,item", "status": "trong_dai"}
+{"stage": 20, "kind": "boss", "level": 18, "silver": 1300, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 1042, "enemyItems": 18, "targetLc": 1042.0, "expected": 44.0, "starterOnly": 0.0, "lucky": 44.0, "seconds": 57.5, "adjustment": "mirror", "status": "trong_dai"}
+{"stage": 21, "kind": "normal", "level": 18, "silver": 2100, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 56.0, "starterOnly": 0.0, "lucky": 56.0, "seconds": 57.3, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 22, "kind": "normal", "level": 19, "silver": 3200, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 57.0, "starterOnly": 0.0, "lucky": 57.0, "seconds": 57.4, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 23, "kind": "normal", "level": 19, "silver": 4400, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 57.0, "starterOnly": 0.0, "lucky": 57.0, "seconds": 57.4, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 24, "kind": "normal", "level": 20, "silver": 5650, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 58.0, "starterOnly": 0.0, "lucky": 58.0, "seconds": 57.5, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 25, "kind": "elite", "level": 20, "silver": 6950, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 1042, "enemyItems": 18, "targetLc": 1025.51, "expected": 49.0, "starterOnly": 0.0, "lucky": 49.0, "seconds": 57.6, "adjustment": "mirror", "status": "ngoai_dai"}
+{"stage": 26, "kind": "normal", "level": 21, "silver": 8550, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 57.0, "starterOnly": 0.0, "lucky": 57.0, "seconds": 57.5, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 27, "kind": "normal", "level": 21, "silver": 9950, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 57.0, "starterOnly": 0.0, "lucky": 57.0, "seconds": 57.5, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 28, "kind": "normal", "level": 22, "silver": 11450, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 55.0, "starterOnly": 0.0, "lucky": 55.0, "seconds": 57.6, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 29, "kind": "normal", "level": 22, "silver": 13050, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 985, "enemyItems": 17, "targetLc": 990.2, "expected": 55.0, "starterOnly": 0.0, "lucky": 55.0, "seconds": 57.6, "adjustment": "item", "status": "ngoai_dai"}
+{"stage": 30, "kind": "boss", "level": 23, "silver": 14750, "expectedItems": 18, "expectedLc": 1042, "enemyLc": 1042, "enemyItems": 18, "targetLc": 1042.0, "expected": 47.0, "starterOnly": 0.0, "lucky": 47.0, "seconds": 57.8, "adjustment": "mirror", "status": "trong_dai"}

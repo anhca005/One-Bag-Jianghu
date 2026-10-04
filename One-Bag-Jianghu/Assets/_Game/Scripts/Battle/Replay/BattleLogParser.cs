@@ -38,33 +38,33 @@ namespace OneBagJianghu.Battle.Replay
                     result.Events.Add(new BattleEvent
                     {
                         TimeMs =
-source.TimeMs,
+                            source.TimeMs,
                         Type =
-ParseType(source.Type),
+                            ParseType(source.Type),
                         RawType =
-source.Type,
+                            source.Type,
                         Side =
-source.Side,
+                            source.Side,
                         Item =
-source.Item,
+                            source.Item,
                         Kind =
-source.Kind,
+                            source.Kind,
                         Value =
-source.Value,
+                            source.Value,
                         Absorbed =
-source.Absorbed,
+                            source.Absorbed,
                         Total =
-source.Total,
+                            source.Total,
                         Crit =
-source.Crit,
+                            source.Crit,
                         Hp =
-source.Hp,
+                            source.Hp,
                         MaxHp =
-source.MaxHp,
+                            source.MaxHp,
                         Shield =
-source.Shield,
+                            source.Shield,
                         Qi =
-source.Qi
+                            source.Qi
                     });
                 }
 
@@ -87,13 +87,13 @@ source.Qi
             {
                 int[] source = bags != null && side < bags.Count ? bags[side] : null;
                 result.Add(source != null &&
-source.Length >= 2 &&
-source[0] > 0 &&
-source[1] > 0 ?
-new[] { source[0],
-source[1] } :
-new[] { 5,
-4 });
+                    source.Length >= 2 &&
+                    source[0] > 0 &&
+                    source[1] > 0 ?
+                    new[] { source[0],
+                    source[1] } :
+                    new[] { 5,
+                    4 });
             }
 
             return result;

@@ -19,7 +19,7 @@ namespace OneBagJianghu.Tests.UI
                 fit.Configure(30, 12);
                 Assert.That(text.fontSize, Is.LessThan(30));
                 Assert.That(text.horizontalOverflow,
-Is.EqualTo(HorizontalWrapMode.Overflow));
+                    Is.EqualTo(HorizontalWrapMode.Overflow));
                 Assert.That(text.resizeTextForBestFit, Is.False);
                 Assert.That(text.cachedTextGenerator.lineCount, Is.LessThanOrEqualTo(1));
             }
@@ -104,14 +104,14 @@ Is.EqualTo(HorizontalWrapMode.Overflow));
         private static GameObject MakeLabel(string value, float width, int size)
         {
             var go =
-new GameObject("Label",
-typeof(RectTransform),
-typeof(CanvasRenderer),
-typeof(Text));
+                new GameObject("Label",
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Text));
             go.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 60f);
             Text text = go.GetComponent<Text>();
             text.font =
-AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Regular.ttf");
+                AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Regular.ttf");
             text.text = value;
             text.fontSize = size;
             return go;

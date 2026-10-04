@@ -247,9 +247,9 @@ namespace OneBagJianghu.UI.Popups
             if (!(data is TData typedData))
             {
                 throw new ArgumentException("Expected popup data of type "
-+ typeof(TData).FullName
-+ ".",
-nameof(data));
+                    + typeof(TData).FullName
+                    + ".",
+                    nameof(data));
             }
 
             OnSetup(typedData);

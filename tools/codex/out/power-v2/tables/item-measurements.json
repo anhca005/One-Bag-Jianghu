@@ -1,0 +1,1973 @@
+[
+  {
+    "item": "thiet_cot_quyen_sao",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 22.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "phuc_ho_con",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 21.9,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thanh_phong_kiem",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 19.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "liet_diem_dao",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 18.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "that_tinh_tieu",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 24.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tu_kim_trao",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 25.1,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "khai_son_phu",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 15.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "phan_quan_but",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 28.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "han_ngoc_tieu",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 29.3,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bich_thuy_cam",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 29.6,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thai_thanh_tam_kinh",
+    "size": 2,
+    "level": 1,
+    "win": 0.8,
+    "duration": 37.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "o_tam_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "boi_nguyen_dan",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 36.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tuy_tien_ho_lo",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 37.9,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "xich_sa_chuong",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 22.1,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "ngoc_cot_phien",
+    "size": 2,
+    "level": 1,
+    "win": 0.9670000000000001,
+    "duration": 32.4,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bang_phach_thuong",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 15.9,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "chan_nhac_chuy",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 15.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thanh_dang_tien",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 25.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tu_mau_song_dao",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 15.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "truy_hon_cung",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 17.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thiet_giap_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "o_thiet_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "kim_tuyen_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "da_ho_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "nho_sam_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 38.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bang_tam_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tue_nguyet_bao_y",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "phuc_ma_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 35.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thanh_dong_ho_tam_kinh",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "long_lan_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thuan_duong_cong",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "quy_nguyen_quyet",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bach_luyen_chan_kinh",
+    "size": 2,
+    "level": 1,
+    "win": 0.9,
+    "duration": 33.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "u_minh_bi_luc",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "liet_hoa_tam_kinh",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "vo_niem_kinh",
+    "size": 2,
+    "level": 1,
+    "win": 0.9670000000000001,
+    "duration": 35.1,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "phi_yen_quyet",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thien_dia_vo_cuc_cong",
+    "size": 2,
+    "level": 1,
+    "win": 0.9,
+    "duration": 33.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "duong_sinh_quyet",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 33.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "kiem_tong_tam_yeu",
+    "size": 2,
+    "level": 1,
+    "win": 0.733,
+    "duration": 35.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "kim_sang_duoc",
+    "size": 2,
+    "level": 1,
+    "win": 0.95,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "hoi_thien_dan",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 38.7,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thanh_tam_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.483,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "cuong_hoa_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.483,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "van_khi_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.483,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "giai_doc_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.483,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "ho_mach_dan",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "ngung_than_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.7,
+    "duration": 35.9,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "cuu_chuyen_hoan_hon_dan",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 38.8,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "ti_khang_dan",
+    "size": 2,
+    "level": 1,
+    "win": 0.483,
+    "duration": 37.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tram_huong_lo",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bach_ngoc_boi",
+    "size": 2,
+    "level": 1,
+    "win": 0.5670000000000001,
+    "duration": 38.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "da_minh_chau",
+    "size": 2,
+    "level": 1,
+    "win": 0.5670000000000001,
+    "duration": 38.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "chu_sa_ho_lo",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 28.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thien_tam_chuoi",
+    "size": 2,
+    "level": 1,
+    "win": 0.8335000000000001,
+    "duration": 39.4,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "van_doc_dinh",
+    "size": 2,
+    "level": 1,
+    "win": 0.5670000000000001,
+    "duration": 38.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "huyet_ngoc_thach",
+    "size": 2,
+    "level": 1,
+    "win": 0.5670000000000001,
+    "duration": 38.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "han_bang_chau",
+    "size": 2,
+    "level": 1,
+    "win": 0.9329999999999999,
+    "duration": 39.3,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tu_kim_bat",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "am_duong_ngoc",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "soi_nanh_canh",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 23.6,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "heo_rung_bap_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "man_xa_doc_tui",
+    "size": 2,
+    "level": 1,
+    "win": 0.5670000000000001,
+    "duration": 38.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "u_minh_quy_trao",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 15.2,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "kich_doc_chu_nga",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 18.9,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bang_tam_linh_chau",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 38.1,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "tuyet_lang_bach_bi",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "hac_sat_hung_dam",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bach_ho_cuong_mong",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 22.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "hoa_diem_xa_cot",
+    "size": 2,
+    "level": 1,
+    "win": 0.9,
+    "duration": 33.5,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "bang_phach_co_cot",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 38.4,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thien_nien_quy_giap",
+    "size": 2,
+    "level": 1,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.40049999999999997,
+    "baseDuration": 37.2
+  },
+  {
+    "item": "thiet_cot_quyen_sao",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 28.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "phuc_ho_con",
+    "size": 5,
+    "level": 10,
+    "win": 0.5495,
+    "duration": 38.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thanh_phong_kiem",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 26.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "liet_diem_dao",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 21.8,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "that_tinh_tieu",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 29.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tu_kim_trao",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 31.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "khai_son_phu",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 22.9,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "phan_quan_but",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 32.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "han_ngoc_tieu",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 34.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bich_thuy_cam",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 37.8,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thai_thanh_tam_kinh",
+    "size": 5,
+    "level": 10,
+    "win": 0.8,
+    "duration": 38.1,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "o_tam_y",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 40.1,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "boi_nguyen_dan",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tuy_tien_ho_lo",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 38.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "xich_sa_chuong",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 24.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "ngoc_cot_phien",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 32.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bang_phach_thuong",
+    "size": 5,
+    "level": 10,
+    "win": 0.5495,
+    "duration": 38.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "chan_nhac_chuy",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 22.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thanh_dang_tien",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 31.8,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tu_mau_song_dao",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 22.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "truy_hon_cung",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 24.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thiet_giap_y",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "o_thiet_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "kim_tuyen_y",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 37.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "da_ho_y",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 36.1,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "nho_sam_y",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bang_tam_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tue_nguyet_bao_y",
+    "size": 5,
+    "level": 10,
+    "win": 0.9329999999999999,
+    "duration": 39.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "phuc_ma_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 36.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thanh_dong_ho_tam_kinh",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "long_lan_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thuan_duong_cong",
+    "size": 5,
+    "level": 10,
+    "win": 0.667,
+    "duration": 37.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "quy_nguyen_quyet",
+    "size": 5,
+    "level": 10,
+    "win": 0.7,
+    "duration": 36.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bach_luyen_chan_kinh",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 33.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "u_minh_bi_luc",
+    "size": 5,
+    "level": 10,
+    "win": 0.667,
+    "duration": 37.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "liet_hoa_tam_kinh",
+    "size": 5,
+    "level": 10,
+    "win": 0.667,
+    "duration": 37.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "vo_niem_kinh",
+    "size": 5,
+    "level": 10,
+    "win": 0.9670000000000001,
+    "duration": 35.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "phi_yen_quyet",
+    "size": 5,
+    "level": 10,
+    "win": 0.8,
+    "duration": 35.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thien_dia_vo_cuc_cong",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 32.8,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "duong_sinh_quyet",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 36.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "kiem_tong_tam_yeu",
+    "size": 5,
+    "level": 10,
+    "win": 0.9,
+    "duration": 35.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "kim_sang_duoc",
+    "size": 5,
+    "level": 10,
+    "win": 0.9329999999999999,
+    "duration": 39.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "hoi_thien_dan",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thanh_tam_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.8835000000000001,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "cuong_hoa_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.8835000000000001,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "van_khi_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.8835000000000001,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "giai_doc_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.8835000000000001,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "ho_mach_dan",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "ngung_than_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.9495,
+    "duration": 37.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "cuu_chuyen_hoan_hon_dan",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.8,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "ti_khang_dan",
+    "size": 5,
+    "level": 10,
+    "win": 0.8835000000000001,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tram_huong_lo",
+    "size": 5,
+    "level": 10,
+    "win": 0.9495,
+    "duration": 39.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bach_ngoc_boi",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 35.3,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "da_minh_chau",
+    "size": 5,
+    "level": 10,
+    "win": 0.7334999999999999,
+    "duration": 39.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "chu_sa_ho_lo",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 33.1,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thien_tam_chuoi",
+    "size": 5,
+    "level": 10,
+    "win": 0.9495,
+    "duration": 40.1,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "van_doc_dinh",
+    "size": 5,
+    "level": 10,
+    "win": 0.7334999999999999,
+    "duration": 39.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "huyet_ngoc_thach",
+    "size": 5,
+    "level": 10,
+    "win": 0.7334999999999999,
+    "duration": 39.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "han_bang_chau",
+    "size": 5,
+    "level": 10,
+    "win": 0.9329999999999999,
+    "duration": 39.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tu_kim_bat",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 37.4,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "am_duong_ngoc",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.9,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "soi_nanh_canh",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 28.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "heo_rung_bap_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "man_xa_doc_tui",
+    "size": 5,
+    "level": 10,
+    "win": 0.7334999999999999,
+    "duration": 39.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "u_minh_quy_trao",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 22.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "kich_doc_chu_nga",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 25.0,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bang_tam_linh_chau",
+    "size": 5,
+    "level": 10,
+    "win": 0.9329999999999999,
+    "duration": 38.9,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "tuyet_lang_bach_bi",
+    "size": 5,
+    "level": 10,
+    "win": 0.9329999999999999,
+    "duration": 39.5,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "hac_sat_hung_dam",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bach_ho_cuong_mong",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 29.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "hoa_diem_xa_cot",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 30.2,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "bang_phach_co_cot",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.6,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thien_nien_quy_giap",
+    "size": 5,
+    "level": 10,
+    "win": 1.0,
+    "duration": 39.7,
+    "baseWin": 0.5495,
+    "baseDuration": 38.4
+  },
+  {
+    "item": "thiet_cot_quyen_sao",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "phuc_ho_con",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thanh_phong_kiem",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "liet_diem_dao",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "that_tinh_tieu",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tu_kim_trao",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "khai_son_phu",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "phan_quan_but",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "han_ngoc_tieu",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bich_thuy_cam",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thai_thanh_tam_kinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.7829999999999999,
+    "duration": 47.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "o_tam_y",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "boi_nguyen_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tuy_tien_ho_lo",
+    "size": 9,
+    "level": 20,
+    "win": 0.9664999999999999,
+    "duration": 48.7,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "xich_sa_chuong",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "ngoc_cot_phien",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bang_phach_thuong",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "chan_nhac_chuy",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thanh_dang_tien",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tu_mau_song_dao",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "truy_hon_cung",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thiet_giap_y",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 49.3,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "o_thiet_giap",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "kim_tuyen_y",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "da_ho_y",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "nho_sam_y",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 49.2,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bang_tam_giap",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 48.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tue_nguyet_bao_y",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "phuc_ma_giap",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thanh_dong_ho_tam_kinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.9335,
+    "duration": 49.4,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "long_lan_giap",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thuan_duong_cong",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "quy_nguyen_quyet",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bach_luyen_chan_kinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "u_minh_bi_luc",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "liet_hoa_tam_kinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "vo_niem_kinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "phi_yen_quyet",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thien_dia_vo_cuc_cong",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 46.3,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "duong_sinh_quyet",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "kiem_tong_tam_yeu",
+    "size": 9,
+    "level": 20,
+    "win": 0.7665000000000001,
+    "duration": 47.8,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "kim_sang_duoc",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "hoi_thien_dan",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 49.2,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thanh_tam_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "cuong_hoa_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "van_khi_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "giai_doc_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "ho_mach_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.9835,
+    "duration": 49.5,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "ngung_than_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.7005,
+    "duration": 48.5,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "cuu_chuyen_hoan_hon_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.9495,
+    "duration": 49.3,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "ti_khang_dan",
+    "size": 9,
+    "level": 20,
+    "win": 0.5165,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tram_huong_lo",
+    "size": 9,
+    "level": 20,
+    "win": 0.9165000000000001,
+    "duration": 49.2,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bach_ngoc_boi",
+    "size": 9,
+    "level": 20,
+    "win": 0.6005,
+    "duration": 49.1,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "da_minh_chau",
+    "size": 9,
+    "level": 20,
+    "win": 0.6005,
+    "duration": 49.1,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "chu_sa_ho_lo",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 41.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thien_tam_chuoi",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "van_doc_dinh",
+    "size": 9,
+    "level": 20,
+    "win": 0.6005,
+    "duration": 49.1,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "huyet_ngoc_thach",
+    "size": 9,
+    "level": 20,
+    "win": 0.6005,
+    "duration": 49.1,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "han_bang_chau",
+    "size": 9,
+    "level": 20,
+    "win": 0.917,
+    "duration": 48.7,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tu_kim_bat",
+    "size": 9,
+    "level": 20,
+    "win": 0.9835,
+    "duration": 49.3,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "am_duong_ngoc",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 49.4,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "soi_nanh_canh",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "heo_rung_bap_giap",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "man_xa_doc_tui",
+    "size": 9,
+    "level": 20,
+    "win": 0.6005,
+    "duration": 49.1,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "u_minh_quy_trao",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "kich_doc_chu_nga",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bang_tam_linh_chau",
+    "size": 9,
+    "level": 20,
+    "win": 0.8334999999999999,
+    "duration": 49.0,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "tuyet_lang_bach_bi",
+    "size": 9,
+    "level": 20,
+    "win": 0.8664999999999999,
+    "duration": 49.2,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "hac_sat_hung_dam",
+    "size": 9,
+    "level": 20,
+    "win": 0.9165000000000001,
+    "duration": 49.5,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bach_ho_cuong_mong",
+    "size": 9,
+    "level": 20,
+    "win": 1.0,
+    "duration": 40.2,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "hoa_diem_xa_cot",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "bang_phach_co_cot",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  },
+  {
+    "item": "thien_nien_quy_giap",
+    "size": 9,
+    "level": 20,
+    "win": 0.49949999999999994,
+    "duration": 48.9,
+    "baseWin": 0.49949999999999994,
+    "baseDuration": 48.9
+  }
+]

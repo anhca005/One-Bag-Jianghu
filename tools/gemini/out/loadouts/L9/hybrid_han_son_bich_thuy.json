@@ -1,0 +1,50 @@
+﻿{
+    "name":  "HÃ n SÆ¡n - BÃ­ch Thá»§y Há»£p BÃ­ch (Cáº§m + TiÃªu)",
+    "hp":  1200,
+    "cols":  5,
+    "rows":  4,
+    "sect":  "han_son",
+    "items":  [
+                  {
+                      "id":  "bich_thuy_cam",
+                      "x":  0,
+                      "y":  0
+                  },
+                  {
+                      "id":  "bich_thuy_cam",
+                      "x":  0,
+                      "y":  2
+                  },
+                  {
+                      "id":  "o_tam_y",
+                      "x":  2,
+                      "y":  0
+                  },
+                  {
+                      "id":  "han_ngoc_tieu",
+                      "x":  2,
+                      "y":  2
+                  },
+                  {
+                      "id":  "han_ngoc_tieu",
+                      "x":  3,
+                      "y":  2
+                  },
+                  {
+                      "id":  "phan_quan_but",
+                      "x":  4,
+                      "y":  0
+                  },
+                  {
+                      "id":  "thai_thanh_tam_kinh",
+                      "x":  4,
+                      "y":  2
+                  },
+                  {
+                      "id":  "boi_nguyen_dan",
+                      "x":  4,
+                      "y":  3
+                  }
+              ],
+    "tamPhapLevel":  9
+}

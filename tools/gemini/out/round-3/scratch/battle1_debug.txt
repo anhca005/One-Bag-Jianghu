@@ -1,0 +1,161 @@
+[A] Người Chơi (Ải 1)  vs  [B] Thảo Khấu Tiên Phong  (seed 1)
+
+   0.0s  [A] vào trận  | KH 240/240 CK 0 NL 0
+   0.0s  [B] vào trận  | KH 170/170 CK 0 NL 0
+   1.7s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+   1.7s     → [A] nhận 6 sát thương HỘI TÂM từ Thiết Cốt Quyền Sáo  | KH 234/240 CK 0 NL 0
+   1.7s  [A] Ô Tàm Y kích hoạt
+   1.7s     [A] +10 Cương Khí  | KH 234/240 CK 10 NL 0
+   1.7s     [A] Hộ Thân 5.0%
+   1.7s     [B] nội lực +2  | KH 170/170 CK 0 NL 2
+   1.7s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 1)
+   1.7s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+   1.7s     → [B] nhận 3 sát thương từ Thiết Cốt Quyền Sáo  | KH 167/170 CK 0 NL 2
+   1.7s  [B] Thiết Giáp Y kích hoạt
+   1.7s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 1)
+   1.7s     [A] nội lực +2  | KH 234/240 CK 10 NL 2
+   1.7s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 1)
+   2.7s  [A] Thanh Phong Kiếm ra Phổ Công
+   2.7s     → [B] nhận 19 sát thương HỘI TÂM từ Thanh Phong Kiếm  | KH 148/170 CK 0 NL 2
+   2.7s  [B] Thiết Giáp Y kích hoạt
+   2.7s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 2)
+   2.7s  [A] Thanh Phong Kiếm kích hoạt
+   2.7s     [A] nội lực +4  | KH 234/240 CK 10 NL 6
+   2.7s     [A] nội lực +11  | KH 234/240 CK 10 NL 17
+   3.4s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+   3.4s     → [A] nhận 3 sát thương (Cương Khí đỡ 3) từ Thiết Cốt Quyền Sáo  | KH 234/240 CK 7 NL 17
+   3.4s     [B] nội lực +2  | KH 148/170 CK 0 NL 4
+   3.4s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 2)
+   3.4s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+   3.4s     → [B] nhận 3 sát thương từ Thiết Cốt Quyền Sáo  | KH 145/170 CK 0 NL 4
+   3.4s  [B] Thiết Giáp Y kích hoạt
+   3.4s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 3)
+   3.4s     [A] nội lực +2  | KH 234/240 CK 7 NL 19
+   3.4s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 2)
+   5.1s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+   5.1s     → [A] nhận 4 sát thương (Cương Khí đỡ 4) từ Thiết Cốt Quyền Sáo  | KH 234/240 CK 3 NL 19
+   5.1s     [B] nội lực +2  | KH 145/170 CK 0 NL 6
+   5.1s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 3)
+   5.1s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+   5.1s     → [B] nhận 4 sát thương từ Thiết Cốt Quyền Sáo  | KH 141/170 CK 0 NL 6
+   5.1s  [B] Thiết Giáp Y kích hoạt
+   5.1s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 4)
+   5.1s     [A] nội lực +2  | KH 234/240 CK 3 NL 21
+   5.1s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 3)
+   5.4s  [A] Thanh Phong Kiếm ra Phổ Công
+   5.4s     → [B] nhận 9 sát thương từ Thanh Phong Kiếm  | KH 132/170 CK 0 NL 6
+   5.4s  [B] Thiết Giáp Y kích hoạt
+   5.4s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 5)
+   5.4s     [A] nội lực +11  | KH 234/240 CK 3 NL 32
+   6.8s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+   6.8s     → [A] nhận 5 sát thương (Cương Khí đỡ 3) từ Thiết Cốt Quyền Sáo  | KH 232/240 CK 0 NL 32
+   6.8s  [A] Ô Tàm Y kích hoạt
+   6.8s     [A] +10 Cương Khí  | KH 232/240 CK 10 NL 32
+   6.8s     [A] Hộ Thân 10.0%
+   6.8s     [B] nội lực +2  | KH 132/170 CK 0 NL 8
+   6.8s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 4)
+   6.8s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+   6.8s     → [B] nhận 5 sát thương từ Thiết Cốt Quyền Sáo  | KH 127/170 CK 0 NL 8
+   6.8s  [B] Thiết Giáp Y kích hoạt
+   6.8s     [B] Thiết Giáp Y +20‰ Hộ Thân (Tụ Kình 6)
+   6.8s     [A] nội lực +2  | KH 232/240 CK 10 NL 34
+   6.8s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 4)
+   8.1s  [A] Thanh Phong Kiếm ra Phổ Công
+   8.1s     → [B] nhận 8 sát thương từ Thanh Phong Kiếm  | KH 119/170 CK 0 NL 8
+   8.1s  [B] Thiết Giáp Y kích hoạt
+   8.1s     [A] nội lực +11  | KH 232/240 CK 10 NL 45
+   8.5s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+   8.5s     → [A] nhận 6 sát thương (Cương Khí đỡ 6) từ Thiết Cốt Quyền Sáo  | KH 232/240 CK 4 NL 45
+   8.5s     [B] nội lực +2  | KH 119/170 CK 0 NL 10
+   8.5s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 5)
+   8.5s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+   8.5s     → [B] nhận 6 sát thương từ Thiết Cốt Quyền Sáo  | KH 113/170 CK 0 NL 10
+   8.5s  [B] Thiết Giáp Y kích hoạt
+   8.5s     [A] nội lực +2  | KH 232/240 CK 4 NL 47
+   8.5s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 5)
+  10.2s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  10.2s     → [B] nhận 7 sát thương từ Thiết Cốt Quyền Sáo  | KH 106/170 CK 0 NL 10
+  10.2s  [B] Thiết Giáp Y kích hoạt
+  10.2s     [A] nội lực +2  | KH 232/240 CK 4 NL 49
+  10.2s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 6)
+  10.2s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  10.2s     → [A] nhận 7 sát thương (Cương Khí đỡ 4) từ Thiết Cốt Quyền Sáo  | KH 229/240 CK 0 NL 49
+  10.2s  [A] Ô Tàm Y kích hoạt
+  10.2s     [A] +10 Cương Khí  | KH 229/240 CK 10 NL 49
+  10.2s     [A] Hộ Thân 15.0%
+  10.2s     [B] nội lực +2  | KH 106/170 CK 0 NL 12
+  10.2s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 6)
+  10.8s  [A] Thanh Phong Kiếm tung TUYỆT KỸ  | KH 229/240 CK 10 NL 9
+  10.8s     → [B] nhận 7 sát thương từ Thanh Phong Kiếm  | KH 99/170 CK 0 NL 12
+  10.8s  [B] Thiết Giáp Y kích hoạt
+  10.8s     → [B] nhận 7 sát thương từ Thanh Phong Kiếm  | KH 92/170 CK 0 NL 12
+  10.8s  [B] Thiết Giáp Y kích hoạt
+  10.8s     → [B] nhận 15 sát thương HỘI TÂM từ Thanh Phong Kiếm  | KH 77/170 CK 0 NL 12
+  10.8s  [B] Thiết Giáp Y kích hoạt
+  10.8s  [A] Thanh Phong Kiếm kích hoạt
+  10.8s     [A] nội lực +4  | KH 229/240 CK 10 NL 13
+  11.9s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  11.9s     → [A] nhận 7 sát thương (Cương Khí đỡ 7) từ Thiết Cốt Quyền Sáo  | KH 229/240 CK 3 NL 13
+  11.9s     [B] nội lực +2  | KH 77/170 CK 0 NL 14
+  11.9s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 7)
+  11.9s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  11.9s     → [B] nhận 7 sát thương từ Thiết Cốt Quyền Sáo  | KH 70/170 CK 0 NL 14
+  11.9s  [B] Thiết Giáp Y kích hoạt
+  11.9s     [A] nội lực +2  | KH 229/240 CK 3 NL 15
+  11.9s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 7)
+  13.5s  [A] Thanh Phong Kiếm ra Phổ Công
+  13.5s     → [B] nhận 17 sát thương HỘI TÂM từ Thanh Phong Kiếm  | KH 53/170 CK 0 NL 14
+  13.5s  [B] Thiết Giáp Y kích hoạt
+  13.5s  [A] Thanh Phong Kiếm kích hoạt
+  13.5s     [A] nội lực +4  | KH 229/240 CK 3 NL 19
+  13.5s     [A] nội lực +11  | KH 229/240 CK 3 NL 30
+  13.6s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  13.6s     → [A] nhận 8 sát thương (Cương Khí đỡ 3) từ Thiết Cốt Quyền Sáo  | KH 224/240 CK 0 NL 30
+  13.6s  [A] Ô Tàm Y kích hoạt
+  13.6s     [A] +10 Cương Khí  | KH 224/240 CK 10 NL 30
+  13.6s     [A] Hộ Thân 20.0%
+  13.6s     [B] nội lực +2  | KH 53/170 CK 0 NL 16
+  13.6s     [B] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 8)
+  13.6s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  13.6s     → [B] nhận 8 sát thương từ Thiết Cốt Quyền Sáo  | KH 45/170 CK 0 NL 16
+  13.6s  [B] Thiết Giáp Y kích hoạt
+  13.6s     [A] nội lực +2  | KH 224/240 CK 10 NL 32
+  13.6s     [A] Thiết Cốt Quyền Sáo +1 Lực Đạo (Tụ Kình 8)
+  15.3s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  15.3s     → [A] nhận 8 sát thương (Cương Khí đỡ 8) từ Thiết Cốt Quyền Sáo  | KH 224/240 CK 2 NL 32
+  15.3s     [B] nội lực +2  | KH 45/170 CK 0 NL 18
+  15.3s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  15.3s     → [B] nhận 9 sát thương từ Thiết Cốt Quyền Sáo  | KH 36/170 CK 0 NL 18
+  15.3s  [B] Thiết Giáp Y kích hoạt
+  15.3s     [A] nội lực +2  | KH 224/240 CK 2 NL 34
+  16.2s  [A] Thanh Phong Kiếm ra Phổ Công
+  16.2s     → [B] nhận 8 sát thương từ Thanh Phong Kiếm  | KH 28/170 CK 0 NL 18
+  16.2s  [B] Thiết Giáp Y kích hoạt
+  16.2s     [A] nội lực +11  | KH 224/240 CK 2 NL 45
+  17.0s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  17.0s     → [A] nhận 8 sát thương (Cương Khí đỡ 2) từ Thiết Cốt Quyền Sáo  | KH 218/240 CK 0 NL 45
+  17.0s  [A] Ô Tàm Y kích hoạt
+  17.0s     [A] +10 Cương Khí  | KH 218/240 CK 10 NL 45
+  17.0s     [A] Hộ Thân 25.0%
+  17.0s     [B] nội lực +2  | KH 28/170 CK 0 NL 20
+  17.0s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  17.0s     → [B] nhận 9 sát thương từ Thiết Cốt Quyền Sáo  | KH 19/170 CK 0 NL 20
+  17.0s  [B] Thiết Giáp Y kích hoạt
+  17.0s     [A] nội lực +2  | KH 218/240 CK 10 NL 47
+  18.7s  [A] Thiết Cốt Quyền Sáo ra Phổ Công
+  18.7s     → [B] nhận 9 sát thương từ Thiết Cốt Quyền Sáo  | KH 10/170 CK 0 NL 20
+  18.7s  [B] Thiết Giáp Y kích hoạt
+  18.7s     [A] nội lực +2  | KH 218/240 CK 10 NL 49
+  18.7s  [B] Thiết Cốt Quyền Sáo ra Phổ Công
+  18.7s     → [A] nhận 8 sát thương (Cương Khí đỡ 8) từ Thiết Cốt Quyền Sáo  | KH 218/240 CK 2 NL 49
+  18.7s     [B] nội lực +2  | KH 10/170 CK 0 NL 22
+  18.9s  [A] Thanh Phong Kiếm tung TUYỆT KỸ  | KH 218/240 CK 2 NL 9
+  18.9s     → [B] nhận 7 sát thương từ Thanh Phong Kiếm  | KH 3/170 CK 0 NL 22
+  18.9s  [B] Thiết Giáp Y kích hoạt
+  18.9s     → [B] nhận 7 sát thương từ Thanh Phong Kiếm  | KH 0/170 CK 0 NL 22
+  18.9s  [B] Thiết Giáp Y kích hoạt
+  18.9s     → [B] nhận 7 sát thương từ Thanh Phong Kiếm  | KH 0/170 CK 0 NL 22
+  18.9s  [B] Thiết Giáp Y kích hoạt
+  18.9s  === [A] THẮNG ===
+
+Kết quả: A thắng sau 18.9s. KH còn lại: A 218, B 0. Số sự kiện: 157

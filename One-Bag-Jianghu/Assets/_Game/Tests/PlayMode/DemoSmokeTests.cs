@@ -43,11 +43,11 @@ namespace OneBagJianghu.Tests.Play
             BagGridView grid = UnityEngine.Object.FindFirstObjectByType<BagGridView>();
             Assert.IsNotNull(grid, "BagDemo did not contain an active BagGridView.");
             Assert.IsTrue(grid.gameObject.activeInHierarchy,
-"BagDemo's bag grid was inactive.");
+                "BagDemo's bag grid was inactive.");
             AddFirstWeapon(UnityEngine.Object.FindFirstObjectByType<BagLoadoutPanel>());
             Assert.Greater(UnityEngine.Object.FindObjectsByType<ItemView>(FindObjectsSortMode.None).Length,
-0,
-"BagDemo's bag grid did not create any item views.");
+                0,
+                "BagDemo's bag grid did not create any item views.");
         }
 
         [UnityTest]
@@ -64,9 +64,9 @@ namespace OneBagJianghu.Tests.Play
             speed4.onClick.Invoke();
             play.onClick.Invoke();
             yield return WaitUntil(() =>
-completed,
-TimeoutSeconds,
-"ReplayDemo did not finish within 10 seconds at 4x speed.");
+                completed,
+                TimeoutSeconds,
+                "ReplayDemo did not finish within 10 seconds at 4x speed.");
         }
 
         [UnityTest]
@@ -78,7 +78,7 @@ TimeoutSeconds,
             Assert.IsNotNull(lab, "VfxLab did not contain an active VfxLabBootstrap.");
             Button playAll = GetField<Button>(lab, "playAllButton");
             Assert.IsTrue(playAll.gameObject.activeInHierarchy,
-"VfxLab's Play All button was inactive.");
+                "VfxLab's Play All button was inactive.");
             playAll.onClick.Invoke();
             yield return WaitForRealtime(2f);
         }
@@ -101,16 +101,16 @@ TimeoutSeconds,
             GameBootstrap.Session?.LoadProfile();
             yield return LoadScene("Assets/_Game/Scenes/LoginScene.unity");
             yield return WaitUntil(() =>
-GameBootstrap.Session != null,
-TimeoutSeconds,
-"Game services did not initialize after loading LoginScene.");
+                GameBootstrap.Session != null,
+                TimeoutSeconds,
+                "Game services did not initialize after loading LoginScene.");
             LoginController login = UnityEngine.Object.FindFirstObjectByType<LoginController>();
             Assert.IsNotNull(login, "LoginScene did not contain an active LoginController.");
             InputField name = GetField<InputField>(login, "heroName");
             Button enter = GetField<Button>(login, "enterButton");
             name.text = "Kiểm Thử";
             Assert.IsTrue(enter.interactable,
-"Entering a hero name did not enable the login button.");
+                "Entering a hero name did not enable the login button.");
             enter.onClick.Invoke();
             yield return WaitForReadyScene("HomeScene", "Login did not reach a ready HomeScene.");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
@@ -118,79 +118,79 @@ TimeoutSeconds,
             // Gemini's expected stage-1 bag wins ~90% at level 1 (round 3); level 10 (+45 Khí Huyết, #35) makes it certain.
             GameBootstrap.Session.HeroLevel = 10;
             GameBootstrap.Session.CurrentLoadoutJson =
-CreateStageOneLoadout(GameBootstrap.Session.HeroName);
+                CreateStageOneLoadout(GameBootstrap.Session.HeroName);
             home.RefreshBattleAvailability();
             GameBootstrap.Network.Disconnect();
             GetField<HomeHotspot>(home, "pveHotspot").OnPointerClick(null);
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StageMapPopup>(),
-TimeoutSeconds,
-"Home PvE entry did not open the stage map.");
+                PopupManager.IsOpen<StageMapPopup>(),
+                TimeoutSeconds,
+                "Home PvE entry did not open the stage map.");
             StageMapPopup map = PopupManager.Top as StageMapPopup;
             Assert.IsFalse(GetField<Button>(GetField<System.Collections.Generic.List<GameObject>>(map,
-"nodes")[1].GetComponent<PveStageNode>(),
-"button").interactable,
-"Locked stage node was interactable.");
+                "nodes")[1].GetComponent<PveStageNode>(),
+                "button").interactable,
+                "Locked stage node was interactable.");
             GetField<UiButton>(map, "challengeButton").onClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>(),
-TimeoutSeconds,
-"Stage before-dialogue did not open.");
+                PopupManager.IsOpen<DialoguePopup>(),
+                TimeoutSeconds,
+                "Stage before-dialogue did not open.");
             GetField<UiButton>(PopupManager.Top, "skipButton").onClick.Invoke();
             yield return WaitForReadyScene("GameplayScene",
-"Home did not reach a ready GameplayScene.");
+                "Home did not reach a ready GameplayScene.");
             GameplayController gameplay =
-UnityEngine.Object.FindFirstObjectByType<GameplayController>();
+                UnityEngine.Object.FindFirstObjectByType<GameplayController>();
             Assert.IsNotNull(gameplay,
-"GameplayScene did not contain an active GameplayController.");
+                "GameplayScene did not contain an active GameplayController.");
             Assert.That(GetField<string>(gameplay,
-"opponentName"),
-Is.EqualTo(OneBagJianghu.Pve.PveCatalog.Load().GetStage("hoi_1_01").Enemy.Name));
+                "opponentName"),
+                Is.EqualTo(OneBagJianghu.Pve.PveCatalog.Load().GetStage("hoi_1_01").Enemy.Name));
             ReplayScreen replay = GetField<ReplayScreen>(gameplay, "replayScreen");
             yield return WaitUntil(() =>
-replay.gameObject.activeInHierarchy,
-TimeoutSeconds,
-"Starting the battle did not reveal the replay screen.");
+                replay.gameObject.activeInHierarchy,
+                TimeoutSeconds,
+                "Starting the battle did not reveal the replay screen.");
             GetField<Button>(replay, "speed4Button").onClick.Invoke();
             Slider scrub = GetField<Slider>(replay, "scrub");
             scrub.value = scrub.maxValue;
             yield return WaitUntil(() =>
-PopupManager.IsOpen<DialoguePopup>(),
-TimeoutSeconds,
-"The battle replay did not finish within 10 seconds.");
+                PopupManager.IsOpen<DialoguePopup>(),
+                TimeoutSeconds,
+                "The battle replay did not finish within 10 seconds.");
             GetField<UiButton>(PopupManager.Top, "skipButton").onClick.Invoke();
             yield return WaitUntil(() =>
-PopupManager.Top is ResultPopup,
-TimeoutSeconds,
-"Result did not remain after after-dialogue.");
+                PopupManager.Top is ResultPopup,
+                TimeoutSeconds,
+                "Result did not remain after after-dialogue.");
             ResultPopup result = PopupManager.Top as ResultPopup;
             Assert.IsNotNull(result, "The open popup was not ResultPopup.");
             Assert.AreEqual("Về bản đồ",
-GetField<UiButton>(result,
-"homeButton").GetComponentInChildren<Text>().text);
+                GetField<UiButton>(result,
+                "homeButton").GetComponentInChildren<Text>().text);
             GetField<UiButton>(result, "homeButton").onClick.Invoke();
             yield return WaitForReadyScene("HomeScene",
-"The result popup did not return to a ready HomeScene.");
+                "The result popup did not return to a ready HomeScene.");
             Assert.IsNotNull(UnityEngine.Object.FindFirstObjectByType<HomeController>(),
-"The final HomeScene did not contain an active HomeController.");
+                "The final HomeScene did not contain an active HomeController.");
             Assert.IsTrue(GameBootstrap.Session.Profile.Pve.Stages["hoi_1_01"].Cleared);
             Assert.IsTrue(OneBagJianghu.Pve.PveRules.IsStageUnlocked(
-OneBagJianghu.Pve.PveCatalog.Load().GetStage("hoi_1_02"),
-OneBagJianghu.Pve.PveCatalog.Load(),
-GameBootstrap.Session.Profile));
+                OneBagJianghu.Pve.PveCatalog.Load().GetStage("hoi_1_02"),
+                OneBagJianghu.Pve.PveCatalog.Load(),
+                GameBootstrap.Session.Profile));
             yield return WaitUntil(() =>
-PopupManager.IsOpen<StageMapPopup>(),
-TimeoutSeconds,
-"Returning from PvE did not reopen the stage map.");
+                PopupManager.IsOpen<StageMapPopup>(),
+                TimeoutSeconds,
+                "Returning from PvE did not reopen the stage map.");
             // Level 10 also shows the one-time sect prompt on top.
             map = UnityEngine.Object.FindFirstObjectByType<StageMapPopup>();
             Assert.AreEqual("hoi_1_01",
-GetField<OneBagJianghu.Pve.PveStage>(map,
-"selected").Id);
+                GetField<OneBagJianghu.Pve.PveStage>(map,
+                "selected").Id);
             Assert.IsTrue(GetField<Button>(GetField<System.Collections.Generic.List<GameObject>>(map,
-"nodes")[1].GetComponent<PveStageNode>(),
-"button").interactable,
-"Stage 2 was not unlocked on the reopened map.");
+                "nodes")[1].GetComponent<PveStageNode>(),
+                "button").interactable,
+                "Stage 2 was not unlocked on the reopened map.");
         }
 
         [UnityTest]
@@ -198,19 +198,19 @@ GetField<OneBagJianghu.Pve.PveStage>(map,
         {
             yield return LoadScene("Assets/_Game/Scenes/HomeScene.unity");
             yield return WaitUntil(() =>
-GameController.Instance != null,
-TimeoutSeconds,
-"Direct HomeScene start did not bootstrap GameController.");
+                GameController.Instance != null,
+                TimeoutSeconds,
+                "Direct HomeScene start did not bootstrap GameController.");
             GameController original = GameController.Instance;
             Assert.That(UnityEngine.Object.FindObjectsByType<GameController>(FindObjectsInactive.Include,
-FindObjectsSortMode.None),
-Has.Length.EqualTo(1));
+                FindObjectsSortMode.None),
+                Has.Length.EqualTo(1));
             yield return LoadScene("Assets/_Game/Scenes/LoginScene.unity");
             yield return Frames(2);
             Assert.That(GameController.Instance, Is.SameAs(original));
             Assert.That(UnityEngine.Object.FindObjectsByType<GameController>(FindObjectsInactive.Include,
-FindObjectsSortMode.None),
-Has.Length.EqualTo(1));
+                FindObjectsSortMode.None),
+                Has.Length.EqualTo(1));
         }
 
         [UnityTest]
@@ -218,9 +218,9 @@ Has.Length.EqualTo(1));
         {
             yield return LoadScene("Assets/_Game/Scenes/HomeScene.unity");
             yield return WaitUntil(() =>
-GameBootstrap.Session != null,
-TimeoutSeconds,
-"Game services did not initialize after loading HomeScene.");
+                GameBootstrap.Session != null,
+                TimeoutSeconds,
+                "Game services did not initialize after loading HomeScene.");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
             HomeHotspot pve = GetField<HomeHotspot>(home, "pveHotspot");
             HomeHotspot pvp = GetField<HomeHotspot>(home, "pvpHotspot");
@@ -232,15 +232,15 @@ TimeoutSeconds,
             Assert.IsFalse(pvp.IsLocked);
             pve.OnPointerClick(null);
             yield return WaitUntil(() =>
-PopupManager.IsOpen<MessagePopup>(),
-TimeoutSeconds,
-"The PvE hotspot did not explain the invalid loadout.");
+                PopupManager.IsOpen<MessagePopup>(),
+                TimeoutSeconds,
+                "The PvE hotspot did not explain the invalid loadout.");
             Assert.IsFalse(PopupManager.IsOpen<StageMapPopup>());
             PopupManager.Close<MessagePopup>();
             yield return WaitUntil(() =>
-!PopupManager.IsOpen<MessagePopup>(),
-TimeoutSeconds,
-"Loadout warning did not close.");
+                !PopupManager.IsOpen<MessagePopup>(),
+                TimeoutSeconds,
+                "Loadout warning did not close.");
             GameBootstrap.Session.CurrentLoadoutJson = CreateWeaponLoadout("Test");
             home.RefreshBattleAvailability();
             Assert.IsFalse(pve.IsLocked);
@@ -264,11 +264,11 @@ TimeoutSeconds,
             foreach (ItemInfo item in catalog.All)
             {
                 if (string.Equals(item.Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase) &&
-grid.CanPlace(item,
-0,
-0))
+                    "weapon",
+                    StringComparison.OrdinalIgnoreCase) &&
+                    grid.CanPlace(item,
+                    0,
+                    0))
                 {
                     grid.Place(item, 0, 0);
                     return LoadoutSerializer.ToJson(grid, name, 1);
@@ -287,11 +287,11 @@ grid.CanPlace(item,
             foreach (ItemInfo item in ItemCatalog.LoadFromResources().All)
             {
                 if (string.Equals(item.Type,
-"weapon",
-StringComparison.OrdinalIgnoreCase) &&
-gridView.Grid.CanPlace(item,
-0,
-0))
+                    "weapon",
+                    StringComparison.OrdinalIgnoreCase) &&
+                    gridView.Grid.CanPlace(item,
+                    0,
+                    0))
                 {
                     weapon = item;
                     break;
@@ -299,10 +299,10 @@ gridView.Grid.CanPlace(item,
             }
 
             Assert.IsNotNull(weapon,
-"The item catalog had no weapon that fits the empty 5x4 bag.");
+                "The item catalog had no weapon that fits the empty 5x4 bag.");
             gridView.Grid.Place(weapon, 0, 0);
             Assert.IsTrue(panel.HasWeapon,
-"The test weapon was not present in the gameplay loadout.");
+                "The test weapon was not present in the gameplay loadout.");
         }
 
         private static IEnumerator LoadScene(string path)
@@ -323,11 +323,11 @@ gridView.Grid.CanPlace(item,
         private static IEnumerator WaitForReadyScene(string sceneName, string failureMessage)
         {
             yield return WaitUntil(() =>
-SceneManager.GetActiveScene().name == sceneName &&
-!SceneFlow.IsTransitioning &&
-!LoadingPanel.IsVisible,
-TimeoutSeconds,
-failureMessage);
+                SceneManager.GetActiveScene().name == sceneName &&
+                !SceneFlow.IsTransitioning &&
+                !LoadingPanel.IsVisible,
+                TimeoutSeconds,
+                failureMessage);
         }
 
         private static IEnumerator WaitUntil(Func<bool> condition, float timeout, string failureMessage)
@@ -362,13 +362,13 @@ failureMessage);
             where T : class
         {
             FieldInfo field =
-target.GetType().GetField(name,
-BindingFlags.Instance | BindingFlags.NonPublic);
+                target.GetType().GetField(name,
+                BindingFlags.Instance | BindingFlags.NonPublic);
             Assert.IsNotNull(field,
-target.GetType().Name + "." + name + " field was not found.");
+                target.GetType().Name + "." + name + " field was not found.");
             T value = field.GetValue(target) as T;
             Assert.IsNotNull(value,
-target.GetType().Name + "." + name + " was not assigned.");
+                target.GetType().Name + "." + name + " was not assigned.");
             return value;
         }
 

@@ -1,0 +1,70 @@
+{
+  "name": "Bích Thủy Am - Dưỡng Sinh Cầm Âm",
+  "cols": 5,
+  "rows": 4,
+  "sect": "bich_thuy",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "bich_thuy_cam",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "duong_sinh_quyet",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "tue_nguyet_bao_y",
+      "x": 2,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "tram_huong_lo",
+      "x": 3,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "kim_sang_duoc",
+      "x": 3,
+      "y": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "tuy_tien_ho_lo",
+      "x": 3,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 3,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 4,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "van_khi_dan",
+      "x": 4,
+      "y": 3,
+      "rarity": "uncommon"
+    }
+  ],
+  "level": 1
+}

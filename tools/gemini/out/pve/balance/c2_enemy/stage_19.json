@@ -1,0 +1,38 @@
+{
+  "name": "Ải 19: Xích Luyện Xà Tinh",
+  "hp": 1600,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "hoa_ngiem_xa_cot",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 3,
+      "y": 0,
+      "tier": 3,
+      "rarity": "epic"
+    }
+  ]
+}

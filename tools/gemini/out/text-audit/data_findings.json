@@ -1,0 +1,282 @@
+{
+  "raw_id": [],
+  "terminology": [],
+  "typo": [],
+  "length": [
+    {
+      "source": "materials.json:materials[2].name",
+      "text": "Thiên Ngoại Vẫn Thiết",
+      "len": 21,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "materials.json:materials[3].name",
+      "text": "Binh Hồn Tinh Thạch",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "materials.json:materials[7].name",
+      "text": "Huyền Giáp Hồn Thạch",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[0].name (thiet_cot_quyen_sao)",
+      "text": "Thiết Cốt Quyền Sáo",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[10].name (thai_thanh_tam_kinh)",
+      "text": "Thái Thanh Tâm Kinh",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[29].name (thanh_dong_ho_tam_kinh)",
+      "text": "Thanh Đồng Hộ Tâm Kính",
+      "len": 22,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[33].name (bach_luyen_chan_kinh)",
+      "text": "Bách Luyện Chân Kinh",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[38].name (thien_dia_vo_cuc_cong)",
+      "text": "Thiên Địa Vô Cực Công",
+      "len": 21,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[49].name (cuu_chuyen_hoan_hon_dan)",
+      "text": "Cửu Chuyển Hoàn Hồn Đan",
+      "len": 23,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "items.json:items[72].name (thien_nien_quy_giap)",
+      "text": "Thiên Niên Quy Giáp",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "sects.json:sects[0].tamPhap (kim_cang)",
+      "text": "Kim Cang Thiết Cốt Quyết",
+      "len": 24,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "sects.json:sects[2].tamPhap (liet_diem)",
+      "text": "Liệt Diễm Tâm Hỏa Quyết",
+      "len": 23,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "sects.json:sects[4].tamPhap (han_son)",
+      "text": "Hàn Sơn Băng Tâm Quyết",
+      "len": 22,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Thảo Khấu Tiên Phong",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Liệt Diễm Bang Chúng",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Phong Lôi Khoái Đao Phong Vũ",
+      "len": 28,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Ám Hạng Thích Khách",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Liệt Diễm Bang Tinh Anh",
+      "len": 23,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Liệt Diễm Bang Hương Chủ",
+      "len": 24,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Ba Hổ Trại Tiền Doanh",
+      "len": 21,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Ba Hổ Tiên Phong Vệ",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Thủy Hỏa Phân Tranh Bến Bạc",
+      "len": 27,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Bách Thảo Nghịch Đồ",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "U Minh Ám Sát Thí Tử",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Huyền Độc Trưởng Lão",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Tuyết Dốc Băng Khẩu",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Hàn Phong Tuần Tuyết Giả",
+      "len": 24,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Phong Nhận Trầm Khê",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Tuyết Lĩnh Hàn Phong",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Tuyết Lĩnh Ngân Lang",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Kim Cang Hộ Giới Tăng",
+      "len": 21,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "Băng Nguyên Bạch Hổ",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Hàn Tinh Thạch Thất",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "U Minh Chấp Pháp Sứ",
+      "len": 19,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Vọng Nguyệt Băng Đỉnh",
+      "len": 21,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "U Minh Tuyệt Mệnh Kiếm Vệ",
+      "len": 25,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].name",
+      "text": "Phong Thiền Băng Đài",
+      "len": 20,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].enemy.name",
+      "text": "U Minh Tả Sứ Dạ Sát Thiên",
+      "len": 25,
+      "limit": 18,
+      "type": "name"
+    },
+    {
+      "source": "chapters.json:ch[None].stages[None].description",
+      "text": "Đỉnh tuyết sơn ngút ngàn mây gió, U Minh Tả Sứ Dạ Sát Thiên bày trận pháp luyện hóa Thần Nang.",
+      "len": 94,
+      "limit": 90,
+      "type": "desc"
+    }
+  ],
+  "naming": [],
+  "story": []
+}

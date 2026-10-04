@@ -8,14 +8,16 @@ namespace OneBagJianghu.Core
 {
     public sealed class SceneFlow : MonoBehaviour
     {
+        // Scenes load in a fraction of a second; keep the loading screen up long enough to read the tip.
+        public const float MinimumLoadingSeconds = 1.8f;
         private static SceneFlow instance;
         [SerializeField]
         private LoadingPanel loadingPanel;
         private SceneTransition transition;
         private bool ready;
         public static bool IsTransitioning => instance != null
-&& instance.transition != null
-&& instance.transition.IsRunning;
+            && instance.transition != null
+            && instance.transition.IsRunning;
 
         public void Initialize()
         {
@@ -46,9 +48,11 @@ namespace OneBagJianghu.Core
             string from = SceneManager.GetActiveScene().name;
             string to = GameScenePaths.GetName(target);
             Debug.Log($"[Scene] Change requested: {from} -> {to}");
+            // Mark the transition as running before closing popups, so their close handlers can tell the scene is
+            // being left (the stage map must not switch back to Home music on its way into a battle).
+            transition.Begin(Time.unscaledTimeAsDouble);
             PopupManager.CloseAll();
             ready = false;
-            transition.Begin(Time.unscaledTimeAsDouble);
             yield return loadingPanel.Show();
             transition.Update(Time.unscaledTimeAsDouble, 0f, false, true);
             AsyncOperation operation = SceneManager.LoadSceneAsync(GameScenePaths.GetName(target));
@@ -60,14 +64,21 @@ namespace OneBagJianghu.Core
                 yield break;
             }
 
+            float shownAt = Time.unscaledTime;
             while (!operation.isDone)
             {
                 float progress = Mathf.Clamp01(operation.progress / 0.9f);
-                loadingPanel.SetProgress(progress);
+                loadingPanel.SetProgress(DisplayedProgress(progress, Time.unscaledTime - shownAt));
                 yield return null;
             }
 
             Debug.Log($"[Scene] Loaded: {from} -> {to}");
+            while (DisplayedProgress(1f, Time.unscaledTime - shownAt) < 1f)
+            {
+                loadingPanel.SetProgress(DisplayedProgress(1f, Time.unscaledTime - shownAt));
+                yield return null;
+            }
+
             loadingPanel.SetProgress(1f);
             transition.Update(Time.unscaledTimeAsDouble, 1f, ready, false);
             while (transition.State == SceneTransitionState.WaitingReady)
@@ -78,6 +89,17 @@ namespace OneBagJianghu.Core
 
             yield return loadingPanel.Hide();
             transition.Update(Time.unscaledTimeAsDouble, 1f, ready, true);
+        }
+
+        /// <summary>
+        /// The bar never runs ahead of the real load, and never fills faster than MinimumLoadingSeconds.
+        /// The timed part eases out, quick at first and slowing near the end, like a real load.
+        /// </summary>
+        public static float DisplayedProgress(float realProgress, float elapsedSeconds)
+        {
+            float t = Mathf.Clamp01(elapsedSeconds / MinimumLoadingSeconds);
+            float timed = 1f - (1f - t) * (1f - t);
+            return Mathf.Min(Mathf.Clamp01(realProgress), timed);
         }
     }
 }

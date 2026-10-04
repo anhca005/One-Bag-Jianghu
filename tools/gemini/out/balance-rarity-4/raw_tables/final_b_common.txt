@@ -1,0 +1,29 @@
+Loadout                                    T1/TP1     T9/TP1
+-------------------------------------------------------------
+Liệt Hỏa Thiêu Thân                        62.5%      73.9%!
+Bích Thủy Hồi Xuân                         17.5%!     78.7%!
+Tử Mẫu Tốc Kích                            11.7%!     54.7% 
+Huyền Độc Môn (Ám Khí + Trảo)              16.5%!     12.9%!
+Huyền Độc Môn - Vạn Độc (Ám Khí + Trảo     64.0%      41.5% 
+Hàn Sơn - Bích Thủy Hợp Bích (Cầm + Ti     56.7%      57.5% 
+Kim Cang - Thiết Phủ Hợp Bích (Côn + R     75.4%!     79.2%!
+Thái Thanh - Liệt Diễm Hợp Bích (Kiếm      53.5%      36.7% 
+Thiết Phủ - Liệt Diễm Hợp Bích (Rìu +      64.3%      41.4% 
+Kim Cang Tự (Quyền + Côn)                  41.8%      44.9% 
+Kim Cang Tự - Bách Luyện (Thuần Quyền)     55.8%      72.2%!
+Liệt Diễm Đường (Đao lửa)                  64.6%      37.9% 
+Liệt Diễm Đường - Hỏa Hải (Tứ Đao)         58.7%      21.7%!
+Bích Thủy Am (Thanh Đằng Tiên + Cung C     40.7%      40.4% 
+Hàn Sơn Phái (Băng Phách Thương + Tiêu     24.5%!     32.2%!
+Liệt Diễm Đường (Xích Sa Chưởng + Liệt     84.5%!     78.6%!
+Thái Thanh Quán (Ngọc Cốt Phiến + Kiếm     41.2%      41.8% 
+Thiết Phủ Bang (Chấn Nhạc Chùy + Khai      83.9%!     62.4% 
+Thái Thanh Hóa Kình                        32.6%!     63.9% 
+Huyền Độc Phệ Khí                          12.9%!     19.3%!
+Kim Cang Cương Khí                         51.9%      82.0%!
+Thái Thanh Quán (Kiếm + Hóa Kình)          33.9%!     45.6% 
+Thái Thanh Quán - Kiếm Khí (Tam Kiếm T     60.7%      55.4% 
+Thái Thanh - Tuyệt Kỹ Liên Hoàn (Kiếm      58.7%      48.0% 
+Thiết Phủ Bang (Rìu + Cầm)                 51.2%      23.6%!
+Thiết Phủ Bang - Khai Thiên (Tam Phủ)      82.7%!     56.2% 
+Outside [35, 65]: 22/52

@@ -35,8 +35,8 @@ namespace OneBagJianghu.Battle.Replay
         public IReadOnlyList<BattleEvent> Events => _events;
 
         public int CollectEvents(int fromMsExclusive,
-int toMsInclusive,
-List<BattleEvent> buffer)
+            int toMsInclusive,
+            List<BattleEvent> buffer)
         {
             if (buffer == null)
                 throw new ArgumentNullException(nameof(buffer));
@@ -151,9 +151,9 @@ List<BattleEvent> buffer)
             if (battleEvent.Kind == "STUN" && battleEvent.Value.HasValue)
             {
                 state.StunUntilMs =
-Math.Max(state.StunUntilMs,
-battleEvent.TimeMs +
-battleEvent.Value.Value);
+                    Math.Max(state.StunUntilMs,
+                    battleEvent.TimeMs +
+                    battleEvent.Value.Value);
             }
         }
 
@@ -197,8 +197,8 @@ battleEvent.Value.Value);
         {
             int timeComparison = left.Event.TimeMs.CompareTo(right.Event.TimeMs);
             return timeComparison != 0 ?
-timeComparison :
-left.SourceIndex.CompareTo(right.SourceIndex);
+                timeComparison :
+                left.SourceIndex.CompareTo(right.SourceIndex);
         }
 
         private readonly struct IndexedEvent

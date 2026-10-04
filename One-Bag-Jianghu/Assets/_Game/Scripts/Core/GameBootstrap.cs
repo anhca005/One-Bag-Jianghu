@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.Core
 {
@@ -15,6 +16,8 @@ namespace OneBagJianghu.Core
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
         public static void Initialize()
         {
+            GameSettings.Current.Apply();
+            AudioManager.EnsureExists();
             if (GameController.Instance != null)
                 return;
             GameObject prefab = Resources.Load<GameObject>(ResourcePath);
@@ -30,7 +33,7 @@ namespace OneBagJianghu.Core
             root.name = "GameController";
             if (SceneManager.GetActiveScene().name != GameScenePaths.GetName(GameScene.Login))
                 Debug.Log("[Game] Bootstrap GameController from non-Login scene: "
-+ SceneManager.GetActiveScene().name);
+                    + SceneManager.GetActiveScene().name);
         }
     }
 }

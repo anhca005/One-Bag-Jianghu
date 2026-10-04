@@ -1,0 +1,32 @@
+Ải   Tên Ải                   Loại     Kẻ Địch                    Tỷ lệ thắng  Mục tiêu   Đạt?
+-----------------------------------------------------------------------------------------------
+01   Trấn Khẩu Sơn Đạo        normal   Ải 1: Thảo Khấu Tiên Pho    80.5%      80-90%     OK
+02   Phong Diệp Bến Đò        normal   Ải 2: Thủy Phỉ Thám Tử      83.0%      80-90%     OK
+03   Hòe Thụ Thôn Ngoại       normal   Ải 3: Hoang Dã Sói Xám      88.5%      80-90%     OK
+04   Thanh Khê Trà Thất       normal   Ải 4: Liệt Diệm Bang Chú    89.5%      80-90%     OK
+05   Phong Ba Đình            elite    Ải 5: Phong Lôi Khoái Đa    68.5%      60-70%     OK
+06   Ngô Đồng Cổ Hạng         normal   Ải 6: Ám Hạng Thích Khác    80.0%      80-90%     OK
+07   Thủy Tạ Nguy Kiều        normal   Ải 7: Thiết Bì Trư Thú      86.0%      80-90%     OK
+08   Phong Hỏa Cổ Đài         normal   Ải 8: Liệt Diệm Bang Hươ    83.5%      80-90%     OK
+09   Ba Hổ Trại Tiền Doanh    normal   Ải 9: Ba Hổ Tiên Phong V    86.0%      80-90%     OK
+10   Thủy Hỏa Phân Tranh Bế   boss     Ải 10: Nộ Ba Hổ Bùi Chấn    56.0%      50-60%     OK
+11   Man Uyên Nhập Khẩu       normal   Ải 11: Man Tộc Thám Lộ G    86.0%      80-90%     OK
+12   Ô Đầm Nhai               normal   Ải 12: Huyền Độc Môn Đồ     90.0%      80-90%     OK
+13   Hủ Cốt Thung             normal   Ải 13: Kịch Độc Tri Chu     83.5%      80-90%     OK
+14   Xà Khẩu Hiệp             normal   Ải 14: Man Cương Vu Đao     88.5%      80-90%     OK
+15   U Cốc Dược Đàn           elite    Ải 15: Vạn Hoa Nghịch Đồ    64.5%      60-70%     OK
+16   Mê Vụ Đàm                normal   Ải 16: Hắc Sát Độc Hùng     86.0%      80-90%     OK
+17   Lam Hoa Trạch            normal   Ải 17: U Minh Ám Sát Thí    89.5%      80-90%     OK
+18   Độc Long Khê             normal   Ải 18: Huyền Độc Trưởng     90.0%      80-90%     OK
+19   Vạn Xà Quật              normal   Ải 19: Xích Luyện Xà Tin    84.0%      80-90%     OK
+20   Thần Bí Cổ Đàn           boss     Ải 20: Hắc Độc Nương Tử     56.5%      50-60%     OK
+21   Tuyết Dốc Băng Khẩu      normal   Ải 21: Hàn Phong Tuần Tu    83.5%      80-90%     OK
+22   Phong Nhận Trầm Khê      normal   Ải 22: Hàn Sơn Kiếm Sĩ      90.0%      80-90%     OK
+23   Tuyết Lĩnh Hàn Phong     normal   Ải 23: Tuyết Lĩnh Ngân L    84.0%      80-90%     OK
+24   Băng Hà Cổ Nhai          normal   Ải 24: Kim Cang Hộ Giới     88.0%      80-90%     OK
+25   Phong Vân Băng Đài       elite    Ải 25: Hàn Sơn Đại Đệ Tử    68.5%      60-70%     OK
+26   Bạch Hổ Tuyệt Hạp        normal   Ải 26: Băng Nguyên Bạch     84.0%      80-90%     OK
+27   Hàn Tinh Thạch Thất      normal   Ải 27: U Minh Chấp Pháp     90.0%      80-90%     OK
+28   Phong Ma Cổ Đạo          normal   Ải 28: Vạn Niên Băng Quy    81.5%      80-90%     OK
+29   Vọng Nguyệt Băng Đỉnh    normal   Ải 29: U Minh Tuyệt Mệnh    85.5%      80-90%     OK
+30   Phong Thiền Băng Đài     boss     Ải 30: U Minh Tả Sứ Dạ S    59.5%      50-60%     OK

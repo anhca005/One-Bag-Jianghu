@@ -1,0 +1,31 @@
+{
+  "name": "Hoang Dã Sói Xám",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 3,
+  "items": [
+    {
+      "id": "soi_nanh_canh",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "tu_kim_trao",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    }
+  ]
+}

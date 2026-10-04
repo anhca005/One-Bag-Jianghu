@@ -11,7 +11,7 @@ namespace OneBagJianghu.EditorTools
         {
             string projectRoot = Directory.GetParent(Application.dataPath)?.FullName;
             string sourceFolder = Path.GetFullPath(Path.Combine(projectRoot ?? string.Empty,
-"../server/battle-engine/src/main/resources/data"));
+                "../server/battle-engine/src/main/resources/data"));
             if (!Directory.Exists(sourceFolder))
             {
                 Debug.LogError("Server data folder was not found: " + sourceFolder);
@@ -23,7 +23,7 @@ namespace OneBagJianghu.EditorTools
             SyncFile(sourceFolder, targetFolder, "items.json");
             SyncFile(sourceFolder, targetFolder, "sects.json");
             string samplesSource = Path.GetFullPath(Path.Combine(projectRoot ?? string.Empty,
-"../server/battle-engine/samples"));
+                "../server/battle-engine/samples"));
             string samplesTarget = Path.Combine(targetFolder, "Samples");
             if (Directory.Exists(samplesSource))
             {

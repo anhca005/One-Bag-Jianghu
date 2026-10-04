@@ -1,0 +1,70 @@
+{
+  "name": "Hàn Sơn Phái - Băng Tâm Bút Cung",
+  "cols": 5,
+  "rows": 4,
+  "sect": "han_son",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "truy_hon_cung",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_tam_dan",
+      "x": 0,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "phan_quan_but",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "phan_quan_but",
+      "x": 1,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "han_ngoc_tieu",
+      "x": 2,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 2,
+      "y": 3,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "nho_sam_y",
+      "x": 3,
+      "y": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
+    }
+  ],
+  "level": 1
+}

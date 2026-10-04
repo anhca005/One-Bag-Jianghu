@@ -30,7 +30,7 @@ namespace OneBagJianghu.Economy
         public static int TierMultiplierPermille(int tier) => Defaults.TierMultiplier(tier);
         /// <summary>Combined stat multiplier in permille, same truncation order as the engine (tier, then rarity).</summary>
         public static int PowerPermille(string rarity,
-int tier) => TierMultiplierPermille(tier) * MultiplierPermille(rarity) / 1000;
+            int tier) => TierMultiplierPermille(tier) * MultiplierPermille(rarity) / 1000;
         public static string Next(string rarity)
         {
             int index = Index(rarity);

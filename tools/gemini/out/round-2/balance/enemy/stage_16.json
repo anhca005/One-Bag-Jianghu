@@ -1,0 +1,38 @@
+{
+  "name": "Ải 16: Hắc Sát Độc Hùng",
+  "hp": 3380,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 3,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 0,
+      "y": 1,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ]
+}

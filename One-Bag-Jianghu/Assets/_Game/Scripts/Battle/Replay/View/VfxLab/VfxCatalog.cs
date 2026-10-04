@@ -12,10 +12,10 @@ namespace OneBagJianghu.Battle.Replay.View.VfxLab
     public sealed class VfxCatalogEntry
     {
         public VfxCatalogEntry(string key,
-ReplayVfxKind kind,
-string label,
-VfxCatalogGroup group,
-string eventKind)
+            ReplayVfxKind kind,
+            string label,
+            VfxCatalogGroup group,
+            string eventKind)
         {
             Key = key;
             Kind = kind;
@@ -92,34 +92,34 @@ string eventKind)
         private static VfxCatalogEntry Common(BattleEventType type, string eventKind, string label)
         {
             ReplayVfx resolved =
-VfxResolver.Resolve(new BattleEvent
-{
-    Type = type,
-    Kind = eventKind
-},
-null);
+                VfxResolver.Resolve(new BattleEvent
+                {
+                    Type = type,
+                    Kind = eventKind
+                },
+                    null);
             return new VfxCatalogEntry(resolved.SpriteKey,
-resolved.Kind,
-label,
-VfxCatalogGroup.Common,
-eventKind);
+                resolved.Kind,
+                label,
+                VfxCatalogGroup.Common,
+                eventKind);
         }
 
         private static void AddWeapons(List<VfxCatalogEntry> result,
-string eventKind,
-string suffix,
-VfxCatalogGroup group)
+            string eventKind,
+            string suffix,
+            VfxCatalogGroup group)
         {
             for (int i = 0; i < WeaponClasses.Length; i++)
             {
                 result.Add(new VfxCatalogEntry(VfxResolver.ResolveWeaponKey(WeaponClasses[i],
-eventKind),
-ReplayVfxKind.Travel,
-WeaponNames[i] +
-" — " +
-suffix,
-group,
-eventKind));
+                    eventKind),
+                    ReplayVfxKind.Travel,
+                    WeaponNames[i] +
+                    " — " +
+                    suffix,
+                    group,
+                    eventKind));
             }
         }
     }

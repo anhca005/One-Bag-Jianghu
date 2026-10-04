@@ -1,7 +1,8 @@
+using OneBagJianghu.UI.Common;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
-using OneBagJianghu.UI.Common;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.EditorTools.Building
 {
@@ -9,8 +10,15 @@ namespace OneBagJianghu.EditorTools.Building
     {
         public const string Folder = "Assets/_Game/Prefabs/UI/Common";
 
-        public static void BuildMissing() => Build(false);
-        public static void BuildOverwrite() => Build(true);
+        public static void BuildMissing()
+        {
+            Build(false);
+        }
+
+        public static void BuildOverwrite()
+        {
+            Build(true);
+        }
 
         public static void Build(bool overwrite)
         {
@@ -18,92 +26,222 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.EnsureFolder(Folder);
             BuildButton("Button_Primary", true, overwrite);
             BuildButton("Button_Secondary", false, overwrite);
-            BuildPanel(overwrite);
-            BuildTooltip(overwrite);
+            Save("Panel_Paper", overwrite, ConfigurePanel);
+            Save("Tooltip", overwrite, ConfigureTooltip);
             BuildText("Text_Title", "Tiêu đề", 42, UiFontRole.Title, overwrite);
             BuildText("Text_Body", "Nội dung", 24, UiFontRole.Body, overwrite);
-            BuildInput(overwrite);
-            BuildToggle(overwrite);
-            BuildSlider(overwrite);
-            BuildScrollList(overwrite);
-            BuildDropdown(overwrite);
+            Save("InputField", overwrite, ConfigureInput);
+            Save("Toggle", overwrite, ConfigureToggle);
+            Save("Slider", overwrite, ConfigureSlider);
+            Save("ScrollList", overwrite, ConfigureScrollList);
+            Save("Dropdown", overwrite, ConfigureDropdown);
             AssetDatabase.SaveAssets();
         }
 
-        private static void BuildDropdown(bool overwrite)
+        private static GameObject ConfigureDropdown(GameObject root)
         {
-            Save("Dropdown", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>(); Image background = root.AddComponent<Image>(); background.color = UiBuild.Paper; UiBuild.ApplyUiSprite(background, "frame_tooltip", Image.Type.Sliced);
-                Outline outline = root.AddComponent<Outline>(); outline.effectColor = UiBuild.Ink; outline.effectDistance = new Vector2(2, -2);
-                Dropdown dropdown = root.AddComponent<Dropdown>(); Text caption = UiBuild.Text(root.transform, "Label", "Chọn", 20, TextAnchor.MiddleLeft); UiBuild.FitLabel(caption, UiBuild.LabelFitPreset.InkBox);
-                Text arrow = UiBuild.Text(root.transform, "Arrow", "▼", 17); arrow.raycastTarget = false; arrow.rectTransform.anchorMin = new Vector2(.86f, 0f); arrow.rectTransform.anchorMax = Vector2.one; arrow.rectTransform.offsetMin = new Vector2(0f, 7f); arrow.rectTransform.offsetMax = new Vector2(-10f, -7f);
-                Image templateImage = UiBuild.Image(root.transform, "Template", UiBuild.Paper); RectTransform template = templateImage.rectTransform; template.anchorMin = new Vector2(0, 0); template.anchorMax = new Vector2(1, 0); template.pivot = new Vector2(.5f, 1); template.sizeDelta = new Vector2(0, 240);
-                ScrollRect scroll = templateImage.gameObject.AddComponent<ScrollRect>(); Image viewport = UiBuild.Image(template, "Viewport", Color.clear); UiBuild.Stretch(viewport.rectTransform, 4); viewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
-                RectTransform content = UiBuild.Rect(viewport.transform, "Content"); content.anchorMin = new Vector2(0, 1); content.anchorMax = Vector2.one; content.pivot = new Vector2(.5f, 1); content.sizeDelta = new Vector2(0, 40);
-                Toggle item = UiBuild.Image(content, "Item", Color.clear).gameObject.AddComponent<Toggle>(); item.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 40); Text itemLabel = UiBuild.Text(item.transform, "Item Label", "Mục", 19, TextAnchor.MiddleLeft); UiBuild.Stretch(itemLabel.rectTransform, 12);
-                scroll.viewport = viewport.rectTransform; scroll.content = content; scroll.horizontal = false; dropdown.targetGraphic = background; dropdown.captionText = caption; dropdown.template = template; dropdown.itemText = itemLabel; template.gameObject.SetActive(false); return root;
-            });
+            root.AddComponent<CanvasRenderer>();
+            Image background = root.AddComponent<Image>();
+            background.color = UiBuild.Paper;
+            UiBuild.ApplyUiSprite(background, "frame_tooltip", Image.Type.Sliced);
+            Outline outline = root.AddComponent<Outline>();
+            outline.effectColor = UiBuild.Ink;
+            outline.effectDistance = new Vector2(2f, -2f);
+            Dropdown dropdown = root.AddComponent<Dropdown>();
+            Text caption = UiBuild.Text(root.transform, "Label", "Chọn", 20, TextAnchor.MiddleLeft);
+            UiBuild.FitLabel(caption, UiBuild.LabelFitPreset.InkBox);
+            Text arrow = UiBuild.Text(root.transform, "Arrow", "▼", 17);
+            arrow.raycastTarget = false;
+            arrow.rectTransform.anchorMin = new Vector2(0.86f, 0f);
+            arrow.rectTransform.anchorMax = Vector2.one;
+            arrow.rectTransform.offsetMin = new Vector2(0f, 7f);
+            arrow.rectTransform.offsetMax = new Vector2(-10f, -7f);
+
+            // The list owns a sorting canvas so a parent popup cannot cover its rows.
+            Image templateImage = UiBuild.Image(root.transform, "Template", UiBuild.Paper);
+            RectTransform template = templateImage.rectTransform;
+            template.anchorMin = Vector2.zero;
+            template.anchorMax = new Vector2(1f, 0f);
+            template.pivot = new Vector2(0.5f, 1f);
+            template.sizeDelta = new Vector2(0f, 210f);
+            // No Canvas here: Dropdown.Show() adds one with sorting order 30000 to the spawned list.
+            ScrollRect scroll = templateImage.gameObject.AddComponent<ScrollRect>();
+            Image viewport = UiBuild.Image(template, "Viewport", Color.white);
+            // No inset: Dropdown.Show() shrinks the template to the content height and assumes the viewport fills it.
+            UiBuild.Stretch(viewport.rectTransform);
+            viewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            RectTransform content = UiBuild.Rect(viewport.transform, "Content");
+            content.anchorMin = new Vector2(0f, 1f);
+            content.anchorMax = Vector2.one;
+            content.pivot = new Vector2(0.5f, 1f);
+            content.sizeDelta = new Vector2(0f, 40f);
+            Toggle item = BuildDropdownItem(content);
+            scroll.viewport = viewport.rectTransform;
+            scroll.content = content;
+            scroll.horizontal = false;
+            dropdown.targetGraphic = background;
+            dropdown.captionText = caption;
+            dropdown.template = template;
+            dropdown.itemText = item.transform.Find("Item Label").GetComponent<Text>();
+            template.gameObject.SetActive(false);
+            return root;
+        }
+
+        private static Toggle BuildDropdownItem(RectTransform content)
+        {
+            Image background = UiBuild.Image(content, "Item", UiBuild.Paper);
+            background.rectTransform.anchorMin = new Vector2(0f, 0.5f);
+            background.rectTransform.anchorMax = new Vector2(1f, 0.5f);
+            background.rectTransform.sizeDelta = new Vector2(0f, 40f);
+            Toggle toggle = background.gameObject.AddComponent<Toggle>();
+            toggle.targetGraphic = background;
+            Image checkmark = UiBuild.Image(toggle.transform, "Item Checkmark", UiBuild.Vermilion);
+            checkmark.rectTransform.anchorMin = new Vector2(0f, 0.5f);
+            checkmark.rectTransform.anchorMax = new Vector2(0f, 0.5f);
+            checkmark.rectTransform.anchoredPosition = new Vector2(20f, 0f);
+            checkmark.rectTransform.sizeDelta = new Vector2(16f, 16f);
+            toggle.graphic = checkmark;
+            Text label = UiBuild.Text(toggle.transform, "Item Label", "Mục", 19, TextAnchor.MiddleLeft);
+            label.color = UiBuild.Ink;
+            UiBuild.Stretch(label.rectTransform);
+            label.rectTransform.offsetMin = new Vector2(42f, 2f);
+            label.rectTransform.offsetMax = new Vector2(-10f, -2f);
+            return toggle;
         }
 
         private static void BuildButton(string name, bool primary, bool overwrite)
         {
-            Save(name, overwrite, root =>
-            {
-                Button button = UiBuild.Button(root.transform, "Visual", name, primary);
-                Image image = button.GetComponent<Image>();
-                UiBuild.ApplyUiSprite(image, primary ? "button_primary" : "button_secondary", Image.Type.Sliced);
-                Text label = button.GetComponentInChildren<Text>();
-                label.color = primary ? UiBuild.Paper : UiBuild.Paper;
-                button.transform.SetParent(root.transform.parent, false);
-                Object.DestroyImmediate(root);
-                return button.gameObject;
-            });
+            Save(name, overwrite, root => ConfigureButton(root, name, primary));
         }
 
-        private static void BuildPanel(bool overwrite)
+        private static GameObject ConfigureButton(GameObject root, string name, bool primary)
         {
-            Save("Panel_Paper", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image image = root.AddComponent<Image>();
-                image.color = UiBuild.Paper;
-                Image frame = UiBuild.Image(root.transform, "Frame", Color.clear);
-                UiBuild.Stretch(frame.rectTransform);
-                frame.raycastTarget = false;
-                UiBuild.ApplyUiSprite(frame, "frame_panel", Image.Type.Sliced);
-                Outline outline = root.AddComponent<Outline>();
-                outline.effectColor = UiBuild.Gold;
-                outline.effectDistance = new Vector2(3f, -3f);
-                return root;
-            });
+            Button button = UiBuild.Button(root.transform, "Visual", name, primary);
+            button.gameObject.AddComponent<UiSfx>();
+            UiBuild.ApplyUiSprite(
+                button.GetComponent<Image>(),
+                primary ? "button_primary" : "button_secondary",
+                Image.Type.Sliced);
+            button.GetComponentInChildren<Text>().color = UiBuild.Paper;
+            button.transform.SetParent(root.transform.parent, false);
+            Object.DestroyImmediate(root);
+            return button.gameObject;
         }
 
-        private static void BuildTooltip(bool overwrite)
+        private static GameObject ConfigurePanel(GameObject root)
         {
-            Save("Tooltip", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image image = root.AddComponent<Image>();
-                image.color = UiBuild.Paper;
-                UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
-                return root;
-            });
+            root.AddComponent<CanvasRenderer>();
+            root.AddComponent<Image>().color = UiBuild.Paper;
+            Image frame = UiBuild.Image(root.transform, "Frame", Color.clear);
+            UiBuild.Stretch(frame.rectTransform);
+            frame.raycastTarget = false;
+            UiBuild.ApplyUiSprite(frame, "frame_panel", Image.Type.Sliced);
+            Outline outline = root.AddComponent<Outline>();
+            outline.effectColor = UiBuild.Gold;
+            outline.effectDistance = new Vector2(3f, -3f);
+            return root;
+        }
+
+        private static GameObject ConfigureTooltip(GameObject root)
+        {
+            root.AddComponent<CanvasRenderer>();
+            Image image = root.AddComponent<Image>();
+            image.color = UiBuild.Paper;
+            UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
+            return root;
         }
 
         private static void BuildText(string name, string value, int size, UiFontRole role, bool overwrite)
         {
-            Save(name, overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Text text = root.AddComponent<Text>();
-                UiFonts.Apply(text, role);
-                text.text = value;
-                text.fontSize = size;
-                text.color = UiBuild.Ink;
-                text.alignment = TextAnchor.MiddleCenter;
-                return root;
-            });
+            Save(name, overwrite, root => ConfigureText(root, value, size, role));
+        }
+
+        private static GameObject ConfigureText(GameObject root, string value, int size, UiFontRole role)
+        {
+            root.AddComponent<CanvasRenderer>();
+            Text text = root.AddComponent<Text>();
+            UiFonts.Apply(text, role);
+            text.text = value;
+            text.fontSize = size;
+            text.color = UiBuild.Ink;
+            text.alignment = TextAnchor.MiddleCenter;
+            return root;
+        }
+
+        private static GameObject ConfigureInput(GameObject root)
+        {
+            root.AddComponent<CanvasRenderer>();
+            Image image = root.AddComponent<Image>();
+            image.color = Color.white;
+            UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
+            InputField input = root.AddComponent<InputField>();
+            Text value = UiBuild.Text(root.transform, "Text", string.Empty, 24, TextAnchor.MiddleLeft);
+            Text placeholder = UiBuild.Text(root.transform, "Placeholder", "Nhập nội dung", 24, TextAnchor.MiddleLeft);
+            UiBuild.FitLabel(value, UiBuild.LabelFitPreset.InkBox);
+            UiBuild.FitLabel(placeholder, UiBuild.LabelFitPreset.InkBox);
+            placeholder.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.45f);
+            input.targetGraphic = image;
+            input.textComponent = value;
+            input.placeholder = placeholder;
+            return root;
+        }
+
+        private static GameObject ConfigureToggle(GameObject root)
+        {
+            root.AddComponent<CanvasRenderer>();
+            Image background = root.AddComponent<Image>();
+            background.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
+            Outline outline = root.AddComponent<Outline>();
+            outline.effectColor = UiBuild.Ink;
+            outline.effectDistance = new Vector2(2f, -2f);
+            Toggle toggle = root.AddComponent<Toggle>();
+            Image checkmark = UiBuild.Image(root.transform, "Checkmark", UiBuild.Vermilion);
+            UiBuild.Stretch(checkmark.rectTransform, 8f);
+            toggle.targetGraphic = background;
+            toggle.graphic = checkmark;
+            return root;
+        }
+
+        private static GameObject ConfigureSlider(GameObject root)
+        {
+            root.AddComponent<CanvasRenderer>();
+            Image track = root.AddComponent<Image>();
+            track.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
+            Slider slider = root.AddComponent<Slider>();
+            Image fill = UiBuild.Image(root.transform, "Fill", UiBuild.Vermilion);
+            UiBuild.Stretch(fill.rectTransform, 4f);
+            RectTransform handleArea = UiBuild.Rect(root.transform, "Handle Slide Area");
+            handleArea.anchorMin = Vector2.zero;
+            handleArea.anchorMax = Vector2.one;
+            handleArea.offsetMin = new Vector2(14f, 0f);
+            handleArea.offsetMax = new Vector2(-14f, 0f);
+            Image handle = UiBuild.Image(handleArea, "Handle", UiBuild.Vermilion);
+            handle.rectTransform.sizeDelta = new Vector2(28f, 28f);
+            slider.targetGraphic = track;
+            slider.fillRect = fill.rectTransform;
+            slider.handleRect = handle.rectTransform;
+            return root;
+        }
+
+        private static GameObject ConfigureScrollList(GameObject root)
+        {
+            root.AddComponent<CanvasRenderer>();
+            root.AddComponent<Image>().color = UiBuild.Paper;
+            ScrollRect scroll = root.AddComponent<ScrollRect>();
+            Image viewport = UiBuild.Image(root.transform, "Viewport", Color.clear);
+            viewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            UiBuild.Stretch(viewport.rectTransform);
+            VerticalLayoutGroup layout = UiBuild.Vertical(viewport.transform, "Content", 8f);
+            RectTransform content = layout.GetComponent<RectTransform>();
+            content.anchorMin = new Vector2(0f, 1f);
+            content.anchorMax = Vector2.one;
+            content.pivot = new Vector2(0.5f, 1f);
+            ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>();
+            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            scroll.viewport = viewport.rectTransform;
+            scroll.content = content;
+            scroll.horizontal = false;
+            return root;
         }
 
         private static void EnsureFontRegistry()
@@ -123,94 +261,18 @@ namespace OneBagJianghu.EditorTools.Building
             registry.body = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Regular.ttf");
             registry.emphasis = AssetDatabase.LoadAssetAtPath<Font>("Assets/_Game/Fonts/Alegreya-Bold.ttf");
             EditorUtility.SetDirty(registry);
-            AssetDatabase.SaveAssets();
             UiFonts.Reload();
-        }
-
-        private static void BuildInput(bool overwrite)
-        {
-            Save("InputField", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image image = root.AddComponent<Image>();
-                image.color = Color.white;
-                UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
-                InputField input = root.AddComponent<InputField>();
-                Text value = UiBuild.Text(root.transform, "Text", string.Empty, 24, TextAnchor.MiddleLeft);
-                Text placeholder = UiBuild.Text(root.transform, "Placeholder", "Nhập nội dung", 24, TextAnchor.MiddleLeft);
-                UiBuild.FitLabel(value, UiBuild.LabelFitPreset.InkBox);
-                UiBuild.FitLabel(placeholder, UiBuild.LabelFitPreset.InkBox);
-                placeholder.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.45f);
-                input.targetGraphic = image;
-                input.textComponent = value;
-                input.placeholder = placeholder;
-                return root;
-            });
-        }
-
-        private static void BuildToggle(bool overwrite)
-        {
-            Save("Toggle", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image background = root.AddComponent<Image>();
-                background.color = Color.white;
-                Toggle toggle = root.AddComponent<Toggle>();
-                Image checkmark = UiBuild.Image(root.transform, "Checkmark", UiBuild.Vermilion);
-                UiBuild.Stretch(checkmark.rectTransform, 8f);
-                toggle.targetGraphic = background;
-                toggle.graphic = checkmark;
-                return root;
-            });
-        }
-
-        private static void BuildSlider(bool overwrite)
-        {
-            Save("Slider", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image track = root.AddComponent<Image>();
-                track.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
-                Slider slider = root.AddComponent<Slider>();
-                Image fill = UiBuild.Image(root.transform, "Fill", UiBuild.Vermilion);
-                UiBuild.Stretch(fill.rectTransform, 4f);
-                slider.targetGraphic = track;
-                slider.fillRect = fill.rectTransform;
-                return root;
-            });
-        }
-
-        private static void BuildScrollList(bool overwrite)
-        {
-            Save("ScrollList", overwrite, root =>
-            {
-                root.AddComponent<CanvasRenderer>();
-                Image background = root.AddComponent<Image>();
-                background.color = UiBuild.Paper;
-                ScrollRect scroll = root.AddComponent<ScrollRect>();
-                Image viewportImage = UiBuild.Image(root.transform, "Viewport", Color.clear);
-                Mask mask = viewportImage.gameObject.AddComponent<Mask>();
-                mask.showMaskGraphic = false;
-                UiBuild.Stretch(viewportImage.rectTransform);
-                VerticalLayoutGroup layout = UiBuild.Vertical(viewportImage.transform, "Content", 8f);
-                RectTransform content = layout.GetComponent<RectTransform>();
-                content.anchorMin = new Vector2(0f, 1f);
-                content.anchorMax = Vector2.one;
-                content.pivot = new Vector2(0.5f, 1f);
-                ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>();
-                fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                scroll.viewport = viewportImage.rectTransform;
-                scroll.content = content;
-                scroll.horizontal = false;
-                return root;
-            });
         }
 
         private static void Save(string name, bool overwrite, System.Func<GameObject, GameObject> configure)
         {
             string path = Folder + "/" + name + ".prefab";
-            if (!AssetGuard.ShouldBuild(path, overwrite)) return;
-            var root = new GameObject(name, typeof(RectTransform));
+            if (!AssetGuard.ShouldBuild(path, overwrite))
+            {
+                return;
+            }
+
+            GameObject root = new GameObject(name, typeof(RectTransform));
             root.GetComponent<RectTransform>().sizeDelta = new Vector2(360f, 64f);
             root = configure(root);
             root.name = name;

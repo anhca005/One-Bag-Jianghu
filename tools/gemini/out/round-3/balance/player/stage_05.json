@@ -1,0 +1,45 @@
+{
+  "name": "Người Chơi (Ải 5)",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thanh_phong_kiem",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "rare"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thai_thanh_tam_kinh",
+      "x": 1,
+      "y": 2,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "kim_tuyen_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 0,
+      "tier": 1,
+      "rarity": "rare"
+    }
+  ],
+  "level": 5
+}

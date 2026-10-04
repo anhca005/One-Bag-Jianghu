@@ -1,0 +1,44 @@
+{
+  "logLoss": 0.2829,
+  "accuracyPct": 89.6,
+  "directionalN": 77,
+  "slopeK": 30.6797,
+  "calibration": [
+    {
+      "bucket": "≤0.8",
+      "n": 9,
+      "predictedPct": 0.0,
+      "actualPct": 0.0
+    },
+    {
+      "bucket": "0.8–0.9",
+      "n": 13,
+      "predictedPct": 1.1,
+      "actualPct": 2.1
+    },
+    {
+      "bucket": "0.9–1.0",
+      "n": 19,
+      "predictedPct": 29.0,
+      "actualPct": 29.1
+    },
+    {
+      "bucket": "1.0–1.1",
+      "n": 19,
+      "predictedPct": 74.1,
+      "actualPct": 81.8
+    },
+    {
+      "bucket": "1.1–1.25",
+      "n": 8,
+      "predictedPct": 98.6,
+      "actualPct": 88.1
+    },
+    {
+      "bucket": "≥1.25",
+      "n": 12,
+      "predictedPct": 100.0,
+      "actualPct": 100.0
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Liệt Diệm Bang Hương Chủ",
+  "sect": "liet_diem",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "supreme"
+    },
+    {
+      "id": "o_thiet_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "legendary"
+    },
+    {
+      "id": "liet_hoa_tam_kinh",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "supreme"
+    },
+    {
+      "id": "cuong_hoa_dan",
+      "x": 1,
+      "y": 1,
+      "tier": 1,
+      "rarity": "supreme"
+    }
+  ],
+  "level": 8,
+  "cols": 5,
+  "rows": 4
+}

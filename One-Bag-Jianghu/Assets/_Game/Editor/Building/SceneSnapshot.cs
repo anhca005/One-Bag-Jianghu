@@ -30,7 +30,11 @@ namespace OneBagJianghu.EditorTools.Building
                 if (!File.Exists(path)) continue;
                 EditorSceneManager.OpenScene(path, OpenSceneMode.Single);
                 // The replay only switches on during a battle; show its authored layout for review.
-                foreach (OneBagJianghu.Battle.Replay.View.ReplayScreen replay in Object.FindObjectsByType<OneBagJianghu.Battle.Replay.View.ReplayScreen>(FindObjectsInactive.Include, FindObjectsSortMode.None))
+                OneBagJianghu.Battle.Replay.View.ReplayScreen[] replays =
+                    Object.FindObjectsByType<OneBagJianghu.Battle.Replay.View.ReplayScreen>(
+                        FindObjectsInactive.Include,
+                        FindObjectsSortMode.None);
+                foreach (OneBagJianghu.Battle.Replay.View.ReplayScreen replay in replays)
                     replay.gameObject.SetActive(true);
                 Capture(Path.Combine(OutputFolder, Path.GetFileNameWithoutExtension(path) + ".png"));
             }
@@ -48,7 +52,15 @@ namespace OneBagJianghu.EditorTools.Building
                 Capture(Path.Combine(OutputFolder, "LoadingPanel.png"));
             }
 
-            foreach (string name in new[] { "StoragePopup", "BagPopup", "ShopPopup", "DevCheatPanel", "ResultPopup" })
+            foreach (string name in new[]
+            {
+                "StoragePopup",
+                "BagPopup",
+                "ShopPopup",
+                "DevCheatPanel",
+                "ResultPopup",
+                "SettingsPopup"
+            })
             {
                 GameObject prefab = Resources.Load<GameObject>("UI/Popups/" + name);
                 if (prefab == null) continue;
@@ -56,6 +68,10 @@ namespace OneBagJianghu.EditorTools.Building
                 var holder = new GameObject("Holder", typeof(Canvas));
                 holder.SetActive(false);
                 GameObject popup = Object.Instantiate(prefab, holder.transform);
+                OneBagJianghu.UI.Popups.BasePopup popupView =
+                    popup.GetComponent<OneBagJianghu.UI.Popups.BasePopup>();
+                if (popupView is OneBagJianghu.UI.Popups.SettingsPopup)
+                    popupView.Setup(null);
                 // Popup scripts need the runtime session; strip them so only the authored layout renders.
                 foreach (MonoBehaviour behaviour in popup.GetComponentsInChildren<MonoBehaviour>(true))
                     if (behaviour is OneBagJianghu.UI.Popups.BasePopup) Object.DestroyImmediate(behaviour);
@@ -79,7 +95,10 @@ namespace OneBagJianghu.EditorTools.Building
             var target = new RenderTexture(width, height, 24, RenderTextureFormat.ARGB32);
             camera.targetTexture = target;
 
-            foreach (Canvas canvas in Object.FindObjectsByType<Canvas>(FindObjectsInactive.Exclude, FindObjectsSortMode.None))
+            Canvas[] canvases = Object.FindObjectsByType<Canvas>(
+                FindObjectsInactive.Exclude,
+                FindObjectsSortMode.None);
+            foreach (Canvas canvas in canvases)
             {
                 if (!canvas.isRootCanvas) continue;
                 canvas.renderMode = RenderMode.ScreenSpaceCamera;

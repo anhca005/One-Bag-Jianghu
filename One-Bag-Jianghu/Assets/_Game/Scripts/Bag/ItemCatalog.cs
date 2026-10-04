@@ -32,7 +32,7 @@ namespace OneBagJianghu.Bag
                 MissingMemberHandling = MissingMemberHandling.Ignore
             };
             List<ItemDto> data = JsonConvert.DeserializeObject<List<ItemDto>>(json,
-settings) ?? throw new FormatException("Item catalog JSON is null.");
+                settings) ?? throw new FormatException("Item catalog JSON is null.");
             var items = new List<ItemInfo>(data.Count);
             foreach (ItemDto dto in data)
             {
@@ -41,16 +41,16 @@ settings) ?? throw new FormatException("Item catalog JSON is null.");
                 if (width < 1 || height < 1)
                     throw new FormatException($"Item '{dto.Id}' has an invalid size.");
                 items.Add(new ItemInfo(dto.Id,
-dto.Name,
-dto.Type,
-dto.WeaponClass,
-dto.Sect,
-dto.Rarity,
-width,
-height,
-dto.Cooldown,
-dto.Active != null
-&& dto.Active.Length > 0));
+                    dto.Name,
+                    dto.Type,
+                    dto.WeaponClass,
+                    dto.Sect,
+                    dto.Rarity,
+                    width,
+                    height,
+                    dto.Cooldown,
+                    dto.Active != null
+                    && dto.Active.Length > 0));
             }
 
             return new ItemCatalog(items);

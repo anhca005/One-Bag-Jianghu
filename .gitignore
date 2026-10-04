@@ -24,3 +24,10 @@ CLAUDE.md
 # File xuất tự động (tạo lại bằng tools/sheets/export_xlsx.py)
 exports/
 __pycache__/
+
+# Maven caches created by sandboxed agent runs
+.m2-cache/
+server/.m2/
+
+# Raw audio sources (large WAV packs, kept locally only)
+audio-src/

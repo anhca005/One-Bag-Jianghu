@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5862695355013073091}
   - component: {fileID: 2436447019040409660}
   - component: {fileID: 1822411444180363127}
+  - component: {fileID: 5063232009157662806}
   m_Layer: 0
   m_Name: Border
   m_TagString: Untagged
@@ -75,6 +76,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 6.5
+--- !u!114 &5063232009157662806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 339184694219555058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
+  preferredMultiplier: 6.5
 --- !u!1 &3023840097274812321
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,6 +121,7 @@ RectTransform:
   m_Children:
   - {fileID: 5862695355013073091}
   - {fileID: 15112022243540643}
+  - {fileID: 7786689872165026117}
   - {fileID: 5124453122421920796}
   - {fileID: 6440213946428116452}
   m_Father: {fileID: 0}
@@ -144,6 +159,7 @@ MonoBehaviour:
   border: {fileID: 1822411444180363127}
   nameText: {fileID: 2672398177289476657}
   badgeText: {fileID: 6551755249174250042}
+  rarityBadge: {fileID: 2575614783152993244}
   canvasGroup: {fileID: 2810532844434147109}
 --- !u!1 &4143861151963009361
 GameObject:
@@ -156,6 +172,7 @@ GameObject:
   - component: {fileID: 5124453122421920796}
   - component: {fileID: 7507636882022792953}
   - component: {fileID: 2672398177289476657}
+  - component: {fileID: 4541128984491243229}
   m_Layer: 0
   m_Name: Name
   m_TagString: Untagged
@@ -214,16 +231,30 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: efdae721ef1233e459b84a605b8c7a21, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 14
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
   m_Text: "V\u1EADt ph\u1EA9m"
+--- !u!114 &4541128984491243229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4143861151963009361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8de00a25f034eafbec59e72d52756a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SingleLineFit
+  authoredSize: 14
+  minimumSize: 9
 --- !u!1 &4173847252766289801
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,6 +266,7 @@ GameObject:
   - component: {fileID: 6440213946428116452}
   - component: {fileID: 3509632947113667242}
   - component: {fileID: 5254758785538253266}
+  - component: {fileID: 8287461465634091476}
   m_Layer: 0
   m_Name: Badge Pill
   m_TagString: Untagged
@@ -299,7 +331,20 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 12
+  m_PixelsPerUnitMultiplier: 19.614325
+--- !u!114 &8287461465634091476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4173847252766289801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
+  preferredMultiplier: 12
 --- !u!1 &5915130150784997022
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +431,7 @@ GameObject:
   - component: {fileID: 8322197285757321754}
   - component: {fileID: 4136021694743590779}
   - component: {fileID: 6551755249174250042}
-  - component: {fileID: 1070433858034136005}
+  - component: {fileID: 3508890659826543858}
   m_Layer: 0
   m_Name: Badge
   m_TagString: Untagged
@@ -455,7 +500,7 @@ MonoBehaviour:
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
   m_Text: T1
---- !u!114 &1070433858034136005
+--- !u!114 &3508890659826543858
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -469,3 +514,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SingleLineFit
   authoredSize: 13
   minimumSize: 11
+--- !u!1 &7083860189368108794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7786689872165026117}
+  - component: {fileID: 5419681172054338117}
+  - component: {fileID: 2575614783152993244}
+  m_Layer: 0
+  m_Name: Rarity Badge
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &7786689872165026117
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083860189368108794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8130496922631595930}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 4, y: -4}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0, y: 1}
+--- !u!222 &5419681172054338117
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083860189368108794}
+  m_CullTransparentMesh: 1
+--- !u!114 &2575614783152993244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083860189368108794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 1
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1

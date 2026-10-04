@@ -11,11 +11,14 @@
 | Thương Hội | `shop` | Cửa hàng, làm mới hàng bằng bạc |
 | Vạn Bảo Phổ | `codex` | Bộ sưu tập |
 | Chiến Uy | `power` | Điểm sức mạnh tổng |
-| Hiệp Khách | `hero` | Nhân vật, thuộc một môn phái |
+| Hiệp Khách | `hero` | Nhân vật, thuộc một môn phái. Dùng được mọi loại binh khí |
+| Tâm Pháp | `tam_phap` | Nội tại của môn phái: buff các hệ binh khí của phái đó, mạnh dần theo cấp (mốc 1 / 3 / 6 / 9). Không phải vật phẩm |
 | Thể Lực | `stamina` | Giới hạn lượt chơi |
 | Hành Tẩu Giang Hồ | `pve` | Chế độ đi ải; mỗi chương gọi là **Hồi** (`chapter`) |
+| Thủ Lĩnh | `boss` | Đối thủ ải cuối mỗi Hồi |
 | Luận Kiếm Đài | `arena` | PvP xếp hạng; mỗi mùa là **Kỳ Luận Kiếm** (`season`) |
-| Trọng | `tier` | Cấp cường hóa, Nhất Trọng → Cửu Trọng |
+| Trọng | `tier` | Cấp cường hóa, Nhất Trọng → Cửu Trọng. Nâng bằng tài nguyên PvE |
+| Đột Phá | `unlock` | Mốc Trọng 3 / 6 / 9: vật phẩm mở thêm hiệu ứng |
 
 ## Loại vật phẩm
 
@@ -23,7 +26,7 @@
 |---|---|---|
 | Binh Khí | `weapon` | Gây sát thương, tự kích hoạt |
 | Hộ Cụ | `armor` | Cương khí, giảm sát thương |
-| Tâm Pháp | `manual` | Bị động, kích hoạt khi vào trận hoặc theo sự kiện |
+| Công Pháp | `manual` | Vật phẩm bị động, kích hoạt khi vào trận hoặc theo sự kiện (trước đây gọi là Tâm Pháp) |
 | Đan Dược | `pill` | Dùng một lần khi thỏa điều kiện |
 | Kỳ Trân | `relic` | Hỗ trợ, tác động ô liền kề |
 
@@ -36,7 +39,30 @@
 | Tinh Phẩm | `rare` | Lam |
 | Tuyệt Phẩm | `epic` | Tím |
 | Thần Binh | `legendary` | Vàng kim |
-| Chí Tôn | `supreme` | Đỏ (chỉ có ở Luận Kiếm Đài) |
+| Chí Tôn | `supreme` | Đỏ (gộp từ Thần Binh, cần nguyên liệu Luận Kiếm Đài — quyết định #24) |
+
+## Nâng cấp và nguyên liệu (quyết định #22, #24, #25)
+
+| Tên | Mã | Ghi chú |
+|---|---|---|
+| Hợp Thành | `merge` | Gộp 2 bản cùng món, cùng phẩm, đều ≥ Tam Trọng → 1 bản phẩm cao hơn |
+| Hàn Thiết | `han_thiet` | Binh Khí · bậc 1 (Trọng 1→3) |
+| Ô Thiết | `o_thiet` | Binh Khí · bậc 2 (Trọng 4→6) |
+| Thiên Ngoại Vẫn Thiết | `thien_ngoai_van_thiet` | Binh Khí · bậc 3 (Trọng 7→9) |
+| Binh Hồn Tinh Thạch | `binh_hon_tinh_thach` | Binh Khí · Chất dẫn Đột Phá (Trọng 3/6/9) |
+| Thanh Đồng Ti | `thanh_dong_ti` | Hộ Cụ · bậc 1 (Trọng 1→3) |
+| Ô Kim Ti | `o_kim_ti` | Hộ Cụ · bậc 2 (Trọng 4→6) |
+| Cửu U Tàm Ti | `cuu_u_tam_ti` | Hộ Cụ · bậc 3 (Trọng 7→9) |
+| Huyền Giáp Hồn Thạch | `huyen_giap_hon_thach` | Hộ Cụ · Chất dẫn Đột Phá (Trọng 3/6/9) |
+| Hoàng Tuyên Chỉ | `hoang_tuyen_chi` | Công Pháp · bậc 1 (Trọng 1→3) |
+| Mặc Trúc Trản | `mac_truc_tran` | Công Pháp · bậc 2 (Trọng 4→6) |
+| Tằm Tơ Cổ Quyển | `tam_to_co_quyen` | Công Pháp · bậc 3 (Trọng 7→9) |
+| Vấn Đạo Tâm Tinh | `van_dao_tam_tinh` | Công Pháp · Chất dẫn Đột Phá (Trọng 3/6/9) |
+| Chu Sa Thảo | `chu_sa_thao` | Đan Dược/Kỳ Trân · bậc 1 (Trọng 1→3) |
+| Tử Linh Chi | `tu_linh_chi` | Đan Dược/Kỳ Trân · bậc 2 (Trọng 4→6) |
+| Côn Lôn Tuyết Liên | `con_lon_tuyet_lien` | Đan Dược/Kỳ Trân · bậc 3 (Trọng 7→9) |
+| Cửu Chuyển Đan Sa | `cuu_chuyen_dan_sa` | Đan Dược/Kỳ Trân · Chất dẫn Đột Phá (Trọng 3/6/9) |
+| Chí Tôn Ngọc Tủy | `chi_ton_ngoc_tuy` | Mọi loại · Chỉ từ Luận Kiếm Đài, bắt buộc để Hợp Thành lên Chí Tôn |
 
 ## Chỉ số và cơ chế
 
@@ -48,6 +74,8 @@
 | Tuyệt Kỹ | `ultimate` | Đòn mạnh, tiêu hao nội lực |
 | Hóa Kình | `parry` | Tự tiêu 60 nội lực (giảm được bằng vật phẩm) để hóa giải Tuyệt Kỹ của đối thủ, đối thủ bị Định Thân 1 giây |
 | Tốc Xuất Chiêu | `cooldown` | Thời gian giữa hai lần kích hoạt |
+| Công | `attack` | Chỉ số của Binh Khí, chính là Lực Đạo của món đó (#35) |
+| Giảm Hồi Chiêu | `stats.cooldownReduction` | Chỉ số của Công Pháp: rút ngắn hồi chiêu mọi món, trần 40% (#35) |
 | Lực Đạo | `attack` | Sát thương gốc của binh khí |
 | Cương Khí | `shield` | Lớp máu ảo, bị trừ trước khí huyết |
 | Hộ Thân | `dmg_reduce` | Giảm % sát thương nhận vào |

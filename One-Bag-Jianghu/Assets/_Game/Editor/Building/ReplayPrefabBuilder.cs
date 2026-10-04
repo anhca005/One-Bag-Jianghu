@@ -28,9 +28,15 @@ namespace OneBagJianghu.EditorTools.Building
             Image icon = UiBuild.Image(bg.transform, "Icon", Color.white); UiBuild.Stretch(icon.rectTransform, 4); icon.preserveAspect = true; icon.raycastTarget = false;
             Image cooldown = UiBuild.Image(bg.transform, "CooldownOverlay", ReplayStyle.CooldownOverlay); UiBuild.Stretch(cooldown.rectTransform); cooldown.type = Image.Type.Filled; cooldown.fillMethod = Image.FillMethod.Vertical; cooldown.fillOrigin = (int)Image.OriginVertical.Bottom; cooldown.raycastTarget = false;
             Image flash = UiBuild.Image(bg.transform, "FlashOverlay", Color.clear); UiBuild.Stretch(flash.rectTransform); flash.raycastTarget = false; flash.gameObject.SetActive(false);
-            Text label = UiBuild.Text(bg.transform, "Name", "Vật phẩm", ReplayStyle.SmallFont); UiBuild.Stretch(label.rectTransform, 4); label.resizeTextForBestFit = true; label.resizeTextMinSize = 9;
+            Text label = UiBuild.Text(bg.transform, "Name", "Vật phẩm", ReplayStyle.SmallFont);
+            UiBuild.Stretch(label.rectTransform, 4);
+            label.gameObject.AddComponent<SingleLineFit>().Configure(ReplayStyle.SmallFont, 9);
             Text status = UiBuild.Text(bg.transform, "Status", "", 12); status.color = Color.white; status.rectTransform.anchorMin = new Vector2(0, 0); status.rectTransform.anchorMax = new Vector2(1, 0); status.rectTransform.pivot = new Vector2(.5f, 0); status.rectTransform.sizeDelta = new Vector2(0, 22);
-            UiBuild.Set(view, "background", bg); UiBuild.Set(view, "rarityOutline", outline); UiBuild.Set(view, "icon", icon); UiBuild.Set(view, "cooldownOverlay", cooldown); UiBuild.Set(view, "flashOverlay", flash); UiBuild.Set(view, "nameText", label); UiBuild.Set(view, "statusText", status); Save(bg.gameObject, path);
+            Image rarityFrame = UiBuild.Image(bg.transform, "Rarity Frame", Color.white);
+            UiBuild.Stretch(rarityFrame.rectTransform, 3f);
+            rarityFrame.raycastTarget = false;
+            UiBuild.ApplyUiSprite(rarityFrame, "frame_panel", Image.Type.Sliced);
+            UiBuild.Set(view, "background", bg); UiBuild.Set(view, "rarityOutline", outline); UiBuild.Set(view, "icon", icon); UiBuild.Set(view, "cooldownOverlay", cooldown); UiBuild.Set(view, "rarityFrame", rarityFrame); UiBuild.Set(view, "flashOverlay", flash); UiBuild.Set(view, "nameText", label); UiBuild.Set(view, "statusText", status); Save(bg.gameObject, path);
         }
 
         private static void BuildEffect(bool overwrite)
@@ -42,7 +48,7 @@ namespace OneBagJianghu.EditorTools.Building
         private static void BuildLogRow(bool overwrite)
         {
             string path = Folder + "/ReplayLogRow.prefab"; if (!AssetGuard.ShouldBuild(path, overwrite)) return;
-            Text row = UiBuild.Text(null, "ReplayLogRow", "Sự kiện", 18, TextAnchor.MiddleLeft); row.color = ReplayStyle.Paper; row.horizontalOverflow = HorizontalWrapMode.Wrap; row.gameObject.AddComponent<LayoutElement>().preferredHeight = 27; AddShadow(row); Save(row.gameObject, path);
+            Text row = UiBuild.Text(null, "ReplayLogRow", "Sự kiện", 18, TextAnchor.MiddleLeft); row.color = ReplayStyle.Paper; row.horizontalOverflow = HorizontalWrapMode.Wrap; row.verticalOverflow = VerticalWrapMode.Truncate; row.gameObject.AddComponent<LayoutElement>().preferredHeight = 27; row.gameObject.AddComponent<SingleLineFit>().Configure(18, 12); AddShadow(row); Save(row.gameObject, path);
         }
 
         private static void BuildFighter(bool overwrite)
@@ -59,7 +65,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image portrait = UiBuild.Image(frame.transform, "HeroArt", Color.white); UiBuild.Stretch(portrait.rectTransform, 12); portrait.preserveAspect = true; portrait.raycastTarget = false;
             portrait.sprite = LoadArt("hero_portrait") ?? LoadArt("hero_idle") ?? frame.sprite;
             UiBuild.Set(view, "title", name); UiBuild.Set(view, "portraitFrame", frame); UiBuild.Set(view, "portrait", portrait);
-            Bar(view, root.transform, "HpBar", 172, ReplayStyle.Hp, "hpFill", "hpText", "Sinh Lực  0/0");
+            Bar(view, root.transform, "HpBar", 172, ReplayStyle.Hp, "hpFill", "hpText", "Khí Huyết  0/0");
             Bar(view, root.transform, "ShieldBar", 126, ReplayStyle.Shield, "shieldFill", "shieldText", "Cương Khí  0/0");
             Bar(view, root.transform, "QiBar", 80, ReplayStyle.Qi, "qiFill", "qiText", "Nội Lực  0/100");
             RectTransform chips = UiBuild.Rect(root.transform, "StatusChips"); SetRect(chips, 12, 4, 196, 72);
@@ -87,7 +93,18 @@ namespace OneBagJianghu.EditorTools.Building
         {
             string path = Folder + "/ReplayScreen.prefab"; if (!AssetGuard.ShouldBuild(path, overwrite)) return;
             RectTransform root = UiBuild.Rect(null, "ReplayScreen"); ReplayScreen screen = root.gameObject.AddComponent<ReplayScreen>(); UiBuild.Stretch(root);
-            Image top = DarkPanel(root, "TopBar", 0, 990, 1920, 90); Text stage = UiBuild.Text(top.transform, "StageOpponentName", "Hành Tẩu Giang Hồ", 26, TextAnchor.MiddleLeft, UiFontRole.Title); stage.color = Color.white; SetRect(stage.rectTransform, 28, 15, 680, 60); AddShadow(stage);
+            Image top = DarkPanel(root, "TopBar", 0, 990, 1920, 90);
+            Text stage = UiBuild.Text(
+                top.transform,
+                "StageOpponentName",
+                "Hành Tẩu Giang Hồ",
+                26,
+                TextAnchor.MiddleLeft,
+                UiFontRole.Title);
+            stage.color = Color.white;
+            SetRect(stage.rectTransform, 28, 15, 680, 60);
+            stage.gameObject.AddComponent<SingleLineFit>().Configure(26, 12);
+            AddShadow(stage);
             Text clock = UiBuild.Text(top.transform, "Clock", "00:00", 30); clock.color = Color.white; SetRect(clock.rectTransform, 850, 15, 220, 60); AddShadow(clock); Button exit = CommonButton(top.transform, "ExitButton", "Thoát", 1660, 14, 190, 62);
             RectTransform band = UiBuild.Rect(root, "MiddleBand"); SetRect(band, 50, 135, 1820, 820);
             RectTransform player = UiBuild.Rect(band, "Player"); SetRect(player, 0, 0, 780, 820); FighterPanelView left = Fighter(player, 0, false); RectTransform leftBag = Bag(player, 220, 205, false);
@@ -95,7 +112,7 @@ namespace OneBagJianghu.EditorTools.Building
             RectTransform enemy = UiBuild.Rect(band, "Enemy"); SetRect(enemy, 1040, 0, 780, 820); RectTransform rightBag = Bag(enemy, 0, 205, true); FighterPanelView right = Fighter(enemy, 560, true);
             Image bottom = DarkPanel(root, "BottomBar", 0, 0, 1920, 120); RectTransform speeds = UiBuild.Rect(bottom.transform, "SpeedButtons"); SetRect(speeds, 20, 24, 900, 72);
             Button play = CommonButton(speeds, "PauseResume", "Tạm dừng", 0, 4, 170, 64); Button s1 = CommonButton(speeds, "Speed x1", "x1", 180, 4, 170, 64); Button s2 = CommonButton(speeds, "Speed x2", "x2", 360, 4, 170, 64); Button s4 = CommonButton(speeds, "Speed x4", "x4", 540, 4, 170, 64); Button restart = CommonButton(speeds, "Restart", "Chơi lại", 720, 4, 170, 64);
-            Button logToggle = CommonButton(bottom.transform, "LogToggle", "", 930, 12, 920, 96); Text collapsed = UiBuild.Text(logToggle.transform, "LastThreeLines", "Nhật ký trận", 18, TextAnchor.MiddleLeft); collapsed.color = Color.white; collapsed.horizontalOverflow = HorizontalWrapMode.Wrap; UiBuild.Stretch(collapsed.rectTransform, 16); AddShadow(collapsed);
+            Button logToggle = CommonButton(bottom.transform, "LogToggle", "", 930, 12, 920, 96); Image collapsedViewport = UiBuild.Image(logToggle.transform, "Log Viewport", Color.clear); UiBuild.Stretch(collapsedViewport.rectTransform, 18); collapsedViewport.gameObject.AddComponent<RectMask2D>(); Text collapsed = UiBuild.Text(collapsedViewport.transform, "LastThreeLines", "Nhật ký trận", 18, TextAnchor.MiddleLeft); collapsed.color = Color.white; collapsed.horizontalOverflow = HorizontalWrapMode.Wrap; collapsed.verticalOverflow = VerticalWrapMode.Truncate; UiBuild.Stretch(collapsed.rectTransform); AddShadow(collapsed);
             Image expanded = DarkPanel(root, "ExpandedBattleLog", 360, 120, 1200, 432); Image viewport = UiBuild.Image(expanded.transform, "Viewport", new Color(0, 0, 0, .08f)); UiBuild.Stretch(viewport.rectTransform, 18); viewport.gameObject.AddComponent<RectMask2D>();
             RectTransform content = UiBuild.Rect(viewport.transform, "Content"); content.anchorMin = new Vector2(0, 1); content.anchorMax = new Vector2(1, 1); content.pivot = new Vector2(.5f, 1); content.sizeDelta = new Vector2(-16, 396); VerticalLayoutGroup logs = content.gameObject.AddComponent<VerticalLayoutGroup>(); logs.childControlHeight = false; logs.childForceExpandHeight = false; ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>(); fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
             ScrollRect scroll = expanded.gameObject.AddComponent<ScrollRect>(); scroll.viewport = viewport.rectTransform; scroll.content = content; scroll.horizontal = false; scroll.vertical = true; expanded.gameObject.SetActive(false);

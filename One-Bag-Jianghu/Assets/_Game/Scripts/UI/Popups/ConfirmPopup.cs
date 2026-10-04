@@ -8,10 +8,10 @@ namespace OneBagJianghu.UI.Popups
     public sealed class ConfirmPopupData
     {
         public ConfirmPopupData(string title,
-string message,
-string confirmLabel,
-string cancelLabel,
-Action<bool> callback = null)
+            string message,
+            string confirmLabel,
+            string cancelLabel,
+            Action<bool> callback = null)
         {
             Title = title;
             Message = message;

@@ -1,0 +1,52 @@
+{
+  "name": "Hàn Sơn Đại Đệ Tử",
+  "sect": "han_son",
+  "tamPhapLevel": 3,
+  "items": [
+    {
+      "id": "bang_phach_thuong",
+      "x": 0,
+      "y": 0,
+      "tier": 5,
+      "rarity": "supreme"
+    },
+    {
+      "id": "bang_tam_linh_chau",
+      "x": 1,
+      "y": 0,
+      "tier": 4,
+      "rarity": "supreme"
+    },
+    {
+      "id": "han_bang_chau",
+      "x": 1,
+      "y": 1,
+      "tier": 4,
+      "rarity": "supreme"
+    },
+    {
+      "id": "bang_tam_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 4,
+      "rarity": "supreme"
+    },
+    {
+      "id": "kiem_tong_tam_yeu",
+      "x": 4,
+      "y": 0,
+      "tier": 4,
+      "rarity": "supreme"
+    },
+    {
+      "id": "bach_ngoc_boi",
+      "x": 2,
+      "y": 1,
+      "tier": 4,
+      "rarity": "common"
+    }
+  ],
+  "level": 17,
+  "cols": 5,
+  "rows": 4
+}

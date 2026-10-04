@@ -1,0 +1,5065 @@
+[
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 3,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ho_mach_dan",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 16,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 6,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 4,
+          "rarity": "epic",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 3
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 6,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_thuong",
+          "tier": 3,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 4,
+          "rarity": "epic",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "vo_niem_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "cuong_hoa_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 12,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tu_kim_trao",
+          "tier": 5,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 4,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 5,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "han_ngoc_tieu",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 7,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 19,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 4,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "tram_huong_lo",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 5,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "man_xa_doc_tui",
+          "tier": 5,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_tam_giap",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 15,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 6,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 8,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ngung_than_dan",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "han_ngoc_tieu",
+          "tier": 8,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "liet_diem_dao",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 4,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 6,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 5,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 23,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "o_thiet_giap",
+          "tier": 6,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "cuong_hoa_dan",
+          "tier": 7,
+          "rarity": "legendary",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 3,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 4,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 7,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 5,
+          "rarity": "epic",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 6,
+          "rarity": "legendary",
+          "x": 3,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 5,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "van_khi_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "long_lan_giap",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "phuc_ho_con",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "han_bang_chau",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 20,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "khai_son_phu",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "cuu_chuyen_hoan_hon_dan",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 7,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 7,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phuc_ho_con",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_tam_giap",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 3,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 22,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "van_khi_dan",
+          "tier": 7,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thanh_tam_dan",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "phuc_ma_giap",
+          "tier": 8,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 8,
+          "rarity": "legendary",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 8,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 8,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 14,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 4,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 16,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 6,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phuc_ma_giap",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 6,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "o_tam_y",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 3,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "vo_niem_kinh",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 8,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "nho_sam_y",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "han_bang_chau",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 14,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ti_khang_dan",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "liet_diem_dao",
+          "tier": 3,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 9,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phuc_ma_giap",
+          "tier": 4,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "vo_niem_kinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 4,
+          "rarity": "epic",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 3
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 10,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thien_dia_vo_cuc_cong",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 2,
+          "rarity": "legendary",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "phuc_ho_con",
+          "tier": 4,
+          "rarity": "supreme",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 3
+        },
+        {
+          "id": "cuu_chuyen_hoan_hon_dan",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 3
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 3,
+          "rarity": "legendary",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 20,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "han_ngoc_tieu",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 6,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "man_xa_doc_tui",
+          "tier": 7,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.7
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 7,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "xich_sa_chuong",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 3,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 2,
+          "rarity": "supreme",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "that_tinh_tieu",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "han_bang_chau",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "van_khi_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "hoi_thien_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thien_dia_vo_cuc_cong",
+          "tier": 7,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "truy_hon_cung",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "khai_son_phu",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "han_ngoc_tieu",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "xich_sa_chuong",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 12,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "hoi_thien_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 4,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 7,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "soi_nanh_canh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 3,
+          "rarity": "supreme",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "u_minh_bi_luc",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "u_minh_bi_luc",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 5,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "o_tam_y",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 16,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phi_yen_quyet",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 4,
+          "rarity": "supreme",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 3,
+          "rarity": "epic",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 6,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "u_minh_bi_luc",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 2,
+          "rarity": "supreme",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 7,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_dang_tien",
+          "tier": 4,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 7,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 6,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 4,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "man_xa_doc_tui",
+          "tier": 7,
+          "rarity": "epic",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 3,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "khai_son_phu",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 7,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "that_tinh_tieu",
+          "tier": 5,
+          "rarity": "epic",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 8,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "liet_diem_dao",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phuc_ho_con",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "long_lan_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 6,
+          "rarity": "rare",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 4,
+          "rarity": "legendary",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 8,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 11,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "da_minh_chau",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_tam_linh_chau",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "man_xa_doc_tui",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "van_khi_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 16,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 5,
+          "rarity": "legendary",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 4,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "van_doc_dinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 22,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 5,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 11,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 4,
+          "rarity": "legendary",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 3,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "bang_tam_linh_chau",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "van_khi_dan",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ho_mach_dan",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "cuu_chuyen_hoan_hon_dan",
+          "tier": 5,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "bang_tam_giap",
+          "tier": 6,
+          "rarity": "supreme",
+          "x": 0,
+          "y": 3
+        }
+      ]
+    },
+    "actual": 0.275
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 14,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "long_lan_giap",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 3
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 4,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 2,
+          "rarity": "legendary",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "han_bang_chau",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 5,
+          "rarity": "rare",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "van_doc_dinh",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 4,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phuc_ma_giap",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "khai_son_phu",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "cuu_chuyen_hoan_hon_dan",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 3,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 2,
+          "rarity": "legendary",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "han_bang_chau",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 7,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "van_khi_dan",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 5,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.55
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 14,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ngung_than_dan",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "cuong_hoa_dan",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 5,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 5,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 22,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tu_kim_bat",
+          "tier": 8,
+          "rarity": "legendary",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 5,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 8,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 7,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 8,
+          "rarity": "rare",
+          "x": 4,
+          "y": 2
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 3
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 23,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thien_dia_vo_cuc_cong",
+          "tier": 4,
+          "rarity": "supreme",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "vo_niem_kinh",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 6,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "truy_hon_cung",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.95
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thanh_dang_tien",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thien_dia_vo_cuc_cong",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 10,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "truy_hon_cung",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 4,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 3,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 17,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 5,
+          "rarity": "epic",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 10,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "hoi_thien_dan",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 4,
+          "rarity": "supreme",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 4,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 2,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "van_khi_dan",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thanh_dang_tien",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 2,
+          "rarity": "legendary",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 6,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "o_tam_y",
+          "tier": 7,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 7,
+          "rarity": "rare",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 9,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "van_doc_dinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "tram_huong_lo",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 10,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "huyet_ngoc_thach",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 19,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "that_tinh_tieu",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "liet_diem_dao",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 8,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 10,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 4,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "van_khi_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "giai_doc_dan",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.2
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "cuu_chuyen_hoan_hon_dan",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bang_tam_giap",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "long_lan_giap",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phuc_ho_con",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kiem_tong_tam_yeu",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "khai_son_phu",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 19,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_tam_dan",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 5,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 4,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kim_sang_duoc",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_dang_tien",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 8,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "vo_niem_kinh",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "cuong_hoa_dan",
+          "tier": 6,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thiet_cot_quyen_sao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "khai_son_phu",
+          "tier": 5,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 6,
+          "rarity": "supreme",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 6,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "giai_doc_dan",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "that_tinh_tieu",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "han_ngoc_tieu",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 2,
+          "rarity": "supreme",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "bang_tam_linh_chau",
+          "tier": 3,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "bang_tam_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 3
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 3,
+          "rarity": "common",
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 23,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "u_minh_bi_luc",
+          "tier": 7,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 5,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "hoi_thien_dan",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_thuong",
+          "tier": 8,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 6,
+          "rarity": "rare",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "da_ho_y",
+          "tier": 8,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 14,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 1,
+          "rarity": "legendary",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 9,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phuc_ho_con",
+          "tier": 4,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "duong_sinh_quyet",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bich_thuy_cam",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_trao",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "ngung_than_dan",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "tuyet_lang_bach_bi",
+          "tier": 3,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 2
+        },
+        {
+          "id": "bang_tam_linh_chau",
+          "tier": 4,
+          "rarity": "rare",
+          "x": 1,
+          "y": 3
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 22,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 5,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 2,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "tue_nguyet_bao_y",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 18,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phuc_ho_con",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thuan_duong_cong",
+          "tier": 2,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 6,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_ngoc_boi",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "thiet_giap_y",
+          "tier": 5,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "thanh_dong_ho_tam_kinh",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 21,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "tu_mau_song_dao",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "bang_phach_co_cot",
+          "tier": 5,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 8,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 6,
+          "rarity": "epic",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "phan_quan_but",
+          "tier": 7,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "van_doc_dinh",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 2
+        },
+        {
+          "id": "thien_dia_vo_cuc_cong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 3
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thien_tam_chuoi",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 5,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "hac_sat_hung_dam",
+          "tier": 3,
+          "rarity": "common",
+          "x": 1,
+          "y": 1
+        },
+        {
+          "id": "kim_sang_duoc",
+          "tier": 3,
+          "rarity": "legendary",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 2
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 23,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 7,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 4,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 5,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bang_phach_thuong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "am_duong_ngoc",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 0.2
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 9,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "phuc_ho_con",
+          "tier": 3,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 4,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "ti_khang_dan",
+          "tier": 4,
+          "rarity": "epic",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "thanh_phong_kiem",
+          "tier": 3,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 1
+        },
+        {
+          "id": "ho_mach_dan",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 1,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 12,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "ngoc_cot_phien",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "hoi_thien_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "actual": 1.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "da_ho_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "long_lan_giap",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "xich_sa_chuong",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "kich_doc_chu_nga",
+          "tier": 1,
+          "rarity": "common",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "bach_luyen_chan_kinh",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "phi_yen_quyet",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 1,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "liet_diem_dao",
+          "tier": 1,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "thanh_dang_tien",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tram_huong_lo",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.125
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 13,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "nho_sam_y",
+          "tier": 3,
+          "rarity": "rare",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "tram_huong_lo",
+          "tier": 3,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 4,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "u_minh_quy_trao",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "kim_tuyen_y",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "chan_nhac_chuy",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 2,
+          "rarity": "epic",
+          "x": 2,
+          "y": 2
+        },
+        {
+          "id": "quy_nguyen_quyet",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        },
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 1,
+          "rarity": "epic",
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 16,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "thai_thanh_tam_kinh",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "man_xa_doc_tui",
+          "tier": 1,
+          "rarity": "common",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "thien_nien_quy_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 6,
+          "rarity": "supreme",
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 3,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "that_tinh_tieu",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "vo_niem_kinh",
+          "tier": 1,
+          "rarity": "uncommon",
+          "x": 1,
+          "y": 0
+        },
+        {
+          "id": "tuy_tien_ho_lo",
+          "tier": 2,
+          "rarity": "rare",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "hoa_diem_xa_cot",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "o_thiet_giap",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "nho_sam_y",
+          "tier": 2,
+          "rarity": "common",
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    "actual": 0.0
+  },
+  {
+    "a": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 2,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "kim_tuyen_y",
+          "tier": 1,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "chu_sa_ho_lo",
+          "tier": 1,
+          "rarity": "common",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "boi_nguyen_dan",
+          "tier": 1,
+          "rarity": "common",
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    "b": {
+      "name": "power",
+      "sect": "thai_thanh",
+      "tamPhapLevel": 1,
+      "level": 20,
+      "cols": 6,
+      "rows": 8,
+      "items": [
+        {
+          "id": "bach_ho_cuong_mong",
+          "tier": 6,
+          "rarity": "common",
+          "x": 0,
+          "y": 0
+        },
+        {
+          "id": "liet_diem_dao",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 2,
+          "y": 0
+        },
+        {
+          "id": "soi_nanh_canh",
+          "tier": 6,
+          "rarity": "uncommon",
+          "x": 3,
+          "y": 0
+        },
+        {
+          "id": "liet_hoa_tam_kinh",
+          "tier": 2,
+          "rarity": "uncommon",
+          "x": 4,
+          "y": 0
+        },
+        {
+          "id": "tu_kim_bat",
+          "tier": 6,
+          "rarity": "common",
+          "x": 0,
+          "y": 1
+        },
+        {
+          "id": "heo_rung_bap_giap",
+          "tier": 4,
+          "rarity": "supreme",
+          "x": 0,
+          "y": 2
+        },
+        {
+          "id": "da_minh_chau",
+          "tier": 2,
+          "rarity": "common",
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    "actual": 0.0
+  }
+]

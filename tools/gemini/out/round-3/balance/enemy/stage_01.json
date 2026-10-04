@@ -1,0 +1,31 @@
+{
+  "name": "Thảo Khấu Tiên Phong",
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 1,
+  "items": [
+    {
+      "id": "tu_kim_trao",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "common"
+    }
+  ]
+}

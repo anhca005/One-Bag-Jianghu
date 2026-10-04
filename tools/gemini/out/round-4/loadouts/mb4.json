@@ -1,0 +1,64 @@
+{
+  "name": "Kim Cang Tự - Bạch Hổ Bá Quyền",
+  "cols": 5,
+  "rows": 4,
+  "sect": "kim_cang",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 0,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "phuc_ho_con",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "bach_ho_cuong_mong",
+      "x": 2,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "bang_phach_co_cot",
+      "x": 2,
+      "y": 1,
+      "rarity": "legendary"
+    },
+    {
+      "id": "tuyet_lang_bach_bi",
+      "x": 2,
+      "y": 3,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_luyen_chan_kinh",
+      "x": 4,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thanh_dong_ho_tam_kinh",
+      "x": 4,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "hac_sat_hung_dam",
+      "x": 4,
+      "y": 3,
+      "rarity": "epic"
+    }
+  ],
+  "level": 1
+}

@@ -32,6 +32,10 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField] private UiButton resetSectButton;
         private EconomyRuntime catalog;
         private MaterialCatalog materials;
+        private readonly System.Collections.Generic.List<string> itemIds =
+            new System.Collections.Generic.List<string>();
+        private readonly System.Collections.Generic.List<string> materialIds =
+            new System.Collections.Generic.List<string>();
         protected override void Awake()
         {
             base.Awake();
@@ -44,20 +48,26 @@ namespace OneBagJianghu.UI.Popups
             catalog = new EconomyRuntime();
             materials = GameSession.LoadMaterialCatalog();
             itemDropdown.ClearOptions();
-            var ids = new System.Collections.Generic.List<string>();
+            var names = new System.Collections.Generic.List<string>();
             foreach (OneBagJianghu.Bag.ItemInfo item in catalog.All)
-                ids.Add(item.Id);
-            itemDropdown.AddOptions(ids);
+            {
+                itemIds.Add(item.Id);
+                names.Add(item.Name);
+            }
+            itemDropdown.AddOptions(names);
             materialDropdown.ClearOptions();
-            ids.Clear();
+            names.Clear();
             foreach (MaterialInfo item in materials.All)
-                ids.Add(item.Id);
-            materialDropdown.AddOptions(ids);
+            {
+                materialIds.Add(item.Id);
+                names.Add(item.Name);
+            }
+            materialDropdown.AddOptions(names);
             addItemButton.onClick.AddListener(AddItem);
             add10Button.onClick.AddListener(() => AddMaterial(10));
             add100Button.onClick.AddListener(() => AddMaterial(100));
             addSilverButton.onClick.AddListener(() => AddCurrency("bac",
-10000));
+                10000));
             addReputationButton.onClick.AddListener(() => AddCurrency("danh_vong",
             1000));
             refreshShopButton.onClick.AddListener(RefreshShop);
@@ -97,7 +107,7 @@ namespace OneBagJianghu.UI.Popups
         private void AddItem()
         {
             PlayerProfile profile = GameBootstrap.Session.Profile;
-            OwnedItem item = profile.AddItem(itemDropdown.options[itemDropdown.value].text,
+            OwnedItem item = profile.AddItem(itemIds[itemDropdown.value],
             tierDropdown.value
             + 1,
             rarity: RarityRules.Ordered[rarityDropdown.value]);
@@ -114,7 +124,7 @@ namespace OneBagJianghu.UI.Popups
         }
         private void AddMaterial(int amount)
         {
-            string id = materialDropdown.options[materialDropdown.value].text;
+            string id = materialIds[materialDropdown.value];
             if (!new StorageGrid(GameBootstrap.Session.Profile,
             catalog).TryAddMaterial(id,
             amount))
@@ -127,12 +137,12 @@ namespace OneBagJianghu.UI.Popups
             Save();
         }
         private static void ShowFull() => PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo",
-"Tàng Bảo Các không đủ chỗ."));
+            "Tàng Bảo Các không đủ chỗ."));
         private void AddCurrency(string id,
-long amount)
+            long amount)
         {
             GameBootstrap.Session.Profile.AddCurrency(id,
-amount);
+                amount);
             Debug.Log($"[Cheat] Add currency id={id}, amount={amount}");
             Save();
         }
@@ -154,7 +164,7 @@ amount);
         private static void RefillStamina()
         {
             new StaminaService(StaminaConfig.Load()).Refill(GameBootstrap.Session.Profile.Pve,
-System.DateTimeOffset.UtcNow);
+                System.DateTimeOffset.UtcNow);
             Debug.Log("[Pve] [Cheat] Refill stamina");
             Save();
         }
@@ -186,7 +196,7 @@ System.DateTimeOffset.UtcNow);
         private static void AddExp()
         {
             new LevelService(LevelConfig.Load()).Grant(GameBootstrap.Session.Profile,
-100);
+                100);
             Debug.Log("[Cheat] Add EXP amount=100");
             Save();
         }
@@ -200,23 +210,23 @@ System.DateTimeOffset.UtcNow);
             Save();
         }
         private void ConfirmReset() => PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Đặt lại hồ sơ",
-"Khôi phục bộ vật phẩm khởi đầu?",
-"Đặt lại",
-"Hủy",
-yes =>
-{
-    if (yes)
-    {
-        Debug.Log("[Cheat] Reset profile");
-        GameBootstrap.Session.ResetProfile();
-        Close();
-    }
-}));
+            "Khôi phục bộ vật phẩm khởi đầu?",
+            "Đặt lại",
+            "Hủy",
+            yes =>
+            {
+                if (yes)
+                {
+                    Debug.Log("[Cheat] Reset profile");
+                    GameBootstrap.Session.ResetProfile();
+                    Close();
+                }
+            }));
         private void ConfirmWipeAll() => PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Chơi lại từ đầu",
-"Xóa toàn bộ dữ liệu và quay về màn đăng nhập?",
-"Xóa hết",
-"Hủy",
-yes =>
+            "Xóa toàn bộ dữ liệu và quay về màn đăng nhập?",
+            "Xóa hết",
+            "Hủy",
+            yes =>
         {
             if (!yes)
                 return;

@@ -1,0 +1,46 @@
+{
+  "sequences": [
+    {
+      "id": "first_battle", "trigger": "intro_complete",
+      "steps": [
+        { "line": "Tiểu hữu, trước khi ra trận phải biết xếp túi. Mở Bao Phục ra xem.", "target": "home_bag", "completeEvent": "bag_opened" },
+        { "line": "Binh khí tự ra đòn theo nhịp, Hộ Cụ cho Cương Khí đỡ đòn. Kéo Thanh Phong Kiếm vào túi.", "target": "starter_sword", "secondaryTarget": "bag_grid", "completeEvent": "starter_sword_placed" },
+        { "line": "Giờ đến Ô Tàm Y.", "target": "starter_armor", "secondaryTarget": "bag_grid", "completeEvent": "starter_armor_placed" },
+        { "line": "Lực Chiến cho biết túi mạnh cỡ nào. Đóng túi lại, ta đi Hành Tẩu Giang Hồ.", "target": "bag_close", "completeEvent": "bag_closed" },
+        { "line": "Hãy mở Hành Tẩu Giang Hồ.", "target": "home_pve", "completeEvent": "stage_map_opened" },
+        { "line": "Ải đầu tiên: Trấn Khẩu Sơn Đạo. Bấm vào ải để xem.", "target": "stage_1", "completeEvent": "stage_1_selected" },
+        { "line": "Lực Chiến của ngươi đã bằng mức đề nghị. Khiêu Chiến thôi!", "target": "stage_challenge", "completeEvent": "first_battle_started" },
+        { "line": "(Chờ trận đầu kết thúc; bước này không hiện lên.)", "target": "", "completeEvent": "first_battle_won" },
+        { "line": "Thắng ải lần đầu được Bạc, EXP và nguyên liệu; đánh lại chỉ được 15%. Về bản đồ đi tiếp nào.", "target": "result_first", "completeEvent": "result_closed" }
+      ],
+      "battleHints": [
+        "Đòn thường cộng Nội Lực; đủ Nội Lực sẽ tung Tuyệt Kỹ.",
+        "Thanh vàng là Cương Khí, bị trừ trước Khí Huyết.",
+        "Đủ 60 Nội Lực, ngươi tự Hóa Kình gạt Tuyệt Kỹ của địch."
+      ]
+    },
+    {
+      "id": "shop", "trigger": "first_stage_home_return",
+      "steps": [
+        { "line": "Thắng trận đầu rồi! Đóng bản đồ, về trấn sắm sửa.", "target": "stage_map_close", "completeEvent": "stage_map_closed" },
+        { "line": "Có Bạc rồi. Ghé Thương Hội xem hàng.", "target": "home_shop", "completeEvent": "shop_opened" },
+        { "line": "Thái Thanh Tâm Kinh là Công Pháp hợp cho người mới, chỉ 200 Bạc. Bấm vào để mua.", "target": "shop_first_item", "completeEvent": "shop_item_purchased" }
+      ]
+    },
+    {
+      "id": "upgrade", "trigger": "upgrade_affordable",
+      "steps": [
+        { "line": "Nguyên liệu dùng để nâng Trọng. Vào Tàng Bảo Các.", "target": "home_storage", "completeEvent": "storage_opened" },
+        { "line": "Chọn một món, bấm Nâng Trọng. Mỗi Trọng tăng chỉ số của món. Trọng 3, 6 và 9 cần thêm chất dẫn để Đột Phá.", "target": "storage_upgrade", "completeEvent": "item_upgraded" },
+        { "line": "Hai bản cùng món, cùng phẩm, từ Tam Trọng trở lên thì Hợp Thành được ra phẩm cao hơn.", "target": "storage_merge", "completeEvent": "upgrade_tutorial_acknowledged" }
+      ]
+    },
+    {
+      "id": "sect", "trigger": "level_10",
+      "steps": [
+        { "line": "Cấp 10, đủ tư cách bái nhập Môn Phái.", "target": "home_sect", "completeEvent": "sect_opened" },
+        { "line": "Mỗi phái có Tâm Pháp riêng, tăng sức cho các hệ binh khí của phái. Chọn phái hợp với túi của ngươi.", "target": "sect_choices", "completeEvent": "sect_selected_or_closed" }
+      ]
+    }
+  ]
+}

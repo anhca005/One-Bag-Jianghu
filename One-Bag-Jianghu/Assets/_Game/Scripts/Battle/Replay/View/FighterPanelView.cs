@@ -66,14 +66,14 @@ namespace OneBagJianghu.Battle.Replay.View
             // mirrored and inked into a silhouette for the enemy side.
             bool enemyFallback = enemy && found && !sprite.name.StartsWith("enemy_portrait_");
             portrait.color =
-!found ?
-ReplayStyle.Ink :
-enemyFallback ?
-new Color(ReplayStyle.Ink.r,
-ReplayStyle.Ink.g,
-ReplayStyle.Ink.b,
-.72f) :
-Color.white;
+                !found ?
+                ReplayStyle.Ink :
+                enemyFallback ?
+                new Color(ReplayStyle.Ink.r,
+                ReplayStyle.Ink.g,
+                ReplayStyle.Ink.b,
+                .72f) :
+                Color.white;
             portrait.transform.localScale = new Vector3(enemyFallback ? -1f : 1f, 1f, 1f);
             burnIcon.gameObject.SetActive(false);
             poisonIcon.gameObject.SetActive(false);
@@ -87,26 +87,26 @@ Color.white;
         {
             int max = Mathf.Max(1, state.MaxHp);
             hpFill.fillAmount = Mathf.Clamp01((float)state.Hp / max);
-            hpText.text = "Sinh Lực  " + Mathf.Max(0, state.Hp) + "/" + state.MaxHp;
+            hpText.text = "Khí Huyết  " + Mathf.Max(0, state.Hp) + "/" + state.MaxHp;
             shieldFill.fillAmount = Mathf.Clamp01((float)state.Shield / max);
             shieldText.text = "Cương Khí  " + Mathf.Max(0, state.Shield) + "/" + max;
             qiFill.fillAmount = Mathf.Clamp01(state.Qi / 100f);
             qiText.text = "Nội Lực  " + Mathf.Max(0, state.Qi) + "/100";
             SetStatus(burnIcon, burnText, "burn", state.Burn, ReplayStyle.Burn);
             SetStatus(poisonIcon,
-poisonText,
-"poison",
-state.Poison,
-ReplayStyle.Poison);
+                poisonText,
+                "poison",
+                state.Poison,
+                ReplayStyle.Poison);
             SetStatus(bleedIcon, bleedText, "bleed", state.Bleed, ReplayStyle.Bleed);
             cachedStunUntilMs = state.StunUntilMs;
             SetStatus(stunIcon,
-stunText,
-"stun",
-cachedStunUntilMs > timeMs ?
-1 :
-0,
-ReplayStyle.Burn);
+                stunText,
+                "stun",
+                cachedStunUntilMs > timeMs ?
+                1 :
+                0,
+                ReplayStyle.Burn);
             SetStatus(regenIcon, regenText, "regen", state.Regen, ReplayStyle.Heal);
             hasteIcon.gameObject.SetActive(false);
         }
@@ -120,10 +120,10 @@ ReplayStyle.Burn);
         }
 
         private void SetStatus(Image icon,
-Text valueText,
-string code,
-int value,
-Color fallbackColor)
+            Text valueText,
+            string code,
+            int value,
+            Color fallbackColor)
         {
             icon.gameObject.SetActive(value > 0);
             if (value <= 0)
@@ -170,14 +170,14 @@ Color fallbackColor)
             if (silhouette == null)
             {
                 silhouette =
-Sprite.Create(Texture2D.whiteTexture,
-new Rect(0f,
-0f,
-1f,
-1f),
-new Vector2(.5f,
-.5f),
-1f);
+                    Sprite.Create(Texture2D.whiteTexture,
+                    new Rect(0f,
+                    0f,
+                    1f,
+                    1f),
+                    new Vector2(.5f,
+                    .5f),
+                    1f);
             }
 
             return silhouette;

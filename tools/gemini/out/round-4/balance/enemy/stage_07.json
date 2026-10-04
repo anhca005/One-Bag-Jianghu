@@ -1,0 +1,31 @@
+{
+  "name": "Liệt Diễm Bang Tinh Anh",
+  "sect": null,
+  "tamPhapLevel": 1,
+  "level": 2,
+  "items": [
+    {
+      "id": "liet_diem_dao",
+      "x": 0,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "heo_rung_bap_giap",
+      "x": 2,
+      "y": 0,
+      "tier": 2,
+      "rarity": "epic"
+    }
+  ],
+  "cols": 5,
+  "rows": 4
+}

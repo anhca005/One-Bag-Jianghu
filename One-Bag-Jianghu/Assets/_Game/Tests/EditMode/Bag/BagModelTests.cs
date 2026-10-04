@@ -55,23 +55,23 @@ namespace OneBagJianghu.Tests.Bag
         {
             var source = new GridRect(0, 0, 2, 2);
             Assert.That(source.IsAdjacent(new GridRect(2,
-2,
-1,
-1)),
-Is.False,
-"Corner contact");
+                2,
+                1,
+                1)),
+                Is.False,
+                "Corner contact");
             Assert.That(source.IsAdjacent(new GridRect(2,
-1,
-1,
-2)),
-Is.True,
-"Right edge");
+                1,
+                1,
+                2)),
+                Is.True,
+                "Right edge");
             Assert.That(source.IsAdjacent(new GridRect(1,
-2,
-2,
-1)),
-Is.True,
-"Bottom edge");
+                2,
+                2,
+                1)),
+                Is.True,
+                "Bottom edge");
         }
 
         [Test]
@@ -83,8 +83,8 @@ Is.True,
             PlacedItem edge = grid.Place(oneByOne, 2, 1);
             grid.Place(oneByOne, 2, 2);
             Assert.That(grid.Neighbours(source.InstanceId).Select(item =>
-item.InstanceId),
-Is.EquivalentTo(new[] { edge.InstanceId }));
+                item.InstanceId),
+                Is.EquivalentTo(new[] { edge.InstanceId }));
         }
     }
 }

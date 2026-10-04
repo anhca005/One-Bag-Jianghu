@@ -1,0 +1,45 @@
+{
+  "name": "Người Chơi (Ải 4)",
+  "hp": 1020,
+  "cols": 5,
+  "rows": 4,
+  "sect": null,
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 0,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "thanh_phong_kiem",
+      "x": 1,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "soi_nanh_canh",
+      "x": 2,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 0,
+      "tier": 1,
+      "rarity": "uncommon"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 0,
+      "y": 2,
+      "tier": 1,
+      "rarity": "uncommon"
+    }
+  ]
+}

@@ -14,8 +14,8 @@ namespace OneBagJianghu.Tests.Bag
         public void SetUp()
         {
             string catalogPath =
-Path.Combine(Application.dataPath,
-"_Game/Resources/Data/items.json");
+                Path.Combine(Application.dataPath,
+                "_Game/Resources/Data/items.json");
             catalog = ItemCatalog.Parse(File.ReadAllText(catalogPath));
         }
 
@@ -23,8 +23,8 @@ Path.Combine(Application.dataPath,
         public void ReadsServerSample()
         {
             string path =
-Path.Combine(Application.dataPath,
-"_Game/Tests/EditMode/Data/loadout_thiet_phu.json");
+                Path.Combine(Application.dataPath,
+                "_Game/Tests/EditMode/Data/loadout_thiet_phu.json");
             BagGrid grid = LoadoutSerializer.FromJson(File.ReadAllText(path), catalog);
             Assert.That(grid.Items.Count, Is.EqualTo(6));
             Assert.That(grid.UsedCells, Is.EqualTo(18));
@@ -40,19 +40,19 @@ Path.Combine(Application.dataPath,
             string json = LoadoutSerializer.ToJson(original, "Round Trip", 1);
             BagGrid restored = LoadoutSerializer.FromJson(json, catalog);
             Assert.That(restored.Items.Select(Value),
-Is.EqualTo(original.Items.Select(Value)));
+                Is.EqualTo(original.Items.Select(Value)));
         }
 
         [Test]
         public void InvalidLoadoutNamesProblemItem()
         {
             const string json =
-"{\"name\":\"bad\",\"level\":1,\"cols\":5,\"rows\":4," +
-"\"items\":[{\"id\":\"khai_son_phu\",\"x\":4,\"y\":3,\"tier\":1}]}";
+                "{\"name\":\"bad\",\"level\":1,\"cols\":5,\"rows\":4," +
+                "\"items\":[{\"id\":\"khai_son_phu\",\"x\":4,\"y\":3,\"tier\":1}]}";
             FormatException exception =
-Assert.Throws<FormatException>(() =>
-LoadoutSerializer.FromJson(json,
-catalog));
+                Assert.Throws<FormatException>(() =>
+                LoadoutSerializer.FromJson(json,
+                catalog));
             StringAssert.Contains("khai_son_phu", exception.Message);
         }
 
@@ -81,6 +81,6 @@ catalog));
         }
 
         private static string Value(PlacedItem item) =>
-$"{item.Item.Id}:{item.X}:{item.Y}:{item.Tier}";
+            $"{item.Item.Id}:{item.X}:{item.Y}:{item.Tier}";
     }
 }

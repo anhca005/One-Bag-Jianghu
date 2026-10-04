@@ -1,0 +1,45 @@
+{
+  "name": "Xích Luyện Xà Tinh",
+  "sect": null,
+  "tamPhapLevel": 2,
+  "items": [
+    {
+      "id": "hoa_diem_xa_cot",
+      "x": 0,
+      "y": 0,
+      "tier": 3,
+      "rarity": "common"
+    },
+    {
+      "id": "da_ho_y",
+      "x": 1,
+      "y": 0,
+      "tier": 3,
+      "rarity": "supreme"
+    },
+    {
+      "id": "man_xa_doc_tui",
+      "x": 2,
+      "y": 0,
+      "tier": 3,
+      "rarity": "supreme"
+    },
+    {
+      "id": "thanh_dang_tien",
+      "x": 3,
+      "y": 0,
+      "tier": 3,
+      "rarity": "supreme"
+    },
+    {
+      "id": "boi_nguyen_dan",
+      "x": 4,
+      "y": 0,
+      "tier": 3,
+      "rarity": "rare"
+    }
+  ],
+  "level": 19,
+  "cols": 5,
+  "rows": 4
+}

@@ -1,0 +1,52 @@
+{
+  "name": "Kim Cang Tự - Kim Cang Thiết Phủ",
+  "hp": 1200,
+  "cols": 5,
+  "rows": 4,
+  "sect": "kim_cang",
+  "tamPhapLevel": 1,
+  "items": [
+    {
+      "id": "phuc_ho_con",
+      "x": 0,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "khai_son_phu",
+      "x": 1,
+      "y": 0,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_cot_quyen_sao",
+      "x": 1,
+      "y": 2,
+      "rarity": "rare"
+    },
+    {
+      "id": "bach_luyen_chan_kinh",
+      "x": 2,
+      "y": 2,
+      "rarity": "epic"
+    },
+    {
+      "id": "thiet_giap_y",
+      "x": 3,
+      "y": 0,
+      "rarity": "rare"
+    },
+    {
+      "id": "tu_kim_bat",
+      "x": 3,
+      "y": 1,
+      "rarity": "epic"
+    },
+    {
+      "id": "o_tam_y",
+      "x": 3,
+      "y": 2,
+      "rarity": "epic"
+    }
+  ]
+}

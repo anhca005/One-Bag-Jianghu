@@ -37,7 +37,7 @@ namespace OneBagJianghu.Economy
                     MissingMemberHandling = MissingMemberHandling.Error
                 };
                 RewardCatalog value = JsonConvert.DeserializeObject<RewardCatalog>(json,
-settings) ?? throw new FormatException("Reward catalog JSON is null.");
+                    settings) ?? throw new FormatException("Reward catalog JSON is null.");
                 if (value.Win == null || value.Loss == null || value.FirstClear == null)
                     throw new FormatException("Reward catalog requires win, loss and firstClear.");
                 return value;

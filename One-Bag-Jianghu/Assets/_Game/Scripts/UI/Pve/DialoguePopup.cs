@@ -6,6 +6,7 @@ using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.UI.Pve
 {
@@ -80,6 +81,7 @@ namespace OneBagJianghu.UI.Pve
 
         private void Advance()
         {
+            AudioManager.Instance?.Play("dialogue_next");
             if (!complete)
             {
                 if (typing != null)

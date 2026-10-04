@@ -14,10 +14,10 @@ namespace OneBagJianghu.UI.Common
         public static Canvas CreateCanvas(Transform parent, string name, int sortingOrder = 0)
         {
             var go = new GameObject(name,
-typeof(RectTransform),
-typeof(Canvas),
-typeof(CanvasScaler),
-typeof(GraphicRaycaster));
+                typeof(RectTransform),
+                typeof(Canvas),
+                typeof(CanvasScaler),
+                typeof(GraphicRaycaster));
             go.transform.SetParent(parent, false);
             Canvas canvas = go.GetComponent<Canvas>();
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -39,11 +39,11 @@ typeof(GraphicRaycaster));
         }
 
         public static Text Text(Transform parent,
-string name,
-string value,
-int size,
-TextAnchor alignment = TextAnchor.MiddleCenter,
-UiFontRole role = UiFontRole.Body)
+            string name,
+            string value,
+            int size,
+            TextAnchor alignment = TextAnchor.MiddleCenter,
+            UiFontRole role = UiFontRole.Body)
         {
             var go = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
             go.transform.SetParent(parent, false);
@@ -114,9 +114,9 @@ UiFontRole role = UiFontRole.Body)
             viewportImage.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             Stretch(viewportImage.rectTransform);
             var contentObject = new GameObject("Content",
-typeof(RectTransform),
-typeof(VerticalLayoutGroup),
-typeof(ContentSizeFitter));
+                typeof(RectTransform),
+                typeof(VerticalLayoutGroup),
+                typeof(ContentSizeFitter));
             contentObject.transform.SetParent(viewportImage.transform, false);
             RectTransform content = contentObject.GetComponent<RectTransform>();
             content.anchorMin = new Vector2(0f, 1f);
@@ -173,19 +173,27 @@ typeof(ContentSizeFitter));
 
     public static class CurrencyArt
     {
-        public static bool Apply(Text label, string key, string childName = "Currency Icon", float anchorX = 0f)
+        /// <summary>Finds a currency sprite in the shared PVE and item icon libraries.</summary>
+        public static bool TryGetSprite(string key, out Sprite sprite)
         {
-            if (label == null)
-                return false;
-            Sprite sprite = null;
+            sprite = null;
             OneBagJianghu.Pve.PveArtLibrary pve = OneBagJianghu.Pve.PveArtLibrary.Load();
             OneBagJianghu.Bag.ItemIconLibrary items = OneBagJianghu.Bag.ItemIconLibrary.Load();
             if (pve != null)
                 pve.TryGet(key, out sprite);
             if (sprite == null && items != null)
                 items.TryGet(key, out sprite);
-            Transform layoutIcon = label.transform.parent != null
-&& label.transform.parent.GetComponent<HorizontalLayoutGroup>() != null ? label.transform.parent.Find("Icon") : null;
+            return sprite != null;
+        }
+
+        public static bool Apply(Text label, string key, string childName = "Currency Icon", float anchorX = 0f)
+        {
+            if (label == null)
+                return false;
+            TryGetSprite(key, out Sprite sprite);
+            Transform parent = label.transform.parent;
+            bool inLayout = parent != null && parent.GetComponent<HorizontalLayoutGroup>() != null;
+            Transform layoutIcon = inLayout ? parent.Find("Icon") : null;
             Transform existing = layoutIcon != null ? layoutIcon : label.transform.Find(childName);
             Image image;
             if (existing == null)

@@ -35,8 +35,8 @@ namespace OneBagJianghu.Pve
             }
 
             long seed = requestedSeed ?? unchecked(((long)(uint)UnityEngine.Random.Range(int.MinValue,
-int.MaxValue) << 32) | (uint)UnityEngine.Random.Range(int.MinValue,
-int.MaxValue));
+                int.MaxValue) << 32) | (uint)UnityEngine.Random.Range(int.MinValue,
+                int.MaxValue));
             BattleResult result = simulator.Run(player, enemy, seed);
             return new LocalBattleOutput(result.ToJObject(), new OpponentInfo { Name = enemy.name, Sect = enemy.sect });
         }
@@ -52,8 +52,8 @@ int.MaxValue));
             if (itemData == null || sectData == null)
                 throw new DataException("Offline battle data is missing.");
             simulator = new BattleSimulator(ItemCatalog.Load(itemData.text),
-SectCatalog.Load(sectData.text),
-BattleConfig.Defaults());
+                SectCatalog.Load(sectData.text),
+                BattleConfig.Defaults());
         }
     }
 }

@@ -1,0 +1,86 @@
+{
+  "rarities": {
+    "common": {
+      "name": "Phàm Phẩm",
+      "multiplier_permille": 1000,
+      "multiplier": 1.0,
+      "color_hex": "#9A958C",
+      "max_merge_target": true
+    },
+    "uncommon": {
+      "name": "Lương Phẩm",
+      "multiplier_permille": 1250,
+      "multiplier": 1.25,
+      "color_hex": "#6F8F5E",
+      "max_merge_target": true
+    },
+    "rare": {
+      "name": "Tinh Phẩm",
+      "multiplier_permille": 1550,
+      "multiplier": 1.55,
+      "color_hex": "#4F7A99",
+      "max_merge_target": true
+    },
+    "epic": {
+      "name": "Tuyệt Phẩm",
+      "multiplier_permille": 1900,
+      "multiplier": 1.9,
+      "color_hex": "#7C5A8E",
+      "max_merge_target": true
+    },
+    "legendary": {
+      "name": "Thần Binh",
+      "multiplier_permille": 2300,
+      "multiplier": 2.3,
+      "color_hex": "#C9A045",
+      "max_merge_target": true
+    },
+    "supreme": {
+      "name": "Chí Tôn",
+      "multiplier_permille": 2750,
+      "multiplier": 2.75,
+      "color_hex": "#B8322A",
+      "max_merge_target": false,
+      "exclusive_source": "arena_pvp_rewards"
+    }
+  },
+  "scaling_rules": {
+    "stacking_mode": "multiplicative",
+    "formula": "effective_stat = round(base_stat * (rarity_multiplier_permille / 1000.0) * (tier_multiplier_permille / 1000.0))",
+    "scaled_fields": [
+      "attack",
+      "effect.value.shield",
+      "effect.value.heal",
+      "effect.value.damage",
+      "effect.value.gain_qi",
+      "effect.value.drain_qi",
+      "effect.value.shield_break",
+      "effect.value.reduce_max_hp",
+      "effect.stacks.burn",
+      "effect.stacks.poison",
+      "effect.stacks.bleed",
+      "effect.stacks.regen"
+    ],
+    "unscaled_fields": [
+      "cooldown",
+      "crit",
+      "ultimate.cost",
+      "effect.pct.damage",
+      "effect.pct.dmg_reduce",
+      "effect.pct.add_crit",
+      "effect.duration.stun",
+      "effect.duration.slow",
+      "effect.duration.seal",
+      "effect.duration.haste",
+      "effect.duration.charge"
+    ]
+  },
+  "power_matrix_sample_100_base": {
+    "common":    [100, 120, 140, 155, 170, 180, 190, 195, 200],
+    "uncommon":  [125, 150, 175, 194, 213, 225, 238, 244, 250],
+    "rare":      [155, 186, 217, 240, 264, 279, 295, 302, 310],
+    "epic":      [190, 228, 266, 295, 323, 342, 361, 371, 380],
+    "legendary": [230, 276, 322, 357, 391, 414, 437, 449, 460],
+    "supreme":   [275, 330, 385, 426, 468, 495, 523, 536, 550]
+  }
+}

@@ -7,7 +7,8 @@ namespace OneBagJianghu.Tests.EditMode.Economy
     public sealed class LevelServiceTests
     {
         private static LevelService Service() =>
-new LevelService(LevelConfig.Parse("{\"maxLevel\":4,\"expToNext\":[100,200,300],\"unlocks\":{\"10\":\"sect\"}}"));
+            new LevelService(LevelConfig.Parse(
+                "{\"maxLevel\":4,\"expToNext\":[100,200,300],\"unlocks\":{\"10\":\"sect\"}}"));
         [Test]
         public void Grant_CarriesAcrossSeveralLevels()
         {
