@@ -33,7 +33,6 @@ namespace OneBagJianghu.Onboarding
 
         protected override void OnSetup(object data)
         {
-            AudioManager.Instance?.Play("ui_open");
             AudioManager.EnsureExists().PlayMusic(MusicKeys.Intro);
             catalog = data as IntroCatalog ?? IntroCatalog.Load();
             index = 0;

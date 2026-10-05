@@ -6,6 +6,7 @@ using OneBagJianghu.Bag.View;
 using OneBagJianghu.Core;
 using OneBagJianghu.Economy;
 using OneBagJianghu.UI.Common;
+using OneBagJianghu.UI.Home;
 using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Audio;
@@ -34,6 +35,8 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private RectTransform gridContent;
         [SerializeField]
+        private RectTransform equippedContent;
+        [SerializeField]
         private StorageCell cellPrefab;
         [SerializeField]
         private StorageItemView storageItemPrefab;
@@ -48,6 +51,7 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private UiButton closeButton;
         private readonly List<GameObject> rows = new List<GameObject>();
+        private readonly List<GameObject> equippedRows = new List<GameObject>();
         private readonly List<StorageCell> cells = new List<StorageCell>();
         private EconomyRuntime catalog;
         private MaterialCatalog materials;
@@ -102,6 +106,9 @@ namespace OneBagJianghu.UI.Popups
             foreach (GameObject row in rows)
                 Destroy(row);
             rows.Clear();
+            foreach (GameObject row in equippedRows)
+                Destroy(row);
+            equippedRows.Clear();
             string filter = typeFilter.options[typeFilter.value].text;
             foreach (StorageItemPlacement placement in profile.Storage.Items)
             {
@@ -128,6 +135,8 @@ namespace OneBagJianghu.UI.Popups
                     item.Rarity);
                 SetRect((RectTransform)view.transform, placement.X, placement.Y, info.Width, info.Height);
             }
+
+            RefreshEquippedItems(profile);
 
             foreach (MaterialStack stack in profile.Storage.MaterialStacks)
             {
@@ -274,8 +283,43 @@ namespace OneBagJianghu.UI.Popups
                 + $"\nKích thước: {info.Width}×{info.Height}";
             costText.text = BuildUpgradeCost(preview);
             upgradeButton.GetComponent<Button>().interactable = preview.Success;
-            mergeButton.GetComponent<Button>().interactable = true;
+            bool equipped = IsEquipped(GameBootstrap.Session.Profile, uid);
+            mergeButton.GetComponent<Button>().interactable = !equipped;
+            if (equipped)
+                costText.text += "\nGỡ khỏi Bao Phục để Hợp Thành";
             sellButton.GetComponent<Button>().interactable = true;
+        }
+
+        private void RefreshEquippedItems(PlayerProfile profile)
+        {
+            int index = 0;
+            foreach (LoadoutPlacement placement in profile.Loadout)
+            {
+                OwnedItem item = profile.FindItem(placement.Uid);
+                if (item == null)
+                    continue;
+                ItemInfo info = catalog.Get(item.ItemId);
+                StorageItemView view = Instantiate(storageItemPrefab, equippedContent);
+                view.gameObject.SetActive(true);
+                equippedRows.Add(view.gameObject);
+                Sprite sprite = null;
+                if (icons != null)
+                    icons.TryGet(item.ItemId, out sprite);
+                view.Bind(this,
+                    item.Uid,
+                    false,
+                    info.Name,
+                    "T" + item.Tier,
+                    sprite,
+                    BagViewStyle.Rarity(item.Rarity),
+                    1f,
+                    item.Rarity,
+                    false);
+                SetEquippedRect((RectTransform)view.transform, index);
+                index++;
+            }
+
+            equippedContent.sizeDelta = new Vector2(Mathf.Max(index * Pitch, Pitch), 0f);
         }
 
         private string BuildUpgradeCost(UpgradePreview preview)
@@ -427,6 +471,11 @@ namespace OneBagJianghu.UI.Popups
         {
             if (selected == null)
                 return;
+            if (IsEquipped(GameBootstrap.Session.Profile, selected.Uid))
+            {
+                costText.text = "Gỡ khỏi Bao Phục để Hợp Thành";
+                return;
+            }
             if (merge.Candidates(GameBootstrap.Session.Profile, selected.Uid).Count == 0)
             {
                 AudioManager.Instance?.Play("ui_error");
@@ -509,7 +558,11 @@ namespace OneBagJianghu.UI.Popups
             }
 
             if (action.StartsWith("upgrade", StringComparison.Ordinal))
+            {
                 AudioManager.Instance?.Play("upgrade");
+                HomeController home = FindObjectOfType<HomeController>();
+                home?.RefreshPower();
+            }
             else if (action.StartsWith("merge", StringComparison.Ordinal))
                 AudioManager.Instance?.Play("merge");
             else if (action.StartsWith("sell", StringComparison.Ordinal))
@@ -558,6 +611,18 @@ namespace OneBagJianghu.UI.Popups
         }
 
         private static string Key(MaterialStack stack) => stack.MaterialId + "@" + stack.X + "," + stack.Y;
+        private static bool IsEquipped(PlayerProfile profile, string uid)
+        {
+            return profile.Loadout.Exists(placement =>
+                string.Equals(placement.Uid, uid, StringComparison.Ordinal));
+        }
+        private static void SetEquippedRect(RectTransform rect, int index)
+        {
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, .5f);
+            rect.pivot = new Vector2(0f, .5f);
+            rect.anchoredPosition = new Vector2(index * Pitch, 0f);
+            rect.sizeDelta = new Vector2(Pitch - 4f, Pitch - 4f);
+        }
         private static string Short(string value) => value.Length <= 15 ? value : value.Substring(0, 14) + "…";
         private static string FormatPower(string rarity,
             int tier) => (RarityRules.PowerPermille(rarity,

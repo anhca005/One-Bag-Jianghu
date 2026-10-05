@@ -53,7 +53,56 @@ namespace OneBagJianghu.Battle.Replay.View
         private ItemIconLibrary iconLibrary;
         private int cachedStunUntilMs;
         private static Sprite silhouette;
+        private const string FrameOverlayName = "Frame Overlay";
+        private static readonly Color PanelBackingColor = new Color(.93f, .89f, .8f, .9f);
         public RectTransform VfxTarget => portrait.rectTransform;
+
+        private void Awake()
+        {
+            LayerFramesOnTop();
+        }
+
+        /// <summary>
+        /// Both frames (the panel and the portrait) are drawn by the parent Image, so everything inside was painted
+        /// over their ornaments. Turn each parent into a plain backing and redraw its frame as the last child.
+        /// </summary>
+        private void LayerFramesOnTop()
+        {
+            if (TryGetComponent(out Image panelImage))
+                MoveFrameOnTop(panelImage, PanelBackingColor);
+            if (portraitFrame != null)
+                MoveFrameOnTop(portraitFrame, Color.clear);
+        }
+
+        private static void MoveFrameOnTop(Image owner, Color backing)
+        {
+            if (owner.sprite == null || owner.transform.Find(FrameOverlayName) != null)
+                return;
+            var overlay = new GameObject(
+                FrameOverlayName,
+                typeof(RectTransform),
+                typeof(CanvasRenderer),
+                typeof(Image));
+            overlay.transform.SetParent(owner.transform, false);
+            overlay.transform.SetAsLastSibling();
+            RectTransform rect = (RectTransform)overlay.transform;
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
+            Image frame = overlay.GetComponent<Image>();
+            frame.sprite = owner.sprite;
+            frame.type = owner.type;
+            frame.pixelsPerUnitMultiplier = owner.pixelsPerUnitMultiplier;
+            frame.preserveAspect = owner.preserveAspect;
+            frame.color = new Color(1f, 1f, 1f, owner.color.a);
+            frame.raycastTarget = false;
+
+            // The parent keeps its rect and raycast; it now only paints the backing colour under the content.
+            owner.sprite = null;
+            owner.type = Image.Type.Simple;
+            owner.color = backing;
+        }
 
         public void Initialize(string fighterName)
         {

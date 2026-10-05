@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5225350514278794327}
   - component: {fileID: 4465168608147374058}
   - component: {fileID: 1677566068117539696}
-  - component: {fileID: 2582556003447820955}
+  - component: {fileID: 7760192879315570988}
   m_Layer: 0
   m_Name: DevCheatPanel
   m_TagString: Untagged
@@ -129,7 +129,7 @@ MonoBehaviour:
   addLevelButton: {fileID: 7220440372294955726}
   addExpButton: {fileID: 6817898542029494874}
   resetSectButton: {fileID: 1265355881427841880}
---- !u!114 &2582556003447820955
+--- !u!114 &7760192879315570988
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

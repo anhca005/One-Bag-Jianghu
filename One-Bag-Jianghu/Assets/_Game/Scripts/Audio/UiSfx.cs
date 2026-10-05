@@ -8,6 +8,7 @@ namespace OneBagJianghu.Audio
         public enum Cue
         {
             Click,
+            // Popups no longer play an open/close sound (user decision 2026-10-06); kept so existing prefabs load.
             Popup
         }
 
@@ -24,22 +25,6 @@ namespace OneBagJianghu.Audio
             if (cue == Cue.Click && TryGetComponent(out Button button))
             {
                 button.onClick.AddListener(PlayClick);
-            }
-        }
-
-        private void OnEnable()
-        {
-            if (cue == Cue.Popup)
-            {
-                AudioManager.Instance?.Play("ui_open");
-            }
-        }
-
-        private void OnDisable()
-        {
-            if (cue == Cue.Popup && gameObject.scene.isLoaded)
-            {
-                AudioManager.Instance?.Play("ui_close");
             }
         }
 

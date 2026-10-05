@@ -112,20 +112,62 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         [Test]
-        public void MergeValidatesFormulaAndRemovesLoadout()
+        public void MergeValidatesFormulaAndRemovesInputs()
         {
             PlayerProfile profile = Rich();
             profile.AddItem("sword", 4, uid: "a");
             profile.AddItem("sword", 8, uid: "b");
-            profile.Loadout.Add(new LoadoutPlacement { Uid = "a" });
             var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
             MergePreview preview = service.Preview(profile, "a", "b");
             Assert.AreEqual(4, preview.OutputTier);
             Assert.IsTrue(service.Apply(profile, "a", "b").Success);
             Assert.IsNull(profile.FindItem("a"));
             Assert.IsNull(profile.FindItem("b"));
-            Assert.IsEmpty(profile.Loadout);
             Assert.AreEqual("uncommon", profile.Items[0].Rarity);
+        }
+
+        [Test]
+        public void UpgradeKeepsItemInLoadout()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            OwnedItem equipped = profile.AddItem("sword", 2, uid: "equipped");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = equipped.Uid, X = 2, Y = 3 });
+            var service = new UpgradeService(Upgrades(), Materials(), new Items());
+
+            // Act
+            EconomyResult result = service.Apply(profile, equipped.Uid);
+
+            // Assert
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(3, equipped.Tier);
+            Assert.AreEqual(equipped.Uid, profile.Loadout[0].Uid);
+            Assert.AreSame(equipped, profile.FindItem(equipped.Uid));
+        }
+
+        [Test]
+        public void MergeCandidatesExcludeEquippedUids()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "source");
+            profile.AddItem("sword", 3, uid: "stored-copy");
+            profile.AddItem("sword", 3, uid: "equipped-copy");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "equipped-copy" });
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+
+            // Act
+            IReadOnlyList<OwnedItem> candidates = service.Candidates(profile, "source");
+            MergePreview equippedPreview = service.Preview(profile, "source", "equipped-copy");
+            EconomyResult equippedMerge = service.Apply(profile, "source", "equipped-copy");
+
+            // Assert
+            Assert.AreEqual(1, candidates.Count);
+            Assert.AreEqual("stored-copy", candidates[0].Uid);
+            Assert.IsFalse(equippedPreview.Success);
+            Assert.AreEqual("Gỡ khỏi Bao Phục để Hợp Thành", equippedPreview.Error);
+            Assert.IsFalse(equippedMerge.Success);
+            Assert.IsNotNull(profile.FindItem("equipped-copy"));
         }
 
         [Test]

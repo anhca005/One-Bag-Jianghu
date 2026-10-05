@@ -111,10 +111,14 @@ namespace OneBagJianghu.Economy
         {
             var result = new List<OwnedItem>();
             OwnedItem selected = profile?.FindItem(selectedUid);
-            if (selected == null || selected.Tier < 3 || selected.Rarity == "supreme")
+            if (selected == null
+                || IsEquipped(profile, selectedUid)
+                || selected.Tier < 3
+                || selected.Rarity == "supreme")
                 return result;
             foreach (OwnedItem value in profile.Items)
                 if (value.Uid != selectedUid
+                    && !IsEquipped(profile, value.Uid)
                     && value.ItemId == selected.ItemId
                     && value.Rarity == selected.Rarity
                     && value.Tier >= 3)
@@ -163,6 +167,8 @@ namespace OneBagJianghu.Economy
             second = profile?.FindItem(b);
             if (first == null || second == null)
                 return "Không tìm thấy bản sao để Hợp Thành.";
+            if (IsEquipped(profile, a) || IsEquipped(profile, b))
+                return "Gỡ khỏi Bao Phục để Hợp Thành";
             if (a == b)
                 return "Phải chọn hai bản sao khác nhau.";
             if (first.ItemId != second.ItemId)
@@ -174,6 +180,12 @@ namespace OneBagJianghu.Economy
             if (first.Rarity == "supreme")
                 return "Phẩm Chí Tôn không thể Hợp Thành cao hơn.";
             return null;
+        }
+
+        private static bool IsEquipped(PlayerProfile profile, string uid)
+        {
+            return profile.Loadout.Exists(placement =>
+                string.Equals(placement.Uid, uid, StringComparison.Ordinal));
         }
 
         private Dictionary<string, int> InvestedMaterials(OwnedItem a, OwnedItem b)

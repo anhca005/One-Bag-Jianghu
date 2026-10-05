@@ -7,6 +7,7 @@ using NUnit.Framework;
 using OneBagJianghu.Economy;
 using OneBagJianghu.Onboarding;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OneBagJianghu.Tests.Onboarding
 {
@@ -101,6 +102,23 @@ namespace OneBagJianghu.Tests.Onboarding
 
             // Assert
             Assert.That(fallback == null || fallback is Sprite, Is.True);
+        }
+
+        [Test]
+        public void EncyclopediaRowsExpandToTheirScrollColumn()
+        {
+            // Arrange
+            GameObject prefab = Resources.Load<GameObject>("UI/Popups/EncyclopediaPopup");
+
+            // Act
+            LayoutElement categoryRow = prefab.transform.Find("Panel/Categories Viewport/Categories Content/"
+                + "Category Row Template").GetComponent<LayoutElement>();
+            LayoutElement entryRow = prefab.transform.Find("Panel/Entries Viewport/Entries Content/"
+                + "Entry Row Template").GetComponent<LayoutElement>();
+
+            // Assert
+            Assert.That(categoryRow.flexibleWidth, Is.GreaterThan(0f));
+            Assert.That(entryRow.flexibleWidth, Is.GreaterThan(0f));
         }
 
         private static string LoadResource(string name)

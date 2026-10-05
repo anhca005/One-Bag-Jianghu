@@ -192,5 +192,7 @@ Mỗi nhóm có 1 tiếng **ra đòn** (`atk_*`) phát lúc `Trigger`. Tiếng *
   - **Cố ý để im** (Kenney không có tiếng hợp): Tuyệt Kỹ, hồi máu, bỏng, độc, chảy máu, choáng, Cương Khí, các binh khí nhạc khí/ám khí/quyền. Bổ sung sau bằng bộ CC0 khác nếu người dùng muốn.
 - Người dùng nghe duyệt bộ Kenney; tiếng nào không hợp thì đổi file khác cùng bộ.
 - **2026-10-04, thay tiếng giao diện:** người dùng thấy tiếng lật sách ồn. Đổi sang tiếng click ngắn (dưới 0,15 giây), giữ nguyên tên file và `.meta` nên không cần dựng lại thư viện:
-  - `ui_click` ← UI Audio `click3`, `click4`; `ui_open`/`ui_close` ← Interface `open_001`/`close_001`; `dialogue_next` ← Interface `tick_004`, `tick_002`.
+  - `ui_click` ← UI Audio `switch2` (người dùng chọn 2026-10-06, cả hai biến thể); `ui_open`/`ui_close` ← Interface `open_001`/`close_001`; `dialogue_next` ← Interface `tick_004`, `tick_002`.
   - Kéo thả: `item_pick` ← UI Audio `mouseclick1`, `click5`; `item_drop` ← `mouserelease1`, `click2`; `item_drop_bad` ← Interface `back_002`.
+- **2026-10-06:** người dùng chọn tiếng gạt công tắc (UI Audio `switch2`) cho mọi tiếng bấm: `ui_click`, `ui_open`, `ui_close`, `dialogue_next`, `stage_select`.
+- **2026-10-06:** bỏ hẳn tiếng mở/đóng popup (`ui_open`, `ui_close` không còn được gọi; file vẫn giữ trong thư viện).

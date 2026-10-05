@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using OneBagJianghu.Audio;
 using OneBagJianghu.UI.Common;
 
 namespace OneBagJianghu.UI.Home
@@ -111,12 +112,15 @@ namespace OneBagJianghu.UI.Home
         public void OnPointerUp(PointerEventData eventData) => plaque.anchoredPosition = plaquePosition;
         public void OnPointerClick(PointerEventData eventData)
         {
+            // Hotspots are not Buttons, so they play their own click (popups no longer make an open sound).
             if (!locked)
             {
+                AudioManager.Instance?.Play("ui_click");
                 onClick.Invoke();
                 return;
             }
 
+            AudioManager.Instance?.Play("ui_error");
             if (shakeRoutine != null)
                 StopCoroutine(shakeRoutine);
             shakeRoutine = StartCoroutine(Shake());

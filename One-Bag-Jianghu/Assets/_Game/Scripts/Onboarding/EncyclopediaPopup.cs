@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using OneBagJianghu.Audio;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Popups;
 using UnityEngine;
@@ -15,12 +14,21 @@ namespace OneBagJianghu.Onboarding
         [SerializeField]
         private RectTransform entryContent;
         [SerializeField]
+        private UiButton categoryRowTemplate;
+        [SerializeField]
+        private UiButton entryRowTemplate;
+        [SerializeField]
         private Text selectedName;
         [SerializeField]
         private Text selectedDescription;
         [SerializeField]
         private UiButton closeButton;
         private EncyclopediaCatalog catalog;
+        private Image selectedCategoryRow;
+        private Image selectedEntryRow;
+        // Rows are plain paper strips; the builder uses NormalRowColor for the template.
+        public static readonly Color NormalRowColor = new Color(.24f, .18f, .12f, .08f);
+        private static readonly Color SelectedRowColor = new Color(.86f, .64f, .25f, .55f);
 
         protected override void Awake()
         {
@@ -30,67 +38,78 @@ namespace OneBagJianghu.Onboarding
 
         protected override void OnSetup(object data)
         {
-            AudioManager.Instance?.Play("ui_open");
             catalog = data as EncyclopediaCatalog ?? EncyclopediaCatalog.Load();
             RebuildCategories();
         }
 
         private void RebuildCategories()
         {
-            Clear(categoryContent);
+            ClearRows(categoryContent, categoryRowTemplate.transform);
             List<string> categories = catalog.Entries.Select(value => value.Category).Distinct().ToList();
+            UiButton firstRow = null;
             foreach (string category in categories)
-                CreateButton(categoryContent, category, () => ShowCategory(category));
-            if (categories.Count > 0)
-                ShowCategory(categories[0]);
+            {
+                UiButton row = CreateRow(categoryContent, categoryRowTemplate, category);
+                if (firstRow == null)
+                    firstRow = row;
+                row.onClick.AddListener(() => ShowCategory(category, row.GetComponent<Image>()));
+            }
+            if (firstRow != null)
+                ShowCategory(categories[0], firstRow.GetComponent<Image>());
         }
 
-        private void ShowCategory(string category)
+        private void ShowCategory(string category, Image categoryRow)
         {
-            Clear(entryContent);
+            SetSelected(ref selectedCategoryRow, categoryRow);
+            ClearRows(entryContent, entryRowTemplate.transform);
             List<EncyclopediaEntry> entries = catalog.Entries
                 .Where(value => value.Category == category)
                 .ToList();
+            UiButton firstRow = null;
             foreach (EncyclopediaEntry entry in entries)
-                CreateButton(entryContent, entry.Name, () => Select(entry));
-            if (entries.Count > 0)
-                Select(entries[0]);
+            {
+                UiButton row = CreateRow(entryContent, entryRowTemplate, entry.Name);
+                if (firstRow == null)
+                    firstRow = row;
+                row.onClick.AddListener(() => Select(entry, row.GetComponent<Image>()));
+            }
+            if (firstRow != null)
+                Select(entries[0], firstRow.GetComponent<Image>());
         }
 
-        private void Select(EncyclopediaEntry entry)
+        private void Select(EncyclopediaEntry entry, Image entryRow)
         {
-            AudioManager.Instance?.Play("ui_click");
+            SetSelected(ref selectedEntryRow, entryRow);
             selectedName.text = entry.Name;
             selectedDescription.text = entry.Description;
         }
 
-        private static void CreateButton(Transform parent, string label, UnityEngine.Events.UnityAction action)
+        private static UiButton CreateRow(Transform parent, UiButton template, string label)
         {
-            GameObject root = new GameObject(label, typeof(RectTransform), typeof(Image), typeof(Button));
-            root.transform.SetParent(parent, false);
-            root.GetComponent<Image>().color = new Color(.83f, .77f, .64f, .85f);
-            Button button = root.GetComponent<Button>();
-            button.onClick.AddListener(action);
-            LayoutElement layout = root.AddComponent<LayoutElement>();
-            layout.preferredHeight = 58f;
-            Text text = new GameObject("Label", typeof(RectTransform), typeof(Text)).GetComponent<Text>();
-            text.transform.SetParent(root.transform, false);
-            text.font = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            text.fontSize = 22;
-            text.alignment = TextAnchor.MiddleCenter;
-            text.color = new Color(.12f, .1f, .08f);
-            text.text = label;
-            RectTransform rect = text.rectTransform;
-            rect.anchorMin = Vector2.zero;
-            rect.anchorMax = Vector2.one;
-            rect.offsetMin = new Vector2(8f, 4f);
-            rect.offsetMax = new Vector2(-8f, -4f);
+            UiButton row = Instantiate(template, parent);
+            row.name = label;
+            row.gameObject.SetActive(true);
+            row.SetLabel(label);
+            return row;
         }
 
-        private static void Clear(Transform parent)
+        private static void SetSelected(ref Image current, Image next)
+        {
+            if (current != null)
+                current.color = NormalRowColor;
+            current = next;
+            if (current != null)
+                current.color = SelectedRowColor;
+        }
+
+        private static void ClearRows(Transform parent, Transform template)
         {
             for (int i = parent.childCount - 1; i >= 0; i--)
-                Destroy(parent.GetChild(i).gameObject);
+            {
+                Transform child = parent.GetChild(i);
+                if (child != template)
+                    Destroy(child.gameObject);
+            }
         }
     }
 }

@@ -13,6 +13,18 @@ namespace OneBagJianghu.Audio
         private readonly Dictionary<string, float> lastPlayed = new Dictionary<string, float>();
         private readonly HashSet<string> warnedKeys = new HashSet<string>();
         private SfxLibrary library;
+        // The button-type cues all use the same click. Pressing "Đóng" fires the button click and the popup close
+        // cue in the same frame; play one click, not two.
+        private const float ButtonCueWindow = .08f;
+        private static readonly HashSet<string> ButtonCues = new HashSet<string>
+        {
+            "ui_click",
+            "ui_open",
+            "ui_close",
+            "dialogue_next",
+            "stage_select"
+        };
+        private float lastButtonCue = float.NegativeInfinity;
         private MusicPlayer musicPlayer;
 
         public static AudioManager Instance => instance;
@@ -44,10 +56,15 @@ namespace OneBagJianghu.Audio
                 return;
             if (CountPlaying(key) >= MaximumSameKey)
                 return;
+            bool buttonCue = ButtonCues.Contains(key);
+            if (buttonCue && now - lastButtonCue < ButtonCueWindow)
+                return;
             Voice voice = FindVoice();
             if (voice == null)
                 return;
             lastPlayed[key] = now;
+            if (buttonCue)
+                lastButtonCue = now;
             voice.Key = key;
             voice.VolumeScale = entry.BaseVolume * Mathf.Max(0f, volumeScale);
             voice.Source.clip = clip;

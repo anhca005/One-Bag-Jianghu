@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 531636847998214661}
   - component: {fileID: 1623742671407126213}
   - component: {fileID: 4768242467416195080}
-  - component: {fileID: 1183329309721399176}
+  - component: {fileID: 6807860733314263662}
   m_Layer: 0
   m_Name: SectSelectPopup
   m_TagString: Untagged
@@ -192,7 +192,7 @@ MonoBehaviour:
   descriptionText: {fileID: 6308925843982877543}
   confirmButton: {fileID: 1375880671668759595}
   cancelButton: {fileID: 2938681381175235451}
---- !u!114 &1183329309721399176
+--- !u!114 &6807860733314263662
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

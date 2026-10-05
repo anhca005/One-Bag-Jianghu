@@ -107,13 +107,20 @@ namespace OneBagJianghu.UI.Gameplay
 
         private void HandleBattleResult(BattleLog log, OpponentInfo opponent)
         {
-            opponentName = string.IsNullOrWhiteSpace(opponent?.Name) ? "Đối thủ" : opponent.Name;
+            opponentName = ShortFighterName(opponent?.Name);
+            // The plaque above the portrait only has room for the name: no sect key, no "· Tâm Pháp" suffix.
             if (log.Names.Count > 1)
-                log.Names[1] = string.IsNullOrWhiteSpace(opponent?.Sect) ? opponentName : opponentName
-                    + " • "
-                    + opponent.Sect;
+                log.Names[1] = opponentName;
             ApplyKnownRarities(log);
             PlayBattle(log);
+        }
+
+        private static string ShortFighterName(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name))
+                return "Đối thủ";
+            int separator = name.IndexOfAny(new[] { '·', '•' });
+            return separator > 0 ? name.Substring(0, separator).Trim() : name.Trim();
         }
 
         private void ApplyKnownRarities(BattleLog log)

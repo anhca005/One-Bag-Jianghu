@@ -141,7 +141,7 @@ namespace OneBagJianghu.EditorTools.Building
 
             // Storage grid.
             RectTransform viewport = UiBuild.Image(panel, "Grid Viewport", new Color(0f, 0f, 0f, .04f)).rectTransform;
-            Anchor(viewport, .02f, .08f, .62f, .78f);
+            Anchor(viewport, .02f, .08f, .62f, .64f);
             viewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             RectTransform content = UiBuild.Rect(viewport, "Grid Content");
             PrepareGrid(content);
@@ -158,6 +158,23 @@ namespace OneBagJianghu.EditorTools.Building
                 "Item Prefab");
             cell.gameObject.SetActive(false);
             item.gameObject.SetActive(false);
+
+            // Equipped items: a compact read-only row above the storage grid.
+            Text equippedLabel = Text(panel, "Equipped Label", "Đang trang bị", 18, .02f, .65f, .14f, .78f);
+            equippedLabel.alignment = TextAnchor.MiddleLeft;
+            RectTransform equippedViewport = UiBuild.Image(
+                panel,
+                "Equipped Viewport",
+                new Color(0f, 0f, 0f, .04f)).rectTransform;
+            Anchor(equippedViewport, .14f, .65f, .62f, .78f);
+            equippedViewport.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            RectTransform equippedContent = UiBuild.Rect(equippedViewport, "Equipped Content");
+            PrepareEquippedContent(equippedContent);
+            ScrollRect equippedScroll = equippedViewport.gameObject.AddComponent<ScrollRect>();
+            equippedScroll.viewport = equippedViewport;
+            equippedScroll.content = equippedContent;
+            equippedScroll.horizontal = true;
+            equippedScroll.vertical = false;
 
             // The description grows inside a clipped, independently scrollable viewport.
             RectTransform detailViewport = UiBuild.Image(panel, "Detail Viewport", Color.clear).rectTransform;
@@ -196,6 +213,7 @@ namespace OneBagJianghu.EditorTools.Building
             UiButton sell = Button(panel, "Sell", "Bán", false, .72f, .15f);
             UiButton close = Button(panel, "Close", "Đóng", false, .89f, .15f);
             BindStorage(popup, header, silver, reputation, warning, filter, sort, scroll, content, cell, item);
+            Set(popup, "equippedContent", equippedContent);
             Set(popup, "detailText", detail);
             Set(popup, "costText", cost);
             Set(popup, "upgradeButton", upgrade);
@@ -217,6 +235,15 @@ namespace OneBagJianghu.EditorTools.Building
             layout.childForceExpandHeight = false;
             layout.childForceExpandWidth = true;
             content.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+        }
+
+        private static void PrepareEquippedContent(RectTransform content)
+        {
+            content.anchorMin = new Vector2(0f, .5f);
+            content.anchorMax = new Vector2(0f, .5f);
+            content.pivot = new Vector2(0f, .5f);
+            content.anchoredPosition = Vector2.zero;
+            content.sizeDelta = new Vector2(80f, 0f);
         }
 
         private static void ConfigureDetailScroll(

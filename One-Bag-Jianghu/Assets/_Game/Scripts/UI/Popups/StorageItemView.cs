@@ -28,6 +28,7 @@ namespace OneBagJianghu.UI.Popups
         private StoragePopup owner;
         private string key;
         private bool material;
+        private bool draggable;
         private bool dragging;
         private Vector2 origin, originPivot;
         private int originSibling;
@@ -39,11 +40,13 @@ namespace OneBagJianghu.UI.Popups
             Sprite sprite,
             Color color,
             float alpha,
-            string rarity = null)
+            string rarity = null,
+            bool canDrag = true)
         {
             owner = popup;
             key = id;
             material = isMaterial;
+            draggable = canDrag;
             nameText.text = label;
             badgeText.text = badge;
             border.color = color;
@@ -67,6 +70,8 @@ namespace OneBagJianghu.UI.Popups
 
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (!draggable)
+                return;
             AudioManager.Instance?.Play("item_pick");
             origin = ((RectTransform)transform).anchoredPosition;
             originPivot = ((RectTransform)transform).pivot;
@@ -80,6 +85,8 @@ namespace OneBagJianghu.UI.Popups
 
         public void OnDrag(PointerEventData eventData)
         {
+            if (!dragging)
+                return;
             ((RectTransform)transform).position = eventData.position;
             owner.PreviewDrop(key, material, eventData.position, eventData.pressEventCamera);
         }

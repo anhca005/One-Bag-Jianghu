@@ -272,24 +272,49 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Build<EncyclopediaPopup>(new Vector2(1180f, 820f), overwrite, (popup, panel) =>
             {
-                AddText(panel, "Title", "Giang Hồ Bách Khoa", 40,
+                // The title uses the display face while all reading text stays in the body face.
+                Text title = AddText(panel, "Title", "Giang Hồ Bách Khoa", 40,
                     new Vector2(.08f, .9f), new Vector2(.92f, .98f));
-                RectTransform categories = AddScrollColumn(panel, "Categories", .05f, .31f);
-                RectTransform entries = AddScrollColumn(panel, "Entries", .34f, .61f);
+                UiFonts.Apply(title, UiFontRole.Display);
+
+                // Two fixed-width scroll lists leave the remaining third for a roomy detail page.
+                RectTransform categories = AddEncyclopediaScrollColumn(panel, "Categories", .04f, .3f);
+                RectTransform entries = AddEncyclopediaScrollColumn(panel, "Entries", .32f, .6f);
+                UiButton categoryTemplate = AddEncyclopediaRowTemplate(categories, "Category Row Template");
+                UiButton entryTemplate = AddEncyclopediaRowTemplate(entries, "Entry Row Template");
+
+                // Detail copy begins at the same top edge and reads downward like a paper page.
                 Text selectedName = AddText(panel, "Selected Name", string.Empty, 32,
-                    new Vector2(.64f, .73f), new Vector2(.95f, .85f));
+                    new Vector2(.63f, .74f), new Vector2(.96f, .86f), TextAnchor.UpperLeft);
+                UiFonts.Apply(selectedName, UiFontRole.Body);
                 Text description = AddText(panel, "Description", string.Empty, 25,
-                    new Vector2(.64f, .2f), new Vector2(.95f, .72f), TextAnchor.UpperLeft);
+                    new Vector2(.63f, .18f), new Vector2(.96f, .73f), TextAnchor.UpperLeft);
+                UiFonts.Apply(description, UiFontRole.Body);
                 UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(.8f, .1f));
                 UiBuild.Set(popup, "categoryContent", categories);
                 UiBuild.Set(popup, "entryContent", entries);
+                UiBuild.Set(popup, "categoryRowTemplate", categoryTemplate);
+                UiBuild.Set(popup, "entryRowTemplate", entryTemplate);
                 UiBuild.Set(popup, "selectedName", selectedName);
                 UiBuild.Set(popup, "selectedDescription", description);
                 UiBuild.Set(popup, "closeButton", close);
             });
         }
 
-        private static RectTransform AddScrollColumn(Transform parent, string name, float minX, float maxX)
+        [MenuItem("One Bag Jianghu/Build/Encyclopedia Popup (Overwrite)")]
+        public static void BuildEncyclopediaOverwrite()
+        {
+            CommonUiPrefabBuilder.Build(false);
+            UiBuild.EnsureFolder(Folder);
+            BuildEncyclopedia(true);
+            AssetDatabase.SaveAssets();
+        }
+
+        private static RectTransform AddEncyclopediaScrollColumn(
+            Transform parent,
+            string name,
+            float minX,
+            float maxX)
         {
             Image viewport = UiBuild.Image(parent, name + " Viewport", new Color(1f, 1f, 1f, .08f));
             UiBuild.Anchors(viewport.rectTransform, new Vector2(minX, .12f), new Vector2(maxX, .87f));
@@ -299,9 +324,14 @@ namespace OneBagJianghu.EditorTools.Building
             content.anchorMin = new Vector2(0f, 1f);
             content.anchorMax = Vector2.one;
             content.pivot = new Vector2(.5f, 1f);
+            // Exactly as wide as the viewport; a leftover default width pushed rows past the mask on the left.
+            content.sizeDelta = Vector2.zero;
+            content.anchoredPosition = Vector2.zero;
             VerticalLayoutGroup layout = content.gameObject.AddComponent<VerticalLayoutGroup>();
-            layout.spacing = 8f;
+            layout.spacing = 6f;
             layout.padding = new RectOffset(8, 8, 8, 8);
+            layout.childControlWidth = true;
+            layout.childForceExpandWidth = true;
             layout.childControlHeight = false;
             layout.childForceExpandHeight = false;
             ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>();
@@ -309,7 +339,43 @@ namespace OneBagJianghu.EditorTools.Building
             scroll.content = content;
             scroll.viewport = viewport.rectTransform;
             scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.scrollSensitivity = 32f;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
             return content;
+        }
+
+        private static UiButton AddEncyclopediaRowTemplate(Transform parent, string name)
+        {
+            // A light paper row with ink text: the dark ornate buttons made a long list heavy and unreadable.
+            Image background = UiBuild.Image(parent, name, EncyclopediaPopup.NormalRowColor);
+            background.rectTransform.sizeDelta = new Vector2(0f, 48f);
+            LayoutElement layout = background.gameObject.AddComponent<LayoutElement>();
+            layout.preferredHeight = 48f;
+            layout.flexibleWidth = 1f;
+            Button button = background.gameObject.AddComponent<Button>();
+            button.targetGraphic = background;
+            button.transition = Selectable.Transition.None;
+
+            Text label = UiBuild.Text(
+                background.transform,
+                "Label",
+                name,
+                22,
+                TextAnchor.MiddleLeft,
+                UiFontRole.Body);
+            label.color = UiBuild.Ink;
+            label.raycastTarget = false;
+            UiBuild.Stretch(label.rectTransform);
+            label.rectTransform.offsetMin = new Vector2(14f, 0f);
+            label.rectTransform.offsetMax = new Vector2(-10f, 0f);
+            label.gameObject.AddComponent<SingleLineFit>().Configure(22, 14);
+
+            UiButton row = background.gameObject.AddComponent<UiButton>();
+            UiBuild.Set(row, "button", button);
+            UiBuild.Set(row, "label", label);
+            background.gameObject.SetActive(false);
+            return row;
         }
 
         private static void AddSectionHeader(Transform panel, string name, string label, float top)

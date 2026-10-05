@@ -76,6 +76,7 @@ namespace OneBagJianghu.UI.Home
             sectHotspot.OnClick.AddListener(OpenSect);
             encyclopediaHotspot.OnClick.AddListener(OpenEncyclopedia);
             settingsButton.onClick.AddListener(OpenSettings);
+            settingsButton.onClick.AddListener(PlayClick);
         }
 
         private void Start()
@@ -153,6 +154,7 @@ namespace OneBagJianghu.UI.Home
             sectHotspot.OnClick.RemoveListener(OpenSect);
             encyclopediaHotspot.OnClick.RemoveListener(OpenEncyclopedia);
             settingsButton.onClick.RemoveListener(OpenSettings);
+            settingsButton.onClick.RemoveListener(PlayClick);
         }
 
         public void RefreshBattleAvailability()
@@ -221,7 +223,8 @@ namespace OneBagJianghu.UI.Home
             RefreshPower();
         }
 
-        private void RefreshPower()
+        /// <summary>Refreshes the combat power displayed on Home.</summary>
+        public void RefreshPower()
         {
             GameSession session = GameBootstrap.Session;
             if (powerText != null && session?.Profile != null)
@@ -244,6 +247,9 @@ namespace OneBagJianghu.UI.Home
         }
 
         private static void OpenSettings() => PopupManager.Show<SettingsPopup>();
+
+        // The settings icon is a plain Button without UiSfx.
+        private static void PlayClick() => AudioManager.Instance?.Play("ui_click");
         private static void OpenEncyclopedia() => PopupManager.Show<EncyclopediaPopup>();
         private void OpenStorage()
         {
@@ -293,6 +299,7 @@ namespace OneBagJianghu.UI.Home
             if (this == null)
                 return;
             RefreshCurrencies();
+            RefreshPower();
         }
 
         private void RefreshCurrencies()
