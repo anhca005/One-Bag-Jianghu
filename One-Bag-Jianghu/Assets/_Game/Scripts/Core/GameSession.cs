@@ -19,6 +19,24 @@ namespace OneBagJianghu.Core
     public sealed class ProfileStore
     {
         public const string HeroNameKey = "OneBagJianghu.HeroName";
+
+        /// <summary>
+        /// Where the profile is saved. The editor and a built game share Application.persistentDataPath,
+        /// so builds use their own sub-folder and never pick up the editor's progress.
+        /// </summary>
+        public static string SaveDirectory
+        {
+            get
+            {
+#if UNITY_EDITOR
+                return Application.persistentDataPath;
+#else
+                string directory = Path.Combine(Application.persistentDataPath, "save");
+                Directory.CreateDirectory(directory);
+                return directory;
+#endif
+            }
+        }
         public const string SectIdKey = "OneBagJianghu.SectId";
         private readonly string path;
         private readonly Func<string, string> readLegacy;
@@ -44,7 +62,7 @@ namespace OneBagJianghu.Core
             TextAsset asset = Resources.Load<TextAsset>("Data/starter");
             if (asset == null)
                 throw new InvalidOperationException("Could not load Resources/Data/starter.json.");
-            return new ProfileStore(Path.Combine(Application.persistentDataPath,
+            return new ProfileStore(Path.Combine(SaveDirectory,
                 "profile.json"),
                 StarterKit.Parse(asset.text),
                 key => PlayerPrefs.GetString(key,
@@ -278,10 +296,10 @@ namespace OneBagJianghu.Core
         {
             string[] paths =
             {
-                Path.Combine(Application.persistentDataPath, "profile.json"),
-                Path.Combine(Application.persistentDataPath, "profile.json.bak"),
-                Path.Combine(Application.persistentDataPath, "profile.json.tmp"),
-                Path.Combine(Application.persistentDataPath, "loadout.json")
+                Path.Combine(ProfileStore.SaveDirectory, "profile.json"),
+                Path.Combine(ProfileStore.SaveDirectory, "profile.json.bak"),
+                Path.Combine(ProfileStore.SaveDirectory, "profile.json.tmp"),
+                Path.Combine(ProfileStore.SaveDirectory, "loadout.json")
             };
             var deleted = new List<string>();
             foreach (string path in paths)
@@ -307,15 +325,6 @@ namespace OneBagJianghu.Core
                 (deleted.Count == 0 ? "none" : string.Join(",", deleted)));
         }
 
-        public int PlayerPower()
-        {
-            EnsureProfile();
-            var items = new List<OwnedItem>(Profile.Loadout.Count);
-            foreach (LoadoutPlacement placement in Profile.Loadout)
-                items.Add(Profile.RequireItem(placement.Uid));
-            return PowerCatalog.LoadFromResources().Fighter(items, Profile.HeroLevel);
-        }
-
         private static PlayerProfile CreateFreshProfile()
         {
             TextAsset asset = Resources.Load<TextAsset>("Data/starter");
@@ -327,6 +336,16 @@ namespace OneBagJianghu.Core
             return profile;
         }
 #endif
+
+        public int PlayerPower()
+        {
+            EnsureProfile();
+            var items = new List<OwnedItem>(Profile.Loadout.Count);
+            foreach (LoadoutPlacement placement in Profile.Loadout)
+                items.Add(Profile.RequireItem(placement.Uid));
+            return PowerCatalog.LoadFromResources().Fighter(items, Profile.HeroLevel);
+        }
+
         public static MaterialCatalog LoadMaterialCatalog()
         {
             TextAsset asset = Resources.Load<TextAsset>("Data/materials");

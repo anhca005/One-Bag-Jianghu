@@ -2,6 +2,8 @@ using OneBagJianghu.Bag;
 using OneBagJianghu.Bag.View;
 using UnityEngine;
 using UnityEngine.UI;
+using OneBagJianghu.Economy;
+using OneBagJianghu.UI.Common;
 
 namespace OneBagJianghu.Battle.Replay.View
 {
@@ -26,6 +28,22 @@ namespace OneBagJianghu.Battle.Replay.View
         private static Sprite fillSprite;
         private float flashUntil;
         private int statusUntil;
+        public string ItemId
+        {
+            get;
+            private set;
+        }
+        public string Rarity
+        {
+            get;
+            private set;
+        }
+        public int Tier
+        {
+            get;
+            private set;
+        }
+        public string TooltipText => BuildTooltipText();
         public int Uid
         {
             get;
@@ -48,7 +66,15 @@ namespace OneBagJianghu.Battle.Replay.View
             string rarity)
         {
             Uid = uid;
+            BindItemData(itemId, rarity, tier);
             EnsureFillSprite();
+            background.raycastTarget = true;
+            icon.raycastTarget = false;
+            cooldownOverlay.raycastTarget = false;
+            rarityFrame.raycastTarget = false;
+            flashOverlay.raycastTarget = false;
+            nameText.raycastTarget = false;
+            statusText.raycastTarget = false;
             background.color = BagViewStyle.Fill(rarity);
             rarityFrame.color = BagViewStyle.Rarity(rarity);
             nameText.text = itemName + (tier > 1 ? "  T" + tier : "");
@@ -73,6 +99,30 @@ namespace OneBagJianghu.Battle.Replay.View
             statusText.gameObject.SetActive(false);
             cooldownOverlay.gameObject.SetActive(false);
             flashOverlay.gameObject.SetActive(false);
+        }
+
+        public void BindItemData(string itemId, string rarity, int tier)
+        {
+            ItemId = itemId;
+            Rarity = rarity;
+            Tier = tier;
+        }
+
+        public void SetTooltip(ItemTooltip tooltip)
+        {
+            HoverTooltipTarget target = GetComponent<HoverTooltipTarget>();
+            if (target == null)
+                target = gameObject.AddComponent<HoverTooltipTarget>();
+            target.Initialize(tooltip, BuildTooltipText);
+        }
+
+        private string BuildTooltipText()
+        {
+            if (string.IsNullOrWhiteSpace(ItemId))
+                return string.Empty;
+            string description = ItemDescriber.Describe(ItemId, Rarity, Tier);
+            int power = PowerCatalog.LoadFromResources().ItemPower(ItemId, Tier, Rarity);
+            return ItemTooltip.WithPower(description, power);
         }
 
         public void Flash(bool ultimate)

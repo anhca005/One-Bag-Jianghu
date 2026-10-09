@@ -125,6 +125,7 @@ namespace OneBagJianghu.UI.Popups
             sfxVolumeText.text = FormatPercent(settings.SfxVolume);
             SetSliderAlpha(settings.Muted ? .5f : 1f);
             frameRateDropdown.interactable = !settings.VSync;
+            resolutionDropdown.interactable = !settings.Fullscreen;
         }
 
         private int FindResolutionIndex()

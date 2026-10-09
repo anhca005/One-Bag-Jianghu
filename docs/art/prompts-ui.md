@@ -99,3 +99,19 @@ Màu theo bảng thuật ngữ: Phàm xám · Lương lục · Tinh lam · Tuy�
 - 7 huy hiệu môn phái (triện vuông, 1024x1024): khi làm hệ thống cấp Hiệp Khách + Môn Phái (quyết định #21).
 - Bản đồ chọn ải Hành Tẩu Giang Hồ, sảnh Luận Kiếm Đài: khi làm hai màn đó.
 - Chữ thư pháp "Thắng/Bại", logo game: AI vẽ chữ Việt không chuẩn, dùng font trong game thay vì hình.
+
+## Icon game (biểu tượng ứng dụng)
+
+Icon của file chạy trên Windows, thanh taskbar và trang cửa hàng. Icon được hiện từ 16×16 đến 256×256 px, nên phải **một hình khối lớn, rõ ở cỡ nhỏ**, không chi tiết vụn, không chữ.
+
+- Ý tưởng: tên game là *Nhất Nang Giang Hồ*, nên hình chính là **một tay nải vải** (cái túi) buộc trên một thanh kiếm, trên nền đĩa giấy hoặc mực, kèm một con dấu đỏ nhỏ.
+- Lưu vào `One-Bag-Jianghu/Assets/_Game/Textures2D/UI/`.
+- Gán trong Unity: **Project Settings → Player → Icon → Default Icon**.
+- Gửi kèm `docs/art/reference/01-style-board-thuy-mac.png` và tin mở đầu ở đầu file này. Làm 2–3 bản rồi chọn.
+- Chọn xong thì thu nhỏ còn 32×32 để kiểm: vẫn phải nhận ra cái túi và thanh kiếm.
+
+| # | File | Kích thước | Prompt |
+|---|---|---|---|
+| 41 | `app_icon.png` | 1024x1024 | `Game app icon, square 1024x1024. One bold central subject filling about 80% of the frame: a knotted travelling cloth bundle (a wanderer's bag) tied to the end of a sheathed sword carried diagonally from bottom-left to top-right. The bundle is deep ink black cloth with an ochre-gold knot; the sword scabbard is dark lacquer with a gold guard. Behind them, a solid round rice-paper disc with a rough dry-brush ink rim, and a small vermilion seal stamp at the lower right of the disc. Thick confident brush outlines, flat ink washes, high contrast, very simple silhouette that stays readable at 32x32 pixels. No text, no letters, no small details, no thin lines. Transparent background outside the disc.` |
+| 42 | `app_icon_square.png` | 1024x1024 | `Same subject and style as the previous icon, but the background fills the whole square edge to edge: aged rice paper with a soft light-ink wash and a faint misty mountain at the bottom, a thick deep-ink brush border around the square. The bundle and sword stay large and centered. No text.` (bản nền kín, hợp với trang cửa hàng) |
+| 43 | `app_icon_alt.png` | 1024x1024 | `Alternative game app icon, square 1024x1024: a large vermilion seal stamp shape as the background with rough carved edges; on it, in deep ink and ochre gold, the silhouette of a cloth travelling bundle with a sword hilt sticking out of its knot. Bold flat shapes, readable at 32x32 pixels, no text, no characters, transparent background around the seal.` |

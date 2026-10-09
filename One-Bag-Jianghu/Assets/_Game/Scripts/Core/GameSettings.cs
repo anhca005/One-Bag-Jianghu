@@ -174,10 +174,18 @@ namespace OneBagJianghu.Core
             AudioListener.volume = Muted ? 0f : MasterVolume;
             QualitySettings.vSyncCount = VSync ? 1 : 0;
             Application.targetFrameRate = VSync ? -1 : FrameRateLimit;
+            if (Fullscreen)
+            {
+                // Fullscreen always uses the display's own resolution: a scaled borderless window
+                // renders with a wrong gamma (yellowed colors). The chosen resolution applies to windowed mode.
+                Screen.SetResolution(Display.main.systemWidth, Display.main.systemHeight,
+                    FullScreenMode.FullScreenWindow);
+                return;
+            }
+
             int width = ResolutionWidth == 0 ? Screen.width : ResolutionWidth;
             int height = ResolutionWidth == 0 ? Screen.height : ResolutionHeight;
-            FullScreenMode mode = Fullscreen ? FullScreenMode.FullScreenWindow : FullScreenMode.Windowed;
-            Screen.SetResolution(width, height, mode);
+            Screen.SetResolution(width, height, FullScreenMode.Windowed);
         }
 
         private static int NormalizeFrameRate(int value)

@@ -82,10 +82,13 @@ namespace OneBagJianghu.Battle.Replay.View
         private bool completionRaised;
         private int displayedTenth = -1;
         private bool logExpanded;
+        private ItemTooltip itemTooltip;
         public event System.Action<int> Completed;
         public event System.Action ExitRequested;
         private void Awake()
         {
+            itemTooltip = ItemTooltip.CreateRuntime(transform);
+            itemTooltip.EnsureAbove(GetComponentInParent<Canvas>());
             playButton.onClick.AddListener(TogglePlay);
             speed1Button.onClick.AddListener(() => SetSpeed(1f));
             speed2Button.onClick.AddListener(() => SetSpeed(2f));
@@ -144,6 +147,11 @@ namespace OneBagJianghu.Battle.Replay.View
             stageLabel.text = value;
         }
 
+        public void HideTooltip()
+        {
+            itemTooltip?.Hide();
+        }
+
         private void BindBag(int side, ItemCatalog catalog, RectTransform parent)
         {
             float pitch = ReplayStyle.CellSize + ReplayStyle.CellGap;
@@ -177,6 +185,7 @@ namespace OneBagJianghu.Battle.Replay.View
                     new Vector2((item.W ?? 1) * pitch - ReplayStyle.CellGap,
                     (item.H ?? 1) * pitch - ReplayStyle.CellGap);
                 view.Initialize(item.Uid, item.Id, itemName, item.Tier ?? 1, rarity);
+                view.SetTooltip(itemTooltip);
                 itemViews[item.Uid] = view;
             }
         }
@@ -215,6 +224,7 @@ namespace OneBagJianghu.Battle.Replay.View
             if (!completionRaised && now >= log.DurationMs)
             {
                 completionRaised = true;
+                itemTooltip.Hide();
                 string winner = log.Winner < 0 ? "draw" : log.Names[log.Winner];
                 Debug.Log($"[Battle] End winner={winner}, durationMs={log.DurationMs}, events={timeline.Events.Count}");
                 Completed?.Invoke(log.Winner);
@@ -338,6 +348,7 @@ namespace OneBagJianghu.Battle.Replay.View
                     height * pitch - ReplayStyle.CellGap);
                 ReplayItemView view = rect.gameObject.AddComponent<ReplayItemView>();
                 view.Initialize(item.Uid, item.Id, name, item.Tier ?? 1, rarity);
+                view.SetTooltip(itemTooltip);
                 itemViews[item.Uid] = view;
             }
         }

@@ -28,6 +28,82 @@ namespace OneBagJianghu.UI.Common
         public string Text => descriptionText == null ? string.Empty : descriptionText.text;
         public Canvas OverlayCanvas => overlayCanvas;
 
+        public static ItemTooltip CreateRuntime(Transform parent)
+        {
+            // Prefer a copy of the shop's built tooltip, so every screen shows the same frame and clipping.
+            ItemTooltip shared = SharedTooltip();
+            if (shared != null)
+            {
+                ItemTooltip copy = Instantiate(shared, parent, false);
+                copy.name = "Battle Item Tooltip";
+                Stretch((RectTransform)copy.transform);
+                copy.Hide();
+                return copy;
+            }
+
+            var root = new GameObject("Battle Item Tooltip", typeof(RectTransform), typeof(Canvas));
+            root.transform.SetParent(parent, false);
+            RectTransform rootRect = root.GetComponent<RectTransform>();
+            Stretch(rootRect);
+            Canvas canvas = root.GetComponent<Canvas>();
+            canvas.overrideSorting = true;
+
+            var paperObject = new GameObject("Paper", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            paperObject.transform.SetParent(root.transform, false);
+            Image paper = paperObject.GetComponent<Image>();
+            paper.color = new Color(.94f, .88f, .72f, .98f);
+            RectTransform panelRect = paper.rectTransform;
+            panelRect.anchorMin = Vector2.zero;
+            panelRect.anchorMax = Vector2.zero;
+            panelRect.pivot = new Vector2(0f, 1f);
+            panelRect.sizeDelta = new Vector2(440f, 420f);
+
+            RectTransform viewport = CreateRect(panelRect, "Viewport");
+            Stretch(viewport);
+            viewport.offsetMin = new Vector2(HorizontalInset, BottomInset);
+            viewport.offsetMax = new Vector2(-HorizontalInset, -TopInset);
+            viewport.gameObject.AddComponent<RectMask2D>();
+            RectTransform content = CreateRect(viewport, "Content");
+            content.anchorMin = new Vector2(0f, 1f);
+            content.anchorMax = new Vector2(1f, 1f);
+            content.pivot = new Vector2(.5f, 1f);
+            content.sizeDelta = Vector2.zero;
+            VerticalLayoutGroup layout = content.gameObject.AddComponent<VerticalLayoutGroup>();
+            layout.childControlHeight = true;
+            layout.childControlWidth = true;
+            layout.childForceExpandHeight = false;
+            layout.childForceExpandWidth = true;
+            ContentSizeFitter contentFitter = content.gameObject.AddComponent<ContentSizeFitter>();
+            contentFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            ScrollRect scroll = paperObject.AddComponent<ScrollRect>();
+            scroll.viewport = viewport;
+            scroll.content = content;
+            scroll.horizontal = false;
+            scroll.vertical = true;
+            scroll.movementType = ScrollRect.MovementType.Clamped;
+
+            var textObject = new GameObject("Description", typeof(RectTransform), typeof(CanvasRenderer), typeof(Text));
+            textObject.transform.SetParent(content, false);
+            Text text = textObject.GetComponent<Text>();
+            UiFonts.Apply(text, UiFontRole.Body);
+            text.fontSize = 18;
+            text.color = new Color(.13f, .1f, .07f);
+            text.alignment = TextAnchor.UpperLeft;
+            text.supportRichText = true;
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
+            text.verticalOverflow = VerticalWrapMode.Overflow;
+            ContentSizeFitter textFitter = textObject.AddComponent<ContentSizeFitter>();
+            textFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+
+            ItemTooltip tooltip = root.AddComponent<ItemTooltip>();
+            tooltip.overlayCanvas = canvas;
+            tooltip.panel = panelRect;
+            tooltip.descriptionText = text;
+            SetRaycasts(root.transform, false);
+            tooltip.Hide();
+            return tooltip;
+        }
+
         public static string WithPower(string description, OwnedItem item)
         {
             if (item == null)
@@ -149,6 +225,27 @@ namespace OneBagJianghu.UI.Common
         {
             foreach (Graphic graphic in root.GetComponentsInChildren<Graphic>(true))
                 graphic.raycastTarget = value;
+        }
+
+        private static ItemTooltip SharedTooltip()
+        {
+            GameObject shop = Resources.Load<GameObject>("UI/Popups/ShopPopup");
+            return shop == null ? null : shop.GetComponentInChildren<ItemTooltip>(true);
+        }
+
+        private static RectTransform CreateRect(Transform parent, string objectName)
+        {
+            var value = new GameObject(objectName, typeof(RectTransform));
+            value.transform.SetParent(parent, false);
+            return value.GetComponent<RectTransform>();
+        }
+
+        private static void Stretch(RectTransform value)
+        {
+            value.anchorMin = Vector2.zero;
+            value.anchorMax = Vector2.one;
+            value.offsetMin = Vector2.zero;
+            value.offsetMax = Vector2.zero;
         }
 
         private static int FindLineEnd(string value, int line)

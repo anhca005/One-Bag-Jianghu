@@ -568,11 +568,23 @@ namespace OneBagJianghu.UI.Popups
             else if (action.StartsWith("sell", StringComparison.Ordinal))
                 AudioManager.Instance?.Play("coin");
             Debug.Log($"[Storage] {action}, result=success");
-            selected = null;
+            // Keep the upgraded item selected so the detail refreshes and it can be upgraded again.
+            bool keepSelection = action.StartsWith("upgrade", StringComparison.Ordinal);
+            if (!keepSelection)
+                selected = null;
             selectedStack = null;
             mergeSourceUid = null;
             GameBootstrap.Session.SaveProfile();
+            if (selected == null)
+                ClearSelection();
             Refresh();
+        }
+
+        private void ClearSelection()
+        {
+            detailText.text = string.Empty;
+            costText.text = string.Empty;
+            SetActions(false);
         }
 
         private void SetActions(bool value)

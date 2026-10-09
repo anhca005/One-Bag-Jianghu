@@ -211,6 +211,7 @@ namespace OneBagJianghu.UI.Gameplay
         }));
         private void ShowResult(int winner)
         {
+            replayScreen.HideTooltip();
             AudioManager.Instance?.PlaySting(MusicKeys.ForResult(winner == 0));
             string result = winner < 0 ? "Hòa" : winner == 0 ? "Thắng" : "Bại";
             string winnerName = winner == 0 ? GameBootstrap.Session.HeroName : winner > 0 ? opponentName : string.Empty;
