@@ -29,14 +29,6 @@ namespace OneBagJianghu.Pve
 
     public static class PveRules
     {
-        public static int Stars(bool won, int remainingHp, int maxHp)
-        {
-            if (!won || maxHp <= 0)
-                return 0;
-            int p = Math.Max(0, remainingHp) * 100 / maxHp;
-            return p >= 70 ? 3 : p >= 40 ? 2 : 1;
-        }
-
         public static bool IsChapterUnlocked(PveChapter chapter, PveCatalog catalog, PlayerProfile profile)
         {
             if (string.IsNullOrEmpty(chapter.Unlock?.AfterChapter))

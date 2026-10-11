@@ -88,7 +88,8 @@ class CurvePoint:
 class Progression:
     """Roll the real shop and greedily maximize marginal LC per Bac."""
 
-    def __init__(self) -> None:
+    def __init__(self, bag_style: str = "typical") -> None:
+        self.bag_style = bag_style
         self.starter = read_json(DATA / "starter.json")
         self.shop = read_json(DATA / "shop.json")
         self.levels = read_json(DATA / "levels.json")
@@ -107,7 +108,7 @@ class Progression:
         self.stages = [stage for chapter in self.chapters["chapters"] for stage in chapter["stages"]]
         monster_ids = set(self.chapters.get("monsterItems", []))
         self.shop_ids = [item["id"] for item in self.catalog if item["id"] not in monster_ids]
-        self.curves: dict[bool, list[list[CurvePoint]]] = {}
+        self.curves: dict[tuple[bool, str], list[list[CurvePoint]]] = {}
         self.marginal_cache: dict[tuple[str, int, str, int], int] = {}
 
     def _group(self, item_id: str) -> str:
@@ -157,21 +158,55 @@ class Progression:
         marginal = self._item_marginal(item, level)
         return (-marginal / self._area(item), -marginal, self._area(item), item["id"], item.get("uid", ""))
 
-    def select_bag(self, owned: list[dict[str, Any]], level: int = 1) -> list[dict[str, Any]]:
-        """Pack high marginal-LC-per-cell items, always retaining a weapon."""
+    def select_bag(
+        self, owned: list[dict[str, Any]], level: int = 1, bag_style: str | None = None,
+    ) -> list[dict[str, Any]]:
+        """Pack items into the bag according to greedy or typical style."""
+        style = self.bag_style if bag_style is None else bag_style
         ordered = sorted(owned, key=lambda item: self._sort_key(item, level))
         weapons = [item for item in ordered if self.catalog_by_id[item["id"]].get("type") == "weapon"]
         if not weapons:
             raise ValueError("Owned item set has no weapon")
-        reserved = weapons[0]
+        if style == "greedy":
+            reserved = weapons[0]
+            packed: list[dict[str, Any]] = []
+            self._place(packed, reserved)
+            skipped_reserved = False
+            for candidate in ordered:
+                if candidate is reserved and not skipped_reserved:
+                    skipped_reserved = True
+                    continue
+                self._place(packed, candidate)
+            return packed
+
+        res_weapons = weapons[:2] if len(weapons) >= 2 else weapons[:1]
+        armors = [item for item in ordered if self.catalog_by_id[item["id"]].get("type") == "armor"]
+        res_armors = armors[:1] if armors else []
+        reserved_list = res_weapons + res_armors
+
         packed: list[dict[str, Any]] = []
-        self._place(packed, reserved)
-        skipped_reserved = False
+        placed_ids: set[int] = set()
+        for res_item in reserved_list:
+            if self._place(packed, res_item):
+                placed_ids.add(id(res_item))
+
+        manual_count = sum(1 for item in packed if self.catalog_by_id[item["id"]].get("type") == "manual")
+        pill_count = sum(1 for item in packed if self.catalog_by_id[item["id"]].get("type") == "pill")
+
         for candidate in ordered:
-            if candidate is reserved and not skipped_reserved:
-                skipped_reserved = True
+            if id(candidate) in placed_ids:
                 continue
-            self._place(packed, candidate)
+            item_type = self.catalog_by_id[candidate["id"]].get("type", "")
+            if item_type == "manual" and manual_count >= 3:
+                continue
+            if item_type == "pill" and pill_count >= 3:
+                continue
+            if self._place(packed, candidate):
+                placed_ids.add(id(candidate))
+                if item_type == "manual":
+                    manual_count += 1
+                elif item_type == "pill":
+                    pill_count += 1
         return packed
 
     def _starter_state(self) -> EconomyState:
@@ -370,6 +405,13 @@ class Progression:
         state.materials.subtract(material_spend)
         item["tier"] += 1
 
+    def _refresh_cost(self, refresh_index: int) -> int:
+        """Paid shop refresh price: a fixed price, or the legacy escalating list."""
+        if "paidRefreshCost" in self.shop:
+            return int(self.shop["paidRefreshCost"])
+        costs = self.shop["paidRefreshCosts"]
+        return int(costs[min(refresh_index, len(costs) - 1)])
+
     def _shop_session(self, state: EconomyState, level: int, rng: random.Random) -> None:
         offers = self._roll_offers(rng)
         refresh_index = 0
@@ -386,8 +428,7 @@ class Progression:
                 _, index, _gain = offer_choice
                 self._buy(state, offers.pop(index))
                 continue
-            cost_index = min(refresh_index, len(self.shop["paidRefreshCosts"]) - 1)
-            refresh_cost = self.shop["paidRefreshCosts"][cost_index]
+            refresh_cost = self._refresh_cost(refresh_index)
             if refresh_cost > state.silver:
                 break
             refreshed = self._roll_offers(rng)
@@ -409,8 +450,9 @@ class Progression:
         )
 
     def _simulate(self, lucky: bool) -> list[list[CurvePoint]]:
-        if lucky in self.curves:
-            return self.curves[lucky]
+        key = (lucky, self.bag_style)
+        if key in self.curves:
+            return self.curves[key]
         by_stage = [[] for _stage in self.stages]
         for seed in SEEDS:
             rng = random.Random(seed)
@@ -427,7 +469,7 @@ class Progression:
                 state.silver += reward.get("silver", 0)
                 state.materials.update(reward.get("materials", {}))
                 total_exp += reward.get("heroExp", 0)
-        self.curves[lucky] = by_stage
+        self.curves[key] = by_stage
         return by_stage
 
     def point_for_stage(self, stage_number: int) -> CurvePoint:
@@ -462,12 +504,12 @@ _DEFAULT_PROGRESSION: Progression | None = None
 
 
 def bags_for_stage(
-    stage_number: int,
+    stage_number: int, bag_style: str = "typical",
 ) -> tuple[dict[str, Any], dict[str, Any], dict[str, Any], int, int]:
     """Return upgrade-aware bags and pre-stage economy data."""
     global _DEFAULT_PROGRESSION
-    if _DEFAULT_PROGRESSION is None:
-        _DEFAULT_PROGRESSION = Progression()
+    if _DEFAULT_PROGRESSION is None or _DEFAULT_PROGRESSION.bag_style != bag_style:
+        _DEFAULT_PROGRESSION = Progression(bag_style=bag_style)
     return _DEFAULT_PROGRESSION.bags_for_stage(stage_number)
 
 

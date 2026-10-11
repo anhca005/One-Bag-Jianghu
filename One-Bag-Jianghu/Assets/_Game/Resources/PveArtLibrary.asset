@@ -137,12 +137,68 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: ae3b8e78d6abee94c943752f1c1524db, type: 3}
   - Key: soi_nanh_canh
     Sprite: {fileID: 21300000, guid: d90a2bf53778df64683ba1041cbb282e, type: 3}
+  - Key: story_1_1
+    Sprite: {fileID: 21300000, guid: 9e651b472dd36d24a8a18391d01dad03, type: 3}
+  - Key: story_1_2
+    Sprite: {fileID: 21300000, guid: 33df9890fdbe7e04e8d4c6ae4a20aa51, type: 3}
+  - Key: story_1_3
+    Sprite: {fileID: 21300000, guid: 272ed74a6740ef443ab2f982bc72af60, type: 3}
+  - Key: story_1_4
+    Sprite: {fileID: 21300000, guid: 894f7c6490346cf40ab04c06896ea2b8, type: 3}
+  - Key: story_1_5
+    Sprite: {fileID: 21300000, guid: cf2b636a9efe6ac4e8903e7cac9a5783, type: 3}
+  - Key: story_2_1
+    Sprite: {fileID: 21300000, guid: 89a201c9ce6c72b48ba8c696961dc8a0, type: 3}
+  - Key: story_2_2
+    Sprite: {fileID: 21300000, guid: 0fe55634b082245489a0df56b7574e1d, type: 3}
+  - Key: story_2_3
+    Sprite: {fileID: 21300000, guid: 37ef0243b581bea41bdd388d791de433, type: 3}
+  - Key: story_2_4
+    Sprite: {fileID: 21300000, guid: e8a81786b4b3e1f4c93b23786ef9757c, type: 3}
+  - Key: story_2_5
+    Sprite: {fileID: 21300000, guid: d6214c755af1b1344ac986a2531aa523, type: 3}
+  - Key: story_3_1
+    Sprite: {fileID: 21300000, guid: 81aed37910063b14c97b98c0c8f54195, type: 3}
+  - Key: story_3_2
+    Sprite: {fileID: 21300000, guid: 7a9d9c0dd8eb1294c9d2affa81e8aaf7, type: 3}
+  - Key: story_3_3
+    Sprite: {fileID: 21300000, guid: b1e2f136eb8496d46b5282b121e64459, type: 3}
+  - Key: story_3_4
+    Sprite: {fileID: 21300000, guid: 5fb02ea7c70370246bc71ae3ffb9567e, type: 3}
+  - Key: story_3_5
+    Sprite: {fileID: 21300000, guid: 31c902acdd6a6cc4eaa3f9243100bd70, type: 3}
+  - Key: story_4_1
+    Sprite: {fileID: 21300000, guid: 9900587c9fe9a9345b71e4d47569c405, type: 3}
+  - Key: story_4_2
+    Sprite: {fileID: 21300000, guid: 3e5e25e066583c1468168fa3d8281267, type: 3}
+  - Key: story_4_3
+    Sprite: {fileID: 21300000, guid: 93dc6eb28f8fbd54b84ef5a0fceca2af, type: 3}
+  - Key: story_4_4
+    Sprite: {fileID: 21300000, guid: ecc81d8a738475e40bbe0fc97966fc92, type: 3}
+  - Key: story_4_5
+    Sprite: {fileID: 21300000, guid: 8161ffd8f308806488cc7e508a21167e, type: 3}
+  - Key: story_5_1
+    Sprite: {fileID: 21300000, guid: fa41d87d230510d41857042ad4d504c0, type: 3}
+  - Key: story_5_2
+    Sprite: {fileID: 21300000, guid: 0c2a5ebb6973e0b47be6f326a8f62e8d, type: 3}
+  - Key: story_5_3
+    Sprite: {fileID: 21300000, guid: b85e829959fb87f4284d23c691bca093, type: 3}
+  - Key: story_5_4
+    Sprite: {fileID: 21300000, guid: d081cce2f3b5d644fb87d17f31087e97, type: 3}
+  - Key: story_5_5
+    Sprite: {fileID: 21300000, guid: 0d343a10e9e8a6b498cf93050e58df62, type: 3}
   - Key: thien_nien_quy_giap
     Sprite: {fileID: 21300000, guid: 7388befa02c86844696ff5045871f454, type: 3}
   - Key: tuyet_lang_bach_bi
     Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
   - Key: u_minh_quy_trao
     Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - Key: app_icon
+    Sprite: {fileID: 21300000, guid: ae9c7bb8d66d9c5409ee2482fef5a691, type: 3}
+  - Key: app_icon_alt
+    Sprite: {fileID: 21300000, guid: a6f66ab35b5b74047a0745d61cd4bfe8, type: 3}
+  - Key: app_icon_square
+    Sprite: {fileID: 21300000, guid: 52a665a2e8f1cb147bd8c89ffc2a5b78, type: 3}
   - Key: avatar_frame
     Sprite: {fileID: 21300000, guid: d2fbef0c36b54064589591f0dd8905da, type: 3}
   - Key: badge_new

@@ -261,15 +261,6 @@ namespace OneBagJianghu.Tests.Pve
             Assert.AreEqual(0, result.Items.Count);
         }
 
-        [TestCase(true, 840, 1200, 3)]
-        [TestCase(true, 480, 1200, 2)]
-        [TestCase(true, 1, 1200, 1)]
-        [TestCase(false, 1200, 1200, 0)]
-        public void StarsFollowRemainingHp(bool won, int hp, int max, int expected)
-        {
-            Assert.AreEqual(expected, PveRules.Stars(won, hp, max));
-        }
-
         [Test]
         public void StaminaRegeneratesAndSpends()
         {
@@ -349,6 +340,44 @@ namespace OneBagJianghu.Tests.Pve
 
             // Assert
             Assert.AreEqual(expected, result);
+        }
+
+        [Test]
+        public void StaminaNextPointAtFiftyFiveUsesRegenClock()
+        {
+            // Arrange
+            DateTimeOffset last = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
+            var state = new PveProfileState
+            {
+                Stamina = 55,
+                LastStaminaRegenUtc = last.ToString("O")
+            };
+            var service = new StaminaService(new StaminaConfig { Max = 60, RegenPerMinute = 1f / 6f });
+
+            // Act
+            double next = service.SecondsToNext(state, last.AddMinutes(1).AddSeconds(28));
+
+            // Assert
+            Assert.AreEqual(272d, next, .001d);
+        }
+
+        [Test]
+        public void StaminaAtMaximumReportsNoNextPoint()
+        {
+            // Arrange
+            DateTimeOffset now = DateTimeOffset.Parse("2026-01-01T00:00:00Z");
+            var state = new PveProfileState
+            {
+                Stamina = 60,
+                LastStaminaRegenUtc = now.ToString("O")
+            };
+            var service = new StaminaService(new StaminaConfig { Max = 60, RegenPerMinute = 1f / 6f });
+
+            // Act
+            double next = service.SecondsToNext(state, now);
+
+            // Assert
+            Assert.AreEqual(0d, next);
         }
 
         [Test]

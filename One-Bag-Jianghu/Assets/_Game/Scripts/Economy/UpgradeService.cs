@@ -85,6 +85,7 @@ namespace OneBagJianghu.Economy
             profile.Currencies["bac"] -= preview.Silver;
             new StorageGrid(profile, items as IStorageItemCatalog).SpendMaterials(preview.Materials, out _);
             profile.RequireItem(uid).Tier++;
+            profile.RecordQuestAction("item_upgrade");
             return EconomyResult.Ok();
         }
 

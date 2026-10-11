@@ -50,7 +50,7 @@ namespace OneBagJianghu.Tests.Pve
             };
             node.Bind(stage,
                 true,
-                0,
+                false,
                 Color.red,
                 theme,
                 library,
@@ -59,10 +59,11 @@ namespace OneBagJianghu.Tests.Pve
             });
             Assert.That(node.UsesArt, Is.True);
             Assert.That(frame.sprite, Is.SameAs(sprite));
+            Assert.That(stars.gameObject.activeSelf, Is.False);
             library.Entries.Clear();
             node.Bind(stage,
                 true,
-                0,
+                true,
                 Color.red,
                 theme,
                 library,

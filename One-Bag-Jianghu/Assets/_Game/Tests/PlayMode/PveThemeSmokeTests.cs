@@ -35,8 +35,7 @@ namespace OneBagJianghu.Tests.Play
             first.Hide();
             GameBootstrap.Session.Profile.Pve.Stages["hoi_1_03"] = new PveStageProgress
             {
-                Cleared = true,
-                BestStars = 3
+                Cleared = true
             };
             StageMapPopup second = PopupManager.Show<StageMapPopup>(1);
             yield return null;

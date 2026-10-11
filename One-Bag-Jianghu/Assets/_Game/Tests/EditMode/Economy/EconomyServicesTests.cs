@@ -146,7 +146,7 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         [Test]
-        public void MergeCandidatesExcludeEquippedUids()
+        public void MergeCandidatesIncludeEquippedUids()
         {
             // Arrange
             PlayerProfile profile = Rich();
@@ -158,16 +158,108 @@ namespace OneBagJianghu.Tests.Economy
 
             // Act
             IReadOnlyList<OwnedItem> candidates = service.Candidates(profile, "source");
-            MergePreview equippedPreview = service.Preview(profile, "source", "equipped-copy");
-            EconomyResult equippedMerge = service.Apply(profile, "source", "equipped-copy");
 
             // Assert
-            Assert.AreEqual(1, candidates.Count);
+            Assert.AreEqual(2, candidates.Count);
             Assert.AreEqual("stored-copy", candidates[0].Uid);
-            Assert.IsFalse(equippedPreview.Success);
-            Assert.AreEqual("Gỡ khỏi Bao Phục để Hợp Thành", equippedPreview.Error);
-            Assert.IsFalse(equippedMerge.Success);
-            Assert.IsNotNull(profile.FindItem("equipped-copy"));
+            Assert.AreEqual("equipped-copy", candidates[1].Uid);
+        }
+
+        [Test]
+        public void MergeEquippedSourceKeepsItsLoadoutPosition()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "equipped");
+            profile.AddItem("sword", 3, uid: "stored");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "equipped", X = 2, Y = 4 });
+            profile.Storage.Items.Add(new StorageItemPlacement { Uid = "stored", X = 0, Y = 0 });
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+
+            // Act
+            EconomyResult result = service.Apply(profile, "equipped", "stored");
+
+            // Assert
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual("equipped", profile.Loadout[0].Uid);
+            Assert.AreEqual(2, profile.Loadout[0].X);
+            Assert.AreEqual(4, profile.Loadout[0].Y);
+            Assert.AreEqual("uncommon", profile.RequireItem("equipped").Rarity);
+            Assert.IsNull(profile.FindItem("stored"));
+            Assert.IsEmpty(profile.Storage.Items);
+        }
+
+        [Test]
+        public void MergeEquippedCandidateKeepsItsLoadoutPosition()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "stored");
+            profile.AddItem("sword", 3, uid: "equipped");
+            profile.Storage.Items.Add(new StorageItemPlacement { Uid = "stored", X = 0, Y = 0 });
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "equipped", X = 1, Y = 3 });
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+
+            // Act
+            EconomyResult result = service.Apply(profile, "stored", "equipped");
+
+            // Assert
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual("equipped", profile.Loadout[0].Uid);
+            Assert.AreEqual(1, profile.Loadout[0].X);
+            Assert.AreEqual(3, profile.Loadout[0].Y);
+            Assert.AreEqual("uncommon", profile.RequireItem("equipped").Rarity);
+            Assert.IsNull(profile.FindItem("stored"));
+            Assert.IsEmpty(profile.Storage.Items);
+        }
+
+        [Test]
+        public void MergeTwoEquippedCopiesKeepsSourceAndFreesOneSlot()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 3, uid: "first");
+            profile.AddItem("sword", 3, uid: "second");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "first", X = 2, Y = 2 });
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "second", X = 5, Y = 5 });
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+
+            // Act
+            EconomyResult result = service.Apply(profile, "first", "second");
+
+            // Assert
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual(1, profile.Loadout.Count);
+            Assert.AreEqual("first", profile.Loadout[0].Uid);
+            Assert.AreEqual(2, profile.Loadout[0].X);
+            Assert.AreEqual(2, profile.Loadout[0].Y);
+            Assert.AreEqual("uncommon", profile.RequireItem("first").Rarity);
+            Assert.IsNull(profile.FindItem("second"));
+        }
+
+        [Test]
+        public void MergeEquippedSourceSucceedsWhenStorageIsFull()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.Storage.Cols = 1;
+            profile.Storage.Rows = 1;
+            profile.AddItem("sword", 3, uid: "first");
+            profile.AddItem("sword", 3, uid: "second");
+            profile.AddItem("shield", 1, uid: "blocker");
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "first", X = 0, Y = 0 });
+            profile.Loadout.Add(new LoadoutPlacement { Uid = "second", X = 1, Y = 0 });
+            profile.Storage.Items.Add(new StorageItemPlacement { Uid = "blocker", X = 0, Y = 0 });
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+
+            // Act
+            EconomyResult result = service.Apply(profile, "first", "second");
+
+            // Assert
+            Assert.IsTrue(result.Success);
+            Assert.AreEqual("first", profile.Loadout[0].Uid);
+            Assert.AreEqual("uncommon", profile.RequireItem("first").Rarity);
+            Assert.AreEqual("blocker", profile.Storage.Items[0].Uid);
         }
 
         [Test]

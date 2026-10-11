@@ -22,7 +22,7 @@ Hành Tẩu Giang Hồ (PvE)
 - Chia theo **Hồi** (chương), mỗi Hồi khoảng 10 ải, ải cuối là boss.
 - Đội hình địch thiết kế sẵn.
 - Phần thưởng: bạc, kinh nghiệm cho Hiệp Khách, nguyên liệu cường hóa, mảnh để mở khóa vật phẩm trong Vạn Bảo Phổ.
-- Có giới hạn **Thể Lực** mỗi ngày. Chấm 1–3 sao theo lượng khí huyết còn lại.
+- Có giới hạn **Thể Lực** mỗi ngày. Ải chỉ có trạng thái đã qua / chưa qua, không chấm sao (#63).
 
 ### Luận Kiếm Đài (PvP)
 - Đấu **bất đồng bộ** với ghost (bản lưu đội hình) của người chơi khác.

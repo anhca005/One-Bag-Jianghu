@@ -104,19 +104,47 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         [Test]
-        public void RefreshUsesSixHoursAndDailyCostLadder()
+        public void PaidRefreshAlwaysCostsFifty()
         {
-            PlayerProfile p = Profile();
-            ShopService s = Service();
-            s.Ensure(p);
-            Assert.That(s.Refresh(p, true).Success, Is.False);
-            Assert.That(s.PaidRefreshCost(p), Is.EqualTo(100));
-            Assert.That(s.Refresh(p, false).Success, Is.True);
-            Assert.That(s.PaidRefreshCost(p), Is.EqualTo(200));
-            clock.Now = clock.Now.AddHours(6);
-            Assert.That(s.Refresh(p, true).Success, Is.True);
-            clock.Now = clock.Now.AddDays(1);
-            Assert.That(s.PaidRefreshCost(p), Is.EqualTo(100));
+            // Arrange
+            PlayerProfile profile = Profile();
+            ShopService shop = Service();
+
+            // Act
+            EconomyResult first = shop.Refresh(profile, false);
+            EconomyResult second = shop.Refresh(profile, false);
+            EconomyResult third = shop.Refresh(profile, false);
+
+            // Assert
+            Assert.That(first.Success, Is.True);
+            Assert.That(second.Success, Is.True);
+            Assert.That(third.Success, Is.True);
+            Assert.That(profile.Currencies["bac"], Is.EqualTo(9850));
+            Assert.That(shop.PaidRefreshCost(profile), Is.EqualTo(50));
+        }
+
+        [Test]
+        public void FreshProfileGetsExactlyOneStarterFreeRefresh()
+        {
+            // Arrange
+            PlayerProfile profile = Profile();
+            ShopService shop = Service();
+
+            // Act
+            bool freeAtStart = shop.CanRefreshFree(profile);
+            EconomyResult free = shop.Refresh(profile, true);
+            TimeSpan untilNextFree = shop.UntilFreeRefresh(profile);
+            EconomyResult secondFree = shop.Refresh(profile, true);
+            EconomyResult paid = shop.Refresh(profile, false);
+
+            // Assert: the starter refresh is ready at once, then the timed one counts from its use.
+            Assert.That(freeAtStart, Is.True);
+            Assert.That(free.Success, Is.True);
+            Assert.That(untilNextFree, Is.EqualTo(TimeSpan.FromHours(3)));
+            Assert.That(secondFree.Success, Is.False);
+            Assert.That(paid.Success, Is.True);
+            Assert.That(profile.Shop.StarterFreeRefreshesUsed, Is.EqualTo(1));
+            Assert.That(profile.Currencies["bac"], Is.EqualTo(9950));
         }
 
         [Test]
@@ -166,6 +194,22 @@ namespace OneBagJianghu.Tests.Economy
             PlayerProfile restored = PlayerProfile.FromJson(json.ToString());
             Assert.That(restored.Version, Is.EqualTo(PlayerProfile.CurrentVersion));
             Assert.That(restored.Shop, Is.Not.Null);
+        }
+
+        [Test]
+        public void CurrentProfileWithoutStarterCounterGetsOneFreeRefresh()
+        {
+            // Arrange
+            JObject json = JObject.Parse(Profile().ToJson());
+            ((JObject)json["shop"]).Remove("starterFreeRefreshesUsed");
+            PlayerProfile restored = PlayerProfile.FromJson(json.ToString());
+
+            // Act
+            EconomyResult result = Service().Refresh(restored, true);
+
+            // Assert
+            Assert.That(result.Success, Is.True);
+            Assert.That(restored.Shop.StarterFreeRefreshesUsed, Is.EqualTo(1));
         }
 
         [Test]

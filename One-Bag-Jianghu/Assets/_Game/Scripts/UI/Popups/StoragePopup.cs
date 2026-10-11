@@ -283,10 +283,7 @@ namespace OneBagJianghu.UI.Popups
                 + $"\nKích thước: {info.Width}×{info.Height}";
             costText.text = BuildUpgradeCost(preview);
             upgradeButton.GetComponent<Button>().interactable = preview.Success;
-            bool equipped = IsEquipped(GameBootstrap.Session.Profile, uid);
-            mergeButton.GetComponent<Button>().interactable = !equipped;
-            if (equipped)
-                costText.text += "\nGỡ khỏi Bao Phục để Hợp Thành";
+            mergeButton.GetComponent<Button>().interactable = true;
             sellButton.GetComponent<Button>().interactable = true;
         }
 
@@ -471,11 +468,6 @@ namespace OneBagJianghu.UI.Popups
         {
             if (selected == null)
                 return;
-            if (IsEquipped(GameBootstrap.Session.Profile, selected.Uid))
-            {
-                costText.text = "Gỡ khỏi Bao Phục để Hợp Thành";
-                return;
-            }
             if (merge.Candidates(GameBootstrap.Session.Profile, selected.Uid).Count == 0)
             {
                 AudioManager.Instance?.Play("ui_error");
@@ -485,7 +477,7 @@ namespace OneBagJianghu.UI.Popups
             }
 
             mergeSourceUid = selected.Uid;
-            costText.text = "Chọn một bản sao hợp lệ trong Tàng Bảo Các để Hợp Thành.";
+            costText.text = "Chọn một bản sao hợp lệ để Hợp Thành.";
         }
 
         private void ChooseMergeCandidate(string candidateUid)

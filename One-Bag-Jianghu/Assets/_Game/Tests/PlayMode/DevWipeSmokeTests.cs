@@ -38,7 +38,7 @@ namespace OneBagJianghu.Tests.Play
             profile.SectId = "thiet_phu";
             profile.AddCurrency("bac", 50000);
             profile.FirstClears.Add("stage_1");
-            profile.Pve.Stages["stage_1"] = new PveStageProgress { Cleared = true, BestStars = 3 };
+            profile.Pve.Stages["stage_1"] = new PveStageProgress { Cleared = true };
             GameBootstrap.Session.CurrentPveStageId = "stage_1";
             GameBootstrap.Session.SaveProfile();
             File.WriteAllText(SaveFiles[3], "dev loadout");

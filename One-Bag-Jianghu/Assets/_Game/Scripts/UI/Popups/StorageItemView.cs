@@ -14,6 +14,8 @@ namespace OneBagJianghu.UI.Popups
         IPointerClickHandler
     {
         [SerializeField]
+        private Image background;
+        [SerializeField]
         private Image icon;
         [SerializeField]
         private Image border;
@@ -50,6 +52,12 @@ namespace OneBagJianghu.UI.Popups
             nameText.text = label;
             badgeText.text = badge;
             border.color = color;
+            if (background != null)
+            {
+                Color paper = BagViewStyle.Paper;
+                background.color = Color.Lerp(paper, color, .18f);
+                background.color = new Color(background.color.r, background.color.g, background.color.b, 1f);
+            }
             canvasGroup.alpha = alpha;
             icon.sprite = sprite;
             icon.gameObject.SetActive(sprite != null);

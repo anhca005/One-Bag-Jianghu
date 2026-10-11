@@ -75,6 +75,30 @@ namespace OneBagJianghu.Core
             });
         }
 
+        /// <summary>
+        /// Deletes the saved progress (profile, its backup/temp copies, the old loadout file) and the progress keys
+        /// in PlayerPrefs. Settings and the server URL are kept. Returns the names of the files deleted.
+        /// </summary>
+        public static List<string> DeleteSaveData()
+        {
+            string[] names = { "profile.json", "profile.json.bak", "profile.json.tmp", "loadout.json" };
+            var deleted = new List<string>();
+            foreach (string name in names)
+            {
+                string path = Path.Combine(SaveDirectory, name);
+                if (!File.Exists(path))
+                    continue;
+                File.Delete(path);
+                deleted.Add(name);
+            }
+
+            PlayerPrefs.DeleteKey(HeroNameKey);
+            PlayerPrefs.DeleteKey(SectIdKey);
+            // OneBagJianghu.ServerUrl is connection configuration, not game progress.
+            PlayerPrefs.Save();
+            return deleted;
+        }
+
         public PlayerProfile LoadOrCreate()
         {
             string backup = path + ".bak";
@@ -294,27 +318,7 @@ namespace OneBagJianghu.Core
 #if UNITY_EDITOR || DEVELOPMENT_BUILD
         public void WipeAllData()
         {
-            string[] paths =
-            {
-                Path.Combine(ProfileStore.SaveDirectory, "profile.json"),
-                Path.Combine(ProfileStore.SaveDirectory, "profile.json.bak"),
-                Path.Combine(ProfileStore.SaveDirectory, "profile.json.tmp"),
-                Path.Combine(ProfileStore.SaveDirectory, "loadout.json")
-            };
-            var deleted = new List<string>();
-            foreach (string path in paths)
-            {
-                if (!File.Exists(path))
-                    continue;
-                File.Delete(path);
-                deleted.Add(Path.GetFileName(path));
-            }
-
-            PlayerPrefs.DeleteKey(ProfileStore.HeroNameKey);
-            PlayerPrefs.DeleteKey(ProfileStore.SectIdKey);
-            // OneBagJianghu.ServerUrl is connection configuration, not game progress.
-            PlayerPrefs.Save();
-
+            List<string> deleted = ProfileStore.DeleteSaveData();
             store = null;
             Profile = CreateFreshProfile();
             SelectedMode = GameMode.Pve;

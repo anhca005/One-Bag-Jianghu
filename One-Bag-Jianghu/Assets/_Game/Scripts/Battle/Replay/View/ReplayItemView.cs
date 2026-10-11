@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Economy;
 using OneBagJianghu.UI.Common;
+using System.Collections.Generic;
 
 namespace OneBagJianghu.Battle.Replay.View
 {
@@ -26,8 +27,19 @@ namespace OneBagJianghu.Battle.Replay.View
         [SerializeField]
         private Text statusText;
         private static Sprite fillSprite;
-        private float flashUntil;
-        private int statusUntil;
+        private readonly Dictionary<string, int> statusUntil = new Dictionary<string, int>();
+        private readonly Dictionary<string, Image> statusIcons = new Dictionary<string, Image>();
+        private Image statusTint;
+        private Image sealIcon;
+        private RectTransform statusIconRow;
+        private int flashStartMs;
+        private int flashUntilMs;
+        private float punchStrength;
+        private float cooldownFill;
+        private bool cooldownActive;
+        private Vector3 restScale = Vector3.one;
+        public bool IsFlashing => flashOverlay != null && flashOverlay.gameObject.activeSelf;
+        public bool IsSealed => statusUntil.ContainsKey("SEAL");
         public string ItemId
         {
             get;
@@ -99,6 +111,8 @@ namespace OneBagJianghu.Battle.Replay.View
             statusText.gameObject.SetActive(false);
             cooldownOverlay.gameObject.SetActive(false);
             flashOverlay.gameObject.SetActive(false);
+            restScale = transform.localScale;
+            EnsureStatusVisuals();
         }
 
         public void BindItemData(string itemId, string rarity, int tier)
@@ -125,26 +139,41 @@ namespace OneBagJianghu.Battle.Replay.View
             return ItemTooltip.WithPower(description, power);
         }
 
-        public void Flash(bool ultimate)
+        /// <summary>Starts firing feedback on this item using replay time.</summary>
+        public void Flash(bool ultimate, int nowMs)
         {
             Color color = ultimate ? ReplayStyle.Gold : Color.white;
-            color.a = .55f;
+            color.a = ultimate ? .72f : .48f;
             flashOverlay.color = color;
             flashOverlay.gameObject.SetActive(true);
-            flashUntil = Time.unscaledTime + .22f;
+            flashStartMs = nowMs;
+            flashUntilMs = nowMs + (ultimate ? 220 : 150);
+            punchStrength = ultimate ? .11f : .08f;
         }
 
-        public void SetStatus(string label, int untilMs)
+        /// <summary>Shows a timed item status and keeps concurrent status icons visible.</summary>
+        public void SetStatus(string kind, int untilMs)
         {
-            statusText.text = label;
-            statusText.gameObject.SetActive(true);
-            statusUntil = untilMs;
+            EnsureStatusVisuals();
+            statusUntil[kind] = Mathf.Max(StatusEnd(kind), untilMs);
+            EnsureStatusIcon(kind);
+            ApplyStatusVisuals();
         }
 
+        /// <summary>Clears all timed item presentation for replay restart or seek.</summary>
         public void ClearStatus()
         {
             statusText.gameObject.SetActive(false);
-            statusUntil = 0;
+            statusUntil.Clear();
+            ApplyStatusVisuals();
+        }
+
+        /// <summary>Clears short-lived firing feedback for replay restart or seek.</summary>
+        public void ClearFeedback()
+        {
+            flashOverlay.gameObject.SetActive(false);
+            flashUntilMs = 0;
+            transform.localScale = restScale;
         }
 
         /// <summary>
@@ -168,22 +197,161 @@ namespace OneBagJianghu.Battle.Replay.View
 
         public void SetCooldown(float fill, bool active)
         {
-            cooldownOverlay.fillAmount = Mathf.Clamp01(fill);
-            cooldownOverlay.gameObject.SetActive(active);
+            if (!IsSealed)
+            {
+                cooldownFill = Mathf.Clamp01(fill);
+                cooldownActive = active;
+            }
+
+            cooldownOverlay.fillAmount = cooldownFill;
+            cooldownOverlay.gameObject.SetActive(cooldownActive);
         }
 
         public void Refresh(int timeMs)
         {
-            if (flashUntil > 0f && Time.unscaledTime >= flashUntil)
+            if (flashUntilMs > 0)
             {
-                flashOverlay.gameObject.SetActive(false);
-                flashUntil = 0f;
+                RefreshFlash(timeMs);
             }
 
-            if (statusText.gameObject.activeSelf && timeMs >= statusUntil)
+            RemoveExpiredStatuses(timeMs);
+        }
+
+        private void RefreshFlash(int timeMs)
+        {
+            if (timeMs >= flashUntilMs || timeMs < flashStartMs)
             {
-                statusText.gameObject.SetActive(false);
+                ClearFeedback();
+                return;
             }
+
+            float progress = Mathf.InverseLerp(flashStartMs, flashUntilMs, timeMs);
+            float punch = 1f + Mathf.Sin(progress * Mathf.PI) * punchStrength;
+            transform.localScale = restScale * punch;
+            Color color = flashOverlay.color;
+            color.a *= 1f - progress;
+            flashOverlay.color = color;
+        }
+
+        private void RemoveExpiredStatuses(int timeMs)
+        {
+            List<string> expired = null;
+            foreach (KeyValuePair<string, int> pair in statusUntil)
+            {
+                if (timeMs < pair.Value)
+                    continue;
+                expired ??= new List<string>();
+                expired.Add(pair.Key);
+            }
+
+            if (expired == null)
+                return;
+            for (int i = 0; i < expired.Count; i++)
+            {
+                statusUntil.Remove(expired[i]);
+            }
+
+            ApplyStatusVisuals();
+        }
+
+        private void EnsureStatusVisuals()
+        {
+            if (statusTint != null)
+                return;
+            statusTint = CreateImage("Status Tint", transform);
+            Stretch(statusTint.rectTransform);
+            statusTint.transform.SetSiblingIndex(flashOverlay.transform.GetSiblingIndex());
+            sealIcon = CreateImage("Seal Status", transform);
+            RectTransform sealRect = sealIcon.rectTransform;
+            sealRect.anchorMin = sealRect.anchorMax = new Vector2(.5f, .5f);
+            sealRect.sizeDelta = new Vector2(54f, 54f);
+            statusIconRow = CreateRect("Status Icons", transform);
+            statusIconRow.anchorMin = statusIconRow.anchorMax = new Vector2(1f, 1f);
+            statusIconRow.pivot = new Vector2(1f, 1f);
+            statusIconRow.anchoredPosition = new Vector2(-5f, -5f);
+            statusIconRow.sizeDelta = new Vector2(90f, 26f);
+            var layout = statusIconRow.gameObject.AddComponent<HorizontalLayoutGroup>();
+            layout.spacing = 3f;
+            layout.childAlignment = TextAnchor.UpperRight;
+            layout.childControlWidth = false;
+            layout.childControlHeight = false;
+            ApplyStatusVisuals();
+        }
+
+        private void EnsureStatusIcon(string kind)
+        {
+            if (statusIcons.ContainsKey(kind))
+                return;
+            Image statusIcon = CreateImage(kind + " Icon", statusIconRow);
+            statusIcon.rectTransform.sizeDelta = new Vector2(24f, 24f);
+            ItemIconLibrary library = ItemIconLibrary.Load();
+            string key = "status_" + kind.ToLowerInvariant();
+            Sprite sprite = null;
+            bool found = library != null && library.TryGet(key, out sprite);
+            statusIcon.sprite = found ? sprite : fillSprite;
+            statusIcon.color = found ? Color.white : StatusColor(kind);
+            statusIcons[kind] = statusIcon;
+            if (kind == "SEAL")
+            {
+                sealIcon.sprite = statusIcon.sprite;
+                sealIcon.color = statusIcon.color;
+            }
+        }
+
+        private void ApplyStatusVisuals()
+        {
+            if (statusTint == null)
+                return;
+            bool isSealed = IsSealed;
+            bool slowed = statusUntil.ContainsKey("SLOW");
+            bool hastened = statusUntil.ContainsKey("HASTE");
+            statusTint.gameObject.SetActive(isSealed || slowed || hastened);
+            statusTint.color = isSealed ?
+                new Color(.07f, .08f, .1f, .62f) :
+                slowed ?
+                new Color(.25f, .42f, .58f, .35f) :
+                new Color(.95f, .65f, .12f, .27f);
+            sealIcon.gameObject.SetActive(isSealed);
+            icon.color = isSealed ? new Color(.42f, .42f, .42f, 1f) : Color.white;
+            background.color = isSealed ? new Color(.32f, .32f, .32f, 1f) : BagViewStyle.Fill(Rarity);
+            rarityOutline.effectColor = hastened && !isSealed ? ReplayStyle.Gold : BagViewStyle.Rarity(Rarity);
+            foreach (KeyValuePair<string, Image> pair in statusIcons)
+            {
+                pair.Value.gameObject.SetActive(statusUntil.ContainsKey(pair.Key));
+            }
+        }
+
+        private int StatusEnd(string kind)
+        {
+            return statusUntil.TryGetValue(kind, out int value) ? value : 0;
+        }
+
+        private static Color StatusColor(string kind)
+        {
+            return kind == "HASTE" ? ReplayStyle.Gold : new Color(.45f, .62f, .78f, 1f);
+        }
+
+        private static Image CreateImage(string name, Transform parent)
+        {
+            RectTransform rect = CreateRect(name, parent);
+            Image image = rect.gameObject.AddComponent<Image>();
+            image.raycastTarget = false;
+            return image;
+        }
+
+        private static RectTransform CreateRect(string name, Transform parent)
+        {
+            var root = new GameObject(name, typeof(RectTransform), typeof(CanvasRenderer));
+            root.transform.SetParent(parent, false);
+            return (RectTransform)root.transform;
+        }
+
+        private static void Stretch(RectTransform rect)
+        {
+            rect.anchorMin = Vector2.zero;
+            rect.anchorMax = Vector2.one;
+            rect.offsetMin = Vector2.zero;
+            rect.offsetMax = Vector2.zero;
         }
     }
 }

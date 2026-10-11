@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using OneBagJianghu.Bag;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Popups;
 using OneBagJianghu.Onboarding;
@@ -21,26 +23,265 @@ namespace OneBagJianghu.EditorTools.Building
             BuildPopup<StoragePopup>("StoragePopup", new Vector2(1740f, 980f), overwrite, BuildStorage);
             BuildShopCard(overwrite);
             BuildPopup<ShopPopup>("ShopPopup", new Vector2(1600f, 920f), overwrite, BuildShop);
-            BuildPopup<SectSelectPopup>("SectSelectPopup", new Vector2(1050f, 760f), overwrite, BuildSect);
+            RebuildSectArtLibrary();
+            BuildPopup<SectSelectPopup>("SectSelectPopup", new Vector2(1600f, 920f), overwrite, BuildSect);
             BuildPopup<DevCheatPanel>("DevCheatPanel", new Vector2(980f, 900f), overwrite, BuildDev);
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("One Bag Jianghu/Build/Sect Popup (Overwrite)")]
+        public static void BuildSectOverwrite()
+        {
+            CommonUiPrefabBuilder.Build(false);
+            UiBuild.EnsureFolder(Folder);
+            RebuildSectArtLibrary();
+            BuildPopup<SectSelectPopup>("SectSelectPopup", new Vector2(1600f, 920f), true, BuildSect);
+            AssetDatabase.SaveAssets();
+        }
+
+        private static void RebuildSectArtLibrary()
+        {
+            const string textureFolder = "Assets/_Game/Textures2D/Sects";
+            const string libraryPath = "Assets/_Game/Resources/SectArtLibrary.asset";
+            AssetDatabase.ImportAsset(
+                textureFolder,
+                ImportAssetOptions.ForceUpdate | ImportAssetOptions.ImportRecursive);
+            SectArtLibrary library = AssetDatabase.LoadAssetAtPath<SectArtLibrary>(libraryPath);
+            if (library == null)
+            {
+                library = ScriptableObject.CreateInstance<SectArtLibrary>();
+                AssetDatabase.CreateAsset(library, libraryPath);
+            }
+
+            library.Entries.Clear();
+            string[] guids = AssetDatabase.FindAssets("t:Texture2D", new[] { textureFolder });
+            Array.Sort(guids, CompareSectArtPaths);
+            foreach (string guid in guids)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guid);
+                if (!string.Equals(Path.GetExtension(path), ".png", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                if (sprite == null)
+                {
+                    AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+                    sprite = AssetDatabase.LoadAssetAtPath<Sprite>(path);
+                }
+
+                if (sprite != null)
+                {
+                    library.Entries.Add(new SectArtLibrary.Entry
+                    {
+                        Key = Path.GetFileNameWithoutExtension(path),
+                        Sprite = sprite
+                    });
+                }
+            }
+
+            EditorUtility.SetDirty(library);
+        }
+
+        private static int CompareSectArtPaths(string leftGuid, string rightGuid)
+        {
+            string left = AssetDatabase.GUIDToAssetPath(leftGuid);
+            string right = AssetDatabase.GUIDToAssetPath(rightGuid);
+            return string.CompareOrdinal(left, right);
+        }
+
         private static void BuildSect(SectSelectPopup popup, RectTransform panel)
         {
-            // Sect selector.
-            Text(panel, "Title", "Chọn Môn Phái", 40, .05f, .86f, .95f, .97f);
-            Dropdown sect = Dropdown(panel, "Sects", new[] { "Môn phái" }, .08f, .70f, .92f, .82f);
-            TutorialTarget sectTarget = sect.gameObject.AddComponent<TutorialTarget>();
-            sectTarget.Configure("sect_choices");
-            Text detail = Text(panel, "Description", "Thông tin môn phái", 24, .08f, .25f, .92f, .67f);
-            detail.alignment = TextAnchor.UpperLeft;
-            UiButton confirm = Button(panel, "Confirm", "Xác nhận gia nhập", true, .35f, .12f);
-            UiButton cancel = Button(panel, "Cancel", "Để sau", false, .70f, .12f);
-            Set(popup, "sectDropdown", sect);
-            Set(popup, "descriptionText", detail);
-            Set(popup, "confirmButton", confirm);
-            Set(popup, "cancelButton", cancel);
+            // Header and the seven-card navigation column.
+            Text(panel, "Title", "Môn Phái", 40, .04f, .91f, .96f, .985f);
+            RectTransform cardColumn = UiBuild.Rect(panel, "Sect Choices");
+            Anchor(cardColumn, .035f, .105f, .35f, .895f);
+            cardColumn.gameObject.AddComponent<TutorialTarget>().Configure("sect_choices");
+            var cardButtons = new Button[7];
+            var cardBackgrounds = new Image[7];
+            var cardArts = new Image[7];
+            var cardNames = new Text[7];
+            var cardWeapons = new Text[7];
+            var cardBadges = new Text[7];
+            for (int i = 0; i < cardButtons.Length; i++)
+            {
+                BuildSectCard(
+                    cardColumn,
+                    i,
+                    out cardButtons[i],
+                    out cardBackgrounds[i],
+                    out cardArts[i],
+                    out cardNames[i],
+                    out cardWeapons[i],
+                    out cardBadges[i]);
+            }
+
+            // Large art banner with an ink veil so the overlaid name remains readable.
+            Image heroArt = UiBuild.Image(panel, "Sect Art", new Color(.18f, .14f, .10f, .9f));
+            Anchor(heroArt.rectTransform, .375f, .595f, .965f, .895f);
+            heroArt.preserveAspect = false;
+            heroArt.gameObject.AddComponent<RectMask2D>();
+            Image veil = UiBuild.Image(heroArt.transform, "Soft Ink Veil", new Color(.05f, .035f, .025f, .42f));
+            Anchor(veil.rectTransform, 0f, 0f, 1f, .34f);
+            veil.raycastTarget = false;
+            Text sectName = Text(heroArt.transform, "Sect Name", "Tên môn phái", 38, .04f, .03f, .96f, .30f);
+            sectName.color = Color.white;
+            sectName.gameObject.AddComponent<SingleLineFit>().Configure(38, 22);
+
+            // Lore and weapon specialty sit directly beneath the banner.
+            Text lore = Text(panel, "Lore", "Giai thoại môn phái", 19, .39f, .52f, .95f, .585f);
+            lore.alignment = TextAnchor.MiddleLeft;
+            ShrinkToFit(lore, 19, 14);
+            // "Label", not "Title": names containing "Title" get the popup title ribbon.
+            Text weaponLabel = Text(panel, "Weapon Label", "Binh khí sở trường:", 19, .39f, .465f, .56f, .515f);
+            weaponLabel.alignment = TextAnchor.MiddleLeft;
+            weaponLabel.color = UiBuild.Vermilion;
+            ShrinkToFit(weaponLabel, 19, 14);
+            Text weapons = Text(panel, "Weapon Classes", "Binh khí", 19, .56f, .465f, .95f, .515f);
+            weapons.alignment = TextAnchor.MiddleLeft;
+            ShrinkToFit(weapons, 19, 13);
+
+            // Tâm Pháp portrait and four compact milestone rows.
+            Image tamArt = UiBuild.Image(panel, "Tam Phap Art", new Color(.18f, .14f, .10f, .9f));
+            Anchor(tamArt.rectTransform, .39f, .18f, .555f, .445f);
+            tamArt.preserveAspect = false;
+            Text tamName = Text(panel, "Tam Phap Name", "Tâm Pháp", 24, .39f, .115f, .72f, .175f);
+            tamName.alignment = TextAnchor.MiddleLeft;
+            tamName.gameObject.AddComponent<SingleLineFit>().Configure(24, 15);
+            Text tamLevel = Text(panel, "Tam Phap Level", string.Empty, 20, .72f, .115f, .94f, .175f);
+            tamLevel.alignment = TextAnchor.MiddleRight;
+            var milestoneTexts = new Text[4];
+            var milestoneBackgrounds = new Image[4];
+            for (int i = 0; i < milestoneTexts.Length; i++)
+            {
+                float top = .445f - i * .082f;
+                milestoneBackgrounds[i] = UiBuild.Image(
+                    panel,
+                    "Milestone " + i,
+                    new Color(.25f, .20f, .15f, .1f));
+                Anchor(milestoneBackgrounds[i].rectTransform, .575f, top - .074f, .965f, top);
+                milestoneTexts[i] = Text(
+                    milestoneBackgrounds[i].transform,
+                    "Description",
+                    "Tầng",
+                    16,
+                    .025f,
+                    .05f,
+                    .975f,
+                    .95f);
+                milestoneTexts[i].alignment = TextAnchor.MiddleLeft;
+                ShrinkToFit(milestoneTexts[i], 16, 11);
+                milestoneTexts[i].supportRichText = true;
+            }
+
+            // Actions share the same linked button prefabs as the other economy popups.
+            UiButton primary = Button(panel, "Primary Action", "Gia Nhập", true, .75f, .065f);
+            UiButton close = Button(panel, "Close", "Để sau", false, .92f, .065f);
+            SetObjectArray(popup, "cardButtons", cardButtons);
+            SetObjectArray(popup, "cardBackgrounds", cardBackgrounds);
+            SetObjectArray(popup, "cardArts", cardArts);
+            SetObjectArray(popup, "cardNames", cardNames);
+            SetObjectArray(popup, "cardWeapons", cardWeapons);
+            SetObjectArray(popup, "cardBadges", cardBadges);
+            Set(popup, "heroArt", heroArt);
+            Set(popup, "sectName", sectName);
+            Set(popup, "loreText", lore);
+            Set(popup, "weaponText", weapons);
+            Set(popup, "tamPhapArt", tamArt);
+            Set(popup, "tamPhapName", tamName);
+            Set(popup, "tamPhapLevel", tamLevel);
+            SetObjectArray(popup, "milestoneTexts", milestoneTexts);
+            SetObjectArray(popup, "milestoneBackgrounds", milestoneBackgrounds);
+            Set(popup, "primaryButton", primary);
+            Set(popup, "closeButton", close);
+        }
+
+        private static void BuildSectCard(
+            RectTransform parent,
+            int index,
+            out Button button,
+            out Image background,
+            out Image art,
+            out Text name,
+            out Text weapons,
+            out Text badge)
+        {
+            float top = 1f - index / 7f;
+            float bottom = 1f - (index + 1) / 7f + .008f;
+            background = UiBuild.Image(parent, "Sect Card " + index, new Color(.12f, .09f, .07f, .28f));
+            Anchor(background.rectTransform, 0f, bottom, 1f, top - .008f);
+            background.gameObject.AddComponent<RectMask2D>();
+            button = background.gameObject.AddComponent<Button>();
+            button.targetGraphic = background;
+            art = UiBuild.Image(background.transform, "Art", new Color(.25f, .20f, .15f, .9f));
+            Anchor(art.rectTransform, 0f, 0f, .31f, 1f);
+            art.preserveAspect = false;
+            name = Text(background.transform, "Name", "Môn phái", 21, .34f, .48f, .82f, .94f);
+            name.alignment = TextAnchor.MiddleLeft;
+            name.gameObject.AddComponent<SingleLineFit>().Configure(21, 14);
+            weapons = Text(background.transform, "Weapons", "Binh khí", 14, .34f, .06f, .97f, .48f);
+            weapons.alignment = TextAnchor.MiddleLeft;
+            ShrinkToFit(weapons, 14, 10);
+            badge = Text(background.transform, "Badge", string.Empty, 13, .80f, .55f, .98f, .92f);
+            badge.alignment = TextAnchor.MiddleRight;
+            badge.color = UiBuild.Vermilion;
+        }
+
+        // Cord and ring hung on the top edge, at the art's own aspect (571x248, ring centre 34 px above its
+        // bottom), so the ring sits on the frame line.
+        private static void AddCardKnot(Transform card)
+        {
+            Image knot = UiBuild.Image(card, "Knot", Color.white);
+            knot.raycastTarget = false;
+            if (!UiBuild.ApplyUiSprite(knot, "Kit/shop_card_knot"))
+            {
+                UnityEngine.Object.DestroyImmediate(knot.gameObject);
+                return;
+            }
+
+            RectTransform rect = knot.rectTransform;
+            rect.anchorMin = new Vector2(.5f, 1f);
+            rect.anchorMax = new Vector2(.5f, 1f);
+            rect.pivot = new Vector2(.5f, 34f / 248f);
+            rect.sizeDelta = new Vector2(92f, 92f * 248f / 571f);
+            rect.anchoredPosition = new Vector2(0f, -8f);
+        }
+
+        // Four vermilion rules around a rect: the border of an ink stamp.
+        private static void AddStampFrame(RectTransform stamp, float thickness)
+        {
+            var inward = new Vector2(thickness, thickness);
+            AddStampRule(stamp, "Rule Top", new Vector2(0f, 1f), Vector2.one, -inward * Vector2.up);
+            AddStampRule(stamp, "Rule Bottom", Vector2.zero, new Vector2(1f, 0f), inward * Vector2.up);
+            AddStampRule(stamp, "Rule Left", Vector2.zero, new Vector2(0f, 1f), inward * Vector2.right);
+            AddStampRule(stamp, "Rule Right", new Vector2(1f, 0f), Vector2.one, -inward * Vector2.right);
+        }
+
+        // A rule hugging one edge; "reach" is how far it extends inward from that edge.
+        private static void AddStampRule(
+            RectTransform stamp,
+            string name,
+            Vector2 anchorMin,
+            Vector2 anchorMax,
+            Vector2 reach)
+        {
+            Image rule = UiBuild.Image(stamp, name, UiBuild.Vermilion);
+            rule.raycastTarget = false;
+            rule.rectTransform.anchorMin = anchorMin;
+            rule.rectTransform.anchorMax = anchorMax;
+            rule.rectTransform.offsetMin = Vector2.Min(reach, Vector2.zero);
+            rule.rectTransform.offsetMax = Vector2.Max(reach, Vector2.zero);
+        }
+
+        // Best fit only shrinks up to the design size; Unity's default maximum (40) would blow the text up.
+        private static void ShrinkToFit(Text text, int maxSize, int minSize)
+        {
+            text.horizontalOverflow = HorizontalWrapMode.Wrap;
+            text.verticalOverflow = VerticalWrapMode.Truncate;
+            text.resizeTextForBestFit = true;
+            text.resizeTextMaxSize = maxSize;
+            text.resizeTextMinSize = minSize;
         }
 
         private static void BuildStorageViews(bool overwrite)
@@ -59,6 +300,7 @@ namespace OneBagJianghu.EditorTools.Building
             StorageCell cell = root.AddComponent<StorageCell>();
             Image paper = UiBuild.Image(root.transform, "Paper", new Color(.18f, .15f, .12f, .1f));
             UiBuild.Stretch(paper.rectTransform);
+            UiBuild.ApplyUiSprite(paper, "Kit/slot_cell", Image.Type.Sliced);
             Set(cell, "paper", paper);
             Save(root, path);
         }
@@ -70,6 +312,10 @@ namespace OneBagJianghu.EditorTools.Building
                 return;
             var root = new GameObject("StorageItemView", typeof(RectTransform), typeof(CanvasGroup));
             StorageItemView view = root.AddComponent<StorageItemView>();
+            // Opaque paper backing: inset so it stays within the rounded frame corners.
+            Image background = UiBuild.Image(root.transform, "Background", UiBuild.Paper);
+            UiBuild.Stretch(background.rectTransform, 4f);
+            background.raycastTarget = false;
             Image border = UiBuild.Image(root.transform, "Border", Color.white);
             UiBuild.Stretch(border.rectTransform);
             UiBuild.ApplyUiSprite(border, "frame_panel", Image.Type.Sliced);
@@ -92,12 +338,13 @@ namespace OneBagJianghu.EditorTools.Building
             Image pill = UiBuild.Image(root.transform, "Badge Pill", new Color(.10f, .08f, .06f, .86f));
             SetBadgeRect(pill.rectTransform);
             pill.raycastTarget = false;
-            UiBuild.ApplyUiSprite(pill, "plaque_label", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(pill, "Kit/tier_pill", Image.Type.Sliced);
             Text badge = Text(pill.transform, "Badge", "T1", 13, 0f, 0f, 1f, 1f);
             badge.color = UiBuild.Paper;
             badge.alignment = TextAnchor.MiddleCenter;
             badge.gameObject.AddComponent<SingleLineFit>().Configure(13, 11);
             Set(view, "icon", icon);
+            Set(view, "background", background);
             Set(view, "border", border);
             Set(view, "nameText", name);
             Set(view, "badgeText", badge);
@@ -138,6 +385,8 @@ namespace OneBagJianghu.EditorTools.Building
             string[] types = { "Tất cả", "Binh Khí", "Hộ Cụ", "Công Pháp", "Đan Dược", "Kỳ Trân" };
             Dropdown filter = Dropdown(panel, "Type Filter", types, .02f, .79f, .22f, .86f);
             UiButton sort = Button(panel, "Sort", "Sắp xếp", false, .37f, .825f);
+            UiBuild.ApplyUiSprite(sort.GetComponent<Image>(), "Kit/button_small_gold", Image.Type.Sliced);
+            UiBuild.AddLeadingIcon(sort.transform, "icon_sort");
 
             // Storage grid.
             RectTransform viewport = UiBuild.Image(panel, "Grid Viewport", new Color(0f, 0f, 0f, .04f)).rectTransform;
@@ -178,6 +427,7 @@ namespace OneBagJianghu.EditorTools.Building
 
             // The description grows inside a clipped, independently scrollable viewport.
             RectTransform detailViewport = UiBuild.Image(panel, "Detail Viewport", Color.clear).rectTransform;
+            UiBuild.ApplyUiSprite(detailViewport.GetComponent<Image>(), "Kit/panel_inset", Image.Type.Sliced);
             Anchor(detailViewport, .65f, .47f, .97f, .88f);
             detailViewport.gameObject.AddComponent<RectMask2D>();
             RectTransform detailContent = UiBuild.Rect(detailViewport, "Content");
@@ -206,11 +456,14 @@ namespace OneBagJianghu.EditorTools.Building
             cost.resizeTextMaxSize = 20;
             UiButton upgrade = Button(panel, "Upgrade", "Nâng Trọng", true, .72f, .26f);
             UiButton merge = Button(panel, "Merge", "Hợp Thành", true, .89f, .26f);
+            UiBuild.AddLeadingIcon(upgrade.transform, "icon_upgrade");
+            UiBuild.AddLeadingIcon(merge.transform, "icon_merge");
             TutorialTarget upgradeTarget = upgrade.gameObject.AddComponent<TutorialTarget>();
             upgradeTarget.Configure("storage_upgrade");
             TutorialTarget mergeTarget = merge.gameObject.AddComponent<TutorialTarget>();
             mergeTarget.Configure("storage_merge");
             UiButton sell = Button(panel, "Sell", "Bán", false, .72f, .15f);
+            UiBuild.AddLeadingIcon(sell.transform, "icon_sell");
             UiButton close = Button(panel, "Close", "Đóng", false, .89f, .15f);
             BindStorage(popup, header, silver, reputation, warning, filter, sort, scroll, content, cell, item);
             Set(popup, "equippedContent", equippedContent);
@@ -263,10 +516,12 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Color trackColor = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .16f);
             Image track = UiBuild.Image(panel, "Detail Scrollbar", trackColor);
+            UiBuild.ApplyUiSprite(track, "Kit/scrollbar_track", Image.Type.Sliced);
             Scrollbar scrollbar = track.gameObject.AddComponent<Scrollbar>();
             Anchor(scrollbar.GetComponent<RectTransform>(), .972f, .47f, .982f, .88f);
             Image handle = UiBuild.Image(scrollbar.transform, "Handle", UiBuild.Vermilion);
             UiBuild.Stretch(handle.rectTransform);
+            UiBuild.ApplyUiSprite(handle, "Kit/scrollbar_handle", Image.Type.Sliced);
             scrollbar.handleRect = handle.rectTransform;
             scrollbar.targetGraphic = handle;
             scrollbar.direction = Scrollbar.Direction.BottomToTop;
@@ -343,7 +598,7 @@ namespace OneBagJianghu.EditorTools.Building
             UiButton week = Button(panel, "Next Week", "Sang tuần mới", false, .7f, .37f);
             UiButton unlock = Button(panel, "Unlock Pve", "Mở toàn bộ ải", false, .2f, .27f);
             UiButton refill = Button(panel, "Refill Stamina", "Hồi đầy Thể Lực", false, .5f, .27f);
-            UiButton clear = Button(panel, "Clear Stage", "Qua ải 3 sao", false, .8f, .27f);
+            UiButton clear = Button(panel, "Clear Stage", "Qua ải", false, .8f, .27f);
             UiButton level = Button(panel, "Add Level", "+1 cấp", false, .2f, .20f);
             UiButton exp = Button(panel, "Add Exp", "+100 EXP", false, .5f, .20f);
             UiButton sect = Button(panel, "Reset Sect", "Đặt lại môn phái", false, .8f, .20f);
@@ -397,41 +652,79 @@ namespace OneBagJianghu.EditorTools.Building
             ShopCard card = root.AddComponent<ShopCard>();
             Image paper = UiBuild.Image(root.transform, "Paper", UiBuild.Paper);
             UiBuild.Stretch(paper.rectTransform);
-            UiBuild.ApplyUiSprite(paper, "frame_panel", Image.Type.Sliced);
+            // shop_card_wide is drawn at the card's own 7:5 shape, so it stretches whole (Simple) without warping.
+            // Its footer band is the bottom 21% (button row); the face above holds art, text and price.
+            bool wideCard = UiBuild.ApplyUiSprite(paper, "Kit/shop_card_wide", Image.Type.Simple);
+            if (!wideCard && !UiBuild.ApplyUiSprite(paper, "Kit/shop_card_frame", Image.Type.Sliced))
+                UiBuild.ApplyUiSprite(paper, "Kit/shop_card", Image.Type.Sliced);
             Image border = UiBuild.Image(root.transform, "Rarity Border", Color.white);
             UiBuild.Stretch(border.rectTransform, 3f);
             border.raycastTarget = false;
             UiBuild.ApplyUiSprite(border, "frame_panel", Image.Type.Sliced);
+            // The card art has its own frame; a second rarity frame on top doubled the border. Rarity stays on the
+            // medallion. The object is kept (hidden) because ShopCard tints it.
+            border.gameObject.SetActive(!wideCard);
+            AddCardKnot(root.transform);
             Image icon = UiBuild.Image(root.transform, "Icon", Color.white);
-            Anchor(icon.rectTransform, .08f, .55f, .92f, .94f);
+            Anchor(icon.rectTransform, .08f, .6f, .92f, .91f);
             icon.preserveAspect = true;
             // Rarity medallion: top-left of the item-art region.
             Image rarityBadge = UiBuild.Image(root.transform, "Rarity Badge", Color.white);
             SetTopLeftBadgeRect(rarityBadge.rectTransform, 34f, 24f);
             rarityBadge.preserveAspect = true;
             rarityBadge.raycastTarget = false;
-            Text placeholder = Text(root.transform, "Icon Placeholder", "◆", 24, .08f, .55f, .92f, .94f);
+            Text placeholder = Text(root.transform, "Icon Placeholder", "◆", 24, .08f, .6f, .92f, .91f);
             placeholder.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .55f);
-            Text name = Text(root.transform, "Name", "Tên vật phẩm", 21, .05f, .45f, .95f, .55f);
+            Text name = Text(root.transform, "Name", "Tên vật phẩm", 21, .05f, .51f, .95f, .6f);
             name.fontStyle = FontStyle.Bold;
             name.gameObject.AddComponent<SingleLineFit>().Configure(21, 14);
-            Text detail = Text(root.transform, "Detail", "Phàm • 1 Trọng", 16, .05f, .36f, .66f, .45f);
+            Text detail = Text(root.transform, "Detail", "Phàm • 1 Trọng", 16, .05f, .44f, .66f, .51f);
             detail.alignment = TextAnchor.MiddleLeft;
             detail.gameObject.AddComponent<SingleLineFit>().Configure(16, 12);
-            Text type = Text(root.transform, "Type", "Binh Khí", 16, .66f, .36f, .95f, .45f);
-            Text stat = Text(root.transform, "Stat", "Khí Huyết +20", 16, .05f, .28f, .95f, .36f);
+            Text type = Text(root.transform, "Type", "Binh Khí", 16, .66f, .44f, .95f, .51f);
+            Text stat = Text(root.transform, "Stat", "Khí Huyết +20", 16, .05f, .375f, .95f, .44f);
             stat.alignment = TextAnchor.MiddleLeft;
             stat.gameObject.AddComponent<SingleLineFit>().Configure(16, 12);
-            Text price = Text(root.transform, "Price", "Bạc 1.000", 20, .05f, .20f, .48f, .28f);
-            Text oldPrice = Text(root.transform, "Old Price", "1.200", 15, .47f, .20f, .68f, .28f);
+            // Price plate: the coin ring (left 640 px of the art, hole centred at x 381) holds the silver icon;
+            // the plate is drawn at its native height (464 px / 12.9 = 36) so the ring is not squashed.
+            Image priceTag = UiBuild.Image(root.transform, "Price Tag", new Color(UiBuild.Ink.r, UiBuild.Ink.g,
+                UiBuild.Ink.b, .12f));
+            Anchor(priceTag.rectTransform, .03f, .215f, .64f, .335f);
+            bool hasPlate = UiBuild.ApplyUiSprite(priceTag, "Kit/price_tag", Image.Type.Sliced);
+            priceTag.raycastTarget = false;
+            float ring = hasPlate ? priceTag.sprite.border.x * 100f / (priceTag.sprite.pixelsPerUnit
+                * priceTag.pixelsPerUnitMultiplier) : 0f;
+            if (hasPlate)
+            {
+                Image coin = UiBuild.Image(priceTag.transform, "Coin", Color.white);
+                RectTransform coinRect = coin.rectTransform;
+                coinRect.anchorMin = new Vector2(0f, .5f);
+                coinRect.anchorMax = new Vector2(0f, .5f);
+                coinRect.anchoredPosition = new Vector2(ring * .595f, 1f);
+                coinRect.sizeDelta = new Vector2(ring * .38f, ring * .38f);
+                coin.preserveAspect = true;
+                coin.raycastTarget = false;
+                // icon_bac lives with the PvE art, outside the UI folder ApplyUiSprite reads from.
+                coin.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Game/Textures2D/Pve/icon_bac.png");
+                if (coin.sprite == null)
+                    UnityEngine.Object.DestroyImmediate(coin.gameObject);
+            }
+
+            Text price = Text(priceTag.transform, "Price", "Bạc 1.000", 20, 0f, 0f, 1f, 1f);
+            price.rectTransform.offsetMin = new Vector2(ring + 6f, 0f);
+            price.rectTransform.offsetMax = new Vector2(-14f, 0f);
+            price.color = hasPlate ? UiBuild.Paper : UiBuild.Ink;
+            Shadow priceShadow = price.gameObject.AddComponent<Shadow>();
+            priceShadow.effectColor = new Color(0f, 0f, 0f, .6f);
+            Text oldPrice = Text(root.transform, "Old Price", "1.200", 15, .65f, .23f, .79f, .32f);
             oldPrice.color = new Color(.45f, .4f, .36f);
-            Text discount = Text(root.transform, "Discount", "-20%", 17, .68f, .20f, .93f, .28f);
+            Text discount = Text(root.transform, "Discount", "-20%", 17, .79f, .23f, .95f, .32f);
             discount.color = UiBuild.Vermilion;
             price.gameObject.AddComponent<SingleLineFit>().Configure(20, 12);
             oldPrice.gameObject.AddComponent<SingleLineFit>().Configure(15, 10);
             discount.gameObject.AddComponent<SingleLineFit>().Configure(17, 11);
             type.gameObject.AddComponent<SingleLineFit>().Configure(17, 11);
-            Text reason = Text(root.transform, "Disabled Reason", "Không đủ Bạc", 15, .05f, .14f, .95f, .20f);
+            Text reason = Text(root.transform, "Disabled Reason", "Không đủ Bạc", 15, .05f, .32f, .95f, .375f);
             reason.color = UiBuild.Vermilion;
             reason.gameObject.AddComponent<SingleLineFit>().Configure(15, 10);
             UiButton buy = Linked<UiButton>(
@@ -439,8 +732,8 @@ namespace OneBagJianghu.EditorTools.Building
                 root.transform,
                 "Buy");
             buy.SetLabel("Mua");
-            // The ornate button needs ~38 px of card height for an 18 px label to fit inside its band.
-            Anchor(buy.GetComponent<RectTransform>(), .28f, .005f, .72f, .14f);
+            // Centred in the footer band (4-19% of the card height, ~45 px).
+            Anchor(buy.GetComponent<RectTransform>(), .28f, .035f, .72f, .185f);
             Text buyLabel = buy.GetComponentInChildren<Text>();
             UiBuild.Stretch(buyLabel.rectTransform, 4f);
             SingleLineFit buyFit = buyLabel.GetComponent<SingleLineFit>();
@@ -450,16 +743,23 @@ namespace OneBagJianghu.EditorTools.Building
             }
 
             buyFit.Configure(18, 11);
-            Image seal = UiBuild.Image(root.transform, "Bought Seal", Color.clear);
+            // "Đã mua" stamp in the footer where the buy button was. It ignores the card's faded
+            // CanvasGroup so it stays crisp; a plain ruled frame keeps the label readable.
+            Image seal = UiBuild.Image(root.transform, "Bought Seal", new Color(1f, 1f, 1f, .55f));
             seal.raycastTarget = false;
             RectTransform sealRect = seal.rectTransform;
-            sealRect.anchorMin = new Vector2(.78f, .16f);
-            sealRect.anchorMax = new Vector2(.78f, .16f);
-            sealRect.sizeDelta = new Vector2(105f, 105f);
-            UiBuild.ApplyUiSprite(seal, "seal_title", Image.Type.Simple);
-            Text sealText = Text(root.transform, "Bought Seal Text", "Đã mua", 23, .64f, .08f, .93f, .25f);
+            sealRect.anchorMin = new Vector2(.5f, .11f);
+            sealRect.anchorMax = new Vector2(.5f, .11f);
+            sealRect.sizeDelta = new Vector2(140f, 38f);
+            sealRect.localEulerAngles = new Vector3(0f, 0f, 6f);
+            CanvasGroup sealGroup = seal.gameObject.AddComponent<CanvasGroup>();
+            sealGroup.ignoreParentGroups = true;
+            sealGroup.blocksRaycasts = false;
+            AddStampFrame(sealRect, 3f);
+            Text sealText = Text(seal.transform, "Bought Seal Text", "Đã mua", 26, 0f, 0f, 1f, 1f);
             sealText.color = UiBuild.Vermilion;
             sealText.fontStyle = FontStyle.Bold;
+            sealText.gameObject.AddComponent<SingleLineFit>().Configure(26, 16);
             BindCard(card, paper, border, icon, rarityBadge, placeholder, name, detail, type);
             Set(card, "statText", stat);
             Set(card, "priceText", price);
@@ -506,10 +806,18 @@ namespace OneBagJianghu.EditorTools.Building
             timer.gameObject.AddComponent<LayoutElement>().preferredWidth = 300f;
             Text status = Text(panel, "Status", string.Empty, 18, .03f, .015f, .65f, .065f);
             UiButton refresh = Button(panel, "Refresh", "Làm mới", true, .86f, .885f);
-            refresh.GetComponent<RectTransform>().sizeDelta = new Vector2(300f, 58f);
+            UiBuild.ApplyUiSprite(refresh.GetComponent<Image>(), "Kit/button_small_gold", Image.Type.Sliced);
+            UiBuild.AddLeadingIcon(refresh.transform, "icon_refresh");
+            refresh.GetComponent<RectTransform>().sizeDelta = new Vector2(360f, 64f);
             UiButton trade = Button(panel, "Trade Tab", "Thương Hội", true, .18f, .795f);
             UiButton exchange = Button(panel, "Exchange Tab", "Đổi nguyên liệu", false, .5f, .795f);
             UiButton reputationTab = Button(panel, "Reputation Tab", "Tiệm Danh Vọng", false, .82f, .795f);
+            UiBuild.ApplyUiSprite(trade.GetComponent<Image>(), "Kit/tab_active", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(exchange.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(reputationTab.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Sliced);
+            // Idle tabs are pale silk: ink labels stay readable (ShopPopup copies these colors per state).
+            exchange.GetComponentInChildren<Text>().color = UiBuild.Ink;
+            reputationTab.GetComponentInChildren<Text>().color = UiBuild.Ink;
             RectTransform tradePanel = Panel(panel, "Trade Panel");
             RectTransform slots = UiBuild.Rect(tradePanel, "Slots");
             Anchor(slots, 0f, 0f, 1f, 1f);
@@ -664,6 +972,7 @@ namespace OneBagJianghu.EditorTools.Building
             root.GetComponent<Canvas>().overrideSorting = true;
             T popup = root.AddComponent<T>();
             Image paper = Linked<Image>(CommonUiPrefabBuilder.Folder + "/Panel_Paper.prefab", root.transform, "Panel");
+            UiBuild.ApplyUiSprite(paper, "Kit/popup_frame", Image.Type.Sliced);
             RectTransform panel = paper.rectTransform;
             panel.anchorMin = new Vector2(.5f, .5f);
             panel.anchorMax = new Vector2(.5f, .5f);
@@ -694,6 +1003,25 @@ namespace OneBagJianghu.EditorTools.Building
                     : UiFontRole.Body;
             Text text = UiBuild.Text(parent, name, value, size, TextAnchor.MiddleCenter, role);
             Anchor(text.rectTransform, xMin, yMin, xMax, yMax);
+            if (isDisplay)
+            {
+                Image ribbon = UiBuild.Image(parent, name + " Ribbon", Color.clear);
+                Anchor(ribbon.rectTransform, xMin, yMin, xMax, yMax);
+                ribbon.raycastTarget = false;
+                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Sliced))
+                {
+                    // The band fills the title rect; the tassel strip (bottom border) hangs below it.
+                    // Canvas units: border pixels x reference pixels per unit (100) / (sprite PPU x multiplier).
+                    float tassels = ribbon.sprite.border.y * 100f / (ribbon.sprite.pixelsPerUnit
+                        * ribbon.pixelsPerUnitMultiplier);
+                    ribbon.rectTransform.offsetMin = new Vector2(0f, -tassels);
+                    ribbon.transform.SetSiblingIndex(text.transform.GetSiblingIndex());
+                    text.transform.SetAsLastSibling();
+                    text.color = UiBuild.Paper;
+                }
+                else
+                    UnityEngine.Object.DestroyImmediate(ribbon.gameObject);
+            }
             return text;
         }
 
@@ -750,6 +1078,12 @@ namespace OneBagJianghu.EditorTools.Building
             rect.anchorMin = new Vector2(x, y);
             rect.anchorMax = new Vector2(x, y);
             rect.sizeDelta = new Vector2(260f, 62f);
+            if (label == "Đóng" && UiBuild.ApplyUiSprite(button.GetComponent<Image>(), "Kit/button_close"))
+            {
+                rect.sizeDelta = new Vector2(56f, 56f);
+                rect.anchorMin = rect.anchorMax = new Vector2(.965f, .965f);
+                button.GetComponentInChildren<Text>().gameObject.SetActive(false);
+            }
             return button;
         }
 
@@ -796,6 +1130,22 @@ namespace OneBagJianghu.EditorTools.Building
         private static void Set(UnityEngine.Object target, string field, UnityEngine.Object value)
         {
             UiBuild.Set(target, field, value);
+        }
+
+        private static void SetObjectArray(
+            UnityEngine.Object target,
+            string field,
+            UnityEngine.Object[] values)
+        {
+            var serialized = new SerializedObject(target);
+            SerializedProperty property = serialized.FindProperty(field);
+            property.arraySize = values.Length;
+            for (int i = 0; i < values.Length; i++)
+            {
+                property.GetArrayElementAtIndex(i).objectReferenceValue = values[i];
+            }
+
+            serialized.ApplyModifiedPropertiesWithoutUndo();
         }
 
         private static void Save(GameObject root, string path)

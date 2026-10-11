@@ -36,6 +36,11 @@ namespace OneBagJianghu.EditorTools.Building
             bg.gameObject.AddComponent<CanvasGroup>();
             bg.gameObject.AddComponent<LayoutElement>();
             ItemView view = bg.gameObject.AddComponent<ItemView>();
+            bg.color = Color.clear;
+            // Opaque paper backing: inset so it stays within the rounded frame corners.
+            Image backing = UiBuild.Image(bg.transform, "Background", UiBuild.Paper);
+            UiBuild.Stretch(backing.rectTransform, 5f);
+            backing.raycastTarget = false;
             Image icon = UiBuild.Image(bg.transform, "Icon", Color.white);
             UiBuild.Stretch(icon.rectTransform, 5f);
             icon.preserveAspect = true;
@@ -57,13 +62,19 @@ namespace OneBagJianghu.EditorTools.Building
                    new Vector2(1f, 1f));
             tier.color = UiBuild.Ink;
             tier.fontStyle = FontStyle.Bold;
+            Image tierPill = UiBuild.Image(bg.transform, "Tier Pill",
+                new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .86f));
+            Anchor(tierPill.rectTransform, new Vector2(1f, 1f), new Vector2(-8f, -8f), new Vector2(42f, 24f),
+                new Vector2(1f, 1f));
+            UiBuild.ApplyUiSprite(tierPill, "Kit/tier_pill", Image.Type.Sliced);
+            tier.transform.SetAsLastSibling();
             Text mark = UiBuild.Text(bg.transform, "Tam Phap", "TP", 14, TextAnchor.UpperLeft);
             Anchor(mark.rectTransform, new Vector2(0f, 1f), new Vector2(4f, -3f), new Vector2(30f, 20f),
                    new Vector2(0f, 1f));
             mark.color = UiBuild.Gold;
             mark.fontStyle = FontStyle.Bold;
             mark.gameObject.SetActive(false);
-            UiBuild.Set(view, "background", bg);
+            UiBuild.Set(view, "background", backing);
             UiBuild.Set(view, "icon", icon);
             UiBuild.Set(view, "rarityFrame", rarityFrame);
             UiBuild.Set(view, "rarityBadge", rarityBadge);
@@ -91,6 +102,7 @@ namespace OneBagJianghu.EditorTools.Building
                 {
                     Image cell = UiBuild.Image(cells, $"Cell {x},{y}",
                                                new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .1f));
+                    UiBuild.ApplyUiSprite(cell, "Kit/slot_cell", Image.Type.Sliced);
                     BagGridView.SetCellRect(cell.rectTransform, x, y, 1, 1);
                 }
             RectTransform highlights = Layer(root, "Highlights");
@@ -104,6 +116,10 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.Set(
                 view, "highlightPrefab",
                 AssetDatabase.LoadAssetAtPath<GameObject>(Folder + "/BagHighlight.prefab").GetComponent<Image>());
+            UiBuild.Set(
+                view, "invalidHighlightPrefab",
+                AssetDatabase.LoadAssetAtPath<GameObject>(Folder + "/BagHighlightInvalid.prefab")
+                    .GetComponent<Image>());
             Save(root.gameObject, path);
         }
         private static void BuildHighlight(bool overwrite)
@@ -112,8 +128,17 @@ namespace OneBagJianghu.EditorTools.Building
             if (!AssetGuard.ShouldBuild(path, overwrite))
                 return;
             Image image = UiBuild.Image(null, "BagHighlight", BagViewStyle.Valid);
+            UiBuild.ApplyUiSprite(image, "Kit/slot_cell_highlight", Image.Type.Sliced);
             image.raycastTarget = false;
             Save(image.gameObject, path);
+
+            string invalidPath = Folder + "/BagHighlightInvalid.prefab";
+            if (!AssetGuard.ShouldBuild(invalidPath, overwrite))
+                return;
+            Image invalid = UiBuild.Image(null, "BagHighlightInvalid", BagViewStyle.Invalid);
+            UiBuild.ApplyUiSprite(invalid, "Kit/slot_cell_invalid", Image.Type.Sliced);
+            invalid.raycastTarget = false;
+            Save(invalid.gameObject, invalidPath);
         }
 
         private static void BuildTray(bool overwrite)
@@ -185,6 +210,12 @@ namespace OneBagJianghu.EditorTools.Building
             stats.verticalOverflow = VerticalWrapMode.Truncate;
             stats.lineSpacing = 1.15f;
             BagGridView grid = UiBuild.InstantiateLinked<BagGridView>(Folder + "/BagGrid.prefab", root);
+            Image board = UiBuild.Image(root, "Bag Board",
+                new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .13f));
+            Anchor(board.rectTransform, new Vector2(0f, 1f), new Vector2(18f, -168f),
+                new Vector2(540f, 450f), new Vector2(0f, 1f));
+            UiBuild.ApplyUiSprite(board, "Kit/bag_board", Image.Type.Sliced);
+            board.transform.SetSiblingIndex(grid.transform.GetSiblingIndex());
             Anchor((RectTransform)grid.transform, new Vector2(0f, 1f), new Vector2(30f, -180f),
                    ((RectTransform)grid.transform).sizeDelta, new Vector2(0f, 1f));
             ItemTrayView tray = UiBuild.InstantiateLinked<ItemTrayView>(Folder + "/ItemTray.prefab", root);

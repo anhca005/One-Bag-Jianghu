@@ -303,6 +303,7 @@ GameObject:
   - component: {fileID: 477432835605158970}
   - component: {fileID: 1990313165299350974}
   - component: {fileID: 7182025509118527962}
+  - component: {fileID: 5469455369299936189}
   - component: {fileID: 3887841994719813834}
   m_Layer: 0
   m_Name: Panel
@@ -362,7 +363,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -370,7 +371,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 5
 --- !u!114 &7182025509118527962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +387,19 @@ MonoBehaviour:
   m_EffectColor: {r: 0.7882353, g: 0.6431373, b: 0.36078432, a: 1}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
+--- !u!114 &5469455369299936189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8080793268191598707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
+  preferredMultiplier: 5
 --- !u!114 &3887841994719813834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -413,7 +427,7 @@ GameObject:
   - component: {fileID: 4613215396032008795}
   - component: {fileID: 6246412481733248799}
   - component: {fileID: 5575289096871493406}
-  - component: {fileID: 6650167160950802035}
+  - component: {fileID: 1299511539146112926}
   m_Layer: 0
   m_Name: IntroPopup
   m_TagString: Untagged
@@ -512,7 +526,7 @@ MonoBehaviour:
   artwork: {fileID: 7235924226350416246}
   bodyText: {fileID: 802282982970515426}
   skipButton: {fileID: 4287880958231344486}
---- !u!114 &6650167160950802035
+--- !u!114 &1299511539146112926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -23,6 +23,9 @@
       "id": "shop", "trigger": "first_stage_home_return",
       "steps": [
         { "line": "Thắng trận đầu rồi! Đóng bản đồ, về trấn sắm sửa.", "target": "stage_map_close", "completeEvent": "stage_map_closed" },
+        { "line": "Khung này là Hành Tẩu Lục, ghi việc cần làm tiếp theo. Việc đầu đã xong nên khung đang sáng. Bấm vào xem.", "target": "home_quest", "completeEvent": "quest_log_opened" },
+        { "line": "Bấm Nhận thưởng để lấy Bạc, EXP và nguyên liệu. Nhận xong, việc kế tiếp sẽ mở ra.", "target": "quest_claim", "completeEvent": "quest_claimed" },
+        { "line": "Việc kế là sắm đồ. Khi chưa xong việc, cứ bấm vào khung, ta sẽ dẫn ngươi tới đúng chỗ.", "target": "quest_log_close", "completeEvent": "quest_log_closed" },
         { "line": "Có Bạc rồi. Ghé Thương Hội xem hàng.", "target": "home_shop", "completeEvent": "shop_opened" },
         { "line": "Thái Thanh Tâm Kinh là Công Pháp hợp cho người mới, chỉ 200 Bạc. Bấm vào để mua.", "target": "shop_first_item", "completeEvent": "shop_item_purchased" }
       ]
@@ -38,7 +41,8 @@
     {
       "id": "sect", "trigger": "level_10",
       "steps": [
-        { "line": "Cấp 10, đủ tư cách bái nhập Môn Phái.", "target": "home_sect", "completeEvent": "sect_opened" },
+        { "line": "Cấp 10, đủ tư cách bái nhập Môn Phái. Đóng bản đồ, về trấn.", "target": "stage_map_close", "completeEvent": "stage_map_closed" },
+        { "line": "Môn Phái đang chờ ngươi. Ghé điểm Môn Phái.", "target": "home_sect", "completeEvent": "sect_opened" },
         { "line": "Mỗi phái có Tâm Pháp riêng, tăng sức cho các hệ binh khí của phái. Chọn phái hợp với túi của ngươi.", "target": "sect_choices", "completeEvent": "sect_selected_or_closed" }
       ]
     }

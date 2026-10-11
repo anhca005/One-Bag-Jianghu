@@ -25,18 +25,18 @@ namespace OneBagJianghu.UI.Pve
 
         public void Bind(PveStage stage,
             bool unlocked,
-            int stars,
+            bool cleared,
             Color accent,
             System.Action<PveStage> clicked) => Bind(stage,
             unlocked,
-            stars,
+            cleared,
             accent,
             null,
             null,
             clicked);
         public void Bind(PveStage stage,
             bool unlocked,
-            int stars,
+            bool cleared,
             Color accent,
             PveTheme theme,
             PveArtLibrary art,
@@ -58,7 +58,7 @@ namespace OneBagJianghu.UI.Pve
             frame.color = nodeSprite != null ? unlocked ? Color.white : new Color(.35f,
                 .35f,
                 .35f,
-                .9f) : unlocked ? stars > 0 ? accent : Color.Lerp(accent,
+                .9f) : unlocked ? cleared ? accent : Color.Lerp(accent,
                 Color.white,
                 .45f) : new Color(.35f,
                 .35f,
@@ -66,17 +66,16 @@ namespace OneBagJianghu.UI.Pve
                 .9f);
             indexText.text = stage.Index.ToString();
             kindText.text = stage.Kind == "boss" ? "Thủ Lĩnh" : stage.Kind == "elite" ? "TINH ANH" : string.Empty;
-            Sprite filled = Get(art, "icon_star"), empty = Get(art, "icon_star_empty");
-            bool imageStars = filled != null && empty != null && starIcons != null && starIcons.Length == 3;
-            starsText.gameObject.SetActive(!imageStars);
-            starsText.text = stars > 0 ? new string('★', stars) : string.Empty;
+            if (starsText != null)
+                starsText.gameObject.SetActive(false);
             if (starIcons != null)
+            {
                 for (int i = 0; i < starIcons.Length; i++)
                 {
-                    starIcons[i].gameObject.SetActive(imageStars);
-                    if (imageStars)
-                        starIcons[i].sprite = i < stars ? filled : empty;
+                    if (starIcons[i] != null)
+                        starIcons[i].gameObject.SetActive(false);
                 }
+            }
 
             Sprite locked = Get(art, "icon_lock");
             if (lockIcon != null)

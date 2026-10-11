@@ -81,6 +81,10 @@ namespace OneBagJianghu.UI.Pve
             catalog = PveCatalog.Load();
             staminaConfig = StaminaConfig.Load();
             stamina = new StaminaService(staminaConfig);
+            SingleLineFit staminaFit = staminaText.GetComponent<SingleLineFit>();
+            if (staminaFit == null)
+                staminaFit = staminaText.gameObject.AddComponent<SingleLineFit>();
+            staminaFit.Configure(staminaText.fontSize, 14);
             art = PveArtLibrary.Load();
             itemArt = ItemIconLibrary.Load();
             RefreshStamina();
@@ -156,7 +160,7 @@ namespace OneBagJianghu.UI.Pve
             }
 
             SetOptionalIcon(staminaIcon, "icon_stamina");
-            SetOptionalIcon(recommendedLevelIcon, "icon_star");
+            SetOptionalIcon(recommendedLevelIcon, "icon_exp");
             SetOptionalIcon(rewardCurrencyIcon, "icon_bac");
             UpdateStaminaText();
             previousButton.gameObject.SetActive(chapterIndex > 0);
@@ -187,9 +191,9 @@ namespace OneBagJianghu.UI.Pve
                 }
 
                 bool unlocked = PveRules.IsStageUnlocked(stage, catalog, GameBootstrap.Session.Profile);
-                int stars = GameBootstrap.Session.Profile.Pve.Stages.TryGetValue(stage.Id,
-                    out PveStageProgress progress) ? progress.BestStars : 0;
-                node.Bind(stage, unlocked, stars, accent, chapter.Theme, art, OnStageClicked);
+                bool cleared = GameBootstrap.Session.Profile.Pve.Stages.TryGetValue(stage.Id,
+                    out PveStageProgress progress) && progress.Cleared;
+                node.Bind(stage, unlocked, cleared, accent, chapter.Theme, art, OnStageClicked);
                 nodes.Add(node.gameObject);
             }
 
@@ -314,8 +318,15 @@ namespace OneBagJianghu.UI.Pve
         {
             if (staminaText != null && staminaConfig != null)
             {
-                staminaText.text = "Thể Lực: " + GameBootstrap.Session.Profile.Pve.Stamina
-                    + "/" + staminaConfig.Max;
+                PveProfileState state = GameBootstrap.Session.Profile.Pve;
+                string value = "Thể Lực: " + state.Stamina + "/" + staminaConfig.Max;
+                if (state.Stamina < staminaConfig.Max)
+                {
+                    string next = StaminaService.FormatDuration(
+                        stamina.SecondsToNext(state, DateTimeOffset.UtcNow));
+                    value += "  " + next;
+                }
+                staminaText.text = value;
             }
         }
 
@@ -369,6 +380,8 @@ namespace OneBagJianghu.UI.Pve
             if (image == null)
                 return;
             image.sprite = Sprite(key);
+            if (image.sprite == null && CurrencyArt.TryGetSprite(key, out Sprite fallback))
+                image.sprite = fallback;
             image.gameObject.SetActive(image.sprite != null);
         }
 

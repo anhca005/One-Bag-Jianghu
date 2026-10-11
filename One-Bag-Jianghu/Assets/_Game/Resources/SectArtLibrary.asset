@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3b7c1a9d2f4e8b8a6c0f1d2e3a4b5c, type: 3}
+  m_Name: SectArtLibrary
+  m_EditorClassIdentifier: OneBagJianghu.Game:OneBagJianghu.Bag:SectArtLibrary
+  entries:
+  - Key: sect_bich_thuy
+    Sprite: {fileID: 21300000, guid: 0d99439a06dc23b4597b9800081a2b3c, type: 3}
+  - Key: sect_han_son
+    Sprite: {fileID: 21300000, guid: e6e40c806d5fce1429e75d3a62f7e084, type: 3}
+  - Key: sect_huyen_doc
+    Sprite: {fileID: 21300000, guid: 2da4993180c00eb43b443aba1fd7db6e, type: 3}
+  - Key: sect_kim_cang
+    Sprite: {fileID: 21300000, guid: 60cae9eba6c9c8a47b8ca9faa38eb5cd, type: 3}
+  - Key: sect_liet_diem
+    Sprite: {fileID: 21300000, guid: b367388b8a4362c4e9fce73f845c5fc9, type: 3}
+  - Key: sect_thai_thanh
+    Sprite: {fileID: 21300000, guid: c540313ac28dcc54fbf3ed555240992c, type: 3}
+  - Key: sect_thiet_phu
+    Sprite: {fileID: 21300000, guid: 18320897e2ffad84e989f54bdc905451, type: 3}
+  - Key: tam_phap_bich_thuy
+    Sprite: {fileID: 21300000, guid: 2929909786a616044b7e23eca3041552, type: 3}
+  - Key: tam_phap_han_son
+    Sprite: {fileID: 21300000, guid: 8a0844576d1216c479f1b4fb82c5cc19, type: 3}
+  - Key: tam_phap_huyen_doc
+    Sprite: {fileID: 21300000, guid: 153e7e39953f80d4d8fe474a85013ce9, type: 3}
+  - Key: tam_phap_kim_cang
+    Sprite: {fileID: 21300000, guid: fc79d5cde6c4fa944b3d071bc73e634d, type: 3}
+  - Key: tam_phap_liet_diem
+    Sprite: {fileID: 21300000, guid: daaca74aa4b5fba4e844e48b3a09ac15, type: 3}
+  - Key: tam_phap_thai_thanh
+    Sprite: {fileID: 21300000, guid: 9362d48105403f349b6e489ee9868d68, type: 3}
+  - Key: tam_phap_thiet_phu
+    Sprite: {fileID: 21300000, guid: 40805138877c5734b8fe7e67c8711efd, type: 3}

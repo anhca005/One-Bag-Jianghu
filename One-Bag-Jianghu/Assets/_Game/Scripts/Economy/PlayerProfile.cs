@@ -10,6 +10,7 @@ namespace OneBagJianghu.Economy
         [JsonProperty("cleared")]
         public bool Cleared;
         [JsonProperty("bestStars")]
+        // Legacy, unused. Retained so profiles written by older builds still deserialize.
         public int BestStars;
     }
 
@@ -77,6 +78,8 @@ namespace OneBagJianghu.Economy
         public string LastFreeRefreshUtc = string.Empty;
         [JsonProperty("paidRefreshesToday")]
         public int PaidRefreshesToday;
+        [JsonProperty("starterFreeRefreshesUsed")]
+        public int StarterFreeRefreshesUsed;
         [JsonProperty("dayKey")]
         public string DayKey = string.Empty;
         [JsonProperty("weekKey")]
@@ -87,9 +90,24 @@ namespace OneBagJianghu.Economy
         public int Generation;
     }
 
+    public sealed class QuestProfileState
+    {
+        [JsonProperty("activeIndex")]
+        public int ActiveIndex;
+        [JsonProperty("activeId")]
+        public string ActiveId = string.Empty;
+        [JsonProperty("claimedIds")]
+        public List<string> ClaimedIds = new List<string>();
+        [JsonProperty("actionCounters")]
+        public Dictionary<string, int> ActionCounters = new Dictionary<string, int>(StringComparer.Ordinal);
+        [JsonProperty("actionBaseline")]
+        public Dictionary<string, int> ActionBaseline = new Dictionary<string, int>(StringComparer.Ordinal);
+    }
+
     public sealed class PlayerProfile
     {
-        public const int CurrentVersion = 7;
+        public static event Action ProgressChanged;
+        public const int CurrentVersion = 9;
         [JsonProperty("version")]
         public int Version = CurrentVersion;
         [JsonProperty("heroName")]
@@ -108,6 +126,10 @@ namespace OneBagJianghu.Economy
         public bool IntroSeen;
         [JsonProperty("completedTutorials")]
         public List<string> CompletedTutorials = new List<string>();
+        [JsonProperty("seenStoryChapters")]
+        public List<int> SeenStoryChapters = new List<int>();
+        [JsonProperty("pendingStoryChapters")]
+        public List<int> PendingStoryChapters = new List<int>();
         [JsonProperty("currencies")]
         public Dictionary<string, long> Currencies = new Dictionary<string, long>(StringComparer.Ordinal);
         [JsonProperty("materials")]
@@ -124,6 +146,8 @@ namespace OneBagJianghu.Economy
         public StorageState Storage = new StorageState();
         [JsonProperty("pve")]
         public PveProfileState Pve = new PveProfileState();
+        [JsonProperty("quest")]
+        public QuestProfileState Quest = new QuestProfileState();
         public OwnedItem AddItem(string itemId,
             int tier,
             string acquiredAt = null,
@@ -149,6 +173,18 @@ namespace OneBagJianghu.Economy
             };
             Items.Add(item);
             return item;
+        }
+
+        public void RecordQuestAction(string action)
+        {
+            Quest.ActionCounters.TryGetValue(action, out int count);
+            Quest.ActionCounters[action] = checked(count + 1);
+            ProgressChanged?.Invoke();
+        }
+
+        public static void NotifyProgressChanged()
+        {
+            ProgressChanged?.Invoke();
         }
 
         public void RemoveItem(string uid)
@@ -223,18 +259,28 @@ namespace OneBagJianghu.Economy
             Loadout ??= new List<LoadoutPlacement>();
             FirstClears ??= new List<string>();
             CompletedTutorials ??= new List<string>();
+            SeenStoryChapters ??= new List<int>();
+            PendingStoryChapters ??= new List<int>();
             Shop ??= new ShopState();
             Storage ??= new StorageState();
             Pve ??= new PveProfileState();
+            Quest ??= new QuestProfileState();
+            Quest.ActiveId ??= string.Empty;
+            Quest.ClaimedIds ??= new List<string>();
+            Quest.ActionCounters ??= new Dictionary<string, int>(StringComparer.Ordinal);
+            Quest.ActionBaseline ??= new Dictionary<string, int>(StringComparer.Ordinal);
+            if (Quest.ActiveIndex < 0)
+                throw new FormatException("Profile quest activeIndex must not be negative.");
+            foreach (KeyValuePair<string, int> counter in Quest.ActionCounters)
+                if (string.IsNullOrWhiteSpace(counter.Key) || counter.Value < 0)
+                    throw new FormatException("Profile contains an invalid quest action counter.");
             Pve.Stages ??= new Dictionary<string, PveStageProgress>(StringComparer.Ordinal);
             Pve.DailyFirstClears ??= new List<string>();
             if (Pve.Stamina < -1)
                 throw new FormatException("Profile PvE stamina must be -1 or non-negative.");
             foreach (KeyValuePair<string, PveStageProgress> value in Pve.Stages)
                 if (string.IsNullOrWhiteSpace(value.Key)
-                    || value.Value == null
-                    || value.Value.BestStars < 0
-                    || value.Value.BestStars > 3)
+                    || value.Value == null)
                     throw new FormatException("Profile contains invalid PvE stage progress.");
             Storage.Items ??= new List<StorageItemPlacement>();
             Storage.MaterialStacks ??= new List<MaterialStack>();
@@ -243,7 +289,9 @@ namespace OneBagJianghu.Economy
                 throw new FormatException("Profile storage dimensions must be positive.");
             Shop.Slots ??= new List<ShopSlotState>();
             Shop.ReputationPurchases ??= new Dictionary<string, int>(StringComparer.Ordinal);
-            if (Shop.PaidRefreshesToday < 0 || Shop.Generation < 0)
+            if (Shop.PaidRefreshesToday < 0
+                || Shop.StarterFreeRefreshesUsed < 0
+                || Shop.Generation < 0)
                 throw new FormatException("Profile shop counters must not be negative.");
             var uids = new HashSet<string>(StringComparer.Ordinal);
             foreach (OwnedItem item in Items)
@@ -354,6 +402,19 @@ namespace OneBagJianghu.Economy
                     root["introSeen"] = false;
                     root["completedTutorials"] = new JArray();
                     version = 7;
+                }
+
+                if (version == 7)
+                {
+                    root["seenStoryChapters"] = new JArray();
+                    root["pendingStoryChapters"] = new JArray();
+                    version = 8;
+                }
+
+                if (version == 8)
+                {
+                    root["quest"] = JObject.FromObject(new QuestProfileState());
+                    version = 9;
                 }
 
                 if (version != CurrentVersion)

@@ -1,0 +1,602 @@
+[
+  {
+    "stage": 11,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 72.5,
+    "confirmed": 77.0,
+    "tier": 1,
+    "rarity": "uncommon",
+    "removedSupport": 1,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 12,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 85.0,
+    "confirmed": 62.0,
+    "tier": 2,
+    "rarity": "rare",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 13,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 85.0,
+    "confirmed": 64.0,
+    "tier": 3,
+    "rarity": "common",
+    "removedSupport": 8,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 14,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 77.5,
+    "confirmed": 82.0,
+    "tier": 3,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 15,
+    "kind": "elite",
+    "target": 62.0,
+    "band": [
+      50.0,
+      74.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 16,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 65.0,
+    "confirmed": 56.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 1,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 17,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 80.0,
+    "confirmed": 75.0,
+    "tier": 3,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 18,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 90.0,
+    "confirmed": 92.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 19,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 72.5,
+    "confirmed": 70.0,
+    "tier": 2,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 20,
+    "kind": "boss",
+    "target": 50.0,
+    "band": [
+      38.0,
+      62.0
+    ],
+    "probe": 40.0,
+    "confirmed": 34.0,
+    "tier": 2,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 21,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 65.0,
+    "confirmed": 65.0,
+    "tier": 2,
+    "rarity": "uncommon",
+    "removedSupport": 1,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 22,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 95.0,
+    "confirmed": 60.0,
+    "tier": 1,
+    "rarity": "rare",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 23,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 65.0,
+    "confirmed": 54.0,
+    "tier": 2,
+    "rarity": "uncommon",
+    "removedSupport": 1,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 24,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 97.5,
+    "confirmed": 98.0,
+    "tier": 4,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 25,
+    "kind": "elite",
+    "target": 62.0,
+    "band": [
+      50.0,
+      74.0
+    ],
+    "probe": 77.5,
+    "confirmed": 71.0,
+    "tier": 2,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 26,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 65.0,
+    "confirmed": 69.0,
+    "tier": 2,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 27,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 60.0,
+    "confirmed": 51.0,
+    "tier": 8,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 28,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 85.0,
+    "confirmed": 80.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 29,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 70.0,
+    "confirmed": 80.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 1,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 30,
+    "kind": "boss",
+    "target": 50.0,
+    "band": [
+      38.0,
+      62.0
+    ],
+    "probe": 40.0,
+    "confirmed": 38.0,
+    "tier": 1,
+    "rarity": "uncommon",
+    "removedSupport": 1,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 31,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 32,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 67.5,
+    "confirmed": 79.0,
+    "tier": 2,
+    "rarity": "common",
+    "removedSupport": 2,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 33,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 72.5,
+    "confirmed": 73.0,
+    "tier": 1,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 34,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 35,
+    "kind": "elite",
+    "target": 62.0,
+    "band": [
+      50.0,
+      74.0
+    ],
+    "probe": 92.5,
+    "confirmed": 90.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 36,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 100.0,
+    "confirmed": 93.0,
+    "tier": 1,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 37,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 87.5,
+    "confirmed": 64.0,
+    "tier": 3,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 38,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 80.0,
+    "confirmed": 78.0,
+    "tier": 3,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 39,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 65.0,
+    "confirmed": 63.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 40,
+    "kind": "boss",
+    "target": 50.0,
+    "band": [
+      38.0,
+      62.0
+    ],
+    "probe": 95.0,
+    "confirmed": 13.0,
+    "tier": 6,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 41,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 60.0,
+    "confirmed": 54.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 42,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 82.5,
+    "confirmed": 85.0,
+    "tier": 5,
+    "rarity": "rare",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 43,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 75.0,
+    "confirmed": 62.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 44,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 45,
+    "kind": "elite",
+    "target": 62.0,
+    "band": [
+      50.0,
+      74.0
+    ],
+    "probe": 60.0,
+    "confirmed": 64.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 46,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  },
+  {
+    "stage": 47,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 75.0,
+    "confirmed": 68.0,
+    "tier": 4,
+    "rarity": "uncommon",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 48,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 82.5,
+    "confirmed": 81.0,
+    "tier": 7,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 49,
+    "kind": "normal",
+    "target": 72.0,
+    "band": [
+      60.0,
+      84.0
+    ],
+    "probe": 77.5,
+    "confirmed": 69.0,
+    "tier": 5,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "trong_dai"
+  },
+  {
+    "stage": 50,
+    "kind": "boss",
+    "target": 50.0,
+    "band": [
+      38.0,
+      62.0
+    ],
+    "probe": 100.0,
+    "confirmed": 100.0,
+    "tier": 1,
+    "rarity": "common",
+    "removedSupport": 0,
+    "status": "ngoai_dai"
+  }
+]

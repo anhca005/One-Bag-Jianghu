@@ -1,0 +1,907 @@
+{
+  "quests": [
+    {
+      "id": "q1_01",
+      "chapter": 1,
+      "kind": "main",
+      "title": "Trấn Khẩu gặp nạn",
+      "giver": "lao_tieu_phu",
+      "text": "Tiểu hữu, thảo khấu đã chặn đường vào trấn. Hãy chỉnh đốn hành trang, mở một đường bình an cho dân chúng.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_1_01"
+      },
+      "goto": "stage:hoi_1_01",
+      "reward": {
+        "silver": 80,
+        "heroExp": 20,
+        "materials": {
+          "han_thiet": 1
+        }
+      }
+    },
+    {
+      "id": "q1_02",
+      "chapter": 1,
+      "kind": "side",
+      "title": "Sắm sửa hành trang",
+      "giver": "lao_tieu_phu",
+      "text": "Đường giang hồ không chỉ cậy vào dũng khí. Ghé Thương Hội chọn một món vừa tay, có chuẩn bị mới đi được đường dài.",
+      "objective": {
+        "type": "shop_buy",
+        "count": 1
+      },
+      "goto": "shop",
+      "reward": {
+        "silver": 100,
+        "heroExp": 20,
+        "materials": {
+          "thanh_dong_ti": 2
+        }
+      }
+    },
+    {
+      "id": "q1_03",
+      "chapter": 1,
+      "kind": "main",
+      "title": "Sói hoang ngoài thôn",
+      "giver": "lao_tieu_phu",
+      "text": "Bầy sói ngoài thôn đã quen mùi máu, đêm đêm quấy nhiễu dân lành. Tiểu hữu hãy trừ họa ấy trước khi lên đường.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_1_03"
+      },
+      "goto": "stage:hoi_1_03",
+      "reward": {
+        "silver": 120,
+        "heroExp": 30,
+        "materials": {}
+      }
+    },
+    {
+      "id": "q1_04",
+      "chapter": 1,
+      "kind": "side",
+      "title": "Rèn thêm một Trọng",
+      "giver": "lao_tieu_phu",
+      "text": "Binh khí cũng như tâm chí, phải qua tôi luyện mới thêm sắc bén. Hãy dùng vật liệu trong Tàng Bảo Các nâng một món thêm một Trọng.",
+      "objective": {
+        "type": "item_upgrade",
+        "count": 1
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 120,
+        "heroExp": 30,
+        "materials": {
+          "han_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q1_05",
+      "chapter": 1,
+      "kind": "main",
+      "title": "Thử kiếm Phong Ba Đình",
+      "giver": "phong_loi",
+      "text": "Khí thế khá lắm! Đến Phong Ba Đình đỡ được khoái đao của ta, ta sẽ nhận ngươi là bằng hữu.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_1_05"
+      },
+      "goto": "stage:hoi_1_05",
+      "reward": {
+        "silver": 200,
+        "heroExp": 50,
+        "materials": {}
+      }
+    },
+    {
+      "id": "q1_06",
+      "chapter": 1,
+      "kind": "side",
+      "title": "Bày trận trong nang",
+      "giver": "lao_tieu_phu",
+      "text": "Càn khôn nằm ở sự hài hòa, xếp binh khí cũng như bày trận. Hãy đặt đủ bốn món vào Bao Phục để công thủ tương trợ.",
+      "objective": {
+        "type": "equip_count",
+        "count": 4
+      },
+      "goto": "bag",
+      "reward": {
+        "silver": 120,
+        "heroExp": 30,
+        "materials": {
+          "chu_sa_thao": 2
+        }
+      }
+    },
+    {
+      "id": "q1_07",
+      "chapter": 1,
+      "kind": "main",
+      "title": "Phá tiền doanh Ba Hổ",
+      "giver": "lao_tieu_phu",
+      "text": "Dấu vết Mảnh Tàn Nang đã dẫn đến tiền doanh Ba Hổ Trại. Tiểu hữu hãy phá vòng canh gác, chớ để chúng kịp báo động.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_1_09"
+      },
+      "goto": "stage:hoi_1_09",
+      "reward": {
+        "silver": 220,
+        "heroExp": 50,
+        "materials": {}
+      }
+    },
+    {
+      "id": "q1_08",
+      "chapter": 1,
+      "kind": "main",
+      "title": "Nộ Ba Hổ",
+      "giver": "lao_tieu_phu",
+      "text": "Bùi Chấn giữ Mảnh Tàn Nang thứ nhất ngay trong sơn trại. Món nợ của dân lành và di vật của phụ thân ngươi, trận này phải đòi lại đủ.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_1_10"
+      },
+      "goto": "stage:hoi_1_10",
+      "reward": {
+        "silver": 600,
+        "heroExp": 150,
+        "materials": {
+          "han_thiet": 3,
+          "thanh_dong_ti": 3,
+          "binh_hon_tinh_thach": 1
+        }
+      }
+    },
+    {
+      "id": "q1_09",
+      "chapter": 1,
+      "kind": "side",
+      "title": "Bái nhập sư môn",
+      "giver": "lao_tieu_phu",
+      "text": "Nay căn cơ của ngươi đã vững, nhưng võ đạo cần có truyền thừa. Hãy chọn một Môn Phái hợp tâm, giữ chính đạo mà bước tiếp.",
+      "objective": {
+        "type": "sect_joined"
+      },
+      "goto": "sect",
+      "reward": {
+        "silver": 300,
+        "heroExp": 60,
+        "materials": {
+          "hoang_tuyen_chi": 2
+        }
+      }
+    },
+    {
+      "id": "q2_01",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Vào chốn độc chướng",
+      "giver": "tieu_linh_nhi",
+      "text": "Phía trước là đầm lầy Man Uyên, chướng khí ngập trời! Ngươi phải cẩn thận lũ môn đồ Huyền Độc Môn canh cửa.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_01"
+      },
+      "goto": "stage:hoi_2_01",
+      "reward": {
+        "silver": 150,
+        "heroExp": 40,
+        "materials": {
+          "chu_sa_thao": 2
+        }
+      }
+    },
+    {
+      "id": "q2_02",
+      "chapter": 2,
+      "kind": "side",
+      "title": "Túi gấm trừ tà",
+      "giver": "tieu_linh_nhi",
+      "text": "Độc khí Man Uyên ngấm vào da thịt rất nhanh. Hãy xếp đủ năm món vào Bao Phục, dành chỗ cho đan dược giải độc phòng thân.",
+      "objective": {
+        "type": "equip_count",
+        "count": 5
+      },
+      "goto": "bag",
+      "reward": {
+        "silver": 120,
+        "heroExp": 30,
+        "materials": {
+          "chu_sa_thao": 2
+        }
+      }
+    },
+    {
+      "id": "q2_03",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Chém nhện Hủ Cốt",
+      "giver": "tieu_linh_nhi",
+      "text": "Độc chu giăng tơ dày đặc ở Hủ Cốt Thung, tơ độc chạm vào là rữa nát giáp bọc. Mau vung kiếm trừ diệt bầy nhện độc ấy!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_03"
+      },
+      "goto": "stage:hoi_2_03",
+      "reward": {
+        "silver": 160,
+        "heroExp": 40,
+        "materials": {
+          "han_thiet": 2
+        }
+      }
+    },
+    {
+      "id": "q2_04",
+      "chapter": 2,
+      "kind": "side",
+      "title": "Tìm mua dược thảo",
+      "giver": "tieu_linh_nhi",
+      "text": "Muốn chế thêm Kim Sáng Dược và đan giải độc, ta cần thêm dược liệu. Ngươi ghé Thương Hội tìm mua hai món về đây nhé.",
+      "objective": {
+        "type": "shop_buy",
+        "count": 2
+      },
+      "goto": "shop",
+      "reward": {
+        "silver": 140,
+        "heroExp": 30,
+        "materials": {
+          "thanh_dong_ti": 2
+        }
+      }
+    },
+    {
+      "id": "q2_05",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Thu hồi bí dược",
+      "giver": "tieu_linh_nhi",
+      "text": "Tên phản đồ Bách Thảo Cốc đang luyện tà đan ở U Cốc Dược Đàn! Hãy cùng ta ngắt tiếng đàn ma quái, đoạt lại bí dược sư môn.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_05"
+      },
+      "goto": "stage:hoi_2_05",
+      "reward": {
+        "silver": 220,
+        "heroExp": 50,
+        "materials": {
+          "hoang_tuyen_chi": 2
+        }
+      }
+    },
+    {
+      "id": "q2_06",
+      "chapter": 2,
+      "kind": "side",
+      "title": "Luyện khí cường thân",
+      "giver": "tieu_linh_nhi",
+      "text": "Độc tính càng lúc càng hung hiểm. Mau vào Tàng Bảo Các nâng Trọng hai lần cho đan dược và trang bị để tăng sức chống đỡ.",
+      "objective": {
+        "type": "item_upgrade",
+        "count": 2
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 140,
+        "heroExp": 35,
+        "materials": {
+          "chu_sa_thao": 3
+        }
+      }
+    },
+    {
+      "id": "q2_07",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Chặn trảo Độc Long",
+      "giver": "tieu_linh_nhi",
+      "text": "Huyền Độc Trưởng Lão án ngữ Độc Long Khê, song trảo tẩm kịch độc bộc phát xuyên hộ thân. Ngươi hãy dùng Hóa Kình bẻ gãy thế công của lão!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_08"
+      },
+      "goto": "stage:hoi_2_08",
+      "reward": {
+        "silver": 240,
+        "heroExp": 55,
+        "materials": {
+          "han_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q2_08",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Phá trận Vạn Xà",
+      "giver": "tieu_linh_nhi",
+      "text": "Xà quật phía trước nồng nặc mùi tanh máu, Xích Luyện Xà Tinh phun lửa độc chắn lối. Tiêu diệt nó mới mở được đường tới Cổ Đàn!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_09"
+      },
+      "goto": "stage:hoi_2_09",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "thanh_dong_ti": 3
+        }
+      }
+    },
+    {
+      "id": "q2_09",
+      "chapter": 2,
+      "kind": "main",
+      "title": "Trảm Hắc Độc Nương Tử",
+      "giver": "tieu_linh_nhi",
+      "text": "Hắc Độc Nương Tử đang ở Thần Bí Cổ Đàn luyện hóa tàn nang! Uống cạn đan giải độc này rồi cùng ta đoạt lại Mảnh Tàn Nang thứ hai!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_2_10"
+      },
+      "goto": "stage:hoi_2_10",
+      "reward": {
+        "silver": 650,
+        "heroExp": 160,
+        "materials": {
+          "chu_sa_thao": 3,
+          "han_thiet": 3,
+          "cuu_chuyen_dan_sa": 1
+        }
+      }
+    },
+    {
+      "id": "q3_01",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Hội ngộ tuyết sơn",
+      "giver": "phong_loi",
+      "text": "Bằng hữu, lại gặp nhau rồi! Bão tuyết Hàn Nguyệt buốt giá làm chậm đao kiếm, rút binh khí cùng ta mở đường lên dốc băng!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_01"
+      },
+      "goto": "stage:hoi_3_01",
+      "reward": {
+        "silver": 180,
+        "heroExp": 45,
+        "materials": {
+          "o_thiet": 2
+        }
+      }
+    },
+    {
+      "id": "q3_02",
+      "chapter": 3,
+      "kind": "side",
+      "title": "Luyện thân kháng hàn",
+      "giver": "phong_loi",
+      "text": "Gió lạnh thấm vào kinh mạch dễ sinh Trì Trệ. Luyện thêm vài trận cho thân thể đạt Cấp 20, chân khí mới đủ giữ vững đao kiếm trên tuyết sơn.",
+      "objective": {
+        "type": "hero_level",
+        "level": 20
+      },
+      "goto": "stage:hoi_3_02",
+      "reward": {
+        "silver": 140,
+        "heroExp": 35,
+        "materials": {
+          "mac_truc_tran": 2
+        }
+      }
+    },
+    {
+      "id": "q3_03",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Phá kiếm trận Hám Tâm",
+      "giver": "phong_loi",
+      "text": "Đệ tử Hàn Sơn bị tà độc thao túng tâm trí, kiếm trận tầng tầng lớp lớp ở Trầm Khê. Mau phá kiếm trận giải thoát cho bọn họ!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_02"
+      },
+      "goto": "stage:hoi_3_02",
+      "reward": {
+        "silver": 200,
+        "heroExp": 45,
+        "materials": {
+          "o_kim_ti": 2
+        }
+      }
+    },
+    {
+      "id": "q3_04",
+      "chapter": 3,
+      "kind": "side",
+      "title": "Đột phá Tam Trọng",
+      "giver": "phong_loi",
+      "text": "Băng giáp của lũ tà đồ rất cứng. Hãy dùng Tinh Thạch đột phá ít nhất một món trong túi lên Tam Trọng để mở thêm dị năng uy lực!",
+      "objective": {
+        "type": "item_tier",
+        "tier": 3
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 150,
+        "heroExp": 40,
+        "materials": {
+          "o_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q3_05",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Đoạt Phong Vân Băng Đài",
+      "giver": "phong_loi",
+      "text": "Hàn Sơn Đại Đệ Tử trấn giữ Băng Đài, thương băng điểm huyệt cực kỳ hiểm độc! Ta giữ sườn dốc, ngươi mau lên đài kích bại hắn!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_05"
+      },
+      "goto": "stage:hoi_3_05",
+      "reward": {
+        "silver": 240,
+        "heroExp": 55,
+        "materials": {
+          "tu_linh_chi": 2
+        }
+      }
+    },
+    {
+      "id": "q3_06",
+      "chapter": 3,
+      "kind": "side",
+      "title": "Tôi rèn Ô Thiết",
+      "giver": "phong_loi",
+      "text": "Quặng Ô Thiết nhặt được trên núi tuyết cứng cáp phi thường. Mau vào Tàng Bảo Các nâng Trọng hai lần để cường hóa binh giáp.",
+      "objective": {
+        "type": "item_upgrade",
+        "count": 2
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 150,
+        "heroExp": 35,
+        "materials": {
+          "o_kim_ti": 3
+        }
+      }
+    },
+    {
+      "id": "q3_07",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Chém Băng Quy phong ma",
+      "giver": "phong_loi",
+      "text": "Cổ Đạo bị con Băng Quy vạn năm phong tỏa, mai rùa hóa giải Tuyệt Kỹ. Đâm thủng lớp mai cổ này, đường lên đỉnh núi sẽ không còn xa!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_08"
+      },
+      "goto": "stage:hoi_3_08",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "o_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q3_08",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Huyết chiến Băng Đỉnh",
+      "giver": "phong_loi",
+      "text": "U Minh Tuyệt Mệnh Kiếm Vệ liều chết giữ Vọng Nguyệt Đỉnh! Mau quét sạch lũ tử sĩ này trước khi Dạ Sát Thiên kịp phát động ma trận!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_09"
+      },
+      "goto": "stage:hoi_3_09",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "mac_truc_tran": 3
+        }
+      }
+    },
+    {
+      "id": "q3_09",
+      "chapter": 3,
+      "kind": "main",
+      "title": "Đoạt mạng Dạ Sát Thiên",
+      "giver": "phong_loi",
+      "text": "Kẻ thù diệt môn năm xưa đang ở ngay Phong Thiền Băng Đài! Cùng ta chém gục Tả Sứ tà giáo, rửa sạch thù nhà và đoạt Mảnh Tàn Nang!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_3_10"
+      },
+      "goto": "stage:hoi_3_10",
+      "reward": {
+        "silver": 700,
+        "heroExp": 180,
+        "materials": {
+          "o_thiet": 3,
+          "o_kim_ti": 3,
+          "binh_hon_tinh_thach": 1
+        }
+      }
+    },
+    {
+      "id": "q4_01",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Mưa xuân hộ sớ",
+      "giver": "yen_vo_tam",
+      "text": "Bản quan mang theo mật sớ triều đình, bọn dịch lộ đao khách chực cướp đoạt ở đầu cầu. Xin hiệp khách trượng nghĩa giúp ta mở đường!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_01"
+      },
+      "goto": "stage:hoi_4_01",
+      "reward": {
+        "silver": 180,
+        "heroExp": 45,
+        "materials": {
+          "o_kim_ti": 2
+        }
+      }
+    },
+    {
+      "id": "q4_02",
+      "chapter": 4,
+      "kind": "side",
+      "title": "Bày trận sáu món",
+      "giver": "yen_vo_tam",
+      "text": "Kinh kỳ hiểm ác, thích khách giấu mặt khắp nơi. Hãy xếp đủ sáu món vào Bao Phục, phối hợp Binh Khí và Hộ Cụ công thủ vẹn toàn.",
+      "objective": {
+        "type": "equip_count",
+        "count": 6
+      },
+      "goto": "bag",
+      "reward": {
+        "silver": 130,
+        "heroExp": 30,
+        "materials": {
+          "tu_linh_chi": 2
+        }
+      }
+    },
+    {
+      "id": "q4_03",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Lấy lại Cổ Dịch",
+      "giver": "yen_vo_tam",
+      "text": "Dịch trạm Liễu Âm đã bị đám dịch tốt giả lệnh chiếm đóng để chặn đường thư. Ta cần dẹp tan sào huyệt này để kiểm chứng công văn.",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_02"
+      },
+      "goto": "stage:hoi_4_02",
+      "reward": {
+        "silver": 200,
+        "heroExp": 50,
+        "materials": {
+          "o_thiet": 2
+        }
+      }
+    },
+    {
+      "id": "q4_04",
+      "chapter": 4,
+      "kind": "side",
+      "title": "Thu thập quân nhu",
+      "giver": "yen_vo_tam",
+      "text": "Thương Hội ven bờ sông có bán nhiều trang bị quý giá thích hợp làm phôi rèn đúc. Hãy chọn mua hai món để chuẩn bị Hợp Thành.",
+      "objective": {
+        "type": "shop_buy",
+        "count": 2
+      },
+      "goto": "shop",
+      "reward": {
+        "silver": 140,
+        "heroExp": 35,
+        "materials": {
+          "mac_truc_tran": 2
+        }
+      }
+    },
+    {
+      "id": "q4_05",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Vũ Đình đoạt sớ",
+      "giver": "yen_vo_tam",
+      "text": "U Minh Vũ Y Vệ nhân lúc mưa gió tập kích trong Vũ Đình! Hãy bảo vệ tráp sớ, không để một phong mật tấu rơi vào tay gian tà!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_05"
+      },
+      "goto": "stage:hoi_4_05",
+      "reward": {
+        "silver": 240,
+        "heroExp": 55,
+        "materials": {
+          "o_kim_ti": 3
+        }
+      }
+    },
+    {
+      "id": "q4_06",
+      "chapter": 4,
+      "kind": "side",
+      "title": "Hợp Thành tăng phẩm",
+      "giver": "yen_vo_tam",
+      "text": "Đối đầu kình địch cần có bảo vật phẩm chất vượt trội. Vào Tàng Bảo Các gộp hai bản cùng loại từ Tam Trọng trở lên để Hợp Thành ra phẩm cao hơn.",
+      "objective": {
+        "type": "item_merge",
+        "count": 1
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 150,
+        "heroExp": 40,
+        "materials": {
+          "o_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q4_07",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Hạ Phong Đài tín tiêu",
+      "giver": "yen_vo_tam",
+      "text": "Tín Tiêu Vệ trên đài cao đang chuẩn bị phóng hỏa tiễn báo tin cho chiến thuyền tà giáo. Mau hạ đài tín hiệu dập tắt mầm họa!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_08"
+      },
+      "goto": "stage:hoi_4_08",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "mac_truc_tran": 3
+        }
+      }
+    },
+    {
+      "id": "q4_08",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Phá Thủy Môn ngoại kinh",
+      "giver": "yen_vo_tam",
+      "text": "Khóa Giang Vệ xích xích sắt khóa chặt cửa sông Đông Quách. Phá vỡ tuyến phòng ngự đường thủy này mới tiếp cận được hạm đội Hắc Chu!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_09"
+      },
+      "goto": "stage:hoi_4_09",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "tu_linh_chi": 3
+        }
+      }
+    },
+    {
+      "id": "q4_09",
+      "chapter": 4,
+      "kind": "main",
+      "title": "Hỏa chiến Lộ Tẫn Quang",
+      "giver": "yen_vo_tam",
+      "text": "U Minh Hữu Sứ Lộ Tẫn Quang dùng hỏa đao cố thủ trên chiến thuyền Vân Tân! Đánh chìm hắc chu, ép hắn khai ra kẻ chủ mưu giả chiếu!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_4_10"
+      },
+      "goto": "stage:hoi_4_10",
+      "reward": {
+        "silver": 750,
+        "heroExp": 180,
+        "materials": {
+          "o_thiet": 3,
+          "o_kim_ti": 3,
+          "van_dao_tam_tinh": 1
+        }
+      }
+    },
+    {
+      "id": "q5_01",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Đột nhập Kim Minh môn",
+      "giver": "yen_vo_tam",
+      "text": "Dưới bóng nắng hạ gay gắt, Giả Chiếu Cấm Vệ đã phong tỏa cấm thành. Bản quan có kim bài mở đường, hiệp khách hãy trừ sạch nội gian!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_01"
+      },
+      "goto": "stage:hoi_5_01",
+      "reward": {
+        "silver": 200,
+        "heroExp": 50,
+        "materials": {
+          "thien_ngoai_van_thiet": 2
+        }
+      }
+    },
+    {
+      "id": "q5_02",
+      "chapter": 5,
+      "kind": "side",
+      "title": "Nội công viên dung",
+      "giver": "yen_vo_tam",
+      "text": "Quyết chiến hoàng thành đòi hỏi nội công thâm hậu. Hãy tôi luyện thêm cho đến Cấp 29 rồi hẵng tiến sâu vào cấm thành.",
+      "objective": {
+        "type": "hero_level",
+        "level": 29
+      },
+      "goto": "stage:hoi_5_03",
+      "reward": {
+        "silver": 160,
+        "heroExp": 40,
+        "materials": {
+          "tam_to_co_quyen": 2
+        }
+      }
+    },
+    {
+      "id": "q5_03",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Chém vỡ Đồng Sư",
+      "giver": "yen_vo_tam",
+      "text": "Thiên Cơ Viện dùng cơ phù kích hoạt đàn sư tử đồng ở Đồng Sư Cơ Phường. Mau dùng binh khí chặt đứt khớp nối cơ quan của chúng!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_03"
+      },
+      "goto": "stage:hoi_5_03",
+      "reward": {
+        "silver": 220,
+        "heroExp": 55,
+        "materials": {
+          "cuu_u_tam_ti": 2
+        }
+      }
+    },
+    {
+      "id": "q5_04",
+      "chapter": 5,
+      "kind": "side",
+      "title": "Bách luyện thần binh",
+      "giver": "yen_vo_tam",
+      "text": "Cơ giáp của gian thần vô cùng kiên cố. Mau vào Tàng Bảo Các nâng Trọng ba lần, tôi rèn Binh Khí và Hộ Cụ đạt độ sắc bén tột đỉnh.",
+      "objective": {
+        "type": "item_upgrade",
+        "count": 3
+      },
+      "goto": "storage",
+      "reward": {
+        "silver": 160,
+        "heroExp": 40,
+        "materials": {
+          "thien_ngoai_van_thiet": 3
+        }
+      }
+    },
+    {
+      "id": "q5_05",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Đoạt Thừa Thiên Đài Ấn",
+      "giver": "yen_vo_tam",
+      "text": "Thiên Cơ Chấp Ấn Quan đang đúc khuôn ngọc ấn giả để hợp thức hóa ngụy chiếu! Mau đoạt lại khuôn ấn cùng chứng cứ mưu phản!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_05"
+      },
+      "goto": "stage:hoi_5_05",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "con_lon_tuyet_lien": 2
+        }
+      }
+    },
+    {
+      "id": "q5_06",
+      "chapter": 5,
+      "kind": "side",
+      "title": "Quét sạch cấm thành",
+      "giver": "yen_vo_tam",
+      "text": "Mạng lưới cơ quan và sát thủ tà giáo giăng mắc khắp ngõ ngách Đế Kinh. Hãy thắng đủ năm trận để triệt phá tận gốc các tai mắt.",
+      "objective": {
+        "type": "pve_win",
+        "count": 5
+      },
+      "goto": "stage:hoi_5_01",
+      "reward": {
+        "silver": 180,
+        "heroExp": 45,
+        "materials": {
+          "cuu_u_tam_ti": 3
+        }
+      }
+    },
+    {
+      "id": "q5_07",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Giải trận Liên Đình",
+      "giver": "yen_vo_tam",
+      "text": "Thái Dịch Cầm Sư gảy ma âm phong tỏa hồ sen, ngăn đường vào nội điện. Hãy phá đứt dây đàn tà đạo, giải tỏa âm trận nguy hiểm!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_08"
+      },
+      "goto": "stage:hoi_5_08",
+      "reward": {
+        "silver": 250,
+        "heroExp": 60,
+        "materials": {
+          "tam_to_co_quyen": 3
+        }
+      }
+    },
+    {
+      "id": "q5_08",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Cứu Xã Tắc Cơ Đàn",
+      "giver": "yen_vo_tam",
+      "text": "Hỏa Nỏ Vệ đã lên dây nỏ cơ quan chĩa về đàn tế xã tắc! Mau vô hiệu hóa dàn nỏ trước giờ đại tế, cứu lấy quốc gia trăm họ!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_09"
+      },
+      "goto": "stage:hoi_5_09",
+      "reward": {
+        "silver": 260,
+        "heroExp": 60,
+        "materials": {
+          "con_lon_tuyet_lien": 3
+        }
+      }
+    },
+    {
+      "id": "q5_09",
+      "chapter": 5,
+      "kind": "main",
+      "title": "Trừ diệt Tào Huyền Kỳ",
+      "giver": "yen_vo_tam",
+      "text": "Giám Chủ Tào Huyền Kỳ đang vận hành đại cơ trận ở Minh Quang Điện hòng đoạt Thần Nang! Cùng bản quan tiêu diệt gian thần, đập tan cơ trận!",
+      "objective": {
+        "type": "stage_clear",
+        "stage": "hoi_5_10"
+      },
+      "goto": "stage:hoi_5_10",
+      "reward": {
+        "silver": 800,
+        "heroExp": 200,
+        "materials": {
+          "thien_ngoai_van_thiet": 3,
+          "cuu_u_tam_ti": 3,
+          "huyen_giap_hon_thach": 1
+        }
+      }
+    }
+  ]
+}

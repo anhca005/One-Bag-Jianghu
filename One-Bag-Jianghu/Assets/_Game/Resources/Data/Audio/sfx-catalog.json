@@ -740,16 +740,6 @@
     "event": "NodeUnlock"
   },
   {
-    "key": "star_rating",
-    "group": "ui",
-    "priority": "B",
-    "durationSec": 0.4,
-    "variants": 2,
-    "loop": false,
-    "prompt": "Sharp wooden stamp hitting official seal with crisp golden metallic clink. Dry, close, no music. 0.4s",
-    "event": "StarRating"
-  },
-  {
     "key": "amb_home",
     "group": "ambience",
     "priority": "C",

@@ -1,0 +1,6257 @@
+[
+  {
+    "id": "thiet_cot_quyen_sao",
+    "name": "Thiết Cốt Quyền Sáo",
+    "type": "weapon",
+    "weaponClass": "fist",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 4,
+    "cooldown": 1.7,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5315
+      },
+      {
+        "op": "gain_qi",
+        "value": 1
+      },
+      {
+        "op": "buff_stack",
+        "stat": "attack",
+        "value": 1,
+        "maxStacks": 8,
+        "target": "self_item"
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.27
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 12,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": null,
+    "triggers": []
+  },
+  {
+    "id": "phuc_ho_con",
+    "name": "Phục Hổ Côn",
+    "type": "weapon",
+    "weaponClass": "staff",
+    "rarity": "common",
+    "size": [
+      1,
+      4
+    ],
+    "attack": 13,
+    "cooldown": 2.6,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.9434
+      },
+      {
+        "op": "gain_qi",
+        "value": 15
+      }
+    ],
+    "ultimate": {
+      "cost": 50,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.8
+        },
+        {
+          "op": "apply",
+          "status": "stun",
+          "duration": 1.5
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 19
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "attack": 5,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield_break",
+                "value": 14
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.41,
+            "target": "self_item"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "thanh_phong_kiem",
+    "name": "Thanh Phong Kiếm",
+    "type": "weapon",
+    "weaponClass": "sword",
+    "rarity": "common",
+    "size": [
+      1,
+      3
+    ],
+    "attack": 15,
+    "cooldown": 2.6,
+    "crit": 0.2,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 1.0
+      },
+      {
+        "op": "gain_qi",
+        "value": 11
+      }
+    ],
+    "ultimate": {
+      "cost": 45,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 0.9,
+          "hits": 3
+        },
+        {
+          "op": "apply",
+          "status": "haste",
+          "duration": 2.0,
+          "target": "self_item",
+          "minQiAfter": 20
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.8,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.1,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 6,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 4
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "liet_diem_dao",
+    "name": "Liệt Diễm Đao",
+    "type": "weapon",
+    "weaponClass": "blade",
+    "rarity": "common",
+    "size": [
+      1,
+      3
+    ],
+    "attack": 12,
+    "cooldown": 2.6,
+    "crit": 0.1,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5291
+      },
+      {
+        "op": "apply",
+        "status": "burn",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 6
+      }
+    ],
+    "ultimate": {
+      "cost": 38,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.6
+        },
+        {
+          "op": "apply",
+          "status": "burn",
+          "stacks": 15
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.08,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "burn",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.06,
+            "target": "self_item"
+          },
+          {
+            "op": "buff_stack",
+            "stat": "attack",
+            "value": 1,
+            "maxStacks": 4,
+            "target": "self_item"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "that_tinh_tieu",
+    "name": "Thất Tinh Tiêu",
+    "type": "weapon",
+    "weaponClass": "hidden",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 3,
+    "cooldown": 2.2,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5529,
+        "hits": 1
+      },
+      {
+        "op": "apply",
+        "status": "poison",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 1
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 5,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.83,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": null,
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "poison",
+            "stacks": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tu_kim_trao",
+    "name": "Tử Kim Trảo",
+    "type": "weapon",
+    "weaponClass": "claw",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 4,
+    "cooldown": 1.7,
+    "crit": 0.1,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.49
+      },
+      {
+        "op": "apply",
+        "status": "bleed",
+        "stacks": 1
+      },
+      {
+        "op": "lifesteal",
+        "pct": 0.1225
+      },
+      {
+        "op": "gain_qi",
+        "value": 1
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 6,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "bleed",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "heal",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": null,
+    "triggers": [
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "bleed",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "haste",
+            "duration": 1.22,
+            "target": "self_item"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "khai_son_phu",
+    "name": "Khai Sơn Phủ",
+    "type": "weapon",
+    "weaponClass": "axe",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "attack": 17,
+    "cooldown": 2.8,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "shield_break",
+        "value": 6
+      },
+      {
+        "op": "damage",
+        "pct": 0.5858
+      },
+      {
+        "op": "gain_qi",
+        "value": 12
+      }
+    ],
+    "ultimate": {
+      "cost": 48,
+      "effects": [
+        {
+          "op": "shield_break",
+          "value": 45
+        },
+        {
+          "op": "damage",
+          "pct": 2.0
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 2,
+                "maxStacks": 4,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.1,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.59
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "stun",
+            "duration": 0.47
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "phan_quan_but",
+    "name": "Phán Quan Bút",
+    "type": "weapon",
+    "weaponClass": "brush",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 7,
+    "cooldown": 2.7,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.49
+      },
+      {
+        "op": "drain_qi",
+        "value": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 3
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "slow",
+                "duration": 0.98,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.1,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 45,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.4
+        },
+        {
+          "op": "apply",
+          "status": "seal",
+          "duration": 1.5,
+          "target": "enemy_random_weapon"
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "drain_qi",
+            "value": 3
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "han_ngoc_tieu",
+    "name": "Hàn Ngọc Tiêu",
+    "type": "weapon",
+    "weaponClass": "flute",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 8,
+    "cooldown": 2.8,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5331
+      },
+      {
+        "op": "drain_qi",
+        "value": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 5
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "attack": 4,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "seal",
+                "duration": 0.8,
+                "target": "enemy_random_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 40,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.3
+        },
+        {
+          "op": "apply",
+          "status": "slow",
+          "duration": 1.5,
+          "target": "enemy_all_items"
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "seal",
+            "duration": 0.64,
+            "target": "enemy_random_weapon"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bich_thuy_cam",
+    "name": "Bích Thủy Cầm",
+    "type": "weapon",
+    "weaponClass": "zither",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "attack": 15,
+    "cooldown": 2.8,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.8037
+      },
+      {
+        "op": "apply",
+        "status": "regen",
+        "stacks": 2
+      },
+      {
+        "op": "gain_qi",
+        "value": 5
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.61,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 8,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 40,
+      "effects": [
+        {
+          "op": "heal",
+          "value": 30
+        },
+        {
+          "op": "shield",
+          "value": 20
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "healed",
+        "from": "self",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 0.16,
+            "target": "self_item"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "thai_thanh_tam_kinh",
+    "name": "Thái Thanh Tâm Kinh",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "parry_discount",
+            "value": 7
+          }
+        ]
+      },
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 8
+          }
+        ]
+      }
+    ],
+    "attack": 1,
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.8,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.04
+    }
+  },
+  {
+    "id": "o_tam_y",
+    "name": "Ô Tàm Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "maxUses": 5,
+        "effects": [
+          {
+            "op": "shield",
+            "value": 10
+          },
+          {
+            "op": "dmg_reduce",
+            "pct": 0.05,
+            "duration": 2.0
+          }
+        ]
+      }
+    ],
+    "attack": 2,
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 38
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 20
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 140
+    }
+  },
+  {
+    "id": "boi_nguyen_dan",
+    "name": "Bồi Nguyên Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.5,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 26
+          },
+          {
+            "op": "gain_qi",
+            "value": 15
+          }
+        ]
+      }
+    ],
+    "attack": 1,
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.5,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.5,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.49,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.022
+    }
+  },
+  {
+    "id": "tuy_tien_ho_lo",
+    "name": "Túy Tiên Hồ Lô",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [],
+    "attack": 1,
+    "cooldown": 8.57,
+    "active": [
+      {
+        "op": "heal",
+        "value": 11
+      },
+      {
+        "op": "gain_qi",
+        "value": 8
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.85,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 11
+    }
+  },
+  {
+    "id": "xich_sa_chuong",
+    "name": "Xích Sa Chưởng",
+    "type": "weapon",
+    "weaponClass": "palm",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 7,
+    "cooldown": 1.9,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.49,
+        "ignoreShield": true
+      },
+      {
+        "op": "apply",
+        "status": "burn",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 2
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "heal",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.08,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 6,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 35,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.7,
+          "ignoreShield": true
+        },
+        {
+          "op": "apply",
+          "status": "burn",
+          "stacks": 10
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "burn",
+            "stacks": 2
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ngoc_cot_phien",
+    "name": "Ngọc Cốt Phiến",
+    "type": "weapon",
+    "weaponClass": "fan",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 7,
+    "cooldown": 2.5,
+    "crit": 0.1,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.98
+      },
+      {
+        "op": "gain_qi",
+        "value": 6
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "crit": 0.1,
+        "triggers": []
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 1.18,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 30,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.5
+        },
+        {
+          "op": "apply",
+          "status": "haste",
+          "duration": 2.0,
+          "target": "adjacent_weapons"
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 4
+          },
+          {
+            "op": "charge",
+            "duration": 0.15,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bang_phach_thuong",
+    "name": "Băng Phách Thương",
+    "type": "weapon",
+    "weaponClass": "spear",
+    "rarity": "common",
+    "size": [
+      1,
+      4
+    ],
+    "attack": 21,
+    "cooldown": 3.0,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5439
+      },
+      {
+        "op": "apply",
+        "status": "slow",
+        "duration": 0.55,
+        "target": "enemy_random_weapon"
+      },
+      {
+        "op": "gain_qi",
+        "value": 8
+      }
+    ],
+    "ultimate": {
+      "cost": 50,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 2.2
+        },
+        {
+          "op": "apply",
+          "status": "slow",
+          "duration": 2.5,
+          "target": "enemy_all_items"
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "attack": 6,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.55
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "seal",
+            "duration": 0.55,
+            "target": "enemy_random_weapon"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "chan_nhac_chuy",
+    "name": "Chấn Nhạc Chùy",
+    "type": "weapon",
+    "weaponClass": "hammer",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "attack": 19,
+    "cooldown": 2.8,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "shield_break",
+        "value": 10
+      },
+      {
+        "op": "damage",
+        "pct": 0.7
+      },
+      {
+        "op": "gain_qi",
+        "value": 13
+      }
+    ],
+    "ultimate": {
+      "cost": 50,
+      "effects": [
+        {
+          "op": "shield_break",
+          "value": 38
+        },
+        {
+          "op": "damage",
+          "pct": 1.8
+        },
+        {
+          "op": "apply",
+          "status": "stun",
+          "duration": 1.2
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield_break",
+                "value": 14
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "attack": 8,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 35
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "hit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "attack",
+            "value": 1,
+            "maxStacks": 5,
+            "target": "self_item"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "thanh_dang_tien",
+    "name": "Thanh Đằng Tiên",
+    "type": "weapon",
+    "weaponClass": "whip",
+    "rarity": "common",
+    "size": [
+      1,
+      3
+    ],
+    "attack": 8,
+    "cooldown": 2.5,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5091
+      },
+      {
+        "op": "apply",
+        "status": "slow",
+        "duration": 0.41,
+        "target": "enemy_random_weapon"
+      },
+      {
+        "op": "lifesteal",
+        "pct": 0.1018
+      },
+      {
+        "op": "gain_qi",
+        "value": 4
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.41,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "attack": 4,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "seal",
+                "duration": 0.61,
+                "target": "enemy_random_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 35,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.6
+        },
+        {
+          "op": "apply",
+          "status": "regen",
+          "stacks": 4
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "heal",
+            "value": 6
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tu_mau_song_dao",
+    "name": "Tử Mẫu Song Đao",
+    "type": "weapon",
+    "weaponClass": "dual",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "attack": 9,
+    "cooldown": 2.0,
+    "crit": 0.1,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.6056,
+        "hits": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 2
+      }
+    ],
+    "ultimate": {
+      "cost": 40,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.2,
+          "hits": 2
+        },
+        {
+          "op": "apply",
+          "status": "burn",
+          "stacks": 12
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "crit": 0.08,
+        "triggers": []
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.91,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 10,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "attack",
+            "value": 1,
+            "maxStacks": 6,
+            "target": "self_item"
+          },
+          {
+            "op": "apply",
+            "status": "burn",
+            "stacks": 1
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "truy_hon_cung",
+    "name": "Truy Hồn Cung",
+    "type": "weapon",
+    "weaponClass": "bow",
+    "rarity": "common",
+    "size": [
+      1,
+      3
+    ],
+    "attack": 13,
+    "cooldown": 2.9,
+    "crit": 0.15,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5025,
+        "ignoreShield": true
+      },
+      {
+        "op": "gain_qi",
+        "value": 5
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "crit": 0.12,
+        "triggers": []
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.9,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "ultimate": {
+      "cost": 45,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 2.0,
+          "ignoreShield": true
+        },
+        {
+          "op": "apply",
+          "status": "seal",
+          "duration": 1.5,
+          "target": "enemy_random_weapon"
+        }
+      ]
+    },
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "slow",
+            "duration": 0.75,
+            "target": "enemy_random_weapon"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "thiet_giap_y",
+    "name": "Thiết Giáp Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "dmg_reduce",
+            "maxStacks": 6,
+            "target": "self",
+            "pct": 0.0143
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 22
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 36
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 50
+    }
+  },
+  {
+    "id": "o_thiet_giap",
+    "name": "Ô Thiết Giáp",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 75
+          }
+        ]
+      },
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 47
+          },
+          {
+            "op": "add_attack",
+            "value": 4,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 23
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.3,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 104
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 264
+    }
+  },
+  {
+    "id": "kim_tuyen_y",
+    "name": "Kim Tuyến Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "dmg_reduce",
+            "pct": 0.0887
+          }
+        ]
+      },
+      {
+        "on": "crit_taken",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 22
+          },
+          {
+            "op": "apply",
+            "status": "haste",
+            "duration": 2.22,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit_taken",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "cleanse"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0665
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 50
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 155
+    }
+  },
+  {
+    "id": "da_ho_y",
+    "name": "Dạ Hổ Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "attack",
+            "value": 1,
+            "maxStacks": 5,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 33
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 4.0,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 93
+    }
+  },
+  {
+    "id": "nho_sam_y",
+    "name": "Nho Sam Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "enemy_ultimate",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "drain_qi",
+            "value": 5
+          },
+          {
+            "op": "shield",
+            "value": 18
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "enemy_ultimate",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "slow",
+                "duration": 1.08,
+                "target": "enemy_all_items"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 50
+    }
+  },
+  {
+    "id": "bang_tam_giap",
+    "name": "Băng Tâm Giáp",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "slow",
+            "duration": 0.77,
+            "target": "event_source"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 19
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "seal",
+                "duration": 0.64,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 45
+    }
+  },
+  {
+    "id": "tue_nguyet_bao_y",
+    "name": "Tuế Nguyệt Bào Y",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "healed",
+        "from": "self",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 2
+          },
+          {
+            "op": "gain_qi",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "regen",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0902
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "heal",
+                "value": 43
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 79
+    }
+  },
+  {
+    "id": "phuc_ma_giap",
+    "name": "Phục Ma Giáp",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "damage",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 57
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "damage",
+                "pct": 0.814
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 90
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 228
+    }
+  },
+  {
+    "id": "thanh_dong_ho_tam_kinh",
+    "name": "Thanh Đồng Hộ Tâm Kính",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.35,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "shield",
+            "value": 34
+          },
+          {
+            "op": "cleanse"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0306
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 22
+    }
+  },
+  {
+    "id": "long_lan_giap",
+    "name": "Long Lân Giáp",
+    "type": "armor",
+    "rarity": "common",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "dmg_reduce",
+            "pct": 0.1174
+          }
+        ]
+      },
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.41,
+            "target": "self_all_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 45
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.3,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 73
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 164
+    }
+  },
+  {
+    "id": "thuan_duong_cong",
+    "name": "Thuần Dương Công",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "ultimate",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "add_attack",
+            "target": "event_source",
+            "value": 4
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.032
+    }
+  },
+  {
+    "id": "quy_nguyen_quyet",
+    "name": "Quy Nguyên Quyết",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 1
+          }
+        ]
+      },
+      {
+        "on": "crit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 2
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.76,
+                "target": "event_source"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.031
+    }
+  },
+  {
+    "id": "bach_luyen_chan_kinh",
+    "name": "Bách Luyện Chân Kinh",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "add_attack",
+            "value": 1,
+            "target": "adjacent_weapons"
+          }
+        ]
+      },
+      {
+        "on": "shield_broken",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 0.41,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0291
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "shield_break",
+                "value": 6
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 8,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.058
+    }
+  },
+  {
+    "id": "u_minh_bi_luc",
+    "name": "U Minh Bí Lục",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "poison",
+        "effects": [
+          {
+            "op": "drain_qi",
+            "value": 3
+          },
+          {
+            "op": "heal",
+            "value": 4
+          }
+        ]
+      },
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "bleed",
+        "effects": [
+          {
+            "op": "drain_qi",
+            "value": 3
+          },
+          {
+            "op": "heal",
+            "value": 7
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "status_applied",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.24,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "poison",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.22,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.025
+    }
+  },
+  {
+    "id": "liet_hoa_tam_kinh",
+    "name": "Liệt Hỏa Tâm Kinh",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "status_applied",
+        "from": "self",
+        "status": "burn",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "crit",
+            "maxStacks": 5,
+            "target": "adjacent_weapons",
+            "pct": 0.0139
+          }
+        ]
+      },
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "burn",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.05,
+            "target": "self_all_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.035
+    }
+  },
+  {
+    "id": "vo_niem_kinh",
+    "name": "Vô Niệm Kinh",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "parry_discount",
+            "value": 9
+          }
+        ]
+      },
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "heal",
+            "value": 13
+          },
+          {
+            "op": "cleanse"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.33
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.066
+    }
+  },
+  {
+    "id": "phi_yen_quyet",
+    "name": "Phi Yến Quyết",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "haste",
+            "duration": 1.74,
+            "target": "adjacent_weapons"
+          }
+        ]
+      },
+      {
+        "on": "crit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 0.46,
+            "target": "event_source"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "add_crit",
+                "pct": 0.0464,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 6,
+                "target": "event_source"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.029
+    }
+  },
+  {
+    "id": "thien_dia_vo_cuc_cong",
+    "name": "Thiên Địa Vô Cực Công",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "add_attack",
+            "value": 2,
+            "target": "adjacent_weapons"
+          }
+        ]
+      },
+      {
+        "on": "ultimate",
+        "from": "self",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "haste",
+            "duration": 1.61,
+            "target": "self_all_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0645
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 1.21,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.081
+    }
+  },
+  {
+    "id": "duong_sinh_quyet",
+    "name": "Dưỡng Sinh Quyết",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "regen",
+            "stacks": 1
+          }
+        ]
+      },
+      {
+        "on": "healed",
+        "from": "self",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "dmg_reduce",
+            "maxStacks": 5,
+            "target": "self",
+            "pct": 0.0098
+          },
+          {
+            "op": "shield",
+            "value": 1
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.24,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "heal",
+                "value": 20
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.049
+    }
+  },
+  {
+    "id": "kiem_tong_tam_yeu",
+    "name": "Kiếm Tông Tâm Yếu",
+    "type": "manual",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "add_crit",
+            "pct": 0.0725,
+            "target": "adjacent_weapons"
+          }
+        ]
+      },
+      {
+        "on": "crit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 0.1,
+            "target": "event_source"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "add_attack",
+                "value": 3,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.51,
+                "target": "event_source"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.03
+    }
+  },
+  {
+    "id": "kim_sang_duoc",
+    "name": "Kim Sáng Dược",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "crit_taken",
+        "from": "enemy",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 59
+          },
+          {
+            "op": "cleanse",
+            "status": "bleed"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit_taken",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 27
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "regen",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit_taken",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.1991,
+                "duration": 5.31
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.04
+    }
+  },
+  {
+    "id": "hoi_thien_dan",
+    "name": "Hồi Thiên Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.25,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 39
+          },
+          {
+            "op": "shield",
+            "value": 19
+          },
+          {
+            "op": "apply",
+            "status": "stun",
+            "duration": 0.98
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 7
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.25,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.25,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.47,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.015
+    }
+  },
+  {
+    "id": "thanh_tam_dan",
+    "name": "Thanh Tâm Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "controlled",
+        "from": "enemy",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "cleanse"
+          },
+          {
+            "op": "shield",
+            "value": 26
+          },
+          {
+            "op": "gain_qi",
+            "value": 10
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "controlled",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.71,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "controlled",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "heal",
+                "value": 20
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.02
+    }
+  },
+  {
+    "id": "cuong_hoa_dan",
+    "name": "Cuồng Hỏa Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "ultimate",
+        "from": "self",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "apply",
+            "status": "haste",
+            "duration": 6.85,
+            "target": "self_all_weapons"
+          },
+          {
+            "op": "add_attack",
+            "value": 10,
+            "duration": 6.85,
+            "target": "self_all_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 17,
+                "target": "enemy"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "crit": 0.08,
+        "triggers": []
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 3.42,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.052
+    }
+  },
+  {
+    "id": "van_khi_dan",
+    "name": "Vận Khí Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "qi_empty",
+        "from": "self",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 83
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "qi_empty",
+            "from": "self",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 36
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 28
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "qi_empty",
+            "from": "self",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 2.76,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.055
+    }
+  },
+  {
+    "id": "giai_doc_dan",
+    "name": "Giải Độc Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "burst_taken",
+        "from": "enemy",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "cleanse",
+            "status": "poison"
+          },
+          {
+            "op": "cleanse",
+            "status": "burn"
+          },
+          {
+            "op": "shield",
+            "value": 31
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 12
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "heal",
+                "value": 19
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst_taken",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "regen",
+                "stacks": 3
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.023
+    }
+  },
+  {
+    "id": "ho_mach_dan",
+    "name": "Hộ Mạch Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.4,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "shield",
+            "value": 24
+          },
+          {
+            "op": "dmg_reduce",
+            "pct": 0.1225,
+            "duration": 2.45
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "heal",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.015
+    }
+  },
+  {
+    "id": "ngung_than_dan",
+    "name": "Ngưng Thần Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.94,
+            "target": "self_all_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 9
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "add_attack",
+                "value": 3,
+                "duration": 3.11,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.62,
+                "target": "event_source"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.023
+    }
+  },
+  {
+    "id": "cuu_chuyen_hoan_hon_dan",
+    "name": "Cửu Chuyển Hoàn Hồn Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.2,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 32
+          },
+          {
+            "op": "raise_max_hp",
+            "value": 10
+          },
+          {
+            "op": "apply",
+            "status": "stun",
+            "duration": 0.49
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.2,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 19
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.2,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.47,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.015
+    }
+  },
+  {
+    "id": "ti_khang_dan",
+    "name": "Tỳ Khang Đan",
+    "type": "pill",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "burst_taken",
+        "from": "enemy",
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 16
+          },
+          {
+            "op": "apply",
+            "status": "regen",
+            "stacks": 1
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst_taken",
+            "from": "enemy",
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "raise_max_hp",
+                "value": 8
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.016
+    }
+  },
+  {
+    "id": "tram_huong_lo",
+    "name": "Trầm Hương Lư",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "regen",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.0369
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cooldown": 10.56,
+    "active": [
+      {
+        "op": "cleanse",
+        "value": 15
+      },
+      {
+        "op": "shield",
+        "value": 10
+      }
+    ],
+    "stats": {
+      "hp": 13
+    }
+  },
+  {
+    "id": "bach_ngoc_boi",
+    "name": "Bạch Ngọc Bội",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 2
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 1.0,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 5,
+                "target": "event_source"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cooldown": 6.59,
+    "active": [
+      {
+        "op": "add_crit",
+        "pct": 0.12,
+        "duration": 3.0,
+        "target": "adjacent_weapons"
+      }
+    ],
+    "stats": {
+      "hp": 17
+    }
+  },
+  {
+    "id": "da_minh_chau",
+    "name": "Dạ Minh Châu",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "self",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 1.45,
+            "target": "event_source"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 27
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "ultimate",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 2.72,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 36
+    }
+  },
+  {
+    "id": "chu_sa_ho_lo",
+    "name": "Chu Sa Hồ Lô",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "burn",
+        "effects": [
+          {
+            "op": "charge",
+            "duration": 0.73,
+            "target": "self_item"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "burn",
+                "stacks": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 0.98,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 5,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cooldown": 8.57,
+    "active": [
+      {
+        "op": "apply",
+        "status": "burn",
+        "stacks": 12,
+        "target": "enemy"
+      }
+    ],
+    "stats": {
+      "hp": 10
+    }
+  },
+  {
+    "id": "thien_tam_chuoi",
+    "name": "Thiền Tâm Chuỗi",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "parry_discount",
+            "value": 10
+          }
+        ]
+      },
+      {
+        "on": "parry_success",
+        "from": "any",
+        "effects": [
+          {
+            "op": "gain_qi",
+            "value": 24
+          },
+          {
+            "op": "apply",
+            "status": "stun",
+            "duration": 0.29
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 24
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "dmg_reduce",
+                "pct": 0.1176
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 2.94,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 78
+    }
+  },
+  {
+    "id": "van_doc_dinh",
+    "name": "Vạn Độc Đỉnh",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "status_applied",
+        "from": "self",
+        "status": "poison",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "poison",
+            "stacks": 1
+          }
+        ]
+      },
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "poison",
+        "effects": [
+          {
+            "op": "drain_qi",
+            "value": 6
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 29
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 2.94,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "poison",
+                "stacks": 4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 39
+    }
+  },
+  {
+    "id": "huyet_ngoc_thach",
+    "name": "Huyết Ngọc Thạch",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "burst",
+        "from": "self",
+        "status": "bleed",
+        "effects": [
+          {
+            "op": "heal",
+            "value": 38
+          },
+          {
+            "op": "buff_stack",
+            "stat": "attack",
+            "value": 1,
+            "maxStacks": 5,
+            "target": "adjacent_weapons"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "bleed",
+                "stacks": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 3.47,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "raise_max_hp",
+                "value": 21
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 35
+    }
+  },
+  {
+    "id": "han_bang_chau",
+    "name": "Hàn Băng Châu",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "ultimate",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "slow",
+            "duration": 0.98,
+            "target": "enemy_all_items"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "slow",
+                "duration": 1.31,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.98,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "adjacent",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "seal",
+                "duration": 0.65,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cooldown": 9.94,
+    "active": [
+      {
+        "op": "apply",
+        "status": "seal",
+        "duration": 1.2,
+        "target": "enemy_random_weapon"
+      }
+    ],
+    "stats": {
+      "hp": 13
+    }
+  },
+  {
+    "id": "tu_kim_bat",
+    "name": "Tử Kim Bát",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 20
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "heal",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "healed",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.98,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "cooldown": 6.13,
+    "active": [
+      {
+        "op": "shield",
+        "value": 15
+      },
+      {
+        "op": "charge",
+        "duration": 1.0,
+        "target": "adjacent_items"
+      }
+    ],
+    "stats": {
+      "hp": 39
+    }
+  },
+  {
+    "id": "am_duong_ngoc",
+    "name": "Âm Dương Ngọc",
+    "type": "relic",
+    "rarity": "common",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "crit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "heal",
+            "value": 5
+          }
+        ]
+      },
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 5
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "effects": [
+              {
+                "op": "add_crit",
+                "pct": 0.05,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.94,
+                "target": "self_all_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 12
+    }
+  },
+  {
+    "id": "soi_nanh_canh",
+    "name": "Sói Nanh Bộc Phá",
+    "type": "weapon",
+    "rarity": "uncommon",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 6,
+    "cooldown": 1.8,
+    "crit": 0.05,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5014
+      },
+      {
+        "op": "apply",
+        "status": "bleed",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 1
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.5,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 5,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "bleed",
+                "stacks": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "weaponClass": "hidden"
+  },
+  {
+    "id": "heo_rung_bap_giap",
+    "name": "Cương Trư Bì",
+    "type": "armor",
+    "rarity": "uncommon",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 40
+          }
+        ]
+      },
+      {
+        "on": "damaged",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "buff_stack",
+            "stat": "dmg_reduce",
+            "pct": 0.0268,
+            "maxStacks": 5,
+            "target": "self"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.5,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 33
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "crit_taken",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 20
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "shield_broken",
+            "from": "self",
+            "effects": [
+              {
+                "op": "heal",
+                "value": 40
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 187
+    }
+  },
+  {
+    "id": "man_xa_doc_tui",
+    "name": "Mãng Xà Độc Túi",
+    "type": "relic",
+    "rarity": "rare",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "poison",
+            "stacks": 1
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 1.57,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "status_applied",
+            "from": "adjacent",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 39
+    }
+  },
+  {
+    "id": "u_minh_quy_trao",
+    "name": "U Minh Quỷ Trảo",
+    "type": "weapon",
+    "rarity": "epic",
+    "size": [
+      2,
+      2
+    ],
+    "attack": 14,
+    "cooldown": 1.7,
+    "crit": 0.08,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.6189
+      },
+      {
+        "op": "apply",
+        "status": "poison",
+        "stacks": 1
+      },
+      {
+        "op": "lifesteal",
+        "pct": 0.1238
+      },
+      {
+        "op": "gain_qi",
+        "value": 5
+      }
+    ],
+    "ultimate": {
+      "cost": 25,
+      "effects": [
+        {
+          "op": "damage",
+          "pct": 1.8
+        },
+        {
+          "op": "apply",
+          "status": "slow",
+          "duration": 2.0,
+          "target": "enemy_random_weapon"
+        }
+      ]
+    },
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "heal",
+                "value": 13
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "crit",
+                "maxStacks": 5,
+                "target": "self_item",
+                "pct": 0.0248
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.62
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "weaponClass": "claw"
+  },
+  {
+    "id": "kich_doc_chu_nga",
+    "name": "Kịch Độc Chu Ngà",
+    "type": "weapon",
+    "rarity": "rare",
+    "size": [
+      1,
+      2
+    ],
+    "attack": 7,
+    "cooldown": 1.6,
+    "crit": 0.06,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.49
+      },
+      {
+        "op": "apply",
+        "status": "poison",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 2
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "slow",
+                "duration": 0.73,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "poison",
+            "effects": [
+              {
+                "op": "damage",
+                "value": 10
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "weaponClass": "claw"
+  },
+  {
+    "id": "bang_tam_linh_chau",
+    "name": "Băng Tàm Linh Châu",
+    "type": "relic",
+    "rarity": "rare",
+    "size": [
+      1,
+      1
+    ],
+    "cooldown": 9.31,
+    "active": [
+      {
+        "op": "apply",
+        "status": "seal",
+        "duration": 1.0,
+        "target": "enemy_random_weapon"
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 11
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "controlled",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "active": [
+          {
+            "op": "apply",
+            "status": "slow",
+            "duration": 2.0,
+            "target": "enemy_random_weapon"
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 11
+    }
+  },
+  {
+    "id": "tuyet_lang_bach_bi",
+    "name": "Tuyết Lang Bạch Bì",
+    "type": "armor",
+    "rarity": "rare",
+    "size": [
+      2,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 18
+          }
+        ]
+      },
+      {
+        "on": "burst_taken",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "cleanse",
+            "status": "bleed"
+          },
+          {
+            "op": "shield",
+            "value": 15
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "dmg_reduce",
+                "pct": 0.0168,
+                "maxStacks": 4,
+                "target": "self"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "controlled",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "cleanse",
+                "status": "burn"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.35,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 38
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 59
+    }
+  },
+  {
+    "id": "hac_sat_hung_dam",
+    "name": "Hắc Sát Hùng Đảm",
+    "type": "pill",
+    "rarity": "epic",
+    "size": [
+      1,
+      1
+    ],
+    "triggers": [
+      {
+        "on": "hp_below",
+        "hpBelow": 0.3,
+        "maxUses": 1,
+        "effects": [
+          {
+            "op": "heal",
+            "value": 33
+          },
+          {
+            "op": "raise_max_hp",
+            "value": 25
+          },
+          {
+            "op": "cleanse",
+            "status": "poison"
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.3,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 17
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.3,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 0.66
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.3,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 17
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "dmgReduce": 0.02
+    }
+  },
+  {
+    "id": "bach_ho_cuong_mong",
+    "name": "Bạch Hổ Cuồng Móng",
+    "type": "weapon",
+    "rarity": "epic",
+    "size": [
+      2,
+      1
+    ],
+    "attack": 3,
+    "cooldown": 1.8,
+    "crit": 0.1,
+    "basic": [
+      {
+        "op": "damage",
+        "pct": 0.5473,
+        "hits": 1
+      },
+      {
+        "op": "apply",
+        "status": "bleed",
+        "stacks": 1
+      },
+      {
+        "op": "gain_qi",
+        "value": 1
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "crit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.33,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hit",
+            "from": "self",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "attack",
+                "value": 1,
+                "maxStacks": 6,
+                "target": "self_item"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "bleed",
+            "effects": [
+              {
+                "op": "damage",
+                "pct": 0.2189,
+                "hits": 1
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "weaponClass": "claw"
+  },
+  {
+    "id": "hoa_diem_xa_cot",
+    "name": "Hỏa Diệm Xà Cốt",
+    "type": "manual",
+    "rarity": "rare",
+    "size": [
+      1,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "hit",
+        "from": "adjacent",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "burn",
+            "stacks": 3
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "charge",
+                "duration": 0.61,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "burst",
+            "from": "self",
+            "status": "burn",
+            "effects": [
+              {
+                "op": "gain_qi",
+                "value": 5
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "haste",
+                "duration": 1.84,
+                "target": "adjacent_weapons"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "cooldownReduction": 0.061
+    }
+  },
+  {
+    "id": "bang_phach_co_cot",
+    "name": "Băng Phách Cổ Cốt",
+    "type": "relic",
+    "rarity": "legendary",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "enemy_ultimate",
+        "from": "enemy",
+        "effects": [
+          {
+            "op": "apply",
+            "status": "slow",
+            "duration": 2.02,
+            "target": "enemy_all_items"
+          },
+          {
+            "op": "shield",
+            "value": 30
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "battle_start",
+            "from": "any",
+            "effects": [
+              {
+                "op": "shield",
+                "value": 38
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "parry_success",
+            "from": "any",
+            "effects": [
+              {
+                "op": "drain_qi",
+                "value": 15
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "enemy_ultimate",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "seal",
+                "duration": 1.51,
+                "target": "enemy_random_weapon"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 80
+    }
+  },
+  {
+    "id": "thien_nien_quy_giap",
+    "name": "Thiên Niên Quy Giáp",
+    "type": "armor",
+    "rarity": "legendary",
+    "size": [
+      2,
+      2
+    ],
+    "triggers": [
+      {
+        "on": "battle_start",
+        "from": "any",
+        "effects": [
+          {
+            "op": "shield",
+            "value": 104
+          }
+        ]
+      },
+      {
+        "on": "shield_broken",
+        "from": "self",
+        "effects": [
+          {
+            "op": "damage",
+            "value": 56
+          },
+          {
+            "op": "heal",
+            "value": 37
+          }
+        ]
+      }
+    ],
+    "unlocks": [
+      {
+        "tier": 3,
+        "triggers": [
+          {
+            "on": "damaged",
+            "from": "enemy",
+            "effects": [
+              {
+                "op": "buff_stack",
+                "stat": "dmg_reduce",
+                "pct": 0.0447,
+                "maxStacks": 4,
+                "target": "self"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 6,
+        "triggers": [
+          {
+            "on": "hp_below",
+            "hpBelow": 0.4,
+            "maxUses": 1,
+            "effects": [
+              {
+                "op": "shield",
+                "value": 75
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "tier": 9,
+        "triggers": [
+          {
+            "on": "shield_broken",
+            "from": "self",
+            "effects": [
+              {
+                "op": "apply",
+                "status": "stun",
+                "duration": 2.24
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "stats": {
+      "hp": 209
+    }
+  }
+]

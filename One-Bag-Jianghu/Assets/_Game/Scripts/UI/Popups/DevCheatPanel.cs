@@ -154,9 +154,7 @@ namespace OneBagJianghu.UI.Popups
                 foreach (PveStage stage in chapter.Stages)
                     GameBootstrap.Session.Profile.Pve.Stages[stage.Id] = new PveStageProgress
                     {
-                        Cleared = true,
-                        BestStars = GameBootstrap.Session.Profile.Pve.Stages.TryGetValue(stage.Id,
-                out PveStageProgress old) ? old.BestStars : 0
+                        Cleared = true
                     };
             Debug.Log("[Pve] [Cheat] Unlock all stages");
             Save();
@@ -175,12 +173,9 @@ namespace OneBagJianghu.UI.Popups
                 id = PveCatalog.Load().Chapters[0].Stages[0].Id;
             GameBootstrap.Session.Profile.Pve.Stages[id] = new PveStageProgress
             {
-                Cleared = true,
-                BestStars = 3
+                Cleared = true
             };
-            Debug.Log("[Pve] [Cheat] Clear stage="
-            + id
-            + " stars=3");
+            Debug.Log("[Pve] [Cheat] Clear stage=" + id);
             Save();
         }
         private static void AddLevel()

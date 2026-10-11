@@ -59,7 +59,13 @@ namespace OneBagJianghu.EditorTools.Building
                 "ShopPopup",
                 "DevCheatPanel",
                 "ResultPopup",
-                "SettingsPopup"
+                "SettingsPopup",
+                "MessagePopup",
+                "ConfirmPopup",
+                "EncyclopediaPopup",
+                "SectSelectPopup",
+                "StoryPopup",
+                "StageMapPopup"
             })
             {
                 GameObject prefab = Resources.Load<GameObject>("UI/Popups/" + name);

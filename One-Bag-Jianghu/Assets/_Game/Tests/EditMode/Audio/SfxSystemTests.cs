@@ -15,7 +15,7 @@ namespace OneBagJianghu.Tests.Audio
         {
             "ui_click", "ui_open", "ui_close", "ui_error", "item_pick", "item_drop",
             "item_drop_bad", "coin", "upgrade", "merge", "level_up", "reward",
-            "stage_select", "dialogue_next", "node_unlock", "star_rating"
+            "stage_select", "dialogue_next", "node_unlock"
         };
         private static readonly string[] ResolverKeys =
         {

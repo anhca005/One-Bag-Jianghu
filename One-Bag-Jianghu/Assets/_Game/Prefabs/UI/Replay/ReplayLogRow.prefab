@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5164423849641311976}
   - component: {fileID: 1270561578273630570}
   - component: {fileID: 590729885321631203}
-  - component: {fileID: 9156463903318456138}
   - component: {fileID: 7046905361559447049}
   m_Layer: 0
   m_Name: ReplayLogRow
@@ -78,7 +77,7 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.1
   m_Text: "S\u1EF1 ki\u1EC7n"
@@ -98,24 +97,10 @@ MonoBehaviour:
   m_MinWidth: -1
   m_MinHeight: -1
   m_PreferredWidth: -1
-  m_PreferredHeight: 27
+  m_PreferredHeight: 44
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &9156463903318456138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7468390963760350705}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8de00a25f034eafbec59e72d52756a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SingleLineFit
-  authoredSize: 18
-  minimumSize: 12
 --- !u!114 &7046905361559447049
 MonoBehaviour:
   m_ObjectHideFlags: 0

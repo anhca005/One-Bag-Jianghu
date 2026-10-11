@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using OneBagJianghu.Core;
+using OneBagJianghu.Economy;
+using OneBagJianghu.Pve;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Popups;
 using UnityEngine;
@@ -23,6 +26,20 @@ namespace OneBagJianghu.Onboarding
         private Text selectedDescription;
         [SerializeField]
         private UiButton closeButton;
+        [SerializeField]
+        private UiButton replayButton;
+        [SerializeField]
+        private Sprite normalRowSprite;
+        [SerializeField]
+        private Sprite selectedRowSprite;
+        [SerializeField]
+        private Sprite itemsCategoryIcon;
+        [SerializeField]
+        private Sprite statusCategoryIcon;
+        [SerializeField]
+        private Sprite storyCategoryIcon;
+        [SerializeField]
+        private Sprite rulesCategoryIcon;
         private EncyclopediaCatalog catalog;
         private Image selectedCategoryRow;
         private Image selectedEntryRow;
@@ -34,6 +51,7 @@ namespace OneBagJianghu.Onboarding
         {
             base.Awake();
             closeButton.onClick.AddListener(Close);
+            replayButton.onClick.AddListener(ReplaySelectedStory);
         }
 
         protected override void OnSetup(object data)
@@ -46,10 +64,12 @@ namespace OneBagJianghu.Onboarding
         {
             ClearRows(categoryContent, categoryRowTemplate.transform);
             List<string> categories = catalog.Entries.Select(value => value.Category).Distinct().ToList();
+            categories.Add("Cốt truyện");
             UiButton firstRow = null;
             foreach (string category in categories)
             {
                 UiButton row = CreateRow(categoryContent, categoryRowTemplate, category);
+                AddCategoryIcon(row, CategoryIcon(category));
                 if (firstRow == null)
                     firstRow = row;
                 row.onClick.AddListener(() => ShowCategory(category, row.GetComponent<Image>()));
@@ -60,8 +80,15 @@ namespace OneBagJianghu.Onboarding
 
         private void ShowCategory(string category, Image categoryRow)
         {
-            SetSelected(ref selectedCategoryRow, categoryRow);
+            SetSelected(ref selectedCategoryRow, categoryRow, normalRowSprite, selectedRowSprite);
             ClearRows(entryContent, entryRowTemplate.transform);
+            if (category == "Cốt truyện")
+            {
+                ShowStoryCategory();
+                return;
+            }
+
+            replayButton.gameObject.SetActive(false);
             List<EncyclopediaEntry> entries = catalog.Entries
                 .Where(value => value.Category == category)
                 .ToList();
@@ -79,9 +106,50 @@ namespace OneBagJianghu.Onboarding
 
         private void Select(EncyclopediaEntry entry, Image entryRow)
         {
-            SetSelected(ref selectedEntryRow, entryRow);
+            SetSelected(ref selectedEntryRow, entryRow, normalRowSprite, selectedRowSprite);
             selectedName.text = entry.Name;
             selectedDescription.text = entry.Description;
+        }
+
+        private StoryChapter selectedStory;
+
+        public static List<StoryChapter> BuildStoryList(PlayerProfile profile)
+        {
+            return StoryProgress.UnlockedChapters(StoryCatalog.Load(), PveCatalog.Load(), profile);
+        }
+
+        private void ShowStoryCategory()
+        {
+            List<StoryChapter> stories = BuildStoryList(GameBootstrap.Session.Profile);
+            UiButton firstRow = null;
+            foreach (StoryChapter story in stories)
+            {
+                UiButton row = CreateRow(entryContent, entryRowTemplate, story.Title);
+                if (firstRow == null)
+                    firstRow = row;
+                row.onClick.AddListener(() => SelectStory(story, row.GetComponent<Image>()));
+            }
+
+            if (firstRow != null)
+                SelectStory(stories[0], firstRow.GetComponent<Image>());
+        }
+
+        private void SelectStory(StoryChapter story, Image entryRow)
+        {
+            selectedStory = story;
+            SetSelected(ref selectedEntryRow, entryRow, normalRowSprite, selectedRowSprite);
+            selectedName.text = story.Title;
+            PveChapter chapter = PveCatalog.Load().Chapters.Find(value => value.Index == story.Chapter);
+            selectedDescription.text = chapter == null
+                ? "Khởi đầu hành trình của người mang Cửu Cực Càn Khôn Nang."
+                : chapter.Summary;
+            replayButton.gameObject.SetActive(true);
+        }
+
+        private void ReplaySelectedStory()
+        {
+            if (selectedStory != null)
+                PopupManager.Show<StoryPopup>(selectedStory);
         }
 
         private static UiButton CreateRow(Transform parent, UiButton template, string label)
@@ -93,13 +161,56 @@ namespace OneBagJianghu.Onboarding
             return row;
         }
 
-        private static void SetSelected(ref Image current, Image next)
+        private Sprite CategoryIcon(string category)
+        {
+            if (category == "Cốt truyện")
+                return storyCategoryIcon;
+            if (category.IndexOf("Trạng thái", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                category.IndexOf("Hiệu ứng", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                return statusCategoryIcon;
+            if (category.IndexOf("vật phẩm", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                category.IndexOf("hiếm", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                category.IndexOf("nguyên liệu", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                return itemsCategoryIcon;
+            if (category.IndexOf("Hệ thống", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+                category.IndexOf("Luật", System.StringComparison.OrdinalIgnoreCase) >= 0)
+                return rulesCategoryIcon;
+            return null;
+        }
+
+        private static void AddCategoryIcon(UiButton row, Sprite sprite)
+        {
+            if (sprite == null)
+                return;
+            Image icon = new GameObject("Category Icon", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image))
+                .GetComponent<Image>();
+            icon.transform.SetParent(row.transform, false);
+            icon.sprite = sprite;
+            icon.preserveAspect = true;
+            icon.raycastTarget = false;
+            RectTransform rect = icon.rectTransform;
+            rect.anchorMin = rect.anchorMax = new Vector2(0f, .5f);
+            rect.pivot = new Vector2(0f, .5f);
+            rect.anchoredPosition = new Vector2(12f, 0f);
+            rect.sizeDelta = new Vector2(30f, 30f);
+            Text label = row.GetComponentInChildren<Text>();
+            if (label != null)
+                label.rectTransform.offsetMin = new Vector2(48f, label.rectTransform.offsetMin.y);
+        }
+
+        private static void SetSelected(ref Image current, Image next, Sprite normalSprite, Sprite selectedSprite)
         {
             if (current != null)
-                current.color = NormalRowColor;
+            {
+                current.sprite = normalSprite != null ? normalSprite : current.sprite;
+                current.color = normalSprite != null ? Color.white : NormalRowColor;
+            }
             current = next;
             if (current != null)
-                current.color = SelectedRowColor;
+            {
+                current.sprite = selectedSprite != null ? selectedSprite : current.sprite;
+                current.color = selectedSprite != null ? Color.white : SelectedRowColor;
+            }
         }
 
         private static void ClearRows(Transform parent, Transform template)

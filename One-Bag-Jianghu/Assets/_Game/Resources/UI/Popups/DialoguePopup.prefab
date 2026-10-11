@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 1455874253499595290}
   - component: {fileID: 1867091551691745196}
   - component: {fileID: 852727230112853935}
-  - component: {fileID: 7811239071765751419}
+  - component: {fileID: 4782449058830400189}
   m_Layer: 0
   m_Name: DialoguePopup
   m_TagString: Untagged
@@ -543,7 +543,7 @@ MonoBehaviour:
   bodyText: {fileID: 5411025582112999962}
   advanceButton: {fileID: 4306250878138783062}
   skipButton: {fileID: 6754594822912943095}
---- !u!114 &7811239071765751419
+--- !u!114 &4782449058830400189
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

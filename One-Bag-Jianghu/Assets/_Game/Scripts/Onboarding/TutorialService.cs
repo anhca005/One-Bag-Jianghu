@@ -50,6 +50,15 @@ namespace OneBagJianghu.Onboarding
             return true;
         }
 
+        /// <summary>Advances past opening the quest log and skips its claim step when no reward is ready.</summary>
+        public bool PublishQuestLogOpened(bool hasClaimableQuest)
+        {
+            bool advanced = Publish("quest_log_opened");
+            if (advanced && !hasClaimableQuest)
+                Publish("quest_claimed");
+            return advanced;
+        }
+
         public void SkipMissingTarget()
         {
             if (CurrentStep == null)

@@ -9,6 +9,8 @@ namespace OneBagJianghu.Battle.Replay.View
         [SerializeField]
         private Text title;
         [SerializeField]
+        private Text bannerTitle;
+        [SerializeField]
         private Image portraitFrame;
         [SerializeField]
         private Image portrait;
@@ -52,6 +54,9 @@ namespace OneBagJianghu.Battle.Replay.View
         private Text hasteText;
         private ItemIconLibrary iconLibrary;
         private int cachedStunUntilMs;
+        private int shakeStartMs;
+        private int shakeUntilMs;
+        private Vector2 restPosition;
         private static Sprite silhouette;
         private const string FrameOverlayName = "Frame Overlay";
         private static readonly Color PanelBackingColor = new Color(.93f, .89f, .8f, .9f);
@@ -59,7 +64,22 @@ namespace OneBagJianghu.Battle.Replay.View
 
         private void Awake()
         {
+            restPosition = portrait.rectTransform.anchoredPosition;
             LayerFramesOnTop();
+        }
+
+        /// <summary>Starts a subtle target-only hit shake using replay time.</summary>
+        public void Shake(int nowMs)
+        {
+            shakeStartMs = nowMs;
+            shakeUntilMs = nowMs + 140;
+        }
+
+        /// <summary>Clears hit feedback when replay presentation is rebuilt.</summary>
+        public void ClearFeedback()
+        {
+            shakeUntilMs = 0;
+            portrait.rectTransform.anchoredPosition = restPosition;
         }
 
         /// <summary>
@@ -68,10 +88,16 @@ namespace OneBagJianghu.Battle.Replay.View
         /// </summary>
         private void LayerFramesOnTop()
         {
-            if (TryGetComponent(out Image panelImage))
+            // The panel art is opaque paper, not a hollow frame: drawing it on top would hide the portrait and name.
+            if (TryGetComponent(out Image panelImage) && !IsSolidPanelArt(panelImage.sprite))
                 MoveFrameOnTop(panelImage, PanelBackingColor);
             if (portraitFrame != null)
                 MoveFrameOnTop(portraitFrame, Color.clear);
+        }
+
+        private static bool IsSolidPanelArt(Sprite sprite)
+        {
+            return sprite != null && (sprite.name == "fighter_panel" || sprite.name == "hud_panel");
         }
 
         private static void MoveFrameOnTop(Image owner, Color backing)
@@ -107,6 +133,11 @@ namespace OneBagJianghu.Battle.Replay.View
         public void Initialize(string fighterName)
         {
             title.text = fighterName;
+            if (bannerTitle != null)
+            {
+                bannerTitle.text = fighterName;
+            }
+
             iconLibrary = ItemIconLibrary.Load();
             Sprite sprite = ResolvePortrait(fighterName);
             bool found = sprite != null;
@@ -124,12 +155,12 @@ namespace OneBagJianghu.Battle.Replay.View
                 .72f) :
                 Color.white;
             portrait.transform.localScale = new Vector3(enemyFallback ? -1f : 1f, 1f, 1f);
-            burnIcon.gameObject.SetActive(false);
-            poisonIcon.gameObject.SetActive(false);
-            bleedIcon.gameObject.SetActive(false);
-            stunIcon.gameObject.SetActive(false);
-            regenIcon.gameObject.SetActive(false);
-            hasteIcon.gameObject.SetActive(false);
+            ShowStatusSlot(burnIcon, false);
+            ShowStatusSlot(poisonIcon, false);
+            ShowStatusSlot(bleedIcon, false);
+            ShowStatusSlot(stunIcon, false);
+            ShowStatusSlot(regenIcon, false);
+            ShowStatusSlot(hasteIcon, false);
         }
 
         public void SetState(FighterState state, int timeMs)
@@ -157,15 +188,45 @@ namespace OneBagJianghu.Battle.Replay.View
                 0,
                 ReplayStyle.Burn);
             SetStatus(regenIcon, regenText, "regen", state.Regen, ReplayStyle.Heal);
-            hasteIcon.gameObject.SetActive(false);
+            ShowStatusSlot(hasteIcon, false);
+        }
+
+        /// <summary>Shows or hides a status icon together with its socket (and count badge) when it has one.</summary>
+        private static void ShowStatusSlot(Image icon, bool visible)
+        {
+            icon.gameObject.SetActive(visible);
+            Transform socket = icon.transform.parent;
+            bool inSocket = socket != null && socket.GetComponent<LayoutGroup>() == null;
+            if (inSocket)
+            {
+                socket.gameObject.SetActive(visible);
+            }
         }
 
         public void RefreshTime(int timeMs)
         {
             if (stunIcon.gameObject.activeSelf && cachedStunUntilMs <= timeMs)
             {
-                stunIcon.gameObject.SetActive(false);
+                ShowStatusSlot(stunIcon, false);
             }
+
+            RefreshShake(timeMs);
+        }
+
+        private void RefreshShake(int timeMs)
+        {
+            if (shakeUntilMs <= 0)
+                return;
+            if (timeMs >= shakeUntilMs || timeMs < shakeStartMs)
+            {
+                ClearFeedback();
+                return;
+            }
+
+            float progress = Mathf.InverseLerp(shakeStartMs, shakeUntilMs, timeMs);
+            float strength = (1f - progress) * 4f;
+            float offset = Mathf.Sin(progress * Mathf.PI * 4f) * strength;
+            portrait.rectTransform.anchoredPosition = restPosition + new Vector2(offset, 0f);
         }
 
         private void SetStatus(Image icon,
@@ -174,7 +235,7 @@ namespace OneBagJianghu.Battle.Replay.View
             int value,
             Color fallbackColor)
         {
-            icon.gameObject.SetActive(value > 0);
+            ShowStatusSlot(icon, value > 0);
             if (value <= 0)
                 return;
             if (iconLibrary == null)
@@ -187,7 +248,11 @@ namespace OneBagJianghu.Battle.Replay.View
             icon.sprite = found ? sprite : CreateSilhouette();
             icon.color = found ? Color.white : fallbackColor;
             valueText.text = code == "stun" ? string.Empty : value.ToString();
-            valueText.fontSize = 18;
+            Transform badge = valueText.transform.parent;
+            if (badge != icon.transform.parent && badge.name == "CountBadge")
+            {
+                badge.gameObject.SetActive(valueText.text.Length > 0);
+            }
         }
 
         private Sprite ResolvePortrait(string fighterName)

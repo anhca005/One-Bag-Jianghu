@@ -52,6 +52,10 @@ namespace OneBagJianghu.Economy
     {
         [JsonProperty("freeRefreshHours")]
         public int FreeRefreshHours;
+        [JsonProperty("starterFreeRefreshes")]
+        public int StarterFreeRefreshes;
+        [JsonProperty("paidRefreshCost")]
+        public int PaidRefreshCost;
         [JsonProperty("paidRefreshCosts")]
         public int[] PaidRefreshCosts;
         [JsonProperty("itemBasePrices")]
@@ -74,14 +78,20 @@ namespace OneBagJianghu.Economy
                 };
                 ShopCatalog value = JsonConvert.DeserializeObject<ShopCatalog>(json,
                     settings) ?? throw new FormatException("Shop catalog JSON is null.");
-                if (value.FreeRefreshHours <= 0
-                    || value.PaidRefreshCosts == null
-                    || value.PaidRefreshCosts.Length == 0
+                bool hasPaidRefreshCost = value.PaidRefreshCost > 0
+                    || value.PaidRefreshCosts != null
+                    && value.PaidRefreshCosts.Length > 0
+                    && value.PaidRefreshCosts[0] > 0;
+                if (value.FreeRefreshHours < 0
+                    || value.StarterFreeRefreshes < 0
+                    || !hasPaidRefreshCost
                     || value.Slots == null
                     || value.Slots.Count != 6
                     || value.Exchange == null
                     || value.ReputationOffers == null)
                     throw new FormatException("Shop catalog is incomplete.");
+                if (value.PaidRefreshCost <= 0)
+                    value.PaidRefreshCost = value.PaidRefreshCosts[0];
                 value.ItemTypePriceMultipliers = value.ItemTypePriceMultipliers
                     ?? new Dictionary<string, double>();
                 foreach (double multiplier in value.ItemTypePriceMultipliers.Values)

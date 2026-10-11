@@ -263,12 +263,90 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: ae3b8e78d6abee94c943752f1c1524db, type: 3}
   - ItemId: soi_nanh_canh
     Sprite: {fileID: 21300000, guid: d90a2bf53778df64683ba1041cbb282e, type: 3}
+  - ItemId: story_1_1
+    Sprite: {fileID: 21300000, guid: 9e651b472dd36d24a8a18391d01dad03, type: 3}
+  - ItemId: story_1_2
+    Sprite: {fileID: 21300000, guid: 33df9890fdbe7e04e8d4c6ae4a20aa51, type: 3}
+  - ItemId: story_1_3
+    Sprite: {fileID: 21300000, guid: 272ed74a6740ef443ab2f982bc72af60, type: 3}
+  - ItemId: story_1_4
+    Sprite: {fileID: 21300000, guid: 894f7c6490346cf40ab04c06896ea2b8, type: 3}
+  - ItemId: story_1_5
+    Sprite: {fileID: 21300000, guid: cf2b636a9efe6ac4e8903e7cac9a5783, type: 3}
+  - ItemId: story_2_1
+    Sprite: {fileID: 21300000, guid: 89a201c9ce6c72b48ba8c696961dc8a0, type: 3}
+  - ItemId: story_2_2
+    Sprite: {fileID: 21300000, guid: 0fe55634b082245489a0df56b7574e1d, type: 3}
+  - ItemId: story_2_3
+    Sprite: {fileID: 21300000, guid: 37ef0243b581bea41bdd388d791de433, type: 3}
+  - ItemId: story_2_4
+    Sprite: {fileID: 21300000, guid: e8a81786b4b3e1f4c93b23786ef9757c, type: 3}
+  - ItemId: story_2_5
+    Sprite: {fileID: 21300000, guid: d6214c755af1b1344ac986a2531aa523, type: 3}
+  - ItemId: story_3_1
+    Sprite: {fileID: 21300000, guid: 81aed37910063b14c97b98c0c8f54195, type: 3}
+  - ItemId: story_3_2
+    Sprite: {fileID: 21300000, guid: 7a9d9c0dd8eb1294c9d2affa81e8aaf7, type: 3}
+  - ItemId: story_3_3
+    Sprite: {fileID: 21300000, guid: b1e2f136eb8496d46b5282b121e64459, type: 3}
+  - ItemId: story_3_4
+    Sprite: {fileID: 21300000, guid: 5fb02ea7c70370246bc71ae3ffb9567e, type: 3}
+  - ItemId: story_3_5
+    Sprite: {fileID: 21300000, guid: 31c902acdd6a6cc4eaa3f9243100bd70, type: 3}
+  - ItemId: story_4_1
+    Sprite: {fileID: 21300000, guid: 9900587c9fe9a9345b71e4d47569c405, type: 3}
+  - ItemId: story_4_2
+    Sprite: {fileID: 21300000, guid: 3e5e25e066583c1468168fa3d8281267, type: 3}
+  - ItemId: story_4_3
+    Sprite: {fileID: 21300000, guid: 93dc6eb28f8fbd54b84ef5a0fceca2af, type: 3}
+  - ItemId: story_4_4
+    Sprite: {fileID: 21300000, guid: ecc81d8a738475e40bbe0fc97966fc92, type: 3}
+  - ItemId: story_4_5
+    Sprite: {fileID: 21300000, guid: 8161ffd8f308806488cc7e508a21167e, type: 3}
+  - ItemId: story_5_1
+    Sprite: {fileID: 21300000, guid: fa41d87d230510d41857042ad4d504c0, type: 3}
+  - ItemId: story_5_2
+    Sprite: {fileID: 21300000, guid: 0c2a5ebb6973e0b47be6f326a8f62e8d, type: 3}
+  - ItemId: story_5_3
+    Sprite: {fileID: 21300000, guid: b85e829959fb87f4284d23c691bca093, type: 3}
+  - ItemId: story_5_4
+    Sprite: {fileID: 21300000, guid: d081cce2f3b5d644fb87d17f31087e97, type: 3}
+  - ItemId: story_5_5
+    Sprite: {fileID: 21300000, guid: 0d343a10e9e8a6b498cf93050e58df62, type: 3}
   - ItemId: thien_nien_quy_giap
     Sprite: {fileID: 21300000, guid: 7388befa02c86844696ff5045871f454, type: 3}
   - ItemId: tuyet_lang_bach_bi
     Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
   - ItemId: u_minh_quy_trao
     Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - ItemId: sect_bich_thuy
+    Sprite: {fileID: 21300000, guid: 0d99439a06dc23b4597b9800081a2b3c, type: 3}
+  - ItemId: sect_han_son
+    Sprite: {fileID: 21300000, guid: e6e40c806d5fce1429e75d3a62f7e084, type: 3}
+  - ItemId: sect_huyen_doc
+    Sprite: {fileID: 21300000, guid: 2da4993180c00eb43b443aba1fd7db6e, type: 3}
+  - ItemId: sect_kim_cang
+    Sprite: {fileID: 21300000, guid: 60cae9eba6c9c8a47b8ca9faa38eb5cd, type: 3}
+  - ItemId: sect_liet_diem
+    Sprite: {fileID: 21300000, guid: b367388b8a4362c4e9fce73f845c5fc9, type: 3}
+  - ItemId: sect_thai_thanh
+    Sprite: {fileID: 21300000, guid: c540313ac28dcc54fbf3ed555240992c, type: 3}
+  - ItemId: sect_thiet_phu
+    Sprite: {fileID: 21300000, guid: 18320897e2ffad84e989f54bdc905451, type: 3}
+  - ItemId: tam_phap_bich_thuy
+    Sprite: {fileID: 21300000, guid: 2929909786a616044b7e23eca3041552, type: 3}
+  - ItemId: tam_phap_han_son
+    Sprite: {fileID: 21300000, guid: 8a0844576d1216c479f1b4fb82c5cc19, type: 3}
+  - ItemId: tam_phap_huyen_doc
+    Sprite: {fileID: 21300000, guid: 153e7e39953f80d4d8fe474a85013ce9, type: 3}
+  - ItemId: tam_phap_kim_cang
+    Sprite: {fileID: 21300000, guid: fc79d5cde6c4fa944b3d071bc73e634d, type: 3}
+  - ItemId: tam_phap_liet_diem
+    Sprite: {fileID: 21300000, guid: daaca74aa4b5fba4e844e48b3a09ac15, type: 3}
+  - ItemId: tam_phap_thai_thanh
+    Sprite: {fileID: 21300000, guid: 9362d48105403f349b6e489ee9868d68, type: 3}
+  - ItemId: tam_phap_thiet_phu
+    Sprite: {fileID: 21300000, guid: 40805138877c5734b8fe7e67c8711efd, type: 3}
   - ItemId: status_bleed
     Sprite: {fileID: 21300000, guid: 6072ac38eb40a38499b17b0e6a17ab98, type: 3}
   - ItemId: status_burn
@@ -291,6 +369,148 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 9f16c3ee92605ed41a046af5159d6b0e, type: 3}
   - ItemId: status_stun
     Sprite: {fileID: 21300000, guid: 89fae2733f47b1c409d7b2c37ba18b17, type: 3}
+  - ItemId: bag_board
+    Sprite: {fileID: 21300000, guid: 37f25c8ebc2c44443b74c0a91b791ee8, type: 3}
+  - ItemId: bar_fill_hp
+    Sprite: {fileID: 21300000, guid: 2d564f2fc6a96e547ad279ca5c9004fb, type: 3}
+  - ItemId: bar_fill_hp_core
+    Sprite: {fileID: 21300000, guid: 5541f39872b1885499873afb4b798f73, type: 3}
+  - ItemId: bar_fill_qi
+    Sprite: {fileID: 21300000, guid: 2d2d89ca9735b424392035f977688a09, type: 3}
+  - ItemId: bar_fill_qi_core
+    Sprite: {fileID: 21300000, guid: d202b55ebf4a8414db202658791435ae, type: 3}
+  - ItemId: bar_fill_shield
+    Sprite: {fileID: 21300000, guid: 03be9c69144242e4592ea5ea80d2b932, type: 3}
+  - ItemId: bar_fill_shield_core
+    Sprite: {fileID: 21300000, guid: 06172903972c7a7498f762c062e12968, type: 3}
+  - ItemId: bar_frame
+    Sprite: {fileID: 21300000, guid: b903cfa6946889647838cf35f02f0710, type: 3}
+  - ItemId: button_close
+    Sprite: {fileID: 21300000, guid: c16822349e4970343a5aea86e02fd52e, type: 3}
+  - ItemId: button_disabled
+    Sprite: {fileID: 21300000, guid: 70498629a31a731408a882dd232bfce5, type: 3}
+  - ItemId: button_exit
+    Sprite: {fileID: 21300000, guid: 678fed26f670bf540b9246c516f967fb, type: 3}
+  - ItemId: button_small_gold
+    Sprite: {fileID: 21300000, guid: 89bc7c04d2b724e4e9c465573a1a9f21, type: 3}
+  - ItemId: button_square
+    Sprite: {fileID: 21300000, guid: 3c4d1305dcf0e97429fdc1669257cfa5, type: 3}
+  - ItemId: clock_plate
+    Sprite: {fileID: 21300000, guid: 4f563d4d0edb336479b13df7cc220a42, type: 3}
+  - ItemId: count_badge
+    Sprite: {fileID: 21300000, guid: 6d49e2a19c9f4664facbd46aaeb4c8ce, type: 3}
+  - ItemId: divider_brush
+    Sprite: {fileID: 21300000, guid: dd45d44ded843c4409594b3605496e51, type: 3}
+  - ItemId: dropdown_field
+    Sprite: {fileID: 21300000, guid: 1a7af9dbeec714f48ba3c2f9ad487870, type: 3}
+  - ItemId: encyclopedia_icon_items
+    Sprite: {fileID: 21300000, guid: e3477e9fd7e53b1468f5f63fbadb3dd3, type: 3}
+  - ItemId: encyclopedia_icon_rules
+    Sprite: {fileID: 21300000, guid: 350f66151c83441429297777859f33d8, type: 3}
+  - ItemId: encyclopedia_icon_status
+    Sprite: {fileID: 21300000, guid: f6af2ef5ed4fd834ab01fa42c0ab5a53, type: 3}
+  - ItemId: encyclopedia_icon_story
+    Sprite: {fileID: 21300000, guid: c6c478c8ea695b64bad1299affaf259d, type: 3}
+  - ItemId: fighter_panel
+    Sprite: {fileID: 21300000, guid: bf669bfa47d14d841aa94ff57a8409f1, type: 3}
+  - ItemId: gauge_frame_large
+    Sprite: {fileID: 21300000, guid: b522df797e2c4184396d383e7cd86097, type: 3}
+  - ItemId: gauge_frame_small
+    Sprite: {fileID: 21300000, guid: 46b3abe5e9583c74cbdb77e1acff8de1, type: 3}
+  - ItemId: hud_panel
+    Sprite: {fileID: 21300000, guid: d17606a781df47b45bd77e8757cb9be4, type: 3}
+  - ItemId: icon_exp
+    Sprite: {fileID: 21300000, guid: 727d5a49bb0073343857726e92f5b41f, type: 3}
+  - ItemId: icon_info
+    Sprite: {fileID: 21300000, guid: e51b9e28615e3cf44b02a63ed2fcca98, type: 3}
+  - ItemId: icon_merge
+    Sprite: {fileID: 21300000, guid: 1befc9d23e4b2a54db52bc8e215378f9, type: 3}
+  - ItemId: icon_pause
+    Sprite: {fileID: 21300000, guid: 90cacfbe5507ba84f92de1b0ea4d696d, type: 3}
+  - ItemId: icon_play
+    Sprite: {fileID: 21300000, guid: 205da4df3ebca7a45b1fc38107f2ce7e, type: 3}
+  - ItemId: icon_power
+    Sprite: {fileID: 21300000, guid: 8a99e6bc319c8314cb9f3275c6680ba7, type: 3}
+  - ItemId: icon_refresh
+    Sprite: {fileID: 21300000, guid: ca85c617614a7b446b528ef14f030982, type: 3}
+  - ItemId: icon_sell
+    Sprite: {fileID: 21300000, guid: 17d1399e2855ecb4a881979b304e3198, type: 3}
+  - ItemId: icon_skip
+    Sprite: {fileID: 21300000, guid: 4f3f7088890691341a6d46066f638091, type: 3}
+  - ItemId: icon_sort
+    Sprite: {fileID: 21300000, guid: 2c72a1ee72b248042b3ec0040688ccc0, type: 3}
+  - ItemId: icon_speed
+    Sprite: {fileID: 21300000, guid: 1df6ac6f09effe74289b59147dfb4fc8, type: 3}
+  - ItemId: icon_upgrade
+    Sprite: {fileID: 21300000, guid: f5d1b64e62356704ebaaeafc905a50dd, type: 3}
+  - ItemId: list_row
+    Sprite: {fileID: 21300000, guid: 63c4b62432d2f7f4cafc73a8009efa7c, type: 3}
+  - ItemId: list_row_selected
+    Sprite: {fileID: 21300000, guid: dd190cd8c6b511d41bf8a2e9c52b1a0d, type: 3}
+  - ItemId: log_panel
+    Sprite: {fileID: 21300000, guid: a0f7087c4481e2f499a228cd3a664b82, type: 3}
+  - ItemId: name_plate
+    Sprite: {fileID: 21300000, guid: 2ab5fa4b73da01c4fa86b759fa86f88a, type: 3}
+  - ItemId: panel_inset
+    Sprite: {fileID: 21300000, guid: 8bb5d841eb11ea3479bf86d1b1c33536, type: 3}
+  - ItemId: popup_frame
+    Sprite: {fileID: 21300000, guid: 279382280b27389498b9abd1df5be1e7, type: 3}
+  - ItemId: popup_title_ribbon
+    Sprite: {fileID: 21300000, guid: 9460a506df544cb4e8ce438023880236, type: 3}
+  - ItemId: price_tag
+    Sprite: {fileID: 21300000, guid: cb941c82b6f15e746ae265d1a9e60735, type: 3}
+  - ItemId: result_defeat
+    Sprite: {fileID: 21300000, guid: 4c3b88db4bfa36745b7761052eb6620c, type: 3}
+  - ItemId: result_victory
+    Sprite: {fileID: 21300000, guid: 3c103e98c7b0e4d42b13320d8eb2722b, type: 3}
+  - ItemId: reward_slot
+    Sprite: {fileID: 21300000, guid: 6d85118638be573409c00d808c2551f9, type: 3}
+  - ItemId: scrollbar_handle
+    Sprite: {fileID: 21300000, guid: ceb62da03ebfefb4db6f52135ec86cc0, type: 3}
+  - ItemId: scrollbar_track
+    Sprite: {fileID: 21300000, guid: f2eb16ec80a45b84fb5913559c8bca93, type: 3}
+  - ItemId: shop_card
+    Sprite: {fileID: 21300000, guid: df752a2e97560aa4ca71059f4a409757, type: 3}
+  - ItemId: slider_fill
+    Sprite: {fileID: 21300000, guid: 38ac68688b9feba4595bbb082fb518d4, type: 3}
+  - ItemId: slider_handle
+    Sprite: {fileID: 21300000, guid: 1bb72563e9f85b64e80bc0a185f4b96b, type: 3}
+  - ItemId: slider_track
+    Sprite: {fileID: 21300000, guid: 8c68db6d115dab94ba0c5bd94576f960, type: 3}
+  - ItemId: slot_cell
+    Sprite: {fileID: 21300000, guid: c681053550d4dc947981c4da319e0fc4, type: 3}
+  - ItemId: slot_cell_highlight
+    Sprite: {fileID: 21300000, guid: 0501ffd7eb5ba0f4396dfcbc5d2140b6, type: 3}
+  - ItemId: slot_cell_invalid
+    Sprite: {fileID: 21300000, guid: 5bdc6f78c5b34124eaaa4629c7ba81b1, type: 3}
+  - ItemId: star_burst
+    Sprite: {fileID: 21300000, guid: abb9f294b2e0064488dc2e6fb0dec035, type: 3}
+  - ItemId: status_slot
+    Sprite: {fileID: 21300000, guid: 14fde7422b9c35d42a814442adfa0357, type: 3}
+  - ItemId: tab_active
+    Sprite: {fileID: 21300000, guid: ba8aed7693daed5408e2c6eb756320f0, type: 3}
+  - ItemId: tab_idle
+    Sprite: {fileID: 21300000, guid: 1c7bca4c1ac7231468f92e1f6230b118, type: 3}
+  - ItemId: tier_pill
+    Sprite: {fileID: 21300000, guid: 4f0743fbcfe708344a5910378aad2ba8, type: 3}
+  - ItemId: timeline_bar
+    Sprite: {fileID: 21300000, guid: 90dc779459188cb41a848eb49e1bb1b8, type: 3}
+  - ItemId: toggle_off
+    Sprite: {fileID: 21300000, guid: 29f34eef9a1d9ec4387e06294e7821ae, type: 3}
+  - ItemId: toggle_on
+    Sprite: {fileID: 21300000, guid: 5944b8725b70d494eb25bdff0ef057ba, type: 3}
+  - ItemId: tutorial_pointer
+    Sprite: {fileID: 21300000, guid: 853053859dece3f4d8cb7c6c7a15bce3, type: 3}
+  - ItemId: tutorial_ring
+    Sprite: {fileID: 21300000, guid: aa4710c8d749a06489ce6d3ff2646098, type: 3}
+  - ItemId: vs_emblem
+    Sprite: {fileID: 21300000, guid: f4737dd70bb15364784200d9e6e0b73a, type: 3}
+  - ItemId: app_icon
+    Sprite: {fileID: 21300000, guid: ae9c7bb8d66d9c5409ee2482fef5a691, type: 3}
+  - ItemId: app_icon_alt
+    Sprite: {fileID: 21300000, guid: a6f66ab35b5b74047a0745d61cd4bfe8, type: 3}
+  - ItemId: app_icon_square
+    Sprite: {fileID: 21300000, guid: 52a665a2e8f1cb147bd8c89ffc2a5b78, type: 3}
   - ItemId: avatar_frame
     Sprite: {fileID: 21300000, guid: d2fbef0c36b54064589591f0dd8905da, type: 3}
   - ItemId: badge_new

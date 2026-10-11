@@ -37,8 +37,10 @@ namespace OneBagJianghu.EditorTools.Building
             image.color = Color.white;
             // The 9-slice art is drawn large (borders of 150-420 px); shrink the borders so the ornaments
             // keep their proportions on small UI elements instead of being squashed by Unity.
+            // Keys may carry a subfolder ("Kit/popup_frame"); the table is keyed by file name.
+            string fileName = key.Substring(key.LastIndexOf('/') + 1);
             if (type == UnityEngine.UI.Image.Type.Sliced &&
-                SlicedPixelsPerUnit.TryGetValue(key, out float multiplier))
+                SlicedPixelsPerUnit.TryGetValue(fileName, out float multiplier))
             {
                 image.pixelsPerUnitMultiplier = multiplier;
                 SlicedAutoFit autoFit = image.GetComponent<SlicedAutoFit>();
@@ -52,6 +54,11 @@ namespace OneBagJianghu.EditorTools.Building
             return true;
         }
 
+        public static Sprite LoadUiSprite(string key)
+        {
+            return AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");
+        }
+
         // Source pixels per UI unit for each 9-slice sprite (tuned for 1920x1080 UI sizes).
         private static readonly System.Collections.Generic.Dictionary<string, float> SlicedPixelsPerUnit =
             new System.Collections.Generic.Dictionary<string, float>
@@ -61,8 +68,80 @@ namespace OneBagJianghu.EditorTools.Building
                 ["plaque_label"] = 12f,
                 ["progress_bar"] = 12f,
                 ["frame_panel"] = 6.5f,
-                ["frame_tooltip"] = 6f
+                ["frame_tooltip"] = 6f,
+                ["popup_frame"] = 5f,
+                ["popup_title_ribbon"] = 7f,
+                ["tab_active"] = 7f,
+                ["tab_idle"] = 7f,
+                ["panel_inset"] = 6f,
+                ["list_row"] = 7f,
+                ["list_row_selected"] = 7f,
+                ["button_disabled"] = 6f,
+                ["button_small_gold"] = 7f,
+                ["slider_track"] = 9f,
+                ["slider_fill"] = 9f,
+                ["scrollbar_track"] = 10f,
+                ["scrollbar_handle"] = 10f,
+                ["dropdown_field"] = 7f,
+                ["slot_cell"] = 7f,
+                ["slot_cell_highlight"] = 7f,
+                ["slot_cell_invalid"] = 7f,
+                ["bag_board"] = 5f,
+                ["shop_card"] = 5.5f,
+                ["shop_card_frame"] = 6.6f,
+                ["tier_pill"] = 9f,
+                ["price_tag"] = 12.9f,
+                ["bar_frame"] = 9f,
+                ["bar_fill_hp"] = 9f,
+                ["bar_fill_shield"] = 9f,
+                ["bar_fill_qi"] = 9f,
+                ["fighter_panel"] = 6f,
+                ["timeline_bar"] = 9f,
+                ["reward_slot"] = 7f,
+                ["hud_panel"] = 6f,
+                ["gauge_frame_large"] = 10f,
+                ["gauge_frame_small"] = 10f,
+                ["status_slot"] = 16f,
+                ["count_badge"] = 18f,
+                ["log_panel"] = 6f,
+                ["button_exit"] = 16f,
+                ["name_plate"] = 8f,
+                ["clock_plate"] = 10f,
+                ["button_square"] = 16f
             };
+
+        public static void AddLeadingIcon(Transform parent, string key, float size = 28f)
+        {
+            Image icon = Image(parent, "Action Icon", Color.white);
+            if (!ApplyUiSprite(icon, "Kit/" + key))
+            {
+                Object.DestroyImmediate(icon.gameObject);
+                return;
+            }
+
+            icon.preserveAspect = true;
+            icon.raycastTarget = false;
+            icon.rectTransform.anchorMin = new Vector2(0f, .5f);
+            icon.rectTransform.anchorMax = new Vector2(0f, .5f);
+            icon.rectTransform.pivot = new Vector2(0f, .5f);
+            icon.rectTransform.sizeDelta = new Vector2(size, size);
+            Text ownText = parent.GetComponent<Text>();
+            if (ownText != null)
+            {
+                // The parent is the label itself: hang the icon just left of it.
+                icon.rectTransform.pivot = new Vector2(1f, .5f);
+                icon.rectTransform.anchoredPosition = new Vector2(-4f, 0f);
+                return;
+            }
+
+            icon.rectTransform.anchoredPosition = new Vector2(14f, 0f);
+            Text label = parent.GetComponentInChildren<Text>();
+            if (label != null)
+            {
+                RectTransform labelRect = label.rectTransform;
+                labelRect.offsetMin = new Vector2(labelRect.offsetMin.x + size + 10f, labelRect.offsetMin.y);
+            }
+        }
 
         public static RectTransform Rect(Transform parent, string name)
         {

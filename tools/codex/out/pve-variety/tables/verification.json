@@ -1,0 +1,1009 @@
+{
+  "runs": 50,
+  "rows": [
+    {
+      "stage": 1,
+      "enemy": "Thảo Khấu Tiên Phong",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "oldLc": 82,
+      "newLc": 82,
+      "lcChangePct": 0.0,
+      "oldWinRate": 100.0,
+      "newWinRate": 100.0,
+      "winRateChange": 0.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 2,
+      "enemy": "Thủy Phỉ Thám Tử",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "phuc_ho_con"
+      ],
+      "oldLc": 144,
+      "newLc": 107,
+      "lcChangePct": -25.69,
+      "oldWinRate": 3.0,
+      "newWinRate": 82.0,
+      "winRateChange": 79.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 3,
+      "enemy": "Hoang Dã Sói Xám",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "kich_doc_chu_nga"
+      ],
+      "oldLc": 152,
+      "newLc": 126,
+      "lcChangePct": -17.11,
+      "oldWinRate": 44.0,
+      "newWinRate": 66.0,
+      "winRateChange": 22.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 4,
+      "enemy": "Liệt Diễm Bang Chúng",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "liet_diem_dao"
+      ],
+      "oldLc": 203,
+      "newLc": 121,
+      "lcChangePct": -40.39,
+      "oldWinRate": 92.0,
+      "newWinRate": 68.0,
+      "winRateChange": -24.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 5,
+      "enemy": "Phong Lôi Khoái Đao Phong Vũ",
+      "oldWeapons": [
+        "thanh_phong_kiem",
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "tu_mau_song_dao",
+        "tu_mau_song_dao"
+      ],
+      "oldLc": 215,
+      "newLc": 201,
+      "lcChangePct": -6.51,
+      "oldWinRate": 22.0,
+      "newWinRate": 54.0,
+      "winRateChange": 32.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 6,
+      "enemy": "Ám Hạng Thích Khách",
+      "oldWeapons": [
+        "thanh_phong_kiem",
+        "khai_son_phu"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu"
+      ],
+      "oldLc": 279,
+      "newLc": 241,
+      "lcChangePct": -13.62,
+      "oldWinRate": 0.0,
+      "newWinRate": 60.0,
+      "winRateChange": 60.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 7,
+      "enemy": "Thiết Bì Trư Thú",
+      "oldWeapons": [
+        "thiet_cot_quyen_sao",
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "thiet_cot_quyen_sao"
+      ],
+      "oldLc": 294,
+      "newLc": 181,
+      "lcChangePct": -38.44,
+      "oldWinRate": 0.0,
+      "newWinRate": 65.0,
+      "winRateChange": 65.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 8,
+      "enemy": "Liệt Diễm Bang Hương Chủ",
+      "oldWeapons": [
+        "thanh_phong_kiem",
+        "tu_mau_song_dao"
+      ],
+      "newWeapons": [
+        "liet_diem_dao"
+      ],
+      "oldLc": 316,
+      "newLc": 225,
+      "lcChangePct": -28.8,
+      "oldWinRate": 0.0,
+      "newWinRate": 64.0,
+      "winRateChange": 64.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 9,
+      "enemy": "Ba Hổ Tiên Phong Vệ",
+      "oldWeapons": [
+        "xich_sa_chuong",
+        "ngoc_cot_phien",
+        "thanh_phong_kiem",
+        "chan_nhac_chuy"
+      ],
+      "newWeapons": [
+        "thanh_phong_kiem",
+        "thanh_phong_kiem"
+      ],
+      "oldLc": 325,
+      "newLc": 342,
+      "lcChangePct": 5.23,
+      "oldWinRate": 77.0,
+      "newWinRate": 59.0,
+      "winRateChange": -18.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 10,
+      "enemy": "Nộ Ba Hổ Bùi Chấn",
+      "oldWeapons": [
+        "truy_hon_cung",
+        "thanh_phong_kiem",
+        "tu_mau_song_dao"
+      ],
+      "newWeapons": [
+        "liet_diem_dao"
+      ],
+      "oldLc": 376,
+      "newLc": 299,
+      "lcChangePct": -20.48,
+      "oldWinRate": 0.0,
+      "newWinRate": 58.0,
+      "winRateChange": 58.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 11,
+      "enemy": "Vạn Độc Môn Đồ",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "kich_doc_chu_nga"
+      ],
+      "oldLc": 376,
+      "newLc": 304,
+      "lcChangePct": -19.15,
+      "oldWinRate": 100.0,
+      "newWinRate": 77.0,
+      "winRateChange": -23.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 12,
+      "enemy": "Huyền Độc Môn Đồ",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu"
+      ],
+      "oldLc": 432,
+      "newLc": 384,
+      "lcChangePct": -11.11,
+      "oldWinRate": 10.0,
+      "newWinRate": 72.0,
+      "winRateChange": 62.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 13,
+      "enemy": "Kịch Độc Tri Chu",
+      "oldWeapons": [
+        "han_ngoc_tieu"
+      ],
+      "newWeapons": [
+        "kich_doc_chu_nga"
+      ],
+      "oldLc": 468,
+      "newLc": 156,
+      "lcChangePct": -66.67,
+      "oldWinRate": 45.0,
+      "newWinRate": 64.0,
+      "winRateChange": 19.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 14,
+      "enemy": "Man Cương Vu Đao",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "that_tinh_tieu",
+        "phan_quan_but"
+      ],
+      "newWeapons": [
+        "liet_diem_dao",
+        "liet_diem_dao"
+      ],
+      "oldLc": 478,
+      "newLc": 368,
+      "lcChangePct": -23.01,
+      "oldWinRate": 100.0,
+      "newWinRate": 74.0,
+      "winRateChange": -26.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 15,
+      "enemy": "Bách Thảo Nghịch Đồ",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu",
+        "that_tinh_tieu"
+      ],
+      "oldLc": 422,
+      "newLc": 345,
+      "lcChangePct": -18.25,
+      "oldWinRate": 54.0,
+      "newWinRate": 58.0,
+      "winRateChange": 4.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 16,
+      "enemy": "Hắc Sát Độc Hùng",
+      "oldWeapons": [
+        "liet_diem_dao"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 428,
+      "newLc": 382,
+      "lcChangePct": -10.75,
+      "oldWinRate": 50.0,
+      "newWinRate": 56.0,
+      "winRateChange": 6.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 17,
+      "enemy": "U Minh Ám Sát Thí Tử",
+      "oldWeapons": [
+        "liet_diem_dao"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu"
+      ],
+      "oldLc": 446,
+      "newLc": 467,
+      "lcChangePct": 4.71,
+      "oldWinRate": 68.0,
+      "newWinRate": 75.0,
+      "winRateChange": 7.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 18,
+      "enemy": "Huyền Độc Trưởng Lão",
+      "oldWeapons": [
+        "xich_sa_chuong",
+        "ngoc_cot_phien"
+      ],
+      "newWeapons": [
+        "ngoc_cot_phien",
+        "ngoc_cot_phien"
+      ],
+      "oldLc": 467,
+      "newLc": 537,
+      "lcChangePct": 14.99,
+      "oldWinRate": 65.0,
+      "newWinRate": 88.0,
+      "winRateChange": 23.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 19,
+      "enemy": "Xích Luyện Xà Tinh",
+      "oldWeapons": [
+        "xich_sa_chuong",
+        "ngoc_cot_phien"
+      ],
+      "newWeapons": [
+        "thanh_dang_tien",
+        "thanh_dang_tien"
+      ],
+      "oldLc": 469,
+      "newLc": 468,
+      "lcChangePct": -0.21,
+      "oldWinRate": 66.0,
+      "newWinRate": 70.0,
+      "winRateChange": 4.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 20,
+      "enemy": "Hắc Độc Nương Tử",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "xich_sa_chuong"
+      ],
+      "oldLc": 528,
+      "newLc": 494,
+      "lcChangePct": -6.44,
+      "oldWinRate": 45.0,
+      "newWinRate": 34.0,
+      "winRateChange": -11.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 21,
+      "enemy": "Hàn Phong Tuần Tuyết Giả",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "bang_phach_thuong"
+      ],
+      "oldLc": 502,
+      "newLc": 510,
+      "lcChangePct": 1.59,
+      "oldWinRate": 68.0,
+      "newWinRate": 65.0,
+      "winRateChange": -3.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 22,
+      "enemy": "Hàn Sơn Kiếm Sĩ",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "oldLc": 523,
+      "newLc": 579,
+      "lcChangePct": 10.71,
+      "oldWinRate": 61.0,
+      "newWinRate": 74.0,
+      "winRateChange": 13.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 23,
+      "enemy": "Tuyết Lĩnh Ngân Lang",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao",
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 555,
+      "newLc": 442,
+      "lcChangePct": -20.36,
+      "oldWinRate": 64.0,
+      "newWinRate": 54.0,
+      "winRateChange": -10.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 24,
+      "enemy": "Kim Cang Hộ Giới Tăng",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "phuc_ho_con",
+        "phuc_ho_con"
+      ],
+      "oldLc": 573,
+      "newLc": 481,
+      "lcChangePct": -16.06,
+      "oldWinRate": 70.0,
+      "newWinRate": 82.0,
+      "winRateChange": 12.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 25,
+      "enemy": "Hàn Sơn Đại Đệ Tử",
+      "oldWeapons": [
+        "thanh_phong_kiem"
+      ],
+      "newWeapons": [
+        "tu_mau_song_dao"
+      ],
+      "oldLc": 589,
+      "newLc": 581,
+      "lcChangePct": -1.36,
+      "oldWinRate": 60.0,
+      "newWinRate": 61.0,
+      "winRateChange": 1.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 26,
+      "enemy": "Băng Nguyên Bạch Hổ",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao",
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 588,
+      "newLc": 485,
+      "lcChangePct": -17.52,
+      "oldWinRate": 75.0,
+      "newWinRate": 69.0,
+      "winRateChange": -6.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 27,
+      "enemy": "U Minh Chấp Pháp Sứ",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu",
+        "that_tinh_tieu"
+      ],
+      "oldLc": 559,
+      "newLc": 667,
+      "lcChangePct": 19.32,
+      "oldWinRate": 100.0,
+      "newWinRate": 51.0,
+      "winRateChange": -49.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 28,
+      "enemy": "Vạn Niên Băng Quy",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "chan_nhac_chuy",
+        "chan_nhac_chuy"
+      ],
+      "oldLc": 596,
+      "newLc": 435,
+      "lcChangePct": -27.01,
+      "oldWinRate": 70.0,
+      "newWinRate": 80.0,
+      "winRateChange": 10.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 29,
+      "enemy": "U Minh Tuyệt Mệnh Kiếm Vệ",
+      "oldWeapons": [
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "tu_mau_song_dao"
+      ],
+      "oldLc": 603,
+      "newLc": 515,
+      "lcChangePct": -14.59,
+      "oldWinRate": 74.0,
+      "newWinRate": 80.0,
+      "winRateChange": 6.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 30,
+      "enemy": "U Minh Tả Sứ Dạ Sát Thiên",
+      "oldWeapons": [
+        "xich_sa_chuong"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 648,
+      "newLc": 538,
+      "lcChangePct": -16.98,
+      "oldWinRate": 42.0,
+      "newWinRate": 38.0,
+      "winRateChange": -4.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 31,
+      "enemy": "Dịch Lộ Đao Khách",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "liet_diem_dao",
+        "liet_diem_dao"
+      ],
+      "oldLc": 687,
+      "newLc": 532,
+      "lcChangePct": -22.56,
+      "oldWinRate": 56.0,
+      "newWinRate": 88.0,
+      "winRateChange": 32.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 32,
+      "enemy": "Giả Lệnh Dịch Tốt",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "bang_phach_thuong",
+        "bang_phach_thuong"
+      ],
+      "oldLc": 666,
+      "newLc": 426,
+      "lcChangePct": -36.04,
+      "oldWinRate": 70.0,
+      "newWinRate": 79.0,
+      "winRateChange": 9.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 33,
+      "enemy": "Mặc Ảnh Linh Miêu",
+      "oldWeapons": [
+        "thiet_cot_quyen_sao"
+      ],
+      "newWeapons": [
+        "bach_ho_cuong_mong"
+      ],
+      "oldLc": 721,
+      "newLc": 695,
+      "lcChangePct": -3.61,
+      "oldWinRate": 52.0,
+      "newWinRate": 73.0,
+      "winRateChange": 21.0,
+      "lcPass": true,
+      "winRatePass": false
+    },
+    {
+      "stage": 34,
+      "enemy": "Tế Vân Chưởng Quỹ",
+      "oldWeapons": [
+        "thiet_cot_quyen_sao"
+      ],
+      "newWeapons": [
+        "ngoc_cot_phien"
+      ],
+      "oldLc": 727,
+      "newLc": 698,
+      "lcChangePct": -3.99,
+      "oldWinRate": 50.0,
+      "newWinRate": 98.0,
+      "winRateChange": 48.0,
+      "lcPass": true,
+      "winRatePass": false
+    },
+    {
+      "stage": 35,
+      "enemy": "U Minh Vũ Y Vệ",
+      "oldWeapons": [
+        "tu_kim_trao",
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu",
+        "that_tinh_tieu"
+      ],
+      "oldLc": 666,
+      "newLc": 682,
+      "lcChangePct": 2.4,
+      "oldWinRate": 100.0,
+      "newWinRate": 54.0,
+      "winRateChange": -46.0,
+      "lcPass": true,
+      "winRatePass": false
+    },
+    {
+      "stage": 36,
+      "enemy": "Thiết Phủ Khai Lộ Sứ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "khai_son_phu"
+      ],
+      "oldLc": 735,
+      "newLc": 625,
+      "lcChangePct": -14.97,
+      "oldWinRate": 74.0,
+      "newWinRate": 93.0,
+      "winRateChange": 19.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 37,
+      "enemy": "Xích Giác Cuồng Ngưu",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "thiet_cot_quyen_sao"
+      ],
+      "oldLc": 732,
+      "newLc": 657,
+      "lcChangePct": -10.25,
+      "oldWinRate": 91.0,
+      "newWinRate": 64.0,
+      "winRateChange": -27.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 38,
+      "enemy": "Hàn Sơn Tín Tiêu Vệ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "truy_hon_cung"
+      ],
+      "oldLc": 720,
+      "newLc": 701,
+      "lcChangePct": -2.64,
+      "oldWinRate": 56.0,
+      "newWinRate": 78.0,
+      "winRateChange": 22.0,
+      "lcPass": true,
+      "winRatePass": false
+    },
+    {
+      "stage": 39,
+      "enemy": "U Minh Khóa Giang Vệ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "thanh_dang_tien"
+      ],
+      "oldLc": 744,
+      "newLc": 737,
+      "lcChangePct": -0.94,
+      "oldWinRate": 84.0,
+      "newWinRate": 63.0,
+      "winRateChange": -21.0,
+      "lcPass": true,
+      "winRatePass": false
+    },
+    {
+      "stage": 40,
+      "enemy": "U Minh Hữu Sứ Lộ Tẫn Quang",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 792,
+      "newLc": 716,
+      "lcChangePct": -9.6,
+      "oldWinRate": 34.0,
+      "newWinRate": 41.0,
+      "winRateChange": 7.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 41,
+      "enemy": "Giả Chiếu Cấm Vệ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "bang_phach_thuong"
+      ],
+      "oldLc": 767,
+      "newLc": 737,
+      "lcChangePct": -3.91,
+      "oldWinRate": 63.0,
+      "newWinRate": 54.0,
+      "winRateChange": -9.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 42,
+      "enemy": "Chu Tước Ảnh Khách",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "that_tinh_tieu"
+      ],
+      "oldLc": 754,
+      "newLc": 851,
+      "lcChangePct": 12.86,
+      "oldWinRate": 65.0,
+      "newWinRate": 85.0,
+      "winRateChange": 20.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 43,
+      "enemy": "Huyền Đồng Cơ Sư",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "chan_nhac_chuy"
+      ],
+      "oldLc": 753,
+      "newLc": 710,
+      "lcChangePct": -5.71,
+      "oldWinRate": 72.0,
+      "newWinRate": 62.0,
+      "winRateChange": -10.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 44,
+      "enemy": "Ngụy Học Kiếm Sinh",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "phan_quan_but"
+      ],
+      "oldLc": 834,
+      "newLc": 671,
+      "lcChangePct": -19.54,
+      "oldWinRate": 58.0,
+      "newWinRate": 100.0,
+      "winRateChange": 42.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 45,
+      "enemy": "Thiên Cơ Chấp Ấn Quan",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "ngoc_cot_phien"
+      ],
+      "oldLc": 836,
+      "newLc": 802,
+      "lcChangePct": -4.07,
+      "oldWinRate": 69.0,
+      "newWinRate": 64.0,
+      "winRateChange": -5.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 46,
+      "enemy": "U Minh Ám Cừ Sứ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "u_minh_quy_trao",
+        "u_minh_quy_trao"
+      ],
+      "oldLc": 776,
+      "newLc": 577,
+      "lcChangePct": -25.64,
+      "oldWinRate": 95.0,
+      "newWinRate": 77.0,
+      "winRateChange": -18.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 47,
+      "enemy": "Xích Nhật Kim Sí Điểu",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "tu_kim_trao"
+      ],
+      "oldLc": 838,
+      "newLc": 854,
+      "lcChangePct": 1.91,
+      "oldWinRate": 58.0,
+      "newWinRate": 68.0,
+      "winRateChange": 10.0,
+      "lcPass": true,
+      "winRatePass": true
+    },
+    {
+      "stage": 48,
+      "enemy": "Thái Dịch Cầm Sư",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "bich_thuy_cam"
+      ],
+      "oldLc": 838,
+      "newLc": 746,
+      "lcChangePct": -10.98,
+      "oldWinRate": 58.0,
+      "newWinRate": 81.0,
+      "winRateChange": 23.0,
+      "lcPass": false,
+      "winRatePass": false
+    },
+    {
+      "stage": 49,
+      "enemy": "Thiên Cơ Hỏa Nỏ Vệ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "truy_hon_cung"
+      ],
+      "oldLc": 827,
+      "newLc": 733,
+      "lcChangePct": -11.37,
+      "oldWinRate": 75.0,
+      "newWinRate": 69.0,
+      "winRateChange": -6.0,
+      "lcPass": false,
+      "winRatePass": true
+    },
+    {
+      "stage": 50,
+      "enemy": "Giám Chủ Thiên Cơ Tào Huyền Kỳ",
+      "oldWeapons": [
+        "tu_kim_trao"
+      ],
+      "newWeapons": [
+        "chan_nhac_chuy"
+      ],
+      "oldLc": 863,
+      "newLc": 619,
+      "lcChangePct": -28.27,
+      "oldWinRate": 41.0,
+      "newWinRate": 100.0,
+      "winRateChange": 59.0,
+      "lcPass": false,
+      "winRatePass": false
+    }
+  ],
+  "chapterCounts": [
+    {
+      "chapter": "hoi_1",
+      "weapons": {
+        "thanh_phong_kiem": 2,
+        "phuc_ho_con": 1,
+        "kich_doc_chu_nga": 1,
+        "liet_diem_dao": 3,
+        "tu_mau_song_dao": 1,
+        "that_tinh_tieu": 1,
+        "thiet_cot_quyen_sao": 1
+      }
+    },
+    {
+      "chapter": "hoi_2",
+      "weapons": {
+        "kich_doc_chu_nga": 2,
+        "that_tinh_tieu": 3,
+        "liet_diem_dao": 1,
+        "u_minh_quy_trao": 1,
+        "ngoc_cot_phien": 1,
+        "thanh_dang_tien": 1,
+        "xich_sa_chuong": 1
+      }
+    },
+    {
+      "chapter": "hoi_3",
+      "weapons": {
+        "bang_phach_thuong": 1,
+        "thanh_phong_kiem": 1,
+        "u_minh_quy_trao": 3,
+        "phuc_ho_con": 1,
+        "tu_mau_song_dao": 2,
+        "that_tinh_tieu": 1,
+        "chan_nhac_chuy": 1
+      }
+    },
+    {
+      "chapter": "hoi_4",
+      "weapons": {
+        "liet_diem_dao": 1,
+        "bang_phach_thuong": 1,
+        "bach_ho_cuong_mong": 1,
+        "ngoc_cot_phien": 1,
+        "that_tinh_tieu": 1,
+        "khai_son_phu": 1,
+        "thiet_cot_quyen_sao": 1,
+        "truy_hon_cung": 1,
+        "thanh_dang_tien": 1,
+        "u_minh_quy_trao": 1
+      }
+    },
+    {
+      "chapter": "hoi_5",
+      "weapons": {
+        "bang_phach_thuong": 1,
+        "that_tinh_tieu": 1,
+        "chan_nhac_chuy": 2,
+        "phan_quan_but": 1,
+        "ngoc_cot_phien": 1,
+        "u_minh_quy_trao": 1,
+        "tu_kim_trao": 1,
+        "bich_thuy_cam": 1,
+        "truy_hon_cung": 1
+      }
+    }
+  ]
+}

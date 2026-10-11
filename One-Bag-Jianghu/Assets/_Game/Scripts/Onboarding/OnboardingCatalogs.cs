@@ -46,6 +46,57 @@ namespace OneBagJianghu.Onboarding
     }
 
     [Serializable]
+    public sealed class StoryChapter
+    {
+        [JsonProperty("chapter")]
+        public int Chapter;
+        [JsonProperty("title")]
+        public string Title;
+        [JsonProperty("panels")]
+        public List<IntroPanel> Panels = new List<IntroPanel>();
+    }
+
+    [Serializable]
+    public sealed class StoryCatalog
+    {
+        [JsonProperty("chapters")]
+        public List<StoryChapter> Chapters = new List<StoryChapter>();
+
+        public static StoryCatalog Load()
+        {
+            return Parse(IntroCatalog.LoadText("Data/story"));
+        }
+
+        public static StoryCatalog Parse(string json)
+        {
+            StoryCatalog catalog = JsonConvert.DeserializeObject<StoryCatalog>(json);
+            var chapters = new HashSet<int>();
+            if (catalog?.Chapters == null || catalog.Chapters.Count == 0)
+                throw new FormatException("Story catalog must contain chapters.");
+            foreach (StoryChapter chapter in catalog.Chapters)
+            {
+                if (chapter == null || chapter.Chapter < 0 || !chapters.Add(chapter.Chapter)
+                    || string.IsNullOrWhiteSpace(chapter.Title)
+                    || chapter.Panels == null
+                    || chapter.Panels.Count == 0)
+                    throw new FormatException("Every story chapter requires a unique number, title, and panels.");
+                foreach (IntroPanel panel in chapter.Panels)
+                    if (panel == null
+                        || string.IsNullOrWhiteSpace(panel.Image)
+                        || string.IsNullOrWhiteSpace(panel.Text))
+                        throw new FormatException("Every story panel requires an image and text.");
+            }
+
+            return catalog;
+        }
+
+        public StoryChapter Get(int chapter)
+        {
+            return Chapters.Find(value => value.Chapter == chapter);
+        }
+    }
+
+    [Serializable]
     public sealed class TutorialStep
     {
         [JsonProperty("line")]

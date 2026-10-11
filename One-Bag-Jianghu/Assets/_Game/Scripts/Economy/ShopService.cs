@@ -55,6 +55,10 @@ namespace OneBagJianghu.Economy
         public TimeSpan UntilFreeRefresh(PlayerProfile profile)
         {
             Ensure(profile);
+            if (HasStarterFreeRefresh(profile))
+                return TimeSpan.Zero;
+            if (config.FreeRefreshHours <= 0)
+                return TimeSpan.MaxValue;
             DateTimeOffset last = Parse(profile.Shop.LastFreeRefreshUtc, clock.UtcNow);
             TimeSpan left = last.AddHours(config.FreeRefreshHours) - clock.UtcNow;
             return left > TimeSpan.Zero ? left : TimeSpan.Zero;
@@ -63,8 +67,15 @@ namespace OneBagJianghu.Economy
         public int PaidRefreshCost(PlayerProfile profile)
         {
             ResetPeriods(profile);
-            int index = Math.Min(profile.Shop.PaidRefreshesToday, config.PaidRefreshCosts.Length - 1);
-            return config.PaidRefreshCosts[index];
+            return config.PaidRefreshCost;
+        }
+
+        public bool CanRefreshFree(PlayerProfile profile)
+        {
+            Ensure(profile);
+            return HasStarterFreeRefresh(profile)
+                || config.FreeRefreshHours > 0
+                && UntilFreeRefresh(profile) == TimeSpan.Zero;
         }
 
         public EconomyResult Refresh(PlayerProfile profile, bool free)
@@ -72,8 +83,12 @@ namespace OneBagJianghu.Economy
             Ensure(profile);
             if (free)
             {
-                if (UntilFreeRefresh(profile) > TimeSpan.Zero)
+                bool starterRefresh = HasStarterFreeRefresh(profile);
+                if (!starterRefresh
+                    && (config.FreeRefreshHours <= 0 || UntilFreeRefresh(profile) > TimeSpan.Zero))
                     return EconomyResult.Fail("Chưa đến lượt làm mới miễn phí.");
+                if (starterRefresh)
+                    profile.Shop.StarterFreeRefreshesUsed++;
                 Generate(profile, true);
                 return EconomyResult.Ok();
             }
@@ -120,6 +135,7 @@ namespace OneBagJianghu.Economy
             else
                 storage.TryAddMaterial(slot.ContentId, slot.Quantity);
             slot.Bought = true;
+            profile.RecordQuestAction("shop_buy");
             return EconomyResult.Ok();
         }
 
@@ -341,6 +357,11 @@ namespace OneBagJianghu.Economy
                 profile.Shop.WeekKey = week;
                 profile.Shop.ReputationPurchases.Clear();
             }
+        }
+
+        private bool HasStarterFreeRefresh(PlayerProfile profile)
+        {
+            return profile.Shop.StarterFreeRefreshesUsed < config.StarterFreeRefreshes;
         }
 
         private static DateTimeOffset Parse(string value,

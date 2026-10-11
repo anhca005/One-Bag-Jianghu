@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using OneBagJianghu.Economy;
 using OneBagJianghu.Onboarding;
+using OneBagJianghu.Pve;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,17 +21,57 @@ namespace OneBagJianghu.Tests.Onboarding
             string introJson = LoadResource("intro.json");
             string tutorialJson = LoadResource("tutorial.json");
             string encyclopediaJson = LoadResource("encyclopedia.json");
+            string storyJson = LoadResource("story.json");
 
             // Act
             IntroCatalog intro = IntroCatalog.Parse(introJson);
             TutorialCatalog tutorial = TutorialCatalog.Parse(tutorialJson);
             EncyclopediaCatalog encyclopedia = EncyclopediaCatalog.Parse(encyclopediaJson);
+            StoryCatalog story = StoryCatalog.Parse(storyJson);
 
             // Assert
             Assert.That(intro.Panels, Has.Count.EqualTo(5));
             Assert.That(tutorial.Sequences.Select(value => value.Id),
                 Is.EquivalentTo(new[] { "first_battle", "shop", "upgrade", "sect" }));
             Assert.That(encyclopedia.Entries, Is.Not.Empty);
+            Assert.That(story.Chapters.Select(value => value.Chapter), Is.EquivalentTo(new[] { 0, 1, 2, 3, 4, 5 }));
+            Assert.That(story.Chapters.SelectMany(value => value.Panels).All(
+                value => !string.IsNullOrWhiteSpace(value.Text)), Is.True);
+        }
+
+        [Test]
+        public void FirstBossClearQueuesStoryOnlyOnce()
+        {
+            // Arrange
+            PlayerProfile profile = new PlayerProfile();
+            PveStage boss = PveCatalog.Load().GetStage("hoi_1_10");
+
+            // Act
+            bool first = StoryProgress.TryQueueBossClear(profile, boss, true);
+            bool second = StoryProgress.TryQueueBossClear(profile, boss, true);
+
+            // Assert
+            Assert.That(first, Is.True);
+            Assert.That(second, Is.False);
+            Assert.That(profile.PendingStoryChapters, Is.EqualTo(new[] { 1 }));
+        }
+
+        [Test]
+        public void StoryListContainsIntroAndExactlyClearedChapters()
+        {
+            // Arrange
+            PlayerProfile profile = new PlayerProfile();
+            profile.Pve.Stages["hoi_1_10"] = new PveStageProgress { Cleared = true };
+            profile.Pve.Stages["hoi_3_10"] = new PveStageProgress { Cleared = true };
+
+            // Act
+            List<StoryChapter> stories = StoryProgress.UnlockedChapters(
+                StoryCatalog.Load(),
+                PveCatalog.Load(),
+                profile);
+
+            // Assert
+            Assert.That(stories.Select(value => value.Chapter), Is.EqualTo(new[] { 0, 1, 3 }));
         }
 
         [Test]
@@ -62,7 +103,7 @@ namespace OneBagJianghu.Tests.Onboarding
             // Act
             bool started = service.TryStart("shop");
             bool ignored = service.Publish("wrong_event");
-            bool advanced = service.Publish("shop_opened");
+            bool advanced = service.Publish("stage_map_closed");
             service.SkipSequence();
 
             // Assert
@@ -71,6 +112,47 @@ namespace OneBagJianghu.Tests.Onboarding
             Assert.That(advanced, Is.True);
             Assert.That(profile.CompletedTutorials, Contains.Item("shop"));
             Assert.That(service.TryStart("shop"), Is.False);
+        }
+
+        [Test]
+        public void ShopTutorialContainsQuestStepsAndAdvancesThroughTheirEvents()
+        {
+            // Arrange
+            TutorialCatalog catalog = TutorialCatalog.Parse(LoadResource("tutorial.json"));
+            TutorialSequence shop = catalog.Sequences.Single(value => value.Id == "shop");
+            var service = new TutorialService(catalog, new PlayerProfile());
+
+            // Act
+            service.TryStart("shop");
+            service.Publish("stage_map_closed");
+            string[] targets = shop.Steps.Skip(1).Take(3).Select(value => value.Target).ToArray();
+            bool opened = service.PublishQuestLogOpened(true);
+            bool claimed = service.Publish("quest_claimed");
+            bool closed = service.Publish("quest_log_closed");
+
+            // Assert
+            Assert.That(targets, Is.EqualTo(new[] { "home_quest", "quest_claim", "quest_log_close" }));
+            Assert.That(opened, Is.True);
+            Assert.That(claimed, Is.True);
+            Assert.That(closed, Is.True);
+            Assert.That(service.CurrentStep.CompleteEvent, Is.EqualTo("shop_opened"));
+        }
+
+        [Test]
+        public void QuestLogOpeningSkipsClaimWhenNoQuestRewardIsReady()
+        {
+            // Arrange
+            TutorialCatalog catalog = TutorialCatalog.Parse(LoadResource("tutorial.json"));
+            var service = new TutorialService(catalog, new PlayerProfile());
+            service.TryStart("shop");
+            service.Publish("stage_map_closed");
+
+            // Act
+            bool opened = service.PublishQuestLogOpened(false);
+
+            // Assert
+            Assert.That(opened, Is.True);
+            Assert.That(service.CurrentStep.CompleteEvent, Is.EqualTo("quest_log_closed"));
         }
 
         [Test]

@@ -1,0 +1,228 @@
+{
+  "runs": 50,
+  "rows": [
+    {
+      "stage": 9,
+      "enemy": "Ba Hổ Tiên Phong Vệ",
+      "round2Lc": 342,
+      "round3Lc": 342,
+      "round3WinRate": 70.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 16,
+      "enemy": "Hắc Sát Độc Hùng",
+      "round2Lc": 382,
+      "round3Lc": 355,
+      "round3WinRate": 64.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 18,
+      "enemy": "Huyền Độc Trưởng Lão",
+      "round2Lc": 537,
+      "round3Lc": 539,
+      "round3WinRate": 85.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 20,
+      "enemy": "Hắc Độc Nương Tử",
+      "round2Lc": 494,
+      "round3Lc": 493,
+      "round3WinRate": 41.0,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 23,
+      "enemy": "Tuyết Lĩnh Ngân Lang",
+      "round2Lc": 442,
+      "round3Lc": 440,
+      "round3WinRate": 62.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 27,
+      "enemy": "U Minh Chấp Pháp Sứ",
+      "round2Lc": 667,
+      "round3Lc": 664,
+      "round3WinRate": 55.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 31,
+      "enemy": "Dịch Lộ Đao Khách",
+      "round2Lc": 532,
+      "round3Lc": 534,
+      "round3WinRate": 79.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 34,
+      "enemy": "Tế Vân Chưởng Quỹ",
+      "round2Lc": 698,
+      "round3Lc": 738,
+      "round3WinRate": 63.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 36,
+      "enemy": "Thiết Phủ Khai Lộ Sứ",
+      "round2Lc": 625,
+      "round3Lc": 580,
+      "round3WinRate": 84.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 41,
+      "enemy": "Giả Chiếu Cấm Vệ",
+      "round2Lc": 737,
+      "round3Lc": 736,
+      "round3WinRate": 58.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 42,
+      "enemy": "Chu Tước Ảnh Khách",
+      "round2Lc": 851,
+      "round3Lc": 853,
+      "round3WinRate": 80.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 44,
+      "enemy": "Ngụy Học Kiếm Sinh",
+      "round2Lc": 671,
+      "round3Lc": 743,
+      "round3WinRate": 98.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 50,
+      "enemy": "Giám Chủ Thiên Cơ Tào Huyền Kỳ",
+      "round2Lc": 619,
+      "round3Lc": 660,
+      "round3WinRate": 52.0,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": true
+    }
+  ],
+  "chapterCounts": [
+    {
+      "thanh_phong_kiem": 2,
+      "phuc_ho_con": 1,
+      "kich_doc_chu_nga": 1,
+      "liet_diem_dao": 3,
+      "tu_mau_song_dao": 1,
+      "that_tinh_tieu": 1,
+      "thiet_cot_quyen_sao": 1
+    },
+    {
+      "kich_doc_chu_nga": 2,
+      "that_tinh_tieu": 3,
+      "liet_diem_dao": 1,
+      "u_minh_quy_trao": 1,
+      "ngoc_cot_phien": 1,
+      "thanh_dang_tien": 1,
+      "xich_sa_chuong": 1
+    },
+    {
+      "bang_phach_thuong": 1,
+      "thanh_phong_kiem": 1,
+      "u_minh_quy_trao": 3,
+      "phuc_ho_con": 1,
+      "tu_mau_song_dao": 2,
+      "that_tinh_tieu": 1,
+      "chan_nhac_chuy": 1
+    },
+    {
+      "liet_diem_dao": 1,
+      "bang_phach_thuong": 1,
+      "bach_ho_cuong_mong": 1,
+      "xich_sa_chuong": 1,
+      "that_tinh_tieu": 1,
+      "chan_nhac_chuy": 1,
+      "thiet_cot_quyen_sao": 1,
+      "truy_hon_cung": 1,
+      "thanh_dang_tien": 1,
+      "u_minh_quy_trao": 1
+    },
+    {
+      "bang_phach_thuong": 1,
+      "that_tinh_tieu": 1,
+      "chan_nhac_chuy": 2,
+      "thanh_phong_kiem": 1,
+      "ngoc_cot_phien": 1,
+      "u_minh_quy_trao": 1,
+      "tu_kim_trao": 1,
+      "bich_thuy_cam": 1,
+      "truy_hon_cung": 1
+    }
+  ],
+  "finalInBand": 45,
+  "applied": true
+}

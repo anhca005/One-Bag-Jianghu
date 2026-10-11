@@ -12,7 +12,7 @@ Quyết định #33. Bản ra mắt đầu: **3 Hồi × 10 ải**. Cốt truy�
 - **Độ khó tăng dần** qua Trọng, phẩm và Tâm Pháp của địch, cùng độ khó của đội hình. Mỗi Hồi có 1 ải tinh anh (ải 5) và 1 boss (ải 10).
 - **Tiến trình:**
   - Thắng ải N mới mở ải N+1. Hồi sau mở khi đã hạ boss Hồi trước.
-  - Chấm sao theo Khí Huyết còn lại: ≥ 70% được 3 sao, ≥ 40% được 2 sao, thắng được 1 sao.
+  - Không chấm sao: ải chỉ có trạng thái đã qua / chưa qua (#63, thay cho cách chấm 1–3 sao theo Khí Huyết).
   - Mỗi ải tốn **Thể Lực**, hồi theo thời gian, có giới hạn mỗi ngày (theo GDD).
 - **Phần thưởng:**
   - Lần đầu thắng: nhiều Bạc, nguyên liệu và một vật phẩm cố định.

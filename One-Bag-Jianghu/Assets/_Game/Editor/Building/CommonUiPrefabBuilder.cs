@@ -43,14 +43,30 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image background = root.AddComponent<Image>();
             background.color = UiBuild.Paper;
-            UiBuild.ApplyUiSprite(background, "frame_tooltip", Image.Type.Sliced);
-            Outline outline = root.AddComponent<Outline>();
-            outline.effectColor = UiBuild.Ink;
-            outline.effectDistance = new Vector2(2f, -2f);
+            // Simple, not Sliced: fields keep roughly the art's 7:1 shape, so a plain stretch stays clean,
+            // while the 9-slice cut ran through the painted ornaments and warped them.
+            bool fieldArt = UiBuild.ApplyUiSprite(background, "Kit/dropdown_field", Image.Type.Simple);
+            if (!fieldArt)
+            {
+                Outline outline = root.AddComponent<Outline>();
+                outline.effectColor = UiBuild.Ink;
+                outline.effectDistance = new Vector2(2f, -2f);
+            }
+
             Dropdown dropdown = root.AddComponent<Dropdown>();
             Text caption = UiBuild.Text(root.transform, "Label", "Chọn", 20, TextAnchor.MiddleLeft);
             UiBuild.FitLabel(caption, UiBuild.LabelFitPreset.InkBox);
+            if (fieldArt)
+            {
+                // Keep the caption between the field's left cap and its painted chevron.
+                caption.rectTransform.anchorMin = new Vector2(0f, caption.rectTransform.anchorMin.y);
+                caption.rectTransform.anchorMax = new Vector2(1f, caption.rectTransform.anchorMax.y);
+                caption.rectTransform.offsetMin = new Vector2(24f, caption.rectTransform.offsetMin.y);
+                caption.rectTransform.offsetMax = new Vector2(-52f, caption.rectTransform.offsetMax.y);
+            }
+
             Text arrow = UiBuild.Text(root.transform, "Arrow", "▼", 17);
+            arrow.gameObject.SetActive(!fieldArt);
             arrow.raycastTarget = false;
             arrow.rectTransform.anchorMin = new Vector2(0.86f, 0f);
             arrow.rectTransform.anchorMax = Vector2.one;
@@ -122,6 +138,14 @@ namespace OneBagJianghu.EditorTools.Building
                 button.GetComponent<Image>(),
                 primary ? "button_primary" : "button_secondary",
                 Image.Type.Sliced);
+            Sprite disabled = UiBuild.LoadUiSprite("Kit/button_disabled");
+            if (disabled != null)
+            {
+                SpriteState state = button.spriteState;
+                state.disabledSprite = disabled;
+                button.spriteState = state;
+                button.transition = Selectable.Transition.SpriteSwap;
+            }
             button.GetComponentInChildren<Text>().color = UiBuild.Paper;
             button.transform.SetParent(root.transform.parent, false);
             Object.DestroyImmediate(root);
@@ -191,12 +215,20 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image background = root.AddComponent<Image>();
             background.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
-            Outline outline = root.AddComponent<Outline>();
-            outline.effectColor = UiBuild.Ink;
-            outline.effectDistance = new Vector2(2f, -2f);
+            bool boxArt = UiBuild.ApplyUiSprite(background, "Kit/toggle_off");
+            if (!boxArt)
+            {
+                Outline outline = root.AddComponent<Outline>();
+                outline.effectColor = UiBuild.Ink;
+                outline.effectDistance = new Vector2(2f, -2f);
+            }
+
+            background.preserveAspect = true;
             Toggle toggle = root.AddComponent<Toggle>();
             Image checkmark = UiBuild.Image(root.transform, "Checkmark", UiBuild.Vermilion);
-            UiBuild.Stretch(checkmark.rectTransform, 8f);
+            bool checkArt = UiBuild.ApplyUiSprite(checkmark, "Kit/toggle_on");
+            UiBuild.Stretch(checkmark.rectTransform, checkArt ? 0f : 8f);
+            checkmark.preserveAspect = true;
             toggle.targetGraphic = background;
             toggle.graphic = checkmark;
             return root;
@@ -207,9 +239,11 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image track = root.AddComponent<Image>();
             track.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
+            UiBuild.ApplyUiSprite(track, "Kit/slider_track", Image.Type.Sliced);
             Slider slider = root.AddComponent<Slider>();
             Image fill = UiBuild.Image(root.transform, "Fill", UiBuild.Vermilion);
             UiBuild.Stretch(fill.rectTransform, 4f);
+            UiBuild.ApplyUiSprite(fill, "Kit/slider_fill", Image.Type.Sliced);
             RectTransform handleArea = UiBuild.Rect(root.transform, "Handle Slide Area");
             handleArea.anchorMin = Vector2.zero;
             handleArea.anchorMax = Vector2.one;
@@ -217,6 +251,8 @@ namespace OneBagJianghu.EditorTools.Building
             handleArea.offsetMax = new Vector2(-14f, 0f);
             Image handle = UiBuild.Image(handleArea, "Handle", UiBuild.Vermilion);
             handle.rectTransform.sizeDelta = new Vector2(28f, 28f);
+            UiBuild.ApplyUiSprite(handle, "Kit/slider_handle");
+            handle.preserveAspect = true;
             slider.targetGraphic = track;
             slider.fillRect = fill.rectTransform;
             slider.handleRect = handle.rectTransform;
@@ -241,7 +277,28 @@ namespace OneBagJianghu.EditorTools.Building
             scroll.viewport = viewport.rectTransform;
             scroll.content = content;
             scroll.horizontal = false;
+            AddVerticalScrollbar(root.transform, scroll);
             return root;
+        }
+
+        private static void AddVerticalScrollbar(Transform parent, ScrollRect scroll)
+        {
+            Color trackColor = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .16f);
+            Image track = UiBuild.Image(parent, "Scrollbar", trackColor);
+            track.rectTransform.anchorMin = new Vector2(.97f, 0f);
+            track.rectTransform.anchorMax = Vector2.one;
+            track.rectTransform.offsetMin = Vector2.zero;
+            track.rectTransform.offsetMax = Vector2.zero;
+            UiBuild.ApplyUiSprite(track, "Kit/scrollbar_track", Image.Type.Sliced);
+            Scrollbar scrollbar = track.gameObject.AddComponent<Scrollbar>();
+            Image handle = UiBuild.Image(track.transform, "Handle", UiBuild.Vermilion);
+            UiBuild.Stretch(handle.rectTransform);
+            UiBuild.ApplyUiSprite(handle, "Kit/scrollbar_handle", Image.Type.Sliced);
+            scrollbar.handleRect = handle.rectTransform;
+            scrollbar.targetGraphic = handle;
+            scrollbar.direction = Scrollbar.Direction.BottomToTop;
+            scroll.verticalScrollbar = scrollbar;
+            scroll.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHide;
         }
 
         private static void EnsureFontRegistry()

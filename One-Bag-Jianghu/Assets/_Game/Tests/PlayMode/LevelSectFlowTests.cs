@@ -52,7 +52,7 @@ namespace OneBagJianghu.Tests.Play
             SectSelectPopup popup = Object.FindFirstObjectByType<SectSelectPopup>();
             Assert.That(popup, Is.Not.Null);
             Assert.That(popup.IsShowing, Is.True);
-            popup.Confirm();
+            popup.JoinSelected();
             yield return null;
             Assert.That(profile.SectId, Is.Not.Empty);
             Assert.That(profile.TamPhapLevel, Is.EqualTo(1));

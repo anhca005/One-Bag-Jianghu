@@ -21,6 +21,8 @@ namespace OneBagJianghu.Onboarding
         [SerializeField]
         private Image highlight;
         [SerializeField]
+        private Image pointer;
+        [SerializeField]
         private RectTransform guideBox;
         [SerializeField]
         private Text guideLine;
@@ -32,6 +34,7 @@ namespace OneBagJianghu.Onboarding
         private TutorialService service;
         private RectTransform target;
         private RectTransform secondary;
+        private Vector2 pointerRestPosition;
 
         protected override void Awake()
         {
@@ -82,7 +85,10 @@ namespace OneBagJianghu.Onboarding
         private void LateUpdate()
         {
             if (target != null)
+            {
                 UpdateHole();
+                UpdatePointerBob();
+            }
         }
 
         protected override void OnHidden()
@@ -116,7 +122,51 @@ namespace OneBagJianghu.Onboarding
             SetRect(rightShade.rectTransform, hole.xMax, hole.yMin, width - hole.xMax, hole.height);
             if (highlight != null)
                 SetRect(highlight.rectTransform, hole.xMin, hole.yMin, hole.width, hole.height);
+            PlacePointer(hole, area);
             PlaceGuideBox(hole, height);
+        }
+
+        private void PlacePointer(Rect hole, Rect area)
+        {
+            if (pointer == null)
+                return;
+            float leftRoom = hole.xMin;
+            float rightRoom = area.width - hole.xMax;
+            float bottomRoom = hole.yMin;
+            float topRoom = area.height - hole.yMax;
+            float mostRoom = Mathf.Max(leftRoom, rightRoom, bottomRoom, topRoom);
+            RectTransform rect = pointer.rectTransform;
+            rect.anchorMin = rect.anchorMax = Vector2.zero;
+            rect.pivot = new Vector2(.5f, .5f);
+            if (mostRoom == rightRoom)
+            {
+                pointerRestPosition = new Vector2(hole.xMax + 42f, hole.center.y + 42f);
+                rect.localEulerAngles = new Vector3(0f, 0f, 0f);
+            }
+            else if (mostRoom == leftRoom)
+            {
+                pointerRestPosition = new Vector2(hole.xMin - 42f, hole.center.y + 42f);
+                rect.localEulerAngles = new Vector3(0f, 180f, 0f);
+            }
+            else if (mostRoom == topRoom)
+            {
+                pointerRestPosition = new Vector2(hole.center.x + 42f, hole.yMax + 42f);
+                rect.localEulerAngles = new Vector3(0f, 0f, -45f);
+            }
+            else
+            {
+                pointerRestPosition = new Vector2(hole.center.x + 42f, hole.yMin - 42f);
+                rect.localEulerAngles = new Vector3(0f, 0f, 135f);
+            }
+            rect.anchoredPosition = pointerRestPosition;
+        }
+
+        private void UpdatePointerBob()
+        {
+            if (pointer == null)
+                return;
+            float offset = Mathf.Sin(Time.unscaledTime * 3f) * 6f;
+            pointer.rectTransform.anchoredPosition = pointerRestPosition + new Vector2(0f, offset);
         }
 
         private void PlaceGuideBox(Rect hole, float height)

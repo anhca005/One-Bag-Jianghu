@@ -41,6 +41,15 @@ namespace OneBagJianghu.Onboarding
             ShowCurrentStep();
         }
 
+        /// <summary>Publishes the quest-log opening and skips an unavailable claim tutorial step.</summary>
+        public static void PublishQuestLogOpened(bool hasClaimableQuest)
+        {
+            if (Tutorial == null || !Tutorial.PublishQuestLogOpened(hasClaimableQuest))
+                return;
+            GameBootstrap.Session?.SaveProfile();
+            ShowCurrentStep();
+        }
+
         private static void TryTriggeredSequences()
         {
             if (Tutorial.TryStart("first_battle"))

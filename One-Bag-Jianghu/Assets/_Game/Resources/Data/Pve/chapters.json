@@ -82,7 +82,7 @@
       "index": 1,
       "title": "Hồi 1",
       "name": "Thanh Khê Trấn",
-      "summary": "Thiếu niên hiệp khách mang theo tàn nang gia truyền đặt chân đến bến đò Thanh Khê mùa thu lá rụng, tao ngộ Lão Tiều Phu và đối đầu thủy phỉ Ba Hổ Trại.",
+      "summary": "Thiếu niên hiệp khách mang theo tàn nang gia truyền đặt chân đến bến đò Thanh Khê mùa thu lá rụng, tao ngộ Lục Tiều Phu và đối đầu thủy phỉ Ba Hổ Trại.",
       "theme": {
         "mapBackground": "map_hoi_1",
         "battleBackground": "bg_battle_hoi_1",
@@ -139,31 +139,31 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Phía trước là lối vào Thanh Khê Trấn. Sao lại có kẻ chặn đường?"
+                "text": "Phía trước là lối vào Thanh Khê Trấn. Bọn thảo khấu này từ đâu ra mà chặn đường?"
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Tiểu hữu, cẩn thận! Bọn thảo khấu ven đường chuyên cướp của người lạ."
+                "text": "Tiểu hữu cẩn thận! Bọn thảo khấu ven đường chuyên cướp bóc người xa xứ."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Lũ thảo khấu này đã tháo chạy. Đa tạ lão bá nhắc nhở."
+                "text": "Lũ thảo khấu đã tháo chạy. Đa tạ lão bá đã lên tiếng cảnh báo."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Túi càn khôn của ngươi xếp đặt rất khéo, đúng là có căn cơ võ học."
+                "text": "Bao Phục của ngươi xếp đặt rất khéo, đúng là có căn cơ võ học gia truyền."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Chiêu thức đối phương quá dồn dập, ta lỡ nhịp rồi..."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Bình tĩnh lại. Sắp xếp lại binh khí trong túi, giữ Hóa Kình phòng thủ."
+                "text": "Hãy mở Bao Phục xếp lại Thanh Phong Kiếm và Ô Tàm Y, giữ Hóa Kình phòng thủ."
               }
             ]
           },
@@ -188,21 +188,21 @@
             "items": [
               {
                 "id": "phuc_ho_con",
-                "tier": 2,
+                "tier": 1,
                 "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "o_tam_y",
-                "tier": 2,
+                "id": "thiet_giap_y",
+                "tier": 1,
                 "rarity": "common",
                 "x": 1,
                 "y": 0
               },
               {
-                "id": "giai_doc_dan",
-                "tier": 3,
+                "id": "kim_sang_duoc",
+                "tier": 1,
                 "rarity": "common",
                 "x": 3,
                 "y": 0
@@ -227,36 +227,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Thuyền đò đều bị giữ lại. Các ngươi là người phương nào?"
+                "text": "Bến đò bị phong tỏa, thuyền nan đều bị giữ lại. Các ngươi là ai?"
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Là tai mắt của Ba Hổ Trại. Chúng phong tỏa bến sông rồi."
+                "text": "Là tai mắt của Ba Hổ Trại. Chúng định chặn đường sông Thanh Khê."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Bến đò đã thông. Chúng ta có thể qua sông."
+                "text": "Bến đò đã thông suốt, thuyền nan có thể qua sông rồi."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Kiếm chiêu dứt khoát. Nhưng phía trước mới là sào huyệt thực sự."
+                "text": "Kiếm chiêu dứt khoát! Nhưng sào huyệt thủy phỉ phía trước mới là thử thách thực sự."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Đao pháp thủy phỉ linh hoạt quá, ta chưa kịp áp sát."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Thủy phỉ đao pháp linh hoạt. Hãy mang theo đan dược hồi phục."
+                "text": "Đừng vội vã. Hãy chuẩn bị Đan Dược hồi phục Khí Huyết phòng khi giằng co."
               }
             ]
           },
           "recommendedLevel": 2,
-          "recommendedPower": 146
+          "recommendedPower": 103
         },
         {
           "id": "hoi_1_03",
@@ -273,27 +273,27 @@
             "name": "Hoang Dã Sói Xám",
             "sect": null,
             "tamPhapLevel": 1,
-            "level": 3,
+            "level": 2,
             "items": [
               {
-                "id": "kich_doc_chu_nga",
+                "id": "that_tinh_tieu",
                 "tier": 1,
                 "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "tuyet_lang_bach_bi",
+                "id": "da_ho_y",
                 "tier": 1,
                 "rarity": "common",
                 "x": 1,
                 "y": 0
               },
               {
-                "id": "hoi_thien_dan",
+                "id": "ho_mach_dan",
                 "tier": 1,
                 "rarity": "common",
-                "x": 3,
+                "x": 2,
                 "y": 0
               }
             ],
@@ -315,36 +315,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Tiếng gầm gừ trong bụi rậm... Dã thú biến dị sao?"
+                "text": "Tiếng gầm gừ dưới gốc hòe già... Bầy sói hoang này có sát khí lạ."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Dị thú hấp thu linh khí hoang dã, nanh vuốt sắc bén dị thường."
+                "text": "Sói núi ngấm linh khí dã ngoại, nanh vuốt sắc bén và tấn công rất hung hãn."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Nanh sói này cứng chắc khác thường, có thể gắn vào binh khí."
+                "text": "Nanh sói này cứng như sắt, có thể làm nguyên liệu rèn binh khí."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Đó là bảo vật của quái thú. Đem vào túi càn khôn tăng bộc phát."
+                "text": "Thu thập linh vật dã thú đặt vào Bao Phục sẽ giúp tăng sát thương bộc phát."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Bầy sói vây cắn dồn dập, giáp bọc của ta bị xé rách."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Sói hoang tấn công dồn dập. Dùng áo giáp che chắn cẩn thận."
+                "text": "Dã thú tấn công chớp nháy. Hãy trang bị Hộ Cụ kiên cố để tạo Cương Khí bảo vệ."
               }
             ]
           },
           "recommendedLevel": 3,
-          "recommendedPower": 168
+          "recommendedPower": 83
         },
         {
           "id": "hoi_1_04",
@@ -363,16 +363,23 @@
             "tamPhapLevel": 1,
             "items": [
               {
-                "id": "o_tam_y",
+                "id": "liet_diem_dao",
                 "tier": 1,
-                "rarity": "uncommon",
+                "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "liet_diem_dao",
+                "id": "da_ho_y",
                 "tier": 1,
-                "rarity": "uncommon",
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "cuong_hoa_dan",
+                "tier": 1,
+                "rarity": "common",
                 "x": 2,
                 "y": 0
               }
@@ -396,36 +403,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Quán trà thanh tịnh lại nồng nặc mùi hỏa dược."
+                "text": "Quán trà ven đường vốn thanh tịnh sao lại nồng nặc mùi hỏa dược?"
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Liệt Diễm Bang tính tình nóng nảy, đao pháp mang nhiệt khí thiêu đốt."
+                "text": "Liệt Diễm Bang chiếm quán trà. Đao pháp của chúng mang nhiệt khí Liệt Hỏa thiêu đốt."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Hóa Kình vững chãi đã triệt tiêu được sức nóng từ hỏa đao."
+                "text": "Ta đã vận Hóa Kình thành công triệt tiêu sức nóng từ Hỏa Đao đối phương."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Rất tốt. Tâm pháp bổ trợ sẽ giúp nội lực vận hành nhuần nhuyễn."
+                "text": "Rất tốt! Vận chuyển Nội Lực nhuần nhuyễn sẽ giúp ngươi hóa giải Tuyệt Kỹ dễ dàng."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Hỏa khí thiêu đốt liên tục khiến Khí Huyết ta suy giảm nhanh quá."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Đừng để bị thiêu đốt liên tục. Giữ khoảng cách và phản kích."
+                "text": "Đừng để điểm Liệt Hỏa tích đủ 50. Hãy tích đủ 60 Nội Lực để tung Hóa Kình ngắt chiêu."
               }
             ]
           },
           "recommendedLevel": 5,
-          "recommendedPower": 206
+          "recommendedPower": 102
         },
         {
           "id": "hoi_1_05",
@@ -444,7 +451,7 @@
             "tamPhapLevel": 2,
             "items": [
               {
-                "id": "tu_mau_song_dao",
+                "id": "liet_diem_dao",
                 "tier": 2,
                 "rarity": "common",
                 "x": 0,
@@ -452,24 +459,17 @@
               },
               {
                 "id": "thiet_giap_y",
-                "tier": 2,
+                "tier": 1,
                 "rarity": "common",
-                "x": 2,
+                "x": 1,
                 "y": 0
               },
               {
                 "id": "kim_sang_duoc",
                 "tier": 1,
                 "rarity": "common",
-                "x": 4,
+                "x": 3,
                 "y": 0
-              },
-              {
-                "id": "kiem_tong_tam_yeu",
-                "tier": 1,
-                "rarity": "common",
-                "x": 2,
-                "y": 1
               }
             ],
             "level": 6,
@@ -493,36 +493,36 @@
             "before": [
               {
                 "speaker": "phong_loi",
-                "text": "Kẻ mang tàn nang kia, rút đao ra! Đao pháp của ta không đợi kẻ yếu."
+                "text": "Kẻ mang tàn nang kia! Rút đao ra xem võ học ngươi đến đâu!"
               },
               {
                 "speaker": "hero",
-                "text": "Các hạ là Phong Vũ? Ta không có ý kết oán, chỉ muốn mượn đường."
+                "text": "Các hạ là Phong Vũ? Ta không muốn kết oán, chỉ muốn mượn đường qua đình."
               }
             ],
             "afterWin": [
               {
                 "speaker": "phong_loi",
-                "text": "Hảo chiêu số! Ngươi quả nhiên có tư cách mang càn khôn nang."
+                "text": "Hảo chiêu số! Ngươi quả nhiên đủ tư cách mang chiếc càn khôn nang này."
               },
               {
                 "speaker": "hero",
-                "text": "Đa tạ Phong huynh hạ thủ lưu tình."
+                "text": "Đa tạ Phong huynh hạ thủ lưu tình. Chuyến đi này ta còn phải tìm Mảnh Tàn Nang."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Khoái đao của Phong huynh nhanh như phong lôi, ta không đỡ kịp."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Đao quá chậm! Cương Khí còn non nớt lắm, luyện lại đi!"
+                "text": "Đao quá chậm! Cương Khí còn non nớt lắm, xếp lại trang bị trong túi rồi thử lại!"
               }
             ]
           },
           "recommendedLevel": 6,
-          "recommendedPower": 239
+          "recommendedPower": 106
         },
         {
           "id": "hoi_1_06",
@@ -542,52 +542,24 @@
             "items": [
               {
                 "id": "o_tam_y",
-                "tier": 3,
+                "tier": 1,
                 "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
                 "id": "that_tinh_tieu",
-                "tier": 3,
+                "tier": 1,
                 "rarity": "common",
                 "x": 2,
                 "y": 0
-              },
-              {
-                "id": "bach_luyen_chan_kinh",
-                "tier": 3,
-                "rarity": "common",
-                "x": 3,
-                "y": 0
-              },
-              {
-                "id": "bach_luyen_chan_kinh",
-                "tier": 3,
-                "rarity": "common",
-                "x": 4,
-                "y": 0
-              },
-              {
-                "id": "thai_thanh_tam_kinh",
-                "tier": 3,
-                "rarity": "common",
-                "x": 0,
-                "y": 2
               },
               {
                 "id": "u_minh_bi_luc",
-                "tier": 3,
+                "tier": 1,
                 "rarity": "common",
-                "x": 1,
-                "y": 2
-              },
-              {
-                "id": "da_minh_chau",
-                "tier": 3,
-                "rarity": "common",
-                "x": 2,
-                "y": 2
+                "x": 3,
+                "y": 0
               }
             ],
             "level": 7,
@@ -609,36 +581,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Gió lạnh thổi qua ngõ hẹp... Có sát khí!"
+                "text": "Gió lạnh thổi qua ngõ hẹp ngô đồng... Có sát khí ẩn nấp!"
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Là ám khí môn đồ phục kích. Coi chừng phi tiêu độc."
+                "text": "Là Ám Hạng Thích Khách của tà giáo phục kích. Coi chừng phi tiêu độc."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Ám khí nhanh nhưng uy lực không đủ phá Cương Khí."
+                "text": "Ám khí nhanh nhưng Hộ Cụ kiên cố đã đỡ trọn đòn hiểm."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Biết dùng hộ giáp hóa giải ám khí, kinh nghiệm của ngươi tăng rồi."
+                "text": "Biết dùng giáp hóa giải ám khí, kinh nghiệm võ học của ngươi tăng đáng kể rồi."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Ám khí phóng ra từ bóng tối quá bất ngờ, ta dính phải độc phi tiêu."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Ám khí liên hoàn rất rát. Cần giáp kiên cố để che chắn ngực."
+                "text": "Thích khách đánh lén tầm xa. Hãy nâng Trọng cho Hộ Cụ để tăng chỉ số Hộ Thân."
               }
             ]
           },
           "recommendedLevel": 7,
-          "recommendedPower": 279
+          "recommendedPower": 118
         },
         {
           "id": "hoi_1_07",
@@ -658,7 +630,7 @@
             "level": 8,
             "items": [
               {
-                "id": "o_tam_y",
+                "id": "o_thiet_giap",
                 "tier": 1,
                 "rarity": "common",
                 "x": 0,
@@ -672,24 +644,10 @@
                 "y": 0
               },
               {
-                "id": "bach_luyen_chan_kinh",
+                "id": "ho_mach_dan",
                 "tier": 1,
                 "rarity": "common",
                 "x": 3,
-                "y": 0
-              },
-              {
-                "id": "nho_sam_y",
-                "tier": 1,
-                "rarity": "common",
-                "x": 0,
-                "y": 2
-              },
-              {
-                "id": "kim_sang_duoc",
-                "tier": 1,
-                "rarity": "common",
-                "x": 4,
                 "y": 0
               }
             ],
@@ -711,36 +669,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Con thú khổng lồ kia da dày như thiết giáp, húc đổ cả lan can cầu!"
+                "text": "Con thú khổng lồ kia da dày như thiết giáp, húc sập cả lan can cầu!"
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Thiết Bì Trư Thú! Đòn húc của nó rất nặng, phải kiên nhẫn phá giáp."
+                "text": "Thiết Bì Trư Thú! Đòn húc của nó có sức Phá Cương cực mạnh, chớ khinh địch."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Lớp da bắp giáp của nó thật phi thường, phòng ngự cực kỳ kiên cố."
+                "text": "Lớp bắp giáp của nó kiên cố thật, phải dùng đòn dồn lực mới phá nổi."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Lấy tấm giáp bì đó rèn thành áo giáp, sau này đối đầu kình địch sẽ cần."
+                "text": "Lấy tấm da sắt đó rèn áo giáp, sau này đối đầu kình địch sẽ rất hữu ích."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Cương Khí của ta bị đòn húc bối rối đập vỡ hoàn toàn."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Sức húc của nó quá hung hãn. Đừng đối đầu trực diện khi nó tụ khí."
+                "text": "Sức húc dũng mãnh lắm. Cần trang bị Binh Khí có Lực Đạo cao để phá giáp nó trước."
               }
             ]
           },
           "recommendedLevel": 8,
-          "recommendedPower": 310
+          "recommendedPower": 121
         },
         {
           "id": "hoi_1_08",
@@ -760,45 +718,31 @@
             "items": [
               {
                 "id": "liet_diem_dao",
-                "tier": 1,
+                "tier": 2,
                 "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "bach_luyen_chan_kinh",
-                "tier": 1,
+                "id": "da_ho_y",
+                "tier": 2,
                 "rarity": "common",
                 "x": 1,
                 "y": 0
               },
               {
-                "id": "bach_luyen_chan_kinh",
-                "tier": 1,
+                "id": "cuong_hoa_dan",
+                "tier": 2,
                 "rarity": "common",
                 "x": 2,
                 "y": 0
               },
               {
-                "id": "u_minh_bi_luc",
-                "tier": 1,
+                "id": "liet_hoa_tam_kinh",
+                "tier": 2,
                 "rarity": "common",
                 "x": 3,
                 "y": 0
-              },
-              {
-                "id": "hoi_thien_dan",
-                "tier": 1,
-                "rarity": "common",
-                "x": 4,
-                "y": 0
-              },
-              {
-                "id": "da_minh_chau",
-                "tier": 1,
-                "rarity": "common",
-                "x": 3,
-                "y": 1
               }
             ],
             "level": 9,
@@ -820,36 +764,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Khói lửa mịt mù. Lại thêm cao thủ Liệt Diễm Bang cản đường."
+                "text": "Khói lửa mịt mù. Lại thêm cao thủ Liệt Diễm Bang trấn giữ cổ đai."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Hắn là Hương Chủ giữ cửa trại. Đao hỏa của hắn phối hợp đan dược cuồng hỏa."
+                "text": "Hắn là Hương Chủ giữ cửa trại, vừa dùng đao lửa vừa uống cuồng hỏa đan."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Hỏa diễm đã tàn. Đài phong hỏa đã bị khống chế."
+                "text": "Khói hỏa đài đã tàn. Lối vào sào huyệt Ba Hổ Trại đã mở rộng."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Sắp tới sào huyệt rồi, hãy điều tức nội thương trước khi vào trại."
+                "text": "Sắp tới đại bản doanh rồi. Hãy điều tức lại nội thương trước khi vào trận."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Đao hỏa của Hương Chủ phối hợp đan dược làm tăng tốc ra chiêu quá nhanh."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Đao pháp của hắn quá hung mãnh. Cần dùng Hóa Kình giảm sát thương."
+                "text": "Hãy dùng Công Pháp rút ngắn thời gian hồi chiêu của bản thân để áp đảo."
               }
             ]
           },
           "recommendedLevel": 9,
-          "recommendedPower": 334
+          "recommendedPower": 128
         },
         {
           "id": "hoi_1_09",
@@ -868,67 +812,25 @@
             "tamPhapLevel": 2,
             "items": [
               {
-                "id": "thanh_phong_kiem",
-                "tier": 2,
-                "rarity": "uncommon",
+                "id": "o_tam_y",
+                "tier": 1,
+                "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "thiet_giap_y",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 1,
-                "y": 0
-              },
-              {
-                "id": "han_bang_chau",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 3,
-                "y": 0
-              },
-              {
-                "id": "kiem_tong_tam_yeu",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 4,
-                "y": 0
-              },
-              {
-                "id": "quy_nguyen_quyet",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 1,
-                "y": 1
-              },
-              {
-                "id": "hoi_thien_dan",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 2,
-                "y": 1
-              },
-              {
-                "id": "da_minh_chau",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 3,
-                "y": 1
-              },
-              {
-                "id": "o_tam_y",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 1,
-                "y": 2
-              },
-              {
                 "id": "thanh_phong_kiem",
-                "tier": 2,
-                "rarity": "uncommon",
-                "x": 4,
-                "y": 1
+                "tier": 1,
+                "rarity": "common",
+                "x": 2,
+                "y": 0
+              },
+              {
+                "id": "kim_sang_duoc",
+                "tier": 1,
+                "rarity": "common",
+                "x": 3,
+                "y": 0
               }
             ],
             "level": 10,
@@ -950,11 +852,11 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Phía sau cánh cổng này chính là sảnh đường của Nộ Ba Hổ Bùi Chấn."
+                "text": "Phía sau cánh cổng này chính là sảnh đường của Bùi Chấn."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Tiên phong vệ này kiếm pháp thuần thục, đừng khinh địch."
+                "text": "Tiên phong vệ này kiếm pháp thuần thục, phối hợp giáp và hồ lô rất kín."
               }
             ],
             "afterWin": [
@@ -964,22 +866,22 @@
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Bùi Chấn đang đợi bên trong. Hắn hung hãn như mãnh hổ hạ sơn."
+                "text": "Bùi Chấn đang đợi bên trong. Hắn hung hãn như mãnh hổ hạ sơn, cẩn thận!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Thế thủ của hộ vệ quá kiên cố, ta không tìm được sơ hở đâm vào."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Địch thủ phối hợp giáp và hồ lô rất cân bằng. Xem lại bố cục trang bị."
+                "text": "Kiểm tra lại bố cục trang bị trong Bao Phục, sắp xếp vật phẩm liền kề để tăng hiệu ứng."
               }
             ]
           },
           "recommendedLevel": 10,
-          "recommendedPower": 355
+          "recommendedPower": 137
         },
         {
           "id": "hoi_1_10",
@@ -998,74 +900,32 @@
             "tamPhapLevel": 2,
             "items": [
               {
-                "id": "o_tam_y",
-                "tier": 2,
-                "rarity": "common",
+                "id": "liet_diem_dao",
+                "tier": 3,
+                "rarity": "uncommon",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "liet_diem_dao",
+                "id": "da_ho_y",
+                "tier": 2,
+                "rarity": "common",
+                "x": 1,
+                "y": 0
+              },
+              {
+                "id": "kim_sang_duoc",
                 "tier": 2,
                 "rarity": "common",
                 "x": 2,
                 "y": 0
               },
               {
-                "id": "duong_sinh_quyet",
-                "tier": 2,
-                "rarity": "common",
-                "x": 3,
-                "y": 0
-              },
-              {
-                "id": "thien_tam_chuoi",
-                "tier": 2,
-                "rarity": "common",
-                "x": 4,
-                "y": 0
-              },
-              {
-                "id": "quy_nguyen_quyet",
-                "tier": 2,
-                "rarity": "common",
-                "x": 0,
-                "y": 2
-              },
-              {
-                "id": "boi_nguyen_dan",
-                "tier": 2,
-                "rarity": "common",
-                "x": 1,
-                "y": 2
-              },
-              {
-                "id": "van_doc_dinh",
-                "tier": 2,
-                "rarity": "common",
-                "x": 3,
-                "y": 2
-              },
-              {
                 "id": "kim_sang_duoc",
                 "tier": 2,
                 "rarity": "common",
-                "x": 4,
-                "y": 2
-              },
-              {
-                "id": "giai_doc_dan",
-                "tier": 2,
-                "rarity": "common",
-                "x": 0,
-                "y": 3
-              },
-              {
-                "id": "ti_khang_dan",
-                "tier": 2,
-                "rarity": "common",
-                "x": 1,
-                "y": 3
+                "x": 3,
+                "y": 0
               }
             ],
             "level": 12,
@@ -1089,11 +949,11 @@
             "before": [
               {
                 "speaker": "bui_chen",
-                "text": "Tiểu tử không biết trời cao đất dày! Dám xông vào Ba Hổ Trại đoạt tàn đồ?"
+                "text": "Tiểu tử không biết trời cao đất dày! Dám xông vào Ba Hổ Trại đoạt tàn nang?"
               },
               {
                 "speaker": "hero",
-                "text": "Bùi trại chủ, ngươi cấu kết tà giáo hại dân lành, hôm nay phải đền tội!"
+                "text": "Bùi trại chủ, ngươi cấu kết U Minh Giáo hại dân lành, hôm nay phải đền tội!"
               },
               {
                 "speaker": "bui_chen",
@@ -1107,19 +967,11 @@
               },
               {
                 "speaker": "hero",
-                "text": "Tàn đồ Thần Nang đã tìm lại được một mảnh. Chân tướng bắt đầu hé lộ."
+                "text": "Mảnh Tàn Nang thứ nhất đã tìm lại được! Chân tướng tà giáo bắt đầu hé lộ."
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Làm tốt lắm tiểu hữu! Con đường phía trước dẫn vào Thập Vạn Man Uyên hiểm độc."
-              },
-              {
-                "speaker": "lao_tieu_phu",
-                "text": "Trận chiến này giúp ngươi đả thông kinh mạch, tấn thăng Đệ Thập Trọng (Cấp 10)! Giang hồ rộng lớn, hãy chọn cho mình một môn phái để tu luyện Tâm Pháp nhập thế."
-              },
-              {
-                "speaker": "hero",
-                "text": "Đa tạ tiền bối chỉ bảo. Ta sẽ tìm đến sơn môn thích hợp để bái sư học nghệ!"
+                "text": "Làm tốt lắm! Trận này giúp ngươi đả thông kinh mạch, tấn thăng Đệ Thập Trọng để bái nhập Môn Phái!"
               }
             ],
             "afterLoss": [
@@ -1129,12 +981,12 @@
               },
               {
                 "speaker": "lao_tieu_phu",
-                "text": "Đao lực của Bùi Chấn bộc phát rất mạnh. Cần phối hợp phòng ngự và hồi phục."
+                "text": "Đao lực Bùi Chấn bộc phát rất mạnh. Cần nâng Trọng trang bị và giữ Hóa Kình hóa giải Tuyệt Kỹ."
               }
             ]
           },
           "recommendedLevel": 11,
-          "recommendedPower": 380
+          "recommendedPower": 141
         }
       ]
     },
@@ -1182,7 +1034,7 @@
                 "y": 0
               },
               {
-                "id": "kich_doc_chu_nga",
+                "id": "that_tinh_tieu",
                 "tier": 1,
                 "rarity": "uncommon",
                 "x": 2,
@@ -1263,36 +1115,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Khí độc nồng nặc quá, hít vào thấy lồng ngực căng rát."
+                "text": "Khí độc nồng nặc quá, hít vào thấy lồng ngực căng rát đau đớn."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Cẩn thận độc khí! Thám tử man tộc phía trước đã phát hiện chúng ta."
+                "text": "Cẩn thận! Ta là Bạch Linh Nhi ở Bách Thảo Cốc. Thám tử man tộc phía trước mang Kịch Độc đó!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Độc trảo của bọn chúng quả nhiên hiểm hóc."
+                "text": "Độc trảo của bọn chúng quả nhiên hiểm hóc, may có đan dược của Linh Nhi."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Man Uyên này còn nhiều cạm bẫy lắm, chúng ta phải cẩn thận từng bước."
+                "text": "Man Uyên này ngập chướng khí, chúng ta cùng kề vai sát cánh giải độc nhé!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Độc khí tích tụ làm Khí Huyết ta suy sụp nhanh quá."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Ngươi trúng độc tích tụ rồi! Phải chuẩn bị đan dược giải độc kịp thời."
+                "text": "Ngươi trúng Kịch Độc rồi! Hãy trang bị Giải Độc Đan trong Bao Phục để hồi phục ngay."
               }
             ]
           },
           "recommendedLevel": 12,
-          "recommendedPower": 413
+          "recommendedPower": 239
         },
         {
           "id": "hoi_2_02",
@@ -1407,36 +1259,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Những vò gốm kia đang bốc khói đen... Chúng đang luyện độc công."
+                "text": "Những vò gốm đen trên vách đá đang bốc khói hôi hám..."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Huyền Độc Môn dùng ám khí và độc trảo tích tầng độc tố, chớ kéo dài trận chiến!"
+                "text": "Huyền Độc Môn đang đun độc đan! Chúng dùng ám khí dồn tầng Kịch Độc cực hiểm."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Trong người hắn có ghi chép cách vận chuyển độc khí. Huyền Độc Môn quả có âm mưu."
+                "text": "Tờ giấy trên người hắn ghi chép cách vận chuyển độc khí của U Minh Giáo."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Hiểu rõ cơ chế độc của chúng, sau này giao chiến sẽ dễ dàng hơn."
+                "text": "Hiểu rõ cơ chế độc tích tầng sẽ giúp chúng ta hóa giải độc thuật của chúng."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Kịch Độc tích đủ 50 điểm bộc phát bạt đi một lượng máu lớn xuyên Cương Khí."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Độc tầng quá cao khiến sát thương bộc phát! Phải tốc chiến tốc thắng."
+                "text": "Độc bộc phát xuyên giáp! Phải dồn sát thương bộc phát kết liễu kẻ địch thật nhanh."
               }
             ]
           },
           "recommendedLevel": 13,
-          "recommendedPower": 449
+          "recommendedPower": 243
         },
         {
           "id": "hoi_2_03",
@@ -1463,7 +1315,7 @@
                 "y": 0
               },
               {
-                "id": "kich_doc_chu_nga",
+                "id": "that_tinh_tieu",
                 "tier": 3,
                 "rarity": "common",
                 "x": 2,
@@ -1499,32 +1351,32 @@
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Kịch Độc Chu Ngà của nó chứa nọc cực mạnh, hãy cẩn thận nanh độc!"
+                "text": "Là Kịch Độc Tri Chu! Nanh độc của nó chứa lượng nọc độc cực kỳ nguy hiểm."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thu được cặp chu ngà sắc bén. Thứ này phối hợp độc tính rất tốt."
+                "text": "Thu được cặp chu ngà sắc bén. Thứ này có thể ghép vào binh khí ám khí."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Đúng vậy! Binh khí này làm tăng sát thương mỗi khi kẻ địch trúng độc."
+                "text": "Đúng vậy! Binh khí này sẽ giúp tăng sát thương bộc phát mỗi khi địch trúng độc."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Tơ nhện dính làm chậm tốc độ xuất chiêu của ta hoàn toàn."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Nanh độc nhện cắn rách hộ thể rồi. Cần tăng cường Cương Khí bảo vệ."
+                "text": "Nanh nhện cắn rách Hộ Thân rồi! Hãy trang bị Công Pháp tăng Tốc Xuất Chiêu để đánh trước."
               }
             ]
           },
           "recommendedLevel": 13,
-          "recommendedPower": 478
+          "recommendedPower": 154
         },
         {
           "id": "hoi_2_04",
@@ -1632,36 +1484,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Roi mây xanh biếc cuốn gió phần phật... Đao pháp này có nguồn gốc Bách Thảo Cốc?"
+                "text": "Roi mây xanh biếc cuốn gió phần phật... Đao pháp này xuất thân Bách Thảo Cốc?"
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Hắn là vu đao của man tộc, ra tay tàn độc, đừng để bị kéo vào thế giằng co."
+                "text": "Hắn là phản đồ theo man tộc vu đao! Ra tay tàn độc và dùng sinh khí hồi máu."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Phá được thế roi liên hoàn. Hắn đã bỏ chạy vào sâu trong cốc."
+                "text": "Phá được thế roi mây liên hoàn, hắn đã bỏ chạy vào sâu trong cốc."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Bách Thảo Cốc vốn dĩ thanh tao, sao lại có kẻ sa vào tà thuật thế này..."
+                "text": "Bách Thảo Cốc môn quy thanh cao, sao lại có kẻ sa vào tà thuật thế này..."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Hắn liên tục hút máu hồi phục làm trận chiến kéo dài đến Kiệt Lực."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Hắn hồi máu quá nhanh. Phải dồn sát thương bộc phát để hạ gục hắn!"
+                "text": "Đối phương hồi máu quá mạnh. Cần tập trung Binh Khí sát thương cao để dứt điểm."
               }
             ]
           },
           "recommendedLevel": 14,
-          "recommendedPower": 488
+          "recommendedPower": 279
         },
         {
           "id": "hoi_2_05",
@@ -1776,36 +1628,36 @@
             "before": [
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Sư huynh! Vì sao huynh lại phản bội cốc chủ, câu kết với U Minh Giáo?"
+                "text": "Sư huynh! Vì sao huynh lại phản bội cốc chủ, cấu kết U Minh Giáo?"
               },
               {
                 "speaker": "hero",
-                "text": "Tiếng đàn ma quái... Hắn dùng âm luật khống chế dược tính!"
+                "text": "Tiếng đàn ma quái... Hắn đang dùng âm luật khống chế dược tính tà đan!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Đàn đứt, khúc tàn. Dược đàn đã bị phong tỏa."
+                "text": "Đàn đứt, khúc tàn. Dược đàn ma quái đã bị phong tỏa."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Muội đã thu hồi bí dược của bổn môn. Đa tạ hiệp khách trượng nghĩa tương trợ!"
+                "text": "Muội đã thu hồi bí dược bổn môn. Đa tạ hiệp khách trượng nghĩa tương trợ!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Tiếng đàn gây Định Thân khiến mọi món đồ trong túi ta ngừng hoạt động."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Tiếng đàn hồi máu và gây choáng liên tục. Cần ngắt nhịp thi triển của hắn."
+                "text": "Âm luật gây choáng ngắt nhịp hồi chiêu! Cần dùng Hóa Kình để ngắt đòn Tuyệt Kỹ của hắn."
               }
             ]
           },
           "recommendedLevel": 15,
-          "recommendedPower": 425
+          "recommendedPower": 252
         },
         {
           "id": "hoi_2_06",
@@ -1824,7 +1676,7 @@
             "tamPhapLevel": 2,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 1,
                 "rarity": "common",
                 "x": 0,
@@ -1920,36 +1772,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Một con hắc hùng khổng lồ! Móng vuốt của nó đen kịt độc chướng."
+                "text": "Một con hắc hùng khổng lồ! Móng vuốt của nó đen kịt độc chướng đầm lầy."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Hắc Sát Hùng Đảm của nó là dược liệu vô giá, nhưng độc khí của nó cực mạnh."
+                "text": "Hắc Sát Độc Hùng! Hùng đảm của nó là linh dược quý, nhưng cú tát của nó rất đau."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Hùng đan đã vào tay. Khí Huyết dồi dào, giải trừ được nhiều chướng độc."
+                "text": "Hùng đan đã vào tay, cảm thấy Khí Huyết dồi dào giải trừ bớt độc chướng."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Hùng đảm này dùng làm đan dược phụ trợ sẽ tăng cường hộ thể đáng kinh ngạc."
+                "text": "Hùng đảm dùng làm Kỳ Trân phụ trợ sẽ tăng cường Cương Khí đáng kinh ngạc."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Cú tát của gấu đen đập nát lớp phòng thủ Khí Huyết của ta."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Cú tát của gấu đen quá nặng! Phải giữ vững Hóa Kình giảm chấn thương."
+                "text": "Sức cuồng bạo của gấu đen quá lớn! Hãy trang bị Hộ Cụ nâng Trọng cao để chịu đòn."
               }
             ]
           },
           "recommendedLevel": 15,
-          "recommendedPower": 446
+          "recommendedPower": 222
         },
         {
           "id": "hoi_2_07",
@@ -2078,36 +1930,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Hoa lam tuy đẹp nhưng hương thơm lại khiến đầu óc choáng váng."
+                "text": "Hoa lam tuy đẹp nhưng hương thơm ngạt ngào lại làm đầu óc choáng váng."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Là tử sĩ của U Minh Giáo! Chúng dùng độc hoa che giấu ám khí bạo kích."
+                "text": "Là tử sĩ U Minh Giáo! Chúng dùng hoa độc che giấu ám khí bạo kích Hội Tâm."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Ám sát thất bại, bọn chúng đã tự vẫn. Kỷ luật của giáo phái này thật đáng sợ."
+                "text": "Bọn chúng vừa bại trận đã tự vẫn. Kỷ luật tà giáo thật đáng sợ."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Chúng quyết giữ bí mật đàn tế phía trước. Chúng ta càng phải đến đó."
+                "text": "Chúng quyết bảo vệ đàn tế phía trước. Chúng ta càng phải nhanh chóng tới đó!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Đòn chí mạng Hội Tâm từ ám khí bóng tối đâm thủng giáp của ta."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Ám khí bạo kích tầm gần quá nhanh! Cần nâng cao hộ giáp kiên cố."
+                "text": "Ám khí chí mạng bộc phát cực nhanh! Cần mang Đan Dược gia tăng Khí Huyết tối đa."
               }
             ]
           },
           "recommendedLevel": 16,
-          "recommendedPower": 456
+          "recommendedPower": 256
         },
         {
           "id": "hoi_2_08",
@@ -2255,32 +2107,32 @@
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Lão tặc này luyện vạn độc vào cơ thể, móng vuốt đã biến thành hắc sắc."
+                "text": "Lão tặc này luyện vạn độc vào cơ thể, song trảo biến thành hắc sắc cào xé Xuất Huyết!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Song trảo đã gãy. Trưởng lão tà môn đã quy phục."
+                "text": "Song trảo độc đã gãy. Trưởng lão tà môn đã phải quy phục."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Độc công của lão phi phàm, may mà đã kịp phá được."
+                "text": "Độc công của lão phi phàm, may mà hiệp khách dùng kiếm ý kiên định đả bại."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Trảo độc gây Xuất Huyết liên tục theo % Khí Huyết tối đa khiến ta kiệt sức."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Song trảo cào rách liên tục khiến độc ngấm sâu. Cần dùng Hóa Kình chống đỡ."
+                "text": "Xuất Huyết rút máu theo % rất nguy hiểm! Cần dùng Hóa Kình khống chế nhịp công kích."
               }
             ]
           },
           "recommendedLevel": 17,
-          "recommendedPower": 477
+          "recommendedPower": 344
         },
         {
           "id": "hoi_2_09",
@@ -2420,32 +2272,32 @@
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Xích Luyện Xà Tinh ngàn năm! Xương cốt của nó là Hỏa Diệm Xà Cốt huyền thoại."
+                "text": "Xích Luyện Xà Tinh! Xương cốt của nó là Xà Cot huyền thoại chứa độc lửa."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Xà tinh đã gục, nhiệt khí và độc tính quanh hang cũng tan dần."
+                "text": "Xà tinh gục ngã, độc khí và nhiệt khí quanh hang động cũng tan dần."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Sau hang động này chính là đàn tế của Hắc Độc Nương Tử!"
+                "text": "Sau hang động này chính là Thần Bí Cổ Đàn của Hắc Độc Nương Tử!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Cú quất đuôi kết hợp độc hỏa làm ta dính cả Liệt Hỏa lẫn Kịch Độc."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Đòn quất đuôi xà cực mạnh kết hợp thiêu đốt! Cần giữ vững phòng tuyến."
+                "text": "Hai trạng thái độc hỏa dồn dập! Phải trang bị Đan Dược giải độc để cân bằng."
               }
             ]
           },
           "recommendedLevel": 17,
-          "recommendedPower": 478
+          "recommendedPower": 309
         },
         {
           "id": "hoi_2_10",
@@ -2590,44 +2442,44 @@
             "before": [
               {
                 "speaker": "hac_doc_nuong_tu",
-                "text": "Kẻ nào dám kinh động đại trận của bổn nương tử? Lại là tiểu nha đầu Bách Thảo Cốc sao?"
+                "text": "Kẻ nào dám kinh động cổ đàn của bổn nương tử? Lại là nha đầu Bách Thảo Cốc sao?"
               },
               {
                 "speaker": "hero",
-                "text": "Hắc Độc Nương Tử, giao mảnh tàn đồ Thần Nang ra đây!"
+                "text": "Hắc Độc Nương Tử! Giao Mảnh Tàn Nang ra đây, dã tâm tà giáo của các ngươi kết thúc rồi!"
               },
               {
                 "speaker": "hac_doc_nuong_tu",
-                "text": "Muốn tàn đồ? Hãy nếm thử độc công vạn kiếp bất phục của ta!"
+                "text": "Muốn tàn nang? Hãy nếm thử vạn độc bộc phát vạn kiếp bất phục của ta!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hac_doc_nuong_tu",
-                "text": "Không thể nào... Vạn độc của ta sao lại bị phá giải... Tả Sứ sẽ trả thù cho ta..."
+                "text": "Không thể nào... Vạn độc của ta sao lại bị phá giải... Tả Sứ sẽ trả thù..."
               },
               {
                 "speaker": "hero",
-                "text": "Mảnh tàn chương thứ hai đã thu hồi! Man Uyên chướng khí bắt đầu tan dần."
+                "text": "Mảnh Tàn Nang thứ hai đã thu hồi! Chướng khí Man Uyên bắt đầu tiêu tan."
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Tả Sứ mà mụ ta nhắc tới chính là Dạ Sát Thiên đang chiếm giữ Hàn Nguyệt Cô Phong!"
+                "text": "Tả Sứ mụ ta nhắc tới chính là Dạ Sát Thiên đang chiếm giữ Hàn Nguyệt Cô Phong!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hac_doc_nuong_tu",
-                "text": "Ha ha ha! Trúng vạn độc của bổn nương tử thì thần tiên cũng khó cứu!"
+                "text": "Ha ha ha! Trúng vạn độc bộc phát của bổn nương tử thì thần tiên cũng bó tay!"
               },
               {
                 "speaker": "tieu_linh_nhi",
-                "text": "Độc tố bộc phát toàn diện rồi. Cần trang bị Giải Độc Đan và tăng tốc diệt địch."
+                "text": "Độc tố bộc phát dồn dập quá! Cần nâng Trọng trang bị Tinh Phẩm và dùng Giải Độc Đan."
               }
             ]
           },
           "recommendedLevel": 18,
-          "recommendedPower": 526
+          "recommendedPower": 282
         }
       ]
     },
@@ -2784,36 +2636,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Hàn phong thấu xương. Lên đến đây kiếm khí đã có thể đóng băng huyết mạch."
+                "text": "Hàn phong thấu xương. Lên đến dốc núi này kiếm khí đã đóng băng huyết mạch."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hàn Sơn Phái kiếm pháp lạnh lùng, dính đòn sẽ bị làm chậm tốc độ ra chiêu!"
+                "text": "Huynh đệ! Hàn Sơn Phái kiếm chiêu lạnh lùng, dính đòn sẽ bị Trì Trệ giảm tốc!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Kiếm khí sắc lạnh, nhưng tâm chí kiên định đã phá tan hàn băng."
+                "text": "Gặp lại Phong huynh ở đây thật tốt. Bão tuyết vẫn không làm sụt giảm tâm chí."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Tốt! Kiếm chiêu của ngươi đã đạt đến cảnh giới ngưng tụ chân khí."
+                "text": "Kiếm chiêu của ngươi đã ngưng tụ chân khí vững vàng lắm rồi!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Khí lạnh làm tốc độ xuất chiêu của ta bị Trì Trệ còn một nửa."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Bị kiếm khí hàn băng khóa chặt rồi! Hãy dùng bảo vật chống lạnh."
+                "text": "Trì Trệ làm chậm hồi chiêu. Hãy dùng Công Pháp gia tăng Tốc Xuất Chiêu để chống lại."
               }
             ]
           },
           "recommendedLevel": 18,
-          "recommendedPower": 536
+          "recommendedPower": 300
         },
         {
           "id": "hoi_3_02",
@@ -2956,36 +2808,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Tiếng tiêu ngọc vang lên trong gió tuyết... Âm luật như hàn đao cắt da thịt."
+                "text": "Tiếng tiêu ngọc vang lên trong gió tuyết như đao băng cắt vào da thịt."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Kiếm pháp Hàn Sơn vừa khống chế vừa gây sát thương nội tức, đừng khinh suất."
+                "text": "Hàn Sơn Kiếm Sĩ trúng Hám Tâm Độc của Tả Sứ, tâm trí bị mê muội rồi."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Bẻ gãy tiêu ngọc, phá tan kiếm trận. Hàn Sơn Phái quả nhiên danh bất hư truyền."
+                "text": "Đánh bẻ gãy tiêu ngọc, phá kiếm trận nhưng giữ lại mạng cho họ."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Họ bị tà thuật của U Minh Giáo làm mê muội tâm trí, chớ nên hạ sát thương tâm."
+                "text": "Đúng vậy, họ bị tà giáo thao túng, đánh tỉnh là tốt nhất!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Tiếng tiêu ngọc làm phân tán Nội Lực khiến ta không tích đủ Hóa Kình."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Tiếng tiêu ngọc làm phân tán nội lực. Cần định tâm giữ vững Cương Khí."
+                "text": "Bị rút Nội Lực liên tục! Hãy dùng Binh Khí có khả năng tích Nội Lực nhanh hơn."
               }
             ]
           },
           "recommendedLevel": 19,
-          "recommendedPower": 556
+          "recommendedPower": 311
         },
         {
           "id": "hoi_3_03",
@@ -3005,14 +2857,14 @@
             "level": 19,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 1,
                 "rarity": "uncommon",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 2,
                 "rarity": "uncommon",
                 "x": 2,
@@ -3107,36 +2959,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Bóng trắng lao nhanh trong tuyết lốc... Ngân Lang đầu đàn!"
+                "text": "Bóng trắng lao nhanh trong lốc tuyết... Ngân Lang đầu đàn!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Lông da của nó miễn nhiễm hàn khí, vuốt sói sắc bén xé toạc hộ giáp."
+                "text": "Lông da của nó miễn nhiễm hàn khí, vuốt sói bộc phát xé toạc hộ giáp."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Bầy sói đã tan. Con đường lên núi tuyết giờ đã thông."
+                "text": "Bầy sói đã tan. Đường lên đỉnh núi tuyết giờ đã thông."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Trang bị tấm da này vào túi sẽ tăng mạnh tốc độ né tránh và hộ thể."
+                "text": "Thu da lang rèn áo giáp sẽ giúp tăng mạnh khả năng né tránh và Cương Khí."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Nó lao tới từ điểm mù trong bão tuyết cắn rách phòng tuyến Khí Huyết."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Nó lao tới từ điểm mù trong tuyết! Đừng để nó tấn công liên hoàn."
+                "text": "Đừng để sói hoang tấn công liên hoàn. Giữ Hóa Kình vững chắc để ngắt đòn."
               }
             ]
           },
           "recommendedLevel": 19,
-          "recommendedPower": 578
+          "recommendedPower": 290
         },
         {
           "id": "hoi_3_04",
@@ -3265,36 +3117,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Đại sư! Vì sao người xuất gia lại trấn thủ nơi hiểm địa này?"
+                "text": "Đại sư Phật gia! Vì sao người xuất gia lại trấn thủ nơi vực băng hiểm trở này?"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hắn đã trúng Hám Tâm Độc của tà giáo, tâm trí chỉ còn ý niệm trấn áp!"
+                "text": "Hắn trúng Hám Tâm Độc của Dạ Sát Thiên, tâm trí chỉ còn ý niệm trấn áp!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thế thủ của đại sư đã bị phá, ngài tỉnh lại và ngồi thiền tĩnh tâm."
+                "text": "Thế thủ của đại sư đã bị phá, ngài đã tỉnh lại và ngồi thiền tĩnh tâm."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Côn pháp Kim Cang hộ thể thật khủng khiếp, may mà chúng ta có bảo khí."
+                "text": "Côn pháp Kim Cang hộ thể thật khủng khiếp, may mà ngươi có báu khí phá giáp."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Cương Khí Phật gia của hắn quá dày, đánh mãi không sứt mẻ."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Cương Khí của hắn quá dày! Cần dùng đòn đánh bộc phát xuyên phá giáp."
+                "text": "Cương Khí quá kiên cố! Cần dùng Binh Khí có thuộc tính Phá Cương để đập vỡ."
               }
             ]
           },
           "recommendedLevel": 20,
-          "recommendedPower": 585
+          "recommendedPower": 332
         },
         {
           "id": "hoi_3_05",
@@ -3442,32 +3294,32 @@
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hắn là đại đệ tử Hàn Sơn, nội lực thâm hậu, ra chiêu còn làm chậm đối thủ."
+                "text": "Hắn là đại đệ tử Hàn Sơn Phái, nội lực thâm hậu và đòn đánh gây Trì Trệ mạnh."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Linh châu đã rơi ra, băng thương đã hạ. Đỉnh núi chỉ còn cách một bước."
+                "text": "Băng thương đã hạ. Đỉnh núi tuyết chỉ còn cách một bước."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Nội lực Hàn Sơn quả nhiên thâm hậu, trận này ta học được không ít."
+                "text": "Võ học Hàn Sơn thâm hậu thật, đả bại hắn giúp kiếm ý của ngươi tiến bộ vượt bậc."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Băng thương gây Điểm Huyệt dừng hẳn thời gian hồi của kiếm trong túi ta."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hàn khí làm chậm chiêu thức khiến ngươi lỡ nhịp. Phải hóa giải khống chế!"
+                "text": "Điểm Huyệt rất nguy hiểm! Cần mang nhiều Binh Khí khác loại để không bị khóa sạch."
               }
             ]
           },
           "recommendedLevel": 20,
-          "recommendedPower": 593
+          "recommendedPower": 309
         },
         {
           "id": "hoi_3_06",
@@ -3486,14 +3338,14 @@
             "tamPhapLevel": 1,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 2,
                 "rarity": "uncommon",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 2,
                 "rarity": "uncommon",
                 "x": 2,
@@ -3600,32 +3452,32 @@
               },
               {
                 "speaker": "phong_loi",
-                "text": "Bạch Hổ Cuồng Móng của nó có thể xé nát kim thạch và gây choáng váng!"
+                "text": "Băng Nguyên Bạch Hổ! Vuốt hổ của nó gây Định Thân và tổn hại nặng Khí Huyết."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Bạch hổ đã lui vào băng nguyên, sát khí quanh đây cũng nhạt dần."
+                "text": "Bạch hổ đã lui vào băng nguyên, sát khí quanh hẻm núi cũng nhạt dần."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Vũ khí này khi kẻ địch choáng váng sẽ gây sát thương chí mạng cực lớn."
+                "text": "Lấy được nanh hổ rèn binh khí sẽ giúp đòn chí mạng gây sát thương cực lớn."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Bị choáng Định Thân liên tục khiến ta không thể ra chiêu nào."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Bị choáng váng liên tục khiến ngươi không thể xuất chiêu! Cần tăng kháng."
+                "text": "Định Thân dừng mọi hoạt động! Phải tăng cường chỉ số Hộ Thân để chịu đựng đòn."
               }
             ]
           },
           "recommendedLevel": 21,
-          "recommendedPower": 599
+          "recommendedPower": 309
         },
         {
           "id": "hoi_3_07",
@@ -3776,36 +3628,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "U Minh Giáo quả nhiên đã cắm rễ tận đỉnh tuyết sơn này."
+                "text": "U Minh Giáo quả nhiên đã cắm rễ tận thạch thất trên đỉnh tuyết sơn này."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Chấp Pháp Sứ ra tay tàn độc, mỗi đòn đều nhắm vào chỗ hiểm!"
+                "text": "Chấp Pháp Sứ ra tay tàn độc, quỷ trảo của hắn hút Khí Huyết nuôi thân!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Quỷ trảo đã bị chém đứt. Tà văn trong thạch thất tan biến."
+                "text": "Quỷ trảo đã bị chém đứt. Tà văn trong thạch thất tiêu tan."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Tà công của chúng hút máu nuôi thân, phải hết sức cẩn trọng."
+                "text": "Tà công hút máu của chúng thâm hiểm thật, phải kết liễu nhanh không được để giằng co."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Hắn hút cạn Khí Huyết của ta để hồi phục lại toàn bộ sinh lực."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hắn hút cạn Khí Huyết để hồi phục! Phải dồn sát thương kết liễu nhanh."
+                "text": "Hắn hồi phục rất nhanh! Hãy dồn sát thương bộc phát Hội Tâm để dứt điểm ngay."
               }
             ]
           },
           "recommendedLevel": 21,
-          "recommendedPower": 603
+          "recommendedPower": 386
         },
         {
           "id": "hoi_3_08",
@@ -3934,36 +3786,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Khối đá băng khổng lồ kia... cử động rồi! Là một con huyền quy ngàn năm!"
+                "text": "Khối đá băng khổng lồ kia cử động rồi! Là huyền quy ngàn năm phong tỏa lối đi!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Thiên Niên Quy Giáp và Băng Phách Cổ Cốt! Phòng thủ tuyệt đối, bất khả xâm phạm."
+                "text": "Vạn Niên Băng Quy! Mai rùa của nó có phòng thủ tuyệt đối và phản chấn sát thương."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Lớp mai rùa kiên cố cuối cùng cũng nứt ra. Chúng ta đã có thần giáp trong tay."
+                "text": "Lớp mai rùa kiên cố đã nứt. Thu được bảo khí quy giáp thượng hạng."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Bảo vật quy giáp này là chìa khóa để đối đầu Tuyệt Kỹ của Dạ Sát Thiên."
+                "text": "Bảo vật quy giáp này là chìa khóa để đối đầu Tuyệt Kỹ của Dạ Sát Thiên!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Đánh vào mai rùa bị phản chấn quá đau, Khí Huyết tự suy giảm."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Đánh vào mai rùa bị phản chấn quá đau! Cần điều hòa lại nhịp công kích."
+                "text": "Đừng đánh dồn dập khi nó tụ khí phản chấn. Hãy trang bị Đan Dược hồi máu kịp thời."
               }
             ]
           },
           "recommendedLevel": 22,
-          "recommendedPower": 609
+          "recommendedPower": 284
         },
         {
           "id": "hoi_3_09",
@@ -4100,36 +3952,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "Phía trên chính là Phong Thiền Băng Đài. Không ai có thể ngăn ta bước tiếp!"
+                "text": "Phía trên chính là Phong Thiền Băng Đài. Không ai ngăn được bước chân ta!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Tử vệ cuối cùng này đã dâng hiến linh hồn cho tà kiếm, kiếm chiêu cực nhanh!"
+                "text": "Tử vệ cuối cùng dâng hiến linh hồn cho tà kiếm, kiếm chiêu cực nhanh cực hiểm!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Đài tế đã mở! Dạ Sát Thiên, món nợ máu mười năm trước hôm nay phải tính!"
+                "text": "Đài tế đã mở! Dạ Sát Thiên, mối nợ máu năm xưa hôm nay phải tính!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Hiệp khách huynh đệ, ta sẽ hộ vệ phía sau, hãy dốc toàn lực diệt trừ ma đầu!"
+                "text": "Hiệp khách huynh đệ! Ta sẽ hộ vệ phía sau, hãy dốc toàn lực diệt trừ ma đầu!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Chiêu thức đối phương quá hung hiểm, ta sơ suất rồi..."
+                "text": "Tà kiếm ra chiêu gấp gáp quá, đâm thủng phòng tuyến Cương Khí."
               },
               {
                 "speaker": "phong_loi",
-                "text": "Kiếm chiêu quá gấp gáp. Cần tĩnh tâm, vận chuyển Tâm Pháp tối cao."
+                "text": "Cần tĩnh tâm vận chuyển Tâm Pháp tối cao, nâng Trọng Binh Khí để áp đảo kiếm chiêu."
               }
             ]
           },
           "recommendedLevel": 22,
-          "recommendedPower": 637
+          "recommendedPower": 283
         },
         {
           "id": "hoi_3_10",
@@ -4148,7 +4000,7 @@
             "tamPhapLevel": 1,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 1,
                 "rarity": "uncommon",
                 "x": 0,
@@ -4267,15 +4119,15 @@
             "before": [
               {
                 "speaker": "da_sat_thien",
-                "text": "Mười năm trước sơn trang của ngươi bị hủy diệt, hôm nay lại tự tìm tới cửa nộp mạng sao?"
+                "text": "Ba năm trước ta xé vỡ tàn nang diệt môn sơn trang ngươi, nay lại tự đến nộp mạng?"
               },
               {
                 "speaker": "hero",
-                "text": "Dạ Sát Thiên! Nợ máu sơn trang và tà tâm đồ sát Cửu Châu của ngươi sẽ chấm dứt tại đây!"
+                "text": "Dạ Sát Thiên! Nợ máu diệt môn và dã tâm tà giáo của ngươi sẽ chấm dứt tại đây!"
               },
               {
                 "speaker": "da_sat_thien",
-                "text": "Càn khôn tàn nang trên tay ngươi sẽ hoàn thiện Thần Nang của U Minh Giáo. Tiếp chiêu đi!"
+                "text": "Càn khôn tàn nang trên tay ngươi sẽ hoàn thiện vỏ Thần Nang của U Minh Giáo!"
               }
             ],
             "afterWin": [
@@ -4285,26 +4137,26 @@
               },
               {
                 "speaker": "hero",
-                "text": "Tà bất thắng chính. Ba mảnh tàn nang đã hợp nhất thành một khối hoàn chỉnh!"
+                "text": "Ba Mảnh Tàn Nang đã hợp nhất thành Vỏ Thần Nang hoàn chỉnh! Thù nhà đã rửa!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Đại thắng rồi! Nhưng Dạ Sát Thiên chỉ là Tả Sứ, Thao Thiết Giáo Chủ vẫn đang ẩn thân nơi Trung Nguyên..."
+                "text": "Đại thắng rồi! Nhưng Dạ Sát Thiên hé lộ U Minh Hữu Sứ Lộ Tẫn Quang đã thâm nhập triều đình!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "da_sat_thien",
-                "text": "Kiến cỏ đòi lay đại thụ! Tàn nang này thuộc về U Minh Giáo ta!"
+                "text": "Kiến cỏ đòi lay đại thụ! Mảnh tàn nang này thuộc về U Minh Giáo ta!"
               },
               {
                 "speaker": "phong_loi",
-                "text": "Thương pháp băng phách và giáp quy của hắn quá hoàn hảo. Cần trang bị Trọng 5 Tinh Phẩm mới địch nổi!"
+                "text": "Thương Băng Phách của hắn quá mạnh. Cần trang bị Trọng 5 Tinh Phẩm và giữ Hóa Kình hóa giải."
               }
             ]
           },
           "recommendedLevel": 23,
-          "recommendedPower": 645
+          "recommendedPower": 297
         }
       ]
     },
@@ -4476,36 +4328,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "cầu đá phía trước có sát khí. Dịch Lộ Đao Khách đã chặn đường."
+                "text": "Mưa xuân lất phất phủ trên cầu đá. Đao khách phía trước có sát khí tà giáo!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Bổn quan là Ngự Sử Tuần Án Yến Vô Tâm. Ta mang mật sớ triều đình, không thể chậm trễ!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Dịch Lộ Đao Khách đã lui. Con đường phía trước đã mở."
+                "text": "Dịch Lộ Đao Khách đã bị đánh bạt. Con đường quan đạo đã mở."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Đa tạ hiệp khách trượng nghĩa tương trợ! U Minh Giáo dăng bẫy cướp mật sớ khắp nơi."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Đao khách Thiết Phủ Bang này đòn đánh Phá Cương rất mạnh."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Chúng dùng lực đao Phá Cương! Cần chuẩn bị Hộ Cụ gia tăng chỉ số Hộ Thân."
               }
             ]
           },
           "recommendedLevel": 24,
-          "recommendedPower": 687
+          "recommendedPower": 301
         },
         {
           "id": "hoi_4_02",
@@ -4628,36 +4480,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "dịch trạm phía trước có sát khí. Giả Lệnh Dịch Tốt đã chặn đường."
+                "text": "Dịch trạm dưới hàng liễu này sao vắng vẻ lạ thường, quan dịch đều gục ngã?"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Lũ này là Giả Lệnh Dịch Tốt mạo danh triều đình! Chúng dùng giả chiếu để chặn đường."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Giả Lệnh Dịch Tốt đã lui. Con đường phía trước đã mở."
+                "text": "Đã thu giữ ấn lệnh giả. Dịch trạm đã được giải tỏa an toàn."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Giả lệnh này rèn đúc tinh xảo, chứng tỏ có gian thần cấp cao trong kinh thành nội ứng."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Kiếm pháp Thái Thanh của kẻ giả mạo tích Nội Lực tung Tuyệt Kỹ bất ngờ."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Chúng tích Nội Lực ra chiêu! Hãy giữ 60 Nội Lực để tung Hóa Kình gạt đòn."
               }
             ]
           },
           "recommendedLevel": 24,
-          "recommendedPower": 689
+          "recommendedPower": 288
         },
         {
           "id": "hoi_4_03",
@@ -4679,7 +4531,7 @@
             "level": 24,
             "items": [
               {
-                "id": "bach_ho_cuong_mong",
+                "id": "tu_kim_trao",
                 "tier": 1,
                 "rarity": "uncommon",
                 "x": 0,
@@ -4710,8 +4562,8 @@
                 "id": "am_duong_ngoc",
                 "tier": 1,
                 "rarity": "uncommon",
-                "x": 0,
-                "y": 1
+                "x": 1,
+                "y": 0
               },
               {
                 "id": "am_duong_ngoc",
@@ -4829,36 +4681,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "vườn trúc phía trước có sát khí. Mặc Ảnh Linh Miêu đã chặn đường."
+                "text": "Trong vườn trúc ướt sương có bóng đen lao nhanh... Là linh miêu trúng tà hương!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "U Minh Giáo dùng Mặc Ảnh Linh Miêu làm tai mắt trinh sát mật sớ."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Mặc Ảnh Linh Miêu đã lui. Con đường phía trước đã mở."
+                "text": "Linh miêu đã tháo chạy vào rừng trúc, tà hương cũng bị kiếm khí xua tan."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Tai mắt tà giáo đã bị mù, xe ngựa mật sớ có thể tiếp tục hành trình."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Linh miêu di chuyển cực nhanh làm giảm Tốc Xuất Chiêu của ta."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Dị thú tấn công chớp nháy! Hãy xếp thêm Kỳ Trân hỗ trợ Tốc Xuất Chiêu vào túi."
               }
             ]
           },
           "recommendedLevel": 24,
-          "recommendedPower": 734
+          "recommendedPower": 319
         },
         {
           "id": "hoi_4_04",
@@ -5030,36 +4882,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "trà phường phía trước có sát khí. Tế Vân Chưởng Quỹ đã chặn đường."
+                "text": "Trà phường ven sông rực khói trà nhưng chưởng quỹ lại mang roi mây sát khí."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Tế Vân Trà Phường này chính là điểm ngầm chuyển mật thư của tà giáo!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Tế Vân Chưởng Quỹ đã lui. Con đường phía trước đã mở."
+                "text": "Triệt phá sào huyệt trà phường, thu giữ toàn bộ thư từ liên lạc tà đạo."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Các bức thư này đều chỉ về Đông Quách Thủy Môn ngoài kinh thành."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Roi mây Bích Thủy của chưởng quỹ hồi máu dồn dập khiến ta đánh không lại."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Đối phương hồi máu liên tục! Phải dồn sát thương bộc phát mạnh để hạ gục."
               }
             ]
           },
           "recommendedLevel": 25,
-          "recommendedPower": 740
+          "recommendedPower": 312
         },
         {
           "id": "hoi_4_05",
@@ -5225,36 +5077,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "vũ đình phía trước có sát khí. U Minh Vũ Y Vệ đã chặn đường."
+                "text": "Tránh mưa trong đình cổ mà lại gặp phục kích từ mái đình!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "U Minh Vũ Y Vệ! Chúng là sát thủ tinh nhuệ chuyên trách đoạt mật sớ!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "U Minh Vũ Y Vệ đã lui. Con đường phía trước đã mở."
+                "text": "Vũ Y Vệ đã đại bại, ám khí của chúng bị kiếm khí đánh nát."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Mật sớ vẫn an toàn! Hiệp khách võ nghệ cao cường thật đáng khâm phục."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Ám khí Kịch Độc từ mái đình phóng xuống dồn dập quá."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Địch dùng Kịch Độc ám sát! Hãy mang Đan Dược giải độc để bảo vệ Khí Huyết."
               }
             ]
           },
           "recommendedLevel": 25,
-          "recommendedPower": 746
+          "recommendedPower": 363
         },
         {
           "id": "hoi_4_06",
@@ -5405,36 +5257,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "quan đạo phía trước có sát khí. Thiết Phủ Khai Lộ Sứ đã chặn đường."
+                "text": "Quan đạo đất vàng dẫn về đế kinh bị rào chắn phong tỏa nghiêm ngặt."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Thiết Phủ Khai Lộ Sứ dựng rào ép xe ngựa triều đình quay đầu!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thiết Phủ Khai Lộ Sứ đã lui. Con đường phía trước đã mở."
+                "text": "Phá vỡ rào chắn quan đạo! Đường vào kinh thành đã rộng mở."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Chúng ta phải nhanh chóng tiến ra thủy môn trước khi Hữu Sứ tà giáo hành động."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Đại phủ của Thiết Phủ Bang bộc phát sát thương Phá Cương quá mãnh liệt."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Đòn phủ Phá Cương rất nặng! Hãy dùng Hóa Kình đúng thời điểm để hóa giải đòn."
               }
             ]
           },
           "recommendedLevel": 26,
-          "recommendedPower": 765
+          "recommendedPower": 305
         },
         {
           "id": "hoi_4_07",
@@ -5599,36 +5451,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "đồng cỏ phía trước có sát khí. Xích Giác Cuồng Ngưu đã chặn đường."
+                "text": "Đàn ngưu giữa đồng cỏ non phát cuồng lao về phía xe ngựa!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Xích Giác Cuồng Ngưu bị U Minh Giáo gắn phù chú tà thuật làm mất trí!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Xích Giác Cuồng Ngưu đã lui. Con đường phía trước đã mở."
+                "text": "Đã chém đứt phù chú trên sừng ngưu, dẹp yên đồng cỏ."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Tà giáo dùng cả dị thú làm rối loạn quan đạo, thủ đoạn thật không từ một ai."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Cú húc của trâu cuồng làm giáp bọc của ta tan nát hoàn toàn."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Dã thú tụ khí húc rất mạnh! Hãy nâng Trọng Hộ Cụ để gia tăng Cương Khí đỡ đòn."
               }
             ]
           },
           "recommendedLevel": 26,
-          "recommendedPower": 768
+          "recommendedPower": 325
         },
         {
           "id": "hoi_4_08",
@@ -5786,36 +5638,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "phong đài phía trước có sát khí. Hàn Sơn Tín Tiêu Vệ đã chặn đường."
+                "text": "Trên phong đài cao ngoài kinh, cung thủ đang giương cung chực chờ."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Hàn Sơn Tín Tiêu Vệ bị lừa gạt gác đài để bắn pháo tín hiệu cho tà giáo!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Hàn Sơn Tín Tiêu Vệ đã lui. Con đường phía trước đã mở."
+                "text": "Tín tiêu đã bị hạ gục. Mạn thủy môn sẽ không nhận được báo động."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Chúng ta đã chiếm được thế chủ động! Thủy môn chỉ còn ở phía trước."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Mũi tên Băng Tâm gây Trì Trệ khiến kiếm trong túi ta ra chiêu rất chậm."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Cung tên gây Trì Trệ tầm xa! Hãy trang bị Công Pháp giảm hồi chiêu để bù lại."
               }
             ]
           },
           "recommendedLevel": 27,
-          "recommendedPower": 779
+          "recommendedPower": 350
         },
         {
           "id": "hoi_4_09",
@@ -5973,36 +5825,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "thủy môn phía trước có sát khí. U Minh Khóa Giang Vệ đã chặn đường."
+                "text": "Cửa nước Đông Quách Thủy Môn đây rồi! Khóa Giang Vệ đang phòng thủ gắt gao."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Mật sớ phải tới đế kinh; đừng để U Minh kéo dài thời gian."
+                "text": "Chiến thuyền Hữu Sứ Lộ Tẫn Quang đang đỗ ngay sau cửa nước!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "U Minh Khóa Giang Vệ đã lui. Con đường phía trước đã mở."
+                "text": "Khóa Giang Vệ đã lui! Cửa nước đã mở toang hướng ra chiến thuyền Vân Tân Hắc Chu."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉ còn Thủ Lĩnh phía trước; chân tướng sắp sáng tỏ."
+                "text": "Chỉ còn Hữu Sứ phía trước! Hãy chuẩn bị cho trận quyết chiến trên sông!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Hộ vệ Kim Cang Tự đỡ đòn kiên cố làm ta không thể áp sát chiến thuyền."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Thế thủ của địch rất kiên cố. Cần dùng Binh Khí bộc phát chí mạng Hội Tâm để phá."
               }
             ]
           },
           "recommendedLevel": 27,
-          "recommendedPower": 783
+          "recommendedPower": 368
         },
         {
           "id": "hoi_4_10",
@@ -6024,7 +5876,7 @@
             "level": 29,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 5,
                 "rarity": "common",
                 "x": 0,
@@ -6154,44 +6006,44 @@
             "before": [
               {
                 "speaker": "lo_tan_quang",
-                "text": "Ba mảnh hợp nhất chỉ là lớp vỏ. Giao Thần Nang ra, ta tha cho chiếc thuyền này!"
+                "text": "Vỏ Thần Nang trong tay ngươi chỉ là lớp vỏ! Giao ra đây ta sẽ tha cho chiến thuyền này!"
               },
               {
                 "speaker": "hero",
-                "text": "Mật sớ thật đã vào kinh. Âm mưu của ngươi chấm dứt ở đây!"
+                "text": "Mật sớ triều đình đã được bảo vệ. Lộ Tẫn Quang, đao lửa của ngươi chấm dứt ở đây!"
               },
               {
                 "speaker": "lo_tan_quang",
-                "text": "Hãy hỏi thanh hỏa đao của bản sứ!"
+                "text": "Hãy nếm thử ngọn lửa cuồng hỏa trên sông của bản sứ!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "lo_tan_quang",
-                "text": "Ta thua... nhưng Giám chủ Thiên Cơ đã đợi ngươi trong đế kinh."
+                "text": "Ta thua... Nhưng Giám chủ Thiên Cơ đã đợi các ngươi trong đế kinh..."
               },
               {
                 "speaker": "hero",
-                "text": "Chiến thuyền đã tắt lửa, nhưng manh mối mới vừa lộ."
+                "text": "Chiến thuyền rực lửa đã tắt. Khai ra rồi, kẻ đứng sau giả chiếu chính là Tào Huyền Kỳ!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Nội ứng mang chức Giám chủ. Chúng ta phải vào kinh ngay."
+                "text": "Giám chủ Thiên Cơ Viện là gian thần nội ứng! Chúng ta phải lập tức nhập kinh!"
               }
             ],
             "afterLoss": [
               {
-                "speaker": "hero",
-                "text": "Hỏa đao mượn thế gió mưa, càng đánh càng dữ."
+                "speaker": "lo_tan_quang",
+                "text": "Ha ha ha! Mật sớ và sinh mạng các ngươi sẽ làm mồi cho ngọn lửa Vân Tân Hắc Chu!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giữ lấy mật sớ; ta sẽ cùng ngươi đổi thế trận."
+                "text": "Hỏa đao của Hữu Sứ rất cuồng bạo! Cần nâng Trọng Binh Khí Tinh Phẩm và dùng Hóa Kình đúng nhịp."
               }
             ]
           },
           "recommendedLevel": 28,
-          "recommendedPower": 790
+          "recommendedPower": 362
         }
       ]
     },
@@ -6363,36 +6215,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "ngoại thành phía trước có sát khí. Giả Chiếu Cấm Vệ đã chặn đường."
+                "text": "Nắng hạ chiếu chói chang xuống thành quách. Cấm vệ phía trước kiểm soát gắt gao quá."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Bọn chúng là Giả Chiếu Cấm Vệ mang chiếu thư giả của Tào Huyền Kỳ để bắt giữ chúng ta!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Giả Chiếu Cấm Vệ đã lui. Con đường phía trước đã mở."
+                "text": "Cấm vệ giả mạo đã tháo chạy. Con đường vào phố chính đã mở."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Mạng lưới giả chiếu của Tào Huyền Kỳ đã thâm nhập sâu vào hoàng thành rồi."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Cấm vệ Kim Cang Tự giáp dày đập vỡ phòng tuyến Hộ Thân của ta."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Giáp cấm vệ rất kiên cố! Cần dùng Binh Khí thuộc tính Phá Cương để đâm thủng."
               }
             ]
           },
           "recommendedLevel": 28,
-          "recommendedPower": 794
+          "recommendedPower": 370
         },
         {
           "id": "hoi_5_02",
@@ -6557,36 +6409,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "trường nhai phía trước có sát khí. Chu Tước Ảnh Khách đã chặn đường."
+                "text": "Trường nhai Chu Tước nhộn nhịp mà trên mái hiên lại ẩn nấp sát thủ!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Chu Tước Ảnh Khách của tà giáo! Chúng định ám sát chúng ta giữa phố đông."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Chu Tước Ảnh Khách đã lui. Con đường phía trước đã mở."
+                "text": "Thích khách trên mái hiên đã bị quét sạch, phố xá trở lại bình yên."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Tào Huyền Kỳ muốn diệt miệng trước đại lễ xã tắc. Chúng ta phải tiến nhanh hơn!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Ám khí Thái Thanh chí mạng từ trên cao đâm trúng điểm yếu."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Thích khách bạo kích Hội Tâm! Hãy trang bị Hộ Cụ kiên cố để tạo Cương Khí đỡ đòn."
               }
             ]
           },
           "recommendedLevel": 29,
-          "recommendedPower": 798
+          "recommendedPower": 405
         },
         {
           "id": "hoi_5_03",
@@ -6737,36 +6589,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "cơ phường phía trước có sát khí. Huyền Đồng Cơ Sư đã chặn đường."
+                "text": "Những con sư tử đồng trong xưởng máy... mắt chúng đang phát ra ánh đỏ ma quái!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Huyền Đồng Cơ Sư! Tào Huyền Kỳ dùng phù chú tà giáo để điều khiển máy móc!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Huyền Đồng Cơ Sư đã lui. Con đường phía trước đã mở."
+                "text": "Đã chém đứt khớp nối bánh răng, sư tử đồng ngã gục thành phế thù."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Thiên Cơ Viện rèn đúc cơ quan phục vụ tà giáo, dã tâm của Tào Huyền Kỳ thật kinh hoàng."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Thân thể bằng đồng của sư tử phản chấn sát thương khiến kiếm ta nứt vỡ."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Cơ quan đồng cứng cáp lắm! Cần dùng đòn đánh bộc phát để đập tan khớp nối."
               }
             ]
           },
           "recommendedLevel": 29,
-          "recommendedPower": 800
+          "recommendedPower": 361
         },
         {
           "id": "hoi_5_04",
@@ -6917,36 +6769,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "văn môn phía trước có sát khí. Ngụy Học Kiếm Sinh đã chặn đường."
+                "text": "Trước cổng Bạch Ngọc Văn Môn, kiếm sinh khoác áo học sĩ lại mang sát khí dạt dào."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Ngụy Học Kiếm Sinh! Chúng mạo danh nho sĩ phụng chiếu để lừa gạt trăm họ."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Ngụy Học Kiếm Sinh đã lui. Con đường phía trước đã mở."
+                "text": "Vạch mặt kẻ mạo danh học sĩ, mở toang cổng văn môn dẫn vào hoàng thành."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Lòng dân đã hiểu rõ chân tướng giả chiếu! Tào Huyền Kỳ không còn chỗ trốn."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Kiếm chiêu ngụy học sĩ biến ảo gây Trì Trệ làm chậm nhịp công kích."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Kiếm chiêu gây Trì Trệ! Hãy trang bị Công Pháp gia tăng Tốc Xuất Chiêu."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 834
+          "recommendedPower": 370
         },
         {
           "id": "hoi_5_05",
@@ -7119,36 +6971,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "đài ấn phía trước có sát khí. Thiên Cơ Chấp Ấn Quan đã chặn đường."
+                "text": "Kẻ giữ kho đài ấn đang đút các khuôn ấn giả vào lò rèn hủy chứng cứ!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Thiên Cơ Chấp Ấn Quan! Hắn là kẻ trực tiếp đúc giả chiếu triều đình!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thiên Cơ Chấp Ấn Quan đã lui. Con đường phía trước đã mở."
+                "text": "Đã khống chế đài ấn, thu giữ đầy đủ khuôn đúc giả và chứng cứ gian thần."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Chứng cứ đã đầy đủ! Giờ đây chúng ta có thể tiến thẳng vào Minh Quang Thiên Cơ Điện."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Đại chùy Thiết Phủ của Chấp Ấn Quan đập nát phòng tuyến giáp bọc của ta."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Đòn chùy Phá Cương cực mạnh! Hãy tích Nội Lực để tung Hóa Kình khống chế nhịp."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 841
+          "recommendedPower": 377
         },
         {
           "id": "hoi_5_06",
@@ -7170,14 +7022,14 @@
             "level": 30,
             "items": [
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 1,
                 "rarity": "common",
                 "x": 0,
                 "y": 0
               },
               {
-                "id": "u_minh_quy_trao",
+                "id": "tu_mau_song_dao",
                 "tier": 1,
                 "rarity": "common",
                 "x": 2,
@@ -7285,36 +7137,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "ám cừ phía trước có sát khí. U Minh Ám Cừ Sứ đã chặn đường."
+                "text": "Đường nước ngầm dưới cừ ngự thủy u tối nồng nặc mùi châm độc."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "U Minh Ám Cừ Sứ! Chúng giăng châm độc trong đường ngầm để bảo vệ điện chính."
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "U Minh Ám Cừ Sứ đã lui. Con đường phía trước đã mở."
+                "text": "Đường ngầm đã dẹp sạch tử sĩ, lối thoát dẫn thẳng lên điện chính."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Đại lễ xã tắc sắp bắt đầu trên điện. Chúng ta phải ngăn cản Tào Huyền Kỳ ngay!"
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Châm độc tích tầng gây Kịch Độc làm suy sụp Khí Huyết trong bóng tối."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Độc châm rất nguy hiểm trong hẹp! Cần mang Đan Dược giải độc để bảo vệ sinh lực."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 847
+          "recommendedPower": 317
         },
         {
           "id": "hoi_5_07",
@@ -7486,36 +7338,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "yêu điện phía trước có sát khí. Xích Nhật Kim Sí Điểu đã chặn đường."
+                "text": "Con chim cự đại lông vàng rực bị xích trên mái điện, hút nắng hạ thành hỏa vũ!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Xích Nhật Kim Sí Điểu! Tào Huyền Kỳ mượn hỏa lực của yêu điểu để kích hoạt cơ trận!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Xích Nhật Kim Sí Điểu đã lui. Con đường phía trước đã mở."
+                "text": "Đã chém đứt xiềng xích giải thoát yêu điểu, hỏa vũ trên mái điện tiêu tan."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Nguồn hỏa lực của đại cơ trận đã bị ngắt! Tào Huyền Kỳ chỉ còn cơ nỏ bảo vệ."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Hỏa vũ từ mái điện dội xuống dồn dập dính tầng Liệt Hỏa cao."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Liệt Hỏa thiêu đốt bộc phát! Hãy dùng Hóa Kình đúng lúc để triệt tiêu nhiệt khí."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 853
+          "recommendedPower": 370
         },
         {
           "id": "hoi_5_08",
@@ -7673,36 +7525,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "liên đình phía trước có sát khí. Thái Dịch Cầm Sư đã chặn đường."
+                "text": "Giữa hồ sen ngát hương, tiếng đàn âm luật chấn động mặt nước tạo thành trận pháp."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Thái Dịch Cầm Sư! Âm trận Bích Thủy của hắn bảo vệ chìa khóa cổng điện!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thái Dịch Cầm Sư đã lui. Con đường phía trước đã mở."
+                "text": "Đã phá đứt dây đàn âm trận, chìa khóa cổng điện chính đã rơi vào tay."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Dấu vết mới vẫn dẫn về kẻ cầm đầu. Chúng ta tiếp tục."
+                "text": "Cổng Minh Quang Thiên Cơ Điện đã mở! Tào Huyền Kỳ đang đợi bên trong."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Âm luật hồi máu dồn dập và gây Định Thân khiến ta không thể ra chiêu."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Âm trận vừa hồi máu vừa gây choáng! Cần dồn sát thương bộc phát thật mạnh."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 853
+          "recommendedPower": 377
         },
         {
           "id": "hoi_5_09",
@@ -7867,36 +7719,36 @@
             "before": [
               {
                 "speaker": "hero",
-                "text": "cơ đàn phía trước có sát khí. Thiên Cơ Hỏa Nỏ Vệ đã chặn đường."
+                "text": "Dàn nỏ cơ quan xoay quanh đàn tế xã tắc đã vươn nòng hướng ra bái đàn!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Giả chiếu và cơ trận cùng một nguồn; phải phá nơi này để cứu đại lễ."
+                "text": "Thiên Cơ Hỏa Nỏ Vệ! Chúng sắp khai hỏa đại cơ trận khi đại lễ cử hành!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "hero",
-                "text": "Thiên Cơ Hỏa Nỏ Vệ đã lui. Con đường phía trước đã mở."
+                "text": "Đã vô hiệu hóa dàn cơ nỏ! Đại lễ xã tắc của triều đình đã được cứu vãn."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉ còn Thủ Lĩnh phía trước; chân tướng sắp sáng tỏ."
+                "text": "Lễ tế an toàn rồi! Giờ là lúc hạ gục Tào Huyền Kỳ để chấm dứt mọi hiểm họa."
               }
             ],
             "afterLoss": [
               {
                 "speaker": "hero",
-                "text": "Thế công đối phương quá kín, ta chưa tìm được sơ hở."
+                "text": "Mưa tên cơ nỏ bắn ra liên hoàn phá nát Cương Khí và giáp bọc."
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Chỉnh lại Bao Phục, giữ Hóa Kình rồi tìm nhịp phản công."
+                "text": "Cơ nỏ bắn dồn dập! Hãy xếp Hộ Cụ kiên cố ở các ô liền kề để kích hoạt buff giáp."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 859
+          "recommendedPower": 357
         },
         {
           "id": "hoi_5_10",
@@ -8034,44 +7886,44 @@
             "before": [
               {
                 "speaker": "tao_huyen_ky",
-                "text": "Thần Nang trong tay ngươi chính là chìa khóa cuối cùng của đại cơ trận."
+                "text": "Vỏ Thần Nang trong tay ngươi chính là chìa khóa cuối cùng của đại cơ trận!"
               },
               {
                 "speaker": "hero",
-                "text": "Ta đến để chấm dứt giả chiếu và cơ trận hại dân."
+                "text": "Tào Huyền Kỳ! Ta đến để chấm dứt mạng lưới giả chiếu và cơ trận hại dân của ngươi!"
               },
               {
                 "speaker": "tao_huyen_ky",
-                "text": "Giáo chủ đã mang lõi nang đi rồi. Ngươi chỉ giữ một chiếc vỏ!"
+                "text": "Ha ha ha! U Minh Giáo Chủ đã đưa Lõi Càn Khôn về Bắc Minh rồi! Ngươi chỉ giữ vỏ rỗng!"
               }
             ],
             "afterWin": [
               {
                 "speaker": "tao_huyen_ky",
-                "text": "Ta bại... nhưng U Minh Giáo chủ đã mang lõi Thần Nang về Bắc Minh tổng đàn."
+                "text": "Ta bại... Nhưng Giáo chủ đã nắm giữ Lõi Càn Khôn... Cửu Châu vẫn sẽ chìm trong diệt vong..."
               },
               {
                 "speaker": "hero",
-                "text": "Đại cơ trận đã ngừng, giả chiếu cũng bị phơi bày."
+                "text": "Đại cơ trận đã sụp đổ, giả chiếu bị bóc trần. Nhưng Lõi Càn Khôn thực sự ở Bắc Minh!"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Hồi này đã khép, nhưng hành trình truy tìm Giáo chủ vẫn còn."
+                "text": "Hồi này đã khép! Chúng ta sẽ lập tức chuẩn bị cho cuộc viễn chinh chinh phạt Bắc Minh!"
               }
             ],
             "afterLoss": [
               {
-                "speaker": "hero",
-                "text": "Cơ trận đổi thế từng nhịp, sức một người khó phá."
+                "speaker": "tao_huyen_ky",
+                "text": "Kinh thành này chính là cơ quan của ta! Ngươi làm sao phá nổi đại cơ trận?"
               },
               {
                 "speaker": "yen_vo_tam",
-                "text": "Ta giữ trục phụ; ngươi nhìn ánh nang mà tìm trận nhãn."
+                "text": "Đại cơ trận đổi thế từng nhịp! Cần trang bị đồ Tuyệt Phẩm/Thần Binh và giữ Hóa Kình phá trận."
               }
             ]
           },
           "recommendedLevel": 30,
-          "recommendedPower": 863
+          "recommendedPower": 357
         }
       ]
     }

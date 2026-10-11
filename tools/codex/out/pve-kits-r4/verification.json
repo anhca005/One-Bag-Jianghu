@@ -1,0 +1,693 @@
+{
+  "rows": [
+    {
+      "stage": 2,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Thủy Phỉ Thám Tử",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 3,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Hoang Dã Sói Xám",
+      "probe": null,
+      "winRate": 67.5,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 4,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Liệt Diễm Bang Chúng",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 5,
+      "chapter": 1,
+      "kind": "elite",
+      "enemy": "Phong Lôi Khoái Đao Phong Vũ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 75.0,
+      "band": [
+        65.0,
+        88.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 6,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Ám Hạng Thích Khách",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 7,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Thiết Bì Trư Thú",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 8,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Liệt Diễm Bang Hương Chủ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 9,
+      "chapter": 1,
+      "kind": "normal",
+      "enemy": "Ba Hổ Tiên Phong Vệ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 85.0,
+      "band": [
+        75.0,
+        95.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 10,
+      "chapter": 1,
+      "kind": "boss",
+      "enemy": "Nộ Ba Hổ Bùi Chấn",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 65.0,
+      "band": [
+        55.0,
+        78.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 11,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Vạn Độc Môn Đồ",
+      "probe": null,
+      "winRate": 92.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 12,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Huyền Độc Môn Đồ",
+      "probe": null,
+      "winRate": 80.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 13,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Kịch Độc Tri Chu",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 14,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Man Cương Vu Đao",
+      "probe": null,
+      "winRate": 42.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 15,
+      "chapter": 2,
+      "kind": "elite",
+      "enemy": "Bách Thảo Nghịch Đồ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 62.0,
+      "band": [
+        50.0,
+        74.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 16,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Hắc Sát Độc Hùng",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 17,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "U Minh Ám Sát Thí Tử",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 18,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Huyền Độc Trưởng Lão",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 19,
+      "chapter": 2,
+      "kind": "normal",
+      "enemy": "Xích Luyện Xà Tinh",
+      "probe": null,
+      "winRate": 83.75,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 20,
+      "chapter": 2,
+      "kind": "boss",
+      "enemy": "Hắc Độc Nương Tử",
+      "probe": null,
+      "winRate": 58.75,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 21,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Hàn Phong Tuần Tuyết Giả",
+      "probe": null,
+      "winRate": 27.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 22,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Hàn Sơn Kiếm Sĩ",
+      "probe": null,
+      "winRate": 71.25,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 23,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Tuyết Lĩnh Ngân Lang",
+      "probe": null,
+      "winRate": 97.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 24,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Kim Cang Hộ Giới Tăng",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 25,
+      "chapter": 3,
+      "kind": "elite",
+      "enemy": "Hàn Sơn Đại Đệ Tử",
+      "probe": null,
+      "winRate": 57.5,
+      "target": 62.0,
+      "band": [
+        50.0,
+        74.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 26,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Băng Nguyên Bạch Hổ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 27,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "U Minh Chấp Pháp Sứ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 28,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "Vạn Niên Băng Quy",
+      "probe": null,
+      "winRate": 0.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 29,
+      "chapter": 3,
+      "kind": "normal",
+      "enemy": "U Minh Tuyệt Mệnh Kiếm Vệ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 30,
+      "chapter": 3,
+      "kind": "boss",
+      "enemy": "U Minh Tả Sứ Dạ Sát Thiên",
+      "probe": null,
+      "winRate": 55.0,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 31,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Dịch Lộ Đao Khách",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 32,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Giả Lệnh Dịch Tốt",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 33,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Mặc Ảnh Linh Miêu",
+      "probe": null,
+      "winRate": 47.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 34,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Tế Vân Chưởng Quỹ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 35,
+      "chapter": 4,
+      "kind": "elite",
+      "enemy": "U Minh Vũ Y Vệ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 62.0,
+      "band": [
+        50.0,
+        74.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 36,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Thiết Phủ Khai Lộ Sứ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 37,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Xích Giác Cuồng Ngưu",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 38,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "Hàn Sơn Tín Tiêu Vệ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 39,
+      "chapter": 4,
+      "kind": "normal",
+      "enemy": "U Minh Khóa Giang Vệ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 40,
+      "chapter": 4,
+      "kind": "boss",
+      "enemy": "U Minh Hữu Sứ Lộ Tẫn Quang",
+      "probe": null,
+      "winRate": 40.0,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 41,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Giả Chiếu Cấm Vệ",
+      "probe": null,
+      "winRate": 72.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 42,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Chu Tước Ảnh Khách",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 43,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Huyền Đồng Cơ Sư",
+      "probe": null,
+      "winRate": 62.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 44,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Ngụy Học Kiếm Sinh",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 45,
+      "chapter": 5,
+      "kind": "elite",
+      "enemy": "Thiên Cơ Chấp Ấn Quan",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 62.0,
+      "band": [
+        50.0,
+        74.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 46,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "U Minh Ám Cừ Sứ",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 47,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Xích Nhật Kim Sí Điểu",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 48,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Thái Dịch Cầm Sư",
+      "probe": null,
+      "winRate": 100.0,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": false
+    },
+    {
+      "stage": 49,
+      "chapter": 5,
+      "kind": "normal",
+      "enemy": "Thiên Cơ Hỏa Nỏ Vệ",
+      "probe": null,
+      "winRate": 82.5,
+      "target": 72.0,
+      "band": [
+        60.0,
+        84.0
+      ],
+      "inBand": true
+    },
+    {
+      "stage": 50,
+      "chapter": 5,
+      "kind": "boss",
+      "enemy": "Giám Chủ Thiên Cơ Tào Huyền Kỳ",
+      "probe": null,
+      "winRate": 65.0,
+      "target": 50.0,
+      "band": [
+        38.0,
+        62.0
+      ],
+      "inBand": false
+    }
+  ],
+  "inBand": 10,
+  "bossesPass": false,
+  "applied": false
+}

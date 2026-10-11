@@ -18,6 +18,8 @@ namespace OneBagJianghu.Bag.View
         private ItemView itemPrefab;
         [SerializeField]
         private Image highlightPrefab;
+        [SerializeField]
+        private Image invalidHighlightPrefab;
         private readonly List<Image> highlights = new List<Image>();
         private readonly Dictionary<int, ItemView> itemViews = new Dictionary<int, ItemView>();
         private RectTransform rectTransform;
@@ -101,8 +103,10 @@ namespace OneBagJianghu.Bag.View
                     int cellY = y + row;
                     if (cellX < 0 || cellY < 0 || cellX >= Grid.Cols || cellY >= Grid.Rows)
                         continue;
-                    Image image = Instantiate(highlightPrefab, highlightLayer);
-                    image.color = color;
+                    Image prefab = valid || invalidHighlightPrefab == null ? highlightPrefab : invalidHighlightPrefab;
+                    Image image = Instantiate(prefab, highlightLayer);
+                    if (image.sprite == null)
+                        image.color = color;
                     SetCellRect(image.rectTransform, cellX, cellY, 1, 1);
                     highlights.Add(image);
                 }

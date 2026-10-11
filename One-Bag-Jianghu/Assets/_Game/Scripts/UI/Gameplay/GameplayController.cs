@@ -259,25 +259,15 @@ namespace OneBagJianghu.UI.Gameplay
         private void ShowPveResult(bool won, string result, string winnerName)
         {
             string rewardText = string.Empty;
+            ResultPopupData resultData = null;
             PlayerProfile profile = GameBootstrap.Session.Profile;
             if (won)
             {
                 bool first = !PveRules.IsCleared(profile, pveStage.Id);
-                int hp = completedLog != null && completedLog.FinalHp.Count > 0 ? completedLog.FinalHp[0] : 0;
-                int maxHp = 0;
-                if (completedLog != null)
-                    foreach (BattleEvent e in completedLog.Events)
-                        if (e.Side == 0 && e.MaxHp.HasValue)
-                        {
-                            maxHp = e.MaxHp.Value;
-                            break;
-                        }
-
-                int stars = PveRules.Stars(true, hp, maxHp);
                 if (!profile.Pve.Stages.TryGetValue(pveStage.Id, out PveStageProgress progress))
                     profile.Pve.Stages[pveStage.Id] = progress = new PveStageProgress();
                 progress.Cleared = true;
-                progress.BestStars = Mathf.Max(progress.BestStars, stars);
+                profile.RecordQuestAction("pve_win");
                 string today = System.DateTimeOffset.UtcNow.UtcDateTime.ToString("yyyy-MM-dd");
                 if (profile.Pve.DailyFirstClearDate != today)
                 {
@@ -292,38 +282,33 @@ namespace OneBagJianghu.UI.Gameplay
                     pveStage,
                     first,
                     unchecked((int)battleSeed));
-                AudioManager.Instance?.Play("star_rating");
                 if (reward.Success)
                     AudioManager.Instance?.Play("reward");
                 if (reward.NewLevel > reward.OldLevel)
                     AudioManager.Instance?.Play("level_up");
                 if (first)
                     AudioManager.Instance?.Play("node_unlock");
-                rewardText = reward.Success
-                    ? $"{new string ('★', stars)}  Thưởng: {UiFormat.Number(reward.Silver)} Bạc · "
-                        + $"{reward.HeroExp} EXP"
-                        + (reward.NewLevel > reward.OldLevel ? $"\nLên cấp! Cấp {reward.NewLevel}" : string.Empty)
-                    : "Thưởng chưa nhận: "
-                        + reward.Error;
+                StoryProgress.TryQueueBossClear(profile, pveStage, first);
+                resultData = ResultPopupData.FromPveReward(result,
+                    winnerName,
+                    reward,
+                    GameSession.LoadMaterialCatalog());
                 Debug
                     .Log(
-                        $"[Pve] Clear stage={pveStage.Id}, stars={stars}, first={first}, " +
-                        $"rewardSuccess={reward.Success}");
+                        $"[Pve] Clear stage={pveStage.Id}, first={first}, rewardSuccess={reward.Success}");
             }
 
             GameBootstrap.Session.SaveProfile();
             PveStage target = won ? PveStageFlow.GetNext(pveStage, PveCatalog.Load()) : pveStage;
             pveContinuationStage = target;
             string blocked = PveStageFlow.GetBlockedReason(target);
-            var data = new ResultPopupData(result, winnerName, rewardText)
-            {
-                FirstLabel = "Về bản đồ",
-                SecondLabel = target == null ? "Đã hết ải" : won ? "Ải tiếp theo" : "Đánh lại",
-                FirstChoice = ResultPopupChoice.Map,
-                SecondChoice = ResultPopupChoice.Continue,
-                SecondEnabled = string.IsNullOrEmpty(blocked),
-                DisabledReason = blocked
-            };
+            var data = resultData ?? new ResultPopupData(result, winnerName, rewardText);
+            data.FirstLabel = "Về bản đồ";
+            data.SecondLabel = target == null ? "Đã hết ải" : won ? "Ải tiếp theo" : "Đánh lại";
+            data.FirstChoice = ResultPopupChoice.Map;
+            data.SecondChoice = ResultPopupChoice.Continue;
+            data.SecondEnabled = string.IsNullOrEmpty(blocked);
+            data.DisabledReason = blocked;
             ResultPopup popup = PopupManager.Show<ResultPopup>(data);
             if (popup != null)
             {
@@ -391,6 +376,35 @@ namespace OneBagJianghu.UI.Gameplay
             OnboardingRuntime.Publish("result_closed");
             if (!(popup.Result is ResultPopupChoice choice))
                 return;
+            int pendingChapter = pveStage?.Chapter?.Index ?? 0;
+            PlayerProfile profile = GameBootstrap.Session.Profile;
+            if (pendingChapter > 0 && profile.PendingStoryChapters.Contains(pendingChapter))
+            {
+                StoryChapter story = StoryCatalog.Load().Get(pendingChapter);
+                StoryPopup storyPopup = story == null ? null : PopupManager.Show<StoryPopup>(story);
+                if (storyPopup != null)
+                {
+                    System.Action<BasePopup> closed = null;
+                    closed = closedPopup =>
+                    {
+                        closedPopup.Closed -= closed;
+                        StoryProgress.MarkSeen(profile, pendingChapter);
+                        GameBootstrap.Session.SaveProfile();
+                        CompleteResultChoice(choice);
+                    };
+                    storyPopup.Closed += closed;
+                    return;
+                }
+
+                StoryProgress.MarkSeen(profile, pendingChapter);
+                GameBootstrap.Session.SaveProfile();
+            }
+
+            CompleteResultChoice(choice);
+        }
+
+        private void CompleteResultChoice(ResultPopupChoice choice)
+        {
             if (GameBootstrap.Session.SelectedMode != GameMode.Pve)
             {
                 SceneFlow.Go(choice == ResultPopupChoice.Home ? GameScene.Home : GameScene.Gameplay);

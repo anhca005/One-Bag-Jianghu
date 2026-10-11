@@ -11,7 +11,11 @@ namespace OneBagJianghu.UI.Common
         private const float MaximumBorderShare = 0.9f;
         private const float DefaultReferencePixelsPerUnit = 100f;
 
-        [SerializeField] private float preferredMultiplier = 1f;
+        // This drives Image.pixelsPerUnitMultiplier (it is raised only when the borders would not fit),
+        // so tune the multiplier by hand here, not on the Image.
+        [SerializeField]
+        [Tooltip("Pixels Per Unit Multiplier to use. Edit this, not the Image's field, which this overwrites.")]
+        private float preferredMultiplier = 1f;
 
         /// <summary>Sets the tuned multiplier that large controls should retain.</summary>
         public void Configure(float multiplier)

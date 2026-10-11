@@ -112,13 +112,11 @@ namespace OneBagJianghu.Economy
             var result = new List<OwnedItem>();
             OwnedItem selected = profile?.FindItem(selectedUid);
             if (selected == null
-                || IsEquipped(profile, selectedUid)
                 || selected.Tier < 3
                 || selected.Rarity == "supreme")
                 return result;
             foreach (OwnedItem value in profile.Items)
                 if (value.Uid != selectedUid
-                    && !IsEquipped(profile, value.Uid)
                     && value.ItemId == selected.ItemId
                     && value.Rarity == selected.Rarity
                     && value.Tier >= 3)
@@ -132,8 +130,27 @@ namespace OneBagJianghu.Economy
             if (!preview.Success)
                 return EconomyResult.Fail(preview.Error);
             OwnedItem first = profile.RequireItem(firstUid);
+            OwnedItem second = profile.RequireItem(secondUid);
             string itemId = first.ItemId;
             var storage = new StorageGrid(profile, items as IStorageItemCatalog);
+            OwnedItem equippedResult = IsEquipped(profile, firstUid)
+                ? first
+                : IsEquipped(profile, secondUid)
+                    ? second
+                    : null;
+            if (equippedResult != null)
+            {
+                OwnedItem consumed = ReferenceEquals(equippedResult, first) ? second : first;
+                storage.RemoveItem(firstUid);
+                storage.RemoveItem(secondUid);
+                profile.RemoveItem(consumed.Uid);
+                equippedResult.Rarity = preview.OutputRarity;
+                equippedResult.Tier = preview.OutputTier;
+                SpendAndRefund(profile, storage, preview);
+                profile.RecordQuestAction("item_merge");
+                return EconomyResult.Ok();
+            }
+
             var removed = new List<StorageItemPlacement>();
             foreach (StorageItemPlacement p in profile.Storage.Items)
                 if (p.Uid == firstUid || p.Uid == secondUid)
@@ -147,13 +164,11 @@ namespace OneBagJianghu.Economy
                 return EconomyResult.Fail("Tàng Bảo Các không đủ chỗ.");
             }
 
-            profile.Currencies["bac"] -= preview.Silver;
-            storage.SpendMaterials(preview.ExtraMaterials, out _);
+            SpendAndRefund(profile, storage, preview);
             profile.RemoveItem(firstUid);
             profile.RemoveItem(secondUid);
             storage.TryPlaceItem(profile.AddItem(itemId, preview.OutputTier, rarity: preview.OutputRarity));
-            foreach (KeyValuePair<string, int> refund in preview.RefundMaterials)
-                storage.TryAddMaterial(refund.Key, refund.Value);
+            profile.RecordQuestAction("item_merge");
             return EconomyResult.Ok();
         }
 
@@ -167,8 +182,6 @@ namespace OneBagJianghu.Economy
             second = profile?.FindItem(b);
             if (first == null || second == null)
                 return "Không tìm thấy bản sao để Hợp Thành.";
-            if (IsEquipped(profile, a) || IsEquipped(profile, b))
-                return "Gỡ khỏi Bao Phục để Hợp Thành";
             if (a == b)
                 return "Phải chọn hai bản sao khác nhau.";
             if (first.ItemId != second.ItemId)
@@ -186,6 +199,14 @@ namespace OneBagJianghu.Economy
         {
             return profile.Loadout.Exists(placement =>
                 string.Equals(placement.Uid, uid, StringComparison.Ordinal));
+        }
+
+        private static void SpendAndRefund(PlayerProfile profile, StorageGrid storage, MergePreview preview)
+        {
+            profile.Currencies["bac"] -= preview.Silver;
+            storage.SpendMaterials(preview.ExtraMaterials, out _);
+            foreach (KeyValuePair<string, int> refund in preview.RefundMaterials)
+                storage.TryAddMaterial(refund.Key, refund.Value);
         }
 
         private Dictionary<string, int> InvestedMaterials(OwnedItem a, OwnedItem b)

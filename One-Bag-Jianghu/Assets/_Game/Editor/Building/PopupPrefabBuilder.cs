@@ -26,6 +26,7 @@ namespace OneBagJianghu.EditorTools.Building
             BuildSettings(true);
             BuildBag(true);
             BuildIntro(true);
+            BuildStory(true);
             BuildTutorial(true);
             AssetDatabase.SaveAssets();
         }
@@ -41,6 +42,7 @@ namespace OneBagJianghu.EditorTools.Building
             BuildBag(overwrite);
             BuildResult(overwrite);
             BuildIntro(overwrite);
+            BuildStory(overwrite);
             BuildTutorial(overwrite);
             BuildEncyclopedia(overwrite);
             AssetDatabase.SaveAssets();
@@ -50,10 +52,15 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Build<MessagePopup>(new Vector2(720f, 420f), overwrite, (popup, panel) =>
             {
-                Text title = AddText(panel, "Title", "Thông báo", 40, new Vector2(0.08f, 0.72f), new Vector2(0.92f, 0.92f));
-                Text message = AddText(panel, "Message", "Nội dung thông báo", 25, new Vector2(0.08f, 0.3f), new Vector2(0.92f, 0.7f));
-                UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(0.5f, 0.14f));
-                UiBuild.Set(popup, "titleText", title); UiBuild.Set(popup, "messageText", message); UiBuild.Set(popup, "closeButton", close);
+                Text title = AddText(panel, "Title", "Thông báo", 40, new Vector2(0.08f, 0.72f), new
+                    Vector2(0.92f, 0.92f));
+                Text message = AddText(panel, "Message", "Nội dung thông báo", 25, new Vector2(0.08f, 0.3f),
+                    new Vector2(0.92f, 0.7f));
+                // The message popup's only button carries a runtime label ("Đã hiểu"…), so it stays a text button.
+                UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(0.5f, 0.14f), false);
+                UiBuild.Set(popup, "titleText", title);
+                UiBuild.Set(popup, "messageText", message);
+                UiBuild.Set(popup, "closeButton", close);
             });
         }
 
@@ -61,12 +68,16 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Build<ConfirmPopup>(new Vector2(760f, 440f), overwrite, (popup, panel) =>
             {
-                Text title = AddText(panel, "Title", "Xác nhận", 40, new Vector2(0.08f, 0.73f), new Vector2(0.92f, 0.92f));
-                Text message = AddText(panel, "Message", "Bạn có chắc chắn?", 25, new Vector2(0.08f, 0.32f), new Vector2(0.92f, 0.7f));
+                Text title = AddText(panel, "Title", "Xác nhận", 40, new Vector2(0.08f, 0.73f), new
+                    Vector2(0.92f, 0.92f));
+                Text message = AddText(panel, "Message", "Bạn có chắc chắn?", 25, new Vector2(0.08f, 0.32f),
+                    new Vector2(0.92f, 0.7f));
                 UiButton cancel = AddButton(panel, "Cancel Button", "Hủy", false, new Vector2(0.28f, 0.14f));
                 UiButton confirm = AddButton(panel, "Confirm Button", "Đồng ý", true, new Vector2(0.72f, 0.14f));
-                UiBuild.Set(popup, "titleText", title); UiBuild.Set(popup, "messageText", message);
-                UiBuild.Set(popup, "cancelButton", cancel); UiBuild.Set(popup, "confirmButton", confirm);
+                UiBuild.Set(popup, "titleText", title);
+                UiBuild.Set(popup, "messageText", message);
+                UiBuild.Set(popup, "cancelButton", cancel);
+                UiBuild.Set(popup, "confirmButton", confirm);
             });
         }
 
@@ -92,13 +103,13 @@ namespace OneBagJianghu.EditorTools.Building
                 Text heroName = AddText(panel, "Hero Name", "Vân Du", 24,
                     SettingsRowMin(660f, .44f), SettingsRowMax(660f, .86f), TextAnchor.MiddleLeft);
                 UiBuild.FitLabel(heroName, UiBuild.LabelFitPreset.None);
-                // The four buttons form a 2x2 grid: same columns (34% / 66%) and width, so rows line up.
-                UiButton login = AddSettingsButton(panel, "Login Button", "Đăng xuất", false,
-                    .34f, 770f, 220f, 54f);
-                UiButton quit = AddSettingsButton(panel, "Quit Button", "Thoát game", false,
-                    .66f, 770f, 220f, 54f);
+                // One row of three equal buttons; "Đóng" is the round close icon in the corner.
                 UiButton defaults = AddSettingsButton(panel, "Defaults Button", "Mặc định", false,
-                    .34f, 836f, 220f, 54f);
+                    .22f, 800f, 220f, 54f);
+                UiButton login = AddSettingsButton(panel, "Login Button", "Đăng xuất", false,
+                    .5f, 800f, 220f, 54f);
+                UiButton quit = AddSettingsButton(panel, "Quit Button", "Thoát game", false,
+                    .78f, 800f, 220f, 54f);
                 UiButton close = AddSettingsButton(panel, "Close Button", "Đóng", true,
                     .66f, 836f, 220f, 54f);
                 UiBuild.Set(popup, "masterVolumeSlider", master);
@@ -127,12 +138,14 @@ namespace OneBagJianghu.EditorTools.Building
                 MakeFullScreen(panel, Color.black);
                 panel.gameObject.AddComponent<RectMask2D>();
 
-                // The art covers the whole screen at its own 3:2 aspect; the edges are cropped, never letterboxed.
+                // The art covers the whole screen at its own 3:2 aspect;
+                // The edges are cropped, never letterboxed.
                 Image artwork = UiBuild.Image(panel, "Artwork", UiBuild.Paper);
                 AspectRatioFitter fitter = artwork.gameObject.AddComponent<AspectRatioFitter>();
                 fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
                 fitter.aspectRatio = 1.5f;
-                // IntroPopup wires the click in Awake; listeners added here would not be saved in the prefab.
+                // IntroPopup wires the click in Awake;
+                // Listeners added here would not be saved in the prefab.
                 Button advance = artwork.gameObject.AddComponent<Button>();
                 advance.transition = Selectable.Transition.None;
 
@@ -157,6 +170,49 @@ namespace OneBagJianghu.EditorTools.Building
             });
         }
 
+        private static void BuildStory(bool overwrite)
+        {
+            Build<StoryPopup>(new Vector2(1536f, 1024f), overwrite, (popup, panel) =>
+            {
+                MakeFullScreen(panel, Color.black);
+                panel.gameObject.AddComponent<RectMask2D>();
+
+                // Story art uses the same full-screen crop and click target as the intro.
+                Image artwork = UiBuild.Image(panel, "Artwork", UiBuild.Paper);
+                AspectRatioFitter fitter = artwork.gameObject.AddComponent<AspectRatioFitter>();
+                fitter.aspectMode = AspectRatioFitter.AspectMode.EnvelopeParent;
+                fitter.aspectRatio = 1.5f;
+                Button advance = artwork.gameObject.AddComponent<Button>();
+                advance.transition = Selectable.Transition.None;
+
+                // Title and body share the dialogue scroll;
+                // Runtime shows exactly one of them.
+                Image scroll = ScrollFrame(panel, "Story Scroll", new Vector2(1140f, 380f));
+                RectTransform scrollRect = scroll.rectTransform;
+                scrollRect.anchorMin = scrollRect.anchorMax = new Vector2(.5f, .015f);
+                scrollRect.pivot = new Vector2(.5f, 0f);
+                scrollRect.anchoredPosition = Vector2.zero;
+                Text title = AddText(scroll.transform, "Story Title", string.Empty, 44,
+                    new Vector2(.13f, .27f), new Vector2(.87f, .73f));
+                title.color = UiBuild.Ink;
+                title.raycastTarget = false;
+                UiFonts.Apply(title, UiFontRole.Display);
+                Text body = AddText(scroll.transform, "Story Text", string.Empty, 30,
+                    new Vector2(.13f, .27f), new Vector2(.87f, .73f));
+                body.color = UiBuild.Ink;
+                body.raycastTarget = false;
+                Text hint = AddText(scroll.transform, "Advance Hint", "Bấm để tiếp tục ▸", 18,
+                    new Vector2(.6f, .2f), new Vector2(.87f, .29f), TextAnchor.MiddleRight);
+                hint.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .6f);
+                hint.raycastTarget = false;
+                UiButton skip = AddButton(panel, "Skip Button", "Bỏ qua", false, new Vector2(.9f, .93f));
+                UiBuild.Set(popup, "artwork", artwork);
+                UiBuild.Set(popup, "titleText", title);
+                UiBuild.Set(popup, "bodyText", body);
+                UiBuild.Set(popup, "skipButton", skip);
+            });
+        }
+
         private static void BuildTutorial(bool overwrite)
         {
             Build<TutorialOverlay>(new Vector2(1536f, 1024f), overwrite, (popup, panel) =>
@@ -166,20 +222,29 @@ namespace OneBagJianghu.EditorTools.Building
                 UiBuild.SetBool(popup, "closeOnEscape", false);
                 MakeFullScreen(panel, Color.clear);
 
-                // Four shades frame a hole over the target; the hole itself has nothing that catches clicks.
+                // Four shades frame a hole over the target;
+                // The hole itself has nothing that catches clicks.
                 Color shade = new Color(0f, 0f, 0f, .6f);
                 Image top = UiBuild.Image(panel, "Top Shade", shade);
                 Image bottom = UiBuild.Image(panel, "Bottom Shade", shade);
                 Image left = UiBuild.Image(panel, "Left Shade", shade);
                 Image right = UiBuild.Image(panel, "Right Shade", shade);
-                // Hollow gold ring: four thin edges, the middle stays clear so the target shows through.
+                // The ring keeps the target visible through its transparent centre.
                 Image ring = UiBuild.Image(panel, "Highlight Ring", Color.clear);
                 ring.raycastTarget = false;
-                Color gold = new Color(1f, .82f, .35f, .95f);
-                AddRingEdge(ring.rectTransform, "Top", gold, new Vector2(0f, 1f), Vector2.one, new Vector2(0f, -4f));
-                AddRingEdge(ring.rectTransform, "Bottom", gold, Vector2.zero, new Vector2(1f, 0f), new Vector2(0f, 4f));
-                AddRingEdge(ring.rectTransform, "Left", gold, Vector2.zero, new Vector2(0f, 1f), new Vector2(4f, 0f));
-                AddRingEdge(ring.rectTransform, "Right", gold, new Vector2(1f, 0f), Vector2.one, new Vector2(-4f, 0f));
+                if (!UiBuild.ApplyUiSprite(ring, "Kit/tutorial_ring"))
+                {
+                    Color gold = new Color(1f, .82f, .35f, .95f);
+                    AddFallbackRing(ring.rectTransform, gold);
+                }
+
+                // The hand is placed beside the target at runtime and gently bobs using unscaled time.
+                Image pointer = UiBuild.Image(panel, "Tutorial Pointer", Color.white);
+                if (!UiBuild.ApplyUiSprite(pointer, "Kit/tutorial_pointer"))
+                    pointer.gameObject.SetActive(false);
+                pointer.preserveAspect = true;
+                pointer.raycastTarget = false;
+                pointer.rectTransform.sizeDelta = new Vector2(96f, 96f);
 
                 // Guide box: a scroll moved to the top or bottom edge at runtime, away from the hole.
                 Image guideScroll = ScrollFrame(panel, "Guide Box", new Vector2(1100f, 366f));
@@ -212,6 +277,7 @@ namespace OneBagJianghu.EditorTools.Building
                 UiBuild.Set(popup, "leftShade", left);
                 UiBuild.Set(popup, "rightShade", right);
                 UiBuild.Set(popup, "highlight", ring);
+                UiBuild.Set(popup, "pointer", pointer);
                 UiBuild.Set(popup, "guideBox", guide);
                 UiBuild.Set(popup, "guideLine", line);
                 UiBuild.Set(popup, "portrait", portrait);
@@ -219,7 +285,16 @@ namespace OneBagJianghu.EditorTools.Building
             });
         }
 
-        /// <summary>One edge of the highlight ring; <paramref name="inset"/> gives its thickness inward.</summary>
+        private static void AddFallbackRing(RectTransform ring, Color color)
+        {
+            AddRingEdge(ring, "Top", color, new Vector2(0f, 1f), Vector2.one, new Vector2(0f, -4f));
+            AddRingEdge(ring, "Bottom", color, Vector2.zero, new Vector2(1f, 0f), new Vector2(0f, 4f));
+            AddRingEdge(ring, "Left", color, Vector2.zero, new Vector2(0f, 1f), new Vector2(4f, 0f));
+            AddRingEdge(ring, "Right", color, new Vector2(1f, 0f), Vector2.one, new Vector2(-4f, 0f));
+        }
+
+        /// <summary>One edge of the highlight ring;
+        /// <paramref name="inset"/> gives its thickness inward.</summary>
         private static void AddRingEdge(RectTransform ring, string name, Color color, Vector2 min, Vector2 max,
             Vector2 inset)
         {
@@ -290,7 +365,9 @@ namespace OneBagJianghu.EditorTools.Building
                 Text description = AddText(panel, "Description", string.Empty, 25,
                     new Vector2(.63f, .18f), new Vector2(.96f, .73f), TextAnchor.UpperLeft);
                 UiFonts.Apply(description, UiFontRole.Body);
-                UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(.8f, .1f));
+                UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(.82f, .1f));
+                // Replay only appears when the dynamic story category is selected.
+                UiButton replay = AddButton(panel, "Replay Button", "Xem lại", false, new Vector2(.66f, .1f));
                 UiBuild.Set(popup, "categoryContent", categories);
                 UiBuild.Set(popup, "entryContent", entries);
                 UiBuild.Set(popup, "categoryRowTemplate", categoryTemplate);
@@ -298,6 +375,13 @@ namespace OneBagJianghu.EditorTools.Building
                 UiBuild.Set(popup, "selectedName", selectedName);
                 UiBuild.Set(popup, "selectedDescription", description);
                 UiBuild.Set(popup, "closeButton", close);
+                UiBuild.Set(popup, "replayButton", replay);
+                UiBuild.Set(popup, "normalRowSprite", UiBuild.LoadUiSprite("Kit/list_row"));
+                UiBuild.Set(popup, "selectedRowSprite", UiBuild.LoadUiSprite("Kit/list_row_selected"));
+                UiBuild.Set(popup, "itemsCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_items"));
+                UiBuild.Set(popup, "statusCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_status"));
+                UiBuild.Set(popup, "storyCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_story"));
+                UiBuild.Set(popup, "rulesCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_rules"));
             });
         }
 
@@ -310,6 +394,15 @@ namespace OneBagJianghu.EditorTools.Building
             AssetDatabase.SaveAssets();
         }
 
+        [MenuItem("One Bag Jianghu/Build/Story Popup (Overwrite)")]
+        public static void BuildStoryOverwrite()
+        {
+            CommonUiPrefabBuilder.Build(false);
+            UiBuild.EnsureFolder(Folder);
+            BuildStory(true);
+            AssetDatabase.SaveAssets();
+        }
+
         private static RectTransform AddEncyclopediaScrollColumn(
             Transform parent,
             string name,
@@ -317,6 +410,7 @@ namespace OneBagJianghu.EditorTools.Building
             float maxX)
         {
             Image viewport = UiBuild.Image(parent, name + " Viewport", new Color(1f, 1f, 1f, .08f));
+            UiBuild.ApplyUiSprite(viewport, "Kit/panel_inset", Image.Type.Sliced);
             UiBuild.Anchors(viewport.rectTransform, new Vector2(minX, .12f), new Vector2(maxX, .87f));
             viewport.gameObject.AddComponent<RectMask2D>();
             ScrollRect scroll = viewport.gameObject.AddComponent<ScrollRect>();
@@ -324,7 +418,8 @@ namespace OneBagJianghu.EditorTools.Building
             content.anchorMin = new Vector2(0f, 1f);
             content.anchorMax = Vector2.one;
             content.pivot = new Vector2(.5f, 1f);
-            // Exactly as wide as the viewport; a leftover default width pushed rows past the mask on the left.
+            // Exactly as wide as the viewport;
+            // A leftover default width pushed rows past the mask on the left.
             content.sizeDelta = Vector2.zero;
             content.anchoredPosition = Vector2.zero;
             VerticalLayoutGroup layout = content.gameObject.AddComponent<VerticalLayoutGroup>();
@@ -349,6 +444,7 @@ namespace OneBagJianghu.EditorTools.Building
         {
             // A light paper row with ink text: the dark ornate buttons made a long list heavy and unreadable.
             Image background = UiBuild.Image(parent, name, EncyclopediaPopup.NormalRowColor);
+            UiBuild.ApplyUiSprite(background, "Kit/list_row", Image.Type.Sliced);
             background.rectTransform.sizeDelta = new Vector2(0f, 48f);
             LayoutElement layout = background.gameObject.AddComponent<LayoutElement>();
             layout.preferredHeight = 48f;
@@ -385,6 +481,7 @@ namespace OneBagJianghu.EditorTools.Building
             UiFonts.Apply(header, UiFontRole.Title);
             Color dividerColor = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .35f);
             Image divider = UiBuild.Image(panel, name + " Divider", dividerColor);
+            UiBuild.ApplyUiSprite(divider, "Kit/divider_brush");
             float dividerY = 1f - (top + 24f) / 900f;
             UiBuild.Anchors(divider.rectTransform, new Vector2(.44f, dividerY - .0015f),
                 new Vector2(.94f, dividerY + .0015f));
@@ -441,8 +538,15 @@ namespace OneBagJianghu.EditorTools.Building
             float centerX, float centerY, float width, float height)
         {
             UiButton button = AddButton(panel, name, label, primary, new Vector2(centerX, 1f - centerY / 900f));
+            Text text = button.GetComponentInChildren<Text>();
+            // A "Đóng" button may have become the round corner close icon (label hidden): keep its size.
+            if (text == null)
+            {
+                return button;
+            }
+
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(width, height);
-            UiBuild.FitLabel(button.GetComponentInChildren<Text>(), UiBuild.LabelFitPreset.OrnateButton);
+            UiBuild.FitLabel(text, UiBuild.LabelFitPreset.OrnateButton);
             return button;
         }
 
@@ -474,56 +578,139 @@ namespace OneBagJianghu.EditorTools.Building
                 AddText(panel, "Title", "Bao Phục", 40, new Vector2(0.35f, 0.9f), new Vector2(0.65f, 0.98f));
                 RectTransform host = UiBuild.Rect(panel, "BagHost");
                 UiBuild.Anchors(host, new Vector2(0.03f, 0.1f), new Vector2(0.97f, 0.89f));
-                BagLoadoutPanel bagPanel = UiBuild.InstantiateLinked<BagLoadoutPanel>(BagPrefabBuilder.Folder + "/BagLoadoutPanel.prefab", host);
+                BagLoadoutPanel bagPanel = UiBuild.InstantiateLinked<BagLoadoutPanel>(BagPrefabBuilder.Folder +
+                    "/BagLoadoutPanel.prefab", host);
                 UiBuild.Stretch((RectTransform)bagPanel.transform);
                 UiBuild.SetBool(bagPanel, "showSectSelector", true);
                 TutorialTarget gridTarget = bagPanel.gameObject.AddComponent<TutorialTarget>();
                 gridTarget.Configure("bag_grid");
-                GameObject tooltipRoot = new GameObject("Item Tooltip", typeof(RectTransform), typeof(Canvas), typeof(ItemTooltip));
-                tooltipRoot.transform.SetParent(popup.transform, false); UiBuild.Stretch(tooltipRoot.GetComponent<RectTransform>());
-                Canvas tooltipCanvas = tooltipRoot.GetComponent<Canvas>(); tooltipCanvas.overrideSorting = true;
+                GameObject tooltipRoot = new GameObject("Item Tooltip", typeof(RectTransform), typeof(Canvas),
+                    typeof(ItemTooltip));
+                tooltipRoot.transform.SetParent(popup.transform, false);
+                UiBuild.Stretch(tooltipRoot.GetComponent<RectTransform>());
+                Canvas tooltipCanvas = tooltipRoot.GetComponent<Canvas>();
+                tooltipCanvas.overrideSorting = true;
                 Image tooltipPanel = UiBuild.Image(tooltipRoot.transform, "Paper", UiBuild.Paper);
                 UiBuild.ApplyUiSprite(tooltipPanel, "frame_tooltip", Image.Type.Sliced);
-                RectTransform tooltipRect = tooltipPanel.rectTransform; tooltipRect.anchorMin = tooltipRect.anchorMax = Vector2.zero;
-                tooltipRect.pivot = new Vector2(0f, 1f); tooltipRect.sizeDelta = new Vector2(440f, 420f);
-                RectTransform tooltipViewport = UiBuild.Image(tooltipPanel.transform, "Viewport", Color.clear).rectTransform; tooltipViewport.anchorMin=Vector2.zero;tooltipViewport.anchorMax=Vector2.one;tooltipViewport.offsetMin=new Vector2(ItemTooltip.HorizontalInset,ItemTooltip.BottomInset);tooltipViewport.offsetMax=new Vector2(-ItemTooltip.HorizontalInset,-ItemTooltip.TopInset);tooltipViewport.gameObject.AddComponent<RectMask2D>();
-                RectTransform tooltipContent = UiBuild.Rect(tooltipViewport, "Content"); tooltipContent.anchorMin = new Vector2(0f, 1f); tooltipContent.anchorMax = new Vector2(1f, 1f); tooltipContent.pivot = new Vector2(.5f, 1f); tooltipContent.sizeDelta = Vector2.zero;
-                VerticalLayoutGroup tooltipLayout = tooltipContent.gameObject.AddComponent<VerticalLayoutGroup>(); tooltipLayout.childControlHeight = true; tooltipLayout.childControlWidth = true; tooltipLayout.childForceExpandHeight = false; tooltipLayout.childForceExpandWidth = true;
-                ContentSizeFitter tooltipFitter = tooltipContent.gameObject.AddComponent<ContentSizeFitter>(); tooltipFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                ScrollRect tooltipScroll = tooltipPanel.gameObject.AddComponent<ScrollRect>(); tooltipScroll.viewport = tooltipViewport; tooltipScroll.content = tooltipContent; tooltipScroll.horizontal = false; tooltipScroll.vertical = true; tooltipScroll.movementType = ScrollRect.MovementType.Clamped;
+                RectTransform tooltipRect = tooltipPanel.rectTransform;
+                tooltipRect.anchorMin = tooltipRect.anchorMax = Vector2.zero;
+                tooltipRect.pivot = new Vector2(0f, 1f);
+                tooltipRect.sizeDelta = new Vector2(440f, 420f);
+                RectTransform tooltipViewport = UiBuild.Image(tooltipPanel.transform, "Viewport",
+                    Color.clear).rectTransform;
+                tooltipViewport.anchorMin = Vector2.zero;
+                tooltipViewport.anchorMax = Vector2.one;
+                tooltipViewport.offsetMin = new Vector2(ItemTooltip.HorizontalInset, ItemTooltip.BottomInset);
+                tooltipViewport.offsetMax = new Vector2(-ItemTooltip.HorizontalInset, -ItemTooltip.TopInset);
+                tooltipViewport.gameObject.AddComponent<RectMask2D>();
+                RectTransform tooltipContent = UiBuild.Rect(tooltipViewport, "Content");
+                tooltipContent.anchorMin = new Vector2(0f, 1f);
+                tooltipContent.anchorMax = new Vector2(1f, 1f);
+                tooltipContent.pivot = new Vector2(.5f, 1f);
+                tooltipContent.sizeDelta = Vector2.zero;
+                VerticalLayoutGroup tooltipLayout = tooltipContent.gameObject.AddComponent<VerticalLayoutGroup>();
+                tooltipLayout.childControlHeight = true;
+                tooltipLayout.childControlWidth = true;
+                tooltipLayout.childForceExpandHeight = false;
+                tooltipLayout.childForceExpandWidth = true;
+                ContentSizeFitter tooltipFitter = tooltipContent.gameObject.AddComponent<ContentSizeFitter>();
+                tooltipFitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+                ScrollRect tooltipScroll = tooltipPanel.gameObject.AddComponent<ScrollRect>();
+                tooltipScroll.viewport = tooltipViewport;
+                tooltipScroll.content = tooltipContent;
+                tooltipScroll.horizontal = false;
+                tooltipScroll.vertical = true;
+                tooltipScroll.movementType = ScrollRect.MovementType.Clamped;
                 Text tooltipText = UiBuild.Text(tooltipContent, "Description", string.Empty, 18, TextAnchor.UpperLeft);
-                tooltipText.color = UiBuild.Ink; tooltipText.supportRichText = true; tooltipText.horizontalOverflow = HorizontalWrapMode.Wrap; tooltipText.verticalOverflow = VerticalWrapMode.Overflow;
-                tooltipText.resizeTextForBestFit = false; tooltipText.resizeTextMinSize = 16; tooltipText.resizeTextMaxSize = 18;
-                tooltipText.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-                ItemTooltip tooltip = tooltipRoot.GetComponent<ItemTooltip>(); UiBuild.Set(tooltip, "overlayCanvas", tooltipCanvas); UiBuild.Set(tooltip, "panel", tooltipRect); UiBuild.Set(tooltip, "descriptionText", tooltipText);
+                tooltipText.color = UiBuild.Ink;
+                tooltipText.supportRichText = true;
+                tooltipText.horizontalOverflow = HorizontalWrapMode.Wrap;
+                tooltipText.verticalOverflow = VerticalWrapMode.Overflow;
+                tooltipText.resizeTextForBestFit = false;
+                tooltipText.resizeTextMinSize = 16;
+                tooltipText.resizeTextMaxSize = 18;
+                tooltipText.gameObject.AddComponent<ContentSizeFitter>().verticalFit =
+                    ContentSizeFitter.FitMode.PreferredSize;
+                ItemTooltip tooltip = tooltipRoot.GetComponent<ItemTooltip>();
+                UiBuild.Set(tooltip, "overlayCanvas", tooltipCanvas);
+                UiBuild.Set(tooltip, "panel", tooltipRect);
+                UiBuild.Set(tooltip, "descriptionText", tooltipText);
                 // No save button: closing saves the layout (BagPopup.SaveAndClose).
                 UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(0.5f, 0.045f));
                 TutorialTarget closeTarget = close.gameObject.AddComponent<TutorialTarget>();
                 closeTarget.Configure("bag_close");
-                UiBuild.Set(popup, "bagHost", host); UiBuild.Set(popup, "bagPanel", bagPanel); UiBuild.Set(popup, "itemTooltip", tooltip); UiBuild.Set(popup, "closeButton", close);
+                UiBuild.Set(popup, "bagHost", host);
+                UiBuild.Set(popup, "bagPanel", bagPanel);
+                UiBuild.Set(popup, "itemTooltip", tooltip);
+                UiBuild.Set(popup, "closeButton", close);
             });
         }
 
         private static void BuildResult(bool overwrite)
         {
-            Build<ResultPopup>(new Vector2(760f, 500f), overwrite, (popup, panel) =>
+            Build<ResultPopup>(new Vector2(780f, 600f), overwrite, (popup, panel) =>
             {
-                UiBuild.SetBool(popup, "closeOnEscape", false); UiBuild.SetBool(popup, "closeOnBackdrop", false);
-                Image seal = UiBuild.Image(panel, "Title Seal", Color.clear);
-                UiBuild.Anchors(seal.rectTransform, new Vector2(0.39f, 0.61f), new Vector2(0.61f, 0.95f));
-                seal.preserveAspect = true; seal.raycastTarget = false; UiBuild.ApplyUiSprite(seal, "seal_title");
-                Text result = AddText(panel, "Result Text", "Thắng", 58, new Vector2(0.05f, 0.64f), new Vector2(0.95f, 0.91f));
-                Text winner = AddText(panel, "Winner", "Người thắng", 26, new Vector2(0.08f, 0.52f), new Vector2(0.92f, 0.65f));
-                Text rewards = AddText(panel, "Rewards", "", 22, new Vector2(0.08f, 0.42f), new Vector2(0.92f, 0.54f));
-                Text reason = AddText(panel, "Disabled Reason", "", 18, new Vector2(0.08f, 0.34f), new Vector2(0.92f, 0.42f)); reason.color = UiBuild.Vermilion;
-                UiButton home = AddButton(panel, "Home Button", "Về trấn", false, new Vector2(0.5f, 0.3f));
-                UiButton again = AddButton(panel, "Play Again Button", "Đấu tiếp", true, new Vector2(0.5f, 0.13f));
-                UiBuild.Set(popup, "resultText", result); UiBuild.Set(popup, "winnerText", winner); UiBuild.Set(popup, "rewardText", rewards);
-                UiBuild.Set(popup, "homeButton", home); UiBuild.Set(popup, "playAgainButton", again); UiBuild.Set(popup, "disabledReason", reason);
+                UiBuild.SetBool(popup, "closeOnEscape", false);
+                UiBuild.SetBool(popup, "closeOnBackdrop", false);
+                // Top: victory/defeat art with the big title on it.
+                Image seal = UiBuild.Image(panel, "Result Backdrop", Color.clear);
+                UiBuild.Anchors(seal.rectTransform, new Vector2(.2f, .68f), new Vector2(.8f, .97f));
+                seal.preserveAspect = true;
+                seal.raycastTarget = false;
+                if (!UiBuild.ApplyUiSprite(seal, "Kit/result_victory"))
+                    UiBuild.ApplyUiSprite(seal, "seal_title");
+                Text result = AddText(panel, "Result Text", "Thắng", 56, new Vector2(0.05f, 0.74f), new
+                    Vector2(0.95f, 0.92f));
+                Text winner = AddText(panel, "Winner", "Người thắng", 22, new Vector2(0.08f, 0.62f), new
+                    Vector2(0.92f, 0.69f));
+                // Reward gallery: runtime fills square cards and the optional level-up line.
+                Image rewardSlot = UiBuild.Image(panel, "Reward Slot", new Color(UiBuild.Ink.r, UiBuild.Ink.g,
+                    UiBuild.Ink.b, .08f));
+                UiBuild.Anchors(rewardSlot.rectTransform, new Vector2(.1f, .29f), new Vector2(.9f, .64f));
+                UiBuild.ApplyUiSprite(rewardSlot, "Kit/panel_inset", Image.Type.Sliced);
+                Text rewards = AddText(rewardSlot.transform, "Rewards", "", 21, Vector2.zero, Vector2.one);
+                rewards.rectTransform.offsetMin = new Vector2(24f, 12f);
+                rewards.rectTransform.offsetMax = new Vector2(-24f, -12f);
+                rewards.color = UiBuild.Ink;
+                rewards.horizontalOverflow = HorizontalWrapMode.Wrap;
+                rewards.verticalOverflow = VerticalWrapMode.Truncate;
+                rewards.resizeTextForBestFit = true;
+                rewards.resizeTextMinSize = 14;
+                rewards.resizeTextMaxSize = 21;
+                // Structured reward canvas: cards are centered above the optional level-up line.
+                Image structuredImage = UiBuild.Image(rewardSlot.transform, "Structured Rewards", Color.clear);
+                UiBuild.Anchors(structuredImage.rectTransform, Vector2.zero, Vector2.one);
+                structuredImage.rectTransform.offsetMin = new Vector2(12f, 12f);
+                structuredImage.rectTransform.offsetMax = new Vector2(-12f, -12f);
+                Image cardsImage = UiBuild.Image(structuredImage.transform, "Reward Cards", Color.clear);
+                UiBuild.Anchors(cardsImage.rectTransform, new Vector2(0f, .2f), Vector2.one);
+                Text levelUp = AddText(structuredImage.transform,
+                    "Level Up",
+                    string.Empty,
+                    19,
+                    Vector2.zero,
+                    new Vector2(1f, .2f));
+                structuredImage.gameObject.SetActive(false);
+                Text reason = AddText(panel, "Disabled Reason", "", 18, new Vector2(0.08f, 0.25f), new
+                    Vector2(0.92f, 0.32f));
+                reason.color = UiBuild.Vermilion;
+                // Two actions side by side.
+                UiButton home = AddButton(panel, "Home Button", "Về trấn", false, new Vector2(0.29f, 0.13f));
+                UiButton again = AddButton(panel, "Play Again Button", "Đấu tiếp", true, new Vector2(0.71f, 0.13f));
+                UiBuild.Set(popup, "resultText", result);
+                UiBuild.Set(popup, "winnerText", winner);
+                UiBuild.Set(popup, "rewardText", rewards);
+                UiBuild.Set(popup, "resultBackdrop", seal);
+                UiBuild.Set(popup, "victorySprite", UiBuild.LoadUiSprite("Kit/result_victory"));
+                UiBuild.Set(popup, "defeatSprite", UiBuild.LoadUiSprite("Kit/result_defeat"));
+                UiBuild.Set(popup, "homeButton", home);
+                UiBuild.Set(popup, "playAgainButton", again);
+                UiBuild.Set(popup, "disabledReason", reason);
             });
         }
 
-        private static void Build<T>(Vector2 size, bool overwrite, System.Action<T, RectTransform> content) where T : BasePopup
+        private static void Build<T>(Vector2 size, bool overwrite, System.Action<T, RectTransform> content)
+            where T : BasePopup
         {
             string path = Folder + "/" + typeof(T).Name + ".prefab";
             if (!AssetGuard.ShouldBuild(path, overwrite)) return;
@@ -533,8 +720,10 @@ namespace OneBagJianghu.EditorTools.Building
             canvas.overrideSorting = true;
             root.AddComponent<GraphicRaycaster>();
             T popup = root.AddComponent<T>();
-            Image panelImage = UiBuild.InstantiateLinked<Image>(CommonUiPrefabBuilder.Folder + "/Panel_Paper.prefab", root.transform);
+            Image panelImage = UiBuild.InstantiateLinked<Image>(CommonUiPrefabBuilder.Folder +
+                "/Panel_Paper.prefab", root.transform);
             panelImage.name = "Panel";
+            UiBuild.ApplyUiSprite(panelImage, "Kit/popup_frame", Image.Type.Sliced);
             RectTransform panel = panelImage.rectTransform;
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0.5f, 0.5f);
             panel.sizeDelta = size;
@@ -545,16 +734,38 @@ namespace OneBagJianghu.EditorTools.Building
             Object.DestroyImmediate(root);
         }
 
-        private static Text AddText(Transform parent, string name, string value, int size, Vector2 min, Vector2 max, TextAnchor alignment = TextAnchor.MiddleCenter)
+        private static Text AddText(Transform parent, string name, string value, int size, Vector2 min, Vector2
+            max, TextAnchor alignment = TextAnchor.MiddleCenter)
         {
-            UiFontRole role = name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0 || name == "Result Text"
+            UiFontRole role = name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0 || name ==
+                "Result Text"
                 ? UiFontRole.Display : UiFontRole.Body;
             Text text = UiBuild.Text(parent, name, value, size, alignment, role);
             UiBuild.Anchors(text.rectTransform, min, max);
+            if (name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                Image ribbon = UiBuild.Image(parent, name + " Ribbon", Color.clear);
+                UiBuild.Anchors(ribbon.rectTransform, min, max);
+                ribbon.raycastTarget = false;
+                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Sliced))
+                {
+                    // The band fills the title rect; the tassel strip (bottom border) hangs below it.
+                    // Canvas units: border pixels x reference pixels per unit (100) / (sprite PPU x multiplier).
+                    float tassels = ribbon.sprite.border.y * 100f / (ribbon.sprite.pixelsPerUnit
+                        * ribbon.pixelsPerUnitMultiplier);
+                    ribbon.rectTransform.offsetMin = new Vector2(0f, -tassels);
+                    ribbon.transform.SetSiblingIndex(text.transform.GetSiblingIndex());
+                    text.transform.SetAsLastSibling();
+                    text.color = UiBuild.Paper;
+                }
+                else
+                    Object.DestroyImmediate(ribbon.gameObject);
+            }
             return text;
         }
 
-        private static UiButton AddButton(Transform parent, string name, string label, bool primary, Vector2 anchor)
+        private static UiButton AddButton(Transform parent, string name, string label, bool primary, Vector2 anchor,
+            bool allowCloseIcon = true)
         {
             string prefab = primary ? "Button_Primary.prefab" : "Button_Secondary.prefab";
             UiButton button = UiBuild.InstantiateLinked<UiButton>(CommonUiPrefabBuilder.Folder + "/" + prefab, parent);
@@ -564,6 +775,14 @@ namespace OneBagJianghu.EditorTools.Building
             rect.anchorMin = rect.anchorMax = anchor;
             rect.anchoredPosition = Vector2.zero;
             rect.sizeDelta = new Vector2(280f, 64f);
+            if (allowCloseIcon
+                && label == "Đóng"
+                && UiBuild.ApplyUiSprite(button.GetComponent<Image>(), "Kit/button_close"))
+            {
+                rect.sizeDelta = new Vector2(56f, 56f);
+                rect.anchorMin = rect.anchorMax = new Vector2(.965f, .965f);
+                button.GetComponentInChildren<Text>().gameObject.SetActive(false);
+            }
             return button;
         }
     }

@@ -166,15 +166,20 @@ namespace OneBagJianghu.UI.Popups
             shop.Ensure(profile);
             profile.Currencies.TryGetValue("bac", out long silver);
             profile.Currencies.TryGetValue("danh_vong", out long reputation);
-            TimeSpan left = shop.UntilFreeRefresh(profile);
             CurrencyArt.Apply(silverText, "icon_bac");
             CurrencyArt.Apply(reputationText, "icon_danh_vong");
             silverText.text = UiFormat.Number(silver);
             reputationText.text = UiFormat.Number(reputation);
-            headerText.text = $"Miễn phí sau {left.Hours:00}:{left.Minutes:00}:{left.Seconds:00}";
-            refreshButton.SetLabel(left == TimeSpan.Zero
+            bool free = shop.CanRefreshFree(profile);
+            TimeSpan left = config.FreeRefreshHours > 0
+                ? shop.UntilFreeRefresh(profile)
+                : TimeSpan.Zero;
+            headerText.text = config.FreeRefreshHours > 0 && !free
+                ? $"Miễn phí sau {left.Hours:00}:{left.Minutes:00}:{left.Seconds:00}"
+                : string.Empty;
+            refreshButton.SetLabel(free
                 ? "Làm mới miễn phí"
-                : $"Làm mới • {UiFormat.Number(shop.PaidRefreshCost(profile))} Bạc");
+                : $"Làm mới ({UiFormat.Number(shop.PaidRefreshCost(profile))} Bạc)");
             BuildSlots();
             UpdateExchange();
             if (reputationPanel.activeSelf)
@@ -353,7 +358,7 @@ namespace OneBagJianghu.UI.Popups
         private void RefreshShop()
         {
             itemTooltip.Hide();
-            bool free = shop.UntilFreeRefresh(GameBootstrap.Session.Profile) == TimeSpan.Zero;
+            bool free = shop.CanRefreshFree(GameBootstrap.Session.Profile);
             int cost = free ? 0 : shop.PaidRefreshCost(GameBootstrap.Session.Profile);
             Complete(shop.Refresh(GameBootstrap.Session.Profile,
                 free),

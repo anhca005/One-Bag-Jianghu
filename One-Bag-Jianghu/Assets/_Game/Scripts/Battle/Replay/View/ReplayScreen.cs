@@ -25,6 +25,12 @@ namespace OneBagJianghu.Battle.Replay.View
         [SerializeField]
         private Text playLabel;
         [SerializeField]
+        private Image playIcon;
+        [SerializeField]
+        private Sprite playSprite;
+        [SerializeField]
+        private Sprite pauseSprite;
+        [SerializeField]
         private Text timeLabel;
         [SerializeField]
         private Text stageLabel;
@@ -93,7 +99,10 @@ namespace OneBagJianghu.Battle.Replay.View
             speed1Button.onClick.AddListener(() => SetSpeed(1f));
             speed2Button.onClick.AddListener(() => SetSpeed(2f));
             speed4Button.onClick.AddListener(() => SetSpeed(4f));
-            restartButton.onClick.AddListener(Restart);
+            if (restartButton != null)
+            {
+                restartButton.onClick.AddListener(Restart);
+            }
             exitButton.onClick.AddListener(() => ExitRequested?.Invoke());
             logToggleButton.onClick.AddListener(ToggleLog);
             HighlightSpeed(speed1Button);
@@ -107,7 +116,7 @@ namespace OneBagJianghu.Battle.Replay.View
             }
 
             clock.Play();
-            playLabel.text = clock.IsPlaying ? "Tạm dừng" : "Phát";
+            UpdatePlayControl();
         }
 
         public void Initialize(BattleLog battleLog, ItemCatalog catalog, bool bossStage = false)
@@ -217,7 +226,7 @@ namespace OneBagJianghu.Battle.Replay.View
                 SetScrub(now);
                 if (!clock.IsPlaying)
                 {
-                    playLabel.text = "Phát";
+                    UpdatePlayControl();
                 }
             }
 
@@ -375,7 +384,6 @@ namespace OneBagJianghu.Battle.Replay.View
             ReplayUi.Button(controls, "x1", () => clock.SetSpeed(1f), 70f);
             ReplayUi.Button(controls, "x2", () => clock.SetSpeed(2f), 70f);
             ReplayUi.Button(controls, "x4", () => clock.SetSpeed(4f), 70f);
-            ReplayUi.Button(controls, "Chơi lại", Restart, 130f);
             Image sliderImage =
                 ReplayUi.Image(controls,
                 "Timeline",
@@ -448,7 +456,7 @@ namespace OneBagJianghu.Battle.Replay.View
         private void TogglePlay()
         {
             clock.Toggle();
-            playLabel.text = clock.IsPlaying ? "Tạm dừng" : "Phát";
+            UpdatePlayControl();
         }
 
         private void SetSpeed(float speed)
@@ -481,7 +489,18 @@ namespace OneBagJianghu.Battle.Replay.View
             ClearPresentation();
             ApplyState(0, true);
             clock.Play();
-            playLabel.text = "Tạm dừng";
+            UpdatePlayControl();
+        }
+
+        private void UpdatePlayControl()
+        {
+            bool isPlaying = clock != null && clock.IsPlaying;
+            playLabel.text = isPlaying ? "Tạm dừng" : "Phát";
+            if (playIcon == null)
+                return;
+            Sprite sprite = isPlaying ? pauseSprite : playSprite;
+            if (sprite != null)
+                playIcon.sprite = sprite;
         }
 
         private void OnScrub(float value)
@@ -553,16 +572,22 @@ namespace OneBagJianghu.Battle.Replay.View
         {
             if (battleEvent.Type == BattleEventType.Trigger &&
                 battleEvent.Item.HasValue &&
+                IsFiringTrigger(battleEvent.Kind) &&
                 itemViews.TryGetValue(battleEvent.Item.Value,
                 out ReplayItemView fired))
             {
-                fired.Flash(battleEvent.Kind == "ULTIMATE");
+                fired.Flash(battleEvent.Kind == "ULTIMATE", clock.TimeMs);
             }
 
             PresentVfx(battleEvent);
             ApplyItemStatus(battleEvent, clock.TimeMs);
             if (battleEvent.Type == BattleEventType.Damage || battleEvent.Type == BattleEventType.Burst)
             {
+                if (battleEvent.Type == BattleEventType.Damage)
+                {
+                    fighters[battleEvent.Side].Shake(clock.TimeMs);
+                }
+
                 Color color =
                     battleEvent.Type == BattleEventType.Burst ?
                     ReplayStyle.Status(battleEvent.Kind) :
@@ -599,6 +624,11 @@ namespace OneBagJianghu.Battle.Replay.View
             }
 
             AddLog(EventTextFormatter.Format(battleEvent, ItemName));
+        }
+
+        private static bool IsFiringTrigger(string kind)
+        {
+            return kind == "BASIC" || kind == "ULTIMATE" || kind == "ACTIVE";
         }
 
         private void PresentVfx(BattleEvent battleEvent)
@@ -647,7 +677,7 @@ namespace OneBagJianghu.Battle.Replay.View
             int until = battleEvent.TimeMs + battleEvent.Value.Value;
             if (until > now && itemViews.TryGetValue(battleEvent.Item.Value, out ReplayItemView view))
             {
-                view.SetStatus(EventTextFormatter.StatusName(battleEvent.Kind), until);
+                view.SetStatus(battleEvent.Kind, until);
             }
         }
 
@@ -667,7 +697,8 @@ namespace OneBagJianghu.Battle.Replay.View
             Text row = Instantiate(logRowPrefab, expandedLogContent);
             row.text = line;
             logRows.Enqueue(row);
-            if (collapsedLines.Count == 3)
+            // The collapsed plaque fits two lines; the expanded log keeps the history.
+            if (collapsedLines.Count == 2)
             {
                 collapsedLines.Dequeue();
             }
@@ -694,6 +725,12 @@ namespace OneBagJianghu.Battle.Replay.View
             eventLog.text = "";
             banner.gameObject.SetActive(false);
             vfxLayer.Clear();
+            fighters[0].ClearFeedback();
+            fighters[1].ClearFeedback();
+            foreach (ReplayItemView view in itemViews.Values)
+            {
+                view.ClearFeedback();
+            }
             for (int i = 0; i < floating.Count; i++)
             {
                 Destroy(floating[i].Text.gameObject);

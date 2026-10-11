@@ -132,6 +132,7 @@ namespace OneBagJianghu.EditorTools.Building
                 TextAnchor.MiddleLeft, UiFontRole.Title);
             Rect(power.rectTransform, 430f, 37f, 230f, 28f);
             power.color = UiBuild.Vermilion;
+            UiBuild.AddLeadingIcon(power.transform, "icon_power", 24f);
             UiBuild.FitLabel(power, UiBuild.LabelFitPreset.None);
             Image levelSeal = UiBuild.Image(header.transform, "Level Badge", Color.clear);
             Rect(levelSeal.rectTransform, 130f, 82f, 40f, 40f);
@@ -151,6 +152,7 @@ namespace OneBagJianghu.EditorTools.Building
             Slider exp = BuildHomeExpBar(header.transform);
             Rect(exp.GetComponent<RectTransform>(), 184f, 72f, 300f, 41f);
             Text expText = UiBuild.Text(exp.transform, "ExpText", "Cấp 1 · EXP 0/100", 15);
+            UiBuild.AddLeadingIcon(exp.transform, "icon_exp", 20f);
             expText.color = UiBuild.Ink;
             UiBuild.Stretch(expText.rectTransform);
             UiBuild.FitLabel(expText, UiBuild.LabelFitPreset.None, 10);
@@ -181,6 +183,7 @@ namespace OneBagJianghu.EditorTools.Building
             HomeHotspot sect = Hotspot(hotspots, "Hotspot_Sect", "Môn Phái", "Đạt cấp 10 mở khóa gia nhập Môn Phái", 250, 90, 240, 180, new Vector2(0f, 1f), true);
             HomeHotspot encyclopedia = Hotspot(hotspots, "Hotspot_Encyclopedia", "Bách Khoa",
                 "Tra cứu thuật ngữ giang hồ", 80, 870, 220, 130, Vector2.zero, false);
+            UiBuild.AddLeadingIcon(encyclopedia.transform, "icon_info", 30f);
             AddTarget(pve.gameObject, "home_pve");
             AddTarget(bag.gameObject, "home_bag");
             AddTarget(storage.gameObject, "home_storage");

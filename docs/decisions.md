@@ -4,6 +4,56 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Quyết định mới thê
 
 ---
 
+### #65 · 2026-10-11 · Nhiệm vụ cốt truyện (Hành Tẩu Lục)
+- Mỗi Hồi có một chuỗi nhiệm vụ nối tiếp. Nhiệm vụ chính đi theo cốt truyện; việc phụ dạy lối chơi.
+- Mỗi lúc chỉ có một nhiệm vụ đang làm, nhận thưởng bằng tay.
+- Thưởng gồm Bạc, EXP và nguyên liệu.
+- Ở Home có khung theo dõi, kèm popup sổ Hành Tẩu Lục.
+
+Chi tiết ở [design/quests.md](design/quests.md).
+**Lý do:** người chơi cần biết bước tiếp theo, và cốt truyện cần sợi dây nối các ải.
+
+### #64 · 2026-10-11 · Hợp Thành được cả món đang trang bị
+Không cần gỡ món khỏi Bao Phục trước khi Hợp Thành. Các luật khác giữ nguyên: cùng món, cùng phẩm, cả hai từ 3 Trọng, chưa phải Chí Tôn.
+
+Món mới nằm ở:
+- ô của bản được chọn, nếu bản đó đang trang bị;
+- ngược lại, ô của bản kia, nếu bản kia đang trang bị;
+- ngược lại, Tàng Bảo Các.
+
+Bản bị dùng mất được gỡ khỏi chỗ nó đang nằm.
+**Lý do:** người chơi phải gỡ hai món ra, hợp thành, rồi xếp lại, quá vòng vèo.
+
+### #63 · 2026-10-10 · Bỏ hệ thống sao ở PvE
+Ải chỉ còn hai trạng thái: đã qua hoặc chưa qua. Hệ thống chấm 1–3 sao theo Khí Huyết còn lại bị bỏ hẳn:
+- popup Thắng không còn sao;
+- bản đồ không còn sao;
+- không còn tiếng chấm sao.
+
+Trường `bestStars` trong save được giữ lại nhưng không dùng, để save cũ vẫn đọc được.
+**Lý do:** người dùng thấy sao không cần thiết. Phần thưởng trong popup Thắng giờ hiển thị bằng hình.
+
+### #62 · 2026-10-10 · Quái không dùng đồ riêng; Hồi 1 dễ hơn
+- **Bỏ đồ riêng của quái khỏi đồ quái:** 14 món ở 11 ải được thay bằng đồ người chơi mua được, cùng kích thước: Kịch Độc Chu Nha → Thất Tinh Tiêu, Heo Rừng Bắp Giáp → Ô Thiết Giáp, U Minh Quỷ Trảo → Tử Mẫu Song Đao, Bạch Hổ Cuồng Móng → Tử Kim Trảo (ải 4-3 dời một món 1 ô cho vừa). Các món này vẫn nằm trong `items.json` và trong danh sách `monsterItems`, nên shop không bán. Hồi 2–5 chưa chạy thử lại sau khi đổi.
+- **Hồi 1 nhẹ hơn**, đo bằng túi gọn (Thanh Phong Kiếm + Ô Tàm Y + Thái Thanh Tâm Kinh, thêm Kim Sang Dược từ ải 5; Trọng 1 ở ải 1–4, Trọng 2 ở ải 5–7, Trọng 3 ở ải 8–10):
+  - ải 3: quái xuống cấp 2;
+  - ải 5 (tinh anh): Liệt Diễm Đao Trọng 2 thay Tử Mẫu Song Đao;
+  - ải 8: còn 4 món Trọng 2 phẩm thường;
+  - ải 10 (boss): còn 4 món.
+  - Tỉ lệ thắng của túi gọn: ải thường 86–100%, tinh anh 83%, boss 72%. `recommendedPower` của các ải đã đổi được tính lại theo Lực Chiến v4.
+
+### #61 · 2026-10-10 · Lực Chiến theo số ô; đồ quái xếp theo đường Lực Chiến *[thay #55 phần công thức]*
+- **Lực Chiến v4 (công thức cộng):** mỗi ô đồ = 10 điểm × hệ số Trọng (1,0→1,4) × hệ số phẩm (1,0→1,6), đúng các hệ số engine dùng; điểm cấp = 30 + 3 mỗi cấp. Món 4 ô đúng bằng 4 lần món 1 ô. Bộ khởi đầu cấp 1 vẫn = 100. `power.json` `version: 1`, C# đã hỗ trợ sẵn.
+- **Lực Chiến là con số thiết kế**, không còn đo bằng mô phỏng. Chỉ số thật của vật phẩm chưa đổi: người dùng tự chơi thử rồi quyết.
+- **Đường Lực Chiến quái** (`tools/balance/pve_lc_curve.py`):
+  - ải thường bám Lực Chiến túi người chơi tiêu biểu ở ải đó (Hồi 1: 85%, từ Hồi 2: 100%), không thấp hơn ải thường trước;
+  - tinh anh = ải thường trước +25% (Hồi 1 +15%), boss = ải thường trước +55% (Hồi 1 +30%); đỉnh không cộng dồn, ải sau quay về bám ải thường trước đỉnh.
+- **Đồ quái:** giữ vũ khí theo chủ đề; giáp và đồ hỗ trợ theo phe (dã thú, độc, lửa, băng, Kim Cang, Thái Thanh, Thiết Phủ, U Minh); trần Trọng và phẩm theo hồi; `recommendedPower` = Lực Chiến mục tiêu.
+- **Túi người chơi tiêu biểu** (ít nhất 2 vũ khí, 1 giáp, tối đa 3 Công Pháp và 3 Đan Dược) là mốc, thay túi "tham" cũ.
+- **Lý do:** túi "1 vũ khí + nhồi Công Pháp 1 ô" thắng túi tiêu biểu 79–97,5% ([báo cáo](reviews/2026-10-10-gemini-pve-kits-round5.md)); hai lần agent tự chỉnh chỉ số đều sai hướng. Người dùng chọn đặt Lực Chiến theo ô và tự kiểm bằng chơi thử.
+- **Đã lùi phần đồ quái (cùng ngày):** quái dựng theo đường Lực Chiến v4 không thắng được (túi tiêu biểu thắng 0% kể cả khi Lực Chiến bằng nhau), vì Lực Chiến theo ô chưa khớp sức mạnh thật. Đồ quái trở về bản trước (Hồi 1 vòng 4, Hồi 2–5 vòng 3); giữ Lực Chiến v4 cho phần hiển thị và `recommendedPower` = Lực Chiến v4 của quái. Muốn dựng quái theo đường Lực Chiến thì phải chỉnh chỉ số vật phẩm cho đúng theo ô trước.
+- **Còn mở:** công cụ đo `tools/balance/item_value.py` cho thấy Công Pháp 1 ô vẫn mạnh 1,1–2,4 lần mỗi ô so với chuẩn ([bảng](../tools/balance/out/item-value/baseline.csv)); nếu chơi thử thấy lệch thì chỉnh chỉ số sau.
+
 ### #60 · 2026-10-05 · Nhạc nền và tiếng giao diện
 - **Nhạc nền:** bộ Richard Guo (được dùng thương mại, bắt buộc ghi "Music by Richard Guo"). Mỗi màn một bài:
   - Home: 糖葫芦.

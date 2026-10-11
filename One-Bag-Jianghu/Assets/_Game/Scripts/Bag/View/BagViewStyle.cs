@@ -28,8 +28,8 @@ namespace OneBagJianghu.Bag.View
 
         public static Color Fill(string rarity)
         {
-            Color color = Rarity(rarity);
-            color.a = 0.35f;
+            Color color = Color.Lerp(Paper, Rarity(rarity), .18f);
+            color.a = 1f;
             return color;
         }
 

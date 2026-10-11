@@ -65,6 +65,7 @@ namespace OneBagJianghu.UI.Home
         private StaminaConfig staminaConfig;
         private StaminaService staminaService;
         private float nextStaminaRefresh;
+        private QuestTracker questTracker;
         private void Awake()
         {
             pveHotspot.OnClick.AddListener(StartPve);
@@ -95,6 +96,7 @@ namespace OneBagJianghu.UI.Home
             RefreshProgress();
             RefreshPower();
             RefreshBattleAvailability();
+            CreateQuestTracker();
             SceneFlow.NotifyReady();
             if (!string.IsNullOrEmpty(session.PendingPveMapStageId))
             {
@@ -109,9 +111,13 @@ namespace OneBagJianghu.UI.Home
             {
                 session.Profile.SectPromptShown = true;
                 session.SaveProfile();
-                PopupManager.Show<MessagePopup>(new MessagePopupData("Mở khóa Môn Phái",
-                    "Bạn đã đạt cấp 10. Hãy đến điểm Môn Phái trên trang chủ để gia nhập.",
-                    "Đã hiểu"));
+                // The sect tutorial says the same thing and points at the hotspot; only show this without it.
+                bool tutorialWillGuide = session.Profile.CompletedTutorials == null
+                    || !session.Profile.CompletedTutorials.Contains("sect");
+                if (!tutorialWillGuide)
+                    PopupManager.Show<MessagePopup>(new MessagePopupData("Mở khóa Môn Phái",
+                        "Bạn đã đạt cấp 10. Hãy đến điểm Môn Phái trên trang chủ để gia nhập.",
+                        "Đã hiểu"));
             }
         }
 
@@ -238,10 +244,6 @@ namespace OneBagJianghu.UI.Home
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Môn Phái",
                     "Đạt cấp 10 để gia nhập môn phái",
                     "Đóng"));
-            else if (!string.IsNullOrWhiteSpace(profile.SectId))
-                PopupManager.Show<MessagePopup>(new MessagePopupData("Môn Phái",
-                    "Bạn đã gia nhập môn phái. Lựa chọn hiện tại là vĩnh viễn.",
-                    "Đóng"));
             else
                 PopupManager.Show<SectSelectPopup>();
         }
@@ -251,13 +253,13 @@ namespace OneBagJianghu.UI.Home
         // The settings icon is a plain Button without UiSfx.
         private static void PlayClick() => AudioManager.Instance?.Play("ui_click");
         private static void OpenEncyclopedia() => PopupManager.Show<EncyclopediaPopup>();
-        private void OpenStorage()
+        public void OpenStorage()
         {
             WatchCurrencyPopup(PopupManager.Show<StoragePopup>());
             OnboardingRuntime.Publish("storage_opened");
         }
 
-        private void OpenShop()
+        public void OpenShop()
         {
             WatchCurrencyPopup(PopupManager.Show<ShopPopup>());
             OnboardingRuntime.Publish("shop_opened");
@@ -269,7 +271,7 @@ namespace OneBagJianghu.UI.Home
                 OpenSettings();
         }
 
-        private void OpenBag()
+        public void OpenBag()
         {
             BagPopup popup = PopupManager.Show<BagPopup>();
             OnboardingRuntime.Publish("bag_opened");
@@ -285,6 +287,7 @@ namespace OneBagJianghu.UI.Home
                 return; // Home was unloaded while the bag was still open.
             RefreshBattleAvailability();
             RefreshPower();
+            questTracker?.Refresh();
         }
 
         private void WatchCurrencyPopup(BasePopup popup)
@@ -300,6 +303,32 @@ namespace OneBagJianghu.UI.Home
                 return;
             RefreshCurrencies();
             RefreshPower();
+            questTracker?.Refresh();
+        }
+
+        public void RefreshQuestAndResources()
+        {
+            RefreshCurrencies();
+            RefreshProgress();
+            questTracker?.Refresh();
+        }
+
+        private void CreateQuestTracker()
+        {
+            QuestTracker prefab = Resources.Load<QuestTracker>("UI/Home/QuestTracker");
+            // HomeController sits on a root object outside any Canvas; the HUD's canvas is found from its texts.
+            Canvas canvas = heroName != null && heroName.canvas != null ? heroName.canvas.rootCanvas : null;
+            if (prefab == null || canvas == null)
+            {
+                Debug.LogWarning("[Quest] Tracker not created: prefab="
+                    + (prefab != null)
+                    + ", canvas="
+                    + (canvas != null));
+                return;
+            }
+
+            questTracker = Instantiate(prefab, canvas.transform, false);
+            questTracker.Initialize(this);
         }
 
         private void RefreshCurrencies()
@@ -311,8 +340,10 @@ namespace OneBagJianghu.UI.Home
             session.Profile.Currencies.TryGetValue("nguyen_bao", out long premium);
             session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
             int staminaMax = staminaConfig != null ? staminaConfig.Max : StaminaConfig.Load().Max;
-            SetCurrency(staminaText, "icon_stamina",
-                UiFormat.Number(session.Profile.Pve.Stamina) + "/" + UiFormat.Number(staminaMax));
+            string staminaValue = staminaService != null
+                ? BuildStaminaLabel(session.Profile.Pve, DateTimeOffset.UtcNow)
+                : UiFormat.Number(session.Profile.Pve.Stamina) + "/" + UiFormat.Number(staminaMax);
+            SetCurrency(staminaText, "icon_stamina", staminaValue);
             SetCurrency(silverText, "icon_bac", UiFormat.Number(silver));
             SetCurrency(premiumText, "icon_nguyen_bao", UiFormat.Number(premium));
             SetCurrency(reputationText, "icon_danh_vong", UiFormat.Number(reputation));
@@ -324,9 +355,9 @@ namespace OneBagJianghu.UI.Home
             if (session?.Profile == null || staminaService == null)
                 return;
             int previous = session.Profile.Pve.Stamina;
-            int current = staminaService.Refresh(session.Profile.Pve, DateTimeOffset.UtcNow);
-            SetCurrency(staminaText, "icon_stamina",
-                UiFormat.Number(current) + "/" + UiFormat.Number(staminaConfig.Max));
+            DateTimeOffset now = DateTimeOffset.UtcNow;
+            int current = staminaService.Refresh(session.Profile.Pve, now);
+            SetCurrency(staminaText, "icon_stamina", BuildStaminaLabel(session.Profile.Pve, now));
             if (current != previous)
                 session.SaveProfile();
         }
@@ -345,6 +376,15 @@ namespace OneBagJianghu.UI.Home
             string next = StaminaService.FormatDuration(staminaService.SecondsToNext(state, now));
             string full = StaminaService.FormatDuration(staminaService.SecondsToFull(state, now));
             return header + "\n" + rate + "\n+1 sau " + next + "\nĐầy sau " + full;
+        }
+
+        private string BuildStaminaLabel(PveProfileState state, DateTimeOffset now)
+        {
+            string value = UiFormat.Number(state.Stamina) + "/" + UiFormat.Number(staminaConfig.Max);
+            if (state.Stamina >= staminaConfig.Max)
+                return value;
+            string next = StaminaService.FormatDuration(staminaService.SecondsToNext(state, now));
+            return value + "  " + next;
         }
 
         private static void SetCurrency(Text label, string iconKey, string value)

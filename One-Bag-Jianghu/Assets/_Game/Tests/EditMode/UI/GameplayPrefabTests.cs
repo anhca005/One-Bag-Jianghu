@@ -92,10 +92,23 @@ namespace OneBagJianghu.Tests.UI
         {
             GameObject prefab =
                 AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Prefabs/UI/Replay/ReplayScreen.prefab");
-            Assert.That(prefab.transform.Find("TopBar/Clock"), Is.Not.Null);
+            Assert.That(prefab.transform.Find("TopBar/ClockPlate/Clock"), Is.Not.Null);
+            Assert.That(prefab.transform.Find("TopBar/ClockPlate/StageOpponentName"), Is.Not.Null);
             Assert.That(prefab.transform.Find("TopBar/ExitButton"), Is.Not.Null);
+            Assert.That(prefab.transform.Find("TopBar/Vs Emblem"), Is.Not.Null);
             Assert.That(prefab.transform.Find("BottomBar/SpeedButtons"), Is.Not.Null);
             Assert.That(prefab.transform.Find("BottomBar/LogToggle"), Is.Not.Null);
+            Assert.That(prefab.transform.Find("BottomBar/SpeedButtons/Restart"), Is.Null);
+            Assert.That(prefab.transform.Find("ExpandedBattleLog/Viewport/Content"), Is.Not.Null);
+            Assert.That(prefab.transform.Find("BottomBar/LogToggle").GetComponent<Image>().sprite.name,
+                Is.EqualTo("log_panel"));
+            Assert.That(prefab.transform.Find("ExpandedBattleLog").GetComponent<Image>().sprite.name,
+                Is.EqualTo("log_panel"));
+            Assert.That(prefab.transform.Find("TopBar/ExitButton").GetComponent<Image>().sprite.name,
+                Is.EqualTo("button_exit"));
+            Assert.That(prefab.transform.Find("TopBar/ClockPlate/Clock").GetComponent<Outline>(), Is.Not.Null);
+            Assert.That(prefab.transform.Find("TopBar/ClockPlate/StageOpponentName").GetComponent<Outline>(),
+                Is.Not.Null);
             foreach (string side in new[]
             {
                 "Player",
@@ -118,10 +131,35 @@ namespace OneBagJianghu.Tests.UI
                     Is.Not.Null,
                     side +
                     " portrait sprite");
-                Assert.That(avatar.Find("HpBar"), Is.Not.Null);
-                Assert.That(avatar.Find("ShieldBar"), Is.Not.Null);
-                Assert.That(avatar.Find("QiBar"), Is.Not.Null);
-                Assert.That(avatar.Find("StatusChips"), Is.Not.Null);
+                RectTransform backing = (RectTransform)avatar.Find("Portrait/Backing");
+                Assert.That(backing.offsetMin.x, Is.GreaterThanOrEqualTo(20f));
+                Assert.That(avatar.Find("TitleStrip").GetComponent<Image>().sprite.name, Is.EqualTo("name_plate"));
+                RectTransform avatarRect = (RectTransform)avatar;
+                RectTransform bagRect = (RectTransform)bag;
+                bool separated = side == "Player" ?
+                    bagRect.anchoredPosition.x > avatarRect.anchoredPosition.x + avatarRect.sizeDelta.x :
+                    avatarRect.anchoredPosition.x > bagRect.anchoredPosition.x + bagRect.sizeDelta.x;
+                Assert.That(separated, Is.True, side + " avatar/bag gap");
+                string hudName = side == "Player" ? "PlayerHud" : "EnemyHud";
+                Transform hud = prefab.transform.Find("TopBar/" + hudName);
+                Assert.That(hud, Is.Not.Null);
+                Assert.That(hud.Find("HpBar"), Is.Not.Null);
+                Assert.That(hud.Find("ShieldBar"), Is.Not.Null);
+                Assert.That(hud.Find("QiBar"), Is.Not.Null);
+                Assert.That(hud.Find("StatusChips"), Is.Not.Null);
+                Assert.That(hud.Find("StatusChips/Burn/Icon"), Is.Not.Null);
+                Assert.That(hud.Find("StatusChips/Burn/CountBadge/Count"), Is.Not.Null);
+                Assert.That(hud.GetComponent<Image>().sprite.name, Is.EqualTo("hud_panel"));
+                Assert.That(hud.Find("HpBar").GetComponent<Image>().sprite.name,
+                    Is.EqualTo("gauge_frame_large"));
+                Assert.That(hud.Find("ShieldBar").GetComponent<Image>().sprite.name,
+                    Is.EqualTo("gauge_frame_small"));
+                Assert.That(avatar.Find("HpBar"), Is.Null);
+                Image hpFill = hud.Find("HpBar/Fill").GetComponent<Image>();
+                int expectedOrigin = side == "Player" ?
+                    (int)Image.OriginHorizontal.Left :
+                    (int)Image.OriginHorizontal.Right;
+                Assert.That(hpFill.fillOrigin, Is.EqualTo(expectedOrigin));
                 FighterPanelView fighter = avatar.GetComponent<FighterPanelView>();
                 Assert.That(fighter.VfxTarget,
                     Is.SameAs(avatar.Find("Portrait/HeroArt").GetComponent<RectTransform>()));
