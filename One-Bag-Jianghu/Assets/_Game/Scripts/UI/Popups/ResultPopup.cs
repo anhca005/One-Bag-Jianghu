@@ -144,6 +144,8 @@ namespace OneBagJianghu.UI.Popups
     public sealed class ResultPopup : BasePopup<ResultPopupData>
     {
         private const int MaximumColumns = 6;
+        // Cell height / width: a square frame on top, 30% extra for the amount line.
+        private const float CardHeightRatio = 1.3f;
         [SerializeField]
         private Text resultText;
         [SerializeField]
@@ -251,11 +253,12 @@ namespace OneBagJianghu.UI.Popups
             const float spacing = 6f;
             float widthSize = (availableWidth - spacing * (columns - 1)) / columns;
             float heightSize = (availableHeight - spacing * (rows - 1)) / rows;
-            float cardSize = Mathf.Clamp(Mathf.Min(84f, widthSize, heightSize), 48f, 84f);
+            // Each cell is the square frame plus the amount line underneath it.
+            float cardSize = Mathf.Clamp(Mathf.Min(84f, widthSize, heightSize / CardHeightRatio), 44f, 84f);
             GridLayoutGroup layout = cardsRoot.GetComponent<GridLayoutGroup>();
             if (layout == null)
                 layout = cardsRoot.gameObject.AddComponent<GridLayoutGroup>();
-            layout.cellSize = new Vector2(cardSize, cardSize);
+            layout.cellSize = new Vector2(cardSize, cardSize * CardHeightRatio);
             layout.spacing = new Vector2(spacing, spacing);
             layout.childAlignment = TextAnchor.MiddleCenter;
             layout.constraint = GridLayoutGroup.Constraint.FixedColumnCount;
@@ -266,16 +269,22 @@ namespace OneBagJianghu.UI.Popups
 
         private void CreateCard(ResultRewardEntry entry)
         {
-            Image card = UiKit.Panel(cardsRoot, "Reward Card", new Color(1f, 1f, 1f, .92f));
-            ApplySprite(card, "reward_slot");
-            card.type = Image.Type.Sliced;
-            Image icon = UiKit.Panel(card.transform, "Icon", Color.white);
-            SetAnchors(icon.rectTransform, new Vector2(.16f, .3f), new Vector2(.84f, .9f));
+            // Transparent cell that receives the hover; the frame and amount sit inside it.
+            Image card = UiKit.Panel(cardsRoot, "Reward Card", Color.clear);
+            float frameBottom = 1f - 1f / CardHeightRatio;
+            Image frame = UiKit.Panel(card.transform, "Frame", Color.white);
+            SetAnchors(frame.rectTransform, new Vector2(0f, frameBottom), Vector2.one);
+            ApplySprite(frame, "reward_slot");
+            // The frame art is almost square, like the cell; Simple keeps its ornate corners intact.
+            frame.type = Image.Type.Simple;
+            frame.raycastTarget = false;
+            Image icon = UiKit.Panel(frame.transform, "Icon", Color.white);
+            SetAnchors(icon.rectTransform, new Vector2(.15f, .15f), new Vector2(.85f, .85f));
             ApplySprite(icon, entry.IconKey);
             icon.preserveAspect = true;
             icon.raycastTarget = false;
             Text amount = UiKit.Text(card.transform, "Amount", entry.AmountText, 16);
-            SetAnchors(amount.rectTransform, new Vector2(.04f, .02f), new Vector2(.96f, .31f));
+            SetAnchors(amount.rectTransform, Vector2.zero, new Vector2(1f, frameBottom));
             amount.color = UiKit.Ink;
             amount.resizeTextForBestFit = true;
             amount.resizeTextMinSize = 11;

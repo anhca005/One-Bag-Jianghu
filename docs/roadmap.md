@@ -65,7 +65,7 @@ Trạng thái: ⬜ chưa làm · 🟨 đang làm · ✅ xong
 - [x] Áp dụng quyết định #21: vào trận không chuẩn bị, cảnh báo túi ở Home, bỏ chọn phái cho người mới
 - [x] Home bố trí quanh tranh nền (Gemini thiết kế, Codex dựng; còn chờ hình từ ChatGPT)
 - [ ] Hệ thống cấp Hiệp Khách (mở Môn Phái ở cấp 10) — Gemini đang thiết kế (`tools/gemini/task-hero-level.md`)
-- [~] Hình nền/khung UI: bộ UI kit nhóm A–I do Codex vẽ đã gắn vào game (màn trận, popup, Thương Hội thẻ ngang, Môn Phái, Hành Tẩu Lục) — 2026-10-10/11; còn rà màn Home
+- [~] Hình nền/khung UI: bộ UI kit nhóm A–I do Codex vẽ đã gắn vào game (màn trận, popup, Thương Hội thẻ ngang, Môn Phái, Hành Tẩu Lục) — 2026-10-10/11; ảnh UI chuyển hết sang Simple theo #66 (2026-10-12)
 - [x] Nhiệm vụ cốt truyện Hành Tẩu Lục (decisions #65, [design/quests.md](design/quests.md)): 45 nhiệm vụ Hồi 1–5, khung theo dõi Home có luồng sáng, sổ nhiệm vụ, hướng dẫn trong tutorial — 2026-10-11; chờ người dùng chơi thử
 - [x] Bỏ hệ thống sao PvE (#63); Hợp Thành được món đang trang bị (#64) — 2026-10-10/11
 - [x] Chơi offline: engine C# khớp Java từng sự kiện (decisions #19), 32/32 trận đối chiếu qua trong Unity; Gameplay dùng engine C# khi không có mạng

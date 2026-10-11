@@ -158,3 +158,44 @@ tham chiếu style board và các ảnh `hud_panel`, `shop_card_wide`, `price_ta
 
 Ràng buộc chung đã dùng cho #110–118: vật thể giữa khung, khoảng 2% đệm, nền alpha thật; không chữ, số, ký tự,
 triện có chữ, watermark, 3D hay bevel. Riêng #118 có ánh sáng mềm; các ảnh còn lại không glow hoặc bóng ngoài.
+
+## Nhóm J: Ảnh đúng tỷ lệ cho UI Simple (2026-10-11)
+
+Các prompt dưới đây dùng ảnh cùng vai trò hiện có đặt cạnh prompt làm style reference. Ràng buộc chung:
+Thủy Mặc mực và sơn mài, giấy gạo cũ ấm, mực nâu-đen, nét vàng đất tiết chế, điểm son rất nhỏ;
+alpha thật ngoài silhouette; hoa văn nằm trọn trong canvas; vùng giữa phẳng và yên cho nội dung do game vẽ;
+không chữ, số, ký tự, triện chữ, watermark, cảnh vật, người, động vật, checkerboard, glow, bóng đổ, 3D hay bevel.
+Ảnh được dùng nguyên tấm bằng `Image.Type.Simple`, không 9-slice.
+
+Round 2: với #119–125, #127, #131, #133 và #136, nguồn sinh phải là thanh ngang chiếm gần
+trọn chiều rộng ảnh. Khi khổ đích dài hơn tỷ lệ mà image generator hỗ trợ, cắt hai đầu hoa
+văn và một đoạn giữa phẳng để lặp; chỉ scale đều hai chiều theo chiều cao.
+
+Round 3: nguồn #134 phải là một frame kín nhìn chính diện, đủ bốn góc hoa văn, bốn cạnh dài
+phẳng và tâm tối yên để ghép 2D. Nguồn #135 là pill sơn mài 7:4 có viền vàng và end caps đậm,
+silhouette alpha thật, chiếm gần trọn canvas và vẫn đọc rõ ở rect 42×24. Mọi nguồn được ghép
+ở pixel size cuối; middle ngang rộng ≥1,5× chiều cao và nối bằng cross-fade khoảng 15%.
+
+| # | File | Khổ dùng | Ảnh tham chiếu | Prompt |
+|---|---|---|---|---|
+| 119 | `replay_top_bar.png` | 1920×164 | `frame_panel.png` | `One extremely wide 11.707:1 replay top bar; dark lacquer face, thin ochre-gold rules and compact cloud-scroll end ornaments; calm uninterrupted center.` |
+| 120 | `replay_bottom_bar.png` | 1920×120 | `frame_panel.png` | `One ultra-wide 16:1 replay bottom bar; open pale-paper center, thin dark lacquer and gold border, very compact end ornaments.` |
+| 121 | `home_banner_simple.png` | 1920×132 | `home_banner.png` | `One ultra-wide 14.545:1 home header scroll; pale rice-paper center, restrained ink edge and compact gold cloud ornaments only at the ends.` |
+| 122 | `hud_panel_simple.png` | 780×148 | `hud_panel.png` | `One 5.270:1 battle HUD plaque; pale rice-paper center, thin dark-lacquer border, tiny gold corner scrolls and faint grey ink wash at the outer edges.` |
+| 123 | `button_replay_control.png` | 170×64 | `button_secondary.png` | `One compact 2.656:1 dark lacquer replay control button; thin gold rim, tiny cloud ends, bold simple silhouette and plain center.` |
+| 124 | `panel_paper_strip.png` | 360×64 | `frame_panel.png` | `One 5.625:1 pale paper panel strip; thin dark lacquer border, compact gold corner brackets and a completely clear center.` |
+| 125 | `tooltip_field.png` | 360×64 | `frame_tooltip.png` | `One 5.625:1 low paper tooltip field; dry-brush ink outline, tiny restrained corner curls and a plain light center.` |
+| 126 | `tooltip_panel.png` | 440×260 | `frame_tooltip.png` | `One 1.692:1 paper tooltip panel; irregular dry-brush ink frame, tiny vermilion corner dots and a large quiet center.` |
+| 127 | `input_field_wide.png` | 620×64 | `frame_tooltip.png` | `One very wide 9.688:1 paper input field; fine dry-brush ink edge, minimal curls at both ends and a clear uninterrupted center.` |
+| 128 | `hero_portrait_frame_wide.png` | 222×276 | `hero_portrait_frame.png` | `One portrait frame exactly 0.804:1; black lacquer and gold structure wrapped by restrained vermilion ribbons; fully transparent empty interior.` |
+| 129 | `bag_board_landscape.png` | 540×450 | `bag_board.png` | `One landscape 1.2:1 unfolded indigo travelling cloth; woven ink texture, gold stitched edge, four compact knotted corners and a flat plain center.` |
+| 130 | `count_badge_compact.png` | 20×14 | `count_badge.png` | `One tiny 10:7 vermilion pill badge; paper-white inner rim and hairline dark outline; bold, simple and readable at 20×14.` |
+| 131 | `dropdown_field_medium.png` | 360×64 | `dropdown_field.png` | `One 5.625:1 paper dropdown field; thin ink and gold edge, plain center and one small pictorial down chevron at the right.` |
+| 132 | `fighter_panel_replay.png` | 250×360 | `fighter_panel.png` | `One 25:36 tall fighter panel; pale rice paper, slim black lacquer rails, small gold brackets and one restrained top crest.` |
+| 133 | `log_panel_wide.png` | 1300×96 | `log_panel.png` | `One 13.542:1 dark battle-log strip; near-black ink-wash center, hairline gold inner rule and tiny cloud marks only at corners.` |
+| 134 | `log_panel_expanded.png` | 1320×440 | `log_panel.png` | `One 3:1 expanded dark battle-log panel; near-black ink-wash center, thin gold rule and compact corner clouds.` |
+| 135 | `tier_pill_compact.png` | 42×24 | `tier_pill.png` | `One compact 7:4 black lacquer tier pill; slim ochre-gold rim, tiny end curls and a plain center readable at 42×24.` |
+| 136 | `timeline_bar_thin.png` | 1300×20 | `timeline_bar.png` | `One ultra-thin 65:1 battle timeline cord; straight gold silk line, tiny regular knots and compact tasselled end caps entirely inside the canvas.` |
+| 137 | `plaque_label_compact.png` | 100×46 | `plaque_label.png` | `One compact 50:23 hanging paper plaque; black wood frame, gold corner caps and very short vermilion cords contained inside the canvas.` |
+| 138 | `plaque_label_medium.png` | 260×92 | `plaque_label.png` | `One 65:23 hanging paper plaque; black wood frame, thin gold corners, short vermilion ties and a wide clear paper face.` |
+| 139 | `plaque_label_tall.png` | 240×101.25 | `plaque_label.png` | `One 64:27 taller hanging paper plaque; black wood frame, gold corner caps, short vermilion ties and a clear paper face.` |

@@ -30,27 +30,13 @@ namespace OneBagJianghu.EditorTools.Building
             Sprite sprite = AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");
             if (sprite == null)
             {
+                Debug.LogError("Missing UI sprite: " + UiTextureFolder + key + ".png");
+                image.sprite = null;
                 return false;
             }
             image.sprite = sprite;
             image.type = type;
             image.color = Color.white;
-            // The 9-slice art is drawn large (borders of 150-420 px); shrink the borders so the ornaments
-            // keep their proportions on small UI elements instead of being squashed by Unity.
-            // Keys may carry a subfolder ("Kit/popup_frame"); the table is keyed by file name.
-            string fileName = key.Substring(key.LastIndexOf('/') + 1);
-            if (type == UnityEngine.UI.Image.Type.Sliced &&
-                SlicedPixelsPerUnit.TryGetValue(fileName, out float multiplier))
-            {
-                image.pixelsPerUnitMultiplier = multiplier;
-                SlicedAutoFit autoFit = image.GetComponent<SlicedAutoFit>();
-                if (autoFit == null)
-                {
-                    autoFit = image.gameObject.AddComponent<SlicedAutoFit>();
-                }
-
-                autoFit.Configure(multiplier);
-            }
             return true;
         }
 
@@ -58,57 +44,6 @@ namespace OneBagJianghu.EditorTools.Building
         {
             return AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");
         }
-
-        // Source pixels per UI unit for each 9-slice sprite (tuned for 1920x1080 UI sizes).
-        private static readonly System.Collections.Generic.Dictionary<string, float> SlicedPixelsPerUnit =
-            new System.Collections.Generic.Dictionary<string, float>
-            {
-                ["button_primary"] = 6f,
-                ["button_secondary"] = 6f,
-                ["plaque_label"] = 12f,
-                ["progress_bar"] = 12f,
-                ["frame_panel"] = 6.5f,
-                ["frame_tooltip"] = 6f,
-                ["popup_frame"] = 5f,
-                ["popup_title_ribbon"] = 7f,
-                ["tab_active"] = 7f,
-                ["tab_idle"] = 7f,
-                ["panel_inset"] = 6f,
-                ["list_row"] = 7f,
-                ["list_row_selected"] = 7f,
-                ["button_disabled"] = 6f,
-                ["button_small_gold"] = 7f,
-                ["slider_track"] = 9f,
-                ["slider_fill"] = 9f,
-                ["scrollbar_track"] = 10f,
-                ["scrollbar_handle"] = 10f,
-                ["dropdown_field"] = 7f,
-                ["slot_cell"] = 7f,
-                ["slot_cell_highlight"] = 7f,
-                ["slot_cell_invalid"] = 7f,
-                ["bag_board"] = 5f,
-                ["shop_card"] = 5.5f,
-                ["shop_card_frame"] = 6.6f,
-                ["tier_pill"] = 9f,
-                ["price_tag"] = 12.9f,
-                ["bar_frame"] = 9f,
-                ["bar_fill_hp"] = 9f,
-                ["bar_fill_shield"] = 9f,
-                ["bar_fill_qi"] = 9f,
-                ["fighter_panel"] = 6f,
-                ["timeline_bar"] = 9f,
-                ["reward_slot"] = 7f,
-                ["hud_panel"] = 6f,
-                ["gauge_frame_large"] = 10f,
-                ["gauge_frame_small"] = 10f,
-                ["status_slot"] = 16f,
-                ["count_badge"] = 18f,
-                ["log_panel"] = 6f,
-                ["button_exit"] = 16f,
-                ["name_plate"] = 8f,
-                ["clock_plate"] = 10f,
-                ["button_square"] = 16f
-            };
 
         public static void AddLeadingIcon(Transform parent, string key, float size = 28f)
         {
@@ -199,25 +134,6 @@ namespace OneBagJianghu.EditorTools.Building
 
         // Normalized horizontal padding keeps ornament clearance proportional as controls resize.
         // Vertical values are pixels because the generated controls have a narrow, stable height range.
-        /// <summary>Share of the sliced ornament border the label must stay clear of (the inner part is plain bar).</summary>
-        public const float OrnateBorderClearance = 0.8f;
-
-        // The plaque art keeps its ties and upper frame in a tall top border, so a label centred on the whole
-        // plaque sits too high. Inset it by the sliced top/bottom borders so it centres on the paper.
-        private static void ClearPlaqueBorders(RectTransform rect, LabelFitPreset preset)
-        {
-            if (preset != LabelFitPreset.Plaque || rect.parent == null)
-                return;
-            UnityEngine.UI.Image plaque = rect.parent.GetComponent<UnityEngine.UI.Image>();
-            if (plaque == null || plaque.sprite == null || plaque.sprite.name != "plaque_label")
-                return;
-            if (plaque.type != UnityEngine.UI.Image.Type.Sliced || !plaque.hasBorder)
-                return;
-            float scale = 1f / (plaque.pixelsPerUnit * plaque.pixelsPerUnitMultiplier);
-            rect.offsetMin = new Vector2(0f, plaque.sprite.border.y * scale + 2f);
-            rect.offsetMax = new Vector2(0f, -(plaque.sprite.border.w * scale + 2f));
-        }
-
         public static void FitLabel(Text text, LabelFitPreset preset, int minimumSize = 14)
         {
             int authoredSize = text.fontSize;
@@ -246,29 +162,12 @@ namespace OneBagJianghu.EditorTools.Building
             }
 
             RectTransform rect = text.rectTransform;
-            // Ornate button art is 9-sliced: its cloud scrolls keep a fixed pixel width whatever the
-            // button width, so the label must clear the slice border in pixels, not a percentage.
-            UnityEngine.UI.Image frame = preset == LabelFitPreset.OrnateButton && rect.parent != null
-                ? rect.parent.GetComponent<UnityEngine.UI.Image>()
-                : null;
-            if (frame != null &&
-                frame.type == UnityEngine.UI.Image.Type.Sliced &&
-                frame.sprite != null &&
-                frame.hasBorder)
-            {
-                float scale = 1f / (frame.pixelsPerUnit * frame.pixelsPerUnitMultiplier);
-                rect.anchorMin = new Vector2(0f, 0f);
-                rect.anchorMax = new Vector2(1f, 1f);
-                rect.offsetMin = new Vector2(frame.sprite.border.x * scale * OrnateBorderClearance, vertical);
-                rect.offsetMax = new Vector2(-frame.sprite.border.z * scale * OrnateBorderClearance, -vertical);
-            }
-            else if (preset != LabelFitPreset.None)
+            if (preset != LabelFitPreset.None)
             {
                 rect.anchorMin = new Vector2(left, 0f);
                 rect.anchorMax = new Vector2(1f - right, 1f);
                 rect.offsetMin = new Vector2(0f, vertical);
                 rect.offsetMax = new Vector2(0f, -vertical);
-                ClearPlaqueBorders(rect, preset);
             }
             SingleLineFit fit = text.GetComponent<SingleLineFit>();
             if (fit == null) fit = text.gameObject.AddComponent<SingleLineFit>();

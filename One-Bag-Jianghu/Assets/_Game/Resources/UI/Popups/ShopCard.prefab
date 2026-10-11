@@ -329,7 +329,6 @@ GameObject:
   - component: {fileID: 519859770641081848}
   - component: {fileID: 2072420981895425296}
   - component: {fileID: 1313454299922782240}
-  - component: {fileID: 3611390163316711776}
   m_Layer: 0
   m_Name: Price Tag
   m_TagString: Untagged
@@ -353,8 +352,8 @@ RectTransform:
   - {fileID: 27441915019361160}
   m_Father: {fileID: 660994284493945221}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.03, y: 0.215}
-  m_AnchorMax: {x: 0.64, y: 0.335}
+  m_AnchorMin: {x: 0.03, y: 0.17}
+  m_AnchorMax: {x: 0.64, y: 0.35}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -387,7 +386,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: cb941c82b6f15e746ae265d1a9e60735, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -395,20 +394,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 12.9
---- !u!114 &3611390163316711776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1306498816994184379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 12.9
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &1455641847867009492
 GameObject:
   m_ObjectHideFlags: 0
@@ -683,7 +669,6 @@ GameObject:
   - component: {fileID: 4088782015308451924}
   - component: {fileID: 8679655388350888534}
   - component: {fileID: 661419233309151688}
-  - component: {fileID: 4252105586360000337}
   m_Layer: 0
   m_Name: Rarity Border
   m_TagString: Untagged
@@ -738,8 +723,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 3be63a224e45d044394378ba7bfde027, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 0}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -747,20 +732,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 6.5
---- !u!114 &4252105586360000337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3879281109106094997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 6.5
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3912871355444614253
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,8 +1124,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 29.519379, y: 1}
-  m_SizeDelta: {x: 18.852713, y: 18.852713}
+  m_AnchoredPosition: {x: 29.750002, y: 1}
+  m_SizeDelta: {x: 19, y: 19}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4519953508882840500
 CanvasRenderer:
@@ -1229,8 +1201,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 20.8062, y: 0}
-  m_SizeDelta: {x: -69.6124, y: 0}
+  m_AnchoredPosition: {x: 21, y: 0}
+  m_SizeDelta: {x: -70, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6922735629648812653
 CanvasRenderer:
@@ -1990,10 +1962,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 660994284493945221}
     m_Modifications:
-    - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2145533071607749656, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Name
       value: Buy

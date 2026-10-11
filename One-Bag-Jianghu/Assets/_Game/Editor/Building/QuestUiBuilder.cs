@@ -86,7 +86,7 @@ namespace OneBagJianghu.EditorTools.Building
             RectTransform panel = panelImage.rectTransform;
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(.5f, .5f);
             panel.sizeDelta = new Vector2(940f, 920f);
-            UiBuild.ApplyUiSprite(panelImage, "Kit/popup_frame", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(panelImage, "Kit/popup_frame", Image.Type.Simple);
             AddText(panel, "Title", "Hành Tẩu Lục", 40, new Vector2(.08f, .89f),
                 new Vector2(.92f, .97f), TextAnchor.MiddleCenter);
 

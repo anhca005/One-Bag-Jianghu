@@ -4,6 +4,18 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Quyết định mới thê
 
 ---
 
+### #66 · 2026-10-11 · Ảnh UI giữ nguyên hình gốc: dùng Simple, không dùng Sliced
+- Mọi Image dùng ảnh khung, nút, ô, nền đều để kiểu **Simple** và hiện đúng hình gốc. Không dùng 9-slice (Sliced/Tiled) nữa.
+- Chỗ nào có tỷ lệ khác ảnh gốc thì **Codex vẽ ảnh riêng đúng tỷ lệ đó**. Không kéo giãn, không mượn tạm ảnh của chỗ khác.
+- Thanh có độ dài thay đổi (máu, khí, tiến độ) dùng **Filled**: ảnh bị cắt bớt chứ không bị kéo giãn.
+- Ảnh thiếu thì báo lỗi lúc build prefab. Không lặng lẽ thay bằng ảnh khác.
+- **Chuẩn bị cho localize sau này:**
+  - Không có chữ nào vẽ sẵn trong ảnh UI. Chữ luôn là Text riêng.
+  - Khung có kích thước cố định. Chữ tự co lại cho vừa khung (best fit hoặc shrink), không bắt khung giãn theo chữ.
+    Nút và nhãn cần chừa chỗ cho chữ dài hơn tiếng Việt khoảng 30%.
+
+**Lý do:** Sliced làm méo hoa văn so với ảnh vẽ. Ảnh mượn chỗ khác thì sai tỷ lệ và trông tạm bợ.
+
 ### #65 · 2026-10-11 · Nhiệm vụ cốt truyện (Hành Tẩu Lục)
 - Mỗi Hồi có một chuỗi nhiệm vụ nối tiếp. Nhiệm vụ chính đi theo cốt truyện; việc phụ dạy lối chơi.
 - Mỗi lúc chỉ có một nhiệm vụ đang làm, nhận thưởng bằng tay.

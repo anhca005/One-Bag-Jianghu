@@ -45,7 +45,7 @@ namespace OneBagJianghu.EditorTools.Building
             background.color = UiBuild.Paper;
             // Simple, not Sliced: fields keep roughly the art's 7:1 shape, so a plain stretch stays clean,
             // while the 9-slice cut ran through the painted ornaments and warped them.
-            bool fieldArt = UiBuild.ApplyUiSprite(background, "Kit/dropdown_field", Image.Type.Simple);
+            bool fieldArt = UiBuild.ApplyUiSprite(background, "Kit/dropdown_field_medium", Image.Type.Simple);
             if (!fieldArt)
             {
                 Outline outline = root.AddComponent<Outline>();
@@ -136,8 +136,8 @@ namespace OneBagJianghu.EditorTools.Building
             button.gameObject.AddComponent<UiSfx>();
             UiBuild.ApplyUiSprite(
                 button.GetComponent<Image>(),
-                primary ? "button_primary" : "button_secondary",
-                Image.Type.Sliced);
+                primary ? "Kit/button_primary_compact" : "Kit/button_secondary_compact",
+                Image.Type.Simple);
             Sprite disabled = UiBuild.LoadUiSprite("Kit/button_disabled");
             if (disabled != null)
             {
@@ -148,6 +148,8 @@ namespace OneBagJianghu.EditorTools.Building
             }
             button.GetComponentInChildren<Text>().color = UiBuild.Paper;
             button.transform.SetParent(root.transform.parent, false);
+            // Popup actions share one compact 4.2:1 frame and let localized labels shrink within it.
+            ((RectTransform)button.transform).sizeDelta = new Vector2(260f, 62f);
             Object.DestroyImmediate(root);
             return button.gameObject;
         }
@@ -159,7 +161,8 @@ namespace OneBagJianghu.EditorTools.Building
             Image frame = UiBuild.Image(root.transform, "Frame", Color.clear);
             UiBuild.Stretch(frame.rectTransform);
             frame.raycastTarget = false;
-            UiBuild.ApplyUiSprite(frame, "frame_panel", Image.Type.Sliced);
+            frame.sprite = null;
+            frame.gameObject.SetActive(false);
             Outline outline = root.AddComponent<Outline>();
             outline.effectColor = UiBuild.Gold;
             outline.effectDistance = new Vector2(3f, -3f);
@@ -171,7 +174,7 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image image = root.AddComponent<Image>();
             image.color = UiBuild.Paper;
-            UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(image, "Kit/tooltip_field", Image.Type.Simple);
             return root;
         }
 
@@ -197,7 +200,7 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image image = root.AddComponent<Image>();
             image.color = Color.white;
-            UiBuild.ApplyUiSprite(image, "frame_tooltip", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(image, "Kit/tooltip_field", Image.Type.Simple);
             InputField input = root.AddComponent<InputField>();
             Text value = UiBuild.Text(root.transform, "Text", string.Empty, 24, TextAnchor.MiddleLeft);
             Text placeholder = UiBuild.Text(root.transform, "Placeholder", "Nhập nội dung", 24, TextAnchor.MiddleLeft);
@@ -239,11 +242,17 @@ namespace OneBagJianghu.EditorTools.Building
             root.AddComponent<CanvasRenderer>();
             Image track = root.AddComponent<Image>();
             track.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, 0.18f);
-            UiBuild.ApplyUiSprite(track, "Kit/slider_track", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(track, "Kit/slider_track", Image.Type.Simple);
+            // The track art is 1536x97; keep the default size at that aspect.
+            root.GetComponent<RectTransform>().sizeDelta = new Vector2(348f, 22f);
             Slider slider = root.AddComponent<Slider>();
             Image fill = UiBuild.Image(root.transform, "Fill", UiBuild.Vermilion);
             UiBuild.Stretch(fill.rectTransform, 4f);
-            UiBuild.ApplyUiSprite(fill, "Kit/slider_fill", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(fill, "Kit/slider_fill", Image.Type.Filled);
+            fill.fillMethod = Image.FillMethod.Horizontal;
+            fill.fillOrigin = (int)Image.OriginHorizontal.Left;
+            // The fill keeps the full track size; SliderFillAmount crops it, so the art is never stretched.
+            root.AddComponent<SliderFillAmount>().Initialize(fill);
             RectTransform handleArea = UiBuild.Rect(root.transform, "Handle Slide Area");
             handleArea.anchorMin = Vector2.zero;
             handleArea.anchorMax = Vector2.one;
@@ -254,7 +263,6 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.ApplyUiSprite(handle, "Kit/slider_handle");
             handle.preserveAspect = true;
             slider.targetGraphic = track;
-            slider.fillRect = fill.rectTransform;
             slider.handleRect = handle.rectTransform;
             return root;
         }
@@ -289,11 +297,10 @@ namespace OneBagJianghu.EditorTools.Building
             track.rectTransform.anchorMax = Vector2.one;
             track.rectTransform.offsetMin = Vector2.zero;
             track.rectTransform.offsetMax = Vector2.zero;
-            UiBuild.ApplyUiSprite(track, "Kit/scrollbar_track", Image.Type.Sliced);
             Scrollbar scrollbar = track.gameObject.AddComponent<Scrollbar>();
             Image handle = UiBuild.Image(track.transform, "Handle", UiBuild.Vermilion);
             UiBuild.Stretch(handle.rectTransform);
-            UiBuild.ApplyUiSprite(handle, "Kit/scrollbar_handle", Image.Type.Sliced);
+            handle.color = UiBuild.Ink;
             scrollbar.handleRect = handle.rectTransform;
             scrollbar.targetGraphic = handle;
             scrollbar.direction = Scrollbar.Direction.BottomToTop;

@@ -193,6 +193,258 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
   - Key: u_minh_quy_trao
     Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - Key: bag_board
+    Sprite: {fileID: 21300000, guid: 37f25c8ebc2c44443b74c0a91b791ee8, type: 3}
+  - Key: bag_board_landscape
+    Sprite: {fileID: 21300000, guid: fd3021c9995e0494caa309a3179c007d, type: 3}
+  - Key: bar_fill_hp
+    Sprite: {fileID: 21300000, guid: 2d564f2fc6a96e547ad279ca5c9004fb, type: 3}
+  - Key: bar_fill_hp_core
+    Sprite: {fileID: 21300000, guid: 5541f39872b1885499873afb4b798f73, type: 3}
+  - Key: bar_fill_hp_wide
+    Sprite: {fileID: 21300000, guid: cb6c792160b29dd4ab85b418e5e0c890, type: 3}
+  - Key: bar_fill_qi
+    Sprite: {fileID: 21300000, guid: 2d2d89ca9735b424392035f977688a09, type: 3}
+  - Key: bar_fill_qi_core
+    Sprite: {fileID: 21300000, guid: d202b55ebf4a8414db202658791435ae, type: 3}
+  - Key: bar_fill_qi_wide
+    Sprite: {fileID: 21300000, guid: 76e69649c16f7f14481ea9ebf53ffac6, type: 3}
+  - Key: bar_fill_shield
+    Sprite: {fileID: 21300000, guid: 03be9c69144242e4592ea5ea80d2b932, type: 3}
+  - Key: bar_fill_shield_core
+    Sprite: {fileID: 21300000, guid: 06172903972c7a7498f762c062e12968, type: 3}
+  - Key: bar_fill_shield_wide
+    Sprite: {fileID: 21300000, guid: 62b885f5dcf313e4fb31f6ff55d8b708, type: 3}
+  - Key: bar_frame
+    Sprite: {fileID: 21300000, guid: b903cfa6946889647838cf35f02f0710, type: 3}
+  - Key: button_close
+    Sprite: {fileID: 21300000, guid: c16822349e4970343a5aea86e02fd52e, type: 3}
+  - Key: button_disabled
+    Sprite: {fileID: 21300000, guid: 70498629a31a731408a882dd232bfce5, type: 3}
+  - Key: button_exit
+    Sprite: {fileID: 21300000, guid: 678fed26f670bf540b9246c516f967fb, type: 3}
+  - Key: button_primary_compact
+    Sprite: {fileID: 21300000, guid: 66a58e78fe0069642978ab1167649a56, type: 3}
+  - Key: button_replay_control
+    Sprite: {fileID: 21300000, guid: 69d65af2431261f4f9533ac3d905a979, type: 3}
+  - Key: button_secondary_compact
+    Sprite: {fileID: 21300000, guid: da6f822b92383b246937606275118665, type: 3}
+  - Key: button_small_gold
+    Sprite: {fileID: 21300000, guid: 89bc7c04d2b724e4e9c465573a1a9f21, type: 3}
+  - Key: button_small_gold_compact
+    Sprite: {fileID: 21300000, guid: 2d9d29109d9671347bf2533425a18738, type: 3}
+  - Key: button_square
+    Sprite: {fileID: 21300000, guid: 3c4d1305dcf0e97429fdc1669257cfa5, type: 3}
+  - Key: clock_plate
+    Sprite: {fileID: 21300000, guid: 4f563d4d0edb336479b13df7cc220a42, type: 3}
+  - Key: count_badge
+    Sprite: {fileID: 21300000, guid: 6d49e2a19c9f4664facbd46aaeb4c8ce, type: 3}
+  - Key: count_badge_compact
+    Sprite: {fileID: 21300000, guid: 2f4093fe0346ebd47ac6987b4598e99f, type: 3}
+  - Key: divider_brush
+    Sprite: {fileID: 21300000, guid: dd45d44ded843c4409594b3605496e51, type: 3}
+  - Key: dropdown_field
+    Sprite: {fileID: 21300000, guid: 1a7af9dbeec714f48ba3c2f9ad487870, type: 3}
+  - Key: dropdown_field_medium
+    Sprite: {fileID: 21300000, guid: dd8cac814d6f0ed45b12a2883fc82364, type: 3}
+  - Key: dropdown_field_midwide
+    Sprite: {fileID: 21300000, guid: 455ec4d296a475b41810bfb44f66993f, type: 3}
+  - Key: dropdown_field_narrow
+    Sprite: {fileID: 21300000, guid: 4f9731d004d535a45b31974a9a8d39ce, type: 3}
+  - Key: dropdown_field_popup
+    Sprite: {fileID: 21300000, guid: 12fa9c076a9028e4c8fb7e0278c57d16, type: 3}
+  - Key: dropdown_field_wide
+    Sprite: {fileID: 21300000, guid: 50ec7a74e9433554a8fad0c2e2ed46f1, type: 3}
+  - Key: encyclopedia_icon_items
+    Sprite: {fileID: 21300000, guid: e3477e9fd7e53b1468f5f63fbadb3dd3, type: 3}
+  - Key: encyclopedia_icon_rules
+    Sprite: {fileID: 21300000, guid: 350f66151c83441429297777859f33d8, type: 3}
+  - Key: encyclopedia_icon_status
+    Sprite: {fileID: 21300000, guid: f6af2ef5ed4fd834ab01fa42c0ab5a53, type: 3}
+  - Key: encyclopedia_icon_story
+    Sprite: {fileID: 21300000, guid: c6c478c8ea695b64bad1299affaf259d, type: 3}
+  - Key: fighter_panel
+    Sprite: {fileID: 21300000, guid: bf669bfa47d14d841aa94ff57a8409f1, type: 3}
+  - Key: fighter_panel_replay
+    Sprite: {fileID: 21300000, guid: 77ec571ff02e41640af7ce052fcbf51b, type: 3}
+  - Key: frame_panel_square
+    Sprite: {fileID: 21300000, guid: 901af233fefc01c40875c3b220f73a9f, type: 3}
+  - Key: gauge_frame_large
+    Sprite: {fileID: 21300000, guid: b522df797e2c4184396d383e7cd86097, type: 3}
+  - Key: gauge_frame_small
+    Sprite: {fileID: 21300000, guid: 46b3abe5e9583c74cbdb77e1acff8de1, type: 3}
+  - Key: hero_portrait_frame_wide
+    Sprite: {fileID: 21300000, guid: bf279bfc7a1bf7144ba8ffc92b9f88bb, type: 3}
+  - Key: home_banner_simple
+    Sprite: {fileID: 21300000, guid: 600595d0058141241b3b3541d5fa61d9, type: 3}
+  - Key: hud_panel
+    Sprite: {fileID: 21300000, guid: d17606a781df47b45bd77e8757cb9be4, type: 3}
+  - Key: hud_panel_simple
+    Sprite: {fileID: 21300000, guid: d69c4f8396de6eb42aea6cb55723778d, type: 3}
+  - Key: icon_exp
+    Sprite: {fileID: 21300000, guid: 727d5a49bb0073343857726e92f5b41f, type: 3}
+  - Key: icon_info
+    Sprite: {fileID: 21300000, guid: e51b9e28615e3cf44b02a63ed2fcca98, type: 3}
+  - Key: icon_merge
+    Sprite: {fileID: 21300000, guid: 1befc9d23e4b2a54db52bc8e215378f9, type: 3}
+  - Key: icon_pause
+    Sprite: {fileID: 21300000, guid: 90cacfbe5507ba84f92de1b0ea4d696d, type: 3}
+  - Key: icon_play
+    Sprite: {fileID: 21300000, guid: 205da4df3ebca7a45b1fc38107f2ce7e, type: 3}
+  - Key: icon_power
+    Sprite: {fileID: 21300000, guid: 8a99e6bc319c8314cb9f3275c6680ba7, type: 3}
+  - Key: icon_refresh
+    Sprite: {fileID: 21300000, guid: ca85c617614a7b446b528ef14f030982, type: 3}
+  - Key: icon_sell
+    Sprite: {fileID: 21300000, guid: 17d1399e2855ecb4a881979b304e3198, type: 3}
+  - Key: icon_skip
+    Sprite: {fileID: 21300000, guid: 4f3f7088890691341a6d46066f638091, type: 3}
+  - Key: icon_sort
+    Sprite: {fileID: 21300000, guid: 2c72a1ee72b248042b3ec0040688ccc0, type: 3}
+  - Key: icon_speed
+    Sprite: {fileID: 21300000, guid: 1df6ac6f09effe74289b59147dfb4fc8, type: 3}
+  - Key: icon_upgrade
+    Sprite: {fileID: 21300000, guid: f5d1b64e62356704ebaaeafc905a50dd, type: 3}
+  - Key: input_field_wide
+    Sprite: {fileID: 21300000, guid: eef11881edc553046a66cfc9e043538a, type: 3}
+  - Key: list_row
+    Sprite: {fileID: 21300000, guid: 63c4b62432d2f7f4cafc73a8009efa7c, type: 3}
+  - Key: list_row_compact
+    Sprite: {fileID: 21300000, guid: 92da7c9eaae4b4f4aac657225fc3e2ea, type: 3}
+  - Key: list_row_selected
+    Sprite: {fileID: 21300000, guid: dd190cd8c6b511d41bf8a2e9c52b1a0d, type: 3}
+  - Key: list_row_selected_compact
+    Sprite: {fileID: 21300000, guid: 76c8ed7e221082e48bc61824e2ddd2e2, type: 3}
+  - Key: log_panel
+    Sprite: {fileID: 21300000, guid: a0f7087c4481e2f499a228cd3a664b82, type: 3}
+  - Key: log_panel_expanded
+    Sprite: {fileID: 21300000, guid: ca574edf2f00c3d408685b8311827897, type: 3}
+  - Key: log_panel_wide
+    Sprite: {fileID: 21300000, guid: 9c0912703fb569348947ec89488cc246, type: 3}
+  - Key: name_plate
+    Sprite: {fileID: 21300000, guid: 2ab5fa4b73da01c4fa86b759fa86f88a, type: 3}
+  - Key: panel_inset
+    Sprite: {fileID: 21300000, guid: 8bb5d841eb11ea3479bf86d1b1c33536, type: 3}
+  - Key: panel_inset_detail
+    Sprite: {fileID: 21300000, guid: 2167b9d820e972547965baf5f7980993, type: 3}
+  - Key: panel_inset_entries
+    Sprite: {fileID: 21300000, guid: e4ebbd036c0a5614d9072fb93f1750b5, type: 3}
+  - Key: panel_inset_tall
+    Sprite: {fileID: 21300000, guid: 2181e3f0b3d11e64e9b823d57c48d6da, type: 3}
+  - Key: panel_inset_wide
+    Sprite: {fileID: 21300000, guid: ddca37cca567ad84bb6fda75456c2cfb, type: 3}
+  - Key: panel_paper_strip
+    Sprite: {fileID: 21300000, guid: 4a89e91ad29805c4dbf5ebe0c96baaad, type: 3}
+  - Key: plaque_label_compact
+    Sprite: {fileID: 21300000, guid: 6bd2564d0baabd74a971cf13078edf31, type: 3}
+  - Key: plaque_label_medium
+    Sprite: {fileID: 21300000, guid: ed25f5ca8cbdbaf4ba25205597137f25, type: 3}
+  - Key: plaque_label_tall
+    Sprite: {fileID: 21300000, guid: a23747c9f76ff094e9d6120cef2b159b, type: 3}
+  - Key: popup_frame
+    Sprite: {fileID: 21300000, guid: 279382280b27389498b9abd1df5be1e7, type: 3}
+  - Key: popup_frame_medium
+    Sprite: {fileID: 21300000, guid: 3b9433c41508a8f4c80520dbceb853a8, type: 3}
+  - Key: popup_frame_result
+    Sprite: {fileID: 21300000, guid: 3cd7aa5e1dc21db418cec64a9e787ffa, type: 3}
+  - Key: popup_frame_square
+    Sprite: {fileID: 21300000, guid: 068a4240432cca340b4a25cf0204c1ff, type: 3}
+  - Key: popup_frame_wide
+    Sprite: {fileID: 21300000, guid: 9aa3fd90e6fbdfc4b9c9397c647e50c1, type: 3}
+  - Key: popup_title_ribbon
+    Sprite: {fileID: 21300000, guid: 9460a506df544cb4e8ce438023880236, type: 3}
+  - Key: price_tag
+    Sprite: {fileID: 21300000, guid: cb941c82b6f15e746ae265d1a9e60735, type: 3}
+  - Key: quest_badge_main
+    Sprite: {fileID: 21300000, guid: c17696327bcd60c4c80e7152ef5b1c8a, type: 3}
+  - Key: quest_badge_side
+    Sprite: {fileID: 21300000, guid: a46cd2711c47bf440a9d6934509a57cc, type: 3}
+  - Key: quest_glow_spark
+    Sprite: {fileID: 21300000, guid: d1ed04e3d5a47634a9580ecd4637c8c6, type: 3}
+  - Key: quest_icon_scroll
+    Sprite: {fileID: 21300000, guid: 1b4831c1548baa346abc1e6a7b458dd9, type: 3}
+  - Key: quest_log_row
+    Sprite: {fileID: 21300000, guid: e319bf95ed7512a45903d0e4e182947e, type: 3}
+  - Key: quest_status_active
+    Sprite: {fileID: 21300000, guid: 66c0124076a4f2449a8c34f672c60d7f, type: 3}
+  - Key: quest_status_done
+    Sprite: {fileID: 21300000, guid: 18c4dce92a0df474eb7a8208896ba416, type: 3}
+  - Key: quest_status_locked
+    Sprite: {fileID: 21300000, guid: 50e03db62f65d1f4ca07d9c243647d41, type: 3}
+  - Key: quest_tracker
+    Sprite: {fileID: 21300000, guid: 035b301b922b4be458b6ce8f8d3c00a7, type: 3}
+  - Key: replay_bottom_bar
+    Sprite: {fileID: 21300000, guid: 7b6d403ef4eab6b4da0fd7a835ec89e3, type: 3}
+  - Key: replay_top_bar
+    Sprite: {fileID: 21300000, guid: 45a924613e94c3745ba2b26eebc7b677, type: 3}
+  - Key: result_defeat
+    Sprite: {fileID: 21300000, guid: 4c3b88db4bfa36745b7761052eb6620c, type: 3}
+  - Key: result_victory
+    Sprite: {fileID: 21300000, guid: 3c103e98c7b0e4d42b13320d8eb2722b, type: 3}
+  - Key: reward_slot
+    Sprite: {fileID: 21300000, guid: 6d85118638be573409c00d808c2551f9, type: 3}
+  - Key: scrollbar_handle
+    Sprite: {fileID: 21300000, guid: ceb62da03ebfefb4db6f52135ec86cc0, type: 3}
+  - Key: scrollbar_track
+    Sprite: {fileID: 21300000, guid: f2eb16ec80a45b84fb5913559c8bca93, type: 3}
+  - Key: shop_card
+    Sprite: {fileID: 21300000, guid: df752a2e97560aa4ca71059f4a409757, type: 3}
+  - Key: shop_card_frame
+    Sprite: {fileID: 21300000, guid: 660627690848a25438412888e25fabe8, type: 3}
+  - Key: shop_card_knot
+    Sprite: {fileID: 21300000, guid: 7509fb52eb456394ca8662f9761feb6e, type: 3}
+  - Key: shop_card_wide
+    Sprite: {fileID: 21300000, guid: 9d27fa5f7f2a68447b0b5c7915c70a08, type: 3}
+  - Key: slider_fill
+    Sprite: {fileID: 21300000, guid: 38ac68688b9feba4595bbb082fb518d4, type: 3}
+  - Key: slider_handle
+    Sprite: {fileID: 21300000, guid: 1bb72563e9f85b64e80bc0a185f4b96b, type: 3}
+  - Key: slider_track
+    Sprite: {fileID: 21300000, guid: 8c68db6d115dab94ba0c5bd94576f960, type: 3}
+  - Key: slot_cell
+    Sprite: {fileID: 21300000, guid: c681053550d4dc947981c4da319e0fc4, type: 3}
+  - Key: slot_cell_highlight
+    Sprite: {fileID: 21300000, guid: 0501ffd7eb5ba0f4396dfcbc5d2140b6, type: 3}
+  - Key: slot_cell_highlight_square
+    Sprite: {fileID: 21300000, guid: 8db701434d5accd479dde446640ba903, type: 3}
+  - Key: slot_cell_invalid
+    Sprite: {fileID: 21300000, guid: 5bdc6f78c5b34124eaaa4629c7ba81b1, type: 3}
+  - Key: slot_cell_invalid_square
+    Sprite: {fileID: 21300000, guid: f2cec5de92f17904880b34fc7ee53aec, type: 3}
+  - Key: slot_cell_square
+    Sprite: {fileID: 21300000, guid: 5c465d246234260439573e2fb135898b, type: 3}
+  - Key: star_burst
+    Sprite: {fileID: 21300000, guid: abb9f294b2e0064488dc2e6fb0dec035, type: 3}
+  - Key: status_slot
+    Sprite: {fileID: 21300000, guid: 14fde7422b9c35d42a814442adfa0357, type: 3}
+  - Key: tab_active
+    Sprite: {fileID: 21300000, guid: ba8aed7693daed5408e2c6eb756320f0, type: 3}
+  - Key: tab_idle
+    Sprite: {fileID: 21300000, guid: 1c7bca4c1ac7231468f92e1f6230b118, type: 3}
+  - Key: tier_pill
+    Sprite: {fileID: 21300000, guid: 4f0743fbcfe708344a5910378aad2ba8, type: 3}
+  - Key: tier_pill_compact
+    Sprite: {fileID: 21300000, guid: bce348cf0036fe2418b5a803008d583c, type: 3}
+  - Key: timeline_bar
+    Sprite: {fileID: 21300000, guid: 90dc779459188cb41a848eb49e1bb1b8, type: 3}
+  - Key: timeline_bar_thin
+    Sprite: {fileID: 21300000, guid: c54b0e503018d124ba32c2e15607938b, type: 3}
+  - Key: toggle_off
+    Sprite: {fileID: 21300000, guid: 29f34eef9a1d9ec4387e06294e7821ae, type: 3}
+  - Key: toggle_on
+    Sprite: {fileID: 21300000, guid: 5944b8725b70d494eb25bdff0ef057ba, type: 3}
+  - Key: tooltip_field
+    Sprite: {fileID: 21300000, guid: 3d2398208cd9dda40a235597abd4396b, type: 3}
+  - Key: tooltip_panel
+    Sprite: {fileID: 21300000, guid: 8fc1d0eee3e9d6c43b4d5325c847afd7, type: 3}
+  - Key: tooltip_tall
+    Sprite: {fileID: 21300000, guid: 8a7910d33f6101c4a9a636ca53204bc5, type: 3}
+  - Key: tutorial_pointer
+    Sprite: {fileID: 21300000, guid: 853053859dece3f4d8cb7c6c7a15bce3, type: 3}
+  - Key: tutorial_ring
+    Sprite: {fileID: 21300000, guid: aa4710c8d749a06489ce6d3ff2646098, type: 3}
+  - Key: vs_emblem
+    Sprite: {fileID: 21300000, guid: f4737dd70bb15364784200d9e6e0b73a, type: 3}
   - Key: app_icon
     Sprite: {fileID: 21300000, guid: ae9c7bb8d66d9c5409ee2482fef5a691, type: 3}
   - Key: app_icon_alt

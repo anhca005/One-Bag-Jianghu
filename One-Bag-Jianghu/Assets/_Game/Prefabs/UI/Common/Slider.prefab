@@ -122,7 +122,6 @@ GameObject:
   - component: {fileID: 2342262761024250264}
   - component: {fileID: 4004347199070473171}
   - component: {fileID: 7988115871209890925}
-  - component: {fileID: 1153391197189091952}
   m_Layer: 0
   m_Name: Fill
   m_TagString: Untagged
@@ -145,7 +144,7 @@ RectTransform:
   m_Father: {fileID: 8153601812764133289}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: -8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -178,28 +177,15 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 38ac68688b9feba4595bbb082fb518d4, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillMethod: 0
+  m_FillAmount: 0
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 9
---- !u!114 &1153391197189091952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4312680978690264306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 9
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &5040621094147627034
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,8 +197,8 @@ GameObject:
   - component: {fileID: 8153601812764133289}
   - component: {fileID: 8354716306295193115}
   - component: {fileID: 7584987116968505302}
-  - component: {fileID: 3912646829495551055}
   - component: {fileID: 8074545293001303957}
+  - component: {fileID: 3858590633316302908}
   m_Layer: 0
   m_Name: Slider
   m_TagString: Untagged
@@ -239,7 +225,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 360, y: 64}
+  m_SizeDelta: {x: 348, y: 22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8354716306295193115
 CanvasRenderer:
@@ -270,7 +256,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 8c68db6d115dab94ba0c5bd94576f960, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -278,20 +264,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 9
---- !u!114 &3912646829495551055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040621094147627034}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 9
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &8074545293001303957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -333,7 +306,7 @@ MonoBehaviour:
     m_DisabledTrigger: Disabled
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7584987116968505302}
-  m_FillRect: {fileID: 2342262761024250264}
+  m_FillRect: {fileID: 0}
   m_HandleRect: {fileID: 1056191483738973973}
   m_Direction: 0
   m_MinValue: 0
@@ -343,3 +316,16 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3858590633316302908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5040621094147627034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1913c1381ade80545be0fc2df3bbb1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SliderFillAmount
+  fill: {fileID: 7988115871209890925}

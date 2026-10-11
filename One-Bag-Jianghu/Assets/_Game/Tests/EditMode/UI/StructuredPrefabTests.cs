@@ -62,14 +62,14 @@ namespace OneBagJianghu.Tests.UI
 
         [TestCase("Button_Primary", "button_primary")]
         [TestCase("Button_Secondary", "button_secondary")]
-        public void ButtonPrefabUsesSlicedArtWhenPresent(string prefabName, string artKey)
+        public void ButtonPrefabUsesSimpleArtWhenPresent(string prefabName, string artKey)
         {
             GameObject prefab =
                 AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_Game/Prefabs/UI/Common/" +
                 prefabName +
                 ".prefab");
             Image image = prefab.GetComponent<Image>();
-            Assert.That(image.type, Is.EqualTo(Image.Type.Sliced));
+            Assert.That(image.type, Is.EqualTo(Image.Type.Simple));
             if (File.Exists("Assets/_Game/Textures2D/UI/" + artKey + ".png"))
             {
                 Assert.That(image.sprite, Is.Not.Null);

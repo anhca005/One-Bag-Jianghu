@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4221628164263803623}
   - component: {fileID: 5154654635456420841}
   - component: {fileID: 2111503167453900029}
-  - component: {fileID: 7206066054592940916}
+  - component: {fileID: 1817221960685083994}
   m_Layer: 0
   m_Name: ResultPopup
   m_TagString: Untagged
@@ -193,7 +193,7 @@ MonoBehaviour:
   homeButton: {fileID: 2392329079996624156}
   playAgainButton: {fileID: 2448512191384185233}
   disabledReason: {fileID: 6061678835705368513}
---- !u!114 &7206066054592940916
+--- !u!114 &1817221960685083994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -529,7 +529,6 @@ GameObject:
   - component: {fileID: 3300841413824914456}
   - component: {fileID: 6733193551822754163}
   - component: {fileID: 6791992284603986251}
-  - component: {fileID: 882295699410384498}
   m_Layer: 0
   m_Name: Reward Slot
   m_TagString: Untagged
@@ -586,8 +585,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8bb5d841eb11ea3479bf86d1b1c33536, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: ddca37cca567ad84bb6fda75456c2cfb, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -595,20 +594,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 6
---- !u!114 &882295699410384498
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7185651539547779440}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 6
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &7377677813851447096
 GameObject:
   m_ObjectHideFlags: 0
@@ -860,10 +846,6 @@ PrefabInstance:
       propertyPath: m_FontData.m_FontSize
       value: 24
       objectReference: {fileID: 0}
-    - target: {fileID: 1168793677721913333, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -978,13 +960,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 4187420177721722816}
     m_Modifications:
     - target: {fileID: 1462418899880981216, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
-      propertyPath: m_Type
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1462418899880981216, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 279382280b27389498b9abd1df5be1e7, type: 3}
+      objectReference: {fileID: 21300000, guid: 3cd7aa5e1dc21db418cec64a9e787ffa, type: 3}
     - target: {fileID: 1462418899880981216, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Color.b
       value: 1
@@ -996,10 +974,6 @@ PrefabInstance:
     - target: {fileID: 1462418899880981216, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Color.r
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1462418899880981216, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5135263581300095052, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Pivot.x
@@ -1081,10 +1055,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7427100909598966331, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 6.5
-      objectReference: {fileID: 0}
     - target: {fileID: 9218925419710371629, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       propertyPath: m_Name
       value: Panel
@@ -1113,29 +1083,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5135263581300095052, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8193707256348563866}
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9218925419710371629, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2120890502085270351}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
---- !u!1 &4960365064301046782 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9218925419710371629, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
-  m_PrefabInstance: {fileID: 4262360651232197843}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2120890502085270351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4960365064301046782}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 5
 --- !u!224 &8962987244154012831 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5135263581300095052, guid: 8bccf49ffe0cc2e429f12b5ff78f7e6d, type: 3}
@@ -1149,10 +1098,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8962987244154012831}
     m_Modifications:
-    - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2145533071607749656, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Name
       value: Play Again Button

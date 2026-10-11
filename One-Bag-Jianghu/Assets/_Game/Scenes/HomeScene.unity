@@ -779,8 +779,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6226df363c4337346a2e12fdface9111, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 600595d0058141241b3b3541d5fa61d9, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1200,8 +1200,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6298306093f45ae4683be23b57149de8, type: 3}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8fc1d0eee3e9d6c43b4d5325c847afd7, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1737,6 +1737,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotspot_Pvp
       objectReference: {fileID: 0}
+    - target: {fileID: 5471074606697435396, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed25f5ca8cbdbaf4ba25205597137f25, type: 3}
     - target: {fileID: 5598780084272522467, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
       propertyPath: labelText
       value: "Lu\u1EADn Ki\u1EBFm \u0110\xE0i"
@@ -1948,6 +1952,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotspot_Pve
       objectReference: {fileID: 0}
+    - target: {fileID: 5471074606697435396, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed25f5ca8cbdbaf4ba25205597137f25, type: 3}
     - target: {fileID: 5598780084272522467, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
       propertyPath: labelText
       value: "H\xE0nh T\u1EA9u Giang H\u1ED3"
@@ -3213,6 +3221,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotspot_Storage
       objectReference: {fileID: 0}
+    - target: {fileID: 5471074606697435396, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a23747c9f76ff094e9d6120cef2b159b, type: 3}
     - target: {fileID: 5598780084272522467, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
       propertyPath: labelText
       value: "T\xE0ng B\u1EA3o C\xE1c"
@@ -4434,6 +4446,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hotspot_Sect
       objectReference: {fileID: 0}
+    - target: {fileID: 5471074606697435396, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ed25f5ca8cbdbaf4ba25205597137f25, type: 3}
     - target: {fileID: 5471074606697435396, guid: 50c01fa92789c6a419364c589bedb16d, type: 3}
       propertyPath: m_Color.a
       value: 0.72

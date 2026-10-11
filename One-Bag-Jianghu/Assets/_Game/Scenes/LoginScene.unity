@@ -481,6 +481,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5436920806277000558, guid: 605be99f3834d5d4fb4a3e4d43989895, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eef11881edc553046a66cfc9e043538a, type: 3}
     - target: {fileID: 6721430800116812221, guid: 605be99f3834d5d4fb4a3e4d43989895, type: 3}
       propertyPath: m_Name
       value: HeroNameInput
@@ -1126,6 +1130,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1414528733}
     m_Modifications:
     - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c2316411b99606246a7373c89ebfe327, type: 3}
+    - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_PixelsPerUnitMultiplier
       value: 6
       objectReference: {fileID: 0}
@@ -1159,7 +1167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4178666780666376446, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 360
+      value: 396
       objectReference: {fileID: 0}
     - target: {fileID: 4178666780666376446, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_SizeDelta.y

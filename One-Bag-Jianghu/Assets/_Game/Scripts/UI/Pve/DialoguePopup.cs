@@ -62,9 +62,11 @@ namespace OneBagJianghu.UI.Pve
             {
                 dialogueFrame.sprite = frame;
                 dialogueFrame.type = Image.Type.Simple;
+                // The box is authored at the scroll's 3:1 aspect, so the art fills it undistorted.
                 dialogueFrame.preserveAspect = false;
+                dialogueFrame.color = Color.white;
             }
-        } // the box is authored at the scroll's 3:1 aspect dialogueFrame.color = Color.white; } }
+        }
 
         protected override void OnShown()
         {

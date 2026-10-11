@@ -51,7 +51,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image rarityFrame = UiBuild.Image(bg.transform, "Rarity Frame", Color.white);
             UiBuild.Stretch(rarityFrame.rectTransform, 3f);
             rarityFrame.raycastTarget = false;
-            UiBuild.ApplyUiSprite(rarityFrame, "frame_panel", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(rarityFrame, "Kit/frame_panel_square", Image.Type.Simple);
             // Rarity medallion: top-left, opposite the tier label at top-right.
             Image rarityBadge = UiBuild.Image(bg.transform, "Rarity Badge", Color.white);
             Anchor(rarityBadge.rectTransform, Vector2.up, new Vector2(4f, -4f), new Vector2(20f, 20f), Vector2.up);
@@ -66,7 +66,7 @@ namespace OneBagJianghu.EditorTools.Building
                 new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .86f));
             Anchor(tierPill.rectTransform, new Vector2(1f, 1f), new Vector2(-8f, -8f), new Vector2(42f, 24f),
                 new Vector2(1f, 1f));
-            UiBuild.ApplyUiSprite(tierPill, "Kit/tier_pill", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(tierPill, "Kit/tier_pill_compact", Image.Type.Simple);
             tier.transform.SetAsLastSibling();
             Text mark = UiBuild.Text(bg.transform, "Tam Phap", "TP", 14, TextAnchor.UpperLeft);
             Anchor(mark.rectTransform, new Vector2(0f, 1f), new Vector2(4f, -3f), new Vector2(30f, 20f),
@@ -102,7 +102,7 @@ namespace OneBagJianghu.EditorTools.Building
                 {
                     Image cell = UiBuild.Image(cells, $"Cell {x},{y}",
                                                new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .1f));
-                    UiBuild.ApplyUiSprite(cell, "Kit/slot_cell", Image.Type.Sliced);
+                    UiBuild.ApplyUiSprite(cell, "Kit/slot_cell_square", Image.Type.Simple);
                     BagGridView.SetCellRect(cell.rectTransform, x, y, 1, 1);
                 }
             RectTransform highlights = Layer(root, "Highlights");
@@ -128,7 +128,7 @@ namespace OneBagJianghu.EditorTools.Building
             if (!AssetGuard.ShouldBuild(path, overwrite))
                 return;
             Image image = UiBuild.Image(null, "BagHighlight", BagViewStyle.Valid);
-            UiBuild.ApplyUiSprite(image, "Kit/slot_cell_highlight", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(image, "Kit/slot_cell_highlight_square", Image.Type.Simple);
             image.raycastTarget = false;
             Save(image.gameObject, path);
 
@@ -136,7 +136,7 @@ namespace OneBagJianghu.EditorTools.Building
             if (!AssetGuard.ShouldBuild(invalidPath, overwrite))
                 return;
             Image invalid = UiBuild.Image(null, "BagHighlightInvalid", BagViewStyle.Invalid);
-            UiBuild.ApplyUiSprite(invalid, "Kit/slot_cell_invalid", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(invalid, "Kit/slot_cell_invalid_square", Image.Type.Simple);
             invalid.raycastTarget = false;
             Save(invalid.gameObject, invalidPath);
         }
@@ -183,7 +183,7 @@ namespace OneBagJianghu.EditorTools.Building
             BagLoadoutPanel panel = root.gameObject.AddComponent<BagLoadoutPanel>();
             Dropdown dropdown = Dropdown(root);
             RectTransform dr = dropdown.GetComponent<RectTransform>();
-            Anchor(dr, new Vector2(0f, 1f), new Vector2(30f, -20f), new Vector2(500f, 64f), new Vector2(0f, 1f));
+            Anchor(dr, new Vector2(0f, 1f), new Vector2(30f, -20f), new Vector2(500f, 72f), new Vector2(0f, 1f));
             Button minus = UiBuild.Button(root, "Decrease Level", "−", false);
             Anchor(minus.GetComponent<RectTransform>(), new Vector2(0f, 1f), new Vector2(30f, -100f),
                    new Vector2(80f, 60f), new Vector2(0f, 1f));
@@ -214,7 +214,7 @@ namespace OneBagJianghu.EditorTools.Building
                 new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .13f));
             Anchor(board.rectTransform, new Vector2(0f, 1f), new Vector2(18f, -168f),
                 new Vector2(540f, 450f), new Vector2(0f, 1f));
-            UiBuild.ApplyUiSprite(board, "Kit/bag_board", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(board, "Kit/bag_board_landscape", Image.Type.Simple);
             board.transform.SetSiblingIndex(grid.transform.GetSiblingIndex());
             Anchor((RectTransform)grid.transform, new Vector2(0f, 1f), new Vector2(30f, -180f),
                    ((RectTransform)grid.transform).sizeDelta, new Vector2(0f, 1f));
@@ -241,6 +241,8 @@ namespace OneBagJianghu.EditorTools.Building
             Dropdown dropdown =
                 UiBuild.InstantiateLinked<Dropdown>(CommonUiPrefabBuilder.Folder + "/Dropdown.prefab", parent);
             dropdown.name = "Sect";
+            // The Sect field is 500x72, the aspect of the full-size dropdown art (1512x218), not the medium one.
+            UiBuild.ApplyUiSprite(dropdown.GetComponent<Image>(), "Kit/dropdown_field", Image.Type.Simple);
             dropdown.captionText.fontSize = 23;
             dropdown.options =
                 new System.Collections.Generic.List<Dropdown.OptionData> { new Dropdown.OptionData("Môn phái") };

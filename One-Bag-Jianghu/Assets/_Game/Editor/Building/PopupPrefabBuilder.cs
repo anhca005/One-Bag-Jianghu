@@ -376,8 +376,8 @@ namespace OneBagJianghu.EditorTools.Building
                 UiBuild.Set(popup, "selectedDescription", description);
                 UiBuild.Set(popup, "closeButton", close);
                 UiBuild.Set(popup, "replayButton", replay);
-                UiBuild.Set(popup, "normalRowSprite", UiBuild.LoadUiSprite("Kit/list_row"));
-                UiBuild.Set(popup, "selectedRowSprite", UiBuild.LoadUiSprite("Kit/list_row_selected"));
+                UiBuild.Set(popup, "normalRowSprite", UiBuild.LoadUiSprite("Kit/list_row_compact"));
+                UiBuild.Set(popup, "selectedRowSprite", UiBuild.LoadUiSprite("Kit/list_row_selected_compact"));
                 UiBuild.Set(popup, "itemsCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_items"));
                 UiBuild.Set(popup, "statusCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_status"));
                 UiBuild.Set(popup, "storyCategoryIcon", UiBuild.LoadUiSprite("Kit/encyclopedia_icon_story"));
@@ -410,7 +410,9 @@ namespace OneBagJianghu.EditorTools.Building
             float maxX)
         {
             Image viewport = UiBuild.Image(parent, name + " Viewport", new Color(1f, 1f, 1f, .08f));
-            UiBuild.ApplyUiSprite(viewport, "Kit/panel_inset", Image.Type.Sliced);
+            // Each column has inset art baked at its own size (categories 307x615, entries 330x615).
+            string inset = name == "Entries" ? "Kit/panel_inset_entries" : "Kit/panel_inset_tall";
+            UiBuild.ApplyUiSprite(viewport, inset, Image.Type.Simple);
             UiBuild.Anchors(viewport.rectTransform, new Vector2(minX, .12f), new Vector2(maxX, .87f));
             viewport.gameObject.AddComponent<RectMask2D>();
             ScrollRect scroll = viewport.gameObject.AddComponent<ScrollRect>();
@@ -444,7 +446,8 @@ namespace OneBagJianghu.EditorTools.Building
         {
             // A light paper row with ink text: the dark ornate buttons made a long list heavy and unreadable.
             Image background = UiBuild.Image(parent, name, EncyclopediaPopup.NormalRowColor);
-            UiBuild.ApplyUiSprite(background, "Kit/list_row", Image.Type.Sliced);
+            // Rows are 291 (categories) and 314 (entries) wide; the 302x48 art is within 4% of both.
+            UiBuild.ApplyUiSprite(background, "Kit/list_row_compact", Image.Type.Simple);
             background.rectTransform.sizeDelta = new Vector2(0f, 48f);
             LayoutElement layout = background.gameObject.AddComponent<LayoutElement>();
             layout.preferredHeight = 48f;
@@ -483,8 +486,8 @@ namespace OneBagJianghu.EditorTools.Building
             Image divider = UiBuild.Image(panel, name + " Divider", dividerColor);
             UiBuild.ApplyUiSprite(divider, "Kit/divider_brush");
             float dividerY = 1f - (top + 24f) / 900f;
-            UiBuild.Anchors(divider.rectTransform, new Vector2(.44f, dividerY - .0015f),
-                new Vector2(.94f, dividerY + .0015f));
+            UiBuild.Anchors(divider.rectTransform, new Vector2(.44f, dividerY), new Vector2(.94f, dividerY));
+            divider.rectTransform.sizeDelta = new Vector2(0f, 12f);
         }
 
         private static Slider AddSettingsSlider(Transform panel,
@@ -498,7 +501,7 @@ namespace OneBagJianghu.EditorTools.Building
             slider.name = name + " Slider";
             slider.gameObject.AddComponent<CanvasGroup>();
             UiBuild.Anchors(slider.GetComponent<RectTransform>(),
-                SettingsRectMin(top + 16f, 22f, .44f), SettingsRectMax(top + 16f, 22f, .86f));
+                SettingsRectMin(top + 16f, 25f, .44f), SettingsRectMax(top + 16f, 25f, .86f));
             valueText = AddText(panel, name + " Value", "100%", 20, SettingsRowMin(top, .87f),
                 SettingsRowMax(top, .94f));
             return slider;
@@ -522,6 +525,7 @@ namespace OneBagJianghu.EditorTools.Building
             Dropdown dropdown = UiBuild.InstantiateLinked<Dropdown>(
                 CommonUiPrefabBuilder.Folder + "/Dropdown.prefab", panel);
             dropdown.name = name;
+            UiBuild.ApplyUiSprite(dropdown.GetComponent<Image>(), "Kit/dropdown_field_wide", Image.Type.Simple);
             UiBuild.Anchors(dropdown.GetComponent<RectTransform>(),
                 SettingsRowMin(top, .44f), SettingsRowMax(top, .86f));
             return dropdown;
@@ -591,7 +595,7 @@ namespace OneBagJianghu.EditorTools.Building
                 Canvas tooltipCanvas = tooltipRoot.GetComponent<Canvas>();
                 tooltipCanvas.overrideSorting = true;
                 Image tooltipPanel = UiBuild.Image(tooltipRoot.transform, "Paper", UiBuild.Paper);
-                UiBuild.ApplyUiSprite(tooltipPanel, "frame_tooltip", Image.Type.Sliced);
+                UiBuild.ApplyUiSprite(tooltipPanel, "Kit/tooltip_tall", Image.Type.Simple);
                 RectTransform tooltipRect = tooltipPanel.rectTransform;
                 tooltipRect.anchorMin = tooltipRect.anchorMax = Vector2.zero;
                 tooltipRect.pivot = new Vector2(0f, 1f);
@@ -657,8 +661,7 @@ namespace OneBagJianghu.EditorTools.Building
                 UiBuild.Anchors(seal.rectTransform, new Vector2(.2f, .68f), new Vector2(.8f, .97f));
                 seal.preserveAspect = true;
                 seal.raycastTarget = false;
-                if (!UiBuild.ApplyUiSprite(seal, "Kit/result_victory"))
-                    UiBuild.ApplyUiSprite(seal, "seal_title");
+                UiBuild.ApplyUiSprite(seal, "Kit/result_victory");
                 Text result = AddText(panel, "Result Text", "Thắng", 56, new Vector2(0.05f, 0.74f), new
                     Vector2(0.95f, 0.92f));
                 Text winner = AddText(panel, "Winner", "Người thắng", 22, new Vector2(0.08f, 0.62f), new
@@ -667,7 +670,7 @@ namespace OneBagJianghu.EditorTools.Building
                 Image rewardSlot = UiBuild.Image(panel, "Reward Slot", new Color(UiBuild.Ink.r, UiBuild.Ink.g,
                     UiBuild.Ink.b, .08f));
                 UiBuild.Anchors(rewardSlot.rectTransform, new Vector2(.1f, .29f), new Vector2(.9f, .64f));
-                UiBuild.ApplyUiSprite(rewardSlot, "Kit/panel_inset", Image.Type.Sliced);
+                UiBuild.ApplyUiSprite(rewardSlot, "Kit/panel_inset_wide", Image.Type.Simple);
                 Text rewards = AddText(rewardSlot.transform, "Rewards", "", 21, Vector2.zero, Vector2.one);
                 rewards.rectTransform.offsetMin = new Vector2(24f, 12f);
                 rewards.rectTransform.offsetMax = new Vector2(-24f, -12f);
@@ -723,7 +726,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image panelImage = UiBuild.InstantiateLinked<Image>(CommonUiPrefabBuilder.Folder +
                 "/Panel_Paper.prefab", root.transform);
             panelImage.name = "Panel";
-            UiBuild.ApplyUiSprite(panelImage, "Kit/popup_frame", Image.Type.Sliced);
+            ApplyPopupFrame(panelImage, size);
             RectTransform panel = panelImage.rectTransform;
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(0.5f, 0.5f);
             panel.sizeDelta = size;
@@ -732,6 +735,21 @@ namespace OneBagJianghu.EditorTools.Building
             root.SetActive(false);
             PrefabUtility.SaveAsPrefabAsset(root, path);
             Object.DestroyImmediate(root);
+        }
+
+        private static void ApplyPopupFrame(Image image, Vector2 size)
+        {
+            float aspect = size.x / size.y;
+            string sprite = aspect >= 1.6f
+                ? "Kit/popup_frame_wide"
+                : aspect >= 1.37f
+                    ? "Kit/popup_frame_medium"
+                    : aspect >= 1.18f
+                        ? "Kit/popup_frame_result"
+                        : aspect >= 1.06f
+                            ? "Kit/popup_frame_square"
+                            : "Kit/popup_frame";
+            UiBuild.ApplyUiSprite(image, sprite, Image.Type.Simple);
         }
 
         private static Text AddText(Transform parent, string name, string value, int size, Vector2 min, Vector2
@@ -745,15 +763,24 @@ namespace OneBagJianghu.EditorTools.Building
             if (name.IndexOf("Title", System.StringComparison.OrdinalIgnoreCase) >= 0)
             {
                 Image ribbon = UiBuild.Image(parent, name + " Ribbon", Color.clear);
-                UiBuild.Anchors(ribbon.rectTransform, min, max);
+                Vector2 center = (min + max) * .5f;
+                ribbon.rectTransform.anchorMin = center;
+                ribbon.rectTransform.anchorMax = center;
+                ribbon.rectTransform.sizeDelta = new Vector2(520f, 123f);
+                text.rectTransform.anchorMin = center;
+                text.rectTransform.anchorMax = center;
+                // Keep the title on the ribbon's dark band (about 45% of its 123 px height).
+                text.rectTransform.sizeDelta = new Vector2(400f, 54f);
+                // The dark band sits in the ribbon's upper half (tassels hang below), so lift the title onto it.
+                text.rectTransform.anchoredPosition = new Vector2(0f, 10f);
+                text.resizeTextForBestFit = true;
+                text.resizeTextMinSize = 18;
+                text.resizeTextMaxSize = size;
                 ribbon.raycastTarget = false;
-                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Sliced))
+                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Simple))
                 {
-                    // The band fills the title rect; the tassel strip (bottom border) hangs below it.
-                    // Canvas units: border pixels x reference pixels per unit (100) / (sprite PPU x multiplier).
-                    float tassels = ribbon.sprite.border.y * 100f / (ribbon.sprite.pixelsPerUnit
-                        * ribbon.pixelsPerUnitMultiplier);
-                    ribbon.rectTransform.offsetMin = new Vector2(0f, -tassels);
+                    // Nudge down without resizing: the 520x123 rect is the ribbon art's own aspect.
+                    ribbon.rectTransform.anchoredPosition = new Vector2(0f, -6f);
                     ribbon.transform.SetSiblingIndex(text.transform.GetSiblingIndex());
                     text.transform.SetAsLastSibling();
                     text.color = UiBuild.Paper;

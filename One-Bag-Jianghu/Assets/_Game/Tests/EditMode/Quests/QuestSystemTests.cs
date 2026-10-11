@@ -28,19 +28,24 @@ namespace OneBagJianghu.Tests.Quests
         }
 
         [Test]
-        public void Catalog_LoadsNineUniqueHoiOneQuests()
+        public void Catalog_LoadsNineUniqueQuestsPerHoi()
         {
             // Arrange
             var ids = new HashSet<string>();
+            var perChapter = new Dictionary<int, int>();
 
             // Act
             foreach (QuestDefinition quest in catalog.Quests)
+            {
                 ids.Add(quest.Id);
+                perChapter.TryGetValue(quest.Chapter, out int count);
+                perChapter[quest.Chapter] = count + 1;
+            }
 
             // Assert
-            Assert.That(catalog.Quests, Has.Count.EqualTo(9));
-            Assert.That(ids, Has.Count.EqualTo(9));
-            Assert.That(catalog.Quests.TrueForAll(quest => quest.Chapter == 1), Is.True);
+            Assert.That(ids, Has.Count.EqualTo(catalog.Quests.Count));
+            for (int chapter = 1; chapter <= 5; chapter++)
+                Assert.That(perChapter[chapter], Is.EqualTo(9), "Hoi " + chapter);
         }
 
         [TestCase("objective", "type", "unknown")]

@@ -60,7 +60,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image rarityFrame = UiBuild.Image(bg.transform, "Rarity Frame", Color.white);
             UiBuild.Stretch(rarityFrame.rectTransform, 3f);
             rarityFrame.raycastTarget = false;
-            UiBuild.ApplyUiSprite(rarityFrame, "frame_panel", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(rarityFrame, "Kit/frame_panel_square", Image.Type.Simple);
             UiBuild.Set(view, "background", bg);
             UiBuild.Set(view, "rarityOutline", outline);
             UiBuild.Set(view, "icon", icon);
@@ -100,14 +100,16 @@ namespace OneBagJianghu.EditorTools.Building
             string path = Folder + "/FighterPanel.prefab";
             if (!AssetGuard.ShouldBuild(path, overwrite)) return;
             Image root = UiBuild.Image(null, "Avatar", ReplayStyle.Paper);
-            if (!UiBuild.ApplyUiSprite(root, "Kit/fighter_panel", Image.Type.Sliced))
-                UiBuild.ApplyUiSprite(root, "frame_panel", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(root, "Kit/fighter_panel_replay", Image.Type.Simple);
+            // The replay avatar size, which is also the art's aspect.
+            root.rectTransform.sizeDelta = new Vector2(250f, 360f);
             root.color = new Color(ReplayStyle.Paper.r, ReplayStyle.Paper.g, ReplayStyle.Paper.b, .88f);
             FighterPanelView view = root.gameObject.AddComponent<FighterPanelView>();
             Image titleStrip = UiBuild.Image(root.transform, "TitleStrip", new Color(ReplayStyle.Ink.r,
                 ReplayStyle.Ink.g, ReplayStyle.Ink.b, .72f));
-            SetRect(titleStrip.rectTransform, 10, 302, 230, 48);
-            UiBuild.ApplyUiSprite(titleStrip, "Kit/name_plate", Image.Type.Sliced);
+            // 240x48 is the name_plate art aspect (5:1); centred in the 250 px panel.
+            SetRect(titleStrip.rectTransform, 5, 302, 240, 48);
+            UiBuild.ApplyUiSprite(titleStrip, "Kit/name_plate", Image.Type.Simple);
             Text name = UiBuild.Text(titleStrip.transform, "Name", "Hiệp Khách", 24, TextAnchor.MiddleCenter,
                 UiFontRole.Title);
             name.color = ReplayStyle.Paper;
@@ -123,7 +125,7 @@ namespace OneBagJianghu.EditorTools.Building
             AddShadow(name);
             Image frame = UiBuild.Image(root.transform, "Portrait", Color.white);
             SetRect(frame.rectTransform, 14, 18, 222, 276);
-            UiBuild.ApplyUiSprite(frame, "hero_portrait_frame");
+            UiBuild.ApplyUiSprite(frame, "Kit/hero_portrait_frame_wide");
             Image backing = UiBuild.Image(frame.transform, "Backing", ReplayStyle.Ink);
             UiBuild.Stretch(backing.rectTransform, 22);
             backing.raycastTarget = false;
@@ -146,13 +148,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image root = UiBuild.Image(parent, name,
                 new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g, ReplayStyle.Ink.b, .28f));
             SetRect(root.rectTransform, rect.x, rect.y, rect.width, rect.height);
-            if (!UiBuild.ApplyUiSprite(root, "Kit/" + frameSprite, Image.Type.Sliced))
-            {
-                if (!UiBuild.ApplyUiSprite(root, "Kit/bar_frame", Image.Type.Sliced))
-                {
-                    UiBuild.ApplyUiSprite(root, "progress_bar", Image.Type.Sliced);
-                }
-            }
+            UiBuild.ApplyUiSprite(root, "Kit/" + frameSprite, Image.Type.Simple);
 
             Image fill = UiBuild.Image(root.transform, "Fill", color);
             float horizontalInset = frameSprite == "gauge_frame_large" ? 13f : 8f;
@@ -160,13 +156,11 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.Stretch(fill.rectTransform);
             fill.rectTransform.offsetMin = new Vector2(horizontalInset, verticalInset);
             fill.rectTransform.offsetMax = new Vector2(-horizontalInset, -verticalInset);
-            // The "_core" art has the brush tapers cut off, so a partial fill ends cleanly at both sides.
-            if (!UiBuild.ApplyUiSprite(fill, "Kit/" + fillSprite + "_core", Image.Type.Filled))
-            {
-                UiBuild.ApplyUiSprite(fill, "Kit/" + fillSprite, Image.Type.Filled);
-            }
-            fill.type = Image.Type.Filled;
+            // The "_wide" art is the tapered-off "_core" brush tiled out to this fill's own aspect, so the
+            // fill covers its rect undistorted and fillAmount only crops it.
+            UiBuild.ApplyUiSprite(fill, "Kit/" + fillSprite + "_wide", Image.Type.Filled);
             fill.fillMethod = Image.FillMethod.Horizontal;
+            // The enemy's bars drain toward the centre of the screen, so they fill from the right.
             fill.fillOrigin = mirrored ? (int)Image.OriginHorizontal.Right : (int)Image.OriginHorizontal.Left;
             Text text = UiBuild.Text(
                 root.transform,
@@ -192,10 +186,7 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Image socket = UiBuild.Image(parent, name, new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g,
                 ReplayStyle.Ink.b, .75f));
-            if (!UiBuild.ApplyUiSprite(socket, "Kit/status_slot", Image.Type.Sliced))
-            {
-                UiBuild.ApplyUiSprite(socket, "Kit/slot_cell", Image.Type.Sliced);
-            }
+            UiBuild.ApplyUiSprite(socket, "Kit/status_slot", Image.Type.Simple);
 
             Image icon = UiBuild.Image(socket.transform, "Icon", Color.white);
             UiBuild.Stretch(icon.rectTransform, 5f);
@@ -208,7 +199,7 @@ namespace OneBagJianghu.EditorTools.Building
             badge.rectTransform.pivot = new Vector2(1f, 0f);
             badge.rectTransform.anchoredPosition = new Vector2(3f, -3f);
             badge.rectTransform.sizeDelta = new Vector2(20f, 14f);
-            UiBuild.ApplyUiSprite(badge, "Kit/count_badge", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(badge, "Kit/count_badge_compact", Image.Type.Simple);
             Text value = UiBuild.Text(badge.transform, "Count", "", 11, TextAnchor.MiddleCenter);
             value.color = Color.white;
             // The badge is tiny: never truncate the digits.
@@ -227,13 +218,7 @@ namespace OneBagJianghu.EditorTools.Building
             // Each paper HUD owns one fighter's resources while the component remains on the avatar panel.
             Image hud = UiBuild.Image(parent, mirrored ? "EnemyHud" : "PlayerHud", Color.white);
             SetRect(hud.rectTransform, x, 8f, hudWidth, 148f);
-            if (!UiBuild.ApplyUiSprite(hud, "Kit/hud_panel", Image.Type.Sliced))
-            {
-                if (!UiBuild.ApplyUiSprite(hud, "Kit/fighter_panel", Image.Type.Sliced))
-                {
-                    UiBuild.ApplyUiSprite(hud, "home_banner", Image.Type.Sliced);
-                }
-            }
+            UiBuild.ApplyUiSprite(hud, "Kit/hud_panel_simple", Image.Type.Simple);
 
             hud.color = new Color(ReplayStyle.Paper.r, ReplayStyle.Paper.g, ReplayStyle.Paper.b, .94f);
             TextAnchor nameAlignment = mirrored ? TextAnchor.MiddleRight : TextAnchor.MiddleLeft;
@@ -245,7 +230,8 @@ namespace OneBagJianghu.EditorTools.Building
                 nameAlignment,
                 UiFontRole.Title);
             fighterName.color = ReplayStyle.Ink;
-            float nameX = mirrored ? 326f : 24f;
+            // Clear the ~50 px gold corner ornament of hud_panel_simple at the outer top corner.
+            float nameX = mirrored ? 286f : 64f;
             float barX = mirrored ? 138f : 22f;
             float statusX = mirrored ? 18f : 654f;
             SetRect(fighterName.rectTransform, nameX, 108f, 430f, 34f);
@@ -286,10 +272,7 @@ namespace OneBagJianghu.EditorTools.Building
             // Clock plate: one readable centre for both the mode title and timer.
             Image clockPlate = UiBuild.Image(top.transform, "ClockPlate", Color.white);
             SetRect(clockPlate.rectTransform, 820f, 20f, 280f, 112f);
-            if (!UiBuild.ApplyUiSprite(clockPlate, "Kit/clock_plate", Image.Type.Sliced))
-            {
-                UiBuild.ApplyUiSprite(clockPlate, "plaque_label", Image.Type.Sliced);
-            }
+            UiBuild.ApplyUiSprite(clockPlate, "Kit/clock_plate", Image.Type.Simple);
 
             // Emblem sits on the plate (not under it), faint, behind the outlined timer and mode title.
             Image versus = UiBuild.Image(top.transform, "Vs Emblem", Color.white);
@@ -359,6 +342,7 @@ namespace OneBagJianghu.EditorTools.Building
             RectTransform speeds = UiBuild.Rect(bottom.transform, "SpeedButtons");
             SetRect(speeds, 20, 24, 520, 72);
             Button play = CommonButton(speeds, "PauseResume", "Tạm dừng", 0, 4, 170, 64);
+            UiBuild.ApplyUiSprite(play.GetComponent<Image>(), "Kit/button_replay_control", Image.Type.Simple);
             Image playIcon = AddControlIcon(play, "icon_pause");
             Button s1 = SquareButton(speeds, "Speed x1", "x1", 184f);
             Button s2 = SquareButton(speeds, "Speed x2", "x2", 254f);
@@ -367,10 +351,7 @@ namespace OneBagJianghu.EditorTools.Building
             // Collapsed log: the panel itself remains clickable and clips to its quiet paper centre.
             Button logToggle = CommonButton(bottom.transform, "LogToggle", "", 550, 12, 1300, 96);
             Image logToggleImage = logToggle.GetComponent<Image>();
-            if (!UiBuild.ApplyUiSprite(logToggleImage, "Kit/log_panel", Image.Type.Sliced))
-            {
-                UiBuild.ApplyUiSprite(logToggleImage, "frame_panel", Image.Type.Sliced);
-            }
+            UiBuild.ApplyUiSprite(logToggleImage, "Kit/log_panel_wide", Image.Type.Simple);
             Image collapsedViewport = UiBuild.Image(logToggle.transform, "Log Viewport", Color.clear);
             UiBuild.Stretch(collapsedViewport.rectTransform);
             collapsedViewport.rectTransform.offsetMin = new Vector2(72f, 16f);
@@ -385,10 +366,7 @@ namespace OneBagJianghu.EditorTools.Building
             AddShadow(collapsed);
             Image expanded = UiBuild.Image(root, "ExpandedBattleLog", ReplayStyle.Paper);
             SetRect(expanded.rectTransform, 300f, 120f, 1320f, 440f);
-            if (!UiBuild.ApplyUiSprite(expanded, "Kit/log_panel", Image.Type.Sliced))
-            {
-                UiBuild.ApplyUiSprite(expanded, "frame_panel", Image.Type.Sliced);
-            }
+            UiBuild.ApplyUiSprite(expanded, "Kit/log_panel_expanded", Image.Type.Simple);
 
             Image viewport = UiBuild.Image(expanded.transform, "Viewport",
                 new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g, ReplayStyle.Ink.b, .78f));
@@ -419,7 +397,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image timeline = UiBuild.Image(bottom.transform, "Timeline",
                 new Color(ReplayStyle.Paper.r, ReplayStyle.Paper.g, ReplayStyle.Paper.b, .3f));
             SetRect(timeline.rectTransform, 550, 98, 1300, 20);
-            UiBuild.ApplyUiSprite(timeline, "Kit/timeline_bar", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(timeline, "Kit/timeline_bar_thin", Image.Type.Simple);
             Slider slider = timeline.gameObject.AddComponent<Slider>();
             Image fill = UiBuild.Image(timeline.transform, "Fill", ReplayStyle.Gold);
             UiBuild.Stretch(fill.rectTransform, 5f);
@@ -488,7 +466,7 @@ namespace OneBagJianghu.EditorTools.Building
                     int visualColumn = mirrored ? 4 - column : column;
                     Image cell = UiBuild.Image(bag.transform, $"Cell {column},{row}",
                         new Color(ReplayStyle.Paper.r, ReplayStyle.Paper.g, ReplayStyle.Paper.b, .67f));
-                    UiBuild.ApplyUiSprite(cell, "Kit/slot_cell", Image.Type.Sliced);
+                    UiBuild.ApplyUiSprite(cell, "Kit/slot_cell_square", Image.Type.Simple);
                     cell.rectTransform.anchorMin = new Vector2(0f, 1f);
                     cell.rectTransform.anchorMax = new Vector2(0f, 1f);
                     cell.rectTransform.pivot = new Vector2(0f, 1f);
@@ -505,7 +483,8 @@ namespace OneBagJianghu.EditorTools.Building
             Image image = UiBuild.Image(parent, name, new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g,
             ReplayStyle.Ink.b, .86f));
         SetRect(image.rectTransform, x, y, w, h);
-        UiBuild.ApplyUiSprite(image, "frame_panel", UnityEngine.UI.Image.Type.Sliced);
+        string spriteKey = name == "TopBar" ? "Kit/replay_top_bar" : "Kit/replay_bottom_bar";
+        UiBuild.ApplyUiSprite(image, spriteKey, UnityEngine.UI.Image.Type.Simple);
         image.color = new Color(ReplayStyle.Ink.r, ReplayStyle.Ink.g, ReplayStyle.Ink.b, .86f);
         return image;
         }
@@ -532,7 +511,7 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Button button = CommonButton(parent, name, label, x, 4f, 64f, 64f);
             Image image = button.GetComponent<Image>();
-            if (UiBuild.ApplyUiSprite(image, "Kit/button_square", Image.Type.Sliced))
+            if (UiBuild.ApplyUiSprite(image, "Kit/button_square", Image.Type.Simple))
             {
                 image.preserveAspect = true;
             }
@@ -547,7 +526,6 @@ namespace OneBagJianghu.EditorTools.Building
             "/Button_Secondary.prefab", parent);
         ui.name = name;
         SetRect((RectTransform)ui.transform, x, y, w, h);
-        ui.GetComponent<Image>().pixelsPerUnitMultiplier = 10f;
         Text text = ui.GetComponentInChildren<Text>();
         text.fontSize = 22;
         UiBuild.FitLabel(text, UiBuild.LabelFitPreset.OrnateButton);

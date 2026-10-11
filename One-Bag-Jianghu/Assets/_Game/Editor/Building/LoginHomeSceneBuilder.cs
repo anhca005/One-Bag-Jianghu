@@ -90,7 +90,7 @@ namespace OneBagJianghu.EditorTools.Building
             Color headerFallback = new Color(UiBuild.Paper.r, UiBuild.Paper.g, UiBuild.Paper.b, .88f);
             Image header = UiBuild.Image(canvas.transform, "Header", headerFallback);
             TopStretch(header.rectTransform, 132f);
-            if (UiBuild.ApplyUiSprite(header, "home_banner", Image.Type.Sliced))
+            if (UiBuild.ApplyUiSprite(header, "Kit/home_banner_simple", Image.Type.Simple))
             {
                 header.color = Color.white;
                 // Scale the ends with the banner height (art is 390 px tall) instead of stretching them sideways.
@@ -211,7 +211,7 @@ namespace OneBagJianghu.EditorTools.Building
             Canvas canvas = root.GetComponent<Canvas>();
             canvas.overrideSorting = true;
             Image paper = UiBuild.Image(root.transform, "Paper", UiBuild.Paper);
-            UiBuild.ApplyUiSprite(paper, "frame_tooltip", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(paper, "Kit/tooltip_panel", Image.Type.Simple);
             RectTransform panel = paper.rectTransform;
             panel.anchorMin = Vector2.zero;
             panel.anchorMax = Vector2.zero;
@@ -317,7 +317,7 @@ namespace OneBagJianghu.EditorTools.Building
                 slot.preserveAspect = true;
             }
             else
-                UiBuild.ApplyUiSprite(slot, "plaque_label", Image.Type.Sliced);
+                UiBuild.ApplyUiSprite(slot, "plaque_label", Image.Type.Simple);
             Image icon = UiBuild.Image(entry, "Icon", Color.white);
             if (hasSlotArt)
                 Rect(icon.rectTransform, 24f, 11f, 34f, 34f); // socket centre measured at x 16.8%, y 49% of the art
@@ -401,7 +401,8 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.EnsureFolder("Assets/_Game/Prefabs/UI/Home"); if (!AssetGuard.ShouldBuild(Path, overwrite)) return;
             Image area = UiBuild.Image(null, "Hotspot", Color.clear); area.raycastTarget = true; HomeHotspot hotspot = area.gameObject.AddComponent<HomeHotspot>();
             Image plaque = UiBuild.Image(area.transform, "Plaque", new Color(UiBuild.Paper.r, UiBuild.Paper.g, UiBuild.Paper.b, 0.94f));
-            UiBuild.ApplyUiSprite(plaque, "plaque_label", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(plaque, "plaque_label", Image.Type.Simple);
+            plaque.preserveAspect = true;
             plaque.rectTransform.anchorMin = new Vector2(0f, 0.36f); plaque.rectTransform.anchorMax = new Vector2(1f, 0.82f); plaque.rectTransform.offsetMin = Vector2.zero; plaque.rectTransform.offsetMax = Vector2.zero;
             Outline outline = plaque.gameObject.AddComponent<Outline>(); outline.effectColor = UiBuild.Gold; outline.effectDistance = new Vector2(2f, -2f); outline.enabled = false;
             Text label = UiBuild.Text(plaque.transform, "Label", "Hotspot", 22, TextAnchor.MiddleCenter, UiFontRole.Title); UiBuild.FitLabel(label, UiBuild.LabelFitPreset.Plaque);

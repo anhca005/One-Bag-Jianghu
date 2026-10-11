@@ -100,10 +100,11 @@ namespace OneBagJianghu.Tests.UI
             Assert.That(prefab.transform.Find("BottomBar/LogToggle"), Is.Not.Null);
             Assert.That(prefab.transform.Find("BottomBar/SpeedButtons/Restart"), Is.Null);
             Assert.That(prefab.transform.Find("ExpandedBattleLog/Viewport/Content"), Is.Not.Null);
+            // Each log frame has art drawn at its own aspect (decision #66).
             Assert.That(prefab.transform.Find("BottomBar/LogToggle").GetComponent<Image>().sprite.name,
-                Is.EqualTo("log_panel"));
+                Is.EqualTo("log_panel_wide"));
             Assert.That(prefab.transform.Find("ExpandedBattleLog").GetComponent<Image>().sprite.name,
-                Is.EqualTo("log_panel"));
+                Is.EqualTo("log_panel_expanded"));
             Assert.That(prefab.transform.Find("TopBar/ExitButton").GetComponent<Image>().sprite.name,
                 Is.EqualTo("button_exit"));
             Assert.That(prefab.transform.Find("TopBar/ClockPlate/Clock").GetComponent<Outline>(), Is.Not.Null);
@@ -149,7 +150,7 @@ namespace OneBagJianghu.Tests.UI
                 Assert.That(hud.Find("StatusChips"), Is.Not.Null);
                 Assert.That(hud.Find("StatusChips/Burn/Icon"), Is.Not.Null);
                 Assert.That(hud.Find("StatusChips/Burn/CountBadge/Count"), Is.Not.Null);
-                Assert.That(hud.GetComponent<Image>().sprite.name, Is.EqualTo("hud_panel"));
+                Assert.That(hud.GetComponent<Image>().sprite.name, Is.EqualTo("hud_panel_simple"));
                 Assert.That(hud.Find("HpBar").GetComponent<Image>().sprite.name,
                     Is.EqualTo("gauge_frame_large"));
                 Assert.That(hud.Find("ShieldBar").GetComponent<Image>().sprite.name,

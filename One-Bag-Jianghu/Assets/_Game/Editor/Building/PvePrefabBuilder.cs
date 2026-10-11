@@ -27,6 +27,17 @@ public static class PvePrefabBuilder
         AssetDatabase.SaveAssets();
     }
 
+    /// <summary>Rebuilds PvE UI prefabs without modifying chapter map prefabs.</summary>
+    [MenuItem("One Bag Jianghu/Build/PvE UI Prefabs (Overwrite)")]
+    public static void BuildUiOverwrite()
+    {
+        UiBuild.EnsureFolder(PrefabFolder);
+        BuildNode(true);
+        BuildMap(true);
+        BuildDialogue(true);
+        AssetDatabase.SaveAssets();
+    }
+
     /// <summary>Creates missing chapter maps and adds only newly introduced stage anchors.</summary>
     public static void EnsureMapPrefabs()
     {
@@ -271,11 +282,11 @@ public static class PvePrefabBuilder
         UiBuild.FitLabel(rewards, UiBuild.LabelFitPreset.None, 11);
         UiBuild.FitLabel(cost, UiBuild.LabelFitPreset.None, 11);
         UiBuild.FitLabel(reason, UiBuild.LabelFitPreset.None, 10);
-        UiButton prev = Btn(panel, "Previous", "‹ Hồi trước", false, new Vector2(.08f, .035f), new Vector2(220, 58));
-        UiButton next = Btn(panel, "Next", "Hồi sau ›", false, new Vector2(.61f, .035f), new Vector2(220, 58));
+        UiButton prev = Btn(panel, "Previous", "‹ Hồi trước", false, new Vector2(.08f, .035f), new Vector2(230, 55));
+        UiButton next = Btn(panel, "Next", "Hồi sau ›", false, new Vector2(.61f, .035f), new Vector2(230, 55));
         UiButton challenge =
-            Btn(detail.transform, "Challenge", "Khiêu chiến", true, new Vector2(.5f, .087f), new Vector2(230, 48));
-        UiButton close = Btn(panel, "Close", "Đóng", false, new Vector2(.92f, .035f), new Vector2(180, 58));
+            Btn(detail.transform, "Challenge", "Khiêu chiến", true, new Vector2(.5f, .087f), new Vector2(230, 55));
+        UiButton close = Btn(panel, "Close", "Đóng", false, new Vector2(.92f, .035f), new Vector2(230, 55));
         PveStageNode template = UiBuild.InstantiateLinked<PveStageNode>(PrefabFolder + "/PveStageNode.prefab", panel);
         template.name = "Stage Node Prefab";
         template.gameObject.SetActive(false);
@@ -322,7 +333,7 @@ public static class PvePrefabBuilder
         Text body = T(box.transform, "Body", "Lời thoại", 24, .14f, .21f, .86f, .62f);
         body.alignment = TextAnchor.UpperLeft;
         Button advance = box.gameObject.AddComponent<Button>();
-        UiButton skip = Btn(panel, "Skip", "Bỏ qua", false, new Vector2(.91f, .93f), new Vector2(180, 56));
+        UiButton skip = Btn(panel, "Skip", "Bỏ qua", false, new Vector2(.91f, .93f), new Vector2(230, 55));
         UiBuild.Set(popup, "portrait", portrait);
         UiBuild.Set(popup, "dialogueFrame", box);
         UiBuild.Set(popup, "portraitLeft", left);
@@ -361,7 +372,7 @@ public static class PvePrefabBuilder
         root.GetComponent<Canvas>().overrideSorting = true;
         Image paper =
             UiBuild.InstantiateLinked<Image>(CommonUiPrefabBuilder.Folder + "/Panel_Paper.prefab", root.transform);
-        UiBuild.ApplyUiSprite(paper, "Kit/popup_frame", Image.Type.Sliced);
+        UiBuild.ApplyUiSprite(paper, "Kit/popup_frame_wide", Image.Type.Simple);
         panel = paper.rectTransform;
         panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(.5f, .5f);
         panel.sizeDelta = new Vector2(1760, 980);

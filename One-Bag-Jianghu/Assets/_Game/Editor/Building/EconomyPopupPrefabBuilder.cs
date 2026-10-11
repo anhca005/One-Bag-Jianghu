@@ -300,7 +300,7 @@ namespace OneBagJianghu.EditorTools.Building
             StorageCell cell = root.AddComponent<StorageCell>();
             Image paper = UiBuild.Image(root.transform, "Paper", new Color(.18f, .15f, .12f, .1f));
             UiBuild.Stretch(paper.rectTransform);
-            UiBuild.ApplyUiSprite(paper, "Kit/slot_cell", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(paper, "Kit/slot_cell_square", Image.Type.Simple);
             Set(cell, "paper", paper);
             Save(root, path);
         }
@@ -318,7 +318,7 @@ namespace OneBagJianghu.EditorTools.Building
             background.raycastTarget = false;
             Image border = UiBuild.Image(root.transform, "Border", Color.white);
             UiBuild.Stretch(border.rectTransform);
-            UiBuild.ApplyUiSprite(border, "frame_panel", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(border, "Kit/frame_panel_square", Image.Type.Simple);
             Image icon = UiBuild.Image(root.transform, "Icon", Color.white);
             Anchor(icon.rectTransform, .10f, .10f, .90f, .90f);
             icon.preserveAspect = true;
@@ -338,7 +338,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image pill = UiBuild.Image(root.transform, "Badge Pill", new Color(.10f, .08f, .06f, .86f));
             SetBadgeRect(pill.rectTransform);
             pill.raycastTarget = false;
-            UiBuild.ApplyUiSprite(pill, "Kit/tier_pill", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(pill, "Kit/tier_pill_compact", Image.Type.Simple);
             Text badge = Text(pill.transform, "Badge", "T1", 13, 0f, 0f, 1f, 1f);
             badge.color = UiBuild.Paper;
             badge.alignment = TextAnchor.MiddleCenter;
@@ -359,7 +359,8 @@ namespace OneBagJianghu.EditorTools.Building
             rect.anchorMax = Vector2.zero;
             rect.pivot = Vector2.zero;
             rect.anchoredPosition = new Vector2(7f, 7f);
-            rect.sizeDelta = new Vector2(34f, 22f);
+            // tier_pill_compact is 1.75:1.
+            rect.sizeDelta = new Vector2(38.5f, 22f);
         }
 
         private static void SetTopLeftBadgeRect(RectTransform rect, float size, float inset)
@@ -385,7 +386,7 @@ namespace OneBagJianghu.EditorTools.Building
             string[] types = { "Tất cả", "Binh Khí", "Hộ Cụ", "Công Pháp", "Đan Dược", "Kỳ Trân" };
             Dropdown filter = Dropdown(panel, "Type Filter", types, .02f, .79f, .22f, .86f);
             UiButton sort = Button(panel, "Sort", "Sắp xếp", false, .37f, .825f);
-            UiBuild.ApplyUiSprite(sort.GetComponent<Image>(), "Kit/button_small_gold", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(sort.GetComponent<Image>(), "Kit/button_small_gold_compact", Image.Type.Simple);
             UiBuild.AddLeadingIcon(sort.transform, "icon_sort");
 
             // Storage grid.
@@ -427,7 +428,7 @@ namespace OneBagJianghu.EditorTools.Building
 
             // The description grows inside a clipped, independently scrollable viewport.
             RectTransform detailViewport = UiBuild.Image(panel, "Detail Viewport", Color.clear).rectTransform;
-            UiBuild.ApplyUiSprite(detailViewport.GetComponent<Image>(), "Kit/panel_inset", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(detailViewport.GetComponent<Image>(), "Kit/panel_inset_detail", Image.Type.Simple);
             Anchor(detailViewport, .65f, .47f, .97f, .88f);
             detailViewport.gameObject.AddComponent<RectMask2D>();
             RectTransform detailContent = UiBuild.Rect(detailViewport, "Content");
@@ -516,12 +517,11 @@ namespace OneBagJianghu.EditorTools.Building
         {
             Color trackColor = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .16f);
             Image track = UiBuild.Image(panel, "Detail Scrollbar", trackColor);
-            UiBuild.ApplyUiSprite(track, "Kit/scrollbar_track", Image.Type.Sliced);
             Scrollbar scrollbar = track.gameObject.AddComponent<Scrollbar>();
             Anchor(scrollbar.GetComponent<RectTransform>(), .972f, .47f, .982f, .88f);
-            Image handle = UiBuild.Image(scrollbar.transform, "Handle", UiBuild.Vermilion);
+            // Flat ink like the common scrollbars; no kit art can fit a handle whose length follows content.
+            Image handle = UiBuild.Image(scrollbar.transform, "Handle", UiBuild.Ink);
             UiBuild.Stretch(handle.rectTransform);
-            UiBuild.ApplyUiSprite(handle, "Kit/scrollbar_handle", Image.Type.Sliced);
             scrollbar.handleRect = handle.rectTransform;
             scrollbar.targetGraphic = handle;
             scrollbar.direction = Scrollbar.Direction.BottomToTop;
@@ -654,16 +654,13 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.Stretch(paper.rectTransform);
             // shop_card_wide is drawn at the card's own 7:5 shape, so it stretches whole (Simple) without warping.
             // Its footer band is the bottom 21% (button row); the face above holds art, text and price.
-            bool wideCard = UiBuild.ApplyUiSprite(paper, "Kit/shop_card_wide", Image.Type.Simple);
-            if (!wideCard && !UiBuild.ApplyUiSprite(paper, "Kit/shop_card_frame", Image.Type.Sliced))
-                UiBuild.ApplyUiSprite(paper, "Kit/shop_card", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(paper, "Kit/shop_card_wide", Image.Type.Simple);
             Image border = UiBuild.Image(root.transform, "Rarity Border", Color.white);
             UiBuild.Stretch(border.rectTransform, 3f);
             border.raycastTarget = false;
-            UiBuild.ApplyUiSprite(border, "frame_panel", Image.Type.Sliced);
-            // The card art has its own frame; a second rarity frame on top doubled the border. Rarity stays on the
-            // medallion. The object is kept (hidden) because ShopCard tints it.
-            border.gameObject.SetActive(!wideCard);
+            // ShopCard still tints this serialized Image for rarity, but the wide art owns the only visible frame.
+            border.sprite = null;
+            border.gameObject.SetActive(false);
             AddCardKnot(root.transform);
             Image icon = UiBuild.Image(root.transform, "Icon", Color.white);
             Anchor(icon.rectTransform, .08f, .6f, .92f, .91f);
@@ -689,11 +686,10 @@ namespace OneBagJianghu.EditorTools.Building
             // the plate is drawn at its native height (464 px / 12.9 = 36) so the ring is not squashed.
             Image priceTag = UiBuild.Image(root.transform, "Price Tag", new Color(UiBuild.Ink.r, UiBuild.Ink.g,
                 UiBuild.Ink.b, .12f));
-            Anchor(priceTag.rectTransform, .03f, .215f, .64f, .335f);
-            bool hasPlate = UiBuild.ApplyUiSprite(priceTag, "Kit/price_tag", Image.Type.Sliced);
+            Anchor(priceTag.rectTransform, .03f, .17f, .64f, .35f);
+            bool hasPlate = UiBuild.ApplyUiSprite(priceTag, "Kit/price_tag", Image.Type.Simple);
             priceTag.raycastTarget = false;
-            float ring = hasPlate ? priceTag.sprite.border.x * 100f / (priceTag.sprite.pixelsPerUnit
-                * priceTag.pixelsPerUnitMultiplier) : 0f;
+            float ring = hasPlate ? 50f : 0f;
             if (hasPlate)
             {
                 Image coin = UiBuild.Image(priceTag.transform, "Coin", Color.white);
@@ -806,15 +802,15 @@ namespace OneBagJianghu.EditorTools.Building
             timer.gameObject.AddComponent<LayoutElement>().preferredWidth = 300f;
             Text status = Text(panel, "Status", string.Empty, 18, .03f, .015f, .65f, .065f);
             UiButton refresh = Button(panel, "Refresh", "Làm mới", true, .86f, .885f);
-            UiBuild.ApplyUiSprite(refresh.GetComponent<Image>(), "Kit/button_small_gold", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(refresh.GetComponent<Image>(), "Kit/button_small_gold_compact", Image.Type.Simple);
             UiBuild.AddLeadingIcon(refresh.transform, "icon_refresh");
-            refresh.GetComponent<RectTransform>().sizeDelta = new Vector2(360f, 64f);
+            refresh.GetComponent<RectTransform>().sizeDelta = new Vector2(260f, 62f);
             UiButton trade = Button(panel, "Trade Tab", "Thương Hội", true, .18f, .795f);
             UiButton exchange = Button(panel, "Exchange Tab", "Đổi nguyên liệu", false, .5f, .795f);
             UiButton reputationTab = Button(panel, "Reputation Tab", "Tiệm Danh Vọng", false, .82f, .795f);
-            UiBuild.ApplyUiSprite(trade.GetComponent<Image>(), "Kit/tab_active", Image.Type.Sliced);
-            UiBuild.ApplyUiSprite(exchange.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Sliced);
-            UiBuild.ApplyUiSprite(reputationTab.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(trade.GetComponent<Image>(), "Kit/tab_active", Image.Type.Simple);
+            UiBuild.ApplyUiSprite(exchange.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Simple);
+            UiBuild.ApplyUiSprite(reputationTab.GetComponent<Image>(), "Kit/tab_idle", Image.Type.Simple);
             // Idle tabs are pale silk: ink labels stay readable (ShopPopup copies these colors per state).
             exchange.GetComponentInChildren<Text>().color = UiBuild.Ink;
             reputationTab.GetComponentInChildren<Text>().color = UiBuild.Ink;
@@ -862,7 +858,7 @@ namespace OneBagJianghu.EditorTools.Building
             Canvas canvas = root.GetComponent<Canvas>();
             canvas.overrideSorting = true;
             Image paper = UiBuild.Image(root.transform, "Paper", UiBuild.Paper);
-            UiBuild.ApplyUiSprite(paper, "frame_tooltip", Image.Type.Sliced);
+            UiBuild.ApplyUiSprite(paper, "Kit/tooltip_tall", Image.Type.Simple);
             RectTransform panel = paper.rectTransform;
             panel.anchorMin = Vector2.zero;
             panel.anchorMax = Vector2.zero;
@@ -972,7 +968,7 @@ namespace OneBagJianghu.EditorTools.Building
             root.GetComponent<Canvas>().overrideSorting = true;
             T popup = root.AddComponent<T>();
             Image paper = Linked<Image>(CommonUiPrefabBuilder.Folder + "/Panel_Paper.prefab", root.transform, "Panel");
-            UiBuild.ApplyUiSprite(paper, "Kit/popup_frame", Image.Type.Sliced);
+            ApplyPopupFrame(paper, size);
             RectTransform panel = paper.rectTransform;
             panel.anchorMin = new Vector2(.5f, .5f);
             panel.anchorMax = new Vector2(.5f, .5f);
@@ -982,6 +978,21 @@ namespace OneBagJianghu.EditorTools.Building
             build(popup, panel);
             root.SetActive(false);
             Save(root, path);
+        }
+
+        private static void ApplyPopupFrame(Image image, Vector2 size)
+        {
+            float aspect = size.x / size.y;
+            string sprite = aspect >= 1.6f
+                ? "Kit/popup_frame_wide"
+                : aspect >= 1.37f
+                    ? "Kit/popup_frame_medium"
+                    : aspect >= 1.18f
+                        ? "Kit/popup_frame_result"
+                        : aspect >= 1.06f
+                            ? "Kit/popup_frame_square"
+                            : "Kit/popup_frame";
+            UiBuild.ApplyUiSprite(image, sprite, Image.Type.Simple);
         }
 
         private static Text Text(
@@ -1006,15 +1017,24 @@ namespace OneBagJianghu.EditorTools.Building
             if (isDisplay)
             {
                 Image ribbon = UiBuild.Image(parent, name + " Ribbon", Color.clear);
-                Anchor(ribbon.rectTransform, xMin, yMin, xMax, yMax);
+                Vector2 center = new Vector2((xMin + xMax) * .5f, (yMin + yMax) * .5f);
+                ribbon.rectTransform.anchorMin = center;
+                ribbon.rectTransform.anchorMax = center;
+                ribbon.rectTransform.sizeDelta = new Vector2(520f, 123f);
+                text.rectTransform.anchorMin = center;
+                text.rectTransform.anchorMax = center;
+                // Keep the title on the ribbon's dark band (about 45% of its 123 px height).
+                text.rectTransform.sizeDelta = new Vector2(400f, 54f);
+                // The dark band sits in the ribbon's upper half (tassels hang below), so lift the title onto it.
+                text.rectTransform.anchoredPosition = new Vector2(0f, 10f);
+                text.resizeTextForBestFit = true;
+                text.resizeTextMinSize = 18;
+                text.resizeTextMaxSize = size;
                 ribbon.raycastTarget = false;
-                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Sliced))
+                if (UiBuild.ApplyUiSprite(ribbon, "Kit/popup_title_ribbon", Image.Type.Simple))
                 {
-                    // The band fills the title rect; the tassel strip (bottom border) hangs below it.
-                    // Canvas units: border pixels x reference pixels per unit (100) / (sprite PPU x multiplier).
-                    float tassels = ribbon.sprite.border.y * 100f / (ribbon.sprite.pixelsPerUnit
-                        * ribbon.pixelsPerUnitMultiplier);
-                    ribbon.rectTransform.offsetMin = new Vector2(0f, -tassels);
+                    // Nudge down without resizing: the 520x123 rect is the ribbon art's own aspect.
+                    ribbon.rectTransform.anchoredPosition = new Vector2(0f, -6f);
                     ribbon.transform.SetSiblingIndex(text.transform.GetSiblingIndex());
                     text.transform.SetAsLastSibling();
                     text.color = UiBuild.Paper;
@@ -1033,9 +1053,12 @@ namespace OneBagJianghu.EditorTools.Building
             entrySize.preferredHeight = 44f;
             Horizontal(entry, 6f);
             Image icon = UiBuild.Image(entry, "Icon", Color.white);
+            // The currency icons live with the PvE art, outside the UI folder ApplyUiSprite reads from.
             string iconKey = name == "Silver" ? "icon_bac" : "icon_danh_vong";
-            if (!UiBuild.ApplyUiSprite(icon, iconKey))
-                icon.gameObject.SetActive(false);
+            string iconPath = "Assets/_Game/Textures2D/Pve/" + iconKey + ".png";
+            icon.sprite = AssetDatabase.LoadAssetAtPath<Sprite>(iconPath);
+            if (icon.sprite == null)
+                Debug.LogError("Missing currency icon: " + iconPath);
             icon.preserveAspect = true;
             icon.raycastTarget = false;
             LayoutElement iconSize = icon.gameObject.AddComponent<LayoutElement>();
@@ -1107,7 +1130,25 @@ namespace OneBagJianghu.EditorTools.Building
             }
 
             dropdown.RefreshShownValue();
-            Anchor(dropdown.GetComponent<RectTransform>(), xMin, yMin, xMax, yMax);
+            RectTransform rect = dropdown.GetComponent<RectTransform>();
+            Anchor(rect, xMin, yMin, xMax, yMax);
+            float parentWidth = ((RectTransform)parent).rect.width;
+            float parentHeight = ((RectTransform)parent).rect.height;
+            float aspect = (xMax - xMin) * parentWidth / ((yMax - yMin) * parentHeight);
+            // Art aspects: wide 7.46, full 6.94, popup 6.05, midwide 5.04, narrow 2.1.
+            string sprite = aspect >= 7.2f
+                ? "Kit/dropdown_field_wide"
+                : aspect >= 6.5f
+                    ? "Kit/dropdown_field"
+                    : aspect >= 5.5f
+                        ? "Kit/dropdown_field_popup"
+                        : aspect >= 4f
+                            ? "Kit/dropdown_field_midwide"
+                            : "Kit/dropdown_field_narrow";
+            Image field = dropdown.GetComponent<Image>();
+            UiBuild.ApplyUiSprite(field, sprite, Image.Type.Simple);
+            // The narrow fields (dev panel filters) vary in width; keep the art's shape rather than stretch it.
+            field.preserveAspect = sprite == "Kit/dropdown_field_narrow";
             return dropdown;
         }
 

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5930087190912457520}
   - component: {fileID: 6458793994998041070}
   - component: {fileID: 1781553295520245428}
-  - component: {fileID: 269591852763379228}
   m_Layer: 0
   m_Name: Story Title Ribbon
   m_TagString: Untagged
@@ -33,10 +32,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5980168841571587141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13, y: 0.27}
-  m_AnchorMax: {x: 0.87, y: 0.73}
-  m_AnchoredPosition: {x: 0, y: -12.5}
-  m_SizeDelta: {x: 0, y: 25}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -6}
+  m_SizeDelta: {x: 520, y: 123}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6458793994998041070
 CanvasRenderer:
@@ -67,7 +66,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9460a506df544cb4e8ce438023880236, type: 3}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -75,20 +74,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 7
---- !u!114 &269591852763379228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1150809350901924459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 7
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &3323852083986627480
 GameObject:
   m_ObjectHideFlags: 0
@@ -181,7 +167,7 @@ GameObject:
   - component: {fileID: 4719164140405617429}
   - component: {fileID: 9190872625913206451}
   - component: {fileID: 1445458121781591759}
-  - component: {fileID: 7598601257194184938}
+  - component: {fileID: 2564592185400063622}
   m_Layer: 0
   m_Name: StoryPopup
   m_TagString: Untagged
@@ -281,7 +267,7 @@ MonoBehaviour:
   titleText: {fileID: 1256917259535453188}
   bodyText: {fileID: 6485481018372606377}
   skipButton: {fileID: 3678842428525338200}
---- !u!114 &7598601257194184938
+--- !u!114 &2564592185400063622
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -405,10 +391,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5980168841571587141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.13, y: 0.27}
-  m_AnchorMax: {x: 0.87, y: 0.73}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 10}
+  m_SizeDelta: {x: 400, y: 54}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4184784182014310584
 CanvasRenderer:
@@ -442,8 +428,8 @@ MonoBehaviour:
     m_Font: {fileID: 12800000, guid: 0edfc4644c6678f4e80570bb70668767, type: 3}
     m_FontSize: 44
     m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 10
+    m_BestFit: 1
+    m_MinSize: 18
     m_MaxSize: 44
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -464,7 +450,6 @@ GameObject:
   - component: {fileID: 1464241749131893804}
   - component: {fileID: 6019150631831832473}
   - component: {fileID: 6913419127698435391}
-  - component: {fileID: 8546586932631759680}
   - component: {fileID: 5246318729862723289}
   m_Layer: 0
   m_Name: Panel
@@ -524,7 +509,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -532,7 +517,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 5
+  m_PixelsPerUnitMultiplier: 1
 --- !u!114 &6913419127698435391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,19 +533,6 @@ MonoBehaviour:
   m_EffectColor: {r: 0.7882353, g: 0.6431373, b: 0.36078432, a: 1}
   m_EffectDistance: {x: 3, y: -3}
   m_UseGraphicAlpha: 1
---- !u!114 &8546586932631759680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5018777813396426589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 812959a144c55b747a8ca46f09080366, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: OneBagJianghu.Game::OneBagJianghu.UI.Common.SlicedAutoFit
-  preferredMultiplier: 5
 --- !u!114 &5246318729862723289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,10 +776,6 @@ PrefabInstance:
     - target: {fileID: 81144083769071567, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_FontData.m_FontSize
       value: 24
-      objectReference: {fileID: 0}
-    - target: {fileID: 1168793677721913333, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
-      propertyPath: m_PixelsPerUnitMultiplier
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_Pivot.x

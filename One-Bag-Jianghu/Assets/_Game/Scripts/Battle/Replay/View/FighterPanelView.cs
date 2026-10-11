@@ -119,7 +119,6 @@ namespace OneBagJianghu.Battle.Replay.View
             Image frame = overlay.GetComponent<Image>();
             frame.sprite = owner.sprite;
             frame.type = owner.type;
-            frame.pixelsPerUnitMultiplier = owner.pixelsPerUnitMultiplier;
             frame.preserveAspect = owner.preserveAspect;
             frame.color = new Color(1f, 1f, 1f, owner.color.a);
             frame.raycastTarget = false;
