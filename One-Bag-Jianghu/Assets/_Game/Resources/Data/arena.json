@@ -1,0 +1,10 @@
+{
+  "ranks": [
+    { "minimumRating": 0, "name": "Vô Danh", "imageKey": "vo_danh" },
+    { "minimumRating": 1100, "name": "Tân Tú", "imageKey": "tan_tu" },
+    { "minimumRating": 1250, "name": "Thiếu Hiệp", "imageKey": "thieu_hiep" },
+    { "minimumRating": 1400, "name": "Đại Hiệp", "imageKey": "dai_hiep" },
+    { "minimumRating": 1600, "name": "Danh Túc", "imageKey": "danh_tuc" },
+    { "minimumRating": 1800, "name": "Tông Sư", "imageKey": "tong_su" }
+  ]
+}

@@ -17,6 +17,8 @@
 | Hành Tẩu Giang Hồ | `pve` | Chế độ đi ải; mỗi chương gọi là **Hồi** (`chapter`) |
 | Thủ Lĩnh | `boss` | Đối thủ ải cuối mỗi Hồi |
 | Luận Kiếm Đài | `arena` | PvP xếp hạng; mỗi mùa là **Kỳ Luận Kiếm** (`season`) |
+| Bậc Luận Kiếm | `arena_rank` | Vô Danh · Tân Tú · Thiếu Hiệp · Đại Hiệp · Danh Túc · Tông Sư (theo điểm, sàn 1.000; #68, #69) |
+| Bóng kiếm | `ghost` | Đội hình người chơi lưu trên server để người khác khiêu chiến |
 | Trọng | `tier` | Cấp cường hóa, Nhất Trọng → Cửu Trọng. Nâng bằng tài nguyên PvE |
 | Đột Phá | `unlock` | Mốc Trọng 3 / 6 / 9: vật phẩm mở thêm hiệu ứng |
 

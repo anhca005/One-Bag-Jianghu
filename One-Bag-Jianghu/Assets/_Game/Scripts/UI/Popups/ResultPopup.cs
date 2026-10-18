@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using OneBagJianghu.Economy;
 using OneBagJianghu.Onboarding;
 using OneBagJianghu.Pve;
+using OneBagJianghu.Net;
+using OneBagJianghu.UI.Arena;
 using OneBagJianghu.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,7 +16,8 @@ namespace OneBagJianghu.UI.Popups
         Home,
         PlayAgain,
         Map,
-        Continue
+        Continue,
+        Arena
     }
 
     public sealed class ResultRewardEntry
@@ -126,6 +129,51 @@ namespace OneBagJianghu.UI.Popups
             return data;
         }
 
+        public static ResultPopupData FromArena(string resultText,
+            string winnerName,
+            ArenaResult result,
+            MaterialCatalog materials)
+        {
+            var data = new ResultPopupData(resultText, winnerName);
+            int change = result.RatingAfter - result.RatingBefore;
+            string sign = change >= 0 ? "+" : string.Empty;
+            data.LevelUpText = "Điểm Luận Kiếm "
+                + result.RatingBefore
+                + " → "
+                + result.RatingAfter
+                + " ("
+                + sign
+                + change
+                + ")";
+            ArenaRankDefinition beforeRank = ArenaRanks.Load().ForRating(result.RatingBefore);
+            ArenaRankDefinition afterRank = ArenaRanks.Load().ForRating(result.RatingAfter);
+            if (beforeRank.Name != afterRank.Name && result.RatingAfter > result.RatingBefore)
+            {
+                data.LevelUpText += "\nLên bậc " + afterRank.Name + "!";
+            }
+            ArenaReward reward = result.Reward ?? new ArenaReward();
+            if (reward.Reputation > 0)
+            {
+                data.RewardEntries.Add(new ResultRewardEntry("icon_danh_vong",
+                    "+ " + reward.Reputation,
+                    "Danh Vọng"));
+            }
+
+            foreach (KeyValuePair<string, int> value in reward.Materials)
+            {
+                data.RewardEntries.Add(new ResultRewardEntry(value.Key,
+                    "x " + value.Value,
+                    MaterialName(materials, value.Key)));
+            }
+
+            if (result.Status != null && result.Status.RewardedLeftToday <= 0)
+            {
+                data.LevelUpText += "\nHôm nay đã hết lượt có thưởng";
+            }
+
+            return data;
+        }
+
         private static string MaterialName(MaterialCatalog materials, string id)
         {
             if (materials == null)
@@ -190,10 +238,11 @@ namespace OneBagJianghu.UI.Popups
                 : "Người thắng: " + data.WinnerName;
             EnsureRewardLayout();
             bool hasCards = data.RewardEntries.Count > 0;
-            structuredRewards.gameObject.SetActive(hasCards);
-            rewardText.gameObject.SetActive(!hasCards);
+            bool hasStructured = hasCards || !string.IsNullOrEmpty(data.LevelUpText);
+            structuredRewards.gameObject.SetActive(hasStructured);
+            rewardText.gameObject.SetActive(!hasStructured);
             rewardText.text = data.Rewards ?? string.Empty;
-            if (hasCards)
+            if (hasStructured)
                 PopulateStructuredRewards(data);
             firstChoice = data.FirstChoice;
             secondChoice = data.SecondChoice;
@@ -240,7 +289,10 @@ namespace OneBagJianghu.UI.Popups
         private void PopulateStructuredRewards(ResultPopupData data)
         {
             ClearChildren(cardsRoot);
-            CreateCards(data.RewardEntries);
+            if (data.RewardEntries.Count > 0)
+            {
+                CreateCards(data.RewardEntries);
+            }
             levelUpText.text = data.LevelUpText ?? string.Empty;
         }
 

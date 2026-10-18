@@ -29,12 +29,14 @@ namespace OneBagJianghu.UI.Gameplay
         private BattleLog completedLog;
         private PveStage pveStage;
         private PveStage pveContinuationStage;
+        private ArenaResult arenaResult;
         private void Start()
         {
             GameSession session = GameBootstrap.Session;
             replayRoot.SetActive(false);
             SceneFlow.NotifyReady();
-            if (!session.TryValidateLoadout(out string warning))
+            if (session.SelectedMode != GameMode.ArenaReplay
+                && !session.TryValidateLoadout(out string warning))
             {
                 MessageAndReturnHome("Không thể xuất chiêu", warning);
                 return;
@@ -79,30 +81,27 @@ namespace OneBagJianghu.UI.Gameplay
                 return;
             }
 
-            if (GameBootstrap.Network.State == NetworkState.Online)
+            if (session.SelectedMode == GameMode.ArenaReplay)
             {
-                GameBootstrap.Network.RequestBattle(session.SelectedMode == GameMode.Pvp ? "pvp" : "pve",
-                    session.CurrentLoadoutJson,
-                    HandleBattleResult,
-                    HandleBattleError);
+                ArenaReplayResult replay = session.TakeArenaReplay();
+                if (replay == null)
+                {
+                    MessageAndReturnHome("Không thể xem lại", "Dữ liệu trận xem lại không còn.");
+                    return;
+                }
+
+                HandleBattleResult(replay.BattleLog, replay.Opponent);
                 return;
             }
 
-            try
+            arenaResult = session.TakeArenaResult();
+            if (arenaResult == null)
             {
-                LocalBattleOutput output = LocalBattleService.RunBattle(session.CurrentLoadoutJson,
-                    session.SelectedMode);
-                HandleBattleResult(BattleLogParser.Parse(output.Result.ToString()), output.Opponent);
+                MessageAndReturnHome("Không thể vào trận", "Kết quả Luận Kiếm chưa sẵn sàng.");
+                return;
             }
-            catch (OneBagJianghu.Engine.DataException exception)
-            {
-                MessageAndReturnHome("Không thể xuất chiêu", exception.Message);
-            }
-            catch (System.Exception exception)
-            {
-                Debug.LogException(exception);
-                ShowFallbackAndPlaySample();
-            }
+
+            HandleBattleResult(arenaResult.BattleLog, arenaResult.Opponent);
         }
 
         private void HandleBattleResult(BattleLog log, OpponentInfo opponent)
@@ -142,24 +141,7 @@ namespace OneBagJianghu.UI.Gameplay
 
         private void HandleBattleError(string message)
         {
-            if (GameBootstrap.Network.State == NetworkState.Online)
-                Message("Máy chủ từ chối", message);
-            else
-                ShowFallbackAndPlaySample();
-        }
-
-        private void ShowFallbackAndPlaySample()
-        {
-            TextAsset asset = Resources.Load<TextAsset>("Replays/replay_sample");
-            if (asset == null)
-            {
-                Debug.LogError("Replay sample was not found.");
-                ShowResult(-1);
-                return;
-            }
-
-            opponentName = "Đối thủ";
-            PlayBattle(BattleLogParser.Parse(asset.text));
+            MessageAndReturnHome("Luận Kiếm Đài gián đoạn", message);
         }
 
         private void PlayBattle(BattleLog log)
@@ -180,7 +162,9 @@ namespace OneBagJianghu.UI.Gameplay
                     $"[Battle] Start resolved mode={GameBootstrap.Session.SelectedMode}, seed={log.Seed}, " +
                     $"player={log.Names[0]}({playerItems} items), opponent={log.Names[1]}({opponentItems} items)");
             replayRoot.SetActive(true);
-            bool bossStage = GameBootstrap.Session.SelectedMode == GameMode.Pve && pveStage.Kind == "boss";
+            bool bossStage = GameBootstrap.Session.SelectedMode == GameMode.Pve
+                && pveStage != null
+                && pveStage.Kind == "boss";
             string musicKey = GameBootstrap.Session.SelectedMode == GameMode.Pvp
                 ? MusicKeys.Pvp
                 : MusicKeys.ForStage(bossStage);
@@ -189,9 +173,9 @@ namespace OneBagJianghu.UI.Gameplay
                 OneBagJianghu.Bag.ItemCatalog.LoadFromResources(),
                 bossStage);
             ApplyPvePortraits();
-            string mode = GameBootstrap.Session.SelectedMode == GameMode.Pvp ? "Luận Kiếm Đài" : pveStage.Chapter.Title
-                + " · "
-                + pveStage.Name;
+            string mode = GameBootstrap.Session.SelectedMode == GameMode.Pve
+                ? pveStage.Chapter.Title + " · " + pveStage.Name
+                : "Luận Kiếm Đài";
             replayScreen.SetStageLabel(mode);
             replayScreen.Completed -= ShowResult;
             replayScreen.Completed += ShowResult;
@@ -222,7 +206,19 @@ namespace OneBagJianghu.UI.Gameplay
                 return;
             }
 
-            ResultPopup popup = PopupManager.Show<ResultPopup>(new ResultPopupData(result, winnerName, rewardText));
+            bool replay = GameBootstrap.Session.SelectedMode == GameMode.ArenaReplay;
+            ResultPopupData data = replay
+                ? new ResultPopupData(result, winnerName)
+                : ResultPopupData.FromArena(result,
+                    winnerName,
+                    arenaResult,
+                    GameSession.LoadMaterialCatalog());
+            data.FirstLabel = "Về Sảnh";
+            data.SecondLabel = "Đấu tiếp";
+            data.FirstChoice = ResultPopupChoice.Arena;
+            data.SecondChoice = ResultPopupChoice.PlayAgain;
+            data.SecondEnabled = !replay;
+            ResultPopup popup = PopupManager.Show<ResultPopup>(data);
             if (popup != null)
             {
                 popup.Closed -= HandleResultClosed;
@@ -407,7 +403,16 @@ namespace OneBagJianghu.UI.Gameplay
         {
             if (GameBootstrap.Session.SelectedMode != GameMode.Pve)
             {
-                SceneFlow.Go(choice == ResultPopupChoice.Home ? GameScene.Home : GameScene.Gameplay);
+                if (choice == ResultPopupChoice.Arena)
+                {
+                    GameBootstrap.Session.OpenArenaOnHome = true;
+                    SceneFlow.Go(GameScene.Home);
+                    return;
+                }
+
+                GameBootstrap.Session.OpenArenaOnHome = true;
+                GameBootstrap.Session.AutoFindArenaMatch = true;
+                SceneFlow.Go(GameScene.Home);
                 return;
             }
 

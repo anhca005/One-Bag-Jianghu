@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using OneBagJianghu.Core;
 using OneBagJianghu.UI.Common;
+using OneBagJianghu.Net;
 using UnityEngine;
 using UnityEngine.UI;
 #if UNITY_EDITOR
@@ -73,8 +74,7 @@ namespace OneBagJianghu.UI.Popups
             frameRateDropdown.ClearOptions();
             frameRateDropdown.AddOptions(new List<string> { "30", "60", "120", "Không giới hạn" });
             RefreshControls();
-            if (GameBootstrap.Session != null)
-                heroNameText.text = GameBootstrap.Session.HeroName;
+            RefreshAccount();
         }
 
         private void OnDestroy()
@@ -237,6 +237,13 @@ namespace OneBagJianghu.UI.Popups
 
         private void ConfirmLogin()
         {
+            NetworkService network = GameBootstrap.Network;
+            if (network == null || !network.IsAuthenticated)
+            {
+                PopupManager.Show<AccountPopup>();
+                return;
+            }
+
             PopupManager.Show<ConfirmPopup>(new ConfirmPopupData(
                 "Đăng xuất",
                 "Tiến trình đã được lưu. Bạn muốn đăng xuất?",
@@ -248,10 +255,26 @@ namespace OneBagJianghu.UI.Popups
         private void HandleLoginConfirmation(bool confirmed)
         {
             if (!confirmed)
+            {
                 return;
-            GameBootstrap.Session?.SaveProfile();
-            Close();
-            SceneFlow.Go(GameScene.Login);
+            }
+
+            GameBootstrap.Network.Logout(RefreshAccount, ShowAccountError);
+        }
+
+        private void RefreshAccount()
+        {
+            NetworkService network = GameBootstrap.Network;
+            bool authenticated = network != null && network.IsAuthenticated;
+            heroNameText.text = authenticated
+                ? "Đang đăng nhập: " + network.Authentication.Username
+                : "Chưa đăng nhập";
+            loginButton.SetLabel(authenticated ? "Đăng xuất" : "Đăng nhập");
+        }
+
+        private static void ShowAccountError(string message)
+        {
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Tài khoản", message, "Đóng"));
         }
 
         private void ConfirmQuit()

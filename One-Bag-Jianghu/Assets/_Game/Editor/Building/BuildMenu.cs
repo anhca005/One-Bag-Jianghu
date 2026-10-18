@@ -17,6 +17,7 @@ namespace OneBagJianghu.EditorTools.Building
             PvePrefabBuilder.Build,
             PopupPrefabBuilder.Build,
             EconomyPopupPrefabBuilder.Build,
+            OnlinePrefabBuilder.Build,
             LoginHomeSceneBuilder.Build,
             GameplaySceneBuilder.Build,
             DemoSceneBuilder.Build
@@ -46,11 +47,21 @@ namespace OneBagJianghu.EditorTools.Building
         [MenuItem("One Bag Jianghu/Build/Economy Popup Prefabs (Overwrite)")]
         public static void BuildEconomyPopupPrefabsOverwrite() => EconomyPopupPrefabBuilder.Build(true);
 
+        [MenuItem("One Bag Jianghu/Build/Arena Lobby And Account Prefabs")]
+        public static void BuildOnlinePopupPrefabs() => OnlinePrefabBuilder.Build(false);
+
+        [MenuItem("One Bag Jianghu/Build/Arena Lobby And Account Prefabs (Overwrite)")]
+        public static void BuildOnlinePopupPrefabsOverwrite() => OnlinePrefabBuilder.Build(true);
+
         [MenuItem("One Bag Jianghu/Build/Build All Missing")]
         public static void BuildAllMissing() => BuildAll(false);
 
         [MenuItem("One Bag Jianghu/Build/Build All Missing (Overwrite)")]
-        public static void BuildAllOverwrite() { PvePrefabBuilder.RebuildArtLibrary(); BuildAll(true); }
+        public static void BuildAllOverwrite()
+        {
+            PvePrefabBuilder.RebuildArtLibrary();
+            BuildAll(true);
+        }
 
         /// <summary>
         /// Batch entry: rebuilds libraries and every generated prefab/scene, but keeps the hand-edited

@@ -8,7 +8,7 @@ Trạng thái: ⬜ chưa làm · 🟨 đang làm · ✅ xong
 | 1 | battle-engine (Java) | Mô phỏng trận tất định, event bus, unit test, công cụ tự đấu để cân bằng | 3 tuần | 🟨 |
 | 2 | Unity: phát lại trận + Bao Phục | Kết nối WebSocket, lưới kéo thả, trình phát lại nhật ký trận | 3–4 tuần | 🟨 |
 | 3 | Hành Tẩu Giang Hồ (PvE) | Hồi 1–3, phần thưởng, cường hóa, Tàng Bảo Các, Thương Hội | 4 tuần | ⬜ |
-| 4 | Luận Kiếm Đài (PvP) | Ghost, ghép trận theo điểm + Chiến Uy, mùa giải, bảng xếp hạng Redis | 3–4 tuần | ⬜ |
+| 4 | Luận Kiếm Đài (PvP) | Ghost, ghép trận theo điểm + Chiến Uy, mùa giải, bảng xếp hạng (SQLite, #68) | 3–4 tuần | 🟨 |
 | 5 | Nội dung + hình ảnh | 100+ vật phẩm, 7 môn phái, chơi thử kín | liên tục | ⬜ |
 
 ## Giai đoạn 0: việc cụ thể
@@ -71,7 +71,8 @@ Trạng thái: ⬜ chưa làm · 🟨 đang làm · ✅ xong
 - [x] Chơi offline: engine C# khớp Java từng sự kiện (decisions #19), 32/32 trận đối chiếu qua trong Unity; Gameplay dùng engine C# khi không có mạng
 - [~] Âm thanh: hệ thống phát (Codex) + bộ A 28 tiếng (Runway) đã vào game (decisions #57); còn người dùng nghe duyệt, bộ B/C, âm thanh nền. Kế hoạch [audio/sfx-plan.md](audio/sfx-plan.md). Nhạc nền gác ([audio/prompts-music.md](audio/prompts-music.md))
 - [~] PvE Hồi 4–5 (ải 31–50) đã vào game (decisions #56); chờ vẽ 11 hình (prompt #50–60) và dựng lại độ khó theo mô hình nâng Trọng
-- [~] Kết nối WebSocket (JSON, decisions #18): game-server Java + client Unity đã có code, **tạm hoãn** tích hợp
+- [x] Kết nối WebSocket (JSON, decisions #18): dùng cho tài khoản và Luận Kiếm Đài (#68, #69). PvE vẫn chạy offline
+- [~] Online đợt 1 (#68, #69): tài khoản, Sảnh Luận Kiếm Đài, ghép trận, Elo, thưởng, mùa, bảng xếp hạng, lịch sử/xem lại. Đã có code, test qua; chờ chơi thử với server thật — 2026-10-18
 
 ## Kinh tế và nâng Trọng (quyết định #22)
 

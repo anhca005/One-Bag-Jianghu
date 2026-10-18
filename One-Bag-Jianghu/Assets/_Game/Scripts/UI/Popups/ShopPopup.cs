@@ -23,6 +23,11 @@ namespace OneBagJianghu.UI.Popups
 
     public sealed class ShopPopup : BasePopup
     {
+        public enum OpenTab
+        {
+            Trade,
+            Reputation
+        }
         [SerializeField]
         private Text headerText;
         [SerializeField]
@@ -127,7 +132,7 @@ namespace OneBagJianghu.UI.Popups
             tradePanel.SetActive(true);
             exchangePanel.SetActive(false);
             reputationPanel.SetActive(false);
-            ShowTab(0);
+            ShowTab(data is OpenTab tab && tab == OpenTab.Reputation ? 2 : 0);
             Refresh();
         }
 

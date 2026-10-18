@@ -72,12 +72,22 @@ Cơ chế chi tiết: [docs/design/combat.md](../docs/design/combat.md). Cách v
 
 Từ thư mục `server/`, chạy WebSocket game server (mặc định `ws://localhost:8765/ws`):
 
-```bash
-./mvnw -q -pl game-server -am exec:java
+```powershell
+.un-server.ps1          # PowerShell
+./run-server.sh           # Git Bash
 ```
 
-Có thể đổi cổng và thư mục đội hình mẫu:
+Script cài battle-engine vào kho Maven trên máy rồi mới chạy `exec:java` cho riêng game-server. Không dùng
+`./mvnw -pl game-server -am exec:java`, vì `-am` làm Maven chạy cả project cha (không có `mainClass`) và
+battle-engine. Tham số thêm được chuyển cho server, ví dụ `.un-server.ps1 --db D:	mp	hu.db`.
+
+Cơ sở dữ liệu SQLite mặc định nằm ở `server/data/jianghu.db`; schema được tạo khi server khởi động.
+Server tìm thư mục chứa `mvnw` để neo đường dẫn mặc định, nên chạy từ `server/` hay `server/game-server/`
+đều dùng đúng cùng một file mà không phụ thuộc thư mục hiện tại.
+Có thể đổi file bằng `--db` hoặc biến môi trường `JIANGHU_DB`, đồng thời đổi cổng và thư mục đội hình mẫu:
 
 ```bash
-./mvnw -q -pl game-server -am exec:java -Dexec.args="--port 9000 --samples battle-engine/samples"
+./run-server.sh --port 9000 --samples battle-engine/samples --db data/dev.db
 ```
+
+PowerShell dùng biến môi trường: `$env:JIANGHU_DB = "data/dev.db"`.

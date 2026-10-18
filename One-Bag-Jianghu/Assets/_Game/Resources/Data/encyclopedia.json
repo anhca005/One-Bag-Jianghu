@@ -11,6 +11,8 @@
     { "name": "Hành Tẩu Giang Hồ", "category": "Hệ thống", "description": "Chế độ vượt ải theo từng Hồi để nhận phần thưởng và mở đường mới." },
     { "name": "Thủ Lĩnh", "category": "Hệ thống", "description": "Đối thủ mạnh ở ải cuối của mỗi Hồi." },
     { "name": "Luận Kiếm Đài", "category": "Hệ thống", "description": "Nơi tỷ thí xếp hạng với người chơi khác theo từng Kỳ Luận Kiếm." },
+    { "name": "Bậc Luận Kiếm", "category": "Hệ thống", "description": "Thứ bậc theo điểm Luận Kiếm: Vô Danh, Tân Tú, Thiếu Hiệp, Đại Hiệp, Danh Túc, Tông Sư." },
+    { "name": "Bóng kiếm", "category": "Hệ thống", "description": "Đội hình trong Bao Phục được lưu lại để người chơi khác khiêu chiến ở Luận Kiếm Đài." },
     { "name": "Trọng", "category": "Nâng cấp & nguyên liệu", "description": "Cấp cường hóa của vật phẩm, từ Nhất Trọng đến Cửu Trọng." },
     { "name": "Đột Phá", "category": "Nâng cấp & nguyên liệu", "description": "Bước cường hóa ở các mốc Trọng 3, 6 và 9, giúp vật phẩm mở thêm hiệu ứng." },
     { "name": "Binh Khí", "category": "Loại vật phẩm", "description": "Vật phẩm tự xuất chiêu theo nhịp để gây sát thương." },

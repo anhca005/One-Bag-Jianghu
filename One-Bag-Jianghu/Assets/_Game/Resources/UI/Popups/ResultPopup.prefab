@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4221628164263803623}
   - component: {fileID: 5154654635456420841}
   - component: {fileID: 2111503167453900029}
-  - component: {fileID: 9147965555855641565}
+  - component: {fileID: 7474285028476029214}
   m_Layer: 0
   m_Name: ResultPopup
   m_TagString: Untagged
@@ -193,7 +193,7 @@ MonoBehaviour:
   homeButton: {fileID: 2392329079996624156}
   playAgainButton: {fileID: 2448512191384185233}
   disabledReason: {fileID: 6061678835705368513}
---- !u!114 &9147965555855641565
+--- !u!114 &7474285028476029214
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

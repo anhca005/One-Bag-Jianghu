@@ -193,6 +193,52 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: 8bdd3e91472ef03449a17f0f84f1f367, type: 3}
   - Key: u_minh_quy_trao
     Sprite: {fileID: 21300000, guid: 510911611a421264a8652821f5795526, type: 3}
+  - Key: arena_connection_banner
+    Sprite: {fileID: 21300000, guid: 543af1ee7d95c9745a9d8ef655a372f8, type: 3}
+  - Key: arena_lobby_bg
+    Sprite: {fileID: 21300000, guid: 070d7e0bb0e1a3546b2e44f86ed2e838, type: 3}
+  - Key: arena_medal_1
+    Sprite: {fileID: 21300000, guid: b53d7546ea3676c478af1646e2a5cfaa, type: 3}
+  - Key: arena_medal_2
+    Sprite: {fileID: 21300000, guid: c6ac9528194abe345b06869c23d4ab44, type: 3}
+  - Key: arena_medal_3
+    Sprite: {fileID: 21300000, guid: c850092aeee44e44196440d8bd602992, type: 3}
+  - Key: arena_panel_hero
+    Sprite: {fileID: 21300000, guid: 5ea0e2172999cd549b32ec494e0a6471, type: 3}
+  - Key: arena_panel_match
+    Sprite: {fileID: 21300000, guid: 2fd6cc470c7f67e428ecdd94f2602b0b, type: 3}
+  - Key: arena_panel_tabs
+    Sprite: {fileID: 21300000, guid: 582d2331505224947a74b35aa06c3681, type: 3}
+  - Key: arena_progress_fill
+    Sprite: {fileID: 21300000, guid: d93c06cf4799bca4b837bdf393a595b3, type: 3}
+  - Key: arena_progress_track
+    Sprite: {fileID: 21300000, guid: 46a625c6f617a0f4f956b06d6bc12b13, type: 3}
+  - Key: arena_rank_dai_hiep
+    Sprite: {fileID: 21300000, guid: 1a5d96f704324d2479bdab508a631ead, type: 3}
+  - Key: arena_rank_danh_tuc
+    Sprite: {fileID: 21300000, guid: 517d5e5085739f841a416a61cf186daa, type: 3}
+  - Key: arena_rank_tan_tu
+    Sprite: {fileID: 21300000, guid: 89e073bbd6e655f469e7b2c21232a6ac, type: 3}
+  - Key: arena_rank_thieu_hiep
+    Sprite: {fileID: 21300000, guid: 829b4f27d2f6f034c8ca05a2d774114d, type: 3}
+  - Key: arena_rank_tong_su
+    Sprite: {fileID: 21300000, guid: 0a8f227b26c9b5c49a19d542a33fb612, type: 3}
+  - Key: arena_rank_vo_danh
+    Sprite: {fileID: 21300000, guid: 0a9c2bdb3a30f8e4bb9743dec53ca93d, type: 3}
+  - Key: arena_row_history
+    Sprite: {fileID: 21300000, guid: 350eec53196655f419b39103f82c8b95, type: 3}
+  - Key: arena_row_rank
+    Sprite: {fileID: 21300000, guid: d6a2a2b477ecb984888cb69d80d6bbd5, type: 3}
+  - Key: arena_row_self
+    Sprite: {fileID: 21300000, guid: dcc096c27198fce42858cf4e4088c235, type: 3}
+  - Key: arena_seal_spinner
+    Sprite: {fileID: 21300000, guid: cb5e48308e7d7b54990847be8c173837, type: 3}
+  - Key: arena_top_bar
+    Sprite: {fileID: 21300000, guid: 42faaf6a6f93bb64984b66b264f220ff, type: 3}
+  - Key: arena_versus
+    Sprite: {fileID: 21300000, guid: e1d82f2004647674b9fdc792630e0e9c, type: 3}
+  - Key: arena_versus_card
+    Sprite: {fileID: 21300000, guid: cddda035c4bad5340af6b6e737aa0fab, type: 3}
   - Key: bag_board
     Sprite: {fileID: 21300000, guid: 37f25c8ebc2c44443b74c0a91b791ee8, type: 3}
   - Key: bag_board_landscape

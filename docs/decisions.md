@@ -4,6 +4,54 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Quyết định mới thê
 
 ---
 
+### #69 · 2026-10-18 · Sảnh Luận Kiếm Đài, bậc theo điểm
+- Bấm lôi đài ở Home thì mở **Sảnh Luận Kiếm Đài** toàn màn hình. Sảnh gồm:
+  - thẻ Hiệp Khách và Bao Phục thu nhỏ;
+  - lượt có thưởng, tiến độ Ngọc Tủy tuần;
+  - nút Tìm Trận;
+  - 4 tab: Xếp Hạng, Lịch Sử (có Xem lại), Thưởng, Tiệm.
+  Thiết kế chi tiết: [design/arena-lobby.md](design/arena-lobby.md).
+- Bấm Tìm Trận thì server chạy trận ngay. Client hiện "Đang tìm đối thủ", thẻ Đối đầu, rồi Gameplay chỉ phát lại kết
+  quả đã nhận.
+- Tab Tiệm mở Tiệm Danh Vọng có sẵn trong Thương Hội. Không làm tiệm thứ hai.
+- **Bậc Luận Kiếm** theo điểm: Vô Danh (1.000, điểm khởi đầu và cũng là sàn), Tân Tú (1.100), Thiếu Hiệp (1.250),
+  Đại Hiệp (1.400), Danh Túc (1.600), Tông Sư (1.800). Hạng 1 cuối mùa nhận danh hiệu Thiên Hạ Đệ Nhất.
+- Đăng nhập không bắt buộc khi vào game. Chỉ hỏi khi vào Luận Kiếm Đài, hoặc khi người chơi tự mở từ Cài đặt.
+- Server lưu đội hình, seed và kết quả của mỗi trận, nên xem lại được 20 trận gần nhất.
+
+**Lý do:** người dùng muốn có sảnh trước khi vào trận, gồm bảng xếp hạng, tiệm và các mục khác. Claude tự thiết kế phần
+còn lại theo yêu cầu của người dùng.
+
+### #68 · 2026-10-18 · Online đợt 1: tài khoản + Luận Kiếm Đài trên server
+- **Phạm vi:** đợt 1 chỉ đưa PvP Luận Kiếm Đài lên server. Kho đồ, tiền, PvE, nâng Trọng, Hợp Thành và Thương Hội vẫn
+  lưu trên máy người chơi như hiện tại (đưa lên server là việc E6, làm sau).
+- **Tài khoản:** tên đăng nhập + mật khẩu do server tự quản lý. Mật khẩu băm PBKDF2-SHA256 có salt. Server trả token
+  phiên (30 ngày), client nhớ token để tự đăng nhập lại.
+- **Lưu trữ:** SQLite, một file trên máy chủ (`server/data/jianghu.db`). Đổi sang Postgres khi cần.
+- **Luận Kiếm Đài:**
+  - Đấu bất đồng bộ với ghost. Mỗi lần người chơi khiêu chiến, đội hình hiện tại thành ghost mới của họ.
+  - Server chọn đối thủ, chọn seed và chạy trận. Client chỉ phát lại (#3).
+  - Điểm hạng Elo, bắt đầu 1000, K = 32. Thua vẫn bị trừ điểm nhưng **không xuống dưới 1000** (sàn), để không ai cố
+    tình thua cho tụt điểm rồi đi bắt nạt người mới (người dùng chốt 2026-10-18).
+  - Ghép trận:
+    - lấy ghost có Chiến Uy trong khoảng ±15% (gdd), chọn ngẫu nhiên trong 10 ghost gần điểm nhất;
+    - thiếu thì nới ra ±30%, rồi bỏ giới hạn Chiến Uy;
+    - không có ai thì đánh với đội mẫu của server (ghost máy), lấy điểm bằng điểm người chơi.
+  - Không tự đấu với ghost của mình.
+  - Không giới hạn số trận. Chỉ **10 trận đầu mỗi ngày** có thưởng: thắng +30 Danh Vọng, thua +10. Ngày tính theo giờ
+    Việt Nam (UTC+7).
+  - **Chí Tôn Ngọc Tủy:** mỗi tuần, khi đạt 10 trận thắng thì nhận 1 viên (mốc ở #25).
+  - Mùa (Kỳ Luận Kiếm) dài 28 ngày. Bảng xếp hạng hiện top 50 và hạng của mình. Thưởng cuối mùa làm ở đợt sau.
+  - Mọi con số trên là mặc định để chơi thử. Gemini cân lại sau.
+- **Tin client ở đợt này:** kho đồ nằm ở client nên server không kiểm được người chơi có thật sự sở hữu món trong
+  túi hay không. Server chỉ kiểm luật: id món, phẩm, Trọng 1–9, vị trí trong túi 5x4. Server cũng ép máu và kích thước
+  túi. Chiến Uy do client gửi lên và chỉ dùng để ghép trận. Phần thưởng server trả về được client cộng vào hồ sơ trên
+  máy. Chấp nhận được cho chơi thử kín. Muốn chặn gian lận hẳn thì cần E6.
+- Luận Kiếm Đài **bắt buộc online và đã đăng nhập**. Không còn đánh PvP offline với đội mẫu.
+
+**Lý do:** người dùng chọn làm PvP trước, tài khoản tên + mật khẩu và SQLite. PvP là phần cần server nhất (ghost của
+người khác, xếp hạng). Đưa cả kinh tế lên server là việc lớn hơn nhiều nên để sau.
+
 ### #67 · 2026-10-18 · Hợp Thành: món chính giữ Trọng
 - **Món chính** là món đang chọn khi bấm Hợp Thành. **Món nguyên liệu** là bản sao chọn sau, và bị dùng mất.
 - Món mới lên một phẩm và **giữ nguyên Trọng của món chính**. Thay luật Trọng ra = (Trọng A + Trọng B) / 3 ở #25.

@@ -14,6 +14,8 @@ import org.slf4j.LoggerFactory;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.security.SecureRandom;
+import java.time.Clock;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -28,13 +30,21 @@ public final class GameServer extends WebSocketServer {
     private final MessageHandler handler;
     private final Map<WebSocket, SessionState> sessions = new ConcurrentHashMap<>();
 
-    public GameServer(int port, Path samples) { this(port, loadHandler(samples, new Random())); }
+    public GameServer(int port, Path samples)
+    {
+        this(port, samples, new Database(defaultDatabasePath()));
+    }
+
+    GameServer(int port, Path samples, Database database)
+    {
+        this(port, loadHandler(samples, new Random(), database));
+    }
     public GameServer(int port, MessageHandler handler) {
         super(new InetSocketAddress(port));
         this.handler = handler;
     }
 
-    private static MessageHandler loadHandler(Path samples, Random random) {
+    private static MessageHandler loadHandler(Path samples, Random random, Database database) {
         ItemCatalog items = ItemCatalog.loadDefault();
         SectCatalog sects = SectCatalog.loadDefault();
         List<Loadout> loadouts;
@@ -45,7 +55,8 @@ public final class GameServer extends WebSocketServer {
             if (e instanceof DataException data) throw data;
             throw new DataException("Cannot read samples directory " + samples + ": " + e.getMessage(), e);
         }
-        return new MessageHandler(items, sects, loadouts, random);
+        return new MessageHandler(items, sects, loadouts, random, () -> java.util.UUID.randomUUID().toString(),
+                database, Clock.systemUTC(), new SecureRandom());
     }
 
     @Override public void onOpen(WebSocket connection, ClientHandshake handshake) {
@@ -65,7 +76,9 @@ public final class GameServer extends WebSocketServer {
         } catch (Exception e) {
             LOG.debug("Bad JSON message", e);
             try {
-                var payload = mapper.createObjectNode().put("code", "bad_request").put("message", "Invalid JSON message");
+                var payload = mapper.createObjectNode()
+                        .put("code", "bad_request")
+                        .put("message", "Invalid JSON message");
                 connection.send(mapper.writeValueAsString(Envelope.reply("error", null, payload)));
             } catch (Exception serializationFailure) {
                 LOG.error("Could not serialize error response", serializationFailure);
@@ -73,16 +86,28 @@ public final class GameServer extends WebSocketServer {
         }
     }
 
-    @Override public void onClose(WebSocket connection, int code, String reason, boolean remote) { sessions.remove(connection); }
+    @Override public void onClose(WebSocket connection, int code, String reason, boolean remote)
+    {
+        sessions.remove(connection);
+    }
     @Override public void onError(WebSocket connection, Exception error) { LOG.error("WebSocket error", error); }
     @Override public void onStart() { LOG.info("Game server listening on port {} at /ws", getPort()); }
 
     public static void main(String[] args) throws Exception {
         int port = Integer.parseInt(option(args, "--port", env("PORT", "8765")));
         Path samples = Path.of(option(args, "--samples", env("SAMPLES", "battle-engine/samples")));
-        GameServer server = new GameServer(port, samples);
+        String configuredDatabase = option(args, "--db", env("JIANGHU_DB", null));
+        Path databasePath = configuredDatabase == null ? defaultDatabasePath() : Path.of(configuredDatabase);
+        GameServer server = new GameServer(port, loadHandler(samples, new Random(), new Database(databasePath)));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            try { server.stop(1000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
+            try
+            {
+                server.stop(1000);
+            }
+            catch (InterruptedException exception)
+            {
+                Thread.currentThread().interrupt();
+            }
         }));
         server.start();
         new CountDownLatch(1).await();
@@ -91,6 +116,19 @@ public final class GameServer extends WebSocketServer {
     private static String env(String name, String fallback) {
         String value = System.getenv(name);
         return value == null || value.isBlank() ? fallback : value;
+    }
+    static Path defaultDatabasePath()
+    {
+        Path directory = Path.of("").toAbsolutePath().normalize();
+        while (directory != null)
+        {
+            if (Files.exists(directory.resolve("mvnw")) || Files.exists(directory.resolve("mvnw.cmd")))
+            {
+                return directory.resolve("data/jianghu.db");
+            }
+            directory = directory.getParent();
+        }
+        return Path.of("server/data/jianghu.db").toAbsolutePath().normalize();
     }
     private static String option(String[] args, String name, String fallback) {
         for (int i = 0; i < args.length; i++) if (name.equals(args[i])) {

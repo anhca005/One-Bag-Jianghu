@@ -65,7 +65,10 @@ namespace OneBagJianghu.EditorTools.Building
                 "EncyclopediaPopup",
                 "SectSelectPopup",
                 "StoryPopup",
-                "StageMapPopup"
+                "StageMapPopup",
+                "QuestLogPopup",
+                "AccountPopup",
+                "ArenaLobbyPopup"
             })
             {
                 GameObject prefab = Resources.Load<GameObject>("UI/Popups/" + name);

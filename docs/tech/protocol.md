@@ -35,5 +35,80 @@ Phong bì phản hồi: `{ "type": "battle_result", "replyTo": 7, "payload": {�
 - Seed: ngẫu nhiên phía server. Trọng/Tâm Pháp của đối thủ giữ như file mẫu.
 - Đội hình không hợp lệ (id lạ, chồng ô, ra ngoài túi, sect lạ…) → `error invalid_loadout` kèm thông báo của engine.
 
+## Tài khoản và Luận Kiếm Đài (#68)
+
+Mọi tin dưới đây đều cần `hello` trước. Các tin `arena_*` và `leaderboard` cần đăng nhập trước, nếu chưa thì server
+trả `error unauthorized`.
+
+### Tài khoản
+
+| Chiều | `type` | `payload` |
+|---|---|---|
+| C→S | `register` | `{ "username": "...", "password": "...", "heroName": "..." }` |
+| C→S | `login` | `{ "username": "...", "password": "..." }` |
+| C→S | `resume` | `{ "token": "..." }` |
+| S→C | `auth_ok` | `{ "accountId": 12, "username": "...", "heroName": "...", "token": "...", "expiresAt": "ISO-8601" }` |
+| C→S | `logout` | `{}`: xoá token đang dùng; server trả `logout_ok {}` |
+
+- `username`: 3–20 ký tự `[a-z0-9_]`, server đổi về chữ thường. `password`: 6–64 ký tự. `heroName`: 1–24 ký tự, bỏ
+  khoảng trắng hai đầu.
+- Mật khẩu băm PBKDF2WithHmacSHA256, 120.000 vòng, salt 16 byte. Token là 32 byte ngẫu nhiên (base64url), sống 30 ngày.
+- Một kết nối đăng nhập sai quá 5 lần trong 1 phút thì bị từ chối `rate_limited` tới hết phút đó.
+- Lỗi: `invalid_name`, `weak_password`, `name_taken`, `auth_failed` (sai tên hoặc mật khẩu, không nói rõ cái nào),
+  `token_expired`, `rate_limited`.
+
+### Luận Kiếm Đài
+
+| Chiều | `type` | `payload` |
+|---|---|---|
+| C→S | `arena_status` | `{}` |
+| S→C | `arena_status_ok` | `<ArenaStatus>` |
+| C→S | `arena_battle` | `{ "loadout": <Loadout>, "power": 1234 }` |
+| S→C | `arena_result` | xem dưới |
+| C→S | `leaderboard` | `{ "limit": 50 }` (tối đa 50) |
+| S→C | `leaderboard_ok` | `{ "seasonId": 1, "entries": [ { "rank": 1, "heroName": "...", "rating": 1240, "wins": 9, "losses": 2 } ], "self": { "rank": 17, "rating": 1032 } }` |
+
+`<ArenaStatus>`:
+
+```json
+{
+  "seasonId": 1, "seasonEndsAt": "2026-11-15T00:00:00+07:00",
+  "rating": 1000, "rank": 17, "wins": 3, "losses": 1,
+  "rewardedLeftToday": 6, "weeklyWins": 3, "weeklyWinsTarget": 10, "weeklyJadeClaimed": false
+}
+```
+
+`arena_result`:
+
+```json
+{
+  "opponent": { "name": "...", "sect": "kim_cang", "rating": 1012, "power": 1180, "bot": false },
+  "result": <BattleResult>,
+  "ratingBefore": 1000, "ratingAfter": 1016,
+  "reward": { "reputation": 30, "materials": { "chi_ton_ngoc_tuy": 1 } },
+  "status": <ArenaStatus>
+}
+```
+
+- Người chơi luôn là side 0. `reward` có thể rỗng (`reputation: 0`, `materials: {}`) khi đã hết 10 trận có thưởng.
+- Client cộng `reward` vào hồ sơ trên máy ngay khi nhận `arena_result`, trước khi phát lại trận.
+- Lỗi: `invalid_loadout` (kèm thông báo của engine), `unauthorized`.
+- Ghép trận, Elo, mùa, mốc thưởng: theo #68. Điểm không bao giờ xuống dưới 1000, kể cả điểm của ghost bị đánh thua.
+
+### Lịch sử và xem lại (#69)
+
+| Chiều | `type` | `payload` |
+|---|---|---|
+| C→S | `arena_history` | `{ "limit": 20 }` (tối đa 20) |
+| S→C | `arena_history_ok` | `{ "entries": [ { "battleId": 88, "at": "ISO-8601", "won": true, "opponentName": "...", "opponentSect": "kim_cang", "bot": false, "ratingBefore": 1000, "ratingAfter": 1016 } ] }` |
+| C→S | `arena_replay` | `{ "battleId": 88 }` |
+| S→C | `arena_replay_ok` | `{ "opponent": { …như arena_result… }, "result": <BattleResult> }` |
+
+- Server lưu mỗi trận gồm hai đội hình đã chuẩn hoá, seed, kết quả và thay đổi điểm. Xem lại thì chạy lại engine từ
+  hai đội hình và seed đó, nên không cần lưu nhật ký sự kiện. Người hỏi luôn là side 0.
+- Chỉ xem lại được trận của chính mình. Trận của người khác → `error not_found`.
+
+`battle_request` cũ vẫn giữ để thử engine, nhưng game không dùng cho Luận Kiếm Đài nữa.
+
 ## Chưa làm
-Tài khoản, lưu đồ trên server, bảng xếp hạng, xác thực, giới hạn tần suất, TLS.
+Kho đồ và kinh tế trên server (E6), thưởng cuối mùa, chia bảng theo cảnh giới, TLS, đổi mật khẩu.

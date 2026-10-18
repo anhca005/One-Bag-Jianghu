@@ -6,6 +6,7 @@ using OneBagJianghu.Economy;
 using OneBagJianghu.Pve;
 using Newtonsoft.Json.Linq;
 using OneBagJianghu.UI.Popups;
+using OneBagJianghu.Net;
 using UnityEngine;
 
 namespace OneBagJianghu.Core
@@ -13,7 +14,8 @@ namespace OneBagJianghu.Core
     public enum GameMode
     {
         Pve,
-        Pvp
+        Pvp,
+        ArenaReplay
     }
 
     public sealed class ProfileStore
@@ -247,6 +249,52 @@ namespace OneBagJianghu.Core
         {
             get;
             set;
+        }
+        public bool OpenArenaOnHome
+        {
+            get;
+            set;
+        }
+        public bool AutoFindArenaMatch
+        {
+            get;
+            set;
+        }
+        public ArenaResult PendingArenaResult
+        {
+            get;
+            private set;
+        }
+        public ArenaReplayResult PendingArenaReplay
+        {
+            get;
+            private set;
+        }
+
+        public void StoreArenaResult(ArenaResult result)
+        {
+            PendingArenaResult = result;
+            PendingArenaReplay = null;
+        }
+
+        public ArenaResult TakeArenaResult()
+        {
+            ArenaResult result = PendingArenaResult;
+            PendingArenaResult = null;
+            return result;
+        }
+
+        public void StoreArenaReplay(ArenaReplayResult replay)
+        {
+            PendingArenaReplay = replay;
+            PendingArenaResult = null;
+        }
+
+        public ArenaReplayResult TakeArenaReplay()
+        {
+            ArenaReplayResult replay = PendingArenaReplay;
+            PendingArenaReplay = null;
+            return replay;
         }
 
         public bool TryValidateLoadout(out string warning)

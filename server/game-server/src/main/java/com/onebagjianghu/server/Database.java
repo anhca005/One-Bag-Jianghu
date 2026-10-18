@@ -1,0 +1,96 @@
+package com.onebagjianghu.server;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+/** Owns SQLite connections and schema creation. */
+public final class Database
+{
+    private static final int SCHEMA_VERSION = 2;
+    private final String url;
+
+    public Database(Path path)
+    {
+        try
+        {
+            Path parent = path.toAbsolutePath().getParent();
+            if (parent != null)
+            {
+                Files.createDirectories(parent);
+            }
+        }
+        catch (Exception exception)
+        {
+            throw new IllegalStateException("Cannot create database directory", exception);
+        }
+        url = "jdbc:sqlite:" + path;
+        migrate();
+    }
+
+    public Database(String jdbcUrl)
+    {
+        url = jdbcUrl;
+        migrate();
+    }
+
+    public Connection open() throws SQLException
+    {
+        Connection connection = DriverManager.getConnection(url);
+        try (Statement statement = connection.createStatement())
+        {
+            statement.execute("PRAGMA foreign_keys = ON");
+            statement.execute("PRAGMA busy_timeout = 5000");
+        }
+        return connection;
+    }
+
+    private void migrate()
+    {
+        try (Connection connection = open(); Statement statement = connection.createStatement())
+        {
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS schema_version (version INTEGER NOT NULL)");
+            statement.executeUpdate("INSERT INTO schema_version(version) "
+                    + "SELECT 1 WHERE NOT EXISTS (SELECT 1 FROM schema_version)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS accounts ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT NOT NULL UNIQUE, "
+                    + "hero_name TEXT NOT NULL, salt BLOB NOT NULL, password_hash BLOB NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS sessions ("
+                    + "token_hash BLOB PRIMARY KEY, account_id INTEGER NOT NULL, expires_at TEXT NOT NULL, "
+                    + "FOREIGN KEY(account_id) REFERENCES accounts(id) ON DELETE CASCADE)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS seasons ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, starts_at TEXT NOT NULL, ends_at TEXT NOT NULL)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS arena_players ("
+                    + "season_id INTEGER NOT NULL, account_id INTEGER NOT NULL, rating INTEGER NOT NULL DEFAULT 1000, "
+                    + "wins INTEGER NOT NULL DEFAULT 0, losses INTEGER NOT NULL DEFAULT 0, "
+                    + "PRIMARY KEY(season_id, account_id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS ghosts ("
+                    + "season_id INTEGER NOT NULL, account_id INTEGER NOT NULL, loadout_json TEXT NOT NULL, "
+                    + "power INTEGER NOT NULL, rating INTEGER NOT NULL, saved_at TEXT NOT NULL, "
+                    + "PRIMARY KEY(season_id, account_id))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS arena_daily ("
+                    + "account_id INTEGER NOT NULL, day TEXT NOT NULL, rewarded_battles INTEGER NOT NULL DEFAULT 0, "
+                    + "PRIMARY KEY(account_id, day))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS arena_weekly ("
+                    + "account_id INTEGER NOT NULL, week TEXT NOT NULL, wins INTEGER NOT NULL DEFAULT 0, "
+                    + "jade_claimed INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(account_id, week))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS arena_battles ("
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, account_id INTEGER NOT NULL, fought_at TEXT NOT NULL, "
+                    + "requester_loadout_json TEXT NOT NULL, opponent_loadout_json TEXT NOT NULL, "
+                    + "opponent_name TEXT NOT NULL, opponent_sect TEXT, opponent_bot INTEGER NOT NULL, "
+                    + "opponent_rating INTEGER NOT NULL, opponent_power INTEGER NOT NULL, seed INTEGER NOT NULL, "
+                    + "winner INTEGER NOT NULL, rating_before INTEGER NOT NULL, rating_after INTEGER NOT NULL, "
+                    + "FOREIGN KEY(account_id) REFERENCES accounts(id) ON DELETE CASCADE)");
+            statement.executeUpdate("CREATE INDEX IF NOT EXISTS arena_battles_account_time "
+                    + "ON arena_battles(account_id, fought_at DESC, id DESC)");
+            statement.executeUpdate("UPDATE schema_version SET version = " + SCHEMA_VERSION);
+        }
+        catch (SQLException exception)
+        {
+            throw new IllegalStateException("Cannot initialize SQLite database", exception);
+        }
+    }
+}

@@ -11,6 +11,8 @@ using OneBagJianghu.Economy;
 using OneBagJianghu.Pve;
 using OneBagJianghu.Onboarding;
 using OneBagJianghu.Audio;
+using OneBagJianghu.Net;
+using OneBagJianghu.UI.Arena;
 
 namespace OneBagJianghu.UI.Home
 {
@@ -105,6 +107,12 @@ namespace OneBagJianghu.UI.Home
                 PopupManager.Show<StageMapPopup>(stageId);
             }
 
+            if (session.OpenArenaOnHome)
+            {
+                session.OpenArenaOnHome = false;
+                PopupManager.Show<ArenaLobbyPopup>();
+            }
+
             if (session.HeroLevel >= LevelService.SectUnlockLevel
                 && string.IsNullOrWhiteSpace(session.SectId)
                 && !session.Profile.SectPromptShown)
@@ -178,7 +186,42 @@ namespace OneBagJianghu.UI.Home
             OnboardingRuntime.Publish("stage_map_opened");
         }
 
-        private void StartPvp() => TryStartGame(GameMode.Pvp);
+        private async void StartPvp()
+        {
+            NetworkService network = GameBootstrap.Network;
+            if (network == null)
+            {
+                ShowArenaConnectionError();
+                return;
+            }
+
+            if (network.State == NetworkState.Offline)
+            {
+                await network.ConnectAsync(TimeSpan.FromSeconds(3));
+            }
+
+            if (this == null || network.State != NetworkState.Online)
+            {
+                ShowArenaConnectionError();
+                return;
+            }
+
+            if (network.IsAuthenticated)
+            {
+                PopupManager.Show<ArenaLobbyPopup>();
+            }
+            else
+            {
+                PopupManager.Show<AccountPopup>();
+            }
+        }
+
+        private static void ShowArenaConnectionError()
+        {
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Không thể kết nối",
+                "Luận Kiếm Đài cần kết nối máy chủ",
+                "Đóng"));
+        }
         private void TryStartGame(GameMode mode)
         {
             if (!GameBootstrap.Session.TryValidateLoadout(out string warning))

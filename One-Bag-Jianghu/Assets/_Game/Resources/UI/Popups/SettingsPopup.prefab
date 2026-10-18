@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 8665572577467632667}
   - component: {fileID: 7931084173629220934}
   - component: {fileID: 7975527555095735828}
-  - component: {fileID: 2404790586470413571}
+  - component: {fileID: 4106288071457567975}
   m_Layer: 0
   m_Name: SettingsPopup
   m_TagString: Untagged
@@ -813,7 +813,7 @@ MonoBehaviour:
   quitButton: {fileID: 9101845588137084220}
   defaultsButton: {fileID: 764391916613753514}
   closeButton: {fileID: 4815408320146635225}
---- !u!114 &2404790586470413571
+--- !u!114 &4106288071457567975
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
