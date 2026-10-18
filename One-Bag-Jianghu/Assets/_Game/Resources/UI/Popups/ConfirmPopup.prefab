@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4916050504509347121}
   - component: {fileID: 7087616626907576068}
   - component: {fileID: 4053959231873111317}
-  - component: {fileID: 8167885411089051103}
+  - component: {fileID: 1807643922103565650}
   m_Layer: 0
   m_Name: ConfirmPopup
   m_TagString: Untagged
@@ -192,7 +192,7 @@ MonoBehaviour:
   messageText: {fileID: 6032381931461622212}
   confirmButton: {fileID: 8480200741120168701}
   cancelButton: {fileID: 6136678850702203639}
---- !u!114 &8167885411089051103
+--- !u!114 &1807643922103565650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -314,8 +314,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.82500005}
   m_AnchorMax: {x: 0.5, y: 0.82500005}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 400, y: 54}
+  m_AnchoredPosition: {x: 0, y: 20.5}
+  m_SizeDelta: {x: 400, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6672958657931843607
 CanvasRenderer:

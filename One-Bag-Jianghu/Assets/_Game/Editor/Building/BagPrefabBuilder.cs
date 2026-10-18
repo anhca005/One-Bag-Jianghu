@@ -51,23 +51,13 @@ namespace OneBagJianghu.EditorTools.Building
             Image rarityFrame = UiBuild.Image(bg.transform, "Rarity Frame", Color.white);
             UiBuild.Stretch(rarityFrame.rectTransform, 3f);
             rarityFrame.raycastTarget = false;
-            UiBuild.ApplyUiSprite(rarityFrame, "Kit/frame_panel_square", Image.Type.Simple);
+            UiBuild.ApplyItemFrame(rarityFrame);
             // Rarity medallion: top-left, opposite the tier label at top-right.
             Image rarityBadge = UiBuild.Image(bg.transform, "Rarity Badge", Color.white);
             Anchor(rarityBadge.rectTransform, Vector2.up, new Vector2(4f, -4f), new Vector2(20f, 20f), Vector2.up);
             rarityBadge.preserveAspect = true;
             rarityBadge.raycastTarget = false;
-            Text tier = UiBuild.Text(bg.transform, "Tier", "T1", 14, TextAnchor.MiddleCenter);
-            Anchor(tier.rectTransform, new Vector2(1f, 1f), new Vector2(-8f, -8f), new Vector2(34f, 22f),
-                   new Vector2(1f, 1f));
-            tier.color = UiBuild.Ink;
-            tier.fontStyle = FontStyle.Bold;
-            Image tierPill = UiBuild.Image(bg.transform, "Tier Pill",
-                new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .86f));
-            Anchor(tierPill.rectTransform, new Vector2(1f, 1f), new Vector2(-8f, -8f), new Vector2(42f, 24f),
-                new Vector2(1f, 1f));
-            UiBuild.ApplyUiSprite(tierPill, "Kit/tier_pill_compact", Image.Type.Simple);
-            tier.transform.SetAsLastSibling();
+            // No Trọng label on the item: it covered the top of one-cell-wide items. The tooltip shows the Trọng.
             Text mark = UiBuild.Text(bg.transform, "Tam Phap", "TP", 14, TextAnchor.UpperLeft);
             Anchor(mark.rectTransform, new Vector2(0f, 1f), new Vector2(4f, -3f), new Vector2(30f, 20f),
                    new Vector2(0f, 1f));
@@ -81,7 +71,6 @@ namespace OneBagJianghu.EditorTools.Building
             UiBuild.Set(view, "outline", bg.GetComponent<Outline>());
             UiBuild.Set(view, "canvasGroup", bg.GetComponent<CanvasGroup>());
             UiBuild.Set(view, "nameText", label);
-            UiBuild.Set(view, "tierText", tier);
             UiBuild.Set(view, "tamPhapText", mark);
             Save(bg.gameObject, path);
         }

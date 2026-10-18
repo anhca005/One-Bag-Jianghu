@@ -769,10 +769,11 @@ namespace OneBagJianghu.EditorTools.Building
                 ribbon.rectTransform.sizeDelta = new Vector2(520f, 123f);
                 text.rectTransform.anchorMin = center;
                 text.rectTransform.anchorMax = center;
-                // Keep the title on the ribbon's dark band (about 45% of its 123 px height).
-                text.rectTransform.sizeDelta = new Vector2(400f, 54f);
-                // The dark band sits in the ribbon's upper half (tassels hang below), so lift the title onto it.
-                text.rectTransform.anchoredPosition = new Vector2(0f, 10f);
+                // Measured on popup_title_ribbon.png: the dark band spans 6%..51% of the height from the top
+                // (tassels hang below it), so its centre is 26.5 px above the 123 px ribbon's centre. The ribbon
+                // itself is nudged 6 px down, which puts the band centre 20.5 px above this anchor.
+                text.rectTransform.sizeDelta = new Vector2(400f, 44f);
+                text.rectTransform.anchoredPosition = new Vector2(0f, 20.5f);
                 text.resizeTextForBestFit = true;
                 text.resizeTextMinSize = 18;
                 text.resizeTextMaxSize = size;

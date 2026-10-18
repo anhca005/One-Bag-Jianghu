@@ -477,7 +477,8 @@ namespace OneBagJianghu.UI.Popups
             }
 
             mergeSourceUid = selected.Uid;
-            costText.text = "Chọn một bản sao hợp lệ để Hợp Thành.";
+            costText.text = "Món đang chọn là món chính và giữ Trọng. Chọn một bản sao cùng phẩm làm nguyên liệu; "
+                + "bản này sẽ mất.";
         }
 
         private void ChooseMergeCandidate(string candidateUid)
@@ -497,10 +498,13 @@ namespace OneBagJianghu.UI.Popups
             }
 
             mergeSourceUid = null;
+            MergePreview plan = merge.Preview(GameBootstrap.Session.Profile, sourceUid, candidateUid);
+            string message = "Món chính lên " + BagViewStyle.RarityName(plan.OutputRarity)
+                + ", giữ " + plan.OutputTier + " Trọng.\nDùng bản " + candidate.Tier + " Trọng làm nguyên liệu?";
+            if (plan.WeakerThanBestInput)
+                message += "\nMón mới yếu hơn bản nguyên liệu: nên chọn bản Trọng cao làm món chính.";
             PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Hợp Thành",
-                "Dùng bản sao "
-                + candidate.Tier
-                + " Trọng?",
+                message,
                 "Hợp Thành",
                 "Hủy",
                 yes =>

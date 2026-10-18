@@ -4,6 +4,19 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Quyết định mới thê
 
 ---
 
+### #67 · 2026-10-18 · Hợp Thành: món chính giữ Trọng
+- **Món chính** là món đang chọn khi bấm Hợp Thành. **Món nguyên liệu** là bản sao chọn sau, và bị dùng mất.
+- Món mới lên một phẩm và **giữ nguyên Trọng của món chính**. Thay luật Trọng ra = (Trọng A + Trọng B) / 3 ở #25.
+- Hoàn lại một nửa nguyên liệu đã dùng nâng Trọng cho **món nguyên liệu**. Nguyên liệu của món chính vẫn nằm trong món.
+- **Bỏ yêu cầu Tam Trọng**: Trọng nào cũng Hợp Thành được (người dùng chọn sau khi chơi thử).
+- Giữ nguyên: cùng món, cùng phẩm, Bạc và nguyên liệu thêm theo #25, vị trí món mới theo #64.
+- Hộp xác nhận ghi rõ phẩm và Trọng của món mới. Nếu món nguyên liệu mạnh hơn món mới, có lời nhắc chọn bản Trọng cao
+  làm món chính.
+
+**Lý do:** người chơi thấy lên phẩm không mạnh hơn bao nhiêu. Theo luật cũ, hai món Phàm Trọng 6 thành Lương Trọng 4,
+chỉ mạnh hơn 1%; hai món Trọng 9 thì thành món yếu hơn. Giữ Trọng nên mỗi lần lên phẩm luôn mạnh thêm đủ ×1.1, còn hệ
+số phẩm ở #36 không đổi.
+
 ### #66 · 2026-10-11 · Ảnh UI giữ nguyên hình gốc: dùng Simple, không dùng Sliced
 - Mọi Image dùng ảnh khung, nút, ô, nền đều để kiểu **Simple** và hiện đúng hình gốc. Không dùng 9-slice (Sliced/Tiled) nữa.
 - Chỗ nào có tỷ lệ khác ảnh gốc thì **Codex vẽ ảnh riêng đúng tỷ lệ đó**. Không kéo giãn, không mượn tạm ảnh của chỗ khác.
@@ -452,7 +465,7 @@ Review `docs/reviews/2026-09-29-gemini-rarity-items.md` + bản sửa kinh tế:
 - **Hệ số phẩm** (nhân chỉ số): Phàm 1.00 · Lương 1.25 · Tinh 1.55 · Tuyệt 1.90 · Thần Binh 2.30 · Chí Tôn 2.75.
 - **Phẩm nhân đúng những chỉ số Trọng đang nhân**: Lực Đạo, `value`/`stacks` của hiệu ứng (khiên, hồi máu, số điểm trạng thái…). Không nhân nội lực, thời gian, chi phí, tỉ lệ. Chỉ số cuối = gốc × hệ số Trọng × hệ số phẩm (đường cong Trọng giữ nguyên như engine: 1.0 → 2.0).
 - 21 món cũ quy về gốc Phàm **bằng script** theo đúng quy tắc trên (chia theo phẩm cũ), không dùng bản quy đổi tay của Gemini (bản đó chia cả nội lực và dùng sai đường cong Trọng). 40 món phi binh khí mới của Gemini giữ nguyên số.
-- **Gộp**: Trọng ra = clamp(floor((Trọng A + Trọng B) / 3), 2, 7); hoàn 50% nguyên liệu; Bạc 500 / 1.500 / 4.000 / 10.000 / 25.000 cho 5 bước; bước Thần Binh → Chí Tôn cần thêm **5 Chí Tôn Ngọc Tủy** (`chi_ton_ngoc_tuy`), chỉ có từ Luận Kiếm Đài (mốc 10 thắng/tuần, đổi 500 Danh Vọng tối đa 1 viên/tuần, thưởng mùa). Giao diện cảnh báo nếu món gộp ra yếu hơn bản mạnh nhất đem gộp.
+- **Gộp**: Trọng ra = clamp(floor((Trọng A + Trọng B) / 3), 2, 7) *[luật Trọng đã thay bởi #67]*; hoàn 50% nguyên liệu; Bạc 500 / 1.500 / 4.000 / 10.000 / 25.000 cho 5 bước; bước Thần Binh → Chí Tôn cần thêm **5 Chí Tôn Ngọc Tủy** (`chi_ton_ngoc_tuy`), chỉ có từ Luận Kiếm Đài (mốc 10 thắng/tuần, đổi 500 Danh Vọng tối đa 1 viên/tuần, thưởng mùa). Giao diện cảnh báo nếu món gộp ra yếu hơn bản mạnh nhất đem gộp.
 - **Đổi tên** (tránh trùng truyện/game có sẵn): Huyền Thiết → Ô Thiết (`o_thiet`), Huyền Thiết Giáp → Ô Thiết Giáp, Đại Hoàn Đan → Hồi Thiên Đan, Bắc Đẩu Trận Pháp → Tinh Đồ Trận Phổ, Trường Sinh Quyết → Dưỡng Sinh Quyết, Kim Ti Giáp → Kim Tuyến Y, Linh Tê Y → Nho Sam Y.
 - Hiệu ứng Tâm Pháp cộng vào binh khí (tầng trạng thái, khiên…) cũng nhân theo phẩm của bản đó, giống như đang nhân theo Trọng. Vì vậy đội hình mẫu dùng đồ phẩm cao lệch vài điểm % so với trước; để đợt cân bằng xử lý.
 - Mô phỏng Gemini (toàn bộ ở Phàm) còn 15/24 ô ngoài 35–65% → **cần một đợt cân bằng** sau khi engine đọc được phẩm; chưa chặn việc thử trong Unity.

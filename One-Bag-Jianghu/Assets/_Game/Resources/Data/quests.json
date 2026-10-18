@@ -645,7 +645,7 @@
       "kind": "side",
       "title": "Hợp Thành tăng phẩm",
       "giver": "yen_vo_tam",
-      "text": "Đối đầu kình địch cần có bảo vật phẩm chất vượt trội. Vào Tàng Bảo Các gộp hai bản cùng loại từ Tam Trọng trở lên để Hợp Thành ra phẩm cao hơn.",
+      "text": "Đối đầu kình địch cần có bảo vật phẩm chất vượt trội. Vào Tàng Bảo Các gộp hai bản cùng loại để Hợp Thành: món chính lên phẩm cao hơn và giữ nguyên Trọng.",
       "objective": {
         "type": "item_merge",
         "count": 1

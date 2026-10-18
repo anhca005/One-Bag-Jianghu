@@ -24,7 +24,6 @@ namespace OneBagJianghu.Tests.Bag
             Set(view, "canvasGroup", root.GetComponent<CanvasGroup>());
             Set(view, "icon", ChildImage(root));
             Set(view, "nameText", ChildText(root));
-            Set(view, "tierText", ChildText(root));
             Set(view, "tamPhapText", ChildText(root));
             var info = new ItemInfo("test", "Test", "relic", null, null, "common", 1, 1);
             PlacedItem placed = new BagGrid(5, 4).Place(info, 0, 0, 1, "owned");

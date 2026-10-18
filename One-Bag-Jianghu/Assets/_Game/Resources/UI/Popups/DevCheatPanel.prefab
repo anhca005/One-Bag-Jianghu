@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5225350514278794327}
   - component: {fileID: 4465168608147374058}
   - component: {fileID: 1677566068117539696}
-  - component: {fileID: 3094045412907442944}
+  - component: {fileID: 8728529322482092820}
   m_Layer: 0
   m_Name: DevCheatPanel
   m_TagString: Untagged
@@ -129,7 +129,7 @@ MonoBehaviour:
   addLevelButton: {fileID: 7220440372294955726}
   addExpButton: {fileID: 6817898542029494874}
   resetSectButton: {fileID: 1265355881427841880}
---- !u!114 &3094045412907442944
+--- !u!114 &8728529322482092820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,8 +176,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.925}
   m_AnchorMax: {x: 0.5, y: 0.925}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 400, y: 54}
+  m_AnchoredPosition: {x: 0, y: 20.5}
+  m_SizeDelta: {x: 400, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &368028703670570753
 CanvasRenderer:

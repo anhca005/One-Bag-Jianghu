@@ -61,7 +61,8 @@ namespace OneBagJianghu.Economy
                     Error = validation
                 };
             MergeStep step = merges.Get(first.Rarity);
-            int outputTier = Math.Min(7, Math.Max(2, (first.Tier + second.Tier) / 3));
+            // The first copy is the main item and keeps its Trọng; the second is consumed as material (#67).
+            int outputTier = first.Tier;
             var result = new MergePreview
             {
                 Success = true,
@@ -76,11 +77,10 @@ namespace OneBagJianghu.Economy
             };
             foreach (KeyValuePair<string, int> extra in step.ExtraMaterials)
                 result.ExtraMaterials.Add(extra.Key, extra.Value);
-            Dictionary<string, int> input = InvestedMaterials(first, second);
-            Dictionary<string, int> output = InvestedMaterials(first.ItemId, step.ToRarity, outputTier);
-            foreach (KeyValuePair<string, int> value in input)
+            // The main item keeps what was spent on its Trọng; the material copy gives back half of its own.
+            foreach (KeyValuePair<string, int> value in InvestedMaterials(second.ItemId, second.Rarity, second.Tier))
             {
-                int refund = value.Value / 2 - (output.TryGetValue(value.Key, out int spent) ? spent : 0);
+                int refund = value.Value / 2;
                 if (refund > 0)
                     result.RefundMaterials[value.Key] = refund;
             }
@@ -111,15 +111,14 @@ namespace OneBagJianghu.Economy
         {
             var result = new List<OwnedItem>();
             OwnedItem selected = profile?.FindItem(selectedUid);
+            // Any Trọng can merge (#67): the main item keeps its Trọng, so there is no minimum.
             if (selected == null
-                || selected.Tier < 3
                 || selected.Rarity == "supreme")
                 return result;
             foreach (OwnedItem value in profile.Items)
                 if (value.Uid != selectedUid
                     && value.ItemId == selected.ItemId
-                    && value.Rarity == selected.Rarity
-                    && value.Tier >= 3)
+                    && value.Rarity == selected.Rarity)
                     result.Add(value);
             return result;
         }
@@ -188,8 +187,6 @@ namespace OneBagJianghu.Economy
                 return "Hai bản sao phải là cùng một món.";
             if (first.Rarity != second.Rarity)
                 return "Hai bản sao phải cùng phẩm.";
-            if (first.Tier < 3 || second.Tier < 3)
-                return "Cả hai bản sao phải đạt ít nhất Tam Trọng.";
             if (first.Rarity == "supreme")
                 return "Phẩm Chí Tôn không thể Hợp Thành cao hơn.";
             return null;
@@ -207,14 +204,6 @@ namespace OneBagJianghu.Economy
             storage.SpendMaterials(preview.ExtraMaterials, out _);
             foreach (KeyValuePair<string, int> refund in preview.RefundMaterials)
                 storage.TryAddMaterial(refund.Key, refund.Value);
-        }
-
-        private Dictionary<string, int> InvestedMaterials(OwnedItem a, OwnedItem b)
-        {
-            Dictionary<string, int> result = InvestedMaterials(a.ItemId, a.Rarity, a.Tier);
-            foreach (KeyValuePair<string, int> value in InvestedMaterials(b.ItemId, b.Rarity, b.Tier))
-                Add(result, value.Key, value.Value);
-            return result;
         }
 
         private Dictionary<string, int> InvestedMaterials(string itemId, string rarity, int tier)

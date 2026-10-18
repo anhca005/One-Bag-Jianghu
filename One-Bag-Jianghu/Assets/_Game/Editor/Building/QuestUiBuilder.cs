@@ -100,7 +100,10 @@ namespace OneBagJianghu.EditorTools.Building
             content.pivot = new Vector2(.5f, 1f);
             VerticalLayoutGroup layout = content.gameObject.AddComponent<VerticalLayoutGroup>();
             layout.spacing = 10f;
+            layout.childAlignment = TextAnchor.UpperCenter;
+            layout.childControlWidth = false;
             layout.childControlHeight = false;
+            layout.childForceExpandWidth = false;
             layout.childForceExpandHeight = false;
             ContentSizeFitter fitter = content.gameObject.AddComponent<ContentSizeFitter>();
             fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
@@ -110,8 +113,8 @@ namespace OneBagJianghu.EditorTools.Building
             scroll.horizontal = false;
             QuestLogRow template = BuildRow(content);
             template.gameObject.SetActive(false);
-            UiButton close = AddUiButton(panel, "Close Button", "Đóng", new Vector2(.5f, .07f),
-                new Vector2(200f, 58f));
+            UiButton close = AddKitButton(panel, "Close Button", "Đóng", false, new Vector2(.5f, .07f),
+                new Vector2(260f, 62f));
             close.gameObject.AddComponent<TutorialTarget>().Configure("quest_log_close");
             UiBuild.Set(popup, "content", content);
             UiBuild.Set(popup, "rowTemplate", template);
@@ -121,49 +124,72 @@ namespace OneBagJianghu.EditorTools.Building
             Object.DestroyImmediate(root);
         }
 
+        // quest_log_row.png is baked edge to edge at 820x150 (decision #66). Its square slot spans x 35..145 and
+        // y 22..125 from the top; text starts right of it, inside the gold border.
         private static QuestLogRow BuildRow(Transform parent)
         {
             Image paper = AddImage(parent, "Quest Row Template", new Vector2(.5f, .5f), RowSize);
             UiBuild.ApplyUiSprite(paper, "Kit/quest_log_row", Image.Type.Simple);
+            paper.preserveAspect = false;
             QuestLogRow row = paper.gameObject.AddComponent<QuestLogRow>();
-            Image status = AddImage(paper.transform, "Status", new Vector2(.075f, .5f), new Vector2(56f, 56f));
-            Image badge = AddImage(paper.transform, "Badge", new Vector2(.19f, .78f), new Vector2(72f, 30f));
+            Image status = AddImage(paper.transform, "Status", new Vector2(.11f, .51f), new Vector2(64f, 64f));
+            Image badge = AddImage(paper.transform, "Badge", new Vector2(.236f, .79f), new Vector2(72f, 30f));
             Text badgeText = AddText(badge.transform, "Label", "CHÍNH", 11, Vector2.zero, Vector2.one,
                 TextAnchor.MiddleCenter);
             badgeText.color = UiBuild.Paper;
             Text title = AddText(paper.transform, "Title", "Tên nhiệm vụ", 20,
-                new Vector2(.25f, .68f), new Vector2(.64f, .9f), TextAnchor.MiddleLeft);
+                new Vector2(.29f, .66f), new Vector2(.7f, .92f), TextAnchor.MiddleLeft);
             Text giver = AddText(paper.transform, "Giver", "Người giao", 14,
-                new Vector2(.68f, .7f), new Vector2(.93f, .88f), TextAnchor.MiddleRight);
+                new Vector2(.7f, .68f), new Vector2(.95f, .9f), TextAnchor.MiddleRight);
             Text description = AddText(paper.transform, "Text", "Lời dẫn nhiệm vụ", 14,
-                new Vector2(.17f, .38f), new Vector2(.72f, .67f), TextAnchor.MiddleLeft);
+                new Vector2(.195f, .38f), new Vector2(.95f, .66f), TextAnchor.MiddleLeft);
             Text objective = AddText(paper.transform, "Objective", "Mục tiêu 0/1", 14,
-                new Vector2(.17f, .12f), new Vector2(.58f, .38f), TextAnchor.MiddleLeft);
+                new Vector2(.195f, .1f), new Vector2(.45f, .36f), TextAnchor.MiddleLeft);
+            objective.resizeTextForBestFit = true;
+            objective.resizeTextMinSize = 11;
+            objective.resizeTextMaxSize = 14;
             RectTransform rewards = AddRewards(paper.transform);
-            UiButton claim = AddUiButton(paper.transform, "Claim Button", "Nhận thưởng", new Vector2(.83f, .25f),
-                new Vector2(150f, 42f));
+            UiButton claim = AddKitButton(paper.transform, "Claim Button", "Nhận thưởng", true, new Vector2(.85f, .23f),
+                new Vector2(180f, 43f));
             UiBorderRunner runner = AddRunner(paper.transform, paper, RowSize);
             SetRowFields(row, status, badge, badgeText, title, giver, description, objective, rewards, claim, runner);
             return row;
         }
 
+        // Each reward entry sizes to its icon and value, so long values like "120 EXP" never overlap.
         private static RectTransform AddRewards(Transform parent)
         {
             RectTransform rewards = UiBuild.Rect(parent, "Rewards");
-            UiBuild.Anchors(rewards, new Vector2(.58f, .08f), new Vector2(.78f, .38f));
+            UiBuild.Anchors(rewards, new Vector2(.45f, .1f), new Vector2(.73f, .36f));
             HorizontalLayoutGroup layout = rewards.gameObject.AddComponent<HorizontalLayoutGroup>();
-            layout.spacing = 8f;
-            layout.childControlHeight = false;
-            layout.childControlWidth = false;
+            layout.spacing = 10f;
+            layout.childAlignment = TextAnchor.MiddleRight;
+            ControlChildren(layout);
             for (int i = 0; i < 6; i++)
             {
                 RectTransform entry = UiBuild.Rect(rewards, "Reward " + i);
-                entry.sizeDelta = new Vector2(58f, 34f);
-                Image icon = AddImage(entry, "Icon", new Vector2(.2f, .5f), new Vector2(26f, 26f));
-                icon.color = Color.clear;
-                AddText(entry, "Value", "0", 12, new Vector2(.42f, 0f), Vector2.one, TextAnchor.MiddleLeft);
+                HorizontalLayoutGroup entryLayout = entry.gameObject.AddComponent<HorizontalLayoutGroup>();
+                entryLayout.spacing = 3f;
+                entryLayout.childAlignment = TextAnchor.MiddleLeft;
+                ControlChildren(entryLayout);
+                Image icon = UiBuild.Image(entry, "Icon", Color.white);
+                icon.preserveAspect = true;
+                icon.raycastTarget = false;
+                LayoutElement iconSize = icon.gameObject.AddComponent<LayoutElement>();
+                iconSize.preferredWidth = 26f;
+                iconSize.preferredHeight = 26f;
+                Text value = UiBuild.Text(entry, "Value", "0", 13, TextAnchor.MiddleLeft);
+                value.horizontalOverflow = HorizontalWrapMode.Overflow;
             }
             return rewards;
+        }
+
+        private static void ControlChildren(HorizontalLayoutGroup layout)
+        {
+            layout.childControlWidth = true;
+            layout.childControlHeight = true;
+            layout.childForceExpandWidth = false;
+            layout.childForceExpandHeight = false;
         }
 
         private static void SetRowFields(
@@ -263,14 +289,25 @@ namespace OneBagJianghu.EditorTools.Building
             return button;
         }
 
-        private static UiButton AddUiButton(
+        // Popup actions use the shared kit button prefabs, so they carry the same art as every other popup.
+        private static UiButton AddKitButton(
             Transform parent,
             string name,
             string label,
+            bool primary,
             Vector2 anchor,
             Vector2 size)
         {
-            return AddPlainButton(parent, name, label, anchor, size, true).GetComponent<UiButton>();
+            string style = primary ? "Primary" : "Secondary";
+            UiButton button = UiBuild.InstantiateLinked<UiButton>(
+                CommonUiPrefabBuilder.Folder + "/Button_" + style + ".prefab",
+                parent);
+            button.name = name;
+            button.SetLabel(label);
+            RectTransform rect = button.GetComponent<RectTransform>();
+            rect.anchorMin = rect.anchorMax = anchor;
+            rect.sizeDelta = size;
+            return button;
         }
     }
 }

@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4719164140405617429}
   - component: {fileID: 9190872625913206451}
   - component: {fileID: 1445458121781591759}
-  - component: {fileID: 2564592185400063622}
+  - component: {fileID: 5354305546897819504}
   m_Layer: 0
   m_Name: StoryPopup
   m_TagString: Untagged
@@ -267,7 +267,7 @@ MonoBehaviour:
   titleText: {fileID: 1256917259535453188}
   bodyText: {fileID: 6485481018372606377}
   skipButton: {fileID: 3678842428525338200}
---- !u!114 &2564592185400063622
+--- !u!114 &5354305546897819504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,8 +393,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 10}
-  m_SizeDelta: {x: 400, y: 54}
+  m_AnchoredPosition: {x: 0, y: 20.5}
+  m_SizeDelta: {x: 400, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4184784182014310584
 CanvasRenderer:

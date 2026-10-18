@@ -95,18 +95,25 @@ namespace OneBagJianghu.UI.Popups
 
         private void Claim()
         {
-            QuestClaimResult result = service.Claim(GameBootstrap.Session.Profile);
+            if (ClaimActive(service))
+                Refresh();
+        }
+
+        /// <summary>Claims the active quest's reward and shows it; the Home quest tracker claims through this too.</summary>
+        public static bool ClaimActive(QuestService quests)
+        {
+            QuestClaimResult result = quests.Claim(GameBootstrap.Session.Profile);
             if (!result.Success)
             {
                 PopupManager.Show<MessagePopup>(
                     new MessagePopupData("Chưa thể nhận thưởng", result.Error, "Đóng"));
-                return;
+                return false;
             }
             GameBootstrap.Session.SaveProfile();
             AudioManager.Instance?.Play("reward");
             PopupManager.Show<MessagePopup>(
                 new MessagePopupData("Nhận thưởng", RewardText(result.Reward), "Đã nhận"));
-            Refresh();
+            return true;
         }
 
         private static string RewardText(QuestReward reward)

@@ -307,6 +307,16 @@ MonoBehaviour:
     Sprite: {fileID: 21300000, guid: f5d1b64e62356704ebaaeafc905a50dd, type: 3}
   - Key: input_field_wide
     Sprite: {fileID: 21300000, guid: eef11881edc553046a66cfc9e043538a, type: 3}
+  - Key: item_frame_1x1
+    Sprite: {fileID: 21300000, guid: 66d7689269d19134883bc771324b666a, type: 3}
+  - Key: item_frame_1x2
+    Sprite: {fileID: 21300000, guid: cd54cb102a3281f448ff7f43a86bf88f, type: 3}
+  - Key: item_frame_1x3
+    Sprite: {fileID: 21300000, guid: 820c2559327f10f4fbde9fc6a54c05ad, type: 3}
+  - Key: item_frame_1x4
+    Sprite: {fileID: 21300000, guid: 1fde302346c1bae448e9c604a863e366, type: 3}
+  - Key: item_frame_2x1
+    Sprite: {fileID: 21300000, guid: 2ec5b1743084ea044aff2c34fb2bc44b, type: 3}
   - Key: list_row
     Sprite: {fileID: 21300000, guid: 63c4b62432d2f7f4cafc73a8009efa7c, type: 3}
   - Key: list_row_compact

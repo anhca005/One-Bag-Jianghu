@@ -318,7 +318,7 @@ namespace OneBagJianghu.EditorTools.Building
             background.raycastTarget = false;
             Image border = UiBuild.Image(root.transform, "Border", Color.white);
             UiBuild.Stretch(border.rectTransform);
-            UiBuild.ApplyUiSprite(border, "Kit/frame_panel_square", Image.Type.Simple);
+            UiBuild.ApplyItemFrame(border);
             Image icon = UiBuild.Image(root.transform, "Icon", Color.white);
             Anchor(icon.rectTransform, .10f, .10f, .90f, .90f);
             icon.preserveAspect = true;
@@ -387,7 +387,6 @@ namespace OneBagJianghu.EditorTools.Building
             Dropdown filter = Dropdown(panel, "Type Filter", types, .02f, .79f, .22f, .86f);
             UiButton sort = Button(panel, "Sort", "Sắp xếp", false, .37f, .825f);
             UiBuild.ApplyUiSprite(sort.GetComponent<Image>(), "Kit/button_small_gold_compact", Image.Type.Simple);
-            UiBuild.AddLeadingIcon(sort.transform, "icon_sort");
 
             // Storage grid.
             RectTransform viewport = UiBuild.Image(panel, "Grid Viewport", new Color(0f, 0f, 0f, .04f)).rectTransform;
@@ -426,10 +425,16 @@ namespace OneBagJianghu.EditorTools.Building
             equippedScroll.horizontal = true;
             equippedScroll.vertical = false;
 
-            // The description grows inside a clipped, independently scrollable viewport.
-            RectTransform detailViewport = UiBuild.Image(panel, "Detail Viewport", Color.clear).rectTransform;
-            UiBuild.ApplyUiSprite(detailViewport.GetComponent<Image>(), "Kit/panel_inset_detail", Image.Type.Simple);
-            Anchor(detailViewport, .65f, .47f, .97f, .88f);
+            // The description grows inside a clipped, independently scrollable viewport. The viewport sits
+            // inside the inset frame with padding, so text never touches or crosses the frame's border.
+            Image detailFrame = UiBuild.Image(panel, "Detail Frame", Color.white);
+            UiBuild.ApplyUiSprite(detailFrame, "Kit/panel_inset_detail", Image.Type.Simple);
+            Anchor(detailFrame.rectTransform, .65f, .47f, .97f, .88f);
+            Image detailViewportImage = UiBuild.Image(detailFrame.transform, "Detail Viewport", Color.clear);
+            RectTransform detailViewport = detailViewportImage.rectTransform;
+            UiBuild.Stretch(detailViewport);
+            detailViewport.offsetMin = new Vector2(16f, 12f);
+            detailViewport.offsetMax = new Vector2(-16f, -12f);
             detailViewport.gameObject.AddComponent<RectMask2D>();
             RectTransform detailContent = UiBuild.Rect(detailViewport, "Content");
             PrepareDetailContent(detailContent);
@@ -457,14 +462,11 @@ namespace OneBagJianghu.EditorTools.Building
             cost.resizeTextMaxSize = 20;
             UiButton upgrade = Button(panel, "Upgrade", "Nâng Trọng", true, .72f, .26f);
             UiButton merge = Button(panel, "Merge", "Hợp Thành", true, .89f, .26f);
-            UiBuild.AddLeadingIcon(upgrade.transform, "icon_upgrade");
-            UiBuild.AddLeadingIcon(merge.transform, "icon_merge");
             TutorialTarget upgradeTarget = upgrade.gameObject.AddComponent<TutorialTarget>();
             upgradeTarget.Configure("storage_upgrade");
             TutorialTarget mergeTarget = merge.gameObject.AddComponent<TutorialTarget>();
             mergeTarget.Configure("storage_merge");
             UiButton sell = Button(panel, "Sell", "Bán", false, .72f, .15f);
-            UiBuild.AddLeadingIcon(sell.transform, "icon_sell");
             UiButton close = Button(panel, "Close", "Đóng", false, .89f, .15f);
             BindStorage(popup, header, silver, reputation, warning, filter, sort, scroll, content, cell, item);
             Set(popup, "equippedContent", equippedContent);
@@ -803,7 +805,6 @@ namespace OneBagJianghu.EditorTools.Building
             Text status = Text(panel, "Status", string.Empty, 18, .03f, .015f, .65f, .065f);
             UiButton refresh = Button(panel, "Refresh", "Làm mới", true, .86f, .885f);
             UiBuild.ApplyUiSprite(refresh.GetComponent<Image>(), "Kit/button_small_gold_compact", Image.Type.Simple);
-            UiBuild.AddLeadingIcon(refresh.transform, "icon_refresh");
             refresh.GetComponent<RectTransform>().sizeDelta = new Vector2(260f, 62f);
             UiButton trade = Button(panel, "Trade Tab", "Thương Hội", true, .18f, .795f);
             UiButton exchange = Button(panel, "Exchange Tab", "Đổi nguyên liệu", false, .5f, .795f);
@@ -1023,10 +1024,11 @@ namespace OneBagJianghu.EditorTools.Building
                 ribbon.rectTransform.sizeDelta = new Vector2(520f, 123f);
                 text.rectTransform.anchorMin = center;
                 text.rectTransform.anchorMax = center;
-                // Keep the title on the ribbon's dark band (about 45% of its 123 px height).
-                text.rectTransform.sizeDelta = new Vector2(400f, 54f);
-                // The dark band sits in the ribbon's upper half (tassels hang below), so lift the title onto it.
-                text.rectTransform.anchoredPosition = new Vector2(0f, 10f);
+                // Measured on popup_title_ribbon.png: the dark band spans 6%..51% of the height from the top
+                // (tassels hang below it), so its centre is 26.5 px above the 123 px ribbon's centre. The ribbon
+                // itself is nudged 6 px down, which puts the band centre 20.5 px above this anchor.
+                text.rectTransform.sizeDelta = new Vector2(400f, 44f);
+                text.rectTransform.anchoredPosition = new Vector2(0f, 20.5f);
                 text.resizeTextForBestFit = true;
                 text.resizeTextMinSize = 18;
                 text.resizeTextMaxSize = size;

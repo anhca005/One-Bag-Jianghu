@@ -1,6 +1,7 @@
 using OneBagJianghu.Bag;
 using OneBagJianghu.Core;
 using OneBagJianghu.Economy;
+using OneBagJianghu.Onboarding;
 using OneBagJianghu.Pve;
 using OneBagJianghu.Quests;
 using OneBagJianghu.UI.Common;
@@ -65,10 +66,19 @@ namespace OneBagJianghu.UI.Home
         private void HandleBodyClick()
         {
             QuestDefinition quest = service.Active(GameBootstrap.Session.Profile);
-            if (quest != null && service.Progress(GameBootstrap.Session.Profile, quest).Done)
+            if (quest == null || !service.Progress(GameBootstrap.Session.Profile, quest).Done)
+                GoToObjective();
+            else if (IsQuestLogTutorialStep())
                 OpenLog();
             else
-                GoToObjective();
+                QuestLogPopup.ClaimActive(service);
+        }
+
+        // The tutorial teaches the quest log by having the player open it and claim there.
+        private static bool IsQuestLogTutorialStep()
+        {
+            TutorialStep step = OnboardingRuntime.Tutorial?.CurrentStep;
+            return step != null && step.Target == "home_quest";
         }
 
         private void GoToObjective()

@@ -35,7 +35,7 @@
       "steps": [
         { "line": "Nguyên liệu dùng để nâng Trọng. Vào Tàng Bảo Các.", "target": "home_storage", "completeEvent": "storage_opened" },
         { "line": "Chọn một món, bấm Nâng Trọng. Mỗi Trọng tăng chỉ số của món. Trọng 3, 6 và 9 cần thêm chất dẫn để Đột Phá.", "target": "storage_upgrade", "completeEvent": "item_upgraded" },
-        { "line": "Hai bản cùng món, cùng phẩm, từ Tam Trọng trở lên thì Hợp Thành được ra phẩm cao hơn.", "target": "storage_merge", "completeEvent": "upgrade_tutorial_acknowledged" }
+        { "line": "Hai bản cùng món, cùng phẩm thì Hợp Thành được: món đang chọn lên phẩm cao hơn và giữ Trọng, bản kia làm nguyên liệu.", "target": "storage_merge", "completeEvent": "upgrade_tutorial_acknowledged" }
       ]
     },
     {

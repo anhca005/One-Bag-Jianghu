@@ -127,6 +127,35 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         [Test]
+        public void MergeKeepsMainTierAndRefundsHalfOfMaterialCopy()
+        {
+            // Arrange
+            PlayerProfile profile = Rich();
+            profile.AddItem("sword", 8, uid: "main");
+            profile.AddItem("sword", 3, uid: "material");
+            var service = new MergeService(Upgrades(), Merges(), Materials(), new Items());
+            PlayerProfile reference = Rich();
+            reference.AddItem("sword", 3, uid: "x");
+            reference.AddItem("sword", 3, uid: "y");
+
+            // Act
+            MergePreview preview = service.Preview(profile, "main", "material");
+            MergePreview swapped = service.Preview(profile, "material", "main");
+            MergePreview sameMaterial = service.Preview(reference, "x", "y");
+
+            // Assert
+            Assert.AreEqual(8, preview.OutputTier);
+            Assert.IsFalse(preview.WeakerThanBestInput);
+            Assert.AreEqual(3, swapped.OutputTier);
+            Assert.IsTrue(swapped.WeakerThanBestInput);
+            // The refund depends only on the material copy (Tam Trọng in both cases), not on the main item.
+            CollectionAssert.AreEquivalent(sameMaterial.RefundMaterials, preview.RefundMaterials);
+            Assert.IsTrue(service.Apply(profile, "main", "material").Success);
+            Assert.AreEqual(8, profile.Items[0].Tier);
+            Assert.AreEqual("uncommon", profile.Items[0].Rarity);
+        }
+
+        [Test]
         public void UpgradeKeepsItemInLoadout()
         {
             // Arrange
@@ -275,8 +304,9 @@ namespace OneBagJianghu.Tests.Economy
             profile.RequireItem("b").Rarity = "rare";
             Assert.IsFalse(service.Preview(profile, "a", "b").Success);
             profile.RequireItem("b").Rarity = "common";
-            profile.RequireItem("b").Tier = 2;
-            Assert.IsFalse(service.Preview(profile, "a", "b").Success);
+            // Any Trọng may merge (#67), including Nhất Trọng.
+            profile.RequireItem("b").Tier = 1;
+            Assert.IsTrue(service.Preview(profile, "a", "b").Success);
             profile.RequireItem("a").Rarity = profile.RequireItem("b").Rarity = "supreme";
             profile.RequireItem("b").Tier = 3;
             Assert.IsFalse(service.Preview(profile, "a", "b").Success);

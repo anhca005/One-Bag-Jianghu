@@ -60,7 +60,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image rarityFrame = UiBuild.Image(bg.transform, "Rarity Frame", Color.white);
             UiBuild.Stretch(rarityFrame.rectTransform, 3f);
             rarityFrame.raycastTarget = false;
-            UiBuild.ApplyUiSprite(rarityFrame, "Kit/frame_panel_square", Image.Type.Simple);
+            UiBuild.ApplyItemFrame(rarityFrame);
             UiBuild.Set(view, "background", bg);
             UiBuild.Set(view, "rarityOutline", outline);
             UiBuild.Set(view, "icon", icon);

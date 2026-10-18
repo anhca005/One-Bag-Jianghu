@@ -45,6 +45,28 @@ namespace OneBagJianghu.EditorTools.Building
             return AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");
         }
 
+        // Item shapes in items.json; 2x2 shares the square frame. Baked from frame_panel by bake_nine_slice.py.
+        private static readonly string[] ItemFrameShapes = { "1x1", "1x2", "2x1", "1x3", "1x4" };
+
+        /// <summary>Item frame that swaps to the art drawn for the item's shape (see ShapeFrame).</summary>
+        public static void ApplyItemFrame(Image image)
+        {
+            var frames = new Sprite[ItemFrameShapes.Length];
+            for (int i = 0; i < frames.Length; i++)
+            {
+                frames[i] = LoadUiSprite("Kit/item_frame_" + ItemFrameShapes[i]);
+                if (frames[i] == null)
+                    Debug.LogError("Missing UI sprite: " + UiTextureFolder + "Kit/item_frame_" + ItemFrameShapes[i]);
+            }
+
+            image.sprite = frames[0];
+            image.type = UnityEngine.UI.Image.Type.Simple;
+            ShapeFrame shapeFrame = image.GetComponent<ShapeFrame>();
+            if (shapeFrame == null)
+                shapeFrame = image.gameObject.AddComponent<ShapeFrame>();
+            shapeFrame.Initialize(frames);
+        }
+
         public static void AddLeadingIcon(Transform parent, string key, float size = 28f)
         {
             Image icon = Image(parent, "Action Icon", Color.white);

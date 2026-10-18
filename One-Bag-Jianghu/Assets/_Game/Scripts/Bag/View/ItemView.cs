@@ -31,8 +31,6 @@ namespace OneBagJianghu.Bag.View
         [SerializeField]
         private Text nameText;
         [SerializeField]
-        private Text tierText;
-        [SerializeField]
         private Text tamPhapText;
         private ItemInfo info;
         private PlacedItem placed;
@@ -114,8 +112,6 @@ namespace OneBagJianghu.Bag.View
             tray = trayView;
             placed = item;
             ownedUid = item.OwnedUid;
-            tierText.gameObject.SetActive(true);
-            tierText.text = "T" + item.Tier;
         }
 
         public void InitializeTray(BagGridView owner, ItemTrayView trayView, string uid = null, int tier = 1)
@@ -125,8 +121,6 @@ namespace OneBagJianghu.Bag.View
             placed = null;
             ownedUid = uid;
             itemTier = tier;
-            tierText.gameObject.SetActive(uid != null);
-            tierText.text = "T" + tier;
         }
 
         public void OnBeginDrag(PointerEventData e)

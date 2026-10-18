@@ -24,7 +24,7 @@
     { "name": "Tuyệt Phẩm", "category": "Độ hiếm", "description": "Bậc vật phẩm quý hiếm, có khung màu tím." },
     { "name": "Thần Binh", "category": "Độ hiếm", "description": "Bậc vật phẩm rất quý, có khung màu vàng kim." },
     { "name": "Chí Tôn", "category": "Độ hiếm", "description": "Bậc vật phẩm cao nhất, có khung màu đỏ và được tạo từ Thần Binh bằng nguyên liệu đặc biệt." },
-    { "name": "Hợp Thành", "category": "Nâng cấp & nguyên liệu", "description": "Ghép hai bản cùng món, cùng phẩm và đều từ Tam Trọng để tạo một bản phẩm cao hơn." },
+    { "name": "Hợp Thành", "category": "Nâng cấp & nguyên liệu", "description": "Ghép hai bản cùng món, cùng phẩm: món chính lên một phẩm và giữ nguyên Trọng, bản còn lại làm nguyên liệu và mất đi." },
     { "name": "Hàn Thiết", "category": "Nâng cấp & nguyên liệu", "description": "Nguyên liệu nâng Binh Khí ở các Trọng đầu." },
     { "name": "Ô Thiết", "category": "Nâng cấp & nguyên liệu", "description": "Nguyên liệu nâng Binh Khí ở các Trọng giữa." },
     { "name": "Thiên Ngoại Vẫn Thiết", "category": "Nâng cấp & nguyên liệu", "description": "Nguyên liệu nâng Binh Khí ở các Trọng cao." },
