@@ -10,6 +10,7 @@ using OneBagJianghu.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Audio;
+using OneBagJianghu.Net;
 
 namespace OneBagJianghu.UI.Pve
 {
@@ -95,6 +96,16 @@ namespace OneBagJianghu.UI.Pve
                 0,
                 catalog.Chapters.Count - 1) : requested != null ? catalog.Chapters.IndexOf(requested.Chapter) : 0;
             DrawChapter(requested);
+        }
+
+        protected override void OnShown()
+        {
+            PlayerProfile.ProgressChanged += HandleProgressChanged;
+        }
+
+        protected override void OnHidden()
+        {
+            PlayerProfile.ProgressChanged -= HandleProgressChanged;
         }
 
         private void Update()
@@ -277,22 +288,24 @@ namespace OneBagJianghu.UI.Pve
             int recommendedPower = StagePower.Recommended(stage);
             int playerPower = GameBootstrap.Session.PlayerPower();
             float powerRatio = recommendedPower > 0 ? (float)playerPower / recommendedPower : 1f;
-            powerText.text = "Lực Chiến đề nghị: " + UiFormat.Number(recommendedPower);
-            playerPowerText.text = "Lực Chiến của bạn: " + UiFormat.Number(playerPower);
+            powerText.text = "Chiến Uy đề nghị: " + UiFormat.Number(recommendedPower);
+            playerPowerText.text = "Chiến Uy của bạn: " + UiFormat.Number(playerPower);
             playerPowerText.color = powerRatio >= 1f
                 ? new Color32(0x4F, 0x7A, 0x3A, 0xFF)
                 : powerRatio >= .85f ? UiKit.Gold : UiKit.Vermilion;
-            powerWarningText.text = powerRatio < .85f ? "Lực Chiến thấp hơn đề nghị" : string.Empty;
-            DateTimeOffset now = DateTimeOffset.UtcNow;
+            powerWarningText.text = powerRatio < .85f ? "Chiến Uy thấp hơn đề nghị" : string.Empty;
+            DateTimeOffset now = ServerClock.UtcNow;
             PveProfileState staminaState = GameBootstrap.Session.Profile.Pve;
             string next = StaminaService.FormatDuration(stamina.SecondsToNext(staminaState, now));
             string regen = staminaState.Stamina >= staminaConfig.Max ? "Đã đầy" : "+1 sau " + next;
-            costText.text = "Tốn " + stage.StaminaCost + " Thể Lực · "
-                + staminaState.Stamina + "/" + staminaConfig.Max + " · " + regen;
+            costText.text = "Tốn " + UiFormat.Number(stage.StaminaCost) + " Thể Lực · "
+                + UiFormat.Number(staminaState.Stamina) + "/" + UiFormat.Number(staminaConfig.Max) + " · " + regen;
             PveFirstClearReward reward = stage.Rewards.FirstClear;
-            rewardsText.text = $"Lần đầu: {UiFormat.Number(reward.Silver)} Bạc · {reward.HeroExp} EXP";
-            enemyPortrait.sprite = Portrait(stage.Enemy.Portrait);
-            enemyPortrait.color = enemyPortrait.sprite == null ? new Color(.2f, .2f, .2f, .3f) : Color.white;
+            bool cleared = PveRules.IsCleared(GameBootstrap.Session.Profile, stage.Id);
+            rewardsText.text = BuildRewardText(reward, cleared, catalog.RepeatRewardPercent);
+            enemyPortrait.sprite = Portrait(stage.Enemy.Portrait, stage.Id);
+            enemyPortrait.gameObject.SetActive(enemyPortrait.sprite != null);
+            enemyPortrait.color = Color.white;
             challengeButton.GetComponent<Button>().interactable = unlocked && enough && loadout;
             disabledReason.text =
                 !unlocked
@@ -307,11 +320,7 @@ namespace OneBagJianghu.UI.Pve
         private void RefreshStamina()
         {
             PveProfileState state = GameBootstrap.Session.Profile.Pve;
-            int previous = state.Stamina;
-            stamina.Refresh(state, DateTimeOffset.UtcNow);
             UpdateStaminaText();
-            if (state.Stamina != previous)
-                GameBootstrap.Session.SaveProfile();
         }
 
         private void UpdateStaminaText()
@@ -319,11 +328,11 @@ namespace OneBagJianghu.UI.Pve
             if (staminaText != null && staminaConfig != null)
             {
                 PveProfileState state = GameBootstrap.Session.Profile.Pve;
-                string value = "Thể Lực: " + state.Stamina + "/" + staminaConfig.Max;
+                string value = "Thể Lực: " + UiFormat.Number(state.Stamina) + "/" + UiFormat.Number(staminaConfig.Max);
                 if (state.Stamina < staminaConfig.Max)
                 {
                     string next = StaminaService.FormatDuration(
-                        stamina.SecondsToNext(state, DateTimeOffset.UtcNow));
+                        stamina.SecondsToNext(state, ServerClock.UtcNow));
                     value += "  " + next;
                 }
                 staminaText.text = value;
@@ -350,18 +359,60 @@ namespace OneBagJianghu.UI.Pve
             if (selected == null || !PveRules.IsStageUnlocked(selected, catalog, GameBootstrap.Session.Profile))
                 return;
             leavingForBattle = true;
-            if (!PveStageFlow.TryStart(selected, this))
+            challengeButton.GetComponent<Button>().interactable = false;
+            if (!PveStageFlow.TryStart(selected, this, HandleStartError))
             {
                 leavingForBattle = false;
                 SelectStage(selected);
             }
         }
 
+        private void HandleStartError(string message)
+        {
+            leavingForBattle = false;
+            if (selected != null)
+            {
+                SelectStage(selected);
+            }
+
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Không thể vào ải", message, "Đóng"));
+        }
+
+        private void HandleProgressChanged()
+        {
+            if (!IsShowing || catalog == null)
+            {
+                return;
+            }
+
+            string selectedId = selected?.Id;
+            DrawChapter(catalog.GetStage(selectedId));
+        }
+
         private Sprite Sprite(string key) => art != null && art.TryGet(key, out Sprite sprite) ? sprite : null;
-        private Sprite Portrait(string key)
+        public static string BuildRewardText(PveFirstClearReward reward, bool cleared, int repeatPercent)
+        {
+            if (!cleared)
+            {
+                return "Thưởng lần đầu: " + UiFormat.Number(reward.Silver) + " Bạc · "
+                    + UiFormat.Number(reward.HeroExp) + " EXP";
+            }
+
+            long silver = reward.Silver * (long)repeatPercent / 100L;
+            long experience = reward.HeroExp * (long)repeatPercent / 100L;
+            return "Thưởng đánh lại (" + UiFormat.Number(repeatPercent) + "%): "
+                + UiFormat.Number(silver) + " Bạc · " + UiFormat.Number(experience) + " EXP";
+        }
+
+        private Sprite Portrait(string key, string stableId)
         {
             Sprite sprite = Sprite(key);
-            return sprite != null ? sprite : itemArt != null && itemArt.TryGet(key, out sprite) ? sprite : null;
+            if (sprite == null && itemArt != null)
+            {
+                itemArt.TryGet(key, out sprite);
+            }
+
+            return sprite != null ? sprite : art?.ResolveEnemyPortrait(key, stableId);
         }
 
         private void ApplyFrame(Image image, string key, Color fallback)
@@ -418,32 +469,45 @@ namespace OneBagJianghu.UI.Pve
             return GameBootstrap.Session.Profile.Pve.Stamina < stage.StaminaCost ? "Không đủ Thể Lực" : string.Empty;
         }
 
-        public static bool TryStart(PveStage stage, BasePopup popupToClose = null)
+        public static bool TryStart(PveStage stage,
+            BasePopup popupToClose = null,
+            Action<string> onError = null)
         {
             if (stage == null || !string.IsNullOrEmpty(GetBlockedReason(stage)))
                 return false;
-            var stamina = new StaminaService(StaminaConfig.Load());
-            if (!stamina.TrySpend(GameBootstrap.Session.Profile.Pve, stage.StaminaCost, DateTimeOffset.UtcNow))
-                return false;
-            GameBootstrap.Session.CurrentPveStageId = stage.Id;
-            GameBootstrap.Session.SelectedMode = GameMode.Pve;
-            GameBootstrap.Session.SaveProfile();
-            Debug.Log($"[Pve] Start stage={stage.Id}, stamina={GameBootstrap.Session.Profile.Pve.Stamina}");
-            if (popupToClose == null)
-                ShowBeforeDialogue(stage);
-            else
-            {
-                Action<BasePopup> closed = null;
-                closed = popup =>
-                {
-                    popup.Closed -= closed;
-                    ShowBeforeDialogue(stage);
-                };
-                popupToClose.Closed += closed;
-                popupToClose.Close();
-            }
+            GameBootstrap.Network.StartPveBattle(stage.Id,
+                payload => HandlePveReady(stage, popupToClose, payload),
+                onError ?? ShowStartError);
 
             return true;
+        }
+
+        private static void ShowStartError(string message)
+        {
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Không thể vào ải", message, "Đóng"));
+        }
+
+        private static void HandlePveReady(PveStage stage,
+            BasePopup popupToClose,
+            Newtonsoft.Json.Linq.JObject payload)
+        {
+            GameBootstrap.Session.StorePveBattle(payload);
+            GameBootstrap.Session.CurrentPveStageId = stage.Id;
+            GameBootstrap.Session.SelectedMode = GameMode.Pve;
+            if (popupToClose == null)
+            {
+                ShowBeforeDialogue(stage);
+                return;
+            }
+
+            Action<BasePopup> closed = null;
+            closed = popup =>
+            {
+                popup.Closed -= closed;
+                ShowBeforeDialogue(stage);
+            };
+            popupToClose.Closed += closed;
+            popupToClose.Close();
         }
 
         private static void ShowBeforeDialogue(PveStage stage)

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using OneBagJianghu.Core;
 using OneBagJianghu.UI.Popups;
+using OneBagJianghu.Net;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,7 +12,6 @@ using OneBagJianghu.Economy;
 using OneBagJianghu.Pve;
 using OneBagJianghu.Onboarding;
 using OneBagJianghu.Audio;
-using OneBagJianghu.Net;
 using OneBagJianghu.UI.Arena;
 
 namespace OneBagJianghu.UI.Home
@@ -67,14 +67,16 @@ namespace OneBagJianghu.UI.Home
         private StaminaConfig staminaConfig;
         private StaminaService staminaService;
         private float nextStaminaRefresh;
+        private bool sectPromptPending;
         private QuestTracker questTracker;
+        private bool arenaConnectionPending;
         private void Awake()
         {
             pveHotspot.OnClick.AddListener(StartPve);
             pvpHotspot.OnClick.AddListener(StartPvp);
             bagHotspot.OnClick.AddListener(OpenBag);
             storageHotspot.OnClick.AddListener(OpenStorage);
-            codexHotspot.OnClick.AddListener(OpenComingSoon);
+            codexHotspot.OnClick.AddListener(OpenVanBaoPho);
             shopHotspot.OnClick.AddListener(OpenShop);
             sectHotspot.OnClick.AddListener(OpenSect);
             encyclopediaHotspot.OnClick.AddListener(OpenEncyclopedia);
@@ -84,6 +86,7 @@ namespace OneBagJianghu.UI.Home
 
         private void Start()
         {
+            PlayerProfile.ProgressChanged += RefreshQuestAndResources;
             AudioManager.EnsureExists();
             GameSession session = GameBootstrap.Session;
             // Coming back to the stage map after a battle: the map popup plays its chapter music, skip Home's.
@@ -100,6 +103,7 @@ namespace OneBagJianghu.UI.Home
             RefreshBattleAvailability();
             CreateQuestTracker();
             SceneFlow.NotifyReady();
+            GameBootstrap.Network.TryShowSeasonReward();
             if (!string.IsNullOrEmpty(session.PendingPveMapStageId))
             {
                 string stageId = session.PendingPveMapStageId;
@@ -117,8 +121,16 @@ namespace OneBagJianghu.UI.Home
                 && string.IsNullOrWhiteSpace(session.SectId)
                 && !session.Profile.SectPromptShown)
             {
-                session.Profile.SectPromptShown = true;
-                session.SaveProfile();
+                if (sectPromptPending)
+                {
+                    return;
+                }
+
+                sectPromptPending = true;
+                GameBootstrap.Network.SendOnboarding("sect_prompt_shown",
+                    string.Empty,
+                    _ => sectPromptPending = false,
+                    _ => sectPromptPending = false);
                 // The sect tutorial says the same thing and points at the hotspot; only show this without it.
                 bool tutorialWillGuide = session.Profile.CompletedTutorials == null
                     || !session.Profile.CompletedTutorials.Contains("sect");
@@ -136,10 +148,6 @@ namespace OneBagJianghu.UI.Home
                 nextStaminaRefresh = Time.unscaledTime + 1f;
                 RefreshStamina();
             }
-            if (GameBootstrap.Session != null
-                && (displayedLevel != GameBootstrap.Session.HeroLevel
-                || displayedExp != GameBootstrap.Session.Profile.HeroExp))
-                RefreshProgress();
             Keyboard keyboard = Keyboard.current;
             if (keyboard == null || PopupManager.Top != null)
                 return;
@@ -159,11 +167,12 @@ namespace OneBagJianghu.UI.Home
 
         private void OnDestroy()
         {
+            PlayerProfile.ProgressChanged -= RefreshQuestAndResources;
             pveHotspot.OnClick.RemoveListener(StartPve);
             pvpHotspot.OnClick.RemoveListener(StartPvp);
             bagHotspot.OnClick.RemoveListener(OpenBag);
             storageHotspot.OnClick.RemoveListener(OpenStorage);
-            codexHotspot.OnClick.RemoveListener(OpenComingSoon);
+            codexHotspot.OnClick.RemoveListener(OpenVanBaoPho);
             shopHotspot.OnClick.RemoveListener(OpenShop);
             sectHotspot.OnClick.RemoveListener(OpenSect);
             encyclopediaHotspot.OnClick.RemoveListener(OpenEncyclopedia);
@@ -188,9 +197,16 @@ namespace OneBagJianghu.UI.Home
 
         private async void StartPvp()
         {
+            if (arenaConnectionPending)
+            {
+                return;
+            }
+
+            arenaConnectionPending = true;
             NetworkService network = GameBootstrap.Network;
             if (network == null)
             {
+                arenaConnectionPending = false;
                 ShowArenaConnectionError();
                 return;
             }
@@ -202,10 +218,12 @@ namespace OneBagJianghu.UI.Home
 
             if (this == null || network.State != NetworkState.Online)
             {
+                arenaConnectionPending = false;
                 ShowArenaConnectionError();
                 return;
             }
 
+            arenaConnectionPending = false;
             if (network.IsAuthenticated)
             {
                 PopupManager.Show<ArenaLobbyPopup>();
@@ -234,10 +252,7 @@ namespace OneBagJianghu.UI.Home
             SceneFlow.Go(GameScene.Gameplay);
         }
 
-        private static void OpenComingSoon()
-        {
-            PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", "Sắp ra mắt", "Đóng"));
-        }
+        private static void OpenVanBaoPho() => PopupManager.Show<VanBaoPhoPopup>();
 
         private static bool ValidateBattleLoadout()
         {
@@ -277,7 +292,7 @@ namespace OneBagJianghu.UI.Home
         {
             GameSession session = GameBootstrap.Session;
             if (powerText != null && session?.Profile != null)
-                powerText.text = "Lực Chiến " + UiFormat.Number(session.PlayerPower());
+                powerText.text = "Chiến Uy " + UiFormat.Number(session.PlayerPower());
         }
 
         public void OpenSect()
@@ -384,7 +399,7 @@ namespace OneBagJianghu.UI.Home
             session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
             int staminaMax = staminaConfig != null ? staminaConfig.Max : StaminaConfig.Load().Max;
             string staminaValue = staminaService != null
-                ? BuildStaminaLabel(session.Profile.Pve, DateTimeOffset.UtcNow)
+                ? BuildStaminaLabel(session.Profile.Pve, ServerClock.UtcNow)
                 : UiFormat.Number(session.Profile.Pve.Stamina) + "/" + UiFormat.Number(staminaMax);
             SetCurrency(staminaText, "icon_stamina", staminaValue);
             SetCurrency(silverText, "icon_bac", UiFormat.Number(silver));
@@ -397,12 +412,8 @@ namespace OneBagJianghu.UI.Home
             GameSession session = GameBootstrap.Session;
             if (session?.Profile == null || staminaService == null)
                 return;
-            int previous = session.Profile.Pve.Stamina;
-            DateTimeOffset now = DateTimeOffset.UtcNow;
-            int current = staminaService.Refresh(session.Profile.Pve, now);
+            DateTimeOffset now = ServerClock.UtcNow;
             SetCurrency(staminaText, "icon_stamina", BuildStaminaLabel(session.Profile.Pve, now));
-            if (current != previous)
-                session.SaveProfile();
         }
 
         private string BuildStaminaTooltip()
@@ -410,7 +421,7 @@ namespace OneBagJianghu.UI.Home
             if (staminaService == null || GameBootstrap.Session?.Profile == null)
                 return string.Empty;
             PveProfileState state = GameBootstrap.Session.Profile.Pve;
-            DateTimeOffset now = DateTimeOffset.UtcNow;
+            DateTimeOffset now = ServerClock.UtcNow;
             int minutesPerPoint = Math.Max(1, (int)Math.Round(1d / staminaConfig.RegenPerMinute));
             string header = $"Thể Lực: {state.Stamina}/{staminaConfig.Max}";
             string rate = $"Hồi 1 điểm mỗi {minutesPerPoint} phút";

@@ -55,7 +55,17 @@ namespace OneBagJianghu.UI.Popups
         /// <summary>Caches required components and supplies a default animation panel.</summary>
         protected virtual void Awake()
         {
-            canvasGroup = GetComponent<CanvasGroup>();
+            CacheComponents();
+        }
+
+        // Edit mode does not run Awake on plain MonoBehaviours, so Show caches the components again when needed.
+        private void CacheComponents()
+        {
+            if (canvasGroup == null)
+            {
+                canvasGroup = GetComponent<CanvasGroup>();
+            }
+
             if (panel == null)
             {
                 panel = transform as RectTransform;
@@ -81,6 +91,7 @@ namespace OneBagJianghu.UI.Popups
 
             isClosing = false;
             IsShowing = true;
+            CacheComponents();
             gameObject.SetActive(true);
             animationRoutine = StartCoroutine(Animate(true));
         }

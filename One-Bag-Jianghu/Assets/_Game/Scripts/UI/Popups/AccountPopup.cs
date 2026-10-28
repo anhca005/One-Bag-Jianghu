@@ -9,6 +9,12 @@ using UnityEngine.UI;
 
 namespace OneBagJianghu.UI.Popups
 {
+    public sealed class AccountPopupData
+    {
+        public bool Required;
+        public System.Action<AuthSession> Authenticated;
+    }
+
     public sealed class AccountPopup : BasePopup
     {
         [SerializeField] private UiButton loginTab;
@@ -29,6 +35,7 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField] private Text errorText;
         [SerializeField] private RectTransform formFooter;
         private bool registration;
+        private AccountPopupData popupData;
 
         protected override void Awake()
         {
@@ -46,13 +53,19 @@ namespace OneBagJianghu.UI.Popups
 
         protected override void OnSetup(object data)
         {
+            popupData = data as AccountPopupData;
             usernameInput.text = string.Empty;
             passwordInput.text = string.Empty;
             repeatedPasswordInput.text = string.Empty;
             heroNameInput.text = GameBootstrap.Session?.HeroName ?? string.Empty;
             rememberToggle.SetIsOnWithoutNotify(true);
             errorText.text = string.Empty;
+            SetPasswordVisible(false);
             ShowLogin();
+            bool required = popupData?.Required ?? false;
+            laterButton.gameObject.SetActive(!required);
+            closeOnBackdrop = !required;
+            closeOnEscape = !required;
         }
 
         private void ShowLogin()
@@ -81,12 +94,18 @@ namespace OneBagJianghu.UI.Popups
         private void TogglePasswordVisibility()
         {
             bool hidden = passwordInput.contentType == InputField.ContentType.Password;
-            InputField.ContentType type = hidden
+            SetPasswordVisible(hidden);
+        }
+
+        // Passwords start hidden; the eye shows them while it is open.
+        private void SetPasswordVisible(bool visible)
+        {
+            InputField.ContentType type = visible
                 ? InputField.ContentType.Standard
                 : InputField.ContentType.Password;
             passwordInput.contentType = type;
             repeatedPasswordInput.contentType = type;
-            passwordEyeIcon.sprite = hidden ? eyeOpenSprite : eyeClosedSprite;
+            passwordEyeIcon.sprite = visible ? eyeOpenSprite : eyeClosedSprite;
             passwordEyeIcon.enabled = passwordEyeIcon.sprite != null;
             passwordInput.ForceLabelUpdate();
             repeatedPasswordInput.ForceLabelUpdate();
@@ -129,7 +148,7 @@ namespace OneBagJianghu.UI.Popups
         {
             SetBusy(false);
             Close();
-            PopupManager.Show<ArenaLobbyPopup>();
+            popupData?.Authenticated?.Invoke(session);
         }
 
         private void HandleError(string message)

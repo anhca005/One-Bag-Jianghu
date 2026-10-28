@@ -7,6 +7,7 @@ using OneBagJianghu.Bag.View;
 using OneBagJianghu.Battle.Replay.View;
 using OneBagJianghu.Battle.Replay.View.VfxLab;
 using OneBagJianghu.Core;
+using OneBagJianghu.Economy;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Gameplay;
 using OneBagJianghu.UI.Home;
@@ -116,9 +117,7 @@ namespace OneBagJianghu.Tests.Play
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
             Assert.IsNotNull(home, "HomeScene did not contain an active HomeController.");
             // Gemini's expected stage-1 bag wins ~90% at level 1 (round 3); level 10 (+45 Khí Huyết, #35) makes it certain.
-            GameBootstrap.Session.HeroLevel = 10;
-            GameBootstrap.Session.CurrentLoadoutJson =
-                CreateStageOneLoadout(GameBootstrap.Session.HeroName);
+            ApplyProfileForBattle(CreateStageOneLoadout(GameBootstrap.Session.HeroName), 10);
             home.RefreshBattleAvailability();
             GameBootstrap.Network.Disconnect();
             GetField<HomeHotspot>(home, "pveHotspot").OnPointerClick(null);
@@ -226,7 +225,7 @@ namespace OneBagJianghu.Tests.Play
             HomeHotspot pvp = GetField<HomeHotspot>(home, "pvpHotspot");
             Assert.IsNull(GameObject.Find("Btn_Pve"));
             Assert.IsNull(GameObject.Find("Btn_Pvp"));
-            GameBootstrap.Session.CurrentLoadoutJson = string.Empty;
+            ApplyProfileForBattle(string.Empty, GameBootstrap.Session.HeroLevel);
             home.RefreshBattleAvailability();
             Assert.IsFalse(pve.IsLocked);
             Assert.IsFalse(pvp.IsLocked);
@@ -241,7 +240,7 @@ namespace OneBagJianghu.Tests.Play
                 !PopupManager.IsOpen<MessagePopup>(),
                 TimeoutSeconds,
                 "Loadout warning did not close.");
-            GameBootstrap.Session.CurrentLoadoutJson = CreateWeaponLoadout("Test");
+            ApplyProfileForBattle(CreateWeaponLoadout("Test"), GameBootstrap.Session.HeroLevel);
             home.RefreshBattleAvailability();
             Assert.IsFalse(pve.IsLocked);
             Assert.IsFalse(pvp.IsLocked);
@@ -255,6 +254,32 @@ namespace OneBagJianghu.Tests.Play
             grid.Place(catalog.Get("thanh_phong_kiem"), 1, 0);
             grid.Place(catalog.Get("o_tam_y"), 3, 0);
             return LoadoutSerializer.ToJson(grid, name, 1);
+        }
+
+        private static void ApplyProfileForBattle(string loadoutJson, int heroLevel)
+        {
+            PlayerProfile profile = GameBootstrap.Session.Profile;
+            profile.HeroLevel = heroLevel;
+            profile.Items.Clear();
+            profile.Loadout.Clear();
+            profile.Storage.Items.Clear();
+            profile.Storage.Overflow.Clear();
+            if (!string.IsNullOrEmpty(loadoutJson))
+            {
+                BagGrid grid = LoadoutSerializer.FromJson(loadoutJson, ItemCatalog.LoadFromResources());
+                foreach (PlacedItem placed in grid.Items)
+                {
+                    OwnedItem item = profile.AddItem(placed.Item.Id, placed.Tier);
+                    profile.Loadout.Add(new LoadoutPlacement
+                    {
+                        Uid = item.Uid,
+                        X = placed.X,
+                        Y = placed.Y
+                    });
+                }
+            }
+
+            GameBootstrap.Session.ApplyProfileForTests(profile);
         }
 
         private static string CreateWeaponLoadout(string name)

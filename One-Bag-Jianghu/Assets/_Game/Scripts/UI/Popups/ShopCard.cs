@@ -29,6 +29,8 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private Text priceText;
         [SerializeField]
+        private Image currencyIcon;
+        [SerializeField]
         private Text oldPriceText;
         [SerializeField]
         private Text discountText;
@@ -69,6 +71,13 @@ namespace OneBagJianghu.UI.Popups
             statText.text = stat;
             typeText.text = type;
             priceText.text = price;
+            if (currencyIcon != null)
+            {
+                CurrencyArt.TryGetSprite(price.Contains("Danh Vọng") ? "icon_danh_vong" : "icon_bac",
+                    out Sprite currencySprite);
+                currencyIcon.sprite = currencySprite;
+                currencyIcon.gameObject.SetActive(currencySprite != null);
+            }
             bool hasOldPrice = !string.IsNullOrEmpty(oldPrice);
             oldPriceText.gameObject.SetActive(hasOldPrice);
             oldPriceText.text = hasOldPrice ? Strike(oldPrice) : string.Empty;

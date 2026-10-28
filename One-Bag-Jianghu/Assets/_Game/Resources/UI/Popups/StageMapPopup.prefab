@@ -1119,7 +1119,7 @@ GameObject:
   - component: {fileID: 3899919680122744439}
   - component: {fileID: 2168348364416428008}
   - component: {fileID: 1650100802484283282}
-  - component: {fileID: 613679796920265795}
+  - component: {fileID: 8377505116975161727}
   m_Layer: 0
   m_Name: StageMapPopup
   m_TagString: Untagged
@@ -1245,7 +1245,7 @@ MonoBehaviour:
   nextButton: {fileID: 7158361969771906631}
   challengeButton: {fileID: 6218877463121555128}
   closeButton: {fileID: 5858044051402059296}
---- !u!114 &613679796920265795
+--- !u!114 &8377505116975161727
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1566,7 +1566,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
-  m_Text: "L\u1EF1c Chi\u1EBFn c\u1EE7a b\u1EA1n"
+  m_Text: "Chi\u1EBFn Uy c\u1EE7a b\u1EA1n"
 --- !u!114 &2510146751736793768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,7 +1660,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
-  m_Text: "Chi\u1EBFn l\u1EF1c \u0111\u1EC1 ngh\u1ECB"
+  m_Text: "Chi\u1EBFn Uy \u0111\u1EC1 ngh\u1ECB"
 --- !u!114 &4503998973610370660
 MonoBehaviour:
   m_ObjectHideFlags: 0

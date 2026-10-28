@@ -86,6 +86,9 @@ namespace OneBagJianghu.Economy
         public string WeekKey = string.Empty;
         [JsonProperty("reputationPurchases")]
         public Dictionary<string, int> ReputationPurchases = new Dictionary<string, int>(StringComparer.Ordinal);
+        [JsonProperty("reputationPurchasePeriods")]
+        public Dictionary<string, string> ReputationPurchasePeriods = new Dictionary<string, string>(
+            StringComparer.Ordinal);
         [JsonProperty("generation")]
         public int Generation;
     }
@@ -289,6 +292,7 @@ namespace OneBagJianghu.Economy
                 throw new FormatException("Profile storage dimensions must be positive.");
             Shop.Slots ??= new List<ShopSlotState>();
             Shop.ReputationPurchases ??= new Dictionary<string, int>(StringComparer.Ordinal);
+            Shop.ReputationPurchasePeriods ??= new Dictionary<string, string>(StringComparer.Ordinal);
             if (Shop.PaidRefreshesToday < 0
                 || Shop.StarterFreeRefreshesUsed < 0
                 || Shop.Generation < 0)

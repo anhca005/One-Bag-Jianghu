@@ -3,10 +3,26 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OneBagJianghu.Battle.Replay;
-using OneBagJianghu.Economy;
 
 namespace OneBagJianghu.Net
 {
+    public static class ServerClock
+    {
+        private static TimeSpan offset;
+
+        public static DateTimeOffset UtcNow => DateTimeOffset.UtcNow + offset;
+
+        public static void Synchronize(DateTimeOffset serverTime)
+        {
+            offset = serverTime.ToUniversalTime() - DateTimeOffset.UtcNow;
+        }
+
+        public static void Reset()
+        {
+            offset = TimeSpan.Zero;
+        }
+    }
+
     public sealed class ServerError
     {
         [JsonProperty("code")]
@@ -26,6 +42,27 @@ namespace OneBagJianghu.Net
 
     public sealed class AuthSession
     {
+        [JsonProperty("profile")]
+        public JToken Profile
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("rev")]
+        public long Revision
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("serverTime")]
+        public DateTimeOffset ServerTime
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("accountId")]
         public long AccountId
         {
@@ -60,6 +97,47 @@ namespace OneBagJianghu.Net
             get;
             set;
         }
+
+        [JsonProperty("seasonReward")]
+        public SeasonReward SeasonReward
+        {
+            get;
+            set;
+        }
+    }
+
+    public sealed class SeasonReward
+    {
+        [JsonProperty("seasonId")]
+        public int SeasonId
+        {
+            get;
+            set;
+        }
+        [JsonProperty("rank")]
+        public int Rank
+        {
+            get;
+            set;
+        }
+        [JsonProperty("rating")]
+        public int Rating
+        {
+            get;
+            set;
+        }
+        [JsonProperty("reputation")]
+        public int Reputation
+        {
+            get;
+            set;
+        }
+        [JsonProperty("jade")]
+        public int Jade
+        {
+            get;
+            set;
+        }
     }
 
     public sealed class ArenaStatus
@@ -80,6 +158,13 @@ namespace OneBagJianghu.Net
 
         [JsonProperty("rating")]
         public int Rating
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("peakRating")]
+        public int PeakRating
         {
             get;
             set;
@@ -133,6 +218,13 @@ namespace OneBagJianghu.Net
             get;
             set;
         }
+
+        [JsonProperty("seasonReward")]
+        public SeasonReward SeasonReward
+        {
+            get;
+            set;
+        }
     }
 
     public sealed class ArenaOpponent : OpponentInfo
@@ -178,6 +270,34 @@ namespace OneBagJianghu.Net
 
     public sealed class ArenaResult
     {
+        [JsonProperty("profile")]
+        public JToken Profile
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("rev")]
+        public long Revision
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("serverTime")]
+        public DateTimeOffset ServerTime
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("searchId")]
+        public string SearchId
+        {
+            get;
+            set;
+        }
+
         [JsonProperty("opponent")]
         public ArenaOpponent Opponent
         {
@@ -222,6 +342,44 @@ namespace OneBagJianghu.Net
 
         [JsonIgnore]
         public BattleLog BattleLog => BattleLogParser.Parse(Result.ToString(Formatting.None));
+    }
+
+    public sealed class ArenaSearch
+    {
+        [JsonProperty("searchId")]
+        public string SearchId
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("rating")]
+        public int Rating
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("range")]
+        public int Range
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("startedAt")]
+        public DateTimeOffset StartedAt
+        {
+            get;
+            set;
+        }
+
+        [JsonProperty("nextWidenAt")]
+        public DateTimeOffset NextWidenAt
+        {
+            get;
+            set;
+        }
     }
 
     public sealed class LeaderboardEntry
@@ -413,26 +571,6 @@ namespace OneBagJianghu.Net
             }
 
             return envelope.Payload.ToObject<T>();
-        }
-
-        public static void ApplyReward(PlayerProfile profile, ArenaReward reward)
-        {
-            if (profile == null || reward == null)
-            {
-                return;
-            }
-
-            if (reward.Reputation > 0)
-            {
-                profile.AddCurrency("danh_vong", reward.Reputation);
-            }
-            foreach (KeyValuePair<string, int> material in reward.Materials)
-            {
-                if (material.Value > 0)
-                {
-                    profile.AddMaterial(material.Key, material.Value);
-                }
-            }
         }
 
         public static string LocalizeError(string code, string fallback = null)

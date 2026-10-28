@@ -22,6 +22,7 @@ namespace OneBagJianghu.Onboarding
         private IntroCatalog catalog;
         private int index;
         private Coroutine transition;
+        private bool finishing;
 
         protected override void Awake()
         {
@@ -127,12 +128,33 @@ namespace OneBagJianghu.Onboarding
 
         private void Finish()
         {
-            if (GameBootstrap.Session?.Profile != null)
+            if (finishing)
             {
-                GameBootstrap.Session.Profile.IntroSeen = true;
-                GameBootstrap.Session.SaveProfile();
+                return;
             }
 
+            finishing = true;
+            GameBootstrap.Network.SendOnboarding("intro_seen",
+                string.Empty,
+                _ => CompleteFinish(),
+                HandleFinishError);
+        }
+
+        /// <summary>Skips through the normal completion path so progress and Home music are restored.</summary>
+        public override bool OnBackPressed()
+        {
+            Finish();
+            return true;
+        }
+
+        private void HandleFinishError(string message)
+        {
+            finishing = false;
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Không thể lưu", message, "Đóng"));
+        }
+
+        private void CompleteFinish()
+        {
             AudioManager.Instance?.PlayMusic(MusicKeys.Home);
             Close();
         }

@@ -87,12 +87,13 @@ namespace OneBagJianghu.EditorTools.Building
             panel.anchorMin = panel.anchorMax = panel.pivot = new Vector2(.5f, .5f);
             panel.sizeDelta = new Vector2(940f, 920f);
             UiBuild.ApplyUiSprite(panelImage, "Kit/popup_frame", Image.Type.Simple);
-            AddText(panel, "Title", "Hành Tẩu Lục", 40, new Vector2(.08f, .89f),
-                new Vector2(.92f, .97f), TextAnchor.MiddleCenter);
+            // Kept below the frame's top border so the title does not touch the ornament line.
+            AddText(panel, "Title", "Hành Tẩu Lục", 40, new Vector2(.08f, .865f),
+                new Vector2(.92f, .935f), TextAnchor.MiddleCenter);
 
             // Scroll view holding one structured row per quest.
             Image viewportImage = UiBuild.Image(panel, "Viewport", new Color(0f, 0f, 0f, .04f));
-            UiBuild.Anchors(viewportImage.rectTransform, new Vector2(.05f, .12f), new Vector2(.95f, .88f));
+            UiBuild.Anchors(viewportImage.rectTransform, new Vector2(.05f, .12f), new Vector2(.95f, .855f));
             viewportImage.gameObject.AddComponent<Mask>().showMaskGraphic = false;
             RectTransform content = UiBuild.Rect(viewportImage.transform, "Content");
             content.anchorMin = new Vector2(0f, 1f);

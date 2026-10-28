@@ -13,6 +13,7 @@ using OneBagJianghu.UI.Pve;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.Audio;
 using OneBagJianghu.Onboarding;
+using Newtonsoft.Json.Linq;
 
 namespace OneBagJianghu.UI.Gameplay
 {
@@ -25,11 +26,13 @@ namespace OneBagJianghu.UI.Gameplay
         [SerializeField]
         private Image battleBackground;
         private string opponentName = "Đối thủ";
+        private string arenaPortraitId;
         private long battleSeed;
         private BattleLog completedLog;
         private PveStage pveStage;
         private PveStage pveContinuationStage;
         private ArenaResult arenaResult;
+        private JObject pveBattle;
         private void Start()
         {
             GameSession session = GameBootstrap.Session;
@@ -70,8 +73,15 @@ namespace OneBagJianghu.UI.Gameplay
             {
                 try
                 {
-                    LocalBattleOutput stageOutput = PveBattleService.RunBattle(session.CurrentLoadoutJson, pveStage);
-                    HandleBattleResult(BattleLogParser.Parse(stageOutput.Result.ToString()), stageOutput.Opponent);
+                    pveBattle = session.TakePveBattle();
+                    if (pveBattle == null || pveBattle["result"] == null)
+                    {
+                        throw new OneBagJianghu.Engine.DataException("Kết quả PvE từ máy chủ bị thiếu.");
+                    }
+
+                    BattleLog log = BattleLogParser.Parse(pveBattle["result"].ToString());
+                    OpponentInfo opponent = pveBattle["enemy"]?.ToObject<OpponentInfo>() ?? new OpponentInfo();
+                    HandleBattleResult(log, opponent);
                 }
                 catch (OneBagJianghu.Engine.DataException exception)
                 {
@@ -107,6 +117,8 @@ namespace OneBagJianghu.UI.Gameplay
         private void HandleBattleResult(BattleLog log, OpponentInfo opponent)
         {
             opponentName = ShortFighterName(opponent?.Name);
+            // Same id as the arena lobby, so an opponent keeps one face in the lobby and in battle.
+            arenaPortraitId = opponent?.Name + ":" + opponent?.Sect;
             // The plaque above the portrait only has room for the name: no sect key, no "· Tâm Pháp" suffix.
             if (log.Names.Count > 1)
                 log.Names[1] = opponentName;
@@ -256,35 +268,15 @@ namespace OneBagJianghu.UI.Gameplay
         {
             string rewardText = string.Empty;
             ResultPopupData resultData = null;
-            PlayerProfile profile = GameBootstrap.Session.Profile;
             if (won)
             {
-                bool first = !PveRules.IsCleared(profile, pveStage.Id);
-                if (!profile.Pve.Stages.TryGetValue(pveStage.Id, out PveStageProgress progress))
-                    profile.Pve.Stages[pveStage.Id] = progress = new PveStageProgress();
-                progress.Cleared = true;
-                profile.RecordQuestAction("pve_win");
-                string today = System.DateTimeOffset.UtcNow.UtcDateTime.ToString("yyyy-MM-dd");
-                if (profile.Pve.DailyFirstClearDate != today)
-                {
-                    profile.Pve.DailyFirstClearDate = today;
-                    profile.Pve.DailyFirstClears.Clear();
-                }
-
-                if (!profile.Pve.DailyFirstClears.Contains(pveStage.Id))
-                    profile.Pve.DailyFirstClears.Add(pveStage.Id);
-                PveRewardResult reward = new PveRewardService(ItemCatalog.LoadFromResources(),
-                    PveCatalog.Load().RepeatRewardPercent).Grant(profile,
-                    pveStage,
-                    first,
-                    unchecked((int)battleSeed));
-                if (reward.Success)
-                    AudioManager.Instance?.Play("reward");
+                bool first = pveBattle?["firstClear"]?.Value<bool>() ?? false;
+                PveRewardResult reward = ReadServerReward(pveBattle?["reward"] as JObject);
+                AudioManager.Instance?.Play("reward");
                 if (reward.NewLevel > reward.OldLevel)
                     AudioManager.Instance?.Play("level_up");
                 if (first)
                     AudioManager.Instance?.Play("node_unlock");
-                StoryProgress.TryQueueBossClear(profile, pveStage, first);
                 resultData = ResultPopupData.FromPveReward(result,
                     winnerName,
                     reward,
@@ -294,7 +286,6 @@ namespace OneBagJianghu.UI.Gameplay
                         $"[Pve] Clear stage={pveStage.Id}, first={first}, rewardSuccess={reward.Success}");
             }
 
-            GameBootstrap.Session.SaveProfile();
             PveStage target = won ? PveStageFlow.GetNext(pveStage, PveCatalog.Load()) : pveStage;
             pveContinuationStage = target;
             string blocked = PveStageFlow.GetBlockedReason(target);
@@ -333,7 +324,11 @@ namespace OneBagJianghu.UI.Gameplay
         private void ApplyPvePortraits()
         {
             if (pveStage == null)
+            {
+                ApplyArenaPortrait();
                 return;
+            }
+
             PveArtLibrary pveArt = PveArtLibrary.Load();
             ItemIconLibrary itemArt = ItemIconLibrary.Load();
             FighterPanelView[] panels = replayScreen.GetComponentsInChildren<FighterPanelView>(true);
@@ -343,12 +338,35 @@ namespace OneBagJianghu.UI.Gameplay
                 string key = enemy ? pveStage.Enemy.Portrait : "hero_portrait";
                 Sprite sprite = null;
                 if (pveArt != null)
-                    pveArt.TryGet(key, out sprite);
+                {
+                    sprite = enemy
+                        ? pveArt.ResolveEnemyPortrait(key, pveStage.Id)
+                        : pveArt.TryGet(key, out Sprite heroSprite) ? heroSprite : null;
+                }
                 if (sprite == null && itemArt != null)
                     itemArt.TryGet(key, out sprite);
                 if (sprite == null)
                     continue;
                 Transform art = panel.transform.Find("Portrait/HeroArt");
+                if (art == null)
+                    continue;
+                Image image = art.GetComponent<Image>();
+                image.sprite = sprite;
+                image.color = Color.white;
+                image.transform.localScale = Vector3.one;
+            }
+        }
+
+        private void ApplyArenaPortrait()
+        {
+            PveArtLibrary pveArt = PveArtLibrary.Load();
+            Sprite sprite = pveArt?.ResolveArenaPortrait(arenaPortraitId);
+            if (sprite == null)
+                return;
+            foreach (FighterPanelView panel in replayScreen.GetComponentsInChildren<FighterPanelView>(true))
+            {
+                bool enemy = panel.transform.parent != null && panel.transform.parent.name == "Enemy";
+                Transform art = enemy ? panel.transform.Find("Portrait/HeroArt") : null;
                 if (art == null)
                     continue;
                 Image image = art.GetComponent<Image>();
@@ -384,19 +402,45 @@ namespace OneBagJianghu.UI.Gameplay
                     closed = closedPopup =>
                     {
                         closedPopup.Closed -= closed;
-                        StoryProgress.MarkSeen(profile, pendingChapter);
-                        GameBootstrap.Session.SaveProfile();
+                        GameBootstrap.Network.SendOnboarding("story_seen",
+                            pendingChapter.ToString(),
+                            _ => { },
+                            Debug.LogWarning);
                         CompleteResultChoice(choice);
                     };
                     storyPopup.Closed += closed;
                     return;
                 }
 
-                StoryProgress.MarkSeen(profile, pendingChapter);
-                GameBootstrap.Session.SaveProfile();
+                GameBootstrap.Network.SendOnboarding("story_seen",
+                    pendingChapter.ToString(),
+                    _ => { },
+                    Debug.LogWarning);
             }
 
             CompleteResultChoice(choice);
+        }
+
+        private static PveRewardResult ReadServerReward(JObject payload)
+        {
+            var reward = new PveRewardResult
+            {
+                Success = true,
+                Silver = payload?["silver"]?.Value<long>() ?? 0,
+                HeroExp = payload?["heroExp"]?.Value<long>() ?? 0,
+                NewLevel = GameBootstrap.Session.HeroLevel,
+                OldLevel = GameBootstrap.Session.HeroLevel - (payload?["levelUps"]?.Value<int>() ?? 0)
+            };
+            JObject materials = payload?["materials"] as JObject;
+            if (materials != null)
+            {
+                foreach (JProperty property in materials.Properties())
+                {
+                    reward.Materials[property.Name] = property.Value.Value<int>();
+                }
+            }
+
+            return reward;
         }
 
         private void CompleteResultChoice(ResultPopupChoice choice)

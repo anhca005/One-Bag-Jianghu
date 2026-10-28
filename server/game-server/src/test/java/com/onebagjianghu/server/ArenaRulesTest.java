@@ -39,7 +39,7 @@ class ArenaRulesTest
     }
 
     @Test
-    void matchmakerPrefersFifteenPercentAndReturnsNullWhenEmpty()
+    void matchmakerUsesRatingRangeAndReturnsNullWhenEmpty()
     {
         // Arrange
         Matchmaker matchmaker = new Matchmaker(new Random(1));
@@ -47,15 +47,15 @@ class ArenaRulesTest
         Matchmaker.Ghost far = new Matchmaker.Ghost(3, "{}", 1400, 1000);
 
         // Act
-        Matchmaker.Ghost selected = matchmaker.choose(List.of(far, near), 1000, 1000);
+        Matchmaker.Ghost selected = matchmaker.choose(List.of(far, near), 1000, 50);
 
         // Assert
         assertEquals(near, selected);
-        assertNull(matchmaker.choose(List.of(), 1000, 1000));
+        assertNull(matchmaker.choose(List.of(), 1000, 50));
     }
 
     @Test
-    void matchmakerSamplesTenNearestRatingsInsidePowerBand()
+    void matchmakerIgnoresPowerAndRejectsRatingOutsideRange()
     {
         // Arrange
         Matchmaker matchmaker = new Matchmaker(new Random(0));
@@ -68,7 +68,7 @@ class ArenaRulesTest
         ghosts.add(closePowerButFarRating);
 
         // Act
-        Matchmaker.Ghost selected = matchmaker.choose(ghosts, 1000, 1000);
+        Matchmaker.Ghost selected = matchmaker.choose(ghosts, 1000, 50);
 
         // Assert
         assertTrue(selected.rating() < 3000);

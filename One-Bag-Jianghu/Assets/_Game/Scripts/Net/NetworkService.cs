@@ -1,10 +1,13 @@
 using System;
 using System.Collections.Concurrent;
+using System.Globalization;
 using System.Threading;
 using System.Threading.Tasks;
 using Newtonsoft.Json.Linq;
 using OneBagJianghu.Battle.Replay;
 using OneBagJianghu.Core;
+using OneBagJianghu.UI.Popups;
+using OneBagJianghu.UI.Common;
 using UnityEngine;
 
 namespace OneBagJianghu.Net
@@ -36,8 +39,16 @@ namespace OneBagJianghu.Net
         private readonly ConcurrentQueue<Action> dispatch = new ConcurrentQueue<Action>();
         private GameClient client;
         private Func<GameClient> clientFactory = () => new GameClient();
+        private GameSession profileSession;
         private AuthSession authSession;
         private bool rememberAuthentication = true;
+        private bool recoveringConnection;
+        private Action<ArenaSearch> arenaSearching;
+        private Action<ArenaResult> arenaResult;
+        private Action<string> arenaError;
+        private SeasonReward pendingSeasonReward;
+        private bool seasonRewardShowing;
+        private int shownSeasonRewardId;
         public NetworkState State
         {
             get;
@@ -47,6 +58,7 @@ namespace OneBagJianghu.Net
         public event Action<NetworkState> StateChanged;
         public event Action<bool> AuthenticationChanged;
         public event Action<Envelope> ServerMessage;
+        public event Action Disconnected;
         public bool IsAuthenticated => authSession != null;
         public AuthSession Authentication => authSession;
         public async Task ConnectAsync(TimeSpan? timeout = null)
@@ -146,9 +158,161 @@ namespace OneBagJianghu.Net
             }
         }
 
+        public async void Resume(string token, Action<AuthSession> onSuccess, Action<string> onError)
+        {
+            await Authenticate("resume", new { token }, onSuccess, onError);
+        }
+
+        /// <summary>Sends a server-authoritative profile mutation and applies its returned snapshot first.</summary>
+        public async void SendProfileAction(string type,
+            object payload,
+            Action<JObject> onOk,
+            Action<string> onError)
+        {
+            try
+            {
+                Envelope reply = await RequireClient().SendAsync(type, payload);
+                JObject value = OnlineProtocol.ReadReply<JObject>(reply, type + "_ok");
+                dispatch.Enqueue(() =>
+                {
+                    ApplyProfilePayload(value);
+                    onOk?.Invoke(value);
+                });
+            }
+            catch (Exception exception)
+            {
+                dispatch.Enqueue(() => onError?.Invoke(exception.Message));
+            }
+        }
+
+        public void GetProfile(Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("profile_get", new { }, onOk, onError);
+        }
+
+        public void SaveLoadout(JToken placements, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("loadout_save", new { placements }, onOk, onError);
+        }
+
+        public void MoveStorageItem(string uid, int toX, int toY, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("storage_move", new { uid, toX, toY }, onOk, onError);
+        }
+
+        public void MoveStorageMaterial(string materialId,
+            int fromX,
+            int fromY,
+            int toX,
+            int toY,
+            Action<JObject> onOk,
+            Action<string> onError)
+        {
+            SendProfileAction("storage_move",
+                new { materialId, fromX, fromY, toX, toY },
+                onOk,
+                onError);
+        }
+
+        public void RepackStorage(Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("storage_repack", new { }, onOk, onError);
+        }
+
+        public void UpgradeItem(string uid, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("item_upgrade", new { uid }, onOk, onError);
+        }
+
+        public void MergeItems(string firstUid, string secondUid, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("item_merge", new { firstUid, secondUid }, onOk, onError);
+        }
+
+        public void SellItem(string uid, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("item_sell", new { uid }, onOk, onError);
+        }
+
+        public void RefreshShop(bool paid, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("shop_refresh", new { paid }, onOk, onError);
+        }
+
+        public void BuyShopSlot(int slot, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("shop_buy", new { slot }, onOk, onError);
+        }
+
+        public void ExchangeMaterial(string inputId,
+            string targetId,
+            Action<JObject> onOk,
+            Action<string> onError)
+        {
+            SendProfileAction("shop_exchange", new { inputId, targetId }, onOk, onError);
+        }
+
+        public void BuyReputationOffer(string offerId, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("shop_buy_reputation", new { offerId }, onOk, onError);
+        }
+
+        public void ChooseSect(string sectId, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("sect_choose", new { sectId }, onOk, onError);
+        }
+
+        public void ClaimQuest(string questId, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("quest_claim", new { questId }, onOk, onError);
+        }
+
+        public void SendOnboarding(string action, string id, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("onboarding", new { action, id }, onOk, onError);
+        }
+
+        public void StartPveBattle(string stageId, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("pve_battle", new { stageId }, onOk, onError);
+        }
+
+        public void SendDevCheat(JObject payload, Action<JObject> onOk, Action<string> onError)
+        {
+            SendProfileAction("dev_cheat", payload, onOk, onError);
+        }
+
         public async void RequestArenaStatus(Action<ArenaStatus> onSuccess, Action<string> onError)
         {
-            await Send("arena_status", new { }, "arena_status_ok", onSuccess, onError);
+            await Send<ArenaStatus>("arena_status", new { }, "arena_status_ok", value =>
+            {
+                CaptureSeasonReward(value.SeasonReward);
+                onSuccess?.Invoke(value);
+            }, onError);
+        }
+
+        /// <summary>Shows an unseen season reward and acknowledges it only after the popup closes.</summary>
+        public bool TryShowSeasonReward()
+        {
+            if (pendingSeasonReward == null || seasonRewardShowing)
+            {
+                return false;
+            }
+
+            SeasonReward reward = pendingSeasonReward;
+            MessagePopup popup = PopupManager.Show<MessagePopup>(new MessagePopupData(
+                "Thưởng cuối mùa",
+                BuildSeasonRewardMessage(reward),
+                "Đã nhận"));
+            if (popup == null)
+            {
+                return false;
+            }
+
+            seasonRewardShowing = true;
+            shownSeasonRewardId = reward.SeasonId;
+            popup.Closed += HandleSeasonRewardClosed;
+            return true;
         }
 
         public async void RequestLeaderboard(Action<LeaderboardResult> onSuccess, Action<string> onError)
@@ -168,25 +332,48 @@ namespace OneBagJianghu.Net
             await Send("arena_replay", new { battleId }, "arena_replay_ok", onSuccess, onError);
         }
 
-        public async void RequestArenaBattle(string loadoutJson,
+        public async void FindArenaMatch(string loadoutJson,
             int power,
-            Action<ArenaResult> onSuccess,
+            Action<ArenaSearch> onSearching,
+            Action<ArenaResult> onResult,
             Action<string> onError)
         {
+            arenaSearching = onSearching;
+            arenaResult = onResult;
+            arenaError = onError;
             try
             {
-                JToken loadout = JToken.Parse(loadoutJson);
-                await Send("arena_battle", new { loadout, power }, "arena_result", onSuccess, onError);
+                Envelope reply = await RequireClient().SendAsync("arena_find", new { });
+                dispatch.Enqueue(() => HandleArenaMessage(reply));
             }
             catch (Exception exception)
             {
-                dispatch.Enqueue(() => onError?.Invoke(exception.Message));
+                dispatch.Enqueue(() => FinishArenaError(exception.Message));
+            }
+        }
+
+        public async void CancelArenaSearch()
+        {
+            ClearArenaCallbacks();
+            try
+            {
+                Envelope reply = await RequireClient().SendAsync("arena_cancel", new { });
+                OnlineProtocol.ReadReply<JObject>(reply, "arena_cancel_ok");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning("Could not cancel arena search: " + exception.Message);
             }
         }
 
         public void SetClientFactory(Func<GameClient> factory)
         {
             clientFactory = factory ?? throw new ArgumentNullException(nameof(factory));
+        }
+
+        public void SetProfileSession(GameSession session)
+        {
+            profileSession = session;
         }
 
         public async void RequestBattle(string mode,
@@ -270,14 +457,92 @@ namespace OneBagJianghu.Net
         {
             dispatch.Enqueue(() =>
             {
+                bool shouldRecover = IsAuthenticated;
+                FinishArenaError("Mất kết nối, đã huỷ tìm trận");
                 SetState(NetworkState.Offline);
                 SetAuthentication(null);
+                Disconnected?.Invoke();
+                if (shouldRecover)
+                {
+                    RecoverConnection();
+                }
             });
+        }
+
+        private async void RecoverConnection()
+        {
+            if (recoveringConnection)
+            {
+                return;
+            }
+
+            recoveringConnection = true;
+            MessagePopup blocker = PopupManager.Show<MessagePopup>(new MessagePopupData(
+                "Mất kết nối",
+                "Đang kết nối lại máy chủ…",
+                "Vui lòng chờ"));
+            await ConnectAsync(TimeSpan.FromSeconds(5));
+            DispatchPending();
+            recoveringConnection = false;
+            if (IsAuthenticated)
+            {
+                blocker?.Close();
+                return;
+            }
+
+            SceneFlow.Go(GameScene.Login);
         }
 
         private void HandleServerMessage(Envelope envelope)
         {
-            dispatch.Enqueue(() => ServerMessage?.Invoke(envelope));
+            dispatch.Enqueue(() =>
+            {
+                if (envelope.ReplyTo == 0 && (envelope.Type == "arena_searching"
+                    || envelope.Type == "arena_result"))
+                {
+                    HandleArenaMessage(envelope);
+                    return;
+                }
+
+                ServerMessage?.Invoke(envelope);
+            });
+        }
+
+        private void HandleArenaMessage(Envelope envelope)
+        {
+            try
+            {
+                if (envelope.Type == "arena_searching")
+                {
+                    ArenaSearch search = OnlineProtocol.ReadReply<ArenaSearch>(envelope, "arena_searching");
+                    arenaSearching?.Invoke(search);
+                    return;
+                }
+
+                ArenaResult result = OnlineProtocol.ReadReply<ArenaResult>(envelope, "arena_result");
+                ApplyProfile(result.Profile, result.Revision, result.ServerTime);
+                Action<ArenaResult> callback = arenaResult;
+                ClearArenaCallbacks();
+                callback?.Invoke(result);
+            }
+            catch (Exception exception)
+            {
+                FinishArenaError(exception.Message);
+            }
+        }
+
+        private void FinishArenaError(string message)
+        {
+            Action<string> callback = arenaError;
+            ClearArenaCallbacks();
+            callback?.Invoke(message);
+        }
+
+        private void ClearArenaCallbacks()
+        {
+            arenaSearching = null;
+            arenaResult = null;
+            arenaError = null;
         }
 
         private void SetState(NetworkState value)
@@ -308,6 +573,8 @@ namespace OneBagJianghu.Net
                 AuthSession session = OnlineProtocol.ReadReply<AuthSession>(reply, "auth_ok");
                 dispatch.Enqueue(() =>
                 {
+                    ApplyProfile(session.Profile, session.Revision, session.ServerTime);
+                    CaptureSeasonReward(session.SeasonReward);
                     SaveAuthentication(session);
                     onSuccess?.Invoke(session);
                 });
@@ -324,7 +591,12 @@ namespace OneBagJianghu.Net
             {
                 Envelope reply = await RequireClient().SendAsync("resume", new { token });
                 AuthSession session = OnlineProtocol.ReadReply<AuthSession>(reply, "auth_ok");
-                SaveAuthentication(session);
+                dispatch.Enqueue(() =>
+                {
+                    ApplyProfile(session.Profile, session.Revision, session.ServerTime);
+                    CaptureSeasonReward(session.SeasonReward);
+                    SaveAuthentication(session);
+                });
             }
             catch (Exception exception)
             {
@@ -397,6 +669,96 @@ namespace OneBagJianghu.Net
             {
                 AuthenticationChanged?.Invoke(IsAuthenticated);
             }
+        }
+
+        private void ApplyProfilePayload(JObject payload)
+        {
+            if (payload == null)
+            {
+                return;
+            }
+
+            ApplyProfile(payload["profile"],
+                payload["rev"]?.Value<long>() ?? 0,
+                ReadServerTime(payload["serverTime"]));
+        }
+
+        private void CaptureSeasonReward(SeasonReward reward)
+        {
+            if (reward != null
+                && reward.SeasonId != shownSeasonRewardId
+                && pendingSeasonReward == null
+                && !seasonRewardShowing)
+            {
+                pendingSeasonReward = reward;
+            }
+        }
+
+        private void HandleSeasonRewardClosed(BasePopup popup)
+        {
+            popup.Closed -= HandleSeasonRewardClosed;
+            SeasonReward reward = pendingSeasonReward;
+            pendingSeasonReward = null;
+            seasonRewardShowing = false;
+            if (reward != null)
+            {
+                SendSeasonRewardSeen(reward.SeasonId);
+            }
+        }
+
+        private async void SendSeasonRewardSeen(int seasonId)
+        {
+            try
+            {
+                Envelope reply = await RequireClient().SendAsync("season_reward_seen", new { seasonId });
+                OnlineProtocol.ReadReply<JObject>(reply, "season_reward_seen_ok");
+            }
+            catch (Exception exception)
+            {
+                Debug.LogWarning("Could not acknowledge season reward: " + exception.Message);
+            }
+        }
+
+        private static string BuildSeasonRewardMessage(SeasonReward reward)
+        {
+            return "Kỳ Luận Kiếm " + reward.SeasonId
+                + " đã khép lại. Bạn đứng hạng " + reward.Rank
+                + " với " + UiFormat.Number(reward.Rating)
+                + " điểm, nhận " + UiFormat.Number(reward.Reputation)
+                + " Danh Vọng và " + UiFormat.Number(reward.Jade)
+                + " Chí Tôn Ngọc Tủy.";
+        }
+
+        // Json.NET turns ISO strings into DateTime while parsing, so the token may be a Date or a string.
+        private static DateTimeOffset ReadServerTime(JToken token)
+        {
+            if (token == null || token.Type == JTokenType.Null)
+            {
+                return default;
+            }
+
+            if (token.Type == JTokenType.Date)
+            {
+                object value = ((JValue)token).Value;
+                if (value is DateTimeOffset offset)
+                {
+                    return offset;
+                }
+
+                return new DateTimeOffset((DateTime)value);
+            }
+
+            return DateTimeOffset.Parse(token.Value<string>(), CultureInfo.InvariantCulture);
+        }
+
+        private void ApplyProfile(JToken profile, long revision, DateTimeOffset serverTime)
+        {
+            if (serverTime != default)
+            {
+                ServerClock.Synchronize(serverTime);
+            }
+
+            (profileSession ?? GameBootstrap.Session)?.ApplyServerProfile(profile, revision);
         }
     }
 }

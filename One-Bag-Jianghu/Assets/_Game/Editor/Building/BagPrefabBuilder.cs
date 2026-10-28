@@ -186,7 +186,7 @@ namespace OneBagJianghu.EditorTools.Building
                                       "Cấp 1\nKhí Huyết tối đa: 100\nHộ Thân: 0% (≤ 80%)\nGiảm Hồi Chiêu: 0% (≤ 40%)",
                                       20, TextAnchor.UpperLeft, UiFontRole.Body);
             // Live combat power occupies the top of the free column beside the bag grid.
-            Text power = UiBuild.Text(root, "Power", "Lực Chiến: 100", 22, TextAnchor.MiddleLeft, UiFontRole.Title);
+            Text power = UiBuild.Text(root, "Power", "Chiến Uy: 100", 22, TextAnchor.MiddleLeft, UiFontRole.Title);
             Anchor(power.rectTransform, new Vector2(0f, 1f), new Vector2(565f, -20f), new Vector2(360f, 42f),
                    new Vector2(0f, 1f));
             power.color = UiBuild.Vermilion;

@@ -14,7 +14,7 @@
   ],
   "exchange":{"sameInput":3,"sameFees":[50,150],"crossInput":2,"crossFees":[25,75,200]},
   "reputationOffers":[
-    {"id":"chi_ton_ngoc_tuy","name":"Chí Tôn Ngọc Tủy","price":500,"limit":1,"quantity":1},
+    {"id":"chi_ton_ngoc_tuy","name":"Chí Tôn Ngọc Tủy","price":800,"limit":1,"quantity":1,"periodWeeks":2},
     {"id":"catalyst_box_random","name":"Rương Chất Dẫn Ngẫu Nhiên","price":250,"limit":3,"quantity":1},
     {"id":"tier_3_material_box","name":"Rương Nguyên Liệu Bậc 3","price":100,"limit":5,"quantity":3}
   ]

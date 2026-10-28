@@ -20,7 +20,6 @@ namespace OneBagJianghu.Tests.Play
             DeleteProfile();
             yield return Login("Shop Smoke");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             PlayerProfile profile = GameBootstrap.Session.Profile;
             profile.AddCurrency("bac", 100000);
             int before = profile.Items.Count;

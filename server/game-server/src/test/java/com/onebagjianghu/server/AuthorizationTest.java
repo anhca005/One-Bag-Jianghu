@@ -27,7 +27,8 @@ class AuthorizationTest
 
         // Act and assert
         assertUnauthorized(handler.handle(request("arena_status", mapper), session));
-        assertUnauthorized(handler.handle(request("arena_battle", mapper), session));
+        assertUnauthorized(handler.handle(request("arena_find", mapper), session));
+        assertUnauthorized(handler.handle(request("arena_cancel", mapper), session));
         assertUnauthorized(handler.handle(request("arena_history", mapper), session));
         assertUnauthorized(handler.handle(request("arena_replay", mapper), session));
         assertUnauthorized(handler.handle(request("leaderboard", mapper), session));

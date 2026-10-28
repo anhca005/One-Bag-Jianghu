@@ -1,6 +1,9 @@
 using System;
+using System.Collections;
 using OneBagJianghu.Audio;
 using OneBagJianghu.Core;
+using OneBagJianghu.Net;
+using OneBagJianghu.UI.Popups;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +15,7 @@ namespace OneBagJianghu.UI.Login
         private InputField heroName;
         [SerializeField]
         private Button enterButton;
-        private bool isNewProfile;
+        private bool connecting;
         private void Awake()
         {
             heroName.onValueChanged.AddListener(OnNameChanged);
@@ -22,10 +25,10 @@ namespace OneBagJianghu.UI.Login
         private void Start()
         {
             AudioManager.EnsureExists().PlayMusic(MusicKeys.Home);
-            isNewProfile = string.IsNullOrWhiteSpace(GameBootstrap.Session.HeroName);
-            heroName.SetTextWithoutNotify(GameBootstrap.Session.HeroName);
-            OnNameChanged(heroName.text);
+            heroName.readOnly = true;
+            enterButton.interactable = false;
             SceneFlow.NotifyReady();
+            StartCoroutine(ConnectAndAuthenticate());
         }
 
         private void OnDestroy()
@@ -34,20 +37,79 @@ namespace OneBagJianghu.UI.Login
             enterButton.onClick.RemoveListener(Enter);
         }
 
-        private void OnNameChanged(string value) => enterButton.interactable = !string.IsNullOrWhiteSpace(value);
+        private void OnNameChanged(string value)
+        {
+            enterButton.interactable = GameBootstrap.Network.IsAuthenticated
+                && !string.IsNullOrWhiteSpace(value);
+        }
+
         private void Enter()
         {
-            GameSession session = GameBootstrap.Session;
-            session.HeroName = heroName.text.Trim();
-            if (isNewProfile)
+            if (GameBootstrap.Network.IsAuthenticated)
             {
-                session.SectId = null;
-                session.TamPhapLevel = 1;
+                SceneFlow.Go(GameScene.Home);
+            }
+        }
+
+        private IEnumerator ConnectAndAuthenticate()
+        {
+            if (connecting)
+            {
+                yield break;
             }
 
-            session.SaveProfile();
-            _ = GameBootstrap.Network.ConnectAsync(TimeSpan.FromSeconds(3));
-            SceneFlow.Go(GameScene.Home);
+            connecting = true;
+            System.Threading.Tasks.Task task = GameBootstrap.Network.ConnectAsync(TimeSpan.FromSeconds(3));
+            while (!task.IsCompleted)
+            {
+                yield return null;
+            }
+
+            GameBootstrap.Network.DispatchPending();
+            connecting = false;
+            if (GameBootstrap.Network.State != NetworkState.Online)
+            {
+                ShowRetry();
+                yield break;
+            }
+
+            if (GameBootstrap.Network.IsAuthenticated)
+            {
+                HandleAuthenticated(GameBootstrap.Network.Authentication);
+                yield break;
+            }
+
+            PopupManager.Show<AccountPopup>(new AccountPopupData
+            {
+                Required = true,
+                Authenticated = HandleAuthenticated
+            });
+        }
+
+        private void HandleAuthenticated(AuthSession session)
+        {
+            heroName.SetTextWithoutNotify(GameBootstrap.Session.HeroName);
+            OnNameChanged(heroName.text);
+        }
+
+        private void ShowRetry()
+        {
+            MessagePopup popup = PopupManager.Show<MessagePopup>(new MessagePopupData(
+                "Không thể kết nối",
+                "Không kết nối được máy chủ.",
+                "Thử lại"));
+            if (popup == null)
+            {
+                return;
+            }
+
+            Action<BasePopup> closed = null;
+            closed = value =>
+            {
+                value.Closed -= closed;
+                StartCoroutine(ConnectAndAuthenticate());
+            };
+            popup.Closed += closed;
         }
     }
 }

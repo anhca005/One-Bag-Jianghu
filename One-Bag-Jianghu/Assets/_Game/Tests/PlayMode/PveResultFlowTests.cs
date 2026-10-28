@@ -6,6 +6,7 @@ using NUnit.Framework;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Battle.Replay.View;
 using OneBagJianghu.Core;
+using OneBagJianghu.Economy;
 using OneBagJianghu.Pve;
 using OneBagJianghu.UI.Common;
 using OneBagJianghu.UI.Gameplay;
@@ -165,12 +166,37 @@ namespace OneBagJianghu.Tests.Play
             Assert.IsTrue(enter.interactable);
             enter.onClick.Invoke();
             yield return WaitForReadyScene("HomeScene", "Login did not reach a ready HomeScene.");
-            GameBootstrap.Session.HeroLevel = heroLevel;
-            GameBootstrap.Session.CurrentLoadoutJson = makeLoadout(GameBootstrap.Session.HeroName);
+            ApplyProfileForBattle(makeLoadout(GameBootstrap.Session.HeroName), heroLevel);
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
             Assert.IsNotNull(home);
             home.RefreshBattleAvailability();
             CloseSectPromptIfPresent();
+        }
+
+        private static void ApplyProfileForBattle(string loadoutJson, int heroLevel)
+        {
+            PlayerProfile profile = GameBootstrap.Session.Profile;
+            profile.HeroLevel = heroLevel;
+            profile.Items.Clear();
+            profile.Loadout.Clear();
+            profile.Storage.Items.Clear();
+            profile.Storage.Overflow.Clear();
+            if (!string.IsNullOrEmpty(loadoutJson))
+            {
+                BagGrid grid = LoadoutSerializer.FromJson(loadoutJson, ItemCatalog.LoadFromResources());
+                foreach (PlacedItem placed in grid.Items)
+                {
+                    OwnedItem item = profile.AddItem(placed.Item.Id, placed.Tier);
+                    profile.Loadout.Add(new LoadoutPlacement
+                    {
+                        Uid = item.Uid,
+                        X = placed.X,
+                        Y = placed.Y
+                    });
+                }
+            }
+
+            GameBootstrap.Session.ApplyProfileForTests(profile);
         }
 
         private static IEnumerator StartStageFromHome()

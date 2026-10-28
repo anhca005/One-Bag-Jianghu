@@ -263,12 +263,12 @@ public static class PvePrefabBuilder
         desc.resizeTextMinSize = 13;
         desc.resizeTextMaxSize = 18;
         Image powerIcon = Icon(detail.transform, "Recommended Level Icon", .24f, .33f, .28f, .362f);
-        Text power = T(detail.transform, "Power", "Chiến lực đề nghị", 17, .29f, .328f, .76f, .366f);
+        Text power = T(detail.transform, "Power", "Chiến Uy đề nghị", 17, .29f, .328f, .76f, .366f);
         enemy.gameObject.AddComponent<SingleLineFit>().Configure(20, 11);
         if (UiBuild.ApplyUiSprite(powerIcon, "Kit/icon_power"))
             powerIcon.gameObject.SetActive(true);
         UiBuild.FitLabel(power, UiBuild.LabelFitPreset.None);
-        Text playerPower = T(detail.transform, "Player Power", "Lực Chiến của bạn", 17, .24f, .292f, .76f, .328f);
+        Text playerPower = T(detail.transform, "Player Power", "Chiến Uy của bạn", 17, .24f, .292f, .76f, .328f);
         UiBuild.FitLabel(playerPower, UiBuild.LabelFitPreset.None);
         Text powerWarning = T(detail.transform, "Power Warning", "", 14, .24f, .262f, .76f, .292f);
         powerWarning.color = UiBuild.Vermilion;

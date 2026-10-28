@@ -24,7 +24,6 @@ namespace OneBagJianghu.Tests.Play
             DeleteProfile();
             yield return Login("Bag Tooltip Smoke");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             profile.Loadout.Clear();
@@ -39,7 +38,8 @@ namespace OneBagJianghu.Tests.Play
                 Assert.IsTrue(new StorageGrid(profile, catalog).TryPlaceItem(item));
             }
 
-            GameBootstrap.Session.SaveProfile();
+            GameBootstrap.Session.ApplyProfileForTests(profile);
+            profile = GameBootstrap.Session.Profile;
             GetField<HomeHotspot>(home, "bagHotspot").OnClick.Invoke();
             yield return WaitUntil(() => PopupManager.IsOpen<BagPopup>(), "BagPopup did not open.");
             BagPopup popup = PopupManager.Top as BagPopup;
@@ -126,7 +126,6 @@ namespace OneBagJianghu.Tests.Play
             DeleteProfile();
             yield return Login("Storage Description Smoke");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             OwnedItem weapon =

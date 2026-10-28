@@ -29,6 +29,10 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField]
         private Text costText;
         [SerializeField]
+        private Text errorText;
+        [SerializeField]
+        private Text emptyText;
+        [SerializeField]
         private Dropdown typeFilter;
         [SerializeField]
         private ScrollRect gridScroll;
@@ -60,9 +64,11 @@ namespace OneBagJianghu.UI.Popups
         private SellService sell;
         private ItemIconLibrary icons;
         private StorageGrid grid;
-        private OwnedItem selected;
+        private string selectedUid;
         private MaterialStack selectedStack;
         private string mergeSourceUid;
+        private bool actionPending;
+        private float clearErrorAt;
         protected override void Awake()
         {
             base.Awake();
@@ -91,7 +97,18 @@ namespace OneBagJianghu.UI.Popups
         protected override void OnSetup(object data)
         {
             EnsureInitialized();
+            ClearError();
             Refresh();
+        }
+
+        protected override void OnShown()
+        {
+            PlayerProfile.ProgressChanged += HandleProgressChanged;
+        }
+
+        protected override void OnHidden()
+        {
+            PlayerProfile.ProgressChanged -= HandleProgressChanged;
         }
 
         public override void Refresh()
@@ -160,6 +177,11 @@ namespace OneBagJianghu.UI.Popups
                 SetRect((RectTransform)view.transform, stack.X, stack.Y, 1, 1);
             }
 
+            if (emptyText != null)
+            {
+                emptyText.gameObject.SetActive(rows.Count == 0);
+            }
+
             profile.Currencies.TryGetValue("bac", out long silver);
             profile.Currencies.TryGetValue("danh_vong", out long reputation);
             currencyText.text = $"       Bạc {UiFormat.Number(silver)}";
@@ -170,10 +192,10 @@ namespace OneBagJianghu.UI.Popups
             overflowText.gameObject.SetActive(profile.Storage.Overflow.Count > 0);
             overflowText.text =
                 profile.Storage.Overflow.Count > 0
-                ? "Cảnh báo: có dữ liệu đang chờ trong overflow."
+                ? "Cảnh báo: Có vật phẩm trong hàng chờ nhận đồ do kho đầy."
                 : string.Empty;
-            if (selected != null)
-                Select(selected.Uid);
+            if (!string.IsNullOrEmpty(selectedUid))
+                Select(selectedUid);
             else if (selectedStack != null)
                 SelectView(Key(selectedStack), true);
         }
@@ -194,7 +216,7 @@ namespace OneBagJianghu.UI.Popups
             }
 
             mergeSourceUid = null;
-            selected = null;
+            selectedUid = null;
             selectedStack = FindStack(key);
             if (selectedStack == null)
                 return;
@@ -249,16 +271,33 @@ namespace OneBagJianghu.UI.Popups
                 return false;
             }
 
-            bool moved = isMaterial ? grid.TryMoveStack(FindStack(key), x, y) : grid.TryMoveItem(key, x, y);
-            if (moved)
+            if (actionPending)
             {
-                GameBootstrap.Session.SaveProfile();
-                Debug.Log($"[Storage] Move {key} -> ({x},{y})");
-                Refresh();
+                return false;
+            }
+
+            SetActionPending(true);
+            if (isMaterial)
+            {
+                MaterialStack stack = FindStack(key);
+                GameBootstrap.Network.MoveStorageMaterial(stack.MaterialId,
+                    stack.X,
+                    stack.Y,
+                    x,
+                    y,
+                    _ => CompleteNetwork("move material"),
+                    FailNetwork);
             }
             else
-                Debug.LogWarning($"[Storage] Move refused: {key} -> ({x},{y}), reason=occupied or invalid");
-            return moved;
+            {
+                GameBootstrap.Network.MoveStorageItem(key,
+                    x,
+                    y,
+                    _ => CompleteNetwork("move item"),
+                    FailNetwork);
+            }
+
+            return true;
         }
 
         public void ClearDropPreview()
@@ -270,7 +309,8 @@ namespace OneBagJianghu.UI.Popups
         private void Select(string uid)
         {
             mergeSourceUid = null;
-            selected = GameBootstrap.Session.Profile.FindItem(uid);
+            selectedUid = uid;
+            OwnedItem selected = SelectedItem();
             if (selected == null)
                 return;
             ItemInfo info = catalog.Get(selected.ItemId);
@@ -396,48 +436,13 @@ namespace OneBagJianghu.UI.Popups
 
         private void Repack()
         {
-            PlayerProfile profile = GameBootstrap.Session.Profile;
-            var items = new List<OwnedItem>();
-            foreach (StorageItemPlacement placement in profile.Storage.Items)
+            if (actionPending)
             {
-                OwnedItem item = profile.FindItem(placement.Uid);
-                if (item != null)
-                    items.Add(item);
+                return;
             }
 
-            items.Sort(CompareItems);
-            // Total each material once, then re-add: this also merges partial stacks. Clear
-            // profile.Materials too, or the new StorageGrid would treat the empty stack list as a
-            // legacy profile and recreate every material a second time (the old duplication bug).
-            var order = new List<string>();
-            var totals = new Dictionary<string, int>(StringComparer.Ordinal);
-            foreach (MaterialStack stack in profile.Storage.MaterialStacks)
-            {
-                if (!totals.ContainsKey(stack.MaterialId))
-                {
-                    order.Add(stack.MaterialId);
-                    totals[stack.MaterialId] = 0;
-                }
-
-                totals[stack.MaterialId] += stack.Count;
-            }
-
-            int stacks = profile.Storage.MaterialStacks.Count;
-            profile.Storage.Items.Clear();
-            profile.Storage.MaterialStacks.Clear();
-            profile.Materials.Clear();
-            grid = new StorageGrid(profile, catalog);
-            foreach (OwnedItem item in items)
-                grid.TryPlaceItem(item);
-            foreach (string id in order)
-                if (!grid.TryAddMaterial(id, totals[id]))
-                    profile.Storage.Overflow.Add("material:" + id + ":" + totals[id]);
-            GameBootstrap.Session.SaveProfile();
-            Debug
-                .Log(
-                    $"[Storage] Repack items={items.Count}, " +
-                    $"materialStacks={stacks}->{profile.Storage.MaterialStacks.Count}");
-            Refresh();
+            SetActionPending(true);
+            GameBootstrap.Network.RepackStorage(_ => CompleteNetwork("repack"), FailNetwork);
         }
 
         private int CompareItems(OwnedItem first, OwnedItem second)
@@ -453,19 +458,21 @@ namespace OneBagJianghu.UI.Popups
 
         private void Upgrade()
         {
+            OwnedItem selected = SelectedItem();
             if (selected == null)
                 return;
             OwnedItem item = selected;
             int fromTier = item.Tier;
             UpgradePreview preview = upgrade.Preview(GameBootstrap.Session.Profile, item.Uid);
-            Complete(upgrade.Apply(GameBootstrap.Session.Profile,
-                item.Uid),
-                $"upgrade item={item.ItemId}, rarity={item.Rarity}, "
-                + $"Trọng={fromTier}->{preview.NextTier}, cost={preview.Silver}");
+            SetActionPending(true);
+            GameBootstrap.Network.UpgradeItem(item.Uid,
+                _ => CompleteNetwork($"upgrade item={item.ItemId}, tier={fromTier + 1}"),
+                FailNetwork);
         }
 
         private void BeginMerge()
         {
+            OwnedItem selected = SelectedItem();
             if (selected == null)
                 return;
             if (merge.Candidates(GameBootstrap.Session.Profile, selected.Uid).Count == 0)
@@ -511,22 +518,18 @@ namespace OneBagJianghu.UI.Popups
             {
                 if (yes)
                 {
-                    OwnedItem source = GameBootstrap.Session.Profile.FindItem(sourceUid);
-                    MergePreview preview = merge.Preview(GameBootstrap.Session.Profile, sourceUid, candidateUid);
-                    Complete(
-                        merge.Apply(
-                            GameBootstrap.Session.Profile,
-                            sourceUid,
-                            candidateUid),
-                        $"merge inputs={sourceUid}+{candidateUid}, " +
-                        $"output={source?.ItemId}/{preview.OutputRarity}/{preview.OutputTier} Trọng, " +
-                        $"refund={FormatMaterials(preview.RefundMaterials)}");
+                    SetActionPending(true);
+                    GameBootstrap.Network.MergeItems(sourceUid,
+                        candidateUid,
+                        _ => CompleteNetwork("merge " + sourceUid + "+" + candidateUid),
+                        FailNetwork);
                 }
             }));
         }
 
         private void Sell()
         {
+            OwnedItem selected = SelectedItem();
             if (selected == null)
                 return;
             SellPreview preview = sell.Preview(GameBootstrap.Session.Profile, selected.Uid);
@@ -537,22 +540,19 @@ namespace OneBagJianghu.UI.Popups
                 yes =>
             {
                 if (yes)
-                    Complete(sell.Apply(GameBootstrap.Session.Profile,
-                        selected.Uid),
-                        $"sell item={selected.ItemId}, price={preview.Silver}");
+                {
+                    SetActionPending(true);
+                    GameBootstrap.Network.SellItem(selected.Uid,
+                        _ => CompleteNetwork("sell item=" + selected.Uid),
+                        FailNetwork);
+                }
             }));
         }
 
-        private void Complete(EconomyResult result, string action)
+        private void CompleteNetwork(string action)
         {
-            if (!result.Success)
-            {
-                AudioManager.Instance?.Play("ui_error");
-                costText.text = result.Error;
-                Debug.LogWarning($"[Storage] {action}, result=failed, reason={result.Error}");
-                return;
-            }
-
+            SetActionPending(false);
+            ClearError();
             if (action.StartsWith("upgrade", StringComparison.Ordinal))
             {
                 AudioManager.Instance?.Play("upgrade");
@@ -567,13 +567,77 @@ namespace OneBagJianghu.UI.Popups
             // Keep the upgraded item selected so the detail refreshes and it can be upgraded again.
             bool keepSelection = action.StartsWith("upgrade", StringComparison.Ordinal);
             if (!keepSelection)
-                selected = null;
+                selectedUid = null;
             selectedStack = null;
             mergeSourceUid = null;
-            GameBootstrap.Session.SaveProfile();
-            if (selected == null)
+            if (string.IsNullOrEmpty(selectedUid))
                 ClearSelection();
             Refresh();
+        }
+
+        private void FailNetwork(string message)
+        {
+            SetActionPending(false);
+            AudioManager.Instance?.Play("ui_error");
+            Refresh();
+            if (errorText == null)
+            {
+                costText.text = string.IsNullOrWhiteSpace(message) ? "Thao tác thất bại. Xin thử lại." : message;
+                return;
+            }
+
+            errorText.text = string.IsNullOrWhiteSpace(message) ? "Thao tác thất bại. Xin thử lại." : message;
+            errorText.gameObject.SetActive(true);
+            clearErrorAt = Time.unscaledTime + 8f;
+        }
+
+        private void Update()
+        {
+            if (clearErrorAt <= 0f || Time.unscaledTime < clearErrorAt)
+            {
+                return;
+            }
+
+            clearErrorAt = 0f;
+            ClearError();
+        }
+
+        private void ClearError()
+        {
+            clearErrorAt = 0f;
+            if (errorText == null)
+            {
+                return;
+            }
+
+            errorText.text = string.Empty;
+            errorText.gameObject.SetActive(false);
+        }
+
+        private void SetActionPending(bool pending)
+        {
+            actionPending = pending;
+            sortButton.GetComponent<Button>().interactable = !pending;
+            upgradeButton.GetComponent<Button>().interactable = !pending;
+            mergeButton.GetComponent<Button>().interactable = !pending;
+            sellButton.GetComponent<Button>().interactable = !pending;
+            closeButton.GetComponent<Button>().interactable = !pending;
+            typeFilter.interactable = !pending;
+        }
+
+        private OwnedItem SelectedItem()
+        {
+            return string.IsNullOrEmpty(selectedUid)
+                ? null
+                : GameBootstrap.Session.Profile.FindItem(selectedUid);
+        }
+
+        private void HandleProgressChanged()
+        {
+            if (IsShowing)
+            {
+                Refresh();
+            }
         }
 
         private void ClearSelection()

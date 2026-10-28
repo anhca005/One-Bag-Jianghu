@@ -127,7 +127,7 @@ namespace OneBagJianghu.Tests.Quests
         }
 
         [Test]
-        public void Claim_PaysAndAdvances()
+        public void Claim_PreflightsWithoutMutatingProfile()
         {
             // Arrange
             profile.Pve.Stages["hoi_1_01"] = new PveStageProgress { Cleared = true };
@@ -138,9 +138,10 @@ namespace OneBagJianghu.Tests.Quests
 
             // Assert
             Assert.That(result.Success, Is.True);
-            Assert.That(profile.Currencies["bac"], Is.EqualTo(80));
-            Assert.That(profile.Quest.ActiveIndex, Is.EqualTo(1));
-            Assert.That(profile.Quest.ClaimedIds, Does.Contain("q1_01"));
+            Assert.That(result.Reward.Silver, Is.EqualTo(80));
+            Assert.That(profile.Currencies["bac"], Is.Zero);
+            Assert.That(profile.Quest.ActiveIndex, Is.Zero);
+            Assert.That(profile.Quest.ClaimedIds, Does.Not.Contain("q1_01"));
         }
 
         [Test]

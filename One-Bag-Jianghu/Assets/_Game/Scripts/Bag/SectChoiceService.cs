@@ -30,8 +30,6 @@ namespace OneBagJianghu.Bag
                 return false;
             }
 
-            profile.SectId = sectId;
-            profile.TamPhapLevel = 1;
             error = string.Empty;
             return true;
         }

@@ -59,7 +59,9 @@ namespace OneBagJianghu.UI.Popups
             titleText.text = locked ? "???" : quest.Title;
             giverText.text = locked ? string.Empty : giver;
             descriptionText.text = locked ? string.Empty : quest.Text;
-            objectiveText.text = locked ? string.Empty : objective + "  " + progress.Current + "/" + progress.Target;
+            objectiveText.text = locked
+                ? string.Empty
+                : objective + "  " + UiFormat.Number(progress.Current) + "/" + UiFormat.Number(progress.Target);
             rewards.gameObject.SetActive(!locked);
             claimButton.gameObject.SetActive(active && progress.Done);
             runner.SetRunning(active && progress.Done);
@@ -73,10 +75,10 @@ namespace OneBagJianghu.UI.Popups
             Text[] labels = rewards.GetComponentsInChildren<Text>(true);
             Image[] icons = rewards.GetComponentsInChildren<Image>(true);
             int entryIndex = 0;
-            SetReward(labels, icons, entryIndex++, "icon_bac", reward.Silver.ToString());
-            SetReward(labels, icons, entryIndex++, "icon_exp", reward.HeroExp + " EXP");
+            SetReward(labels, icons, entryIndex++, "icon_bac", UiFormat.Number(reward.Silver));
+            SetReward(labels, icons, entryIndex++, "icon_exp", UiFormat.Number(reward.HeroExp) + " EXP");
             foreach (KeyValuePair<string, int> material in reward.Materials)
-                SetReward(labels, icons, entryIndex++, material.Key, "x" + material.Value);
+                SetReward(labels, icons, entryIndex++, material.Key, "x" + UiFormat.Number(material.Value));
             for (int i = entryIndex; i < labels.Length; i++)
                 labels[i].transform.parent.gameObject.SetActive(false);
         }

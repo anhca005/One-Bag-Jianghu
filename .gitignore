@@ -32,3 +32,6 @@ server/.m2/
 # Raw audio sources (large WAV packs, kept locally only)
 audio-src/
 server/data/
+
+# Player builds
+/Builds/

@@ -9,13 +9,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Onboarding;
 using OneBagJianghu.Audio;
+using OneBagJianghu.Net;
 
 namespace OneBagJianghu.UI.Popups
 {
     public sealed class ShopRuntimeClock : IShopClock
     {
         private static TimeSpan offset;
-        public DateTimeOffset UtcNow => DateTimeOffset.UtcNow + offset;
+        public DateTimeOffset UtcNow => ServerClock.UtcNow + offset;
 
         public static void AdvanceDays(int days) => offset += TimeSpan.FromDays(days);
         public static void Reset() => offset = TimeSpan.Zero;
@@ -84,6 +85,7 @@ namespace OneBagJianghu.UI.Popups
         private Color secondaryTabColor;
         private Color primaryTabTextColor;
         private Color secondaryTabTextColor;
+        private bool actionPending;
         protected override void Awake()
         {
             base.Awake();
@@ -149,6 +151,7 @@ namespace OneBagJianghu.UI.Popups
         private void ShowTab(int value)
         {
             itemTooltip?.Hide();
+            statusText.text = string.Empty;
             tradePanel.SetActive(value == 0);
             exchangePanel.SetActive(value == 1);
             reputationPanel.SetActive(value == 2);
@@ -168,23 +171,27 @@ namespace OneBagJianghu.UI.Popups
             itemTooltip?.Hide();
             EnsureInitialized();
             PlayerProfile profile = GameBootstrap.Session.Profile;
-            shop.Ensure(profile);
+            PlayerProfile preview = PreviewProfile();
+            shop.Ensure(preview);
             profile.Currencies.TryGetValue("bac", out long silver);
             profile.Currencies.TryGetValue("danh_vong", out long reputation);
             CurrencyArt.Apply(silverText, "icon_bac");
             CurrencyArt.Apply(reputationText, "icon_danh_vong");
             silverText.text = UiFormat.Number(silver);
             reputationText.text = UiFormat.Number(reputation);
-            bool free = shop.CanRefreshFree(profile);
+            UpdateMaterialOptions(profile);
+            bool free = shop.CanRefreshFree(preview);
             TimeSpan left = config.FreeRefreshHours > 0
-                ? shop.UntilFreeRefresh(profile)
+                ? shop.UntilFreeRefresh(preview)
                 : TimeSpan.Zero;
             headerText.text = config.FreeRefreshHours > 0 && !free
                 ? $"Miễn phí sau {left.Hours:00}:{left.Minutes:00}:{left.Seconds:00}"
                 : string.Empty;
             refreshButton.SetLabel(free
                 ? "Làm mới miễn phí"
-                : $"Làm mới ({UiFormat.Number(shop.PaidRefreshCost(profile))} Bạc)");
+                : $"Làm mới ({UiFormat.Number(shop.PaidRefreshCost(preview))} Bạc)");
+            refreshButton.GetComponent<Button>().interactable = !actionPending
+                && (free || silver >= shop.PaidRefreshCost(preview));
             BuildSlots();
             UpdateExchange();
             if (reputationPanel.activeSelf)
@@ -194,7 +201,7 @@ namespace OneBagJianghu.UI.Popups
         private void BuildSlots()
         {
             Clear(tradeCards);
-            IReadOnlyList<ShopSlotState> slots = shop.Ensure(GameBootstrap.Session.Profile);
+            IReadOnlyList<ShopSlotState> slots = GameBootstrap.Session.Profile.Shop.Slots;
             GameBootstrap.Session.Profile.Currencies.TryGetValue("bac", out long silver);
             if (loggedGeneration != GameBootstrap.Session.Profile.Shop.Generation)
             {
@@ -296,7 +303,7 @@ namespace OneBagJianghu.UI.Popups
                     "×"
                     + offer.Quantity,
                     string.Empty,
-                    $"còn {remaining}/{offer.Limit} mỗi tuần",
+                    BuildReputationLimit(remaining, offer),
                     $"Danh Vọng  {UiFormat.Number(offer.Price)}",
                     null,
                     null,
@@ -334,11 +341,10 @@ namespace OneBagJianghu.UI.Popups
                 {
                     if (yes)
                     {
-                        Complete(shop.Buy(GameBootstrap.Session.Profile,
-                            index),
-                            $"buy slot={index}, content={itemName}, price={price}");
-                        if (GameBootstrap.Session.Profile.Shop.Slots[index].Bought)
-                            OnboardingRuntime.Publish("shop_item_purchased");
+                        SetActionPending(true);
+                        GameBootstrap.Network.BuyShopSlot(index,
+                            _ => CompleteBuy(index, itemName),
+                            FailNetwork);
                     }
                 }));
         }
@@ -355,26 +361,33 @@ namespace OneBagJianghu.UI.Popups
                 yes =>
                 {
                     if (yes)
-                        Complete(shop.BuyReputation(GameBootstrap.Session.Profile,
-                            id),
-                            $"reputation purchase id={id}, content={itemName}, price={price}");
+                    {
+                        SetActionPending(true);
+                        GameBootstrap.Network.BuyReputationOffer(id,
+                            _ => CompleteNetwork("reputation purchase " + id),
+                            FailNetwork);
+                    }
                 }));
         }
         private void RefreshShop()
         {
             itemTooltip.Hide();
-            bool free = shop.CanRefreshFree(GameBootstrap.Session.Profile);
-            int cost = free ? 0 : shop.PaidRefreshCost(GameBootstrap.Session.Profile);
-            Complete(shop.Refresh(GameBootstrap.Session.Profile,
-                free),
-                $"{(free ? "free" : "paid")} refresh cost={cost}");
+            bool free = shop.CanRefreshFree(PreviewProfile());
+            SetActionPending(true);
+            GameBootstrap.Network.RefreshShop(!free,
+                _ => CompleteNetwork(free ? "free refresh" : "paid refresh"),
+                FailNetwork);
         }
 
         private void Exchange()
         {
             string input = SelectedMaterialId(inputDropdown);
             string target = SelectedMaterialId(targetDropdown);
-            Complete(shop.Exchange(GameBootstrap.Session.Profile, input, target), $"exchange {input}->{target}");
+            SetActionPending(true);
+            GameBootstrap.Network.ExchangeMaterial(input,
+                target,
+                _ => CompleteNetwork($"exchange {input}->{target}"),
+                FailNetwork);
         }
 
         private void UpdateExchange()
@@ -393,25 +406,99 @@ namespace OneBagJianghu.UI.Popups
                 : cross
                 ? $"2 {a.Name} → 1 {b.Name}"
                 : "Lựa chọn không hợp lệ";
-            exchangeButton.GetComponent<Button>().interactable = same || cross;
+            int required = same ? 3 : cross ? 2 : int.MaxValue;
+            GameBootstrap.Session.Profile.Materials.TryGetValue(a.Id, out int owned);
+            exchangeButton.GetComponent<Button>().interactable = !actionPending && owned >= required;
+            if ((same || cross) && owned < required)
+            {
+                exchangePreview.text += " · Có " + UiFormat.Number(owned);
+            }
         }
 
-        private void Complete(EconomyResult result, string action)
+        private void UpdateMaterialOptions(PlayerProfile profile)
+        {
+            int inputIndex = inputDropdown.value;
+            int targetIndex = targetDropdown.value;
+            var options = new List<Dropdown.OptionData>();
+            foreach (string id in materialIds)
+            {
+                MaterialInfo material = materials.Get(id);
+                profile.Materials.TryGetValue(id, out int owned);
+                Sprite icon = null;
+                icons?.TryGet(id, out icon);
+                options.Add(new Dropdown.OptionData(material.Name + " (Có: " + UiFormat.Number(owned) + ")", icon));
+            }
+
+            inputDropdown.ClearOptions();
+            inputDropdown.AddOptions(options);
+            targetDropdown.ClearOptions();
+            targetDropdown.AddOptions(options);
+            inputDropdown.SetValueWithoutNotify(Mathf.Clamp(inputIndex, 0, options.Count - 1));
+            targetDropdown.SetValueWithoutNotify(Mathf.Clamp(targetIndex, 0, options.Count - 1));
+            inputDropdown.RefreshShownValue();
+            targetDropdown.RefreshShownValue();
+        }
+
+        private void CompleteNetwork(string action)
         {
             itemTooltip.Hide();
-            statusText.text = result.Success ? "Giao dịch thành công." : result.Error;
-            if (result.Success)
-            {
-                AudioManager.Instance?.Play("coin");
-                Debug.Log($"[Shop] {action}, result=success");
-                GameBootstrap.Session.SaveProfile();
-            }
-            else
-            {
-                AudioManager.Instance?.Play("ui_error");
-                Debug.LogWarning($"[Shop] {action}, result=failed, reason={result.Error}");
-            }
+            SetActionPending(false);
+            statusText.text = "Giao dịch thành công.";
+            AudioManager.Instance?.Play("coin");
+            Debug.Log($"[Shop] {action}, result=success");
             Refresh();
+        }
+
+        private void CompleteBuy(int index, string itemName)
+        {
+            CompleteNetwork($"buy slot={index}, content={itemName}");
+            if (index < GameBootstrap.Session.Profile.Shop.Slots.Count
+                && GameBootstrap.Session.Profile.Shop.Slots[index].Bought)
+            {
+                OnboardingRuntime.Publish("shop_item_purchased");
+            }
+        }
+
+        private void FailNetwork(string message)
+        {
+            SetActionPending(false);
+            statusText.text = message;
+            AudioManager.Instance?.Play("ui_error");
+            Refresh();
+            statusText.text = string.IsNullOrWhiteSpace(message) ? "Giao dịch thất bại. Xin thử lại." : message;
+        }
+
+        private void SetActionPending(bool pending)
+        {
+            actionPending = pending;
+            refreshButton.GetComponent<Button>().interactable = !pending;
+            exchangeButton.GetComponent<Button>().interactable = !pending;
+            closeButton.GetComponent<Button>().interactable = !pending;
+            tradeTab.GetComponent<Button>().interactable = !pending;
+            exchangeTab.GetComponent<Button>().interactable = !pending;
+            reputationTab.GetComponent<Button>().interactable = !pending;
+            inputDropdown.interactable = !pending;
+            targetDropdown.interactable = !pending;
+            SetCardsInteractable(tradeCards, !pending);
+            SetCardsInteractable(reputationCards, !pending);
+        }
+
+        private static void SetCardsInteractable(List<GameObject> cards, bool interactable)
+        {
+            foreach (GameObject cardObject in cards)
+            {
+                ShopCard card = cardObject.GetComponent<ShopCard>();
+                if (card != null && card.BuyButton.gameObject.activeSelf)
+                {
+                    card.BuyButton.GetComponent<Button>().interactable = interactable;
+                }
+            }
+        }
+
+        private static PlayerProfile PreviewProfile()
+        {
+            PlayerProfile profile = GameBootstrap.Session.Profile;
+            return PlayerProfile.FromJson(profile.ToJson());
         }
 
         private static string TypeName(string type)
@@ -461,6 +548,12 @@ namespace OneBagJianghu.UI.Popups
             if (offer.Id == "tier_3_material_box")
                 return $"<b>{offer.Name}</b>\nRương\nChứa {offer.Quantity} nguyên liệu bậc 3 ngẫu nhiên.";
             return $"<b>{offer.Name}</b>\nVật phẩm Tiệm Danh Vọng";
+        }
+
+        private static string BuildReputationLimit(int remaining, ReputationOffer offer)
+        {
+            string period = offer.PeriodWeeks == 1 ? "tuần" : offer.PeriodWeeks + " tuần";
+            return $"còn {remaining}/{offer.Limit} mỗi {period}";
         }
 
         private static List<Dropdown.OptionData> BuildMaterialOptions(

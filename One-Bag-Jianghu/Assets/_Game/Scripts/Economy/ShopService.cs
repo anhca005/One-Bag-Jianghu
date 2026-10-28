@@ -342,20 +342,37 @@ namespace OneBagJianghu.Economy
 
         private void ResetPeriods(PlayerProfile profile)
         {
-            string day = clock.UtcNow.UtcDateTime.ToString("yyyy-MM-dd");
+            DateTimeOffset vietnamNow = clock.UtcNow.ToUniversalTime().AddHours(7);
+            string day = vietnamNow.ToString("yyyy-MM-dd");
             if (profile.Shop.DayKey != day)
             {
                 profile.Shop.DayKey = day;
                 profile.Shop.PaidRefreshesToday = 0;
             }
 
-            DateTime date = clock.UtcNow.UtcDateTime.Date;
+            DateTime date = vietnamNow.Date;
             int back = ((int)date.DayOfWeek + 6) % 7;
-            string week = date.AddDays(-back).ToString("yyyy-MM-dd");
+            DateTime monday = date.AddDays(-back);
+            string week = monday.ToString("yyyy-MM-dd");
             if (profile.Shop.WeekKey != week)
             {
                 profile.Shop.WeekKey = week;
-                profile.Shop.ReputationPurchases.Clear();
+            }
+
+            profile.Shop.ReputationPurchasePeriods = profile.Shop.ReputationPurchasePeriods
+                ?? new Dictionary<string, string>();
+            foreach (ReputationOffer offer in config.ReputationOffers)
+            {
+                long weekNumber = (long)(monday - new DateTime(1970, 1, 5)).TotalDays / 7;
+                string period = Math.Floor(weekNumber / (double)offer.PeriodWeeks).ToString();
+                profile.Shop.ReputationPurchasePeriods.TryGetValue(offer.Id, out string previousPeriod);
+                if (previousPeriod == period)
+                {
+                    continue;
+                }
+
+                profile.Shop.ReputationPurchasePeriods[offer.Id] = period;
+                profile.Shop.ReputationPurchases[offer.Id] = 0;
             }
         }
 

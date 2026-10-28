@@ -1,4 +1,5 @@
 using OneBagJianghu.Core;
+using OneBagJianghu.Economy;
 using OneBagJianghu.Pve;
 using OneBagJianghu.UI.Popups;
 using UnityEngine;
@@ -21,7 +22,8 @@ namespace OneBagJianghu.Onboarding
             // Let Home finish its own Start first (it may reopen the stage map after a battle), so a step that
             // points into that popup can find it and the overlay lands on top of it.
             yield return null;
-            Tutorial = new TutorialService(TutorialCatalog.Load(), GameBootstrap.Session.Profile);
+            Tutorial = new TutorialService(TutorialCatalog.Load());
+            PlayerProfile.ProgressChanged += HandleProgressChanged;
             if (!GameBootstrap.Session.Profile.IntroSeen)
             {
                 IntroPopup intro = PopupManager.Show<IntroPopup>();
@@ -37,7 +39,7 @@ namespace OneBagJianghu.Onboarding
         {
             if (Tutorial == null || !Tutorial.Publish(eventId))
                 return;
-            GameBootstrap.Session?.SaveProfile();
+            SendCompletionIfNeeded();
             ShowCurrentStep();
         }
 
@@ -46,8 +48,25 @@ namespace OneBagJianghu.Onboarding
         {
             if (Tutorial == null || !Tutorial.PublishQuestLogOpened(hasClaimableQuest))
                 return;
-            GameBootstrap.Session?.SaveProfile();
+            SendCompletionIfNeeded();
             ShowCurrentStep();
+        }
+
+        public static void SkipCurrentSequence()
+        {
+            Tutorial?.SkipSequence();
+            SendCompletionIfNeeded();
+        }
+
+        private static void SendCompletionIfNeeded()
+        {
+            string id = Tutorial?.TakePendingCompletion();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return;
+            }
+
+            GameBootstrap.Network.SendOnboarding("tutorial_done", id, _ => { }, Debug.LogWarning);
         }
 
         private static void TryTriggeredSequences()
@@ -74,6 +93,19 @@ namespace OneBagJianghu.Onboarding
             popup.Closed -= HandleIntroClosed;
             Tutorial.TryStart("first_battle");
             ShowCurrentStep();
+        }
+
+        private static void HandleProgressChanged()
+        {
+            if (Tutorial != null)
+            {
+                TryTriggeredSequences();
+            }
+        }
+
+        private void OnDestroy()
+        {
+            PlayerProfile.ProgressChanged -= HandleProgressChanged;
         }
     }
 }

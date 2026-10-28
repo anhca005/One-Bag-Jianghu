@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4719164140405617429}
   - component: {fileID: 9190872625913206451}
   - component: {fileID: 1445458121781591759}
-  - component: {fileID: 5075234684943988809}
+  - component: {fileID: 1058894320411505731}
   m_Layer: 0
   m_Name: StoryPopup
   m_TagString: Untagged
@@ -267,7 +267,7 @@ MonoBehaviour:
   titleText: {fileID: 1256917259535453188}
   bodyText: {fileID: 6485481018372606377}
   skipButton: {fileID: 3678842428525338200}
---- !u!114 &5075234684943988809
+--- !u!114 &1058894320411505731
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

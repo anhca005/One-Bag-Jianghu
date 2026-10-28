@@ -52,7 +52,9 @@ namespace OneBagJianghu.Tests.EditMode.Economy
             Assert.That(service.TryChoose(profile, "kim_cang", out _), Is.False);
             profile.HeroLevel = 10;
             Assert.That(service.TryChoose(profile, "kim_cang", out _), Is.True);
-            Assert.That(profile.TamPhapLevel, Is.EqualTo(1));
+            Assert.That(profile.SectId, Is.Null);
+            Assert.That(profile.TamPhapLevel, Is.EqualTo(1), "TamPhapLevel keeps its default until the server answers");
+            profile.SectId = "kim_cang";
             Assert.That(service.TryChoose(profile, "thai_thanh", out _), Is.False);
             Assert.That(profile.SectId, Is.EqualTo("kim_cang"));
         }

@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 4123154932809498785}
   - component: {fileID: 2463216943716492304}
   - component: {fileID: 1330450656079497611}
-  - component: {fileID: 7160745806809027420}
+  - component: {fileID: 482509976640680979}
   m_Layer: 0
   m_Name: AccountPopup
   m_TagString: Untagged
@@ -716,7 +716,7 @@ MonoBehaviour:
   laterButton: {fileID: 5771307217968634095}
   errorText: {fileID: 8014945952070941705}
   formFooter: {fileID: 5484712998870031422}
---- !u!114 &7160745806809027420
+--- !u!114 &482509976640680979
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -865,8 +865,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1.1
-  m_Text: "T\xE0i kho\u1EA3n d\xF9ng cho Lu\u1EADn Ki\u1EBFm \u0110\xE0i. \u0110\u1ED3
-    \u0111\u1EA1c v\u1EABn l\u01B0u tr\xEAn m\xE1y n\xE0y."
+  m_Text: "M\u1ECDi h\xE0nh trang v\xE0 ti\u1EBFn tr\xECnh \u0111\u01B0\u1EE3c l\u01B0u
+    an to\xE0n tr\xEAn m\xE1y ch\u1EE7."
 --- !u!114 &2432685653841792280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2007,11 +2007,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 240
+      value: 260
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 57
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 3622605612026712282, guid: 9ea92d502b08603499427c53f99564cb, type: 3}
       propertyPath: m_LocalPosition.x

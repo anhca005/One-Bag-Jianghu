@@ -256,6 +256,13 @@ namespace OneBagJianghu.UI.Popups
             }
         }
 
+        /// <summary>Returns to the safe destination represented by the first result action.</summary>
+        public override bool OnBackPressed()
+        {
+            CloseWithResult(firstChoice);
+            return true;
+        }
+
         public void SetRewards(string value)
         {
             if (rewardText != null)

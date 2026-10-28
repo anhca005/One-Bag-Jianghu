@@ -4,6 +4,76 @@ Mỗi quyết định ghi: ngày, nội dung, lý do. Quyết định mới thê
 
 ---
 
+### #72 · 2026-10-27 · Thưởng cuối mùa Luận Kiếm Đài, siết Chí Tôn Ngọc Tủy
+- **Chỉ thưởng theo thứ hạng** lúc chốt mùa (hết 28 ngày, theo bảng xếp hạng cuối cùng):
+
+  | Hạng | Danh Vọng | Chí Tôn Ngọc Tủy |
+  |---|---|---|
+  | 1 | 3.000 | 3 |
+  | 2–3 | 2.000 | 2 |
+  | 4–10 | 1.200 | 1 |
+  | 11–50 | 600 | 0 |
+
+  - Server cộng thẳng vào hồ sơ.
+  - Lần đăng nhập kế tiếp, client báo mùa trước đứng hạng mấy và nhận gì.
+- Đợt này **chưa làm**:
+  - thưởng theo bậc;
+  - danh hiệu Thiên Hạ Đệ Nhất;
+  - điều kiện số trận tối thiểu.
+  Nếu sau này có thưởng theo bậc thì tính theo **bậc cao nhất trong mùa** (người dùng đã chọn), nên server bắt đầu
+  lưu `peak_rating` ngay từ bây giờ.
+- **Sang mùa mới, mọi người về 1.000 điểm** (đặt lại hết, không giữ một phần).
+- **Siết Ngọc Tủy** (Gemini đề xuất 4 và 5):
+  - Tiệm Danh Vọng bán Chí Tôn Ngọc Tủy giá **800** Danh Vọng, tối đa **1 viên mỗi 2 tuần**;
+  - mốc tuần Luận Kiếm cần **15 trận thắng** (trước là 10) để nhận 1 viên.
+
+**Lý do:**
+- Gemini tính rằng người chơi trung bình đang có khoảng 8 viên mỗi mùa, đủ một món Chí Tôn sau 15–17 ngày, quá nhanh
+  so với #24/#25 ([reviews/2026-10-21-gemini-season-rewards.md](reviews/2026-10-21-gemini-season-rewards.md)).
+- Người dùng chọn chỉ thưởng top và đặt lại điểm về 1.000.
+
+### #71 · 2026-10-21 · Giao thức hồ sơ trên server (E6)
+- Sau mỗi thao tác, server gửi lại **toàn bộ hồ sơ**, đúng định dạng `profile.json` hiện có (version 9). Client thay
+  cả bản đang giữ. Không gửi phần thay đổi.
+- Hồ sơ lưu thành một cột JSON trong SQLite, kèm `rev`. Mỗi tài khoản chỉ xử lý một yêu cầu tại một thời điểm.
+- Logic Java chép đúng luật C# hiện có, kể cả cách làm tròn. Ngẫu nhiên do server bốc, client không cần tính trùng.
+- Lỗi luật chơi trả `rejected`, kèm câu tiếng Việt mà client đang hiện.
+- Bảng cheat chỉ chạy khi server bật `--dev`.
+- Chi tiết: [tech/protocol.md](tech/protocol.md), mục "Hồ sơ trên server".
+- Ba chỗ server sửa so với C# (Gemini phát hiện ở `reviews/2026-10-21-gemini-e6-rules.md` mục 17):
+  - Bán đồ mà kho không đủ chỗ cho nguyên liệu hoàn lại: từ chối với câu "Tàng Bảo Các không đủ chỗ.". C# đang làm mất
+    nguyên liệu.
+  - Mua ở Tiệm Danh Vọng khi kho đầy: từ chối với câu trên. C# đang ném ngoại lệ.
+  - Thương Hội và thưởng vượt ải đầu tiên trong ngày đổi ngày/tuần theo **giờ Việt Nam (UTC+7)**, giống Luận Kiếm
+    Đài. C# đang dùng UTC.
+  - Hợp Thành giữ uid của món đang đeo: đây là chủ ý, giữ nguyên.
+
+**Lý do:** hồ sơ chỉ vài KB, gửi cả bản thì client không bao giờ lệch với server. Client đọc lại bằng hàm có sẵn
+(Gemini kiểm kê ở `reviews/2026-10-21-gemini-e6-inventory.md`).
+
+### #70 · 2026-10-21 · Online đợt 2: mọi dữ liệu người chơi nằm trên server
+- **Đăng nhập ngay khi vào game.** Màn Login mở popup Đăng nhập trước nút Vào Giang Hồ (mở bằng code, không sửa scene
+  vì người dùng sửa tay). Có token hợp lệ thì tự vào. Không kết nối được thì báo lỗi và cho thử lại, không có chế độ
+  offline.
+- **Không lưu thông tin người chơi trên máy.** Kho đồ, Bao Phục, tiền, cấp, Tâm Pháp, phái, Thể Lực, tiến độ PvE,
+  nhiệm vụ, hướng dẫn, cốt truyện đều nằm trên server. Máy chỉ giữ token (khi bật Ghi nhớ) và cài đặt âm thanh/hiển thị.
+  `profile.json` cũ không được chuyển lên, mọi tài khoản bắt đầu mới.
+- **Server quyết định mọi thay đổi** (thay E6 trong roadmap): nâng Trọng, Hợp Thành, bán, Thương Hội, đổi nguyên liệu,
+  xếp Bao Phục, chọn phái, nhận thưởng nhiệm vụ, trận PvE. Server chạy trận PvE từ seed của nó. Client gửi yêu cầu,
+  nhận hồ sơ mới rồi phát lại trận. Client không còn tự tính phần thưởng.
+- Dữ liệu game (vật phẩm, nguyên liệu, ải, nhiệm vụ, Thương Hội, sức mạnh) vẫn là các file JSON có sẵn. Server đọc cùng
+  bộ file đó, nên client và server không lệch số.
+- **Ghép trận Luận Kiếm** (thay luật ghép ở #68):
+  - chỉ xét theo điểm, bắt đầu với các ghost lệch không quá **±50 điểm**;
+  - không có ai thì cứ **2 phút nới thêm 50 điểm**, người chơi thấy thời gian chờ và khoảng điểm đang tìm, huỷ được;
+  - chỉ đánh với ghost máy khi cả mùa chưa có ghost người thật nào khác (để thử một mình).
+- **Thưởng cuối mùa:** hết 28 ngày thì chốt hạng, trao thưởng theo bậc và danh hiệu Thiên Hạ Đệ Nhất cho hạng 1,
+  rồi đặt lại điểm cho mùa mới. Gemini thiết kế bảng thưởng và cách đặt lại điểm, Claude chốt.
+- **Đưa server lên mạng** để người khác chơi thử: đóng gói chạy được trên VPS, kết nối `wss://` qua TLS, sao lưu DB.
+
+**Lý do:** người dùng chọn chặn gian lận hẳn (kho đồ ở máy thì sửa được) và muốn chơi thử thật với người khác. Ghép
+theo khoảng điểm hẹp rồi nới dần thì trận sát sức hơn ghép tức thì.
+
 ### #69 · 2026-10-18 · Sảnh Luận Kiếm Đài, bậc theo điểm
 - Bấm lôi đài ở Home thì mở **Sảnh Luận Kiếm Đài** toàn màn hình. Sảnh gồm:
   - thẻ Hiệp Khách và Bao Phục thu nhỏ;

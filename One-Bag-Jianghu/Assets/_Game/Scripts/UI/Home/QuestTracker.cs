@@ -52,20 +52,35 @@ namespace OneBagJianghu.UI.Home
             if (service == null || GameBootstrap.Session?.Profile == null)
                 return;
             QuestDefinition quest = service.Active(GameBootstrap.Session.Profile);
-            gameObject.SetActive(quest != null);
             if (quest == null)
+            {
+                titleText.text = "Hành Tẩu Lục";
+                objectiveText.text = "Chưa có nhiệm vụ mới. Hãy tiếp tục hành tẩu giang hồ.";
+                kindText.text = string.Empty;
+                runner.SetRunning(false);
                 return;
+            }
             QuestProgress progress = service.Progress(GameBootstrap.Session.Profile, quest);
             titleText.text = "Hồi " + quest.Chapter + " · " + quest.Title;
             kindText.text = quest.Kind == "main" ? "CHÍNH" : "PHỤ";
             badgeImage.sprite = quest.Kind == "main" ? mainBadgeSprite : sideBadgeSprite;
-            objectiveText.text = service.ObjectiveLabel(quest) + "  " + progress.Current + "/" + progress.Target;
+            objectiveText.text = service.ObjectiveLabel(quest)
+                + "  "
+                + UiFormat.Number(progress.Current)
+                + "/"
+                + UiFormat.Number(progress.Target);
             runner.SetRunning(progress.Done);
         }
 
         private void HandleBodyClick()
         {
             QuestDefinition quest = service.Active(GameBootstrap.Session.Profile);
+            if (quest == null)
+            {
+                OpenLog();
+                return;
+            }
+
             if (quest == null || !service.Progress(GameBootstrap.Session.Profile, quest).Done)
                 GoToObjective();
             else if (IsQuestLogTutorialStep())

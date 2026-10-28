@@ -3,6 +3,7 @@ package com.onebagjianghu.server;
 import java.time.Instant;
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.function.Consumer;
 
 /** Per-WebSocket readiness, authentication, token and failed-login budget. */
 public final class SessionState
@@ -11,6 +12,7 @@ public final class SessionState
     private Long accountId;
     private String token;
     private final Deque<Instant> failedLogins = new ArrayDeque<>();
+    private Consumer<Envelope> sender = ignored -> { };
 
     public boolean isReady()
     {
@@ -57,6 +59,16 @@ public final class SessionState
     {
         accountId = null;
         token = null;
+    }
+
+    void sender(Consumer<Envelope> value)
+    {
+        sender = value;
+    }
+
+    void send(Envelope envelope)
+    {
+        sender.accept(envelope);
     }
 
     boolean loginAllowed(Instant now)

@@ -36,7 +36,6 @@ namespace OneBagJianghu.UI.Popups
         protected override void Awake()
         {
             base.Awake();
-            AddCreditsLine();
             masterVolumeSlider.onValueChanged.AddListener(HandleMasterVolume);
             musicVolumeSlider.onValueChanged.AddListener(HandleMusicVolume);
             sfxVolumeSlider.onValueChanged.AddListener(HandleSfxVolume);
@@ -49,22 +48,6 @@ namespace OneBagJianghu.UI.Popups
             quitButton.onClick.AddListener(ConfirmQuit);
             defaultsButton.onClick.AddListener(ResetDefaults);
             closeButton.onClick.AddListener(Close);
-        }
-
-        private void AddCreditsLine()
-        {
-            Text credits = Instantiate(heroNameText, panel);
-            credits.name = "AudioCredits";
-            credits.text = "Nhạc: Richard Guo · Tiếng động: Kenney (CC0)";
-            credits.fontSize = Mathf.Min(heroNameText.fontSize, 14);
-            credits.alignment = TextAnchor.LowerCenter;
-            credits.raycastTarget = false;
-            RectTransform rect = credits.rectTransform;
-            rect.anchorMin = new Vector2(0f, 0f);
-            rect.anchorMax = new Vector2(1f, 0f);
-            rect.pivot = new Vector2(.5f, 0f);
-            rect.anchoredPosition = new Vector2(0f, 8f);
-            rect.sizeDelta = new Vector2(-32f, 24f);
         }
 
         protected override void OnSetup(object data)
@@ -240,6 +223,7 @@ namespace OneBagJianghu.UI.Popups
             NetworkService network = GameBootstrap.Network;
             if (network == null || !network.IsAuthenticated)
             {
+                Close();
                 PopupManager.Show<AccountPopup>();
                 return;
             }
@@ -259,7 +243,14 @@ namespace OneBagJianghu.UI.Popups
                 return;
             }
 
-            GameBootstrap.Network.Logout(RefreshAccount, ShowAccountError);
+            GameBootstrap.Network.Logout(ReturnToLogin, ShowAccountError);
+        }
+
+        // Every account's data lives on the server (#70), so after logging out the game goes back to the login screen.
+        private void ReturnToLogin()
+        {
+            Close();
+            SceneFlow.Go(GameScene.Login);
         }
 
         private void RefreshAccount()
@@ -291,7 +282,6 @@ namespace OneBagJianghu.UI.Popups
         {
             if (!confirmed)
                 return;
-            GameBootstrap.Session?.SaveProfile();
 #if UNITY_EDITOR
             EditorApplication.isPlaying = false;
 #else

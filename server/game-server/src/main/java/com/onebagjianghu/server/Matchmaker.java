@@ -1,11 +1,10 @@
 package com.onebagjianghu.server;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Random;
 
-/** Filters by widening power bands, then samples among the ten nearest ratings. */
+/** Selects a random real ghost inside the current rating range. */
 public final class Matchmaker
 {
     public record Ghost(long accountId, String loadoutJson, int power, int rating) { }
@@ -17,26 +16,21 @@ public final class Matchmaker
         this.random = random;
     }
 
-    public Ghost choose(List<Ghost> ghosts, int power, int rating)
+    public Ghost choose(List<Ghost> ghosts, int rating, int range)
     {
-        for (double band : new double[] { 0.15, 0.30, Double.POSITIVE_INFINITY })
+        List<Ghost> candidates = new ArrayList<>();
+        for (Ghost ghost : ghosts)
         {
-            List<Ghost> candidates = new ArrayList<>();
-            for (Ghost ghost : ghosts)
+            if (Math.abs(ghost.rating() - rating) <= range)
             {
-                if (band == Double.POSITIVE_INFINITY || Math.abs(ghost.power() - power) <= power * band)
-                {
-                    candidates.add(ghost);
-                }
+                candidates.add(ghost);
             }
-            candidates.sort(Comparator.comparingInt(ghost -> Math.abs(ghost.rating() - rating)));
-            if (!candidates.isEmpty())
+        }
+        if (!candidates.isEmpty())
+        {
+            synchronized (random)
             {
-                int bound = Math.min(10, candidates.size());
-                synchronized (random)
-                {
-                    return candidates.get(random.nextInt(bound));
-                }
+                return candidates.get(random.nextInt(candidates.size()));
             }
         }
         return null;

@@ -34,7 +34,7 @@ namespace OneBagJianghu.Tests.EditMode
         }
 
         [Test]
-        public void ConfirmedPopupJoinSetsSectAndTamPhapLevel()
+        public void ConfirmedPopupJoinOnlyValidatesSectChoice()
         {
             // Arrange
             SectCatalog catalog = SectCatalog.LoadFromResources();
@@ -48,8 +48,8 @@ namespace OneBagJianghu.Tests.EditMode
 
             // Assert
             Assert.That(joined, Is.True, error);
-            Assert.That(profile.SectId, Is.EqualTo("han_son"));
-            Assert.That(profile.TamPhapLevel, Is.EqualTo(1));
+            Assert.That(profile.SectId, Is.Null);
+            Assert.That(profile.TamPhapLevel, Is.EqualTo(1), "TamPhapLevel keeps its default until the server answers");
         }
 
         [Test]

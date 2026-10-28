@@ -102,7 +102,6 @@ namespace OneBagJianghu.Tests.Play
             DeleteProfile();
             yield return Login("Storage Smoke");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             OwnedItem weapon =
@@ -116,7 +115,8 @@ namespace OneBagJianghu.Tests.Play
             profile.AddCurrency("bac", 10000);
             profile.AddMaterial("han_thiet", 100);
             profile.AddMaterial("binh_hon_tinh_thach", 10);
-            GameBootstrap.Session.SaveProfile();
+            GameBootstrap.Session.ApplyProfileForTests(profile);
+            profile = GameBootstrap.Session.Profile;
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
                 PopupManager.IsOpen<StoragePopup>(),

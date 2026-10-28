@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Core;
 using OneBagJianghu.Economy;
@@ -24,6 +25,9 @@ namespace OneBagJianghu.UI.Arena
         [SerializeField] private Text powerText;
         [SerializeField] private Text rewardedText;
         [SerializeField] private Text weeklyText;
+        [SerializeField] private Text rewardsText;
+        [SerializeField] private Text leaderboardEmptyText;
+        [SerializeField] private Text historyEmptyText;
         [SerializeField] private Image weeklyFill;
         [SerializeField] private Image rankBadge;
         [SerializeField] private Image heroPortrait;
@@ -57,6 +61,10 @@ namespace OneBagJianghu.UI.Arena
         [SerializeField] private UiButton enterShopButton;
         [SerializeField] private GameObject matchingLayer;
         [SerializeField] private RectTransform spinner;
+        [SerializeField] private Text matchingTimeText;
+        [SerializeField] private Text matchingRangeText;
+        [SerializeField] private Text matchingWidenText;
+        [SerializeField] private UiButton cancelMatchButton;
         [SerializeField] private GameObject versusCard;
         [SerializeField] private Text versusPlayerText;
         [SerializeField] private Text versusOpponentText;
@@ -74,9 +82,10 @@ namespace OneBagJianghu.UI.Arena
         private ArenaStatus arenaStatus;
         private ArenaResult pendingResult;
         private float matchingStartedAt;
+        private ArenaSearch activeSearch;
+        private bool awaitingSearch;
         private bool findWhenShown;
         private Coroutine versusRoutine;
-        private readonly ArenaMatchReceipt matchReceipt = new ArenaMatchReceipt();
 
         protected override void Awake()
         {
@@ -90,6 +99,7 @@ namespace OneBagJianghu.UI.Arena
             shopTab.onClick.AddListener(() => ShowTab(3));
             enterShopButton.onClick.AddListener(OpenReputationShop);
             enterBattleButton.onClick.AddListener(EnterBattle);
+            cancelMatchButton.onClick.AddListener(CancelMatch);
         }
 
         protected override void OnSetup(object data)
@@ -98,6 +108,12 @@ namespace OneBagJianghu.UI.Arena
             errorText.text = string.Empty;
             matchingLayer.SetActive(false);
             versusCard.SetActive(false);
+            weeklyFill.fillAmount = 0f;
+            weeklyText.text = "Đang tải mốc tuần…";
+            leaderboardEmptyText?.gameObject.SetActive(false);
+            historyEmptyText?.gameObject.SetActive(false);
+            // The popup is reused: only a match the session still holds may show the versus card again.
+            pendingResult = GameBootstrap.Session?.PendingArenaResult;
             ShowTab(0);
             BindProfile();
             SetGuide();
@@ -113,6 +129,7 @@ namespace OneBagJianghu.UI.Arena
 
         protected override void OnShown()
         {
+            PlayerProfile.ProgressChanged += HandleProgressChanged;
             if (findWhenShown)
             {
                 findWhenShown = false;
@@ -130,11 +147,14 @@ namespace OneBagJianghu.UI.Arena
             if (matchingLayer.activeSelf)
             {
                 spinner.Rotate(0f, 0f, -180f * Time.unscaledDeltaTime);
+                UpdateMatchingText(DateTimeOffset.UtcNow);
             }
         }
 
         protected override void OnHidden()
         {
+            PlayerProfile.ProgressChanged -= HandleProgressChanged;
+            CancelMatch();
             UnsubscribeNetwork();
         }
 
@@ -160,6 +180,13 @@ namespace OneBagJianghu.UI.Arena
             bool disconnected = state != NetworkState.Online;
             connectionBanner.SetActive(disconnected);
             findButton.GetComponent<Button>().interactable = !disconnected && pendingResult == null;
+            if (disconnected && awaitingSearch)
+            {
+                awaitingSearch = false;
+                activeSearch = null;
+                matchingLayer.SetActive(false);
+                ShowError("Mất kết nối, đã huỷ tìm trận");
+            }
         }
 
         private void RequestAll()
@@ -183,12 +210,20 @@ namespace OneBagJianghu.UI.Arena
             session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
             session.Profile.Materials.TryGetValue("chi_ton_ngoc_tuy", out int jade);
             reputationText.text = UiFormat.Number(reputation);
-            jadeText.text = jade.ToString();
+            jadeText.text = UiFormat.Number(jade);
             heroText.text = session.HeroName + "\n" + SectName(session.SectId)
                 + " · Tâm Pháp " + session.TamPhapLevel;
             powerText.text = "Chiến Uy " + UiFormat.Number(session.PlayerPower());
-            BindPortrait(heroPortrait);
+            BindPortrait(heroPortrait, false, null);
             BindMiniBag();
+        }
+
+        private void HandleProgressChanged()
+        {
+            if (IsShowing)
+            {
+                BindProfile();
+            }
         }
 
         private void BindMiniBag()
@@ -226,9 +261,10 @@ namespace OneBagJianghu.UI.Arena
         {
             arenaStatus = value;
             ArenaRankDefinition rank = ArenaRanks.Load().ForRating(value.Rating);
-            statusText.text = "Bậc " + rank.Name + "\nĐiểm " + value.Rating + "\nHạng "
-                + (value.Rank > 0 ? "#" + value.Rank : "Chưa xếp hạng") + "\nThắng " + value.Wins
-                + " · Thua " + value.Losses;
+            statusText.text = "Bậc " + rank.Name + "\nĐiểm " + UiFormat.Number(value.Rating) + "\nHạng "
+                + (value.Rank > 0 ? "#" + UiFormat.Number(value.Rank) : "Chưa xếp hạng") + "\nThắng "
+                + UiFormat.Number(value.Wins)
+                + " · Thua " + UiFormat.Number(value.Losses) + "\nCao nhất mùa: " + UiFormat.Number(value.PeakRating);
             rankBadge.sprite = RankSprite(rank.ImageKey);
             rankBadge.enabled = rankBadge.sprite != null;
             TimeSpan remaining = value.SeasonEndsAt - DateTimeOffset.Now;
@@ -241,15 +277,21 @@ namespace OneBagJianghu.UI.Arena
                 : Mathf.Clamp01(value.WeeklyWins / (float)value.WeeklyWinsTarget);
             weeklyText.text = value.WeeklyJadeClaimed
                 ? "Đã nhận Ngọc Tủy tuần này"
-                : "Thắng tuần " + value.WeeklyWins + "/" + value.WeeklyWinsTarget
+                : "Thắng tuần " + UiFormat.Number(value.WeeklyWins) + "/" + UiFormat.Number(value.WeeklyWinsTarget)
                     + " → 1 Chí Tôn Ngọc Tủy";
+            if (rewardsText != null)
+            {
+                rewardsText.text = BuildRewardsText(value.WeeklyWinsTarget);
+            }
             findButton.GetComponent<Button>().interactable = GameBootstrap.Network.State == NetworkState.Online;
+            GameBootstrap.Network.TryShowSeasonReward();
         }
 
         private void BindLeaderboard(LeaderboardResult value)
         {
             Clear(leaderboardContent);
-            foreach (LeaderboardEntry entry in value.Entries)
+            leaderboardEmptyText?.gameObject.SetActive(value.Entries == null || value.Entries.Count == 0);
+            foreach (LeaderboardEntry entry in value.Entries ?? new List<LeaderboardEntry>())
             {
                 LeaderboardRow row = Instantiate(leaderboardRowPrefab, leaderboardContent);
                 row.gameObject.SetActive(true);
@@ -273,7 +315,8 @@ namespace OneBagJianghu.UI.Arena
         private void BindHistory(ArenaHistoryResult value)
         {
             Clear(historyContent);
-            foreach (ArenaHistoryEntry entry in value.Entries)
+            historyEmptyText?.gameObject.SetActive(value.Entries == null || value.Entries.Count == 0);
+            foreach (ArenaHistoryEntry entry in value.Entries ?? new List<ArenaHistoryEntry>())
             {
                 ArenaHistoryRow row = Instantiate(historyRowPrefab, historyContent);
                 row.gameObject.SetActive(true);
@@ -298,25 +341,53 @@ namespace OneBagJianghu.UI.Arena
             errorText.text = string.Empty;
             matchingLayer.SetActive(true);
             matchingStartedAt = Time.unscaledTime;
+            awaitingSearch = true;
+            activeSearch = null;
+            matchingTimeText.text = "Đã chờ 00:00";
+            matchingRangeText.text = "Đang bắt đầu tìm đối thủ…";
+            matchingWidenText.text = string.Empty;
             findButton.GetComponent<Button>().interactable = false;
-            GameBootstrap.Network.RequestArenaBattle(GameBootstrap.Session.CurrentLoadoutJson,
+            GameBootstrap.Network.FindArenaMatch(GameBootstrap.Session.CurrentLoadoutJson,
                 GameBootstrap.Session.PlayerPower(),
+                HandleSearching,
                 HandleMatch,
                 HandleMatchError);
         }
 
+        private void HandleSearching(ArenaSearch search)
+        {
+            activeSearch = search;
+            UpdateMatchingText(DateTimeOffset.UtcNow);
+        }
+
         private void HandleMatch(ArenaResult result)
         {
+            bool matchedImmediately = activeSearch == null;
+            awaitingSearch = false;
+            activeSearch = null;
             pendingResult = result;
-            ArenaMatchLogic.StoreBattle(GameBootstrap.Session, result, matchReceipt);
-            GameBootstrap.Session.SaveProfile();
+            ArenaMatchLogic.StoreBattle(GameBootstrap.Session, result);
             if (!isActiveAndEnabled)
             {
                 return;
             }
 
-            float delay = Mathf.Max(0f, 1.2f - (Time.unscaledTime - matchingStartedAt));
+            float delay = matchedImmediately ? Mathf.Max(0f, 1.2f - (Time.unscaledTime - matchingStartedAt)) : 0f;
             StartCoroutine(ShowVersusAfter(delay));
+        }
+
+        private void CancelMatch()
+        {
+            if (!awaitingSearch)
+            {
+                return;
+            }
+
+            awaitingSearch = false;
+            activeSearch = null;
+            matchingLayer.SetActive(false);
+            GameBootstrap.Network?.CancelArenaSearch();
+            HandleNetworkState(GameBootstrap.Network == null ? NetworkState.Offline : GameBootstrap.Network.State);
         }
 
         private IEnumerator ShowVersusAfter(float delay)
@@ -332,12 +403,12 @@ namespace OneBagJianghu.UI.Arena
             versusOpponentBadge.sprite = RankSprite(enemyRank.ImageKey);
             versusPlayerBadge.enabled = versusPlayerBadge.sprite != null;
             versusOpponentBadge.enabled = versusOpponentBadge.sprite != null;
-            BindPortrait(versusPlayerPortrait);
-            BindPortrait(versusOpponentPortrait);
-            versusPlayerRankText.text = ownRank.Name + " · " + pendingResult.RatingBefore;
-            versusOpponentRankText.text = enemyRank.Name + " · " + pendingResult.Opponent.Rating;
-            versusPlayerPowerText.text = "Chiến Uy " + GameBootstrap.Session.PlayerPower();
-            versusOpponentPowerText.text = "Chiến Uy " + pendingResult.Opponent.Power;
+            BindPortrait(versusPlayerPortrait, false, null);
+            BindPortrait(versusOpponentPortrait, true, pendingResult.Opponent.Name + ":" + pendingResult.Opponent.Sect);
+            versusPlayerRankText.text = ownRank.Name + " · " + UiFormat.Number(pendingResult.RatingBefore);
+            versusOpponentRankText.text = enemyRank.Name + " · " + UiFormat.Number(pendingResult.Opponent.Rating);
+            versusPlayerPowerText.text = "Chiến Uy " + UiFormat.Number(GameBootstrap.Session.PlayerPower());
+            versusOpponentPowerText.text = "Chiến Uy " + UiFormat.Number(pendingResult.Opponent.Power);
             versusPlayerSectText.text = SectName(GameBootstrap.Session.SectId);
             versusOpponentSectText.text = SectName(pendingResult.Opponent.Sect)
                 + (pendingResult.Opponent.Bot ? " · máy" : string.Empty);
@@ -362,6 +433,8 @@ namespace OneBagJianghu.UI.Arena
                 StopCoroutine(versusRoutine);
             }
 
+            pendingResult = null;
+            versusRoutine = null;
             GameBootstrap.Session.SelectedMode = GameMode.Pvp;
             Close();
             SceneFlow.Go(GameScene.Gameplay);
@@ -369,6 +442,8 @@ namespace OneBagJianghu.UI.Arena
 
         private void HandleMatchError(string message)
         {
+            awaitingSearch = false;
+            activeSearch = null;
             pendingResult = null;
             matchingLayer.SetActive(false);
             ShowError(message);
@@ -466,6 +541,27 @@ namespace OneBagJianghu.UI.Arena
             }
         }
 
+        private void UpdateMatchingText(DateTimeOffset now)
+        {
+            if (activeSearch == null)
+            {
+                return;
+            }
+
+            TimeSpan waited = now - activeSearch.StartedAt;
+            TimeSpan untilWiden = activeSearch.NextWidenAt - now;
+            matchingTimeText.text = "Đã chờ " + FormatClock(waited);
+            matchingRangeText.text = "Tìm đối thủ quanh " + UiFormat.Number(activeSearch.Rating)
+                + " điểm (±" + activeSearch.Range + ")";
+            matchingWidenText.text = "Nới khoảng sau " + FormatClock(untilWiden);
+        }
+
+        private static string FormatClock(TimeSpan value)
+        {
+            int seconds = Math.Max(0, (int)value.TotalSeconds);
+            return (seconds / 60).ToString("00") + ":" + (seconds % 60).ToString("00");
+        }
+
         private static string SectName(string sectId)
         {
             if (string.IsNullOrWhiteSpace(sectId))
@@ -477,10 +573,25 @@ namespace OneBagJianghu.UI.Arena
             return catalog.TryGet(sectId, out SectInfo sect) ? sect.Name : "Vô Môn Phái";
         }
 
-        private static void BindPortrait(Image target)
+        public static string BuildRewardsText(int weeklyWinsTarget)
+        {
+            string target = weeklyWinsTarget > 0 ? UiFormat.Number(weeklyWinsTarget) : "—";
+            return target + " thắng tuần → 1 Chí Tôn Ngọc Tủy\n\n"
+                + "Thắng 30 / thua 10 Danh Vọng\n10 trận đầu mỗi ngày\n\n"
+                + "Thưởng cuối mùa theo hạng:\n"
+                + "Hạng 1: 3.000 Danh Vọng · 3 Ngọc Tủy\n"
+                + "Hạng 2–3: 2.000 Danh Vọng · 2 Ngọc Tủy\n"
+                + "Hạng 4–10: 1.200 Danh Vọng · 1 Ngọc Tủy\n"
+                + "Hạng 11–50: 600 Danh Vọng · 0 Ngọc Tủy\n"
+                + "Sang mùa mới đặt lại 1.000 điểm.";
+        }
+
+        private static void BindPortrait(Image target, bool opponent, string stableId)
         {
             PveArtLibrary art = PveArtLibrary.Load();
-            target.sprite = art != null && art.TryGet("hero_portrait", out Sprite sprite) ? sprite : null;
+            target.sprite = opponent
+                ? art?.ResolveArenaPortrait(stableId)
+                : art != null && art.TryGet("hero_portrait", out Sprite sprite) ? sprite : null;
             target.enabled = target.sprite != null;
         }
 

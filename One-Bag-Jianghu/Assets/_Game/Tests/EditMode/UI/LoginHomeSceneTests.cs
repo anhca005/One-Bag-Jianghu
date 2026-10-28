@@ -128,7 +128,8 @@ namespace OneBagJianghu.Tests.UI
             HomeHotspot sect = Find("Canvas/Hotspots/Hotspot_Sect").GetComponent<HomeHotspot>();
             var sessionObject = new GameObject("TestSession");
             var session = sessionObject.AddComponent<GameSession>();
-            session.HeroLevel = heroLevel;
+            var profile = new OneBagJianghu.Economy.PlayerProfile { HeroLevel = heroLevel };
+            session.ApplyServerProfile(Newtonsoft.Json.Linq.JObject.Parse(profile.ToJson()), 1);
             sect.SetAvailableForLevel(session.HeroLevel);
             Assert.That(sect.IsLocked, Is.EqualTo(expectedLocked));
             Assert.That(sect.RequiredLevel, Is.EqualTo(10));

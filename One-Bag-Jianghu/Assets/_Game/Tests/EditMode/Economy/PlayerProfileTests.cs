@@ -104,51 +104,6 @@ namespace OneBagJianghu.Tests.Economy
         }
 
         [Test]
-        public void StoreMigratesLegacyPlayerPrefsValuesAndKeepsStarter()
-        {
-            const string name = "Legacy Hero";
-            const string sect = "thai_thanh";
-            var values = new Dictionary<string, string>
-            {
-                [ProfileStore.HeroNameKey] = name,
-                [ProfileStore.SectIdKey] = sect
-            };
-            bool cleared = false;
-            string path = Path.Combine(temporaryDirectory, "profile.json");
-            var store =
-                new ProfileStore(path,
-                starter,
-                key =>
-                values.TryGetValue(key,
-                out string value) ?
-                value :
-                string.Empty,
-                () =>
-                cleared =
-                true);
-            PlayerProfile profile = store.LoadOrCreate();
-            Assert.That(profile.HeroName, Is.EqualTo(name));
-            Assert.That(profile.SectId, Is.EqualTo(sect));
-            Assert.That(profile.Items.Count, Is.EqualTo(2)); // starter: 1 sword + 1 armor (decision #39)
-            Assert.That(profile.Loadout, Is.Not.Empty);
-            Assert.That(cleared, Is.True);
-            Assert.That(File.Exists(path), Is.True);
-        }
-
-        [Test]
-        public void SecondSaveKeepsOneLoadableBackup()
-        {
-            string path = Path.Combine(temporaryDirectory, "profile.json");
-            var store = new ProfileStore(path, starter, _ => string.Empty);
-            PlayerProfile profile = store.LoadOrCreate();
-            profile.HeroName = "Second";
-            store.Save(profile);
-            Assert.That(File.Exists(path + ".bak"), Is.True);
-            Assert.That(PlayerProfile.FromJson(File.ReadAllText(path + ".bak")).HeroName,
-                Is.Empty);
-        }
-
-        [Test]
         public void StarterKitHasWeaponAndExpectedCurrencies()
         {
             PlayerProfile profile = starter.CreateProfile();

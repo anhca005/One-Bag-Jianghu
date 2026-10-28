@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Economy;
-using OneBagJianghu.Pve;
 using Newtonsoft.Json.Linq;
-using OneBagJianghu.UI.Popups;
 using OneBagJianghu.Net;
 using UnityEngine;
 
@@ -18,69 +16,11 @@ namespace OneBagJianghu.Core
         ArenaReplay
     }
 
-    public sealed class ProfileStore
+    [Obsolete("Profiles are server-authoritative. This type only removes obsolete local save files.")]
+    public static class ProfileStore
     {
-        public const string HeroNameKey = "OneBagJianghu.HeroName";
+        public static string SaveDirectory => Application.persistentDataPath;
 
-        /// <summary>
-        /// Where the profile is saved. The editor and a built game share Application.persistentDataPath,
-        /// so builds use their own sub-folder and never pick up the editor's progress.
-        /// </summary>
-        public static string SaveDirectory
-        {
-            get
-            {
-#if UNITY_EDITOR
-                return Application.persistentDataPath;
-#else
-                string directory = Path.Combine(Application.persistentDataPath, "save");
-                Directory.CreateDirectory(directory);
-                return directory;
-#endif
-            }
-        }
-        public const string SectIdKey = "OneBagJianghu.SectId";
-        private readonly string path;
-        private readonly Func<string, string> readLegacy;
-        private readonly Action clearLegacy;
-        private readonly StarterKit starter;
-        public string FilePath => path;
-        public int? LastMigrationFrom
-        {
-            get;
-            private set;
-        }
-
-        public ProfileStore(string path, StarterKit starter, Func<string, string> readLegacy, Action clearLegacy = null)
-        {
-            this.path = path ?? throw new ArgumentNullException(nameof(path));
-            this.starter = starter ?? throw new ArgumentNullException(nameof(starter));
-            this.readLegacy = readLegacy ?? throw new ArgumentNullException(nameof(readLegacy));
-            this.clearLegacy = clearLegacy;
-        }
-
-        public static ProfileStore CreateDefault()
-        {
-            TextAsset asset = Resources.Load<TextAsset>("Data/starter");
-            if (asset == null)
-                throw new InvalidOperationException("Could not load Resources/Data/starter.json.");
-            return new ProfileStore(Path.Combine(SaveDirectory,
-                "profile.json"),
-                StarterKit.Parse(asset.text),
-                key => PlayerPrefs.GetString(key,
-                string.Empty),
-                () =>
-            {
-                PlayerPrefs.DeleteKey(HeroNameKey);
-                PlayerPrefs.DeleteKey(SectIdKey);
-                PlayerPrefs.Save();
-            });
-        }
-
-        /// <summary>
-        /// Deletes the saved progress (profile, its backup/temp copies, the old loadout file) and the progress keys
-        /// in PlayerPrefs. Settings and the server URL are kept. Returns the names of the files deleted.
-        /// </summary>
         public static List<string> DeleteSaveData()
         {
             string[] names = { "profile.json", "profile.json.bak", "profile.json.tmp", "loadout.json" };
@@ -89,96 +29,20 @@ namespace OneBagJianghu.Core
             {
                 string path = Path.Combine(SaveDirectory, name);
                 if (!File.Exists(path))
+                {
                     continue;
+                }
+
                 File.Delete(path);
                 deleted.Add(name);
             }
 
-            PlayerPrefs.DeleteKey(HeroNameKey);
-            PlayerPrefs.DeleteKey(SectIdKey);
-            // OneBagJianghu.ServerUrl is connection configuration, not game progress.
-            PlayerPrefs.Save();
             return deleted;
         }
-
-        public PlayerProfile LoadOrCreate()
-        {
-            string backup = path + ".bak";
-            if (File.Exists(path))
-            {
-                try
-                {
-                    return Read(path);
-                }
-                catch (FormatException) when (File.Exists(backup))
-                {
-                    PlayerProfile recovered = Read(backup);
-                    File.Copy(backup, path, true);
-                    return recovered;
-                }
-            }
-
-            if (File.Exists(backup))
-            {
-                PlayerProfile recovered = Read(backup);
-                Save(recovered);
-                return recovered;
-            }
-
-            PlayerProfile profile = starter.CreateProfile(readLegacy(HeroNameKey), EmptyToNull(readLegacy(SectIdKey)));
-            Save(profile);
-            clearLegacy?.Invoke();
-            return profile;
-        }
-
-        public void Save(PlayerProfile profile)
-        {
-            if (profile == null)
-                throw new ArgumentNullException(nameof(profile));
-            string directory = Path.GetDirectoryName(path);
-            if (!string.IsNullOrEmpty(directory))
-                Directory.CreateDirectory(directory);
-            string temporary = path + ".tmp";
-            File.WriteAllText(temporary, profile.ToJson());
-            try
-            {
-                if (File.Exists(path))
-                    File.Replace(temporary, path, path + ".bak");
-                else
-                    File.Move(temporary, path);
-            }
-            finally
-            {
-                if (File.Exists(temporary))
-                    File.Delete(temporary);
-            }
-        }
-
-        private PlayerProfile Read(string source)
-        {
-            try
-            {
-                string json = File.ReadAllText(source);
-                int version = JObject.Parse(json)["version"]?.Value<int>() ?? 1;
-                LastMigrationFrom = version < PlayerProfile.CurrentVersion ? version : null;
-                return PlayerProfile.FromJson(json, ItemCatalog.LoadFromResources());
-            }
-            catch (Newtonsoft.Json.JsonException exception)
-            {
-                throw new FormatException($"Could not parse player profile '{source}': {exception.Message}", exception);
-            }
-            catch (Exception exception) when (exception is IOException || exception is UnauthorizedAccessException)
-            {
-                throw new IOException($"Could not read player profile '{source}': {exception.Message}", exception);
-            }
-        }
-
-        private static string EmptyToNull(string value) => string.IsNullOrWhiteSpace(value) ? null : value;
     }
 
     public sealed class GameSession : MonoBehaviour
     {
-        private ProfileStore store;
         public PlayerProfile Profile
         {
             get;
@@ -188,51 +52,31 @@ namespace OneBagJianghu.Core
         public string HeroName
         {
             get => Profile?.HeroName ?? string.Empty;
-            set
-            {
-                EnsureProfile();
-                Profile.HeroName = value ?? string.Empty;
-            }
         }
 
         public string SectId
         {
             get => Profile?.SectId;
-            set
-            {
-                EnsureProfile();
-                Profile.SectId = value;
-            }
         }
 
         public int TamPhapLevel
         {
             get => Profile?.TamPhapLevel ?? 1;
-            set
-            {
-                EnsureProfile();
-                Profile.TamPhapLevel = value;
-            }
         }
 
         public int HeroLevel
         {
             get => Profile?.HeroLevel ?? 1;
-            set
-            {
-                EnsureProfile();
-                Profile.HeroLevel = value;
-            }
         }
 
         public string CurrentLoadoutJson
         {
             get => Profile == null ? string.Empty : BuildEngineLoadoutJson(Profile, ItemCatalog.LoadFromResources());
-            set
-            {
-                EnsureProfile();
-                ImportEngineLoadout(value);
-            }
+        }
+        public long ProfileRevision
+        {
+            get;
+            private set;
         }
 
         public GameMode SelectedMode
@@ -269,6 +113,23 @@ namespace OneBagJianghu.Core
         {
             get;
             private set;
+        }
+        public JObject PendingPveBattle
+        {
+            get;
+            private set;
+        }
+
+        public void StorePveBattle(JObject payload)
+        {
+            PendingPveBattle = payload;
+        }
+
+        public JObject TakePveBattle()
+        {
+            JObject payload = PendingPveBattle;
+            PendingPveBattle = null;
+            return payload;
         }
 
         public void StoreArenaResult(ArenaResult result)
@@ -325,69 +186,35 @@ namespace OneBagJianghu.Core
 
         public void LoadProfile()
         {
-            store = ProfileStore.CreateDefault();
-            Profile = store.LoadOrCreate();
+            Profile = null;
+            ProfileRevision = 0;
+        }
+
+        /// <summary>Replaces the in-memory profile with the authoritative server snapshot.</summary>
+        public void ApplyServerProfile(JToken json, long revision)
+        {
+            if (json == null || json.Type == JTokenType.Null)
+            {
+                return;
+            }
+
+            Profile = PlayerProfile.FromJson(json.ToString(Newtonsoft.Json.Formatting.None),
+                ItemCatalog.LoadFromResources());
             Profile.EnsureStorage(ItemCatalog.LoadFromResources());
-            Profile.Currencies.TryGetValue("bac", out long silver);
-            string migration = store.LastMigrationFrom.HasValue ? ", migratedFrom=v"
-                + store.LastMigrationFrom.Value : string.Empty;
-            Debug
-                .Log(
-                    $"[Profile] Load path={store.FilePath}, version={Profile.Version}{migration}, " +
-                    $"items={Profile.Items.Count}, " +
-                    $"materialStacks={Profile.Storage.MaterialStacks.Count}, Bạc={silver}");
-            if (Profile.Storage.Overflow.Count > 0)
-                Debug
-                    .LogWarning(
-                        $"[Profile] Migration overflow items={Profile.Storage.Overflow.Count}: " +
-                        string.Join(",", Profile.Storage.Overflow));
+            ProfileRevision = revision;
+            PlayerProfile.NotifyProgressChanged();
         }
 
-        public void SaveProfile()
+        /// <summary>Applies an in-memory profile snapshot for tests without writing local save data.</summary>
+        public void ApplyProfileForTests(PlayerProfile profile)
         {
-            EnsureProfile();
-            store ??= ProfileStore.CreateDefault();
-            store.Save(Profile);
-            Debug.Log("[Profile] Save path=" + store.FilePath);
-        }
+            if (profile == null)
+            {
+                throw new ArgumentNullException(nameof(profile));
+            }
 
-        public void ResetProfile()
-        {
-            TextAsset asset = Resources.Load<TextAsset>("Data/starter");
-            Profile = StarterKit.Parse(asset.text).CreateProfile(HeroName, SectId);
-            Profile.EnsureStorage(ItemCatalog.LoadFromResources());
-            SaveProfile();
-            Debug
-                .Log(
-                    $"[Profile] Reset to starter kit: items={Profile.Items.Count}, " +
-                    $"materialStacks={Profile.Storage.MaterialStacks.Count}");
+            ApplyServerProfile(JToken.Parse(profile.ToJson()), ProfileRevision);
         }
-
-#if UNITY_EDITOR || DEVELOPMENT_BUILD
-        public void WipeAllData()
-        {
-            List<string> deleted = ProfileStore.DeleteSaveData();
-            store = null;
-            Profile = CreateFreshProfile();
-            SelectedMode = GameMode.Pve;
-            CurrentPveStageId = null;
-            PendingPveMapStageId = null;
-            ShopRuntimeClock.Reset();
-            Debug.Log("[Cheat] Wipe all data: deleted=" +
-                (deleted.Count == 0 ? "none" : string.Join(",", deleted)));
-        }
-
-        private static PlayerProfile CreateFreshProfile()
-        {
-            TextAsset asset = Resources.Load<TextAsset>("Data/starter");
-            if (asset == null)
-                throw new InvalidOperationException("Could not load Resources/Data/starter.json.");
-            PlayerProfile profile = StarterKit.Parse(asset.text).CreateProfile();
-            profile.EnsureStorage(ItemCatalog.LoadFromResources());
-            new StaminaService(StaminaConfig.Load()).Refresh(profile.Pve, DateTimeOffset.UtcNow);
-            return profile;
-        }
-#endif
 
         public int PlayerPower()
         {
@@ -443,48 +270,5 @@ namespace OneBagJianghu.Core
                 Profile = new PlayerProfile();
         }
 
-        private void ImportEngineLoadout(string json)
-        {
-            ItemCatalog catalog = ItemCatalog.LoadFromResources();
-            if (Profile.Storage == null)
-                Profile.EnsureStorage(catalog);
-            var previous = new List<string>();
-            foreach (LoadoutPlacement placement in Profile.Loadout)
-                previous.Add(placement.Uid);
-            Profile.Loadout.Clear();
-            var used = ImportPlacements(json, catalog);
-            // Items in the bag are never in storage (decision #27): move bagged items out of
-            // storage and put items that left the bag back in.
-            Profile.Storage.Items.RemoveAll(p => used.Contains(p.Uid));
-            var storage = new StorageGrid(Profile, catalog);
-            foreach (string uid in previous)
-            {
-                if (used.Contains(uid) || Profile.Storage.Items.Exists(p => p.Uid == uid))
-                    continue;
-                OwnedItem owned = Profile.FindItem(uid);
-                if (owned != null && !storage.TryPlaceItem(owned))
-                    Debug.LogWarning("[Bag] Tàng Bảo Các không đủ chỗ cho " + owned.ItemId + " khi thay Bao Phục.");
-            }
-        }
-
-        private HashSet<string> ImportPlacements(string json, ItemCatalog catalog)
-        {
-            var used = new HashSet<string>(StringComparer.Ordinal);
-            if (string.IsNullOrWhiteSpace(json))
-                return used;
-            BagGrid grid = LoadoutSerializer.FromJson(json, catalog, out LoadoutMeta meta);
-            // Imported layouts cannot overwrite the permanent profile sect choice.
-            foreach (PlacedItem placed in grid.Items)
-            {
-                OwnedItem owned = Profile.Items.Find(item => item.ItemId == placed.Item.Id
-                    && item.Tier == placed.Tier
-                    && !used.Contains(item.Uid));
-                owned ??= Profile.AddItem(placed.Item.Id, placed.Tier);
-                used.Add(owned.Uid);
-                Profile.Loadout.Add(new LoadoutPlacement { Uid = owned.Uid, X = placed.X, Y = placed.Y });
-            }
-
-            return used;
-        }
     }
 }

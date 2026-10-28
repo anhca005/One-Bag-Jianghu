@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5924152210763007330}
   - component: {fileID: 9086196065862410084}
   - component: {fileID: 404722472110456309}
-  - component: {fileID: 8626244872438880073}
+  - component: {fileID: 6700054052141712898}
   m_Layer: 0
   m_Name: TutorialOverlay
   m_TagString: Untagged
@@ -119,7 +119,7 @@ MonoBehaviour:
   guideLine: {fileID: 8180283809155335929}
   portrait: {fileID: 7742908044637583710}
   skipButton: {fileID: 8166954978326084144}
---- !u!114 &8626244872438880073
+--- !u!114 &6700054052141712898
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

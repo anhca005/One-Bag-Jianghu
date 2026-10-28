@@ -57,7 +57,8 @@ namespace OneBagJianghu.EditorTools.Building
                 Text message = AddText(panel, "Message", "Nội dung thông báo", 25, new Vector2(0.08f, 0.3f),
                     new Vector2(0.92f, 0.7f));
                 // The message popup's only button carries a runtime label ("Đã hiểu"…), so it stays a text button.
-                UiButton close = AddButton(panel, "Close Button", "Đóng", true, new Vector2(0.5f, 0.14f), false);
+                UiButton close = AddButton(panel, "Close Button", "Đã hiểu", true,
+                    new Vector2(0.5f, 0.14f), false);
                 UiBuild.Set(popup, "titleText", title);
                 UiBuild.Set(popup, "messageText", message);
                 UiBuild.Set(popup, "closeButton", close);
@@ -112,6 +113,12 @@ namespace OneBagJianghu.EditorTools.Building
                     .78f, 800f, 220f, 54f);
                 UiButton close = AddSettingsButton(panel, "Close Button", "Đóng", true,
                     .66f, 836f, 220f, 54f);
+                Text credits = AddText(panel, "Audio Credits",
+                    "Nhạc: Richard Guo · Tiếng động: Kenney (CC0)",
+                    14,
+                    new Vector2(.08f, .027f),
+                    new Vector2(.92f, .057f));
+                credits.raycastTarget = false;
                 UiBuild.Set(popup, "masterVolumeSlider", master);
                 UiBuild.Set(popup, "musicVolumeSlider", music);
                 UiBuild.Set(popup, "sfxVolumeSlider", sfx);

@@ -237,6 +237,7 @@ MonoBehaviour:
   statText: {fileID: 3315738848936119806}
   typeText: {fileID: 5489729110937423653}
   priceText: {fileID: 8372341791483289269}
+  currencyIcon: {fileID: 6339274865790478072}
   oldPriceText: {fileID: 9055870741762612511}
   discountText: {fileID: 7430935578333902915}
   buyButton: {fileID: 2273395208413055318}

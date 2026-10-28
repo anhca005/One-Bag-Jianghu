@@ -7,6 +7,7 @@ using OneBagJianghu.Pve;
 using OneBagJianghu.Quests;
 using OneBagJianghu.UI.Common;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OneBagJianghu.UI.Popups
 {
@@ -17,6 +18,7 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField] private UiButton closeButton;
         private QuestCatalog catalog;
         private QuestService service;
+        private bool claimPending;
 
         public int RowCount => content == null ? 0 : content.childCount - 1;
 
@@ -35,11 +37,14 @@ namespace OneBagJianghu.UI.Popups
                 GameSession.LoadMaterialCatalog(),
                 ItemCatalog.LoadFromResources());
             Refresh();
+            PlayerProfile.ProgressChanged += HandleProgressChanged;
             OnboardingRuntime.PublishQuestLogOpened(HasClaimableQuest());
         }
 
         protected override void OnHidden()
         {
+            PlayerProfile.ProgressChanged -= HandleProgressChanged;
+            claimPending = false;
             base.OnHidden();
             OnboardingRuntime.Publish("quest_log_closed");
         }
@@ -65,7 +70,7 @@ namespace OneBagJianghu.UI.Popups
                     progress,
                     claimed,
                     isActive,
-                    GiverName(quest.Giver),
+                    GiverName(quest.Giver, PveCatalog.Load()),
                     service.ObjectiveLabel(quest));
                 row.ClaimButton.onClick.AddListener(Claim);
                 if (isActive && progress.Done)
@@ -95,43 +100,91 @@ namespace OneBagJianghu.UI.Popups
 
         private void Claim()
         {
-            if (ClaimActive(service))
-                Refresh();
+            if (claimPending)
+            {
+                return;
+            }
+
+            claimPending = true;
+            SetClaimButtons(false);
+            ClaimActive(service, HandleClaimFinished);
         }
 
         /// <summary>Claims the active quest's reward and shows it; the Home quest tracker claims through this too.</summary>
-        public static bool ClaimActive(QuestService quests)
+        public static bool ClaimActive(QuestService quests, System.Action completed = null)
         {
-            QuestClaimResult result = quests.Claim(GameBootstrap.Session.Profile);
+            PlayerProfile preview = PlayerProfile.FromJson(GameBootstrap.Session.Profile.ToJson());
+            QuestDefinition quest = quests.Active(GameBootstrap.Session.Profile);
+            QuestClaimResult result = quests.Claim(preview);
             if (!result.Success)
             {
                 PopupManager.Show<MessagePopup>(
                     new MessagePopupData("Chưa thể nhận thưởng", result.Error, "Đóng"));
+                completed?.Invoke();
                 return false;
             }
-            GameBootstrap.Session.SaveProfile();
-            AudioManager.Instance?.Play("reward");
-            PopupManager.Show<MessagePopup>(
-                new MessagePopupData("Nhận thưởng", RewardText(result.Reward), "Đã nhận"));
+            GameBootstrap.Network.ClaimQuest(quest.Id,
+                _ => HandleClaimed(result.Reward, completed),
+                message => HandleClaimError(message, completed));
             return true;
+        }
+
+        private static void HandleClaimed(QuestReward reward, System.Action completed)
+        {
+            AudioManager.Instance?.Play("reward");
+            OnboardingRuntime.Publish("quest_claimed");
+            PopupManager.Show<MessagePopup>(
+                new MessagePopupData("Nhận thưởng", RewardText(reward), "Đã nhận"));
+            completed?.Invoke();
+        }
+
+        private static void HandleClaimError(string message, System.Action completed)
+        {
+            PopupManager.Show<MessagePopup>(
+                new MessagePopupData("Chưa thể nhận thưởng", message, "Đóng"));
+            completed?.Invoke();
+        }
+
+        private void HandleClaimFinished()
+        {
+            claimPending = false;
+            Refresh();
+        }
+
+        private void HandleProgressChanged()
+        {
+            if (IsShowing)
+            {
+                Refresh();
+            }
+        }
+
+        private void SetClaimButtons(bool interactable)
+        {
+            foreach (Button button in content.GetComponentsInChildren<Button>(true))
+            {
+                if (button.gameObject != closeButton.gameObject)
+                {
+                    button.interactable = interactable;
+                }
+            }
         }
 
         private static string RewardText(QuestReward reward)
         {
-            string text = reward.Silver + " Bạc · " + reward.HeroExp + " EXP";
+            string text = UiFormat.Number(reward.Silver) + " Bạc · " + UiFormat.Number(reward.HeroExp) + " EXP";
             MaterialCatalog materials = GameSession.LoadMaterialCatalog();
             foreach (System.Collections.Generic.KeyValuePair<string, int> value in reward.Materials)
-                text += " · " + materials.Get(value.Key).Name + " x" + value.Value;
+                text += " · " + materials.Get(value.Key).Name + " x" + UiFormat.Number(value.Value);
             return text;
         }
 
-        private static string GiverName(string id)
+        internal static string GiverName(string id, PveCatalog pve)
         {
-            if (id == "lao_tieu_phu")
-                return "Lục Tiêu Phu";
-            if (id == "phong_loi")
-                return "Phong Vũ";
-            return id;
+            PveCharacter character = pve?.GetCharacter(id);
+            return character == null || string.IsNullOrWhiteSpace(character.Name)
+                ? "Người trong giang hồ"
+                : character.Name;
         }
     }
 }

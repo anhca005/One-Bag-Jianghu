@@ -47,7 +47,7 @@ trả `error unauthorized`.
 | C→S | `register` | `{ "username": "...", "password": "...", "heroName": "..." }` |
 | C→S | `login` | `{ "username": "...", "password": "..." }` |
 | C→S | `resume` | `{ "token": "..." }` |
-| S→C | `auth_ok` | `{ "accountId": 12, "username": "...", "heroName": "...", "token": "...", "expiresAt": "ISO-8601" }` |
+| S→C | `auth_ok` | `{ "accountId": 12, "username": "...", "heroName": "...", "token": "...", "expiresAt": "ISO-8601", "seasonReward": <SeasonReward>? }` |
 | C→S | `logout` | `{}`: xoá token đang dùng; server trả `logout_ok {}` |
 
 - `username`: 3–20 ký tự `[a-z0-9_]`, server đổi về chữ thường. `password`: 6–64 ký tự. `heroName`: 1–24 ký tự, bỏ
@@ -63,20 +63,26 @@ trả `error unauthorized`.
 |---|---|---|
 | C→S | `arena_status` | `{}` |
 | S→C | `arena_status_ok` | `<ArenaStatus>` |
-| C→S | `arena_battle` | `{ "loadout": <Loadout>, "power": 1234 }` |
 | S→C | `arena_result` | xem dưới |
 | C→S | `leaderboard` | `{ "limit": 50 }` (tối đa 50) |
 | S→C | `leaderboard_ok` | `{ "seasonId": 1, "entries": [ { "rank": 1, "heroName": "...", "rating": 1240, "wins": 9, "losses": 2 } ], "self": { "rank": 17, "rating": 1032 } }` |
+| C→S | `season_reward_seen` | `{ "seasonId": 1 }` |
+| S→C | `season_reward_seen_ok` | `{ "seasonId": 1 }` |
 
 `<ArenaStatus>`:
 
 ```json
 {
   "seasonId": 1, "seasonEndsAt": "2026-11-15T00:00:00+07:00",
-  "rating": 1000, "rank": 17, "wins": 3, "losses": 1,
-  "rewardedLeftToday": 6, "weeklyWins": 3, "weeklyWinsTarget": 10, "weeklyJadeClaimed": false
+  "rating": 1000, "peakRating": 1048, "rank": 17, "wins": 3, "losses": 1,
+  "rewardedLeftToday": 6, "weeklyWins": 3, "weeklyWinsTarget": 15, "weeklyJadeClaimed": false,
+  "seasonReward": { "seasonId": 1, "rank": 17, "rating": 1032, "reputation": 600, "jade": 0 }
 }
 ```
+
+`seasonReward` là `<SeasonReward>` và chỉ có khi phần thưởng chưa được xem. Nó xuất hiện trong cả `auth_ok` và
+`arena_status_ok` cho tới khi client gửi `season_reward_seen` đúng `seasonId`. Server chốt mùa 28 ngày theo UTC+7,
+lưu hạng và điểm cuối mùa, rồi đặt điểm và `peakRating` mùa mới về 1.000. `peakRating` chỉ được lưu, chưa dùng tính thưởng.
 
 `arena_result`:
 
@@ -94,6 +100,30 @@ trả `error unauthorized`.
 - Client cộng `reward` vào hồ sơ trên máy ngay khi nhận `arena_result`, trước khi phát lại trận.
 - Lỗi: `invalid_loadout` (kèm thông báo của engine), `unauthorized`.
 - Ghép trận, Elo, mùa, mốc thưởng: theo #68. Điểm không bao giờ xuống dưới 1000, kể cả điểm của ghost bị đánh thua.
+- Mốc Ngọc Tủy tuần là 15 trận thắng; client phải đọc `weeklyWinsTarget`, không viết cứng con số này.
+
+### Hàng chờ ghép trận (#70)
+
+Thay `arena_battle`. Trận vẫn đánh với ghost, nhưng server chỉ ghép khi có ghost trong khoảng điểm đang tìm.
+
+| Chiều | `type` | `payload` |
+|---|---|---|
+| C→S | `arena_find` | `{ "loadout": <Loadout>, "power": 1234 }` |
+| S→C | `arena_searching` | `{ "searchId": "uuid", "rating": 1032, "range": 50, "startedAt": "ISO-8601", "nextWidenAt": "ISO-8601" }` |
+| S→C | `arena_result` | như cũ, thêm `"searchId"` |
+| C→S | `arena_cancel` | `{}` |
+| S→C | `arena_cancel_ok` | `{ "searchId": "uuid" }` |
+
+- Nhận `arena_find` thì server lưu ghost mới của người chơi, rồi tìm ngay các ghost người thật (không phải của mình)
+  có điểm trong `rating ± range`, với `range` bắt đầu = 50:
+  - **có:** chọn ngẫu nhiên một ghost, đánh luôn, trả `arena_result` (`replyTo` = id của `arena_find`);
+  - **không có:** trả `arena_searching` (`replyTo` = id của `arena_find`), giữ lượt tìm trong bộ nhớ.
+- Cứ **2 phút** tính từ `startedAt`, `range` tăng thêm 50. Server **chủ động gửi** `arena_searching` mới
+  (`replyTo: 0`) mỗi khi nới, và kiểm lại hàng chờ mỗi 5 giây. Tìm được thì chủ động gửi `arena_result` (`replyTo: 0`).
+- Cả mùa chưa có ghost người thật nào khác thì đánh ngay với ghost máy (`bot: true`), để thử một mình được.
+- Mỗi tài khoản chỉ có một lượt tìm. Gửi `arena_find` khi đang tìm thì nhận `error already_searching`.
+- `arena_cancel` hoặc mất kết nối thì huỷ lượt tìm. Huỷ khi không có lượt nào thì vẫn trả `arena_cancel_ok`.
+- Không còn lọc theo Chiến Uy. `power` vẫn được lưu cùng ghost để hiện trên thẻ Đối đầu.
 
 ### Lịch sử và xem lại (#69)
 
@@ -110,5 +140,71 @@ trả `error unauthorized`.
 
 `battle_request` cũ vẫn giữ để thử engine, nhưng game không dùng cho Luận Kiếm Đài nữa.
 
+## Hồ sơ trên server (E6, #70)
+
+Server giữ hồ sơ của mỗi tài khoản và quyết định mọi thay đổi. Client không lưu hồ sơ xuống đĩa. Nó chỉ giữ bản hồ sơ
+mới nhất trong bộ nhớ, nhận từ server.
+
+### Hồ sơ
+
+- `<Profile>` có **đúng định dạng JSON** mà client đang lưu ở `profile.json`: `PlayerProfile.ToJson`, `version` 9,
+  cùng tên trường (`heroName`, `currencies`, `items`, `loadout`, `storage`, `shop`, `pve`, `quest`…). Client đọc lại
+  bằng `PlayerProfile.FromJson` có sẵn.
+- Server lưu hồ sơ vào bảng `profiles` (`account_id`, `json`, `rev`, `updated_at`). `rev` tăng 1 sau mỗi thay đổi.
+- `register` tạo hồ sơ mới từ bộ khởi đầu (`starter.json`), với `heroName` của tài khoản.
+- `auth_ok` (từ `register`, `login`, `resume`) có thêm `"profile": <Profile>`, `"rev"` và `"serverTime"`.
+- Mọi tin `*_ok` dưới đây đều có `"profile": <Profile>`, `"rev": n`, `"serverTime": "ISO-8601"` cùng các trường riêng.
+  Client thay **toàn bộ** hồ sơ đang giữ bằng bản mới, rồi báo UI vẽ lại.
+- `serverTime` cho client biết lệch giờ, để đếm ngược Thể Lực, Thương Hội và mùa. Client không tự đổi hồ sơ theo giờ máy.
+- Thể Lực và các chu kỳ ngày/tuần của Thương Hội: server tự cập nhật mỗi khi đọc hồ sơ, theo đúng luật hiện có của
+  client (`StaminaService`, `ShopService.ResetPeriods`).
+- Offer Tiệm Danh Vọng có thể có `periodWeeks` trong `shop.json` (mặc định 1). Chu kỳ bắt đầu ở mốc thứ Hai UTC+7
+  của Thương Hội; `chi_ton_ngoc_tuy` dùng `periodWeeks: 2`, giá 800 và giới hạn 1 lần trong mỗi chu kỳ.
+
+### Tin nhắn
+
+| Chiều | `type` | `payload` | Trường riêng trong `*_ok` |
+|---|---|---|---|
+| C→S | `profile_get` | `{}` | |
+| C→S | `loadout_save` | `{ "placements": [ { "uid": "...", "x": 0, "y": 0 } ] }` | |
+| C→S | `storage_move` | `{ "uid": "..." }` hoặc `{ "materialId": "...", "fromX": 0, "fromY": 0 }`, kèm `"toX"`, `"toY"` | |
+| C→S | `storage_repack` | `{}` | |
+| C→S | `item_upgrade` | `{ "uid": "..." }` | `"tier"` mới |
+| C→S | `item_merge` | `{ "firstUid": "...", "secondUid": "..." }` | `"resultUid"` |
+| C→S | `item_sell` | `{ "uid": "..." }` | `"silver"` nhận được |
+| C→S | `shop_refresh` | `{ "paid": false }` | |
+| C→S | `shop_buy` | `{ "slot": 0 }` | `"uid"` món vừa mua |
+| C→S | `shop_exchange` | `{ "inputId": "...", "targetId": "..." }` | |
+| C→S | `shop_buy_reputation` | `{ "offerId": "..." }` | |
+| C→S | `sect_choose` | `{ "sectId": "kim_cang" }` | |
+| C→S | `quest_claim` | `{ "questId": "..." }` | `"reward"` |
+| C→S | `onboarding` | `{ "action": "intro_seen" \| "tutorial_done" \| "story_seen" \| "sect_prompt_shown", "id": "..." }` | |
+| C→S | `pve_battle` | `{ "stageId": "hoi_1_01" }` | xem dưới |
+| C→S | `dev_cheat` | `{ "action": "...", ... }` | |
+
+- Mỗi tin `C→S` được trả bằng tin cùng tên thêm `_ok` (ví dụ `item_upgrade` → `item_upgrade_ok`), hoặc `error`.
+- **Lỗi luật chơi** (thiếu Bạc, kho đầy, chưa đủ cấp…): `error` với `code: "rejected"` và `message` là câu tiếng Việt
+  giống câu client đang hiện (ví dụ "Vật phẩm đã đạt Cửu Trọng."). Hồ sơ không đổi.
+- Server xử lý **từng yêu cầu một** cho mỗi tài khoản. Client khoá nút hành động trong lúc chờ trả lời.
+- Ngẫu nhiên (Thương Hội, rơi đồ, seed trận PvE) do server bốc bằng RNG của nó. Client không cần tính trùng.
+- `pve_battle`:
+  - server lấy Bao Phục trong hồ sơ, trừ Thể Lực, chạy trận với quái của ải từ seed của nó, rồi cộng thưởng (Bạc, EXP,
+    nguyên liệu, vật phẩm, nhiệm vụ, cốt truyện) theo đúng luật hiện có (`PveRewardService`, `GameplayController.ShowPveResult`);
+  - `pve_battle_ok`: `{ "stageId", "won", "firstClear", "result": <BattleResult>, "reward": { "silver", "heroExp",
+    "materials": {}, "items": [ "uid" ], "levelUps": 0 }, "enemy": { "name", "sectId", "level" }, "profile", "rev",
+    "serverTime" }`.
+- `dev_cheat` chỉ chạy khi server bật cờ `--dev`, nếu không thì `error forbidden`. Các `action` giống nút trên
+  `DevCheatPanel`.
+- **Luận Kiếm:** `arena_find` lấy Bao Phục và Chiến Uy từ hồ sơ trên server (payload `{}`). `arena_result` có thêm
+  `profile`, `rev`, `serverTime`, vì thưởng Danh Vọng và Ngọc Tủy đã được cộng trên server.
+
+### Dữ liệu dùng chung
+
+- Server đọc các file JSON trong `One-Bag-Jianghu/Assets/_Game/Resources/Data` qua tham số `--data`. Khi chạy dev,
+  mặc định là thư mục đó. Ảnh Docker chép thư mục này vào lúc build, vì vậy build context là gốc repo.
+- Logic Java phải cho kết quả **giống hệt** các lớp C# đang có (`UpgradeService`, `MergeService`, `SellService`,
+  `ShopService`, `StorageGrid`, `LevelService`, `PveRewardService`, `QuestService`…), kể cả cách làm tròn. Client giữ
+  các lớp C# đó để xem trước chi phí, nhưng không dùng chúng để đổi hồ sơ nữa.
+
 ## Chưa làm
-Kho đồ và kinh tế trên server (E6), thưởng cuối mùa, chia bảng theo cảnh giới, TLS, đổi mật khẩu.
+Thưởng cuối mùa, chia bảng theo cảnh giới, đổi mật khẩu.

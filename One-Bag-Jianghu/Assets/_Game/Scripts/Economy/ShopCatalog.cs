@@ -46,6 +46,8 @@ namespace OneBagJianghu.Economy
         public int Limit;
         [JsonProperty("quantity")]
         public int Quantity = 1;
+        [JsonProperty("periodWeeks")]
+        public int PeriodWeeks = 1;
     }
 
     public sealed class ShopCatalog
@@ -98,6 +100,14 @@ namespace OneBagJianghu.Economy
                 {
                     if (!(multiplier > 0))
                         throw new FormatException("Shop item type price multipliers must be greater than zero.");
+                }
+
+                foreach (ReputationOffer offer in value.ReputationOffers)
+                {
+                    if (offer.PeriodWeeks < 1)
+                    {
+                        throw new FormatException("Shop reputation offer periodWeeks must be at least one.");
+                    }
                 }
 
                 return value;

@@ -121,6 +121,12 @@ namespace OneBagJianghu.Onboarding
         private void ShowStoryCategory()
         {
             List<StoryChapter> stories = BuildStoryList(GameBootstrap.Session.Profile);
+            selectedStory = null;
+            replayButton.gameObject.SetActive(false);
+            selectedName.text = stories.Count == 0 ? "Chưa có hồi ức" : string.Empty;
+            selectedDescription.text = stories.Count == 0
+                ? "Chưa có hồi ức cốt truyện nào được ghi chép. Hãy hành tẩu giang hồ để mở khoá!"
+                : string.Empty;
             UiButton firstRow = null;
             foreach (StoryChapter story in stories)
             {
@@ -175,7 +181,7 @@ namespace OneBagJianghu.Onboarding
             if (category.IndexOf("Hệ thống", System.StringComparison.OrdinalIgnoreCase) >= 0 ||
                 category.IndexOf("Luật", System.StringComparison.OrdinalIgnoreCase) >= 0)
                 return rulesCategoryIcon;
-            return null;
+            return rulesCategoryIcon;
         }
 
         private static void AddCategoryIcon(UiButton row, Sprite sprite)

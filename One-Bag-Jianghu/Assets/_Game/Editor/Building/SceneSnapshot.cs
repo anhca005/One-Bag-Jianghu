@@ -63,6 +63,7 @@ namespace OneBagJianghu.EditorTools.Building
                 "MessagePopup",
                 "ConfirmPopup",
                 "EncyclopediaPopup",
+                "VanBaoPhoPopup",
                 "SectSelectPopup",
                 "StoryPopup",
                 "StageMapPopup",

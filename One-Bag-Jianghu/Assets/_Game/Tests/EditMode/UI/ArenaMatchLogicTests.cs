@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using OneBagJianghu.Economy;
+using OneBagJianghu.Core;
 using OneBagJianghu.Net;
 using OneBagJianghu.UI.Arena;
 
@@ -8,7 +9,7 @@ namespace OneBagJianghu.Tests.UI
     public sealed class ArenaMatchLogicTests
     {
         [Test]
-        public void ApplyRewardOnce_DoesNotDuplicateReward()
+        public void StoreBattle_DoesNotApplyRewardOnClient()
         {
             // Arrange
             var profile = new PlayerProfile();
@@ -16,14 +17,18 @@ namespace OneBagJianghu.Tests.UI
             {
                 Reward = new ArenaReward { Reputation = 30 }
             };
-            var receipt = new ArenaMatchReceipt();
+            var root = new UnityEngine.GameObject("Session");
+            GameSession session = root.AddComponent<GameSession>();
 
             // Act
-            receipt.ApplyRewardOnce(profile, result);
-            receipt.ApplyRewardOnce(profile, result);
+            session.ApplyServerProfile(Newtonsoft.Json.Linq.JObject.Parse(profile.ToJson()), 1);
+            ArenaMatchLogic.StoreBattle(session, result);
 
             // Assert
-            Assert.That(profile.Currencies["danh_vong"], Is.EqualTo(30));
+            session.Profile.Currencies.TryGetValue("danh_vong", out long reputation);
+            Assert.That(reputation, Is.EqualTo(0));
+            Assert.That(session.PendingArenaResult, Is.SameAs(result));
+            UnityEngine.Object.DestroyImmediate(root);
         }
 
         [Test]

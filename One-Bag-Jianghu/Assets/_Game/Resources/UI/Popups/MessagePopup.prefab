@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 566326457707690192}
   - component: {fileID: 5333566162869787214}
   - component: {fileID: 8291431948111099687}
-  - component: {fileID: 5378329779615147263}
+  - component: {fileID: 4099009731889978811}
   m_Layer: 0
   m_Name: MessagePopup
   m_TagString: Untagged
@@ -191,7 +191,7 @@ MonoBehaviour:
   titleText: {fileID: 2263838211408773679}
   messageText: {fileID: 3589716533282381881}
   closeButton: {fileID: 6369169727347176578}
---- !u!114 &5378329779615147263
+--- !u!114 &4099009731889978811
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -452,7 +452,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8754293964787207250, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Text
-      value: "\u0110\xF3ng"
+      value: "\u0110\xE3 hi\u1EC3u"
       objectReference: {fileID: 0}
     - target: {fileID: 8754293964787207250, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_FontData.m_FontSize

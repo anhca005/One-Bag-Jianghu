@@ -16,6 +16,7 @@ namespace OneBagJianghu.EditorTools.Building
             ReplayPrefabBuilder.Build,
             PvePrefabBuilder.Build,
             PopupPrefabBuilder.Build,
+            VanBaoPhoPrefabBuilder.Build,
             EconomyPopupPrefabBuilder.Build,
             OnlinePrefabBuilder.Build,
             LoginHomeSceneBuilder.Build,
@@ -40,6 +41,12 @@ namespace OneBagJianghu.EditorTools.Building
 
         [MenuItem("One Bag Jianghu/Build/Popup Prefabs (Overwrite)")]
         public static void BuildPopupPrefabsOverwrite() => PopupPrefabBuilder.Build(true);
+
+        [MenuItem("One Bag Jianghu/Build/Vạn Bảo Phổ Popup")]
+        public static void BuildVanBaoPhoPrefab() => VanBaoPhoPrefabBuilder.Build(false);
+
+        [MenuItem("One Bag Jianghu/Build/Vạn Bảo Phổ Popup (Overwrite)")]
+        public static void BuildVanBaoPhoPrefabOverwrite() => VanBaoPhoPrefabBuilder.Build(true);
 
         [MenuItem("One Bag Jianghu/Build/Economy Popup Prefabs")]
         public static void BuildEconomyPopupPrefabs() => EconomyPopupPrefabBuilder.Build(false);

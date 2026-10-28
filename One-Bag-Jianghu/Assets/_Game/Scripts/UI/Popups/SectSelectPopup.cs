@@ -29,8 +29,9 @@ namespace OneBagJianghu.UI.Popups
         [SerializeField] private UiButton closeButton;
         private SectCatalog catalog;
         private SectArtLibrary artLibrary;
-        private PlayerProfile profile;
         private int selectedIndex;
+        private bool actionPending;
+        private PlayerProfile Profile => GameBootstrap.Session.Profile;
 
         /// <summary>Gets whether the future Tâm Pháp upgrade action is currently interactable.</summary>
         public bool IsUpgradeButtonInteractable => primaryButton.GetComponent<Button>().interactable;
@@ -52,7 +53,6 @@ namespace OneBagJianghu.UI.Popups
         {
             catalog = SectCatalog.LoadFromResources();
             artLibrary = SectArtLibrary.Load();
-            profile = GameBootstrap.Session.Profile;
             selectedIndex = FindInitialIndex();
             BindCards();
             RefreshSelection();
@@ -70,14 +70,14 @@ namespace OneBagJianghu.UI.Popups
 
         private int FindInitialIndex()
         {
-            if (string.IsNullOrWhiteSpace(profile.SectId))
+            if (string.IsNullOrWhiteSpace(Profile.SectId))
             {
                 return 0;
             }
 
             for (int i = 0; i < catalog.All.Count; i++)
             {
-                if (catalog.All[i].Id == profile.SectId)
+                if (catalog.All[i].Id == Profile.SectId)
                 {
                     return i;
                 }
@@ -101,7 +101,7 @@ namespace OneBagJianghu.UI.Popups
                 SectInfo sect = catalog.All[i];
                 cardNames[i].text = sect.Name;
                 cardWeapons[i].text = sect.DescribeWeaponClasses();
-                cardBadges[i].text = sect.Id == profile.SectId ? "Bổn môn" : string.Empty;
+                cardBadges[i].text = sect.Id == Profile.SectId ? "Bổn môn" : string.Empty;
                 ApplyArt(cardArts[i], "sect_" + sect.Id, sect.Accent);
             }
         }
@@ -134,9 +134,9 @@ namespace OneBagJianghu.UI.Popups
             loreText.text = sect.Lore;
             weaponText.text = sect.DescribeWeaponClasses();
             tamPhapName.text = sect.TamPhap;
-            tamPhapLevel.text = string.IsNullOrWhiteSpace(profile.SectId)
+            tamPhapLevel.text = string.IsNullOrWhiteSpace(Profile.SectId)
                 ? string.Empty
-                : "Tầng " + profile.TamPhapLevel + "/9";
+                : "Tầng " + Profile.TamPhapLevel + "/9";
             BindMilestones(sect);
             BindActions(sect);
         }
@@ -153,8 +153,8 @@ namespace OneBagJianghu.UI.Popups
 
                 SectLevelInfo milestone = sect.Levels[i];
                 milestoneTexts[i].text = "<b>Tầng " + milestone.Level + "</b>  " + milestone.Describe();
-                bool locked = !string.IsNullOrWhiteSpace(profile.SectId)
-                    && (sect.Id != profile.SectId || profile.TamPhapLevel < milestone.Level);
+                bool locked = !string.IsNullOrWhiteSpace(Profile.SectId)
+                    && (sect.Id != Profile.SectId || Profile.TamPhapLevel < milestone.Level);
                 milestoneTexts[i].color = locked
                     ? new Color(.38f, .36f, .33f)
                     : new Color(.16f, .12f, .09f);
@@ -166,11 +166,18 @@ namespace OneBagJianghu.UI.Popups
 
         private void BindActions(SectInfo sect)
         {
-            bool joined = !string.IsNullOrWhiteSpace(profile.SectId);
-            bool ownSect = joined && sect.Id == profile.SectId;
+            bool joined = !string.IsNullOrWhiteSpace(Profile.SectId);
+            bool ownSect = joined && sect.Id == Profile.SectId;
             primaryButton.gameObject.SetActive(!joined || ownSect);
-            primaryButton.SetLabel(joined ? "Nâng Tâm Pháp (Sắp mở)" : "Gia Nhập");
-            primaryButton.GetComponent<Button>().interactable = IsPrimaryActionEnabled(profile, sect);
+            primaryButton.SetLabel(joined ? "Đã Nhập Phái" : "Gia Nhập");
+            primaryButton.GetComponent<Button>().interactable = !actionPending
+                && IsPrimaryActionEnabled(Profile, sect);
+            Text hint = primaryButton.transform.parent.Find("Primary Hint")?.GetComponent<Text>();
+            if (hint != null)
+            {
+                hint.gameObject.SetActive(joined);
+                hint.text = joined ? "Nâng Tâm Pháp sẽ mở trong bản cập nhật sau." : string.Empty;
+            }
             closeButton.SetLabel(joined ? "Đóng" : "Để sau");
         }
 
@@ -190,7 +197,7 @@ namespace OneBagJianghu.UI.Popups
         private void PrimaryAction()
         {
             SectInfo sect = catalog.All[selectedIndex];
-            if (!string.IsNullOrWhiteSpace(profile.SectId))
+            if (!string.IsNullOrWhiteSpace(Profile.SectId))
             {
                 OpenTamPhapUpgrade(sect);
                 return;
@@ -218,17 +225,37 @@ namespace OneBagJianghu.UI.Popups
                 return;
             }
 
-            if (!TryJoin(profile, catalog, sect.Id, out string error))
+            PlayerProfile preview = PlayerProfile.FromJson(Profile.ToJson());
+            if (!TryJoin(preview, catalog, sect.Id, out string error))
             {
                 PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", error, "Đóng"));
                 return;
             }
 
-            GameBootstrap.Session.SaveProfile();
-            CloseWithResult(sect.Id);
+            SetActionPending(true);
+            GameBootstrap.Network.ChooseSect(sect.Id,
+                _ => CloseWithResult(sect.Id),
+                HandleJoinError);
         }
 
-        /// <summary>Runs the profile mutation used by the confirmed popup flow.</summary>
+        private void HandleJoinError(string message)
+        {
+            SetActionPending(false);
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", message, "Đóng"));
+        }
+
+        private void SetActionPending(bool pending)
+        {
+            actionPending = pending;
+            primaryButton.GetComponent<Button>().interactable = !pending;
+            closeButton.GetComponent<Button>().interactable = !pending;
+            foreach (Button cardButton in cardButtons)
+            {
+                cardButton.interactable = !pending;
+            }
+        }
+
+        /// <summary>Validates the confirmed sect choice against a disposable profile copy.</summary>
         public static bool TryJoin(
             PlayerProfile targetProfile,
             SectCatalog targetCatalog,

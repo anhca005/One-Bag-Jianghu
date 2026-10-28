@@ -1,0 +1,21 @@
+{
+    email {$EMAIL}
+    servers {
+        max_header_size 16KB
+    }
+}
+
+{$DOMAIN} {
+    handle /ws {
+        request_body {
+            max_size 64KB
+        }
+        reverse_proxy game:8765 {
+            transport http {
+                max_conns_per_host 256
+            }
+        }
+    }
+
+    respond "One Bag Jianghu server" 200
+}

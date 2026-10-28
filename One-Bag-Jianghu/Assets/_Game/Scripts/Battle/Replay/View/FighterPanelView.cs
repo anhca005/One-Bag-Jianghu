@@ -1,4 +1,6 @@
 using OneBagJianghu.Bag;
+using OneBagJianghu.Pve;
+using OneBagJianghu.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -97,7 +99,10 @@ namespace OneBagJianghu.Battle.Replay.View
 
         private static bool IsSolidPanelArt(Sprite sprite)
         {
-            return sprite != null && (sprite.name == "fighter_panel" || sprite.name == "hud_panel");
+            return sprite != null
+                && (sprite.name == "fighter_panel"
+                || sprite.name == "fighter_panel_replay"
+                || sprite.name == "hud_panel");
         }
 
         private static void MoveFrameOnTop(Image owner, Color backing)
@@ -166,9 +171,11 @@ namespace OneBagJianghu.Battle.Replay.View
         {
             int max = Mathf.Max(1, state.MaxHp);
             hpFill.fillAmount = Mathf.Clamp01((float)state.Hp / max);
-            hpText.text = "Khí Huyết  " + Mathf.Max(0, state.Hp) + "/" + state.MaxHp;
+            hpText.text = "Khí Huyết  " + UiFormat.Number(Mathf.Max(0, state.Hp)) + "/"
+                + UiFormat.Number(state.MaxHp);
             shieldFill.fillAmount = Mathf.Clamp01((float)state.Shield / max);
-            shieldText.text = "Cương Khí  " + Mathf.Max(0, state.Shield) + "/" + max;
+            shieldText.text = "Cương Khí  " + UiFormat.Number(Mathf.Max(0, state.Shield)) + "/"
+                + UiFormat.Number(max);
             qiFill.fillAmount = Mathf.Clamp01(state.Qi / 100f);
             qiText.text = "Nội Lực  " + Mathf.Max(0, state.Qi) + "/100";
             SetStatus(burnIcon, burnText, "burn", state.Burn, ReplayStyle.Burn);
@@ -263,14 +270,17 @@ namespace OneBagJianghu.Battle.Replay.View
                 return sprite;
             if (enemy)
             {
-                int hash = 17;
-                string value = fighterName ?? string.Empty;
-                for (int i = 0; i < value.Length; i++)
+                PveArtLibrary art = PveArtLibrary.Load();
+                if (art != null)
                 {
-                    hash = unchecked(hash * 31 + value[i]);
+                    sprite = art.ResolveEnemyPortrait(null, fighterName);
+                    if (sprite != null)
+                    {
+                        return sprite;
+                    }
                 }
 
-                int variant = (hash & int.MaxValue) % 3 + 1;
+                int variant = PveArtLibrary.StableVariant(fighterName, 3) + 1;
                 if (iconLibrary.TryGet("enemy_portrait_" + variant, out sprite))
                     return sprite;
             }

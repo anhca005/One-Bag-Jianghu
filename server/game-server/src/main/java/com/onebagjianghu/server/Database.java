@@ -10,7 +10,7 @@ import java.sql.Statement;
 /** Owns SQLite connections and schema creation. */
 public final class Database
 {
-    private static final int SCHEMA_VERSION = 2;
+    private static final int SCHEMA_VERSION = 4;
     private final String url;
 
     public Database(Path path)
@@ -62,10 +62,12 @@ public final class Database
                     + "token_hash BLOB PRIMARY KEY, account_id INTEGER NOT NULL, expires_at TEXT NOT NULL, "
                     + "FOREIGN KEY(account_id) REFERENCES accounts(id) ON DELETE CASCADE)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS seasons ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, starts_at TEXT NOT NULL, ends_at TEXT NOT NULL)");
+                    + "id INTEGER PRIMARY KEY AUTOINCREMENT, starts_at TEXT NOT NULL, ends_at TEXT NOT NULL, "
+                    + "finalized_at TEXT)");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS arena_players ("
                     + "season_id INTEGER NOT NULL, account_id INTEGER NOT NULL, rating INTEGER NOT NULL DEFAULT 1000, "
-                    + "wins INTEGER NOT NULL DEFAULT 0, losses INTEGER NOT NULL DEFAULT 0, "
+                    + "peak_rating INTEGER NOT NULL DEFAULT 1000, wins INTEGER NOT NULL DEFAULT 0, "
+                    + "losses INTEGER NOT NULL DEFAULT 0, "
                     + "PRIMARY KEY(season_id, account_id))");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS ghosts ("
                     + "season_id INTEGER NOT NULL, account_id INTEGER NOT NULL, loadout_json TEXT NOT NULL, "
@@ -86,11 +88,41 @@ public final class Database
                     + "FOREIGN KEY(account_id) REFERENCES accounts(id) ON DELETE CASCADE)");
             statement.executeUpdate("CREATE INDEX IF NOT EXISTS arena_battles_account_time "
                     + "ON arena_battles(account_id, fought_at DESC, id DESC)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS profiles ("
+                    + "account_id INTEGER PRIMARY KEY, json TEXT NOT NULL, rev INTEGER NOT NULL DEFAULT 0, "
+                    + "updated_at TEXT NOT NULL, FOREIGN KEY(account_id) REFERENCES accounts(id) ON DELETE CASCADE)");
+            addColumn(connection, "seasons", "finalized_at", "TEXT");
+            addColumn(connection, "arena_players", "peak_rating", "INTEGER NOT NULL DEFAULT 1000");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS season_rewards ("
+                    + "season_id INTEGER NOT NULL, account_id INTEGER NOT NULL, rank INTEGER NOT NULL, "
+                    + "rating INTEGER NOT NULL, reputation INTEGER NOT NULL, jade INTEGER NOT NULL, "
+                    + "seen INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(season_id, account_id))");
             statement.executeUpdate("UPDATE schema_version SET version = " + SCHEMA_VERSION);
         }
         catch (SQLException exception)
         {
             throw new IllegalStateException("Cannot initialize SQLite database", exception);
+        }
+    }
+
+    private static void addColumn(Connection connection, String table, String column, String definition)
+            throws SQLException
+    {
+        try (var query = connection.prepareStatement("SELECT 1 FROM pragma_table_info('" + table
+                + "') WHERE name = ?"))
+        {
+            query.setString(1, column);
+            try (var row = query.executeQuery())
+            {
+                if (row.next())
+                {
+                    return;
+                }
+            }
+        }
+        try (Statement statement = connection.createStatement())
+        {
+            statement.executeUpdate("ALTER TABLE " + table + " ADD COLUMN " + column + " " + definition);
         }
     }
 }

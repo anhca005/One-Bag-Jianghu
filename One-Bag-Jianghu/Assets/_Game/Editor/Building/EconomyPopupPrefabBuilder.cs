@@ -177,6 +177,8 @@ namespace OneBagJianghu.EditorTools.Building
 
             // Actions share the same linked button prefabs as the other economy popups.
             UiButton primary = Button(panel, "Primary Action", "Gia Nhập", true, .75f, .065f);
+            Text hint = Text(panel, "Primary Hint", string.Empty, 14, .58f, .105f, .92f, .145f);
+            hint.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .75f);
             UiButton close = Button(panel, "Close", "Để sau", false, .92f, .065f);
             SetObjectArray(popup, "cardButtons", cardButtons);
             SetObjectArray(popup, "cardBackgrounds", cardBackgrounds);
@@ -460,6 +462,16 @@ namespace OneBagJianghu.EditorTools.Building
             cost.resizeTextForBestFit = true;
             cost.resizeTextMinSize = 16;
             cost.resizeTextMaxSize = 20;
+            Text error = Text(panel, "Action Error", string.Empty, 17, .65f, .285f, .97f, .335f);
+            error.color = UiBuild.Vermilion;
+            error.resizeTextForBestFit = true;
+            error.resizeTextMinSize = 13;
+            error.resizeTextMaxSize = 17;
+            error.gameObject.SetActive(false);
+            Text empty = Text(panel, "Empty Storage", "Tàng Bảo Các hiện chưa có bảo vật.\n"
+                + "Hãy thu thập từ Hành Tẩu hoặc Thương Hội.", 19, .08f, .34f, .59f, .48f);
+            empty.color = new Color(UiBuild.Ink.r, UiBuild.Ink.g, UiBuild.Ink.b, .72f);
+            empty.gameObject.SetActive(false);
             UiButton upgrade = Button(panel, "Upgrade", "Nâng Trọng", true, .72f, .26f);
             UiButton merge = Button(panel, "Merge", "Hợp Thành", true, .89f, .26f);
             TutorialTarget upgradeTarget = upgrade.gameObject.AddComponent<TutorialTarget>();
@@ -472,6 +484,8 @@ namespace OneBagJianghu.EditorTools.Building
             Set(popup, "equippedContent", equippedContent);
             Set(popup, "detailText", detail);
             Set(popup, "costText", cost);
+            Set(popup, "errorText", error);
+            Set(popup, "emptyText", empty);
             Set(popup, "upgradeButton", upgrade);
             Set(popup, "mergeButton", merge);
             Set(popup, "sellButton", sell);
@@ -692,9 +706,10 @@ namespace OneBagJianghu.EditorTools.Building
             bool hasPlate = UiBuild.ApplyUiSprite(priceTag, "Kit/price_tag", Image.Type.Simple);
             priceTag.raycastTarget = false;
             float ring = hasPlate ? 50f : 0f;
+            Image coin = null;
             if (hasPlate)
             {
-                Image coin = UiBuild.Image(priceTag.transform, "Coin", Color.white);
+                coin = UiBuild.Image(priceTag.transform, "Coin", Color.white);
                 RectTransform coinRect = coin.rectTransform;
                 coinRect.anchorMin = new Vector2(0f, .5f);
                 coinRect.anchorMax = new Vector2(0f, .5f);
@@ -704,8 +719,6 @@ namespace OneBagJianghu.EditorTools.Building
                 coin.raycastTarget = false;
                 // icon_bac lives with the PvE art, outside the UI folder ApplyUiSprite reads from.
                 coin.sprite = AssetDatabase.LoadAssetAtPath<Sprite>("Assets/_Game/Textures2D/Pve/icon_bac.png");
-                if (coin.sprite == null)
-                    UnityEngine.Object.DestroyImmediate(coin.gameObject);
             }
 
             Text price = Text(priceTag.transform, "Price", "Bạc 1.000", 20, 0f, 0f, 1f, 1f);
@@ -761,6 +774,7 @@ namespace OneBagJianghu.EditorTools.Building
             BindCard(card, paper, border, icon, rarityBadge, placeholder, name, detail, type);
             Set(card, "statText", stat);
             Set(card, "priceText", price);
+            Set(card, "currencyIcon", coin);
             Set(card, "oldPriceText", oldPrice);
             Set(card, "discountText", discount);
             Set(card, "buyButton", buy);

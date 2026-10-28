@@ -147,7 +147,6 @@ namespace OneBagJianghu.Tests.Play
             out OwnedItem item)
         {
             home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             OwnedItem kept = profile.Items[0];
@@ -159,7 +158,8 @@ namespace OneBagJianghu.Tests.Play
             profile.Materials.Clear();
             profile.Items.RemoveAll(value => value.Uid != kept.Uid);
             Assert.IsTrue(new StorageGrid(profile, catalog).TryPlaceItem(kept));
-            GameBootstrap.Session.SaveProfile();
+            GameBootstrap.Session.ApplyProfileForTests(profile);
+            profile = GameBootstrap.Session.Profile;
         }
 
         private static void Drag(GameObject target, Vector2 start, Vector2 end)

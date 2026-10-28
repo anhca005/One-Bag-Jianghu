@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 4613215396032008795}
   - component: {fileID: 6246412481733248799}
   - component: {fileID: 5575289096871493406}
-  - component: {fileID: 2296667871639389640}
+  - component: {fileID: 6327669049126983450}
   m_Layer: 0
   m_Name: IntroPopup
   m_TagString: Untagged
@@ -512,7 +512,7 @@ MonoBehaviour:
   artwork: {fileID: 7235924226350416246}
   bodyText: {fileID: 802282982970515426}
   skipButton: {fileID: 4287880958231344486}
---- !u!114 &2296667871639389640
+--- !u!114 &6327669049126983450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

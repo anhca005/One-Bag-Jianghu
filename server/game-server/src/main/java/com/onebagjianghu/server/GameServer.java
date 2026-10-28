@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Stream;
 
 public final class GameServer extends WebSocketServer {
@@ -40,7 +41,11 @@ public final class GameServer extends WebSocketServer {
         this(port, loadHandler(samples, new Random(), database));
     }
     public GameServer(int port, MessageHandler handler) {
-        super(new InetSocketAddress(port));
+        this("0.0.0.0", port, handler);
+    }
+
+    private GameServer(String host, int port, MessageHandler handler) {
+        super(new InetSocketAddress(host, port));
         this.handler = handler;
     }
 
@@ -64,7 +69,10 @@ public final class GameServer extends WebSocketServer {
             connection.close(1008, "WebSocket endpoint is /ws");
             return;
         }
-        sessions.put(connection, new SessionState());
+        SessionState session = new SessionState();
+        session.sender(envelope -> send(connection, envelope));
+        sessions.put(connection, session);
+        LOG.info("Client connected from {} ({} online)", connection.getRemoteSocketAddress(), sessions.size());
     }
 
     @Override public void onMessage(WebSocket connection, String message) {
@@ -88,17 +96,41 @@ public final class GameServer extends WebSocketServer {
 
     @Override public void onClose(WebSocket connection, int code, String reason, boolean remote)
     {
-        sessions.remove(connection);
+        SessionState session = sessions.remove(connection);
+        if (session != null)
+        {
+            handler.disconnected(session);
+            LOG.info("Client disconnected ({} online)", sessions.size());
+        }
     }
     @Override public void onError(WebSocket connection, Exception error) { LOG.error("WebSocket error", error); }
     @Override public void onStart() { LOG.info("Game server listening on port {} at /ws", getPort()); }
 
+    private void send(WebSocket connection, Envelope envelope)
+    {
+        try
+        {
+            connection.send(mapper.writeValueAsString(envelope));
+        }
+        catch (Exception exception)
+        {
+            LOG.warn("Could not send proactive message", exception);
+        }
+    }
+
     public static void main(String[] args) throws Exception {
-        int port = Integer.parseInt(option(args, "--port", env("PORT", "8765")));
-        Path samples = Path.of(option(args, "--samples", env("SAMPLES", "battle-engine/samples")));
+        System.setProperty("org.slf4j.simpleLogger.showDateTime", "true");
+        System.setProperty("org.slf4j.simpleLogger.dateTimeFormat", "yyyy-MM-dd HH:mm:ss.SSS");
+        int port = Integer.parseInt(option(args, "--port", env("JIANGHU_PORT", "8765")));
+        String host = option(args, "--host", env("JIANGHU_HOST", "0.0.0.0"));
+        Path samples = Path.of(option(args, "--samples", env("JIANGHU_SAMPLES", "battle-engine/samples")));
+        String configuredData = option(args, "--data", env("JIANGHU_DATA", defaultDataPath().toString()));
         String configuredDatabase = option(args, "--db", env("JIANGHU_DB", null));
         Path databasePath = configuredDatabase == null ? defaultDatabasePath() : Path.of(configuredDatabase);
-        GameServer server = new GameServer(port, loadHandler(samples, new Random(), new Database(databasePath)));
+        GameData data = new GameData(Path.of(configuredData));
+        boolean dev = flag(args, "--dev") || "1".equals(System.getenv("JIANGHU_DEV"));
+        MessageHandler handler = loadHandler(samples, data, new Random(), new Database(databasePath), dev);
+        GameServer server = new GameServer(host, port, handler);
         Runtime.getRuntime().addShutdownHook(new Thread(() -> {
             try
             {
@@ -111,6 +143,29 @@ public final class GameServer extends WebSocketServer {
         }));
         server.start();
         new CountDownLatch(1).await();
+    }
+
+    private static MessageHandler loadHandler(Path samples, GameData data, Random random, Database database,
+            boolean dev)
+    {
+        List<Loadout> loadouts;
+        try (Stream<Path> files = Files.list(samples))
+        {
+            loadouts = files.filter(path -> path.getFileName().toString().endsWith(".json"))
+                    .sorted(Comparator.comparing(Path::toString))
+                    .map(Loadout::load)
+                    .toList();
+        }
+        catch (Exception exception)
+        {
+            if (exception instanceof DataException dataException) throw dataException;
+            throw new DataException("Cannot read samples directory " + samples + ": " + exception.getMessage(),
+                    exception);
+        }
+        ScheduledExecutorService timer = java.util.concurrent.Executors.newSingleThreadScheduledExecutor();
+        return new MessageHandler(data.itemCatalog(), data.sectCatalog(), loadouts, random,
+                () -> java.util.UUID.randomUUID().toString(), database, Clock.systemUTC(), new SecureRandom(), timer,
+                data, dev);
     }
 
     private static String env(String name, String fallback) {
@@ -129,6 +184,31 @@ public final class GameServer extends WebSocketServer {
             directory = directory.getParent();
         }
         return Path.of("server/data/jianghu.db").toAbsolutePath().normalize();
+    }
+    static Path defaultDataPath()
+    {
+        Path directory = Path.of("").toAbsolutePath().normalize();
+        while (directory != null)
+        {
+            Path direct = directory.resolve("One-Bag-Jianghu/Assets/_Game/Resources/Data");
+            if (Files.isDirectory(direct))
+            {
+                return direct.normalize();
+            }
+            directory = directory.getParent();
+        }
+        return Path.of("../One-Bag-Jianghu/Assets/_Game/Resources/Data").toAbsolutePath().normalize();
+    }
+    private static boolean flag(String[] args, String name)
+    {
+        for (String value : args)
+        {
+            if (name.equals(value))
+            {
+                return true;
+            }
+        }
+        return false;
     }
     private static String option(String[] args, String name, String fallback) {
         for (int i = 0; i < args.length; i++) if (name.equals(args[i])) {

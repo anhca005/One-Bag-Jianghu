@@ -54,8 +54,10 @@ class ArenaHistoryTest
 
         // Assert
         assertTrue(battleId > 0);
+        assertEquals(275, battle.path("opponent").path("power").asInt());
         assertEquals(battleId, history.path("entries").get(0).path("battleId").asLong());
         assertEquals(battle.path("result").path("winner"), replay.path("result").path("winner"));
+        assertEquals(275, replay.path("opponent").path("power").asInt());
         ServiceException exception = assertThrows(ServiceException.class, () -> arena.replay(stranger, battleId));
         assertEquals("not_found", exception.code());
     }
@@ -128,7 +130,7 @@ class ArenaHistoryTest
             try (ResultSet version = statement.executeQuery("SELECT version FROM schema_version"))
             {
                 assertTrue(version.next());
-                assertEquals(2, version.getInt(1));
+                assertEquals(4, version.getInt(1));
             }
         }
     }
@@ -138,6 +140,9 @@ class ArenaHistoryTest
         ObjectMapper mapper = ItemCatalog.mapper();
         BattleSimulator simulator = new BattleSimulator(ItemCatalog.loadDefault(), SectCatalog.loadDefault(),
                 BattleConfig.defaults());
-        return new ArenaService(database, mapper, simulator, List.of(bot), new Random(7), new ArenaCalendar(CLOCK));
+        GameData gameData = new GameData(GameServer.defaultDataPath());
+        ProfileService profiles = new ProfileService(database, gameData, CLOCK, false);
+        return new ArenaService(database, mapper, simulator, List.of(bot), new Random(7), new ArenaCalendar(CLOCK),
+                gameData, profiles);
     }
 }

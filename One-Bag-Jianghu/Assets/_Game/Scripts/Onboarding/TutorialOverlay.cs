@@ -103,8 +103,7 @@ namespace OneBagJianghu.Onboarding
         private void Skip()
         {
             AudioManager.Instance?.Play("ui_click");
-            service.SkipSequence();
-            GameBootstrap.Session?.SaveProfile();
+            OnboardingRuntime.SkipCurrentSequence();
         }
 
         private void UpdateHole()

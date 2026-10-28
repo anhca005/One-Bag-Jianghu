@@ -92,21 +92,12 @@ namespace OneBagJianghu.Quests
             PlayerProfile trial = PlayerProfile.FromJson(profile.ToJson(), items);
             if (!ApplyReward(trial, quest.Reward))
                 return new QuestClaimResult { Error = "Tàng Bảo Các không đủ chỗ." };
-            int oldLevel = profile.HeroLevel;
-            if (!ApplyReward(profile, quest.Reward))
-                throw new InvalidOperationException("Quest reward preflight did not match the live profile.");
-            profile.Quest.ClaimedIds.Add(quest.Id);
-            profile.Quest.ActiveIndex++;
-            SetBaseline(profile);
-            PlayerProfile.NotifyProgressChanged();
-            Changed?.Invoke();
-            OnboardingRuntime.Publish("quest_claimed");
             return new QuestClaimResult
             {
                 Success = true,
                 Reward = quest.Reward,
-                OldLevel = oldLevel,
-                NewLevel = profile.HeroLevel
+                OldLevel = profile.HeroLevel,
+                NewLevel = trial.HeroLevel
             };
         }
 

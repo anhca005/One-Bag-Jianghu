@@ -114,7 +114,7 @@ namespace OneBagJianghu.UI.Common
 
         public static string WithPower(string description, int power)
         {
-            string line = "<color=#A33A2B>Lực Chiến +" + UiFormat.Number(power) + "</color>";
+            string line = "<color=#A33A2B>Chiến Uy +" + UiFormat.Number(power) + "</color>";
             int insertion = FindLineEnd(description, 3);
             return insertion < 0
                 ? description + "\n" + line

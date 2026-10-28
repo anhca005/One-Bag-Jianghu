@@ -64,8 +64,8 @@ namespace OneBagJianghu.EditorTools.Building
             Text error = Label(footer, "Error", string.Empty, 17, 80f, 38f, 560f, 28f);
             error.color = UiBuild.Vermilion;
             UiButton confirm = Button(footer, "Confirm", "Đăng nhập", true, 94f, 72f, 260f, 62f);
-            UiButton later = Button(footer, "Later", "Để sau", false, 346f, 72f, 240f, 57f);
-            Label(panel, "Note", "Tài khoản dùng cho Luận Kiếm Đài. Đồ đạc vẫn lưu trên máy này.", 14,
+            UiButton later = Button(footer, "Later", "Để sau", false, 346f, 72f, 260f, 62f);
+            Label(panel, "Note", "Mọi hành trang và tiến trình được lưu an toàn trên máy chủ.", 14,
                 99f, 716f, 630f, 24f);
             SetFields(popup,
                 new[] { "panel", "loginTab", "registerTab", "usernameInput", "passwordInput" },
@@ -115,7 +115,7 @@ namespace OneBagJianghu.EditorTools.Building
 
             Image heroCard = PlacedImage(panel, "Hero Card", "Arena/arena_panel_hero", 40f, 130f, 420f, 910f);
             Image portraitFrame = PlacedImage(heroCard.transform, "Portrait Frame", "Kit/hero_portrait_frame_wide",
-                126f, 24f, 168f, 210f);
+                126f, 24f, 168f, 209f);
             Image portrait = FixedImage(portraitFrame.transform, "Hero Portrait", 14f, 17f, 140f, 176f);
             portrait.preserveAspect = true;
             SetPortrait(portrait);
@@ -134,7 +134,7 @@ namespace OneBagJianghu.EditorTools.Building
             Image match = PlacedImage(panel, "Match Card", "Arena/arena_panel_match", 480f, 680f, 820f, 360f);
             Text rewarded = Label(match.transform, "Rewarded", "Lượt có thưởng hôm nay: --", 22,
                 40f, 30f, 740f, 40f);
-            Text weekly = Label(match.transform, "Weekly", "Thắng tuần --/10 → 1 Chí Tôn Ngọc Tủy", 18,
+            Text weekly = Label(match.transform, "Weekly", "Thắng tuần --/15 → 1 Chí Tôn Ngọc Tủy", 18,
                 80f, 82f, 660f, 36f);
             Image track = FixedImage(match.transform, "Weekly Track", 100f, 126f, 580f, 24f);
             UiBuild.ApplyUiSprite(track, "Arena/arena_progress_track", Image.Type.Simple);
@@ -161,9 +161,14 @@ namespace OneBagJianghu.EditorTools.Building
             RectTransform historyPanel = Group(tabs.transform, "History Panel", 20f, 160f, 520f, 730f);
             RectTransform historyContent = Scroll(historyPanel, "History", 0f, 0f, 520f, 730f);
             RectTransform rewardsPanel = Group(tabs.transform, "Rewards Panel", 20f, 160f, 520f, 730f);
-            Label(rewardsPanel, "Rewards", "10 thắng tuần → 1 Chí Tôn Ngọc Tủy\n\n"
-                + "Thắng 30 / thua 10 Danh Vọng\n10 trận đầu mỗi ngày\n\n"
-                + "Thưởng cuối mùa theo bậc\nTrao cuối mùa, sắp có", 20, 20f, 40f, 480f, 600f);
+            Text rewards = Label(rewardsPanel, "Rewards", ArenaLobbyPopup.BuildRewardsText(15),
+                18, 20f, 30f, 480f, 670f);
+            Text rankingEmpty = Label(rankingPanel, "Empty", "Chưa có dữ liệu xếp hạng mùa giải này.",
+                18, 35f, 285f, 450f, 80f);
+            Text historyEmpty = Label(historyPanel, "Empty", "Chưa có chiến tích luận kiếm nào.",
+                18, 35f, 285f, 450f, 80f);
+            rankingEmpty.gameObject.SetActive(false);
+            historyEmpty.gameObject.SetActive(false);
             RectTransform shopPanel = Group(tabs.transform, "Shop Panel", 20f, 160f, 520f, 730f);
             // Only the ranking tab shows until the player picks another one.
             historyPanel.gameObject.SetActive(false);
@@ -179,7 +184,7 @@ namespace OneBagJianghu.EditorTools.Building
             banner.gameObject.SetActive(false);
             Text error = Label(panel, "Error", string.Empty, 18, 480f, 640f, 820f, 36f);
             error.color = UiBuild.Vermilion;
-            GameObject matching = Matching(panel, out RectTransform spinner);
+            GameObject matching = Matching(panel, out MatchingFields mf);
             GameObject versus = Versus(panel, out VersusFields vf);
 
             SetFields(popup,
@@ -188,6 +193,9 @@ namespace OneBagJianghu.EditorTools.Building
             SetFields(popup,
                 new[] { "powerText", "rewardedText", "weeklyText", "weeklyFill", "rankBadge", "miniBag" },
                 new Object[] { power, rewarded, weekly, fill, badge, miniBag });
+            SetFields(popup,
+                new[] { "rewardsText", "leaderboardEmptyText", "historyEmptyText" },
+                new Object[] { rewards, rankingEmpty, historyEmpty });
             SetFields(popup, new[] { "heroPortrait", "miniBagItems" }, new Object[] { portrait, miniBagItems });
             AssignRanks(popup);
             SetFields(popup,
@@ -204,8 +212,11 @@ namespace OneBagJianghu.EditorTools.Building
                 new[] { "leaderboardRowPrefab", "historyRowPrefab", "selfRow", "enterShopButton" },
                 new Object[] { leaderboard, history, selfRow, enterShop });
             SetFields(popup,
-                new[] { "matchingLayer", "spinner", "versusCard", "versusPlayerText", "versusOpponentText" },
-                new Object[] { matching, spinner, versus, vf.PlayerName, vf.OpponentName });
+                new[] { "matchingLayer", "spinner", "matchingTimeText", "matchingRangeText", "matchingWidenText",
+                    "cancelMatchButton" },
+                new Object[] { matching, mf.Spinner, mf.Time, mf.Range, mf.Widen, mf.Cancel });
+            SetFields(popup, new[] { "versusCard", "versusPlayerText", "versusOpponentText" },
+                new Object[] { versus, vf.PlayerName, vf.OpponentName });
             SetFields(popup,
                 new[] { "versusPlayerBadge", "versusOpponentBadge", "versusPlayerPortrait",
                     "versusOpponentPortrait", "versusPlayerRankText",
@@ -220,15 +231,25 @@ namespace OneBagJianghu.EditorTools.Building
             Save(root, path);
         }
 
-        private static GameObject Matching(Transform parent, out RectTransform spinner)
+        private static GameObject Matching(Transform parent, out MatchingFields fields)
         {
             Image shade = UiBuild.Image(parent, "Matching Layer", new Color(0f, 0f, 0f, .6f));
             UiBuild.Stretch(shade.rectTransform);
             Image seal = FixedImage(shade.transform, "Spinner", 850f, 300f, 220f, 220f);
             seal.enabled = UiBuild.ApplyUiSprite(seal, "Arena/arena_seal_spinner", Image.Type.Simple);
-            spinner = seal.rectTransform;
+            fields = new MatchingFields { Spinner = seal.rectTransform };
             Text label = Label(shade.transform, "Label", "Đang tìm đối thủ…", 30, 560f, 550f, 800f, 60f);
             label.color = Color.white;
+            fields.Time = Label(shade.transform, "Wait Time", "Đã chờ 00:00", 22, 660f, 615f, 600f, 40f);
+            fields.Range = Label(shade.transform, "Search Range", "Tìm đối thủ quanh 1.000 điểm (±50)", 22,
+                560f, 660f, 800f, 40f);
+            fields.Widen = Label(shade.transform, "Next Widen", "Nới khoảng sau 02:00", 19,
+                660f, 705f, 600f, 36f);
+            fields.Cancel = Button(shade.transform, "Cancel Match", "Huỷ", false, 830f, 765f, 260f, 62f);
+            foreach (Text text in new[] { fields.Time, fields.Range, fields.Widen })
+            {
+                text.color = Color.white;
+            }
             shade.gameObject.SetActive(false);
             return shade.gameObject;
         }
@@ -249,16 +270,18 @@ namespace OneBagJianghu.EditorTools.Building
                 OpponentSect = Label(card.transform, "Opponent Sect", "Vô Môn Phái", 18, 620f, 375f, 420f, 34f)
             };
             Image playerFrame = PlacedImage(card.transform, "Player Portrait Frame", "Kit/hero_portrait_frame_wide",
-                126f, 25f, 168f, 210f);
+                126f, 25f, 168f, 209f);
             fields.PlayerPortrait = FixedImage(playerFrame.transform, "Portrait", 14f, 17f, 140f, 176f);
             SetPortrait(fields.PlayerPortrait);
+            fields.PlayerPortrait.preserveAspect = true;
             fields.PlayerBadge = FixedImage(card.transform, "Player Badge", 250f, 163f, 72f, 72f);
             fields.PlayerBadge.enabled = UiBuild.ApplyUiSprite(fields.PlayerBadge,
                 "Arena/arena_rank_vo_danh", Image.Type.Simple);
             Image opponentFrame = PlacedImage(card.transform, "Opponent Portrait Frame",
-                "Kit/hero_portrait_frame_wide", 786f, 25f, 168f, 210f);
+                "Kit/hero_portrait_frame_wide", 786f, 25f, 168f, 209f);
             fields.OpponentPortrait = FixedImage(opponentFrame.transform, "Portrait", 14f, 17f, 140f, 176f);
             SetPortrait(fields.OpponentPortrait);
+            fields.OpponentPortrait.preserveAspect = true;
             fields.OpponentBadge = FixedImage(card.transform, "Opponent Badge", 910f, 163f, 72f, 72f);
             fields.OpponentBadge.enabled = UiBuild.ApplyUiSprite(fields.OpponentBadge,
                 "Arena/arena_rank_vo_danh", Image.Type.Simple);
@@ -310,17 +333,17 @@ namespace OneBagJianghu.EditorTools.Building
             ArenaHistoryRow existing = AssetDatabase.LoadAssetAtPath<ArenaHistoryRow>(path);
             if (!overwrite && existing != null) return existing;
             Image image = UiBuild.Image(null, "ArenaHistoryRow", Color.white);
-            image.rectTransform.sizeDelta = new Vector2(520f, 64f);
-            SetRowLayout(image.gameObject, 64f);
+            image.rectTransform.sizeDelta = new Vector2(520f, 72f);
+            SetRowLayout(image.gameObject, 72f);
             UiBuild.ApplyUiSprite(image, "Arena/arena_row_history", Image.Type.Simple);
             ArenaHistoryRow row = image.gameObject.AddComponent<ArenaHistoryRow>();
             UiButton replay = Button(image.transform, "Replay", "Xem lại", false, 378f, 16f, 132f, 32f);
             UiBuild.ApplyUiSprite(replay.GetComponent<Image>(), "Kit/button_small_gold_compact", Image.Type.Simple);
             SetFields(row, new[] { "resultText", "opponentText", "ratingText", "timeText", "replayButton" },
-                new Object[] { Label(image.transform, "Result", "Thắng", 15, 12f, 0f, 68f, 64f),
-                    Label(image.transform, "Opponent", "Đối thủ", 15, 80f, 0f, 170f, 64f),
-                    Label(image.transform, "Rating", "+16", 15, 250f, 0f, 70f, 64f),
-                    Label(image.transform, "Time", "2 giờ trước", 14, 320f, 0f, 90f, 64f), replay });
+                new Object[] { Label(image.transform, "Result", "Thắng", 15, 12f, 0f, 68f, 72f),
+                    Label(image.transform, "Opponent", "Đối thủ", 15, 80f, 0f, 170f, 72f),
+                    Label(image.transform, "Rating", "+16", 15, 250f, 0f, 70f, 72f),
+                    Label(image.transform, "Time", "2 giờ trước", 14, 320f, 0f, 90f, 72f), replay });
             Save(image.gameObject, path);
             return AssetDatabase.LoadAssetAtPath<ArenaHistoryRow>(path);
         }
@@ -600,6 +623,15 @@ namespace OneBagJianghu.EditorTools.Building
             public Text PlayerSect;
             public Text OpponentSect;
             public UiButton EnterButton;
+        }
+
+        private struct MatchingFields
+        {
+            public RectTransform Spinner;
+            public Text Time;
+            public Text Range;
+            public Text Widen;
+            public UiButton Cancel;
         }
     }
 }

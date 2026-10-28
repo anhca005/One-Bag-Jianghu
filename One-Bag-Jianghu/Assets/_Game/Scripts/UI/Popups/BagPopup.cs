@@ -14,6 +14,7 @@ namespace OneBagJianghu.UI.Popups
         private UiButton closeButton;
         [SerializeField]
         private ItemTooltip itemTooltip;
+        private bool isSaving;
         public RectTransform BagHost => bagHost;
 
         protected override void Awake()
@@ -34,11 +35,21 @@ namespace OneBagJianghu.UI.Popups
         protected override void OnShown()
         {
             itemTooltip.EnsureAbove(GetComponent<Canvas>());
+            OneBagJianghu.Economy.PlayerProfile.ProgressChanged += HandleProgressChanged;
         }
 
         protected override void OnHidden()
         {
+            OneBagJianghu.Economy.PlayerProfile.ProgressChanged -= HandleProgressChanged;
             itemTooltip.Hide();
+        }
+
+        private void HandleProgressChanged()
+        {
+            if (IsShowing)
+            {
+                bagPanel.Bind(GameBootstrap.Session.Profile);
+            }
         }
 
         // There is no save button: closing the bag (button, Escape or backdrop) always saves the layout.
@@ -57,15 +68,36 @@ namespace OneBagJianghu.UI.Popups
 
         private void SaveAndClose()
         {
-            GameSession session = GameBootstrap.Session;
-            if (!bagPanel.TryApplyToProfile(out string error))
+            if (isSaving)
             {
-                PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo", error));
                 return;
             }
 
-            session.SaveProfile();
-            Close();
+            isSaving = true;
+            closeButton.GetComponent<UnityEngine.UI.Button>().interactable = false;
+            closeButton.SetLabel("Đang lưu…");
+            try
+            {
+                GameBootstrap.Network.SaveLoadout(bagPanel.BuildServerPlacements(),
+                    _ => Close(),
+                    HandleSaveError);
+            }
+            catch (System.Exception exception)
+            {
+                HandleSaveError(exception.Message);
+            }
+        }
+
+        private void HandleSaveError(string message)
+        {
+            isSaving = false;
+            closeButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
+            closeButton.SetLabel("Đóng");
+            bagPanel.Bind(GameBootstrap.Session.Profile);
+            string reason = string.IsNullOrWhiteSpace(message)
+                ? "Máy chủ chưa thể lưu hành trang. Xin thử lại."
+                : message;
+            PopupManager.Show<MessagePopup>(new MessagePopupData("Lỗi Lưu Hành Trang", reason, "Đã hiểu"));
         }
     }
 }

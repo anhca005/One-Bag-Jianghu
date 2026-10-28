@@ -2,8 +2,10 @@ using System.Collections.Generic;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Bag.View;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using OneBagJianghu.UI.Common;
+using OneBagJianghu.UI.Popups;
 using OneBagJianghu.Audio;
 
 namespace OneBagJianghu.Battle.Replay.View
@@ -201,6 +203,12 @@ namespace OneBagJianghu.Battle.Replay.View
 
         private void Update()
         {
+            Keyboard keyboard = Keyboard.current;
+            if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame && PopupManager.Top == null)
+            {
+                ExitRequested?.Invoke();
+            }
+
             if (clock == null)
                 return;
             int previous = clock.Advance(Time.unscaledDeltaTime);

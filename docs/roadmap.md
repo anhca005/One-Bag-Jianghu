@@ -70,9 +70,11 @@ Trạng thái: ⬜ chưa làm · 🟨 đang làm · ✅ xong
 - [x] Bỏ hệ thống sao PvE (#63); Hợp Thành được món đang trang bị (#64) — 2026-10-10/11
 - [x] Chơi offline: engine C# khớp Java từng sự kiện (decisions #19), 32/32 trận đối chiếu qua trong Unity; Gameplay dùng engine C# khi không có mạng
 - [~] Âm thanh: hệ thống phát (Codex) + bộ A 28 tiếng (Runway) đã vào game (decisions #57); còn người dùng nghe duyệt, bộ B/C, âm thanh nền. Kế hoạch [audio/sfx-plan.md](audio/sfx-plan.md). Nhạc nền gác ([audio/prompts-music.md](audio/prompts-music.md))
-- [~] PvE Hồi 4–5 (ải 31–50) đã vào game (decisions #56); chờ vẽ 11 hình (prompt #50–60) và dựng lại độ khó theo mô hình nâng Trọng
+- [~] PvE Hồi 4–5 (ải 31–50) đã vào game (decisions #56); 18 chân dung quái Hồi 4–5 đã vẽ (Codex, Đợt 4, 2026-10-28); còn dựng lại độ khó theo mô hình nâng Trọng
 - [x] Kết nối WebSocket (JSON, decisions #18): dùng cho tài khoản và Luận Kiếm Đài (#68, #69). PvE vẫn chạy offline
-- [~] Online đợt 1 (#68, #69): tài khoản, Sảnh Luận Kiếm Đài, ghép trận, Elo, thưởng, mùa, bảng xếp hạng, lịch sử/xem lại. Đã có code, test qua; chờ chơi thử với server thật — 2026-10-18
+- [x] Online đợt 1 (#68, #69): tài khoản, Sảnh Luận Kiếm Đài, Elo, thưởng, mùa, bảng xếp hạng, lịch sử/xem lại — 2026-10-18
+- [~] Online đợt 2 (#70, #71): hàng chờ ghép ±50 nới dần, đăng nhập ngay ở LoginScene, mọi hồ sơ nằm trên server (E6), đóng gói server (Docker, wss, sao lưu), bản build Windows đầu tiên chơi được với server thật. Thưởng cuối mùa (#72) xong. Còn: sửa client giữ hồ sơ cũ (chờ người dùng bảo), đưa lên VPS — 2026-10-21/28
+- [x] Rà soát và hoàn thiện UI (Gemini kiểm kê 56 mục, Codex sửa theo 2 nhóm): Vạn Bảo Phổ, "Chiến Uy" thống nhất, trạng thái trống/chờ/khoá, Esc, thưởng mùa trong sảnh, 4 chân dung đối thủ Luận Kiếm — 2026-10-27/28
 
 ## Kinh tế và nâng Trọng (quyết định #22)
 
@@ -82,4 +84,4 @@ Trạng thái: ⬜ chưa làm · 🟨 đang làm · ✅ xong
 - [~] E3. Codex (`tools/codex/task-storage-upgrade-merge.md`, kèm thưởng sau trận + bảng cheat F1): màn Tàng Bảo Các + nâng Trọng + gộp nâng phẩm (chọn món, xem chi phí, xem trước Đột Phá, xác nhận) — bản đầu chạy được, test qua; còn: chọn bản thứ hai khi Hợp Thành, dropdown đẹp hơn, test PlayMode, người dùng thử
 - [~] E4. Codex (`tools/codex/task-shop.md`; thưởng sau trận đã xong ở E3; bản đầu chạy được, test qua, chờ người dùng thử): Thương Hội (danh sách hàng, mua, làm mới, bán lại) + nhận thưởng sau trận (bảng kết quả hiện phần thưởng)
 - [ ] E5. ChatGPT: prompt đã sẵn ở `docs/art/prompts-items-nonweapon.md` (40 món + 17 nguyên liệu); còn icon, Bạc/Danh Vọng, khung quầy hàng (Claude viết prompt sau khi chốt tên ở E1)
-- [ ] E6. Sau này: chuyển logic kinh tế lên server Java (server quyết định), giữ dữ liệu JSON dùng chung
+- [x] E6. Logic kinh tế, PvE, nhiệm vụ chạy trên server Java, server gửi cả hồ sơ sau mỗi thao tác (#70, #71); dữ liệu JSON dùng chung — 2026-10-21

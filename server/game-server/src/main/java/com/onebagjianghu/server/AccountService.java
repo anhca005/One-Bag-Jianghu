@@ -150,6 +150,31 @@ public final class AccountService
         }
     }
 
+    public String heroName(long accountId)
+    {
+        try (Connection connection = database.open(); PreparedStatement query = connection.prepareStatement(
+                "SELECT hero_name FROM accounts WHERE id = ?"))
+        {
+            query.setLong(1, accountId);
+            try (ResultSet row = query.executeQuery())
+            {
+                if (!row.next())
+                {
+                    throw new ServiceException("unauthorized", "Login is required");
+                }
+                return row.getString(1);
+            }
+        }
+        catch (ServiceException exception)
+        {
+            throw exception;
+        }
+        catch (Exception exception)
+        {
+            throw new IllegalStateException(exception);
+        }
+    }
+
     private Auth issue(Connection connection, long id, String username, String heroName) throws Exception
     {
         byte[] bytes = new byte[32];

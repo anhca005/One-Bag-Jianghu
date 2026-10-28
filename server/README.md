@@ -73,13 +73,14 @@ Cơ chế chi tiết: [docs/design/combat.md](../docs/design/combat.md). Cách v
 Từ thư mục `server/`, chạy WebSocket game server (mặc định `ws://localhost:8765/ws`):
 
 ```powershell
-.un-server.ps1          # PowerShell
+./run-server.ps1          # PowerShell
 ./run-server.sh           # Git Bash
 ```
 
-Script cài battle-engine vào kho Maven trên máy rồi mới chạy `exec:java` cho riêng game-server. Không dùng
-`./mvnw -pl game-server -am exec:java`, vì `-am` làm Maven chạy cả project cha (không có `mainClass`) và
-battle-engine. Tham số thêm được chuyển cho server, ví dụ `.un-server.ps1 --db D:	mp	hu.db`.
+Script build `game-server.jar` (kèm battle-engine) rồi chạy bằng `java -jar`. Log in ra console, có giờ:
+kết nối, ngắt kết nối, và mỗi yêu cầu kèm kết quả (`account 1 pve_battle -> pve_battle_ok`). Không chạy bằng
+`mvn exec:java`, vì khi đó server dùng chung bộ ghi log của Maven và bị ẩn hết log thường. Tham số thêm được
+chuyển cho server, ví dụ `./run-server.ps1 --port 8765 --db data/demo.db --dev`.
 
 Cơ sở dữ liệu SQLite mặc định nằm ở `server/data/jianghu.db`; schema được tạo khi server khởi động.
 Server tìm thư mục chứa `mvnw` để neo đường dẫn mặc định, nên chạy từ `server/` hay `server/game-server/`
@@ -91,3 +92,21 @@ Có thể đổi file bằng `--db` hoặc biến môi trường `JIANGHU_DB`, �
 ```
 
 PowerShell dùng biến môi trường: `$env:JIANGHU_DB = "data/dev.db"`.
+
+## Đóng gói và triển khai
+
+Tạo một fat JAR tự chứa thư viện và dữ liệu JSON mặc định:
+
+```bash
+./mvnw -pl game-server -am package
+java -jar game-server/target/game-server.jar --port 8765 --db data/jianghu.db \
+  --samples battle-engine/samples
+```
+
+Các tham số là `--host`, `--port`, `--db`, `--samples`, `--data`, `--dev`. Biến môi trường tương ứng là
+`JIANGHU_HOST`, `JIANGHU_PORT`, `JIANGHU_DB`, `JIANGHU_SAMPLES`, `JIANGHU_DATA`. Nếu không truyền `--data`,
+server dùng mặc định `../One-Bag-Jianghu/Assets/_Game/Resources/Data`. Thư mục dữ liệu phải có `materials`,
+`upgrade_costs`, `merge`, `starter`, `levels`, `power`, `items` và `sects`; thiếu file nào server dừng với đường dẫn rõ.
+Cheat chỉ được mở bằng `--dev` hoặc `JIANGHU_DEV=1`.
+
+Hướng dẫn đưa lên VPS bằng Docker, TLS và sao lưu: [docs/tech/deploy.md](../docs/tech/deploy.md).

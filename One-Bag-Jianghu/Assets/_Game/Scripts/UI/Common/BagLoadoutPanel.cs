@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Newtonsoft.Json.Linq;
 using OneBagJianghu.Bag;
 using OneBagJianghu.Bag.View;
 using OneBagJianghu.Economy;
@@ -189,39 +190,6 @@ namespace OneBagJianghu.UI.Common
                 Sect = selectedSectId,
                 TamPhapLevel = tamPhapLevel
             });
-        public void ApplyToProfile()
-        {
-            if (!TryApplyToProfile(out string error))
-                throw new InvalidOperationException(error);
-        }
-
-        public bool TryApplyToProfile(out string error)
-        {
-            if (boundProfile == null)
-                throw new InvalidOperationException("The bag panel is not bound to a player profile.");
-            trayView.ApplyStorage(boundProfile.Storage);
-            // Sect choice is owned by SectSelectPopup and is permanent; the bag only consumes it.
-            boundProfile.Loadout.Clear();
-            foreach (PlacedItem placed in gridView.Grid.Items)
-            {
-                if (string.IsNullOrWhiteSpace(placed.OwnedUid))
-                    throw new InvalidOperationException($"Placed item '{placed.Item.Id}' has no owned uid.");
-                boundProfile.Loadout.Add(new LoadoutPlacement { Uid = placed.OwnedUid, X = placed.X, Y = placed.Y });
-            }
-
-            boundProfile.Validate();
-            var summary = new List<string>();
-            foreach (PlacedItem placed in gridView.Grid.Items)
-            {
-                OwnedItem owned = boundProfile.RequireItem(placed.OwnedUid);
-                summary.Add($"{owned.ItemId}({owned.Tier} Trọng/{owned.Rarity})");
-            }
-
-            Debug.Log("[Bag] Loadout saved: " + string.Join(", ", summary));
-            error = string.Empty;
-            return true;
-        }
-
         private BagGrid LoadOwnedGrid(PlayerProfile profile)
         {
             var grid = new BagGrid(5, 4);
@@ -323,6 +291,27 @@ namespace OneBagJianghu.UI.Common
                 + "% (≤ 40%)";
         }
 
+        public JArray BuildServerPlacements()
+        {
+            var placements = new JArray();
+            foreach (PlacedItem placed in gridView.Grid.Items)
+            {
+                if (string.IsNullOrWhiteSpace(placed.OwnedUid))
+                {
+                    throw new InvalidOperationException($"Placed item '{placed.Item.Id}' has no owned uid.");
+                }
+
+                placements.Add(new JObject
+                {
+                    ["uid"] = placed.OwnedUid,
+                    ["x"] = placed.X,
+                    ["y"] = placed.Y
+                });
+            }
+
+            return placements;
+        }
+
         private void HandleLoadoutChanged()
         {
             RefreshPower();
@@ -347,7 +336,7 @@ namespace OneBagJianghu.UI.Common
 
             int level = boundProfile?.HeroLevel ?? 1;
             int power = PowerCatalog.LoadFromResources().Fighter(items, level);
-            powerText.text = "Lực Chiến: " + UiFormat.Number(power);
+            powerText.text = "Chiến Uy " + UiFormat.Number(power);
         }
 
         public static Loadout BuildStatsLoadout(BagGrid grid,

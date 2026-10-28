@@ -177,12 +177,52 @@ namespace OneBagJianghu.Tests.Economy
         [Test]
         public void ReputationLimitsResetOnMonday()
         {
+            // Arrange
             PlayerProfile p = Profile();
             ShopService s = Service();
+
+            // Act
             Assert.That(s.BuyReputation(p, "chi_ton_ngoc_tuy").Success, Is.True);
             Assert.That(s.BuyReputation(p, "chi_ton_ngoc_tuy").Success, Is.False);
             clock.Now = new DateTimeOffset(2026, 10, 5, 0, 0, 0, TimeSpan.Zero);
-            Assert.That(s.ReputationRemaining(p, "chi_ton_ngoc_tuy"), Is.EqualTo(1));
+            int nextWeek = s.ReputationRemaining(p, "chi_ton_ngoc_tuy");
+            clock.Now = new DateTimeOffset(2026, 10, 12, 0, 0, 0, TimeSpan.Zero);
+            int nextPeriod = s.ReputationRemaining(p, "chi_ton_ngoc_tuy");
+
+            // Assert
+            Assert.That(nextWeek, Is.EqualTo(0));
+            Assert.That(nextPeriod, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void CatalogReadsReputationPeriodWeeks()
+        {
+            // Arrange
+            string json = File.ReadAllText(Path.Combine(Application.dataPath,
+                "_Game/Resources/Data/shop.json"));
+
+            // Act
+            ShopCatalog catalog = ShopCatalog.Parse(json);
+            ReputationOffer offer = catalog.ReputationOffers.Find(value => value.Id == "chi_ton_ngoc_tuy");
+
+            // Assert
+            Assert.That(offer.PeriodWeeks, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void CatalogRejectsReputationPeriodBelowOne()
+        {
+            // Arrange
+            string json = File.ReadAllText(Path.Combine(Application.dataPath,
+                "_Game/Resources/Data/shop.json"));
+            JObject root = JObject.Parse(json);
+            root["reputationOffers"][0]["periodWeeks"] = 0;
+
+            // Act
+            TestDelegate parse = () => ShopCatalog.Parse(root.ToString());
+
+            // Assert
+            Assert.That(parse, Throws.TypeOf<FormatException>());
         }
 
         [Test]

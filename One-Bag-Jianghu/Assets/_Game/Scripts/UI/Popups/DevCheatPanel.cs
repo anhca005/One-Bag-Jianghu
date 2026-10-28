@@ -4,6 +4,7 @@ using OneBagJianghu.UI.Common;
 using UnityEngine;
 using UnityEngine.UI;
 using OneBagJianghu.Pve;
+using Newtonsoft.Json.Linq;
 
 namespace OneBagJianghu.UI.Popups
 {
@@ -73,9 +74,7 @@ namespace OneBagJianghu.UI.Popups
             refreshShopButton.onClick.AddListener(RefreshShop);
             nextWeekButton.onClick.AddListener(() =>
             {
-                ShopRuntimeClock.AdvanceDays(7);
-                Debug.Log("[Cheat] Advance shop clock by 7 days");
-                Save();
+                SendCheat(new JObject { ["action"] = "advance_week" });
             });
             resetButton.onClick.AddListener(ConfirmReset);
             wipeAllButton.onClick.AddListener(ConfirmWipeAll);
@@ -93,116 +92,56 @@ namespace OneBagJianghu.UI.Popups
         }
         private void RefreshShop()
         {
-            var runtime = new EconomyRuntime();
-            var service = new ShopService(EconomyRuntime.Load("shop",
-            ShopCatalog.Parse),
-            materials,
-            runtime,
-            GameBootstrap.Session.HeroName.GetHashCode(),
-            new ShopRuntimeClock());
-            service.ForceFreeRefresh(GameBootstrap.Session.Profile);
-            Debug.Log("[Cheat] Force free shop refresh");
-            Save();
+            SendCheat(new JObject { ["action"] = "refresh_shop" });
         }
         private void AddItem()
         {
-            PlayerProfile profile = GameBootstrap.Session.Profile;
-            OwnedItem item = profile.AddItem(itemIds[itemDropdown.value],
-            tierDropdown.value
-            + 1,
-            rarity: RarityRules.Ordered[rarityDropdown.value]);
-            if (!new StorageGrid(profile,
-            catalog).TryPlaceItem(item))
+            SendCheat(new JObject
             {
-                profile.RemoveItem(item.Uid);
-                Debug.LogWarning("[Cheat] Add item failed: storage full");
-                ShowFull();
-                return;
-            }
-            Debug.Log($"[Cheat] Add item id={item.ItemId}, rarity={item.Rarity}, Trọng={item.Tier}");
-            Save();
+                ["action"] = "add_item",
+                ["itemId"] = itemIds[itemDropdown.value],
+                ["tier"] = tierDropdown.value + 1,
+                ["rarity"] = RarityRules.Ordered[rarityDropdown.value]
+            });
         }
         private void AddMaterial(int amount)
         {
             string id = materialIds[materialDropdown.value];
-            if (!new StorageGrid(GameBootstrap.Session.Profile,
-            catalog).TryAddMaterial(id,
-            amount))
-            {
-                Debug.LogWarning($"[Cheat] Add material failed: id={id}, amount={amount}, storage full");
-                ShowFull();
-                return;
-            }
-            Debug.Log($"[Cheat] Add material id={id}, amount={amount}");
-            Save();
+            SendCheat(new JObject { ["action"] = "add_material", ["materialId"] = id, ["amount"] = amount });
         }
         private static void ShowFull() => PopupManager.Show<MessagePopup>(new MessagePopupData("Thông báo",
             "Tàng Bảo Các không đủ chỗ."));
         private void AddCurrency(string id,
             long amount)
         {
-            GameBootstrap.Session.Profile.AddCurrency(id,
-                amount);
-            Debug.Log($"[Cheat] Add currency id={id}, amount={amount}");
-            Save();
+            SendCheat(new JObject { ["action"] = "add_currency", ["currencyId"] = id, ["amount"] = amount });
         }
-        private static void Save() => GameBootstrap.Session.SaveProfile();
         private static void UnlockPve()
         {
-            PveCatalog c = PveCatalog.Load();
-            foreach (PveChapter chapter in c.Chapters)
-                foreach (PveStage stage in chapter.Stages)
-                    GameBootstrap.Session.Profile.Pve.Stages[stage.Id] = new PveStageProgress
-                    {
-                        Cleared = true
-                    };
-            Debug.Log("[Pve] [Cheat] Unlock all stages");
-            Save();
+            SendCheat(new JObject { ["action"] = "unlock_pve" });
         }
         private static void RefillStamina()
         {
-            new StaminaService(StaminaConfig.Load()).Refill(GameBootstrap.Session.Profile.Pve,
-                System.DateTimeOffset.UtcNow);
-            Debug.Log("[Pve] [Cheat] Refill stamina");
-            Save();
+            SendCheat(new JObject { ["action"] = "refill_stamina" });
         }
         private static void ClearStage()
         {
             string id = GameBootstrap.Session.CurrentPveStageId;
             if (string.IsNullOrEmpty(id))
                 id = PveCatalog.Load().Chapters[0].Stages[0].Id;
-            GameBootstrap.Session.Profile.Pve.Stages[id] = new PveStageProgress
-            {
-                Cleared = true
-            };
-            Debug.Log("[Pve] [Cheat] Clear stage=" + id);
-            Save();
+            SendCheat(new JObject { ["action"] = "clear_stage", ["stageId"] = id });
         }
         private static void AddLevel()
         {
-            PlayerProfile p = GameBootstrap.Session.Profile;
-            LevelService s = new LevelService(LevelConfig.Load());
-            if (p.HeroLevel < s.MaxLevel)
-                s.Grant(p,
-            s.ExpToNext(p.HeroLevel) - p.HeroExp);
-            Debug.Log("[Cheat] Add 1 level");
-            Save();
+            SendCheat(new JObject { ["action"] = "add_level" });
         }
         private static void AddExp()
         {
-            new LevelService(LevelConfig.Load()).Grant(GameBootstrap.Session.Profile,
-                100);
-            Debug.Log("[Cheat] Add EXP amount=100");
-            Save();
+            SendCheat(new JObject { ["action"] = "add_exp", ["amount"] = 100 });
         }
         private static void ResetSect()
         {
-            PlayerProfile p = GameBootstrap.Session.Profile;
-            p.SectId = null;
-            p.TamPhapLevel = 1;
-            p.SectPromptShown = false;
-            Debug.Log("[Cheat] Reset sect");
-            Save();
+            SendCheat(new JObject { ["action"] = "reset_sect" });
         }
         private void ConfirmReset() => PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Đặt lại hồ sơ",
             "Khôi phục bộ vật phẩm khởi đầu?",
@@ -212,9 +151,7 @@ namespace OneBagJianghu.UI.Popups
             {
                 if (yes)
                 {
-                    Debug.Log("[Cheat] Reset profile");
-                    GameBootstrap.Session.ResetProfile();
-                    Close();
+                    SendCheat(new JObject { ["action"] = "reset_profile" });
                 }
             }));
         private void ConfirmWipeAll() => PopupManager.Show<ConfirmPopup>(new ConfirmPopupData("Chơi lại từ đầu",
@@ -225,10 +162,16 @@ namespace OneBagJianghu.UI.Popups
         {
             if (!yes)
                 return;
-            GameBootstrap.Session.WipeAllData();
-            PopupManager.ClearCacheAfterDataWipe();
-            SceneFlow.Go(GameScene.Login);
+            SendCheat(new JObject { ["action"] = "reset_profile" });
         }));
+
+        private static void SendCheat(JObject payload)
+        {
+            GameBootstrap.Network.SendDevCheat(payload,
+                _ => { },
+                message => PopupManager.Show<MessagePopup>(
+                    new MessagePopupData("Dev Cheat", message, "Đóng")));
+        }
     }
 #else
     public sealed class DevCheatPanel : BasePopup

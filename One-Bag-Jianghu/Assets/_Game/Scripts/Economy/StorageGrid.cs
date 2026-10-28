@@ -62,14 +62,6 @@ namespace OneBagJianghu.Economy
             this.catalog = catalog ?? UnitCatalog.Instance;
             this.materials = materials;
             state = profile.Storage ??= new StorageState();
-            if (state.MaterialStacks.Count == 0 && profile.Materials.Count > 0)
-            {
-                var legacy = new Dictionary<string, int>(profile.Materials, StringComparer.Ordinal);
-                profile.Materials.Clear();
-                foreach (KeyValuePair<string, int> value in legacy)
-                    if (!TryAddMaterial(value.Key, value.Value))
-                        state.Overflow.Add("material:" + value.Key + ":" + value.Value);
-            }
         }
 
         public int UsedCells

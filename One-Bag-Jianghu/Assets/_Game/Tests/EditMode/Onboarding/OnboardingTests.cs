@@ -98,7 +98,7 @@ namespace OneBagJianghu.Tests.Onboarding
             // Arrange
             TutorialCatalog catalog = TutorialCatalog.Parse(LoadResource("tutorial.json"));
             var profile = new PlayerProfile();
-            var service = new TutorialService(catalog, profile);
+            var service = new TutorialService(catalog, () => profile);
 
             // Act
             bool started = service.TryStart("shop");
@@ -110,7 +110,9 @@ namespace OneBagJianghu.Tests.Onboarding
             Assert.That(started, Is.True);
             Assert.That(ignored, Is.False);
             Assert.That(advanced, Is.True);
-            Assert.That(profile.CompletedTutorials, Contains.Item("shop"));
+            // The server records completion (#71); until it answers, the service still refuses a restart.
+            Assert.That(service.TakePendingCompletion(), Is.EqualTo("shop"));
+            Assert.That(profile.CompletedTutorials, Is.Empty);
             Assert.That(service.TryStart("shop"), Is.False);
         }
 
@@ -120,7 +122,8 @@ namespace OneBagJianghu.Tests.Onboarding
             // Arrange
             TutorialCatalog catalog = TutorialCatalog.Parse(LoadResource("tutorial.json"));
             TutorialSequence shop = catalog.Sequences.Single(value => value.Id == "shop");
-            var service = new TutorialService(catalog, new PlayerProfile());
+            var profile = new PlayerProfile();
+            var service = new TutorialService(catalog, () => profile);
 
             // Act
             service.TryStart("shop");
@@ -143,7 +146,8 @@ namespace OneBagJianghu.Tests.Onboarding
         {
             // Arrange
             TutorialCatalog catalog = TutorialCatalog.Parse(LoadResource("tutorial.json"));
-            var service = new TutorialService(catalog, new PlayerProfile());
+            var profile = new PlayerProfile();
+            var service = new TutorialService(catalog, () => profile);
             service.TryStart("shop");
             service.Publish("stage_map_closed");
 

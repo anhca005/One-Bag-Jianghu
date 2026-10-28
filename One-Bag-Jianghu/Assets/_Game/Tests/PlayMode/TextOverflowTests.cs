@@ -26,7 +26,6 @@ namespace OneBagJianghu.Tests.Play
             DeleteProfile();
             yield return Login("Text Overflow");
             HomeController home = UnityEngine.Object.FindFirstObjectByType<HomeController>();
-            GameBootstrap.Session.ResetProfile();
             PlayerProfile profile = GameBootstrap.Session.Profile;
             ItemCatalog catalog = ItemCatalog.LoadFromResources();
             profile.Items.Clear();
@@ -51,7 +50,8 @@ namespace OneBagJianghu.Tests.Play
                 owned.Add(item);
             }
 
-            GameBootstrap.Session.SaveProfile();
+            GameBootstrap.Session.ApplyProfileForTests(profile);
+            profile = GameBootstrap.Session.Profile;
             GetField<HomeHotspot>(home, "storageHotspot").OnClick.Invoke();
             yield return WaitUntil(() =>
                 PopupManager.IsOpen<StoragePopup>(),
