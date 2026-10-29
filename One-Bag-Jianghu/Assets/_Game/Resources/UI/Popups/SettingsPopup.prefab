@@ -701,7 +701,7 @@ GameObject:
   - component: {fileID: 8665572577467632667}
   - component: {fileID: 7931084173629220934}
   - component: {fileID: 7975527555095735828}
-  - component: {fileID: 244462978068024596}
+  - component: {fileID: 5800644690722951875}
   m_Layer: 0
   m_Name: SettingsPopup
   m_TagString: Untagged
@@ -813,7 +813,7 @@ MonoBehaviour:
   quitButton: {fileID: 9101845588137084220}
   defaultsButton: {fileID: 764391916613753514}
   closeButton: {fileID: 4815408320146635225}
---- !u!114 &244462978068024596
+--- !u!114 &5800644690722951875
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2752,6 +2752,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3490013587484527354}
     m_Modifications:
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Sprite
       value: 

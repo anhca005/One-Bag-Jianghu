@@ -98,6 +98,12 @@ namespace OneBagJianghu.UI.Popups
         {
             EnsureInitialized();
             ClearError();
+            // The popup instance is reused: drop the old selection and merge mode, unlock the buttons.
+            selectedUid = null;
+            selectedStack = null;
+            mergeSourceUid = null;
+            SetActionPending(false);
+            ClearSelection();
             Refresh();
         }
 

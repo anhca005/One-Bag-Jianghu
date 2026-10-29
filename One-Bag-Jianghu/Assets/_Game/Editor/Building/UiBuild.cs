@@ -40,6 +40,30 @@ namespace OneBagJianghu.EditorTools.Building
             return true;
         }
 
+        /// <summary>
+        /// Turns a text button into the round close icon. The bar-shaped disabled art of Button_Primary would be
+        /// squashed into the square icon while a popup waits for the server, so the icon only dims instead.
+        /// </summary>
+        public static bool ApplyCloseIcon(Button button)
+        {
+            if (!ApplyUiSprite(button.GetComponent<Image>(), "Kit/button_close"))
+                return false;
+
+            button.transition = Selectable.Transition.ColorTint;
+            ColorBlock colors = button.colors;
+            colors.normalColor = Color.white;
+            colors.highlightedColor = Color.white;
+            colors.selectedColor = Color.white;
+            colors.pressedColor = new Color(.85f, .85f, .85f, 1f);
+            colors.disabledColor = new Color(1f, 1f, 1f, .45f);
+            button.colors = colors;
+            RectTransform rect = button.GetComponent<RectTransform>();
+            rect.sizeDelta = new Vector2(56f, 56f);
+            rect.anchorMin = rect.anchorMax = new Vector2(.965f, .965f);
+            button.GetComponentInChildren<Text>(true).gameObject.SetActive(false);
+            return true;
+        }
+
         public static Sprite LoadUiSprite(string key)
         {
             return AssetDatabase.LoadAssetAtPath<Sprite>(UiTextureFolder + key + ".png");

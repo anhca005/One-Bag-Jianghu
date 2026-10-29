@@ -306,8 +306,19 @@ namespace OneBagJianghu.Bag.View
                     ir.anchorMin = Vector2.zero;
                     ir.anchorMax = Vector2.one;
                     ir.offsetMin = ir.offsetMax = Vector2.zero;
+                    // The count sits in the lower-right corner only; stretched over the whole cell, best fit
+                    // grew it to cover the icon.
                     label.transform.SetAsLastSibling();
                     label.alignment = TextAnchor.LowerRight;
+                    label.color = Color.white;
+                    label.resizeTextMaxSize = 18;
+                    lr.anchorMin = new Vector2(.35f, 0f);
+                    lr.anchorMax = new Vector2(1f, .45f);
+                    lr.offsetMin = new Vector2(0f, 2f);
+                    lr.offsetMax = new Vector2(-4f, 0f);
+                    Shadow shadow = label.gameObject.AddComponent<Shadow>();
+                    shadow.effectColor = new Color(0f, 0f, 0f, .8f);
+                    shadow.effectDistance = new Vector2(1f, -1f);
                     label.text = "×" + stack.Count;
                 }
                 else

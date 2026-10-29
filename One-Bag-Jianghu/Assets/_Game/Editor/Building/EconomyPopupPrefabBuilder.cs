@@ -1117,12 +1117,8 @@ namespace OneBagJianghu.EditorTools.Building
             rect.anchorMin = new Vector2(x, y);
             rect.anchorMax = new Vector2(x, y);
             rect.sizeDelta = new Vector2(260f, 62f);
-            if (label == "Đóng" && UiBuild.ApplyUiSprite(button.GetComponent<Image>(), "Kit/button_close"))
-            {
-                rect.sizeDelta = new Vector2(56f, 56f);
-                rect.anchorMin = rect.anchorMax = new Vector2(.965f, .965f);
-                button.GetComponentInChildren<Text>().gameObject.SetActive(false);
-            }
+            if (label == "Đóng")
+                UiBuild.ApplyCloseIcon(button.GetComponent<Button>());
             return button;
         }
 

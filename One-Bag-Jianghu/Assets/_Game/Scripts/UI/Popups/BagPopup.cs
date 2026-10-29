@@ -27,6 +27,8 @@ namespace OneBagJianghu.UI.Popups
         protected override void OnSetup(object data)
         {
             GameSession session = GameBootstrap.Session;
+            // The popup instance is reused: the last close left the button locked in its saving state.
+            ResetCloseButton();
             // PopupManager calls Setup before Awake on first show, so wire the tooltip before the views are built.
             bagPanel.SetTooltip(itemTooltip);
             bagPanel.Bind(session.Profile);
@@ -88,11 +90,16 @@ namespace OneBagJianghu.UI.Popups
             }
         }
 
-        private void HandleSaveError(string message)
+        private void ResetCloseButton()
         {
             isSaving = false;
             closeButton.GetComponent<UnityEngine.UI.Button>().interactable = true;
             closeButton.SetLabel("Đóng");
+        }
+
+        private void HandleSaveError(string message)
+        {
+            ResetCloseButton();
             bagPanel.Bind(GameBootstrap.Session.Profile);
             string reason = string.IsNullOrWhiteSpace(message)
                 ? "Máy chủ chưa thể lưu hành trang. Xin thử lại."

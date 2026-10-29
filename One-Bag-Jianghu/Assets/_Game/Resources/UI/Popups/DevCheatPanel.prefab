@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5225350514278794327}
   - component: {fileID: 4465168608147374058}
   - component: {fileID: 1677566068117539696}
-  - component: {fileID: 1222093995944943608}
+  - component: {fileID: 8120039814492997190}
   m_Layer: 0
   m_Name: DevCheatPanel
   m_TagString: Untagged
@@ -129,7 +129,7 @@ MonoBehaviour:
   addLevelButton: {fileID: 7220440372294955726}
   addExpButton: {fileID: 6817898542029494874}
   resetSectButton: {fileID: 1265355881427841880}
---- !u!114 &1222093995944943608
+--- !u!114 &8120039814492997190
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -711,6 +711,62 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3283200845562504518}
     m_Modifications:
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Transition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.b
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.g
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_PressedColor.r
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.a
+      value: 0.45
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 779686400209420757, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1897180661096263606, guid: 486e117af28f0ec40b77064069bb2065, type: 3}
       propertyPath: m_Sprite
       value: 

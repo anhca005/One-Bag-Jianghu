@@ -54,6 +54,8 @@ namespace OneBagJianghu.UI.Popups
             catalog = SectCatalog.LoadFromResources();
             artLibrary = SectArtLibrary.Load();
             selectedIndex = FindInitialIndex();
+            // The popup instance is reused: unlock the buttons a previous join request left disabled.
+            SetActionPending(false);
             BindCards();
             RefreshSelection();
         }

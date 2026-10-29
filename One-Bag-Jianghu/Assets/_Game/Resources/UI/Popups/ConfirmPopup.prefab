@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4916050504509347121}
   - component: {fileID: 7087616626907576068}
   - component: {fileID: 4053959231873111317}
-  - component: {fileID: 1332987250965359715}
+  - component: {fileID: 7324903379717909408}
   m_Layer: 0
   m_Name: ConfirmPopup
   m_TagString: Untagged
@@ -192,7 +192,7 @@ MonoBehaviour:
   messageText: {fileID: 6032381931461622212}
   confirmButton: {fileID: 8480200741120168701}
   cancelButton: {fileID: 6136678850702203639}
---- !u!114 &1332987250965359715
+--- !u!114 &7324903379717909408
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

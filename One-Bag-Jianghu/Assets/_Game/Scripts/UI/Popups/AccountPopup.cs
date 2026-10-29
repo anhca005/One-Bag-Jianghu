@@ -62,6 +62,8 @@ namespace OneBagJianghu.UI.Popups
             errorText.text = string.Empty;
             SetPasswordVisible(false);
             ShowLogin();
+            // The popup instance is reused: a request that finished after the last close left the buttons busy.
+            SetBusy(false);
             bool required = popupData?.Required ?? false;
             laterButton.gameObject.SetActive(!required);
             closeOnBackdrop = !required;

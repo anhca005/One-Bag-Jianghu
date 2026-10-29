@@ -131,6 +131,8 @@ namespace OneBagJianghu.UI.Popups
         protected override void OnSetup(object data)
         {
             EnsureInitialized();
+            // The popup instance is reused: unlock what a previous request left disabled; Refresh rechecks prices.
+            SetActionPending(false);
             tradePanel.SetActive(true);
             exchangePanel.SetActive(false);
             reputationPanel.SetActive(false);
