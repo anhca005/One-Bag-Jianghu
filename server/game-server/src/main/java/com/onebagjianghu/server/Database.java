@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import org.sqlite.SQLiteConfig;
 
 /** Owns SQLite connections and schema creation. */
 public final class Database
@@ -39,13 +40,16 @@ public final class Database
 
     public Connection open() throws SQLException
     {
-        Connection connection = DriverManager.getConnection(url);
-        try (Statement statement = connection.createStatement())
-        {
-            statement.execute("PRAGMA foreign_keys = ON");
-            statement.execute("PRAGMA busy_timeout = 5000");
-        }
-        return connection;
+        // Transactions start with BEGIN IMMEDIATE. A deferred transaction reads first and asks for the write lock
+        // later; when two of them do that at once SQLite answers SQLITE_BUSY at once instead of waiting
+        // busy_timeout, which the load test hit with 10+ concurrent clients.
+        // WAL lets readers keep reading while one writer commits, so writers no longer queue behind them.
+        SQLiteConfig config = new SQLiteConfig();
+        config.setTransactionMode(SQLiteConfig.TransactionMode.IMMEDIATE);
+        config.setJournalMode(SQLiteConfig.JournalMode.WAL);
+        config.setBusyTimeout(5000);
+        config.enforceForeignKeys(true);
+        return DriverManager.getConnection(url, config.toProperties());
     }
 
     private void migrate()
